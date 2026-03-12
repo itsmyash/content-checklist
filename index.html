@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Content ✓">
+<title>Weekly Content Checklist</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  :root {
+    --alexa:   #1B4F8A;
+    --myash:   #4A235A;
+    --fr:      #5C3317;
+    --dark:    #1A1A2E;
+    --tiktok:  #111111;
+    --pin:     #E60023;
+    --green:   #059669;
+    --gold:    #92660A;
+    --bg:      #F2F2F7;
+    --card:    #FFFFFF;
+    --text:    #1C1C1E;
+    --sub:     #6E6E73;
+    --border:  #E5E5EA;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding-bottom: 40px;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .app-header {
+    background: var(--dark);
+    color: white;
+    padding: 56px 20px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .app-header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
+  .week-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 2px;
+  }
+
+  /* THEME BAR */
+  .theme-bar {
+    background: #252540;
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .theme-bar label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .theme-input {
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.9);
+    font-size: 14px;
+    font-family: inherit;
+    width: 100%;
+    outline: none;
+  }
+  .theme-input::placeholder { color: rgba(255,255,255,0.25); }
+
+  /* RESET BUTTON */
+  .reset-btn {
+    display: block;
+    margin: 14px 20px 0;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+    font-family: inherit;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: calc(100% - 40px);
+    text-align: center;
+  }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    overflow-x: auto;
+    padding: 12px 20px 0;
+    gap: 8px;
+    background: var(--dark);
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    flex-shrink: 0;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    color: white;
+    opacity: 0.5;
+  }
+  .tab.active { opacity: 1; }
+  .tab[data-tab="all"]   { background: #3A3A5C; }
+  .tab[data-tab="alexa"] { background: var(--alexa); }
+  .tab[data-tab="myash"] { background: var(--myash); }
+  .tab[data-tab="fr"]    { background: var(--fr); }
+
+  /* CONTENT */
+  .content { padding: 16px 16px 0; }
+
+  /* DAY SECTIONS */
+  .day-section { margin-bottom: 20px; }
+  .day-header {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.9px;
+    text-transform: uppercase;
+    color: var(--sub);
+    padding: 0 4px 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .day-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--card);
+    border-radius: 13px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+    margin-bottom: 2px;
+  }
+  .card:first-of-type { border-radius: 13px 13px 4px 4px; }
+  .card:last-of-type  { border-radius: 4px 4px 13px 13px; margin-bottom: 0; }
+  .card:only-of-type  { border-radius: 13px; }
+
+  /* CHECKLIST ITEM */
+  .item {
+    display: flex;
+    align-items: center;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.1s;
+    gap: 12px;
+    min-height: 52px;
+  }
+  .item:last-child { border-bottom: none; }
+  .item:active { background: #F5F5F7; }
+
+  /* CHECKBOX */
+  .check {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    border: 2px solid #C7C7CC;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .item.done .check {
+    border-color: var(--green);
+    background: var(--green);
+  }
+  .check-icon {
+    display: none;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .item.done .check-icon { display: block; }
+
+  /* ITEM CONTENT */
+  .item-body { flex: 1; min-width: 0; }
+  .item-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .item.done .item-title {
+    color: var(--sub);
+    text-decoration: line-through;
+  }
+  .item-meta {
+    font-size: 12px;
+    color: var(--sub);
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+
+  /* BRAND + PLATFORM PILLS */
+  .pill {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.2px;
+  }
+  .pill-time {
+    font-size: 11px;
+    color: var(--sub);
+    font-weight: 500;
+  }
+
+  /* TIKTOK WARNING */
+  .tiktok-warn {
+    font-size: 10px;
+    font-weight: 700;
+    color: #92660A;
+    background: #FFF8E1;
+    padding: 2px 6px;
+    border-radius: 5px;
+  }
+
+  /* PROGRESS */
+  .progress-bar-wrap {
+    background: rgba(255,255,255,0.12);
+    border-radius: 4px;
+    height: 4px;
+    margin: 10px 20px 2px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: var(--green);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+    width: 0%;
+  }
+  .progress-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    padding: 0 20px 10px;
+  }
+
+  /* SECTION: PINTEREST */
+  .pin-section {
+    background: var(--card);
+    border-radius: 13px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+  }
+  .pin-header {
+    background: var(--pin);
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.3px;
+  }
+  .pin-item {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text);
+  }
+  .pin-item:last-child { border-bottom: none; }
+  .pin-day {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--pin);
+    margin-bottom: 2px;
+  }
+
+  /* TIKTOK SCHEDULE CARD */
+  .tiktok-card {
+    background: var(--card);
+    border-radius: 13px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+  }
+  .tiktok-header {
+    background: var(--tiktok);
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.3px;
+  }
+  .tiktok-row {
+    display: flex;
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+  }
+  .tiktok-row:last-child { border-bottom: none; }
+  .tiktok-day {
+    font-weight: 700;
+    width: 80px;
+    color: var(--text);
+    flex-shrink: 0;
+  }
+  .tiktok-acct { color: var(--sub); font-size: 12px; }
+
+  /* HIDDEN */
+  .hidden { display: none; }
+
+  /* SECTION LABELS */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--sub);
+    padding: 4px 4px 8px;
+  }
+</style>
+</head>
+<body>
+
+<div class="app-header">
+  <h1>📱 Weekly Content</h1>
+  <div class="week-label" id="week-label">Loading...</div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+  <div class="progress-label" id="progress-label">0 of 0 posts done</div>
+</div>
+
+<div class="theme-bar">
+  <label>This Week's Master Theme</label>
+  <input class="theme-input" id="theme-input"
+         placeholder="e.g. Rising rates = operator opportunity..."
+         oninput="saveTheme()">
+</div>
+
+<div style="background:var(--dark); padding: 6px 20px 14px;">
+  <button class="reset-btn" onclick="resetAll()">🔄 Reset All Checkboxes (New Week)</button>
+</div>
+
+<div class="tabs" role="tablist">
+  <button class="tab active" data-tab="all"   onclick="switchTab('all')">All Posts</button>
+  <button class="tab"        data-tab="alexa" onclick="switchTab('alexa')">🏠 Alexa</button>
+  <button class="tab"        data-tab="myash" onclick="switchTab('myash')">✨ Ash</button>
+  <button class="tab"        data-tab="fr"    onclick="switchTab('fr')">☕ F&R</button>
+</div>
+
+<div class="content" id="main-content">
+
+  <!-- TIKTOK SCHEDULE -->
+  <div class="tiktok-card" data-brand="all">
+    <div class="tiktok-header">📱 TikTok Schedule — Max 1 Post Per Day</div>
+    <div class="tiktok-row"><span class="tiktok-day">Monday</span><span class="tiktok-acct">@fillerandroast — Roast & Ritual</span></div>
+    <div class="tiktok-row"><span class="tiktok-day">Tuesday</span><span class="tiktok-acct">@its.myash — Car Confessions #1</span></div>
+    <div class="tiktok-row"><span class="tiktok-day">Wednesday</span><span class="tiktok-acct">@its.myash — Behind the Brand</span></div>
+    <div class="tiktok-row"><span class="tiktok-day">Thursday</span><span class="tiktok-acct">@fillerandroast — F&R Build</span></div>
+    <div class="tiktok-row"><span class="tiktok-day">Friday</span><span class="tiktok-acct">@its.myash — Car Confessions #2</span></div>
+    <div class="tiktok-row"><span class="tiktok-day">Saturday</span><span class="tiktok-acct">@fillerandroast — Weekend Ritual</span></div>
+  </div>
+
+  <!-- SUNDAY -->
+  <div class="day-section">
+    <div class="day-header"><span class="day-dot" style="background:#22C55E"></span>Sunday — Gratitude Day 🙏</div>
+    <div class="card">
+      <div class="item" data-id="sg1" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🙏 Sunday Gratitude</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">9:00 AM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="sg2" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🙏 Sunday Gratitude — Community</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#00B246">Nextdoor</span><span class="pill-time">9:15 AM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="sg3" data-brand="fr" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🙏 Sunday Gratitude — Ritual</div>
+          <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">9:30 AM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="sg4" data-brand="myash" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">☕🍂 Coffee & Ash</div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">10:00 AM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="sg5" data-brand="myash" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">☕🍂 Coffee & Ash — Caption</div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#1877F2">FB</span><span class="pill-time">10:15 AM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="sg6" data-brand="myash" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">✍️ The Operator's Journal</div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#FF6719">Substack</span><span class="pill-time">7:00 PM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="sg7" data-brand="myash" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">📣 Weekly CTA Story (rotate)</div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG Story</span><span class="pill-time">6:00 PM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="sg8" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">📌 Pinterest Pin 1 — Alexa STR</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">Alexa angle</span><span class="pill" style="background:var(--pin)">Pinterest</span><span class="pill-time">8:00 PM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="sg9" data-brand="myash" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">📌 Pinterest Pin 2 — Cigar Lifestyle</div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">its.myash angle</span><span class="pill" style="background:var(--pin)">Pinterest</span><span class="pill-time">8:30 PM</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONDAY -->
+  <div class="day-section">
+    <div class="day-header"><span class="day-dot" style="background:#3B82F6"></span>Monday</div>
+    <div class="card">
+      <div class="item" data-id="m1" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">📊 Market Signal</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#0A66C2">LinkedIn</span><span class="pill-time">8:00 AM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="m2" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">📊 Market Signal — Repurpose</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#4285F4">Google Biz</span><span class="pill-time">9:00 AM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="m3" data-brand="myash" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🌙 Tonight's Smoke</div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">7:00 PM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="m4" data-brand="fr" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">☕ Roast & Ritual <span class="tiktok-warn">F&R TikTok</span></div>
+          <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill-time">6:00 PM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="m5" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🏠 Real Estate Insight</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">Alexa Personal</span><span class="pill" style="background:#1877F2">FB Personal</span><span class="pill-time">8:00 AM</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TUESDAY -->
+  <div class="day-section">
+    <div class="day-header"><span class="day-dot" style="background:#22C55E"></span>Tuesday</div>
+    <div class="card">
+      <div class="item" data-id="t1" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">⚡ Market Shot</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">2:00 PM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="t2" data-brand="myash" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🚗 Car Confessions #1 <span class="tiktok-warn">its.myash TikTok</span></div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill" style="background:#1877F2">FB</span><span class="pill-time">12:00 PM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="t3" data-brand="myash" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🌙 Tonight's Smoke</div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">7:00 PM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="t4" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🏘 Community Roundup</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#00B246">Nextdoor</span><span class="pill-time">6:00 PM</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEDNESDAY -->
+  <div class="day-section">
+    <div class="day-header"><span class="day-dot" style="background:#EAB308"></span>Wednesday</div>
+    <div class="card">
+      <div class="item" data-id="w1" data-brand="myash" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">☕🍂 Coffee & Ash — Photo</div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">8:00 AM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="w2" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🤝 Local Collab (1x/month)</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">9:00 AM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="w3" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🏷 Under Contract</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:#0D5FBF">FB Biz</span><span class="pill-time">11:00 AM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="w4" data-brand="myash" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🏗 Behind the Brand <span class="tiktok-warn">its.myash TikTok</span></div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill-time">6:00 PM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="w5" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">📌 Pinterest Pin 3 — F&R Coffee</div>
+          <div class="item-meta"><span class="pill" style="background:var(--fr)">F&R angle</span><span class="pill" style="background:var(--pin)">Pinterest</span><span class="pill-time">7:00 PM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="w6" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">📌 Pinterest Pin 4 — Market Data</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">Alexa angle</span><span class="pill" style="background:var(--pin)">Pinterest</span><span class="pill-time">7:30 PM</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THURSDAY -->
+  <div class="day-section">
+    <div class="day-header"><span class="day-dot" style="background:#22C55E"></span>Thursday</div>
+    <div class="card">
+      <div class="item" data-id="th1" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">📊 Investor Signal (pre-sched)</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#0A66C2">LinkedIn</span><span class="pill-time">8:30 AM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="th2" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">📊 Vacation Market Signal</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">11:30 AM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="th3" data-brand="fr" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">☕ F&R Build <span class="tiktok-warn">F&R TikTok</span></div>
+          <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill" style="background:#1877F2">FB</span><span class="pill-time">12:00 PM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="th4" data-brand="myash" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🌙 Tonight's Smoke</div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">7:00 PM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="th5" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">📺 Operator Brief (YouTube)</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">AlexaSanchezRealtor</span><span class="pill" style="background:#FF0000">YT</span><span class="pill-time">6:00 PM</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FRIDAY -->
+  <div class="day-section">
+    <div class="day-header"><span class="day-dot" style="background:#8B5CF6"></span>Friday</div>
+    <div class="card">
+      <div class="item" data-id="f1" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🏡 Neighborly Realtor</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#00B246">Nextdoor</span><span class="pill-time">9:00 AM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="f2" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">📊 Market Insight (pre-sched)</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#0D5FBF">FB Biz</span><span class="pill-time">8:00 AM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="f3" data-brand="myash" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🚗 Car Confessions #2 <span class="tiktok-warn">its.myash TikTok</span></div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill" style="background:#1877F2">FB</span><span class="pill-time">12:00 PM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="f4" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">📚 Educational Reel + FB Written</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:#0D5FBF">FB Biz</span><span class="pill-time">1:00 PM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="f5" data-brand="myash" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🥃 Weekend Smoke Reel</div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">5:00 PM</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SATURDAY -->
+  <div class="day-section">
+    <div class="day-header"><span class="day-dot" style="background:#A855F7"></span>Saturday</div>
+    <div class="card">
+      <div class="item" data-id="sa1" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🏡 Weekend Market Tip</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#00B246">Nextdoor</span><span class="pill-time">10:00 AM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="sa2" data-brand="myash" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">📸 Stories — Behind the Scenes</div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG Story</span><span class="pill-time">2:00 PM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="sa3" data-brand="myash" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🔀 Cross-Brand Feature</div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">3:00 PM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="sa4" data-brand="myash" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🥃 Weekend Smoke + FB Caption</div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:#1877F2">FB</span><span class="pill-time">5:00 PM</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="sa5" data-brand="fr" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">☕ Weekend Ritual <span class="tiktok-warn">F&R TikTok</span></div>
+          <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">6:00 PM</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EVENT-TRIGGERED -->
+  <div class="day-section" data-brand="alexa">
+    <div class="day-header"><span class="day-dot" style="background:#F59E0B"></span>Event-Triggered (Listings)</div>
+    <div class="card">
+      <div class="item" data-id="ev1" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🆕 Just Listed — IG + FB Biz</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill-time">Within 24hrs of MLS</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="ev2" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">📋 Under Contract — IG Story</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill-time">On contract</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="ev3" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🎉 Just Sold — IG + LinkedIn</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill-time">On close</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- DR CONTENT -->
+  <div class="day-section">
+    <div class="day-header"><span class="day-dot" style="background:#16A34A"></span>🇩🇴 DR Content — Once Monthly (Spread Over a Week)</div>
+    <div class="card">
+      <div class="item" data-id="dr1" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🇩🇴 DR Investor Signal — Reel</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">Day 1</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="dr2" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🇩🇴 DR Market Update — Professional Post</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#0A66C2">LinkedIn</span><span class="pill-time">Day 2</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="dr3" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🇩🇴 DR Investor Signal — Caption</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#0D5FBF">FB Biz</span><span class="pill-time">Day 2</span></div>
+        </div>
+      </div>
+      <div class="item" data-id="dr4" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🇩🇴 DR Vacation Market — YouTube</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">AlexaSanchezRealtor</span><span class="pill" style="background:#FF0000">YT</span><span class="pill-time">Day 3-4</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end content -->
+
+<script>
+// ── STATE ─────────────────────────────────────────────────────────────────
+const STORAGE_KEY = 'content_checks_v1';
+const THEME_KEY   = 'content_theme_v1';
+
+function getState() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+  catch(e) { return {}; }
+}
+function saveState(state) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+function saveTheme() {
+  localStorage.setItem(THEME_KEY, document.getElementById('theme-input').value);
+}
+function loadTheme() {
+  const t = localStorage.getItem(THEME_KEY) || '';
+  document.getElementById('theme-input').value = t;
+}
+
+// ── TOGGLE ────────────────────────────────────────────────────────────────
+function toggle(el) {
+  const id = el.dataset.id;
+  const state = getState();
+  if (el.classList.contains('done')) {
+    el.classList.remove('done');
+    delete state[id];
+  } else {
+    el.classList.add('done');
+    state[id] = true;
+  }
+  saveState(state);
+  updateProgress();
+}
+
+// ── RESTORE ───────────────────────────────────────────────────────────────
+function restoreChecks() {
+  const state = getState();
+  document.querySelectorAll('.item').forEach(el => {
+    if (state[el.dataset.id]) el.classList.add('done');
+    else el.classList.remove('done');
+  });
+  updateProgress();
+}
+
+// ── PROGRESS ──────────────────────────────────────────────────────────────
+function updateProgress() {
+  const all  = document.querySelectorAll('.item:not(.hidden)').length;
+  const done = document.querySelectorAll('.item.done:not(.hidden)').length;
+  const pct  = all ? Math.round(done/all*100) : 0;
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('progress-label').textContent =
+    `${done} of ${all} posts done  (${pct}%)`;
+}
+
+// ── TABS ──────────────────────────────────────────────────────────────────
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.tab === tab);
+  });
+  document.querySelectorAll('.item').forEach(el => {
+    const show = tab === 'all' || el.dataset.brand === tab;
+    el.classList.toggle('hidden', !show);
+  });
+  updateProgress();
+}
+
+// ── RESET ─────────────────────────────────────────────────────────────────
+function resetAll() {
+  if (!confirm('Start a new week? This will clear all checkboxes.')) return;
+  saveState({});
+  restoreChecks();
+}
+
+// ── WEEK LABEL ────────────────────────────────────────────────────────────
+function setWeekLabel() {
+  const now = new Date();
+  const day = now.getDay();
+  const sunday = new Date(now);
+  sunday.setDate(now.getDate() - day);
+  const opts = { month:'short', day:'numeric' };
+  const sat = new Date(sunday);
+  sat.setDate(sunday.getDate() + 6);
+  document.getElementById('week-label').textContent =
+    `Week of ${sunday.toLocaleDateString('en-US', opts)} – ${sat.toLocaleDateString('en-US', opts)}`;
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+setWeekLabel();
+loadTheme();
+restoreChecks();
+</script>
+</body>
+</html>
