@@ -325,6 +325,39 @@
   }
   .tiktok-acct { color: var(--sub); font-size: 12px; }
 
+
+  /* CAPTION FIELD */
+  .caption-row {
+    padding: 0 14px 10px 50px;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+  }
+  .caption-input {
+    width: 100%;
+    background: #F8F8FA;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+    color: var(--text);
+    resize: none;
+    min-height: 36px;
+    outline: none;
+    transition: border-color 0.15s, min-height 0.15s;
+    box-sizing: border-box;
+  }
+  .caption-input:focus {
+    border-color: #A0A0B0;
+    background: #FFFFFF;
+    min-height: 72px;
+  }
+  .caption-input::placeholder { color: #BBBBCC; }
+  .item.done + .caption-row .caption-input {
+    color: var(--sub);
+    text-decoration: line-through;
+  }
+
   /* HIDDEN */
   .hidden { display: none; }
 
@@ -348,6 +381,7 @@
     <div class="progress-bar" id="progress-bar"></div>
   </div>
   <div class="progress-label" id="progress-label">0 of 0 posts done</div>
+  <div id="sync-status" style="font-size:10px;color:rgba(255,255,255,0.5);padding:0 20px 8px;min-height:14px;"></div>
 </div>
 
 <div class="theme-bar">
@@ -392,6 +426,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">9:00 AM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_sg1" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sg1',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="sg2" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -399,6 +434,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#00B246">Nextdoor</span><span class="pill-time">9:15 AM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_sg2" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sg2',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="sg3" data-brand="fr" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -406,6 +442,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">9:30 AM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_sg3" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sg3',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="sg4" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -413,6 +450,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">10:00 AM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_sg4" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sg4',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="sg5" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -420,6 +458,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#1877F2">FB</span><span class="pill-time">10:15 AM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_sg5" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sg5',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="sg6" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -427,6 +466,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#FF6719">Substack</span><span class="pill-time">7:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_sg6" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sg6',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="sg8" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -434,6 +474,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">Alexa angle</span><span class="pill" style="background:var(--pin)">Pinterest</span><span class="pill-time">8:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_sg8" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sg8',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="sg9" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -441,6 +482,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--myash)">its.myash angle</span><span class="pill" style="background:var(--pin)">Pinterest</span><span class="pill-time">8:30 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_sg9" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sg9',this.value)" onfocus="autoResize(this)"></textarea></div>
     </div>
   </div>
 
@@ -455,6 +497,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#0A66C2">LinkedIn</span><span class="pill-time">8:00 AM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_m1" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('m1',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="m2" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -462,6 +505,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#4285F4">Google Biz</span><span class="pill-time">9:00 AM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_m2" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('m2',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="m3" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -469,6 +513,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">7:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_m3" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('m3',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="m4" data-brand="fr" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -476,6 +521,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill-time">6:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_m4" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('m4',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="m5" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -483,6 +529,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">Alexa Personal</span><span class="pill" style="background:#1877F2">FB Personal</span><span class="pill-time">8:00 AM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_m5" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('m5',this.value)" onfocus="autoResize(this)"></textarea></div>
     </div>
   </div>
 
@@ -497,6 +544,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">2:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_t1" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('t1',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="t2" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -504,6 +552,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">12:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_t2" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('t2',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="t3" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -511,6 +560,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">7:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_t3" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('t3',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="t4" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -518,6 +568,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#00B246">Nextdoor</span><span class="pill-time">6:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_t4" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('t4',this.value)" onfocus="autoResize(this)"></textarea></div>
     </div>
   </div>
       <div class="item" data-id="t_nd2" data-brand="alexa" onclick="toggle(this)">
@@ -527,6 +578,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#00B246">Nextdoor</span><span class="pill-time">9:00 AM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_t_nd2" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('t_nd2',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="t_rc1" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -534,6 +586,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">12:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_t_rc1" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('t_rc1',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="t_ns" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -541,6 +594,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@nellssocial</span><span class="pill" style="background:#1877F2">FB</span><span class="pill-time">6:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_t_ns" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('t_ns',this.value)" onfocus="autoResize(this)"></textarea></div>
     </div>
   </div>
 
@@ -555,6 +609,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">8:00 AM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_w1" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('w1',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="w2" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -562,6 +617,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">9:00 AM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_w2" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('w2',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="w3" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -569,6 +625,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:#0D5FBF">FB Biz</span><span class="pill-time">11:00 AM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_w3" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('w3',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="w4" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -576,6 +633,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill-time">6:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_w4" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('w4',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="w5" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -583,6 +641,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--fr)">F&R angle</span><span class="pill" style="background:var(--pin)">Pinterest</span><span class="pill-time">7:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_w5" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('w5',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="w6" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -590,6 +649,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">Alexa angle</span><span class="pill" style="background:var(--pin)">Pinterest</span><span class="pill-time">7:30 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_w6" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('w6',this.value)" onfocus="autoResize(this)"></textarea></div>
     </div>
   </div>
 
@@ -604,6 +664,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#0A66C2">LinkedIn</span><span class="pill-time">8:30 AM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_th1" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('th1',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="th2" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -611,6 +672,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">11:30 AM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_th2" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('th2',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="th3" data-brand="fr" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -618,6 +680,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill" style="background:#1877F2">FB</span><span class="pill-time">12:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_th3" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('th3',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="th4" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -625,6 +688,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">7:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_th4" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('th4',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="th5" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -632,6 +696,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">AlexaSanchezRealtor</span><span class="pill" style="background:#FF0000">YT</span><span class="pill-time">6:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_th5" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('th5',this.value)" onfocus="autoResize(this)"></textarea></div>
     </div>
   </div>
       <div class="item" data-id="th_nd" data-brand="alexa" onclick="toggle(this)">
@@ -641,6 +706,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#00B246">Nextdoor</span><span class="pill-time">6:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_th_nd" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('th_nd',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="th_rc2" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -648,6 +714,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">12:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_th_rc2" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('th_rc2',this.value)" onfocus="autoResize(this)"></textarea></div>
     </div>
   </div>
 
@@ -662,6 +729,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#0D5FBF">FB Biz</span><span class="pill-time">8:00 AM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_f2" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('f2',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="f3" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -669,6 +737,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:#111111">TikTok</span><span class="pill-time">12:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_f3" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('f3',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="f4" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -676,6 +745,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:#0D5FBF">FB Biz</span><span class="pill-time">1:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_f4" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('f4',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="f5" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -683,6 +753,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">5:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_f5" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('f5',this.value)" onfocus="autoResize(this)"></textarea></div>
     </div>
   </div>
 
@@ -697,6 +768,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#00B246">Nextdoor</span><span class="pill-time">10:00 AM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_sa1" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sa1',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="sa2" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -704,6 +776,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG Story</span><span class="pill-time">2:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_sa2" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sa2',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="sa3" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -711,6 +784,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">3:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_sa3" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sa3',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="sa4" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -718,6 +792,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:#1877F2">FB</span><span class="pill-time">5:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_sa4" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sa4',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="sa5" data-brand="fr" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -725,6 +800,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">6:00 PM</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_sa5" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sa5',this.value)" onfocus="autoResize(this)"></textarea></div>
     </div>
   </div>
 
@@ -739,6 +815,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill-time">Within 24hrs of MLS</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_ev1" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('ev1',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="ev2" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -746,6 +823,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill-time">On contract</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_ev2" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('ev2',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="ev3" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -753,6 +831,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill-time">On close</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_ev3" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('ev3',this.value)" onfocus="autoResize(this)"></textarea></div>
     </div>
   </div>
 
@@ -768,6 +847,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">Day 1</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_dr1" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('dr1',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="dr2" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -775,6 +855,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#0A66C2">LinkedIn</span><span class="pill-time">Day 2</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_dr2" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('dr2',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="dr3" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -782,6 +863,7 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#0D5FBF">FB Biz</span><span class="pill-time">Day 2</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_dr3" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('dr3',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="dr4" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -789,35 +871,77 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">AlexaSanchezRealtor</span><span class="pill" style="background:#FF0000">YT</span><span class="pill-time">Day 3-4</span></div>
         </div>
       </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_dr4" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('dr4',this.value)" onfocus="autoResize(this)"></textarea></div>
     </div>
   </div>
 
 </div><!-- end content -->
 
 <script>
-// ── STATE ─────────────────────────────────────────────────────────────────
-const STORAGE_KEY = 'content_checks_v1';
-const THEME_KEY   = 'content_theme_v1';
+const SUPABASE_URL = 'https://gzqgeehcvmgstzenkyfnw.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_LU8vcdqazISUz4ntCs2-9A_BOY7oAsb';
 
-function getState() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
-  catch(e) { return {}; }
-}
-function saveState(state) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-}
-function saveTheme() {
-  localStorage.setItem(THEME_KEY, document.getElementById('theme-input').value);
-}
-function loadTheme() {
-  const t = localStorage.getItem(THEME_KEY) || '';
-  document.getElementById('theme-input').value = t;
+async function sbGet(key) {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/checklist_state?key=eq.${encodeURIComponent(key)}&select=value`, {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+    });
+    const data = await res.json();
+    return data.length ? data[0].value : null;
+  } catch(e) { return null; }
 }
 
-// ── TOGGLE ────────────────────────────────────────────────────────────────
-function toggle(el) {
+async function sbSet(key, value) {
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/checklist_state`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'resolution=merge-duplicates'
+      },
+      body: JSON.stringify({ key, value })
+    });
+  } catch(e) {}
+}
+
+const CHECKS_KEY = 'content_checks_v1';
+const THEME_KEY  = 'content_theme_v1';
+
+async function getState() {
+  try {
+    const val = await sbGet(CHECKS_KEY);
+    if (val) { localStorage.setItem(CHECKS_KEY, val); return JSON.parse(val); }
+  } catch(e) {}
+  const local = localStorage.getItem(CHECKS_KEY);
+  return local ? JSON.parse(local) : {};
+}
+
+async function saveState(state) {
+  const json = JSON.stringify(state);
+  localStorage.setItem(CHECKS_KEY, json);
+  await sbSet(CHECKS_KEY, json);
+}
+
+async function saveTheme() {
+  const val = document.getElementById('theme-input').value;
+  localStorage.setItem(THEME_KEY, val);
+  await sbSet(THEME_KEY, val);
+}
+
+async function loadTheme() {
+  try {
+    const val = await sbGet(THEME_KEY);
+    document.getElementById('theme-input').value = val || localStorage.getItem(THEME_KEY) || '';
+  } catch(e) {
+    document.getElementById('theme-input').value = localStorage.getItem(THEME_KEY) || '';
+  }
+}
+
+async function toggle(el) {
   const id = el.dataset.id;
-  const state = getState();
+  const state = await getState();
   if (el.classList.contains('done')) {
     el.classList.remove('done');
     delete state[id];
@@ -825,21 +949,34 @@ function toggle(el) {
     el.classList.add('done');
     state[id] = true;
   }
-  saveState(state);
+  await saveState(state);
   updateProgress();
+  showSync();
 }
 
-// ── RESTORE ───────────────────────────────────────────────────────────────
-function restoreChecks() {
-  const state = getState();
+async function restoreChecks() {
+  setSyncStatus('Syncing...');
+  const state = await getState();
   document.querySelectorAll('.item').forEach(el => {
     if (state[el.dataset.id]) el.classList.add('done');
     else el.classList.remove('done');
   });
+  await restoreCaptions();
+  setSyncStatus('✓ Synced');
+  setTimeout(() => setSyncStatus(''), 2000);
   updateProgress();
 }
 
-// ── PROGRESS ──────────────────────────────────────────────────────────────
+function setSyncStatus(msg) {
+  const el = document.getElementById('sync-status');
+  if (el) el.textContent = msg;
+}
+
+function showSync() {
+  setSyncStatus('✓ Saved');
+  setTimeout(() => setSyncStatus(''), 1500);
+}
+
 function updateProgress() {
   const all  = document.querySelectorAll('.item:not(.hidden)').length;
   const done = document.querySelectorAll('.item.done:not(.hidden)').length;
@@ -849,7 +986,6 @@ function updateProgress() {
     `${done} of ${all} posts done  (${pct}%)`;
 }
 
-// ── TABS ──────────────────────────────────────────────────────────────────
 function switchTab(tab) {
   document.querySelectorAll('.tab').forEach(t => {
     t.classList.toggle('active', t.dataset.tab === tab);
@@ -861,19 +997,19 @@ function switchTab(tab) {
   updateProgress();
 }
 
-// ── RESET ─────────────────────────────────────────────────────────────────
-function resetAll() {
-  if (!confirm('Start a new week? This will clear all checkboxes.')) return;
-  saveState({});
-  restoreChecks();
+async function resetAll() {
+  if (!confirm('Start a new week? This clears all checkboxes and captions on ALL devices.')) return;
+  await saveState({});
+  await sbSet(CAPTIONS_KEY, '{}');
+  localStorage.setItem(CAPTIONS_KEY, '{}');
+  document.querySelectorAll('.caption-input').forEach(el => { el.value = ''; autoResize(el); });
+  await restoreChecks();
 }
 
-// ── WEEK LABEL ────────────────────────────────────────────────────────────
 function setWeekLabel() {
   const now = new Date();
-  const day = now.getDay();
   const sunday = new Date(now);
-  sunday.setDate(now.getDate() - day);
+  sunday.setDate(now.getDate() - now.getDay());
   const opts = { month:'short', day:'numeric' };
   const sat = new Date(sunday);
   sat.setDate(sunday.getDate() + 6);
@@ -881,7 +1017,41 @@ function setWeekLabel() {
     `Week of ${sunday.toLocaleDateString('en-US', opts)} – ${sat.toLocaleDateString('en-US', opts)}`;
 }
 
-// ── INIT ──────────────────────────────────────────────────────────────────
+
+// ── CAPTIONS ──────────────────────────────────────────────────────────────
+const CAPTIONS_KEY = 'content_captions_v1';
+
+async function getCaptions() {
+  try {
+    const val = await sbGet(CAPTIONS_KEY);
+    if (val) { localStorage.setItem(CAPTIONS_KEY, val); return JSON.parse(val); }
+  } catch(e) {}
+  const local = localStorage.getItem(CAPTIONS_KEY);
+  return local ? JSON.parse(local) : {};
+}
+
+async function saveCaption(id, value) {
+  const caps = await getCaptions();
+  if (value.trim()) caps[id] = value;
+  else delete caps[id];
+  const json = JSON.stringify(caps);
+  localStorage.setItem(CAPTIONS_KEY, json);
+  await sbSet(CAPTIONS_KEY, json);
+}
+
+async function restoreCaptions() {
+  const caps = await getCaptions();
+  Object.entries(caps).forEach(([id, val]) => {
+    const el = document.getElementById(`cap_${id}`);
+    if (el) { el.value = val; autoResize(el); }
+  });
+}
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.max(36, el.scrollHeight) + 'px';
+}
+
 setWeekLabel();
 loadTheme();
 restoreChecks();
