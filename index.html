@@ -308,7 +308,6 @@
     color: white;
     letter-spacing: 0.3px;
   }
-  .tiktok-row {
     display: flex;
     padding: 9px 14px;
     border-bottom: 1px solid var(--border);
@@ -316,7 +315,6 @@
     gap: 10px;
     font-size: 13px;
   }
-  .tiktok-row:last-child { border-bottom: none; }
   .tiktok-day {
     font-weight: 700;
     width: 80px;
@@ -404,29 +402,10 @@
 
 <div class="content" id="main-content">
 
-  <!-- TIKTOK SCHEDULE -->
-  <div class="tiktok-card" data-brand="all">
-    <div class="tiktok-header">📱 TikTok Schedule — Max 1 Post Per Day</div>
-    <div class="tiktok-row"><span class="tiktok-day">Monday</span><span class="tiktok-acct">@fillerandroast — Roast & Ritual</span></div>
-    <div class="tiktok-row"><span class="tiktok-day">Tuesday</span><span class="tiktok-acct">@its.myash — Car Confessions #1</span></div>
-    <div class="tiktok-row"><span class="tiktok-day">Wednesday</span><span class="tiktok-acct">@its.myash — Behind the Brand</span></div>
-    <div class="tiktok-row"><span class="tiktok-day">Thursday</span><span class="tiktok-acct">@fillerandroast — F&R Build</span></div>
-    <div class="tiktok-row"><span class="tiktok-day">Friday</span><span class="tiktok-acct">@its.myash — Car Confessions #2</span></div>
-    <div class="tiktok-row"><span class="tiktok-day">Saturday</span><span class="tiktok-acct">@fillerandroast — Weekend Ritual</span></div>
-  </div>
-
   <!-- SUNDAY -->
   <div class="day-section">
     <div class="day-header"><span class="day-dot" style="background:#22C55E"></span>Sunday — Gratitude Day 🙏</div>
     <div class="card">
-      <div class="item" data-id="sg1" data-brand="alexa" onclick="toggle(this)">
-        <div class="check"><span class="check-icon">✓</span></div>
-        <div class="item-body">
-          <div class="item-title">🙏 Sunday Gratitude</div>
-          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">9:00 AM</span></div>
-        </div>
-      </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_sg1" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sg1',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="sg2" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -443,14 +422,6 @@
         </div>
       </div>
       <div class="caption-row"><textarea class="caption-input" id="cap_sg3" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sg3',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="sg4" data-brand="myash" onclick="toggle(this)">
-        <div class="check"><span class="check-icon">✓</span></div>
-        <div class="item-body">
-          <div class="item-title">☕🍂 Coffee & Ash</div>
-          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">10:00 AM</span></div>
-        </div>
-      </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_sg4" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sg4',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="sg5" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -467,22 +438,6 @@
         </div>
       </div>
       <div class="caption-row"><textarea class="caption-input" id="cap_sg6" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sg6',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="sg8" data-brand="alexa" onclick="toggle(this)">
-        <div class="check"><span class="check-icon">✓</span></div>
-        <div class="item-body">
-          <div class="item-title">📌 Pinterest Pin 1 — Alexa STR</div>
-          <div class="item-meta"><span class="pill" style="background:var(--alexa)">Alexa angle</span><span class="pill" style="background:var(--pin)">Pinterest</span><span class="pill-time">8:00 PM</span></div>
-        </div>
-      </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_sg8" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sg8',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="sg9" data-brand="myash" onclick="toggle(this)">
-        <div class="check"><span class="check-icon">✓</span></div>
-        <div class="item-body">
-          <div class="item-title">📌 Pinterest Pin 2 — Cigar Lifestyle</div>
-          <div class="item-meta"><span class="pill" style="background:var(--myash)">its.myash angle</span><span class="pill" style="background:var(--pin)">Pinterest</span><span class="pill-time">8:30 PM</span></div>
-        </div>
-      </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_sg9" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sg9',this.value)" onfocus="autoResize(this)"></textarea></div>
     </div>
   </div>
 
@@ -537,30 +492,6 @@
   <div class="day-section">
     <div class="day-header"><span class="day-dot" style="background:#22C55E"></span>Tuesday</div>
     <div class="card">
-      <div class="item" data-id="t1" data-brand="alexa" onclick="toggle(this)">
-        <div class="check"><span class="check-icon">✓</span></div>
-        <div class="item-body">
-          <div class="item-title">⚡ Market Shot</div>
-          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">2:00 PM</span></div>
-        </div>
-      </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_t1" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('t1',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="t2" data-brand="myash" onclick="toggle(this)">
-        <div class="check"><span class="check-icon">✓</span></div>
-        <div class="item-body">
-          <div class="item-title">🚗 Car Confessions #1</div>
-          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">12:00 PM</span></div>
-        </div>
-      </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_t2" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('t2',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="t3" data-brand="myash" onclick="toggle(this)">
-        <div class="check"><span class="check-icon">✓</span></div>
-        <div class="item-body">
-          <div class="item-title">🌙 Tonight's Smoke</div>
-          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">7:00 PM</span></div>
-        </div>
-      </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_t3" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('t3',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="t4" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -626,22 +557,6 @@
         </div>
       </div>
       <div class="caption-row"><textarea class="caption-input" id="cap_w4" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('w4',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="w5" data-brand="alexa" onclick="toggle(this)">
-        <div class="check"><span class="check-icon">✓</span></div>
-        <div class="item-body">
-          <div class="item-title">📌 Pinterest Pin 3 — F&R Coffee</div>
-          <div class="item-meta"><span class="pill" style="background:var(--fr)">F&R angle</span><span class="pill" style="background:var(--pin)">Pinterest</span><span class="pill-time">7:00 PM</span></div>
-        </div>
-      </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_w5" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('w5',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="w6" data-brand="alexa" onclick="toggle(this)">
-        <div class="check"><span class="check-icon">✓</span></div>
-        <div class="item-body">
-          <div class="item-title">📌 Pinterest Pin 4 — Market Data</div>
-          <div class="item-meta"><span class="pill" style="background:var(--alexa)">Alexa angle</span><span class="pill" style="background:var(--pin)">Pinterest</span><span class="pill-time">7:30 PM</span></div>
-        </div>
-      </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_w6" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('w6',this.value)" onfocus="autoResize(this)"></textarea></div>
     </div>
   </div>
 
@@ -699,14 +614,6 @@
         </div>
       </div>
       <div class="caption-row"><textarea class="caption-input" id="cap_th_nd" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('th_nd',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="th_rc2" data-brand="alexa" onclick="toggle(this)">
-        <div class="check"><span class="check-icon">✓</span></div>
-        <div class="item-body">
-          <div class="item-title">🚗 Realtor Car Confession</div>
-          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">12:00 PM</span></div>
-        </div>
-      </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_th_rc2" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('th_rc2',this.value)" onfocus="autoResize(this)"></textarea></div>
     </div>
   </div>
 
@@ -730,14 +637,6 @@
         </div>
       </div>
       <div class="caption-row"><textarea class="caption-input" id="cap_f3" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('f3',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="f4" data-brand="alexa" onclick="toggle(this)">
-        <div class="check"><span class="check-icon">✓</span></div>
-        <div class="item-body">
-          <div class="item-title">📚 Educational Reel + FB Written</div>
-          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:#0D5FBF">FB Biz</span><span class="pill-time">1:00 PM</span></div>
-        </div>
-      </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_f4" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('f4',this.value)" onfocus="autoResize(this)"></textarea></div>
       <div class="item" data-id="f5" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -785,14 +684,6 @@
         </div>
       </div>
       <div class="caption-row"><textarea class="caption-input" id="cap_sa4" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sa4',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="sa5" data-brand="fr" onclick="toggle(this)">
-        <div class="check"><span class="check-icon">✓</span></div>
-        <div class="item-body">
-          <div class="item-title">☕ Weekend Ritual <span class="tiktok-warn">F&R TikTok</span></div>
-          <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">6:00 PM</span></div>
-        </div>
-      </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_sa5" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sa5',this.value)" onfocus="autoResize(this)"></textarea></div>
     </div>
   </div>
 
