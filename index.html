@@ -24,33 +24,29 @@
     --text:    #1C1C1E;
     --sub:     #6E6E73;
     --border:  #E5E5EA;
+    --sub-pink: #FF6719;
+    --yt-red:  #FF0000;
   }
 
   body {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
     background: var(--bg);
     color: var(--text);
-    padding-bottom: 40px;
+    padding-bottom: 60px;
     min-height: 100vh;
   }
 
-  /* HEADER */
   .app-header {
     background: var(--dark);
     color: white;
-    padding: 56px 20px 16px;
+    padding: 52px 20px 12px;
     position: sticky;
     top: 0;
     z-index: 100;
   }
   .app-header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
-  .week-label {
-    font-size: 13px;
-    color: rgba(255,255,255,0.6);
-    margin-top: 2px;
-  }
+  .week-label { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 2px; }
 
-  /* THEME BAR */
   .theme-bar {
     background: #252540;
     padding: 12px 20px;
@@ -76,10 +72,9 @@
   }
   .theme-input::placeholder { color: rgba(255,255,255,0.25); }
 
-  /* RESET BUTTON */
   .reset-btn {
     display: block;
-    margin: 14px 20px 0;
+    margin: 10px 20px 0;
     background: rgba(255,255,255,0.1);
     border: none;
     color: rgba(255,255,255,0.7);
@@ -92,7 +87,6 @@
     text-align: center;
   }
 
-  /* TABS */
   .tabs {
     display: flex;
     overflow-x: auto;
@@ -115,131 +109,13 @@
     opacity: 0.5;
   }
   .tab.active { opacity: 1; }
-  .tab[data-tab="all"]   { background: #3A3A5C; }
-  .tab[data-tab="alexa"] { background: var(--alexa); }
-  .tab[data-tab="myash"] { background: var(--myash); }
-  .tab[data-tab="fr"]    { background: var(--fr); }
+  .tab[data-tab="all"]       { background: #3A3A5C; }
+  .tab[data-tab="alexa"]     { background: var(--alexa); }
+  .tab[data-tab="myash"]     { background: var(--myash); }
+  .tab[data-tab="fr"]        { background: var(--fr); }
+  .tab[data-tab="substack"]  { background: #FF6719; }
+  .tab[data-tab="youtube"]   { background: #CC0000; }
 
-  /* CONTENT */
-  .content { padding: 16px 16px 0; }
-
-  /* DAY SECTIONS */
-  .day-section { margin-bottom: 20px; }
-  .day-header {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.9px;
-    text-transform: uppercase;
-    color: var(--sub);
-    padding: 0 4px 8px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .day-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  /* CARDS */
-  .card {
-    background: var(--card);
-    border-radius: 13px;
-    overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
-    margin-bottom: 2px;
-  }
-  .card:first-of-type { border-radius: 13px 13px 4px 4px; }
-  .card:last-of-type  { border-radius: 4px 4px 13px 13px; margin-bottom: 0; }
-  .card:only-of-type  { border-radius: 13px; }
-
-  /* CHECKLIST ITEM */
-  .item {
-    display: flex;
-    align-items: center;
-    padding: 11px 14px;
-    border-bottom: 1px solid var(--border);
-    cursor: pointer;
-    transition: background 0.1s;
-    gap: 12px;
-    min-height: 52px;
-  }
-  .item:last-child { border-bottom: none; }
-  .item:active { background: #F5F5F7; }
-
-  /* CHECKBOX */
-  .check {
-    width: 24px; height: 24px;
-    border-radius: 50%;
-    border: 2px solid #C7C7CC;
-    flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s;
-  }
-  .item.done .check {
-    border-color: var(--green);
-    background: var(--green);
-  }
-  .check-icon {
-    display: none;
-    color: white;
-    font-size: 13px;
-    font-weight: 700;
-  }
-  .item.done .check-icon { display: block; }
-
-  /* ITEM CONTENT */
-  .item-body { flex: 1; min-width: 0; }
-  .item-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .item.done .item-title {
-    color: var(--sub);
-    text-decoration: line-through;
-  }
-  .item-meta {
-    font-size: 12px;
-    color: var(--sub);
-    margin-top: 2px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    flex-wrap: wrap;
-  }
-
-  /* BRAND + PLATFORM PILLS */
-  .pill {
-    display: inline-block;
-    padding: 2px 7px;
-    border-radius: 5px;
-    font-size: 10px;
-    font-weight: 700;
-    color: white;
-    letter-spacing: 0.2px;
-  }
-  .pill-time {
-    font-size: 11px;
-    color: var(--sub);
-    font-weight: 500;
-  }
-
-  /* TIKTOK WARNING */
-  .tiktok-warn {
-    font-size: 10px;
-    font-weight: 700;
-    color: #92660A;
-    background: #FFF8E1;
-    padding: 2px 6px;
-    border-radius: 5px;
-  }
-
-  /* PROGRESS */
   .progress-bar-wrap {
     background: rgba(255,255,255,0.12);
     border-radius: 4px;
@@ -254,77 +130,105 @@
     transition: width 0.3s ease;
     width: 0%;
   }
-  .progress-label {
-    font-size: 11px;
-    color: rgba(255,255,255,0.5);
-    padding: 0 20px 10px;
-  }
+  .progress-label { font-size: 11px; color: rgba(255,255,255,0.5); padding: 0 20px 8px; }
+  #sync-status { font-size: 10px; color: rgba(255,255,255,0.5); padding: 0 20px 6px; min-height: 14px; }
 
-  /* SECTION: PINTEREST */
-  .pin-section {
+  .content { padding: 16px 16px 0; }
+
+  .day-section { margin-bottom: 20px; }
+  .day-header {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.9px;
+    text-transform: uppercase;
+    color: var(--sub);
+    padding: 0 4px 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .day-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  .card {
     background: var(--card);
     border-radius: 13px;
-    margin-bottom: 20px;
     overflow: hidden;
     box-shadow: 0 1px 3px rgba(0,0,0,0.07);
-  }
-  .pin-header {
-    background: var(--pin);
-    padding: 10px 14px;
-    font-size: 12px;
-    font-weight: 700;
-    color: white;
-    letter-spacing: 0.3px;
-  }
-  .pin-item {
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--border);
-    font-size: 13px;
-    color: var(--text);
-  }
-  .pin-item:last-child { border-bottom: none; }
-  .pin-day {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    color: var(--pin);
     margin-bottom: 2px;
   }
 
-  /* TIKTOK SCHEDULE CARD */
-  .tiktok-card {
-    background: var(--card);
-    border-radius: 13px;
-    margin-bottom: 20px;
-    overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+  .item {
+    display: flex;
+    align-items: center;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.1s;
+    gap: 12px;
+    min-height: 52px;
   }
-  .tiktok-header {
-    background: var(--tiktok);
-    padding: 10px 14px;
+  .item:last-child { border-bottom: none; }
+  .item:active { background: #F5F5F7; }
+
+  .check {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    border: 2px solid #C7C7CC;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .item.done .check { border-color: var(--green); background: var(--green); }
+  .check-icon { display: none; color: white; font-size: 13px; font-weight: 700; }
+  .item.done .check-icon { display: block; }
+
+  .item-body { flex: 1; min-width: 0; }
+  .item-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .item.done .item-title { color: var(--sub); text-decoration: line-through; }
+  .item-meta {
     font-size: 12px;
+    color: var(--sub);
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+
+  .pill {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 10px;
     font-weight: 700;
     color: white;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
   }
-    display: flex;
-    padding: 9px 14px;
-    border-bottom: 1px solid var(--border);
-    align-items: center;
-    gap: 10px;
-    font-size: 13px;
-  }
-  .tiktok-day {
+  .pill-time { font-size: 11px; color: var(--sub); font-weight: 500; }
+  .badge-warn {
+    font-size: 10px;
     font-weight: 700;
-    width: 80px;
-    color: var(--text);
-    flex-shrink: 0;
+    color: #92660A;
+    background: #FFF8E1;
+    padding: 2px 6px;
+    border-radius: 5px;
   }
-  .tiktok-acct { color: var(--sub); font-size: 12px; }
+  .badge-new {
+    font-size: 10px;
+    font-weight: 700;
+    color: #065F46;
+    background: #D1FAE5;
+    padding: 2px 6px;
+    border-radius: 5px;
+  }
 
-
-  /* CAPTION FIELD */
   .caption-row {
     padding: 0 14px 10px 50px;
     background: var(--card);
@@ -345,29 +249,10 @@
     transition: border-color 0.15s, min-height 0.15s;
     box-sizing: border-box;
   }
-  .caption-input:focus {
-    border-color: #A0A0B0;
-    background: #FFFFFF;
-    min-height: 72px;
-  }
+  .caption-input:focus { border-color: #A0A0B0; background: #FFFFFF; min-height: 72px; }
   .caption-input::placeholder { color: #BBBBCC; }
-  .item.done + .caption-row .caption-input {
-    color: var(--sub);
-    text-decoration: line-through;
-  }
 
-  /* HIDDEN */
   .hidden { display: none; }
-
-  /* SECTION LABELS */
-  .section-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    color: var(--sub);
-    padding: 4px 4px 8px;
-  }
 </style>
 </head>
 <body>
@@ -375,18 +260,14 @@
 <div class="app-header">
   <h1>📱 Weekly Content</h1>
   <div class="week-label" id="week-label">Loading...</div>
-  <div class="progress-bar-wrap">
-    <div class="progress-bar" id="progress-bar"></div>
-  </div>
+  <div class="progress-bar-wrap"><div class="progress-bar" id="progress-bar"></div></div>
   <div class="progress-label" id="progress-label">0 of 0 posts done</div>
-  <div id="sync-status" style="font-size:10px;color:rgba(255,255,255,0.5);padding:0 20px 8px;min-height:14px;"></div>
+  <div id="sync-status"></div>
 </div>
 
 <div class="theme-bar">
-  <label>This Week's Master Theme</label>
-  <input class="theme-input" id="theme-input"
-         placeholder="e.g. Rising rates = operator opportunity..."
-         oninput="saveTheme()">
+  <label>This Week's Master Theme / Insight</label>
+  <input class="theme-input" id="theme-input" placeholder="e.g. Monroe County rents up 81% — sellers have pricing power..." oninput="saveTheme()">
 </div>
 
 <div style="background:var(--dark); padding: 6px 20px 14px;">
@@ -394,218 +275,314 @@
 </div>
 
 <div class="tabs" role="tablist">
-  <button class="tab active" data-tab="all"   onclick="switchTab('all')">All Posts</button>
-  <button class="tab"        data-tab="alexa" onclick="switchTab('alexa')">🏠 Alexa</button>
-  <button class="tab"        data-tab="myash" onclick="switchTab('myash')">✨ Ash</button>
-  <button class="tab"        data-tab="fr"    onclick="switchTab('fr')">☕ F&R</button>
+  <button class="tab active"  data-tab="all"      onclick="switchTab('all')">All Posts</button>
+  <button class="tab"         data-tab="alexa"    onclick="switchTab('alexa')">🏠 Alexa</button>
+  <button class="tab"         data-tab="myash"    onclick="switchTab('myash')">✨ Ash</button>
+  <button class="tab"         data-tab="fr"       onclick="switchTab('fr')">☕ F&amp;R</button>
+  <button class="tab"         data-tab="substack" onclick="switchTab('substack')">📝 Substack</button>
+  <button class="tab"         data-tab="youtube"  onclick="switchTab('youtube')">▶ YouTube</button>
 </div>
 
 <div class="content" id="main-content">
 
-  <!-- SUNDAY -->
+  <!-- ═══════════════════════════════════════════════════════════ SUNDAY -->
   <div class="day-section">
-    <div class="day-header"><span class="day-dot" style="background:#22C55E"></span>Sunday — Gratitude Day 🙏</div>
+    <div class="day-header"><span class="day-dot" style="background:#22C55E"></span>Sunday — Create Day 🎬</div>
     <div class="card">
-      <div class="item" data-id="sg2" data-brand="alexa" onclick="toggle(this)">
+
+      <div class="item" data-id="su_yt" data-brand="youtube" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">▶ Hub Video — Record &amp; Publish <span class="badge-new">NEW</span></div>
+          <div class="item-meta"><span class="pill" style="background:#CC0000">YouTube</span><span class="pill" style="background:#888">AlexaSanchezRealtor</span><span class="pill-time">All 3 brands · 8–12 min</span></div>
+        </div>
+      </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_su_yt" placeholder="Video topic / hook this week..." rows="1" oninput="autoResize(this);saveCaption('su_yt',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="su_sub" data-brand="substack" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">✍️ Substack — Operator Life <span class="badge-new">NEW</span></div>
+          <div class="item-meta"><span class="pill" style="background:var(--sub-pink)">Substack</span><span class="pill-time">Personal · operator behind the scenes · 7:00 PM</span></div>
+        </div>
+      </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_su_sub" placeholder="Post topic + 6 notes..." rows="1" oninput="autoResize(this);saveCaption('su_sub',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="su_fr" data-brand="fr" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">☕ Before the First Draw</div>
+          <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:#0D5FBF">FB Biz</span><span class="pill-time">9:30 AM</span></div>
+        </div>
+      </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_su_fr" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('su_fr',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="su_ca" data-brand="myash" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">☕🍂 Coffee &amp; Ash — Ritual</div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:#1877F2">FB</span><span class="pill-time">10:15 AM</span></div>
+        </div>
+      </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_su_ca" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('su_ca',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="su_nd" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
           <div class="item-title">🙏 Sunday Gratitude — Community</div>
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#00B246">Nextdoor</span><span class="pill-time">9:15 AM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_sg2" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sg2',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="sg3" data-brand="fr" onclick="toggle(this)">
-        <div class="check"><span class="check-icon">✓</span></div>
-        <div class="item-body">
-          <div class="item-title">🙏 Sunday Gratitude — Ritual</div>
-          <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">9:30 AM</span></div>
-        </div>
-      </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_sg3" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sg3',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="sg5" data-brand="myash" onclick="toggle(this)">
-        <div class="check"><span class="check-icon">✓</span></div>
-        <div class="item-body">
-          <div class="item-title">☕🍂 Coffee & Ash — Caption</div>
-          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#1877F2">FB</span><span class="pill-time">10:15 AM</span></div>
-        </div>
-      </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_sg5" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sg5',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="sg6" data-brand="myash" onclick="toggle(this)">
-        <div class="check"><span class="check-icon">✓</span></div>
-        <div class="item-body">
-          <div class="item-title">✍️ The Operator's Journal</div>
-          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#FF6719">Substack</span><span class="pill-time">7:00 PM</span></div>
-        </div>
-      </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_sg6" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sg6',this.value)" onfocus="autoResize(this)"></textarea></div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_su_nd" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('su_nd',this.value)" onfocus="autoResize(this)"></textarea></div>
+
     </div>
   </div>
 
-  <!-- MONDAY -->
+  <!-- ═══════════════════════════════════════════════════════════ MONDAY -->
   <div class="day-section">
     <div class="day-header"><span class="day-dot" style="background:#3B82F6"></span>Monday</div>
     <div class="card">
-      <div class="item" data-id="m1" data-brand="alexa" onclick="toggle(this)">
+
+      <div class="item" data-id="m_li" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
           <div class="item-title">📊 Market Signal</div>
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#0A66C2">LinkedIn</span><span class="pill-time">8:00 AM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_m1" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('m1',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="m2" data-brand="alexa" onclick="toggle(this)">
+      <div class="caption-row"><textarea class="caption-input" id="cap_m_li" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('m_li',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="m_gb" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
           <div class="item-title">📊 Market Signal — Repurpose</div>
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#4285F4">Google Biz</span><span class="pill-time">9:00 AM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_m2" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('m2',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="m3" data-brand="myash" onclick="toggle(this)">
+      <div class="caption-row"><textarea class="caption-input" id="cap_m_gb" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('m_gb',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="m_ts" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
-          <div class="item-title">🌙 Tonight's Smoke</div>
+          <div class="item-title">🌙 Tonight's Smoke — Carousel</div>
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">7:00 PM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_m3" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('m3',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="m4" data-brand="fr" onclick="toggle(this)">
+      <div class="caption-row"><textarea class="caption-input" id="cap_m_ts" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('m_ts',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="m_tt" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
-          <div class="item-title">☕ Roast & Ritual <span class="tiktok-warn">F&R TikTok</span></div>
-          <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill-time">6:00 PM</span></div>
+          <div class="item-title">🎬 TikTok — Hub Repurpose <span class="badge-warn">TikTok</span></div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill-time">6:00 PM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_m4" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('m4',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="m5" data-brand="alexa" onclick="toggle(this)">
+      <div class="caption-row"><textarea class="caption-input" id="cap_m_tt" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('m_tt',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="m_fb" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
           <div class="item-title">🏠 Real Estate Insight</div>
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">Alexa Personal</span><span class="pill" style="background:#1877F2">FB Personal</span><span class="pill-time">8:00 AM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_m5" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('m5',this.value)" onfocus="autoResize(this)"></textarea></div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_m_fb" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('m_fb',this.value)" onfocus="autoResize(this)"></textarea></div>
+
     </div>
   </div>
 
-  <!-- TUESDAY -->
+  <!-- ═══════════════════════════════════════════════════════════ TUESDAY -->
   <div class="day-section">
     <div class="day-header"><span class="day-dot" style="background:#22C55E"></span>Tuesday</div>
     <div class="card">
-      <div class="item" data-id="t4" data-brand="alexa" onclick="toggle(this)">
+
+      <div class="item" data-id="t_reel" data-brand="myash" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🎬 IG Reel — Hub Repurpose <span class="badge-new">NEW</span></div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG Reel</span><span class="pill-time">All brands · 10:00 AM</span></div>
+        </div>
+      </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_t_reel" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('t_reel',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="t_pp" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">📍 Pocono Pulse — Market Update <span class="badge-new">NEW</span></div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">11:00 AM</span></div>
+        </div>
+      </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_t_pp" placeholder="Stat · trend · takeaway..." rows="1" oninput="autoResize(this);saveCaption('t_pp',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="t_cc" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🚗 Car Confession — Real Estate <span class="badge-new">NEW</span></div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">12:00 PM · 20 sec · shock value</span></div>
+        </div>
+      </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_t_cc" placeholder="Hook / confession this week..." rows="1" oninput="autoResize(this);saveCaption('t_cc',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="t_sub" data-brand="substack" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">✍️ Substack — Poconos Market Reality <span class="badge-new">NEW</span></div>
+          <div class="item-meta"><span class="pill" style="background:var(--sub-pink)">Substack</span><span class="pill-time">Operator POV · 7:00 PM</span></div>
+        </div>
+      </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_t_sub" placeholder="Post topic + 6 notes..." rows="1" oninput="autoResize(this);saveCaption('t_sub',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="t_nd" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
           <div class="item-title">🏡 Neighborly Post</div>
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#00B246">Nextdoor</span><span class="pill-time">6:00 PM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_t4" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('t4',this.value)" onfocus="autoResize(this)"></textarea></div>
-    </div>
-  </div>
-      <div class="item" data-id="t_rc1" data-brand="alexa" onclick="toggle(this)">
-        <div class="check"><span class="check-icon">✓</span></div>
-        <div class="item-body">
-          <div class="item-title">🚗 Realtor Car Confession</div>
-          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">12:00 PM</span></div>
-        </div>
-      </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_t_rc1" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('t_rc1',this.value)" onfocus="autoResize(this)"></textarea></div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_t_nd" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('t_nd',this.value)" onfocus="autoResize(this)"></textarea></div>
+
       <div class="item" data-id="t_ns" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
-          <div class="item-title">🔥 Nell's Social — This Week Smoke</div>
-          <div class="item-meta"><span class="pill" style="background:var(--myash)">@nellssocial</span><span class="pill" style="background:#1877F2">FB</span><span class="pill-time">6:00 PM</span></div>
+          <div class="item-title">🔥 Nell's Social — This Week's Smoke</div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">@nellssocial tag</span><span class="pill" style="background:#1877F2">FB</span><span class="pill-time">6:00 PM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_t_ns" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('t_ns',this.value)" onfocus="autoResize(this)"></textarea></div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_t_ns" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('t_ns',this.value)" onfocus="autoResize(this)"></textarea></div>
+
     </div>
   </div>
 
-  <!-- WEDNESDAY -->
+  <!-- ═══════════════════════════════════════════════════════ WEDNESDAY -->
   <div class="day-section">
     <div class="day-header"><span class="day-dot" style="background:#EAB308"></span>Wednesday</div>
     <div class="card">
-      <div class="item" data-id="w1" data-brand="myash" onclick="toggle(this)">
+
+      <div class="item" data-id="w_ash" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
-          <div class="item-title">☕🍂 Coffee & Ash — Photo</div>
+          <div class="item-title">📸 Ash Shot — Photo Post</div>
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">8:00 AM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_w1" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('w1',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="w2" data-brand="alexa" onclick="toggle(this)">
+      <div class="caption-row"><textarea class="caption-input" id="cap_w_ash" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('w_ash',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="w_cc_ash" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
-          <div class="item-title">🤝 Local Collab (1x/month)</div>
-          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">9:00 AM</span></div>
+          <div class="item-title">🚗 Car Confession — Entrepreneur &amp; Cigars <span class="badge-new">NEW</span></div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">12:00 PM · 20 sec · shock value</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_w2" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('w2',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="w3" data-brand="alexa" onclick="toggle(this)">
+      <div class="caption-row"><textarea class="caption-input" id="cap_w_cc_ash" placeholder="Hook / confession this week..." rows="1" oninput="autoResize(this);saveCaption('w_cc_ash',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="w_li" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">📊 Market Insight</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#0A66C2">LinkedIn</span><span class="pill-time">9:00 AM</span></div>
+        </div>
+      </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_w_li" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('w_li',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="w_uc" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
           <div class="item-title">🏷 Under Contract</div>
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:#0D5FBF">FB Biz</span><span class="pill-time">11:00 AM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_w3" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('w3',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="w4" data-brand="myash" onclick="toggle(this)">
+      <div class="caption-row"><textarea class="caption-input" id="cap_w_uc" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('w_uc',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="w_tt" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
-          <div class="item-title">🏗 Behind the Brand <span class="tiktok-warn">its.myash TikTok</span></div>
+          <div class="item-title">🏗 Behind the Brand <span class="badge-warn">TikTok</span></div>
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill-time">6:00 PM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_w4" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('w4',this.value)" onfocus="autoResize(this)"></textarea></div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_w_tt" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('w_tt',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="w_collab" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🤝 Local Collab (1x/month)</div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">9:00 AM</span></div>
+        </div>
+      </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_w_collab" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('w_collab',this.value)" onfocus="autoResize(this)"></textarea></div>
+
     </div>
   </div>
 
-  <!-- THURSDAY -->
+  <!-- ═══════════════════════════════════════════════════════ THURSDAY -->
   <div class="day-section">
     <div class="day-header"><span class="day-dot" style="background:#22C55E"></span>Thursday</div>
     <div class="card">
-      <div class="item" data-id="th1" data-brand="alexa" onclick="toggle(this)">
+
+      <div class="item" data-id="th_yt" data-brand="youtube" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">▶ YouTube Short <span class="badge-new">NEW</span></div>
+          <div class="item-meta"><span class="pill" style="background:#CC0000">YouTube</span><span class="pill" style="background:#888">AlexaSanchezRealtor</span><span class="pill-time">All brands · 10:00 AM</span></div>
+        </div>
+      </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_th_yt" placeholder="Short concept / hook..." rows="1" oninput="autoResize(this);saveCaption('th_yt',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="th_cc" data-brand="alexa" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🚗 Car Confession — Entrepreneur Life <span class="badge-new">NEW</span></div>
+          <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">12:00 PM · 20 sec · shock value</span></div>
+        </div>
+      </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_th_cc" placeholder="Hook / confession this week..." rows="1" oninput="autoResize(this);saveCaption('th_cc',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="th_sub" data-brand="substack" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">✍️ Substack — Punta Cana System <span class="badge-new">NEW</span></div>
+          <div class="item-meta"><span class="pill" style="background:var(--sub-pink)">Substack</span><span class="pill-time">DR operator POV · 7:00 PM</span></div>
+        </div>
+      </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_th_sub" placeholder="Post topic + 6 notes..." rows="1" oninput="autoResize(this);saveCaption('th_sub',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="th_inv" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
           <div class="item-title">📊 Investor Signal (pre-sched)</div>
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#0A66C2">LinkedIn</span><span class="pill-time">8:30 AM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_th1" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('th1',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="th2" data-brand="alexa" onclick="toggle(this)">
+      <div class="caption-row"><textarea class="caption-input" id="cap_th_inv" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('th_inv',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="th_vm" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
           <div class="item-title">📊 Vacation Market Signal</div>
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">11:30 AM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_th2" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('th2',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="th3" data-brand="fr" onclick="toggle(this)">
+      <div class="caption-row"><textarea class="caption-input" id="cap_th_vm" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('th_vm',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="th_fr" data-brand="fr" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
-          <div class="item-title">☕ F&R Build <span class="tiktok-warn">F&R TikTok</span></div>
-          <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill" style="background:#1877F2">FB</span><span class="pill-time">12:00 PM</span></div>
+          <div class="item-title">☕ F&amp;R Build</div>
+          <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:#1877F2">FB Biz</span><span class="pill-time">12:00 PM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_th3" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('th3',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="th4" data-brand="myash" onclick="toggle(this)">
+      <div class="caption-row"><textarea class="caption-input" id="cap_th_fr" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('th_fr',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="th_ts" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
           <div class="item-title">🌙 Tonight's Smoke</div>
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">7:00 PM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_th4" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('th4',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="th5" data-brand="alexa" onclick="toggle(this)">
-        <div class="check"><span class="check-icon">✓</span></div>
-        <div class="item-body">
-          <div class="item-title">📺 Operator Brief (YouTube)</div>
-          <div class="item-meta"><span class="pill" style="background:var(--alexa)">AlexaSanchezRealtor</span><span class="pill" style="background:#FF0000">YT</span><span class="pill-time">6:00 PM</span></div>
-        </div>
-      </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_th5" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('th5',this.value)" onfocus="autoResize(this)"></textarea></div>
-    </div>
-  </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_th_ts" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('th_ts',this.value)" onfocus="autoResize(this)"></textarea></div>
+
       <div class="item" data-id="th_nd" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
@@ -613,148 +590,220 @@
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#00B246">Nextdoor</span><span class="pill-time">6:00 PM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_th_nd" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('th_nd',this.value)" onfocus="autoResize(this)"></textarea></div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_th_nd" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('th_nd',this.value)" onfocus="autoResize(this)"></textarea></div>
+
     </div>
   </div>
 
-  <!-- FRIDAY -->
+  <!-- ═══════════════════════════════════════════════════════════ FRIDAY -->
   <div class="day-section">
     <div class="day-header"><span class="day-dot" style="background:#8B5CF6"></span>Friday</div>
     <div class="card">
-      <div class="item" data-id="f2" data-brand="alexa" onclick="toggle(this)">
+
+      <div class="item" data-id="f_ctl" data-brand="fr" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">☕ Coffee for the Leaf</div>
+          <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:#0D5FBF">FB Biz</span><span class="pill-time">9:00 AM</span></div>
+        </div>
+      </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_f_ctl" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('f_ctl',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="f_pair" data-brand="fr" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🍃 The Pairing — Cigar + Coffee Ed. <span class="badge-new">NEW · bi-weekly</span></div>
+          <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">This blend · this cigar · why · 10:00 AM</span></div>
+        </div>
+      </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_f_pair" placeholder="Blend + cigar pairing this week..." rows="1" oninput="autoResize(this);saveCaption('f_pair',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="f_ctl_tt" data-brand="myash" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">☕ Coffee for the Leaf <span class="badge-warn">TikTok via @its.myash</span></div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill-time">Different edit than IG · 11:00 AM</span></div>
+        </div>
+      </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_f_ctl_tt" placeholder="TikTok-specific angle..." rows="1" oninput="autoResize(this);saveCaption('f_ctl_tt',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="f_mi" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
           <div class="item-title">📊 Market Insight (pre-sched)</div>
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#0D5FBF">FB Biz</span><span class="pill-time">8:00 AM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_f2" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('f2',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="f3" data-brand="myash" onclick="toggle(this)">
+      <div class="caption-row"><textarea class="caption-input" id="cap_f_mi" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('f_mi',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="f_fb_all" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
-          <div class="item-title">🚗 Car Confessions #2 <span class="tiktok-warn">its.myash TikTok</span></div>
-          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:#111111">TikTok</span><span class="pill-time">12:00 PM</span></div>
+          <div class="item-title">📣 Facebook — All Brands Repurpose</div>
+          <div class="item-meta"><span class="pill" style="background:#1877F2">FB</span><span class="pill-time">All brands · captions repurposed · 12:00 PM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_f3" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('f3',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="f5" data-brand="myash" onclick="toggle(this)">
+      <div class="caption-row"><textarea class="caption-input" id="cap_f_fb_all" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('f_fb_all',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="f_ws" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
-          <div class="item-title">🥃 Weekend Smoke Reel</div>
+          <div class="item-title">🥃 Weekend Smoke — Reel</div>
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">5:00 PM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_f5" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('f5',this.value)" onfocus="autoResize(this)"></textarea></div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_f_ws" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('f_ws',this.value)" onfocus="autoResize(this)"></textarea></div>
+
     </div>
   </div>
 
-  <!-- SATURDAY -->
+  <!-- ═══════════════════════════════════════════════════════════ SATURDAY -->
   <div class="day-section">
     <div class="day-header"><span class="day-dot" style="background:#A855F7"></span>Saturday</div>
     <div class="card">
-      <div class="item" data-id="sa1" data-brand="alexa" onclick="toggle(this)">
+
+      <div class="item" data-id="sa_sub" data-brand="substack" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">✍️ Substack — Experience Economy <span class="badge-new">NEW</span></div>
+          <div class="item-meta"><span class="pill" style="background:var(--sub-pink)">Substack</span><span class="pill-time">Lifestyle + brands · operator POV · 9:00 AM</span></div>
+        </div>
+      </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_sa_sub" placeholder="Post topic + 6 notes..." rows="1" oninput="autoResize(this);saveCaption('sa_sub',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="sa_nd" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
           <div class="item-title">🏡 Weekend Market Tip</div>
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#00B246">Nextdoor</span><span class="pill-time">10:00 AM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_sa1" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sa1',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="sa2" data-brand="myash" onclick="toggle(this)">
+      <div class="caption-row"><textarea class="caption-input" id="cap_sa_nd" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('sa_nd',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="sa_bts" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
           <div class="item-title">📸 Stories — Behind the Scenes</div>
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG Story</span><span class="pill-time">2:00 PM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_sa2" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sa2',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="sa3" data-brand="myash" onclick="toggle(this)">
+      <div class="caption-row"><textarea class="caption-input" id="cap_sa_bts" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('sa_bts',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="sa_cb" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
           <div class="item-title">🔀 Cross-Brand Feature</div>
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">3:00 PM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_sa3" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sa3',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="sa4" data-brand="myash" onclick="toggle(this)">
+      <div class="caption-row"><textarea class="caption-input" id="cap_sa_cb" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('sa_cb',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="sa_ws" data-brand="myash" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
           <div class="item-title">🥃 Weekend Smoke + FB Caption</div>
           <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:#1877F2">FB</span><span class="pill-time">5:00 PM</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_sa4" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('sa4',this.value)" onfocus="autoResize(this)"></textarea></div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_sa_ws" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('sa_ws',this.value)" onfocus="autoResize(this)"></textarea></div>
+
     </div>
   </div>
 
-  <!-- EVENT-TRIGGERED -->
-  <div class="day-section" data-brand="alexa">
+  <!-- ═══════════════════════════════════════════════ EVENT-TRIGGERED -->
+  <div class="day-section">
     <div class="day-header"><span class="day-dot" style="background:#F59E0B"></span>Event-Triggered (Listings)</div>
     <div class="card">
-      <div class="item" data-id="ev1" data-brand="alexa" onclick="toggle(this)">
+
+      <div class="item" data-id="ev_jl" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
           <div class="item-title">🆕 Just Listed — IG + FB Biz</div>
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill-time">Within 24hrs of MLS</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_ev1" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('ev1',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="ev2" data-brand="alexa" onclick="toggle(this)">
+      <div class="caption-row"><textarea class="caption-input" id="cap_ev_jl" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('ev_jl',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="ev_uc" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
           <div class="item-title">📋 Under Contract — IG Story</div>
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill-time">On contract</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_ev2" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('ev2',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="ev3" data-brand="alexa" onclick="toggle(this)">
+      <div class="caption-row"><textarea class="caption-input" id="cap_ev_uc" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('ev_uc',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="ev_js" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
           <div class="item-title">🎉 Just Sold — IG + LinkedIn</div>
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill-time">On close</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_ev3" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('ev3',this.value)" onfocus="autoResize(this)"></textarea></div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_ev_js" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('ev_js',this.value)" onfocus="autoResize(this)"></textarea></div>
+
     </div>
   </div>
 
-
-  <!-- DR CONTENT -->
+  <!-- ═══════════════════════════════════════════════════════ DR CONTENT -->
   <div class="day-section">
-    <div class="day-header"><span class="day-dot" style="background:#16A34A"></span>🇩🇴 DR Content — Once Monthly (Spread Over a Week)</div>
+    <div class="day-header"><span class="day-dot" style="background:#16A34A"></span>🇩🇴 DR Content — Once Monthly</div>
     <div class="card">
-      <div class="item" data-id="dr1" data-brand="alexa" onclick="toggle(this)">
+
+      <div class="item" data-id="dr_src" data-brand="fr" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🇩🇴 From the Source — Origin Story <span class="badge-new">NEW</span></div>
+          <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:#0D5FBF">FB Biz</span><span class="pill-time">DR tobacco + coffee origin</span></div>
+        </div>
+      </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_dr_src" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('dr_src',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="dr_reel" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
           <div class="item-title">🇩🇴 DR Investor Signal — Reel</div>
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">Day 1</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_dr1" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('dr1',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="dr2" data-brand="alexa" onclick="toggle(this)">
+      <div class="caption-row"><textarea class="caption-input" id="cap_dr_reel" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('dr_reel',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="dr_li" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
-          <div class="item-title">🇩🇴 DR Market Update — Professional Post</div>
+          <div class="item-title">🇩🇴 DR Market Update — LinkedIn</div>
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#0A66C2">LinkedIn</span><span class="pill-time">Day 2</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_dr2" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('dr2',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="dr3" data-brand="alexa" onclick="toggle(this)">
+      <div class="caption-row"><textarea class="caption-input" id="cap_dr_li" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('dr_li',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="dr_fb" data-brand="alexa" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
-          <div class="item-title">🇩🇴 DR Investor Signal — Caption</div>
+          <div class="item-title">🇩🇴 DR Investor Signal — FB Biz</div>
           <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#0D5FBF">FB Biz</span><span class="pill-time">Day 2</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_dr3" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('dr3',this.value)" onfocus="autoResize(this)"></textarea></div>
-      <div class="item" data-id="dr4" data-brand="alexa" onclick="toggle(this)">
+      <div class="caption-row"><textarea class="caption-input" id="cap_dr_fb" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('dr_fb',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="dr_yt" data-brand="youtube" onclick="toggle(this)">
         <div class="check"><span class="check-icon">✓</span></div>
         <div class="item-body">
           <div class="item-title">🇩🇴 DR Vacation Market — YouTube</div>
-          <div class="item-meta"><span class="pill" style="background:var(--alexa)">AlexaSanchezRealtor</span><span class="pill" style="background:#FF0000">YT</span><span class="pill-time">Day 3-4</span></div>
+          <div class="item-meta"><span class="pill" style="background:#CC0000">YouTube</span><span class="pill" style="background:#888">AlexaSanchezRealtor</span><span class="pill-time">Day 3–4</span></div>
         </div>
       </div>
-      <div class="caption-row"><textarea class="caption-input" id="cap_dr4" placeholder="Caption / notes for this post..." rows="1" oninput="autoResize(this);saveCaption('dr4',this.value)" onfocus="autoResize(this)"></textarea></div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_dr_yt" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('dr_yt',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+      <div class="item" data-id="dr_ash" data-brand="myash" onclick="toggle(this)">
+        <div class="check"><span class="check-icon">✓</span></div>
+        <div class="item-body">
+          <div class="item-title">🇩🇴 DR Cigar Origin — @its.myash</div>
+          <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill-time">Day 1</span></div>
+        </div>
+      </div>
+      <div class="caption-row"><textarea class="caption-input" id="cap_dr_ash" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('dr_ash',this.value)" onfocus="autoResize(this)"></textarea></div>
+
     </div>
   </div>
 
@@ -764,7 +813,6 @@
 const SUPABASE_URL = 'https://gzqgeehcvmgstzenkyfnw.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6cWdlZWhjdm1nc3R6bmtfeWZudyIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzczNTkyMTA4LCJleHAiOjIwODkxNjgxMDh9.sw98v41oTub5p64cuP5Sqx574wNUd6kzOU1UxdoahWA';
 
-// ── SUPABASE HELPERS ──────────────────────────────────────────────────────
 async function sbGet(key) {
   try {
     const res = await fetch(
@@ -788,21 +836,16 @@ async function sbSet(key, value) {
       },
       body: JSON.stringify({ key: key, value: value })
     });
-  } catch(e) { console.log('sbSet error', e); }
+  } catch(e) {}
 }
 
-// ── KEYS ──────────────────────────────────────────────────────────────────
 const CHECKS_KEY   = 'content_checks_v1';
 const THEME_KEY    = 'content_theme_v1';
 const CAPTIONS_KEY = 'content_captions_v1';
 
-// ── STATE ─────────────────────────────────────────────────────────────────
 async function getChecks() {
   const remote = await sbGet(CHECKS_KEY);
-  if (remote !== null) {
-    localStorage.setItem(CHECKS_KEY, remote);
-    return JSON.parse(remote);
-  }
+  if (remote !== null) { localStorage.setItem(CHECKS_KEY, remote); return JSON.parse(remote); }
   const local = localStorage.getItem(CHECKS_KEY);
   return local ? JSON.parse(local) : {};
 }
@@ -815,25 +858,20 @@ async function saveChecks(state) {
 
 async function getCaptions() {
   const remote = await sbGet(CAPTIONS_KEY);
-  if (remote !== null) {
-    localStorage.setItem(CAPTIONS_KEY, remote);
-    return JSON.parse(remote);
-  }
+  if (remote !== null) { localStorage.setItem(CAPTIONS_KEY, remote); return JSON.parse(remote); }
   const local = localStorage.getItem(CAPTIONS_KEY);
   return local ? JSON.parse(local) : {};
 }
 
 async function saveCaption(id, value) {
   const caps = await getCaptions();
-  if (value.trim()) caps[id] = value;
-  else delete caps[id];
+  if (value.trim()) caps[id] = value; else delete caps[id];
   const json = JSON.stringify(caps);
   localStorage.setItem(CAPTIONS_KEY, json);
   await sbSet(CAPTIONS_KEY, json);
   showSync();
 }
 
-// ── THEME ─────────────────────────────────────────────────────────────────
 async function saveTheme() {
   const val = document.getElementById('theme-input').value;
   localStorage.setItem(THEME_KEY, val);
@@ -846,23 +884,16 @@ async function loadTheme() {
     remote !== null ? remote : (localStorage.getItem(THEME_KEY) || '');
 }
 
-// ── TOGGLE ────────────────────────────────────────────────────────────────
 async function toggle(el) {
   const id = el.dataset.id;
   const state = await getChecks();
-  if (el.classList.contains('done')) {
-    el.classList.remove('done');
-    delete state[id];
-  } else {
-    el.classList.add('done');
-    state[id] = true;
-  }
+  if (el.classList.contains('done')) { el.classList.remove('done'); delete state[id]; }
+  else { el.classList.add('done'); state[id] = true; }
   await saveChecks(state);
   updateProgress();
   showSync();
 }
 
-// ── RESTORE ───────────────────────────────────────────────────────────────
 async function restoreChecks() {
   setSyncStatus('Syncing...');
   try {
@@ -877,16 +908,13 @@ async function restoreChecks() {
       if (el) { el.value = val; autoResize(el); }
     });
     setSyncStatus('✓ Synced');
-  } catch(e) {
-    setSyncStatus('⚠ Offline');
-  }
+  } catch(e) { setSyncStatus('⚠ Offline'); }
   setTimeout(() => setSyncStatus(''), 2000);
   updateProgress();
 }
 
-// ── RESET ─────────────────────────────────────────────────────────────────
 async function resetAll() {
-  if (!confirm('Start a new week? This clears checkboxes and captions on ALL devices.')) return;
+  if (!confirm('Start a new week? This clears all checkboxes and captions on ALL devices.')) return;
   await saveChecks({});
   await sbSet(CAPTIONS_KEY, '{}');
   localStorage.setItem(CAPTIONS_KEY, '{}');
@@ -897,16 +925,8 @@ async function resetAll() {
   setTimeout(() => setSyncStatus(''), 2000);
 }
 
-// ── UI HELPERS ────────────────────────────────────────────────────────────
-function setSyncStatus(msg) {
-  const el = document.getElementById('sync-status');
-  if (el) el.textContent = msg;
-}
-
-function showSync() {
-  setSyncStatus('✓ Saved');
-  setTimeout(() => setSyncStatus(''), 1500);
-}
+function setSyncStatus(msg) { const el = document.getElementById('sync-status'); if (el) el.textContent = msg; }
+function showSync() { setSyncStatus('✓ Saved'); setTimeout(() => setSyncStatus(''), 1500); }
 
 function autoResize(el) {
   el.style.height = 'auto';
@@ -916,18 +936,17 @@ function autoResize(el) {
 function updateProgress() {
   const all  = document.querySelectorAll('.item:not(.hidden)').length;
   const done = document.querySelectorAll('.item.done:not(.hidden)').length;
-  const pct  = all ? Math.round(done/all*100) : 0;
+  const pct  = all ? Math.round(done / all * 100) : 0;
   document.getElementById('progress-bar').style.width = pct + '%';
   document.getElementById('progress-label').textContent =
-    done + ' of ' + all + ' posts done  (' + pct + '%)';
+    done + ' of ' + all + ' posts done (' + pct + '%)';
 }
 
 function switchTab(tab) {
-  document.querySelectorAll('.tab').forEach(t => {
-    t.classList.toggle('active', t.dataset.tab === tab);
-  });
-  document.querySelectorAll('.item').forEach(el => {
-    const show = tab === 'all' || el.dataset.brand === tab;
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+  document.querySelectorAll('.item, .caption-row').forEach(el => {
+    const brand = el.dataset.brand || el.previousElementSibling?.dataset.brand;
+    const show = tab === 'all' || brand === tab;
     el.classList.toggle('hidden', !show);
   });
   updateProgress();
@@ -935,16 +954,13 @@ function switchTab(tab) {
 
 function setWeekLabel() {
   const now = new Date();
-  const sunday = new Date(now);
-  sunday.setDate(now.getDate() - now.getDay());
-  const opts = { month:'short', day:'numeric' };
-  const sat = new Date(sunday);
-  sat.setDate(sunday.getDate() + 6);
+  const sun = new Date(now); sun.setDate(now.getDate() - now.getDay());
+  const sat = new Date(sun); sat.setDate(sun.getDate() + 6);
+  const opts = { month: 'short', day: 'numeric' };
   document.getElementById('week-label').textContent =
-    'Week of ' + sunday.toLocaleDateString('en-US', opts) + ' – ' + sat.toLocaleDateString('en-US', opts);
+    'Week of ' + sun.toLocaleDateString('en-US', opts) + ' – ' + sat.toLocaleDateString('en-US', opts);
 }
 
-// ── INIT ──────────────────────────────────────────────────────────────────
 setWeekLabel();
 loadTheme();
 restoreChecks();
