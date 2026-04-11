@@ -526,6 +526,7 @@
 <div class="topbar">
   <div class="topbar-logo">MYASH<span> // OPS</span></div>
   <div class="topbar-date" id="topbar-date"></div>
+  <div id="sync-badge" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text3);">⟳ loading...</div>
   <div class="topbar-badge">OPERATOR MODE</div>
 </div>
 
@@ -982,8 +983,39 @@
 </div>
 
 <script>
+// ── SUPABASE CONFIG ───────────────────────────────────────────────────────────
+const SB_URL = 'https://gzqgeehcvmgstzenkyfnw.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6cWdlZWhjdm1nc3R6bmt5Zm53Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1OTIxMDgsImV4cCI6MjA4OTE2ODEwOH0.sw98v41oTub5p64cuP5Sqx574wNUd6kzOU1UxdoahWA';
+const SB_HDR = { 'Content-Type': 'application/json', 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY };
+
+async function sbGet(table) {
+  try {
+    const r = await fetch(`${SB_URL}/rest/v1/${table}?select=*&order=id`, { headers: SB_HDR });
+    if (!r.ok) return null;
+    return await r.json();
+  } catch(e) { return null; }
+}
+async function sbUpsert(table, row) {
+  try {
+    const r = await fetch(`${SB_URL}/rest/v1/${table}`, {
+      method: 'POST',
+      headers: { ...SB_HDR, 'Prefer': 'resolution=merge-duplicates' },
+      body: JSON.stringify(row)
+    });
+    return r.ok;
+  } catch(e) { return false; }
+}
+async function sbDelete(table, id) {
+  try {
+    const r = await fetch(`${SB_URL}/rest/v1/${table}?id=eq.${id}`, {
+      method: 'DELETE', headers: SB_HDR
+    });
+    return r.ok;
+  } catch(e) { return false; }
+}
+
 // ── STATE ─────────────────────────────────────────────────────────────────────
-const STORAGE_KEY = 'myash_ops_v1';
+const STORAGE_KEY = 'myash_ops_v2';
 let state = {
   leads: [],
   content: [],
@@ -991,15 +1023,83 @@ let state = {
   checks: {},
   currentSignals: {},
 };
+let sbReady = false;
 
-function load() {
+function loadLocal() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) state = { ...state, ...JSON.parse(saved) };
   } catch(e) {}
 }
-function save() {
+function saveLocal() {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+async function loadFromSupabase() {
+  showSyncBadge('syncing');
+  const [leads, content, outreach, checks] = await Promise.all([
+    sbGet('ops_leads'),
+    sbGet('ops_content'),
+    sbGet('ops_outreach'),
+    sbGet('ops_checks'),
+  ]);
+  if (leads && leads.length > 0) state.leads = leads;
+  if (content && content.length > 0) state.content = content;
+  if (outreach && outreach.length > 0) state.outreach = outreach;
+  if (checks && checks.length > 0) {
+    state.checks = {};
+    checks.forEach(r => { state.checks[r.check_id] = r.checked; });
+  }
+  saveLocal();
+  sbReady = true;
+  showSyncBadge('synced');
+  renderAll();
+}
+
+function save() {
+  saveLocal();
+  if (sbReady) syncToSupabase();
+}
+
+async function syncToSupabase() {
+  for (const lead of state.leads) {
+    await sbUpsert('ops_leads', {
+      id: String(lead.id), fname: lead.fname, lname: lead.lname,
+      phone: lead.phone || '', email: lead.email || '', addr: lead.addr || '',
+      value: lead.value || 0, equity: lead.equity || 0, years: lead.years || 0,
+      status: lead.status || 'New', sources: JSON.stringify(lead.sources || {}),
+      signals: JSON.stringify(lead.signals || {}), notes: lead.notes || ''
+    });
+  }
+  for (const item of state.content) {
+    await sbUpsert('ops_content', {
+      id: String(item.id), brand: item.brand, day: item.day,
+      title: item.title, type: item.type, goal: item.goal, done: item.done
+    });
+  }
+  for (const [check_id, checked] of Object.entries(state.checks)) {
+    await sbUpsert('ops_checks', { check_id, checked });
+  }
+  showSyncBadge('synced');
+}
+
+async function saveOutreachToSB(entry) {
+  await sbUpsert('ops_outreach', {
+    id: String(entry.id), name: entry.name, method: entry.method,
+    response: entry.response, followup: entry.followup || '',
+    notes: entry.notes || '', date: entry.date
+  });
+}
+
+async function deleteLeadFromSB(id) {
+  await sbDelete('ops_leads', String(id));
+}
+
+function showSyncBadge(status) {
+  const badge = document.getElementById('sync-badge');
+  if (!badge) return;
+  badge.textContent = status === 'syncing' ? '⟳ syncing...' : '✓ synced';
+  badge.style.color = status === 'syncing' ? 'var(--gold)' : 'var(--accent)';
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
@@ -1013,11 +1113,12 @@ function resetContent() {
 }
 
 function init() {
-  load();
+  loadLocal();
   setDate();
   seedDefaults();
   renderAll();
   bindTabs();
+  loadFromSupabase();
 }
 
 function setDate() {
@@ -1232,7 +1333,9 @@ function renderLeads() {
 
 function deleteLead(id) {
   state.leads = state.leads.filter(l => l.id !== id);
-  save(); renderAll();
+  save();
+  if (sbReady) deleteLeadFromSB(id);
+  renderAll();
 }
 
 // ── CANNONBALL ────────────────────────────────────────────────────────────────
@@ -1412,6 +1515,7 @@ function saveOutreach() {
   if (!entry.name) { alert('Please enter a name.'); return; }
   state.outreach.push(entry);
   save();
+  if (sbReady) saveOutreachToSB(entry);
   closeModal('modal-add-outreach');
   ['o-name','o-followup','o-notes'].forEach(id => document.getElementById(id).value = '');
   renderAll();
