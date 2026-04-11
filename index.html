@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>myash // operator dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -1102,6 +1103,55 @@ function showSyncBadge(status) {
   badge.style.color = status === 'syncing' ? 'var(--gold)' : 'var(--accent)';
 }
 
+// ── REALTIME SYNC ─────────────────────────────────────────────────────────────
+let supabaseClient = null;
+
+function initRealtime() {
+  try {
+    supabaseClient = supabase.createClient(SB_URL, SB_KEY);
+
+    // Listen for changes on ops_leads
+    supabaseClient.channel('ops_leads_changes')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_leads' }, async () => {
+        const leads = await sbGet('ops_leads');
+        if (leads !== null) { state.leads = leads; saveLocal(); renderLeads(); renderCannonball(); renderContacts(); renderKPIs(); }
+      })
+      .subscribe();
+
+    // Listen for changes on ops_content
+    supabaseClient.channel('ops_content_changes')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_content' }, async () => {
+        const content = await sbGet('ops_content');
+        if (content && content.length > 0) { state.content = content; saveLocal(); renderWeekGrid(); renderKPIs(); }
+      })
+      .subscribe();
+
+    // Listen for changes on ops_outreach
+    supabaseClient.channel('ops_outreach_changes')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_outreach' }, async () => {
+        const outreach = await sbGet('ops_outreach');
+        if (outreach !== null) { state.outreach = outreach; saveLocal(); renderCannonball(); renderKPIs(); }
+      })
+      .subscribe();
+
+    // Listen for check changes
+    supabaseClient.channel('ops_checks_changes')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_checks' }, async () => {
+        const checks = await sbGet('ops_checks');
+        if (checks && checks.length > 0) {
+          state.checks = {};
+          checks.forEach(r => { state.checks[r.check_id] = r.checked; });
+          saveLocal();
+          renderMondayChecks();
+        }
+      })
+      .subscribe();
+
+  } catch(e) {
+    console.log('Realtime init failed:', e);
+  }
+}
+
 // ── INIT ──────────────────────────────────────────────────────────────────────
 function resetContent() {
   if (confirm('Reset the content schedule to the master template? Your check-offs will be cleared.')) {
@@ -1118,7 +1168,7 @@ function init() {
   seedDefaults();
   renderAll();
   bindTabs();
-  loadFromSupabase();
+  loadFromSupabase().then(() => initRealtime());
 }
 
 function setDate() {
