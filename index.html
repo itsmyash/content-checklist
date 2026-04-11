@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Content ✓">
+<title>Weekly Content Checklist</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  :root {
+    --alexa:#1B4F8A; --myash:#4A235A; --fr:#5C3317; --dark:#1A1A2E;
+    --tiktok:#111111; --green:#059669; --sub-pink:#FF6719; --yt-red:#CC0000;
+    --bg:#F2F2F7; --card:#FFFFFF; --text:#1C1C1E; --sub:#6E6E73; --border:#E5E5EA;
+  }
+  body { font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif; background:var(--bg); color:var(--text); padding-bottom:60px; min-height:100vh; }
+  .app-header { background:var(--dark); color:white; padding:52px 20px 12px; position:sticky; top:0; z-index:100; }
+  .app-header h1 { font-size:22px; font-weight:700; letter-spacing:-0.3px; }
+  .week-label { font-size:13px; color:rgba(255,255,255,0.6); margin-top:2px; }
+  .progress-bar-wrap { background:rgba(255,255,255,0.12); border-radius:4px; height:4px; margin:10px 20px 2px; overflow:hidden; }
+  .progress-bar { height:100%; background:var(--green); border-radius:4px; transition:width 0.3s ease; width:0%; }
+  .progress-label { font-size:11px; color:rgba(255,255,255,0.5); padding:0 20px 8px; }
+  #sync-status { font-size:10px; color:rgba(255,255,255,0.5); padding:0 20px 6px; min-height:14px; }
+
+  .thread-panel { background:#1e1e38; border-bottom:1px solid rgba(255,255,255,0.06); }
+  .thread-top { padding:12px 20px 8px; }
+  .thread-label { font-size:10px; font-weight:700; letter-spacing:0.8px; color:rgba(255,255,255,0.4); text-transform:uppercase; margin-bottom:4px; display:flex; align-items:center; gap:6px; }
+  .thread-label-dot { width:6px; height:6px; border-radius:50%; background:#a78bfa; display:inline-block; }
+  .thread-input { background:transparent; border:none; color:rgba(255,255,255,0.92); font-size:15px; font-weight:600; font-family:inherit; width:100%; outline:none; letter-spacing:-0.2px; }
+  .thread-input::placeholder { color:rgba(255,255,255,0.2); font-weight:400; font-size:14px; }
+  .brand-angles { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; padding:0 20px 12px; }
+  .angle-card { background:rgba(255,255,255,0.06); border-radius:8px; padding:8px 10px; }
+  .angle-brand { font-size:9px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; margin-bottom:4px; }
+  .angle-brand.ar { color:#5ba3e8; }
+  .angle-brand.ma { color:#c084fc; }
+  .angle-brand.fr { color:#a78060; }
+  .angle-input { background:transparent; border:none; color:rgba(255,255,255,0.75); font-size:11px; font-family:inherit; width:100%; outline:none; resize:none; line-height:1.4; min-height:32px; }
+  .angle-input::placeholder { color:rgba(255,255,255,0.2); }
+  .thread-hint { font-size:10px; color:rgba(255,255,255,0.25); padding:0 20px 10px; line-height:1.5; }
+
+  .reset-btn { display:block; margin:0 20px 12px; background:rgba(255,255,255,0.08); border:none; color:rgba(255,255,255,0.6); font-size:13px; font-family:inherit; padding:8px 14px; border-radius:8px; cursor:pointer; width:calc(100% - 40px); text-align:center; }
+  .tabs { display:flex; overflow-x:auto; padding:12px 20px 0; gap:8px; background:var(--dark); scrollbar-width:none; }
+  .tabs::-webkit-scrollbar { display:none; }
+  .tab { flex-shrink:0; padding:7px 16px; border-radius:20px; font-size:13px; font-weight:600; border:none; cursor:pointer; transition:opacity 0.15s; color:white; opacity:0.5; }
+  .tab.active { opacity:1; }
+  .tab[data-tab="all"]      { background:#3A3A5C; }
+  .tab[data-tab="sun"]      { background:#1A5C2A; }
+  .tab[data-tab="wed"]      { background:#7B5800; }
+  .tab[data-tab="alexa"]    { background:var(--alexa); }
+  .tab[data-tab="myash"]    { background:var(--myash); }
+  .tab[data-tab="fr"]       { background:var(--fr); }
+  .tab[data-tab="substack"] { background:var(--sub-pink); }
+  .tab[data-tab="youtube"]  { background:var(--yt-red); }
+
+  .content { padding:16px 16px 0; }
+  .day-section { margin-bottom:20px; }
+  .day-header { font-size:11px; font-weight:700; letter-spacing:0.9px; text-transform:uppercase; color:var(--sub); padding:0 4px 8px; display:flex; align-items:center; gap:6px; }
+  .day-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  .rec-banner { border-radius:8px; padding:8px 12px; margin-bottom:10px; font-size:11px; font-weight:700; letter-spacing:0.4px; }
+  .rec-sun { background:#D1FAE5; color:#065F46; }
+  .rec-wed { background:#FEF3C7; color:#92400E; }
+  .card { background:var(--card); border-radius:13px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.07); margin-bottom:2px; }
+  .item { display:flex; align-items:center; padding:11px 14px; border-bottom:1px solid var(--border); cursor:pointer; transition:background 0.1s; gap:12px; min-height:52px; }
+  .item:last-child { border-bottom:none; }
+  .item:active { background:#F5F5F7; }
+  .check { width:24px; height:24px; border-radius:50%; border:2px solid #C7C7CC; flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all 0.2s; }
+  .item.done .check { border-color:var(--green); background:var(--green); }
+  .check-icon { display:none; color:white; font-size:13px; font-weight:700; }
+  .item.done .check-icon { display:block; }
+  .item-body { flex:1; min-width:0; }
+  .item-title { font-size:14px; font-weight:600; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .item.done .item-title { color:var(--sub); text-decoration:line-through; }
+  .item-meta { font-size:12px; color:var(--sub); margin-top:2px; display:flex; align-items:center; gap:5px; flex-wrap:wrap; }
+  .pill { display:inline-block; padding:2px 7px; border-radius:5px; font-size:10px; font-weight:700; color:white; letter-spacing:0.2px; }
+  .pill-time { font-size:11px; color:var(--sub); font-weight:500; }
+  .b-warn { font-size:10px; font-weight:700; color:#92660A; background:#FFF8E1; padding:2px 6px; border-radius:5px; }
+  .b-new  { font-size:10px; font-weight:700; color:#065F46; background:#D1FAE5; padding:2px 6px; border-radius:5px; }
+  .b-wed  { font-size:10px; font-weight:700; color:#92400E; background:#FEF3C7; padding:2px 6px; border-radius:5px; }
+  .b-story { font-size:10px; font-weight:700; color:#5C3317; background:#FFF0E6; padding:2px 6px; border-radius:5px; }
+
+  .thread-connector { display:none; align-items:center; gap:6px; padding:4px 14px 4px 50px; font-size:10px; font-weight:600; color:#7c3aed; background:#f5f3ff; border-bottom:1px solid #ede9fe; letter-spacing:0.2px; }
+  .thread-connector.visible { display:flex; }
+  .thread-connector-dot { width:5px; height:5px; border-radius:50%; background:#7c3aed; flex-shrink:0; }
+  .angle-hint-row { display:none; padding:4px 14px 6px 50px; background:#fafafa; border-bottom:1px solid var(--border); }
+  .angle-hint-row.visible { display:block; }
+  .angle-hint-text { font-size:11px; color:#7c3aed; font-style:italic; line-height:1.4; }
+
+  .caption-row { padding:0 14px 10px 50px; background:var(--card); border-bottom:1px solid var(--border); }
+  .caption-input { width:100%; background:#F8F8FA; border:1px solid var(--border); border-radius:8px; padding:8px 10px; font-size:12px; font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif; color:var(--text); resize:none; min-height:36px; outline:none; transition:border-color 0.15s,min-height 0.15s; box-sizing:border-box; }
+  .caption-input:focus { border-color:#A0A0B0; background:#FFFFFF; min-height:72px; }
+  .caption-input::placeholder { color:#BBBBCC; }
+  .hidden { display:none; }
+</style>
+</head>
+<body>
+
+<div class="app-header">
+  <h1>📱 Weekly Content</h1>
+  <div class="week-label" id="week-label">Loading...</div>
+  <div class="progress-bar-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+  <div class="progress-label" id="progress-label">0 of 0 done</div>
+  <div id="sync-status"></div>
+</div>
+
+<div class="thread-panel">
+  <div class="thread-top">
+    <div class="thread-label"><span class="thread-label-dot"></span>This Week's Narrative Thread</div>
+    <input class="thread-input" id="thread-input" placeholder="What's the one insight everything this week builds on?" oninput="saveThread();updateAngleHints()">
+  </div>
+  <div class="brand-angles">
+    <div class="angle-card">
+      <div class="angle-brand ar">@alexa.realtor</div>
+      <textarea class="angle-input" id="angle-ar" placeholder="Real estate angle..." rows="2" oninput="saveAngles();updateAngleHints()"></textarea>
+    </div>
+    <div class="angle-card">
+      <div class="angle-brand ma">@its.myash</div>
+      <textarea class="angle-input" id="angle-ma" placeholder="Lifestyle / cigar angle..." rows="2" oninput="saveAngles();updateAngleHints()"></textarea>
+    </div>
+    <div class="angle-card">
+      <div class="angle-brand fr">Filler & Roast</div>
+      <textarea class="angle-input" id="angle-fr" placeholder="Coffee / pairing angle..." rows="2" oninput="saveAngles();updateAngleHints()"></textarea>
+    </div>
+  </div>
+  <div class="thread-hint" id="thread-hint">Fill in the thread above — each item below will show which brand angle applies.</div>
+  <button class="reset-btn" onclick="resetAll()">🔄 Reset All (New Week)</button>
+</div>
+
+<div class="tabs">
+  <button class="tab active" data-tab="all"      onclick="switchTab('all')">All</button>
+  <button class="tab"        data-tab="sun"      onclick="switchTab('sun')">🟢 Sun</button>
+  <button class="tab"        data-tab="wed"      onclick="switchTab('wed')">🟡 Wed</button>
+  <button class="tab"        data-tab="alexa"    onclick="switchTab('alexa')">🏠 Alexa</button>
+  <button class="tab"        data-tab="myash"    onclick="switchTab('myash')">✨ Ash</button>
+  <button class="tab"        data-tab="fr"       onclick="switchTab('fr')">☕ F&amp;R</button>
+  <button class="tab"        data-tab="substack" onclick="switchTab('substack')">📝 Sub</button>
+  <button class="tab"        data-tab="youtube"  onclick="switchTab('youtube')">▶ YT</button>
+</div>
+
+<div class="content">
+
+<!-- SUNDAY -->
+<div class="day-section">
+  <div class="day-header"><span class="day-dot" style="background:#22C55E"></span>Sunday</div>
+  <div class="rec-banner rec-sun">🟢 SUNDAY RECORDING — Hub video only. Coffee in hand. One camera. ~30 min.</div>
+  <div class="card">
+    <div class="item" data-id="su_yt" data-brand="youtube sun" data-angle="all" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">▶ Hub Video — Record &amp; Upload <span class="b-new">REC SUN</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--yt-red)">YouTube</span><span class="pill" style="background:#888">AlexaSanchezRealtor</span><span class="pill-time">8–12 min · all 3 brands · upload Sunday</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_su_yt"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_su_yt"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_su_yt" placeholder="Topic / hook / description / tags..." rows="1" oninput="autoResize(this);saveCaption('su_yt',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="su_fr" data-brand="fr sun" data-angle="fr" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">☕ Before the First Draw</div>
+        <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:#0D5FBF">FB Biz</span><span class="pill-time">9:30 AM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_su_fr"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_su_fr"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_su_fr" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('su_fr',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="su_ca" data-brand="myash sun" data-angle="ma" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">☕🍂 Coffee &amp; Ash — Ritual</div>
+        <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:#1877F2">FB</span><span class="pill-time">10:15 AM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_su_ca"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_su_ca"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_su_ca" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('su_ca',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="su_nd" data-brand="alexa sun" data-angle="ar" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🙏 Sunday Gratitude — Community</div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#00B246">Nextdoor</span><span class="pill-time">9:15 AM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_su_nd"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_su_nd"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_su_nd" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('su_nd',this.value)" onfocus="autoResize(this)"></textarea></div>
+  </div>
+</div>
+
+<!-- MONDAY -->
+<div class="day-section">
+  <div class="day-header"><span class="day-dot" style="background:#3B82F6"></span>Monday — Upload Day</div>
+  <div class="card">
+    <div class="item" data-id="m_sub" data-brand="substack" data-angle="all" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">✍️ The Lifestyle Market Letter — Operator Life</div>
+        <div class="item-meta"><span class="pill" style="background:var(--sub-pink)">Substack</span><span class="pill-time">Personal story first · 8:00 AM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_m_sub"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_m_sub"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_m_sub" placeholder="Post topic · personal story · never a market report..." rows="1" oninput="autoResize(this);saveCaption('m_sub',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="m_ts" data-brand="myash" data-angle="ma" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🌙 Tonight's Smoke — Carousel</div>
+        <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">7:00 PM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_m_ts"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_m_ts"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_m_ts" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('m_ts',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="m_tt" data-brand="myash" data-angle="ma" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🎬 TikTok — Hub Repurpose <span class="b-warn">TikTok</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill-time">6:00 PM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_m_tt"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_m_tt"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_m_tt" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('m_tt',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="m_li" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">📊 Market Signal</div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#0A66C2">LinkedIn</span><span class="pill-time">8:00 AM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_m_li"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_m_li"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_m_li" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('m_li',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="m_gb" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">📍 Google Business Post</div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#4285F4">Google Biz</span><span class="pill-time">9:00 AM · keyword-rich · local search</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_m_gb"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_m_gb"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_m_gb" placeholder="Short local post / keywords..." rows="1" oninput="autoResize(this);saveCaption('m_gb',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="m_fb" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🏠 Real Estate Insight</div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">Alexa Personal</span><span class="pill" style="background:#1877F2">FB Personal</span><span class="pill-time">8:00 AM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_m_fb"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_m_fb"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_m_fb" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('m_fb',this.value)" onfocus="autoResize(this)"></textarea></div>
+  </div>
+</div>
+
+<!-- TUESDAY -->
+<div class="day-section">
+  <div class="day-header"><span class="day-dot" style="background:#22C55E"></span>Tuesday — Upload Day</div>
+  <div class="card">
+    <div class="item" data-id="t_reel" data-brand="myash" data-angle="all" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🎬 IG Reel — Hub Repurpose</div>
+        <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG Reel</span><span class="pill-time">All brands · 10:00 AM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_t_reel"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_t_reel"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_t_reel" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('t_reel',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="t_pp" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">📍 Pocono Pulse — Market Update</div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">11:00 AM · stat · trend · takeaway</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_t_pp"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_t_pp"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_t_pp" placeholder="Stat · trend · takeaway..." rows="1" oninput="autoResize(this);saveCaption('t_pp',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="t_cc" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🚗 Car Confession — Real Estate</div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">12:00 PM · 20 sec · record from car any day</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_t_cc"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_t_cc"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_t_cc" placeholder="Hook / cover text / confession..." rows="1" oninput="autoResize(this);saveCaption('t_cc',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="t_nd" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🏡 Neighborly Post</div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#00B246">Nextdoor</span><span class="pill-time">6:00 PM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_t_nd"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_t_nd"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_t_nd" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('t_nd',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="t_ns" data-brand="myash" data-angle="ma" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🔥 Nell's Social — This Week's Smoke</div>
+        <div class="item-meta"><span class="pill" style="background:var(--myash)">@nellssocial tag</span><span class="pill" style="background:#1877F2">FB</span><span class="pill-time">6:00 PM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_t_ns"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_t_ns"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_t_ns" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('t_ns',this.value)" onfocus="autoResize(this)"></textarea></div>
+  </div>
+</div>
+
+<!-- WEDNESDAY -->
+<div class="day-section">
+  <div class="day-header"><span class="day-dot" style="background:#EAB308"></span>Wednesday — Recording Day</div>
+  <div class="rec-banner rec-wed">🟡 WEDNESDAY RECORDING — 4 recordings only. Privacy. Can smoke on camera.</div>
+  <div class="card">
+    <div class="item" data-id="w_ae_rec" data-brand="youtube wed" data-angle="all" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🎬 RECORD: Ashes &amp; Escrows Episode <span class="b-wed">REC NOW · uploads Thu</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--yt-red)">YouTube</span><span class="pill-time">6–8 min · talking head · one take · raw</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_w_ae_rec"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_w_ae_rec"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_w_ae_rec" placeholder="Episode topic / script notes..." rows="1" oninput="autoResize(this);saveCaption('w_ae_rec',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="w_yts_rec" data-brand="youtube wed" data-angle="all" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">▶ RECORD: YouTube Short <span class="b-wed">REC NOW · uploads Thu</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--yt-red)">YouTube Short</span><span class="pill-time">Under 60 sec · cover text direction</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_w_yts_rec"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_w_yts_rec"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_w_yts_rec" placeholder="Script / hook / cover text..." rows="1" oninput="autoResize(this);saveCaption('w_yts_rec',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="w_cc_batch_rec" data-brand="alexa wed" data-angle="ar" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🚗 RECORD: Car Confessions Batch <span class="b-wed">REC NOW · both versions</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">Tue real estate + Thu entrepreneur · one car session</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_w_cc_batch_rec"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_w_cc_batch_rec"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_w_cc_batch_rec" placeholder="Tue hook + Thu hook..." rows="1" oninput="autoResize(this);saveCaption('w_cc_batch_rec',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="w_cc_ash_rec" data-brand="myash wed" data-angle="ma" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🚗 RECORD: Car Confession — Entrepreneur &amp; Cigars <span class="b-wed">uploads Wed</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">Cigar lit · 20 sec · shock value · upload 12:00 PM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_w_cc_ash_rec"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_w_cc_ash_rec"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_w_cc_ash_rec" placeholder="Hook / cover text / confession..." rows="1" oninput="autoResize(this);saveCaption('w_cc_ash_rec',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="w_ts_batch_rec" data-brand="myash wed" data-angle="ma" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🌙 RECORD: Tonight's Smoke Batch <span class="b-wed">REC NOW · uploads Mon</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill-time">Cigar content · carousel concept for Monday</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_w_ts_batch_rec"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_w_ts_batch_rec"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_w_ts_batch_rec" placeholder="Mon carousel concept..." rows="1" oninput="autoResize(this);saveCaption('w_ts_batch_rec',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="w_fr_photo" data-brand="fr wed" data-angle="fr" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">📸 F&amp;R Pairing — Photo Capture Only <span class="b-story">video records Thu/Fri</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill-time">Coffee + cigar setup · capture stills only today</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_w_fr_photo"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_w_fr_photo"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_w_fr_photo" placeholder="Blend + cigar pairing this week..." rows="1" oninput="autoResize(this);saveCaption('w_fr_photo',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="w_ash" data-brand="myash" data-angle="ma" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">📸 Ash Shot — Upload</div>
+        <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">8:00 AM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_w_ash"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_w_ash"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_w_ash" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('w_ash',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="w_li" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">📊 Market Insight — LinkedIn Upload</div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#0A66C2">LinkedIn</span><span class="pill-time">9:00 AM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_w_li"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_w_li"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_w_li" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('w_li',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="w_uc" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🏷 Under Contract — Story Only <span class="b-story">Story · not feed</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG Story</span><span class="pill" style="background:#0D5FBF">FB Story</span><span class="pill-time">11:00 AM · feed post only on Just Sold</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_w_uc"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_w_uc"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_w_uc" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('w_uc',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="w_collab" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🤝 Local Collab (1x/month) <span class="b-story">Story · not feed</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG Story</span><span class="pill-time">Tag partner · no feed slot used</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_w_collab"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_w_collab"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_w_collab" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('w_collab',this.value)" onfocus="autoResize(this)"></textarea></div>
+  </div>
+</div>
+
+<!-- THURSDAY -->
+<div class="day-section">
+  <div class="day-header"><span class="day-dot" style="background:#22C55E"></span>Thursday — YouTube Day 🎬</div>
+  <div class="card">
+    <div class="item" data-id="th_sub" data-brand="substack" data-angle="all" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">✍️ The Lifestyle Market Letter — Experience Economy</div>
+        <div class="item-meta"><span class="pill" style="background:var(--sub-pink)">Substack</span><span class="pill-time">Ritual · lifestyle · coffee · cigars · 8:00 AM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_th_sub"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_th_sub"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_th_sub" placeholder="Post topic · personal story first · never a market report..." rows="1" oninput="autoResize(this);saveCaption('th_sub',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="th_ae" data-brand="youtube" data-angle="all" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🎬 Ashes &amp; Escrows — Upload</div>
+        <div class="item-meta"><span class="pill" style="background:var(--yt-red)">YouTube</span><span class="pill" style="background:#888">AlexaSanchezRealtor</span><span class="pill-time">Recorded Wed · upload 10:00 AM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_th_ae"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_th_ae"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_th_ae" placeholder="Description / tags..." rows="1" oninput="autoResize(this);saveCaption('th_ae',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="th_yts" data-brand="youtube" data-angle="all" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">▶ YouTube Short — Upload</div>
+        <div class="item-meta"><span class="pill" style="background:var(--yt-red)">YouTube Short</span><span class="pill-time">Recorded Wed · upload 11:00 AM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_th_yts"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_th_yts"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_th_yts" placeholder="Caption / tags..." rows="1" oninput="autoResize(this);saveCaption('th_yts',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="th_ttr" data-brand="myash" data-angle="ma" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🎵 Native TikTok Re-record — Record &amp; Upload <span class="b-warn">TikTok · no watermark</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill-time">Record Thu morning · same topic as Short · upload 12:00 PM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_th_ttr"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_th_ttr"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_th_ttr" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('th_ttr',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="th_cc" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🚗 Car Confession — Entrepreneur Life (Upload)</div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">Recorded Wed · upload 12:00 PM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_th_cc"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_th_cc"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_th_cc" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('th_cc',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="th_inv" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">📊 Investor Signal (pre-sched)</div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#0A66C2">LinkedIn</span><span class="pill-time">8:30 AM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_th_inv"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_th_inv"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_th_inv" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('th_inv',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="th_fr_rec" data-brand="fr" data-angle="fr" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🍃 RECORD: F&amp;R Pairing Video <span class="b-wed">record Thu · uploads Fri</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill-time">Photos already captured Wed · record video now</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_th_fr_rec"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_th_fr_rec"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_th_fr_rec" placeholder="Pairing video notes..." rows="1" oninput="autoResize(this);saveCaption('th_fr_rec',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="th_nd" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🏘 Community Roundup</div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#00B246">Nextdoor</span><span class="pill-time">6:00 PM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_th_nd"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_th_nd"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_th_nd" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('th_nd',this.value)" onfocus="autoResize(this)"></textarea></div>
+  </div>
+</div>
+
+<!-- FRIDAY -->
+<div class="day-section">
+  <div class="day-header"><span class="day-dot" style="background:#8B5CF6"></span>Friday — Upload Day</div>
+  <div class="card">
+    <div class="item" data-id="f_ctl" data-brand="fr" data-angle="fr" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">☕ Coffee for the Leaf</div>
+        <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:#0D5FBF">FB Biz</span><span class="pill-time">9:00 AM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_f_ctl"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_f_ctl"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_f_ctl" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('f_ctl',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="f_pair" data-brand="fr" data-angle="fr" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🍃 The Pairing — Cigar + Coffee Ed. <span class="b-new">bi-weekly</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">Recorded Thu · upload 10:00 AM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_f_pair"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_f_pair"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_f_pair" placeholder="Blend + cigar pairing..." rows="1" oninput="autoResize(this);saveCaption('f_pair',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="f_ctl_tt" data-brand="myash" data-angle="ma" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">☕ Coffee for the Leaf <span class="b-warn">TikTok via @its.myash</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill-time">Different edit · 11:00 AM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_f_ctl_tt"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_f_ctl_tt"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_f_ctl_tt" placeholder="TikTok-specific angle..." rows="1" oninput="autoResize(this);saveCaption('f_ctl_tt',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="f_mi" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">📊 Market Insight (pre-sched)</div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#0D5FBF">FB Biz</span><span class="pill-time">8:00 AM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_f_mi"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_f_mi"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_f_mi" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('f_mi',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="f_fb_all" data-brand="alexa" data-angle="all" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">📣 Facebook — All Brands Repurpose</div>
+        <div class="item-meta"><span class="pill" style="background:#1877F2">FB</span><span class="pill-time">All brands · captions repurposed · 12:00 PM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_f_fb_all"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_f_fb_all"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_f_fb_all" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('f_fb_all',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="f_ws" data-brand="myash" data-angle="ma" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🥃 Weekend Smoke — Reel</div>
+        <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">5:00 PM · feed post · Sat is Stories only</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_f_ws"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_f_ws"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_f_ws" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('f_ws',this.value)" onfocus="autoResize(this)"></textarea></div>
+  </div>
+</div>
+
+<!-- SATURDAY -->
+<div class="day-section">
+  <div class="day-header"><span class="day-dot" style="background:#A855F7"></span>Saturday — Stories Only</div>
+  <div class="card">
+    <div class="item" data-id="sa_nd" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🏡 Weekend Market Tip</div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#00B246">Nextdoor</span><span class="pill-time">10:00 AM</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_sa_nd"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_sa_nd"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_sa_nd" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('sa_nd',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="sa_bts" data-brand="myash" data-angle="ma" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">📸 Stories — Behind the Scenes <span class="b-story">Story only</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG Story</span><span class="pill-time">2:00 PM · no feed post Sat</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_sa_bts"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_sa_bts"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_sa_bts" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('sa_bts',this.value)" onfocus="autoResize(this)"></textarea></div>
+  </div>
+</div>
+
+<!-- EVENT-TRIGGERED -->
+<div class="day-section">
+  <div class="day-header"><span class="day-dot" style="background:#F59E0B"></span>Event-Triggered (Listings)</div>
+  <div class="card">
+    <div class="item" data-id="ev_jl" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🆕 Just Listed — IG + FB Biz</div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill-time">Within 24hrs of MLS · counts as your 4th IG post</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_ev_jl"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_ev_jl"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_ev_jl" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('ev_jl',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="ev_uc" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">📋 Under Contract — Story Only <span class="b-story">Story · not feed</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG Story</span><span class="pill-time">On contract</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_ev_uc"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_ev_uc"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_ev_uc" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('ev_uc',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="ev_js" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🎉 Just Sold — IG Feed + LinkedIn</div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill-time">On close · this earns a feed slot</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_ev_js"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_ev_js"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_ev_js" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('ev_js',this.value)" onfocus="autoResize(this)"></textarea></div>
+  </div>
+</div>
+
+<!-- DR CONTENT -->
+<div class="day-section">
+  <div class="day-header"><span class="day-dot" style="background:#16A34A"></span>🇩🇴 DR Content — Once Monthly</div>
+  <div class="card">
+    <div class="item" data-id="dr_src" data-brand="fr" data-angle="fr" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🇩🇴 From the Source — Origin Story</div>
+        <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:#0D5FBF">FB Biz</span><span class="pill-time">DR tobacco + coffee origin</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_dr_src"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_dr_src"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_dr_src" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('dr_src',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="dr_reel" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🇩🇴 DR Investor Signal — Reel</div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">Day 1</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_dr_reel"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_dr_reel"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_dr_reel" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('dr_reel',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="dr_li" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🇩🇴 DR Market Update — LinkedIn</div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#0A66C2">LinkedIn</span><span class="pill-time">Day 2</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_dr_li"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_dr_li"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_dr_li" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('dr_li',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="dr_fb" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🇩🇴 DR Investor Signal — FB Biz</div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#0D5FBF">FB Biz</span><span class="pill-time">Day 2</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_dr_fb"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_dr_fb"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_dr_fb" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('dr_fb',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="dr_yt" data-brand="youtube" data-angle="all" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🇩🇴 DR Vacation Market — YouTube</div>
+        <div class="item-meta"><span class="pill" style="background:var(--yt-red)">YouTube</span><span class="pill" style="background:#888">AlexaSanchezRealtor</span><span class="pill-time">Day 3–4</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_dr_yt"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_dr_yt"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_dr_yt" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('dr_yt',this.value)" onfocus="autoResize(this)"></textarea></div>
+
+    <div class="item" data-id="dr_ash" data-brand="myash" data-angle="ma" onclick="toggle(this)">
+      <div class="check"><span class="check-icon">✓</span></div>
+      <div class="item-body">
+        <div class="item-title">🇩🇴 DR Cigar Origin — @its.myash</div>
+        <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill-time">Day 1</span></div>
+      </div>
+    </div>
+    <div class="thread-connector" id="tc_dr_ash"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_dr_ash"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_dr_ash" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('dr_ash',this.value)" onfocus="autoResize(this)"></textarea></div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const SB_URL='https://gzqgeehcvmgstzenkyfnw.supabase.co';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6cWdlZWhjdm1nc3R6bmtfeWZudyIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzczNTkyMTA4LCJleHAiOjIwODkxNjgxMDh9.sw98v41oTub5p64cuP5Sqx574wNUd6kzOU1UxdoahWA';
+
+async function sbGet(k){try{const r=await fetch(SB_URL+'/rest/v1/checklist_state?key=eq.'+encodeURIComponent(k)+'&select=value',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}});const d=await r.json();return(Array.isArray(d)&&d.length)?d[0].value:null;}catch(e){return null;}}
+async function sbSet(k,v){try{await fetch(SB_URL+'/rest/v1/checklist_state',{method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates'},body:JSON.stringify({key:k,value:v})});}catch(e){}}
+
+const CK='content_checks_v1',CAK='content_captions_v1',TRK='content_thread_v2',ANK='content_angles_v2';
+
+async function getChecks(){const r=await sbGet(CK);if(r!==null){localStorage.setItem(CK,r);return JSON.parse(r);}const l=localStorage.getItem(CK);return l?JSON.parse(l):{};}
+async function saveChecks(s){const j=JSON.stringify(s);localStorage.setItem(CK,j);await sbSet(CK,j);}
+async function getCaptions(){const r=await sbGet(CAK);if(r!==null){localStorage.setItem(CAK,r);return JSON.parse(r);}const l=localStorage.getItem(CAK);return l?JSON.parse(l):{};}
+async function saveCaption(id,v){const c=await getCaptions();if(v.trim())c[id]=v;else delete c[id];const j=JSON.stringify(c);localStorage.setItem(CAK,j);await sbSet(CAK,j);showSync();}
+async function saveThread(){const v=document.getElementById('thread-input').value;localStorage.setItem(TRK,v);await sbSet(TRK,v);}
+async function saveAngles(){const angles={ar:document.getElementById('angle-ar').value,ma:document.getElementById('angle-ma').value,fr:document.getElementById('angle-fr').value};const j=JSON.stringify(angles);localStorage.setItem(ANK,j);await sbSet(ANK,j);}
+async function loadThread(){const r=await sbGet(TRK);document.getElementById('thread-input').value=r!==null?r:(localStorage.getItem(TRK)||'');const ra=await sbGet(ANK);const angles=ra!==null?JSON.parse(ra):(localStorage.getItem(ANK)?JSON.parse(localStorage.getItem(ANK)):{});if(angles.ar)document.getElementById('angle-ar').value=angles.ar;if(angles.ma)document.getElementById('angle-ma').value=angles.ma;if(angles.fr)document.getElementById('angle-fr').value=angles.fr;updateAngleHints();}
+
+function updateAngleHints(){
+  const thread=document.getElementById('thread-input').value.trim();
+  const angles={ar:document.getElementById('angle-ar').value.trim(),ma:document.getElementById('angle-ma').value.trim(),fr:document.getElementById('angle-fr').value.trim()};
+  const hasThread=thread.length>0;
+  document.getElementById('thread-hint').textContent=hasThread?'Thread active — angle hints live below each item.':'Fill in the thread above — each item below will show which brand angle applies.';
+  document.querySelectorAll('.item[data-angle]').forEach(item=>{
+    const id=item.dataset.id;const angleKey=item.dataset.angle;
+    const tc=document.getElementById('tc_'+id);const ah=document.getElementById('ah_'+id);
+    if(!tc||!ah)return;
+    if(!hasThread){tc.classList.remove('visible');ah.classList.remove('visible');return;}
+    let angleText='';
+    if(angleKey==='all'){const parts=[];if(angles.ar)parts.push('Realtor: '+angles.ar);if(angles.ma)parts.push('Myash: '+angles.ma);if(angles.fr)parts.push('F&R: '+angles.fr);angleText=parts.length?parts.join(' · '):'All 3 brands connect to this thread.';}
+    else if(angles[angleKey]){angleText=angles[angleKey];}
+    if(angleText){tc.querySelector('.tc-text').textContent='Thread: '+thread.substring(0,60)+(thread.length>60?'...':'');tc.classList.add('visible');ah.querySelector('.angle-hint-text').textContent=angleText;ah.classList.add('visible');}
+    else{tc.classList.remove('visible');ah.classList.remove('visible');}
+  });
+}
+
+async function toggle(el){const id=el.dataset.id;const s=await getChecks();if(el.classList.contains('done')){el.classList.remove('done');delete s[id];}else{el.classList.add('done');s[id]=true;}await saveChecks(s);updateProgress();showSync();}
+
+async function restoreChecks(){setSS('Syncing...');try{const s=await getChecks();document.querySelectorAll('.item').forEach(el=>{if(s[el.dataset.id])el.classList.add('done');else el.classList.remove('done');});const c=await getCaptions();Object.entries(c).forEach(([id,v])=>{const el=document.getElementById('cap_'+id);if(el){el.value=v;autoResize(el);}});setSS('✓ Synced');}catch(e){setSS('⚠ Offline');}setTimeout(()=>setSS(''),2000);updateProgress();}
+
+async function resetAll(){if(!confirm('Start a new week? Clears all checkboxes, captions, thread, and angles on ALL devices.'))return;await saveChecks({});await sbSet(CAK,'{}');localStorage.setItem(CAK,'{}');await sbSet(TRK,'');localStorage.setItem(TRK,'');await sbSet(ANK,'{}');localStorage.setItem(ANK,'{}');document.querySelectorAll('.caption-input').forEach(el=>{el.value='';autoResize(el);});document.querySelectorAll('.item').forEach(el=>el.classList.remove('done'));document.getElementById('thread-input').value='';document.getElementById('angle-ar').value='';document.getElementById('angle-ma').value='';document.getElementById('angle-fr').value='';updateAngleHints();updateProgress();setSS('✓ Reset');setTimeout(()=>setSS(''),2000);}
+
+function setSS(m){const el=document.getElementById('sync-status');if(el)el.textContent=m;}
+function showSync(){setSS('✓ Saved');setTimeout(()=>setSS(''),1500);}
+function autoResize(el){el.style.height='auto';el.style.height=Math.max(36,el.scrollHeight)+'px';}
+function updateProgress(){const all=document.querySelectorAll('.item:not(.hidden)').length;const done=document.querySelectorAll('.item.done:not(.hidden)').length;const pct=all?Math.round(done/all*100):0;document.getElementById('progress-bar').style.width=pct+'%';document.getElementById('progress-label').textContent=done+' of '+all+' done ('+pct+'%)';}
+
+function switchTab(tab){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===tab));
+  document.querySelectorAll('.item,.caption-row,.thread-connector,.angle-hint-row').forEach(el=>{
+    const b=el.dataset.brand||(el.previousElementSibling&&el.previousElementSibling.dataset&&el.previousElementSibling.dataset.brand)||'';
+    const shouldHide=tab!=='all'&&!b.includes(tab);
+    if(el.classList.contains('thread-connector')||el.classList.contains('angle-hint-row')){el.style.display=shouldHide?'none':'';}
+    else{el.classList.toggle('hidden',shouldHide);}
+  });
+  updateProgress();
+}
+
+function setWeekLabel(){const n=new Date();const s=new Date(n);s.setDate(n.getDate()-n.getDay());const e=new Date(s);e.setDate(s.getDate()+6);const o={month:'short',day:'numeric'};document.getElementById('week-label').textContent='Week of '+s.toLocaleDateString('en-US',o)+' – '+e.toLocaleDateString('en-US',o);}
+
+setWeekLabel();loadThread();restoreChecks();
+</script>
+</body>
+</html>
