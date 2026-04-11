@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cannonball Sprint Builder — @itsmyash</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --surface: #161616;
+    --surface2: #1e1e1e;
+    --border: rgba(255,255,255,0.08);
+    --border-hover: rgba(255,255,255,0.15);
+    --text: #f0ede8;
+    --muted: #888;
+    --dim: #555;
+    --realtor: #378ADD;
+    --realtor-bg: rgba(55,138,221,0.12);
+    --myash: #9b8fe8;
+    --myash-bg: rgba(155,143,232,0.12);
+    --fnr: #7bc47a;
+    --fnr-bg: rgba(123,196,122,0.12);
+    --accent: #f0ede8;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .container { max-width: 680px; margin: 0 auto; }
+
+  header { margin-bottom: 2.5rem; }
+
+  .brand-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: clamp(26px, 5vw, 38px);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  h1 span {
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 8px;
+    line-height: 1.6;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 1rem;
+  }
+
+  .field { margin-bottom: 1rem; }
+  .field:last-child { margin-bottom: 0; }
+
+  .field-label {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  select, input[type="text"] {
+    width: 100%;
+    background: var(--surface2);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    padding: 9px 12px;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: border-color 0.15s;
+  }
+
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+
+  select:focus, input[type="text"]:focus {
+    border-color: var(--border-hover);
+  }
+
+  select option { background: #1e1e1e; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+
+  @media (max-width: 480px) {
+    .two-col { grid-template-columns: 1fr; }
+    .three-col { grid-template-columns: 1fr; }
+  }
+
+  .grid-header {
+    display: grid;
+    grid-template-columns: 52px 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .grid-header-label {
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    color: var(--dim);
+    text-align: center;
+  }
+
+  .day-row {
+    display: grid;
+    grid-template-columns: 52px 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 6px;
+    align-items: center;
+  }
+
+  .day-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .pill {
+    text-align: center;
+    font-size: 11px;
+    padding: 6px 4px;
+    border-radius: var(--radius-sm);
+    border: 0.5px solid var(--border);
+    background: var(--surface2);
+    color: var(--dim);
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .pill:hover { border-color: var(--border-hover); color: var(--muted); }
+
+  .pill.on-realtor {
+    background: var(--realtor-bg);
+    border-color: var(--realtor);
+    color: var(--realtor);
+  }
+
+  .pill.on-myash {
+    background: var(--myash-bg);
+    border-color: var(--myash);
+    color: var(--myash);
+  }
+
+  .pill.on-fnr {
+    background: var(--fnr-bg);
+    border-color: var(--fnr);
+    color: var(--fnr);
+  }
+
+  .legend {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    color: var(--muted);
+  }
+
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .counter {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .counter-item {
+    background: var(--surface2);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    text-align: center;
+  }
+
+  .counter-val {
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .counter-lbl {
+    font-size: 10px;
+    color: var(--dim);
+    font-family: 'DM Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 13px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.01em;
+    background: var(--text);
+    color: var(--bg);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: opacity 0.15s, transform 0.1s;
+    margin-top: 0.5rem;
+  }
+
+  .btn:hover { opacity: 0.9; }
+  .btn:active { transform: scale(0.99); }
+
+  .output-section { margin-top: 1.25rem; display: none; }
+
+  .output-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+  }
+
+  .output-box {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    line-height: 1.8;
+    color: var(--text);
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .copy-btn {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    font-size: 13px;
+    font-family: 'DM Mono', monospace;
+    background: transparent;
+    border: 0.5px solid var(--border-hover);
+    border-radius: var(--radius-sm);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .copy-btn:hover { border-color: var(--text); color: var(--text); }
+
+  .hint {
+    font-size: 11px;
+    color: var(--dim);
+    margin-top: 8px;
+    font-family: 'DM Mono', monospace;
+    line-height: 1.6;
+  }
+
+  hr { border: none; border-top: 0.5px solid var(--border); margin: 1.5rem 0; }
+
+  #custom-row { display: none; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="brand-tag">@itsmyash — content ops</div>
+    <h1>Cannonball<br><span>Sprint Builder</span></h1>
+    <p class="sub">Define your target. Stack your touchpoints. Generate your Sunday planning prompt.</p>
+  </header>
+
+  <div class="card">
+    <div class="card-title">01 — Sprint setup</div>
+    <div class="two-col" style="margin-bottom: 1rem;">
+      <div class="field">
+        <div class="field-label">Target audience</div>
+        <select id="target" onchange="toggleCustom()">
+          <option value="STR investor (Poconos buyer)">STR investor — Poconos buyer</option>
+          <option value="Pocono expired listing seller">Expired listing — Pocono seller</option>
+          <option value="FSBO seller in Pocono region">FSBO — Pocono region</option>
+          <option value="DR real estate investor">DR real estate investor</option>
+          <option value="First-time buyer in PA">First-time buyer — PA</option>
+          <option value="custom">Custom...</option>
+        </select>
+      </div>
+      <div class="field">
+        <div class="field-label">Sprint duration</div>
+        <select id="duration">
+          <option value="30">30 days</option>
+          <option value="45">45 days</option>
+          <option value="60" selected>60 days</option>
+          <option value="90">90 days</option>
+        </select>
+      </div>
+    </div>
+    <div class="field" id="custom-row">
+      <div class="field-label">Custom target</div>
+      <input type="text" id="custom-val" placeholder="Describe your target audience..." />
+    </div>
+    <div class="field">
+      <div class="field-label">Core hook / message</div>
+      <input type="text" id="hook" placeholder="e.g. The Poconos STR window is closing — here's what smart investors are doing now" />
+    </div>
+    <div class="field">
+      <div class="field-label">Sprint goal</div>
+      <select id="goal">
+        <option value="Generate STR buyer leads">Generate STR buyer leads</option>
+        <option value="Book listing appointments">Book listing appointments</option>
+        <option value="Grow follower count">Grow follower count</option>
+        <option value="Drive coffee sales (Filler & Roast)">Drive coffee sales — Filler & Roast</option>
+        <option value="Build cigar brand authority">Build cigar brand authority</option>
+        <option value="Book STR investor consults">Book STR investor consults</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">02 — Weekly touchpoint stack</div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--realtor);"></div>@alexa.realtor</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--myash);"></div>@its.myash</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--fnr);"></div>Filler & Roast</div>
+    </div>
+    <div class="counter">
+      <div class="counter-item">
+        <div class="counter-val" id="cnt-total">0</div>
+        <div class="counter-lbl">fires/week</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-val" id="cnt-r" style="color:var(--realtor);">0</div>
+        <div class="counter-lbl">realtor</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-val" id="cnt-m" style="color:var(--myash);">0</div>
+        <div class="counter-lbl">myash</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-val" id="cnt-f" style="color:var(--fnr);">0</div>
+        <div class="counter-lbl">f&amp;r</div>
+      </div>
+    </div>
+    <div class="grid-header">
+      <div></div>
+      <div class="grid-header-label">@alexa.realtor</div>
+      <div class="grid-header-label">@its.myash</div>
+      <div class="grid-header-label">F&amp;R</div>
+    </div>
+    <div id="week-grid"></div>
+    <p style="font-size:11px; color:var(--dim); font-family:'DM Mono',monospace; margin-top:10px;">tap to toggle · aim for 3+ fires/week</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">03 — Off-platform outreach</div>
+    <div class="three-col">
+      <div class="field">
+        <div class="field-label">Direct mail</div>
+        <select id="mail">
+          <option value="none">None</option>
+          <option value="1x per sprint">1x per sprint</option>
+          <option value="2x per sprint" selected>2x per sprint</option>
+          <option value="Monthly">Monthly</option>
+        </select>
+      </div>
+      <div class="field">
+        <div class="field-label">Calls</div>
+        <select id="calls">
+          <option value="none">None</option>
+          <option value="10 calls/week">10/week</option>
+          <option value="20 calls/week" selected>20/week</option>
+          <option value="30 calls/week">30/week</option>
+        </select>
+      </div>
+      <div class="field">
+        <div class="field-label">Door knocking</div>
+        <select id="doors">
+          <option value="none">None</option>
+          <option value="1x per sprint" selected>1x per sprint</option>
+          <option value="2x per sprint">2x per sprint</option>
+          <option value="Weekly">Weekly</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn" onclick="generate()">Generate my Sunday prompt →</button>
+
+  <div class="output-section" id="output-section">
+    <hr>
+    <div class="output-label">Your weekly Cannonball prompt</div>
+    <div class="output-box" id="output-box"></div>
+    <button class="copy-btn" onclick="copyPrompt()">copy to clipboard</button>
+    <p class="hint">Run this every Sunday. Paste into Claude to get your full week's execution plan built around your single target.</p>
+  </div>
+
+</div>
+
+<script>
+const DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+const BRANDS = ['realtor','myash','fnr'];
+const BRAND_LABELS = {'realtor':'@alexa.realtor','myash':'@its.myash','fnr':'F&R'};
+const BRAND_FULL = {'realtor':'@alexa.realtor','myash':'@its.myash','fnr':'Filler & Roast'};
+
+let state = [
+  [1,1,0],[1,0,0],[0,1,0],[1,1,0],[0,1,1],[0,1,0],[1,1,1]
+];
+
+function toggleCustom() {
+  const v = document.getElementById('target').value;
+  document.getElementById('custom-row').style.display = v === 'custom' ? 'block' : 'none';
+}
+
+function render() {
+  const grid = document.getElementById('week-grid');
+  grid.innerHTML = '';
+  let totals = {realtor:0, myash:0, fnr:0};
+
+  DAYS.forEach((day, i) => {
+    const row = document.createElement('div');
+    row.className = 'day-row';
+    const lbl = document.createElement('div');
+    lbl.className = 'day-label';
+    lbl.textContent = day;
+    row.appendChild(lbl);
+    BRANDS.forEach((brand, j) => {
+      const pill = document.createElement('div');
+      pill.className = 'pill' + (state[i][j] ? ' on-' + brand : '');
+      pill.textContent = BRAND_LABELS[brand];
+      pill.onclick = () => { state[i][j] = state[i][j] ? 0 : 1; render(); };
+      if (state[i][j]) totals[brand]++;
+      row.appendChild(pill);
+    });
+    grid.appendChild(row);
+  });
+
+  const total = totals.realtor + totals.myash + totals.fnr;
+  document.getElementById('cnt-total').textContent = total;
+  document.getElementById('cnt-r').textContent = totals.realtor;
+  document.getElementById('cnt-m').textContent = totals.myash;
+  document.getElementById('cnt-f').textContent = totals.fnr;
+}
+
+function generate() {
+  const targetEl = document.getElementById('target');
+  const target = targetEl.value === 'custom'
+    ? (document.getElementById('custom-val').value.trim() || 'my target audience')
+    : targetEl.value;
+  const duration = document.getElementById('duration').value;
+  const hook = document.getElementById('hook').value.trim() || 'my core value prop for this audience';
+  const goal = document.getElementById('goal').value;
+  const mail = document.getElementById('mail').value;
+  const calls = document.getElementById('calls').value;
+  const doors = document.getElementById('doors').value;
+
+  let lines = [];
+  DAYS.forEach((day, i) => {
+    BRANDS.forEach((brand, j) => {
+      if (state[i][j]) lines.push('• ' + day + ' → ' + BRAND_FULL[brand]);
+    });
+  });
+
+  const off = [
+    mail !== 'none' ? 'Direct mail: ' + mail : null,
+    calls !== 'none' ? 'Calls: ' + calls : null,
+    doors !== 'none' ? 'Door knocking: ' + doors : null
+  ].filter(Boolean);
+
+  const prompt = `CANNONBALL SPRINT — ${duration}-day campaign
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Target: ${target}
+Goal: ${goal}
+Core hook: ${hook}
+
+Content touchpoints this week (${lines.length} fires):
+${lines.join('\n')}${off.length ? '\n\nOff-platform:\n' + off.map(o => '• ' + o).join('\n') : ''}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TASK: Give me a complete weekly execution plan hitting ALL of these touchpoints. Every piece of content must serve a single narrative thread driving toward my goal.
+
+For each touchpoint provide:
+1. Format (reel / carousel / short / post / DM sequence / etc.)
+2. Hook — punchy, Bronx-inflected, no fluff, first 2 seconds must stop the scroll
+3. One-line copy direction
+4. CTA tied to: ${goal}
+
+Start by naming the weekly narrative thread that ties everything together.`;
+
+  document.getElementById('output-box').textContent = prompt;
+  document.getElementById('output-section').style.display = 'block';
+  document.getElementById('output-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function copyPrompt() {
+  const text = document.getElementById('output-box').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = 'copied ✓';
+    setTimeout(() => btn.textContent = 'copy to clipboard', 2000);
+  });
+}
+
+render();
+</script>
+</body>
+</html>
