@@ -23,7 +23,6 @@
   .progress-label { font-size:11px; color:rgba(255,255,255,0.5); padding:0 20px 8px; }
   #sync-status { font-size:10px; color:rgba(255,255,255,0.5); padding:0 20px 6px; min-height:14px; }
 
-  /* THREAD PANEL */
   .thread-panel { background:#1e1e38; border-bottom:1px solid rgba(255,255,255,0.06); }
   .thread-top { padding:12px 20px 8px; }
   .thread-label { font-size:10px; font-weight:700; letter-spacing:0.8px; color:rgba(255,255,255,0.4); text-transform:uppercase; margin-bottom:4px; display:flex; align-items:center; gap:6px; }
@@ -78,13 +77,11 @@
   .b-warn { font-size:10px; font-weight:700; color:#92660A; background:#FFF8E1; padding:2px 6px; border-radius:5px; }
   .b-new  { font-size:10px; font-weight:700; color:#065F46; background:#D1FAE5; padding:2px 6px; border-radius:5px; }
   .b-wed  { font-size:10px; font-weight:700; color:#92400E; background:#FEF3C7; padding:2px 6px; border-radius:5px; }
+  .b-story { font-size:10px; font-weight:700; color:#5C3317; background:#FFF0E6; padding:2px 6px; border-radius:5px; }
 
-  /* THREAD CONNECTOR */
   .thread-connector { display:none; align-items:center; gap:6px; padding:4px 14px 4px 50px; font-size:10px; font-weight:600; color:#7c3aed; background:#f5f3ff; border-bottom:1px solid #ede9fe; letter-spacing:0.2px; }
   .thread-connector.visible { display:flex; }
   .thread-connector-dot { width:5px; height:5px; border-radius:50%; background:#7c3aed; flex-shrink:0; }
-
-  /* ANGLE HINT ROW */
   .angle-hint-row { display:none; padding:4px 14px 6px 50px; background:#fafafa; border-bottom:1px solid var(--border); }
   .angle-hint-row.visible { display:block; }
   .angle-hint-text { font-size:11px; color:#7c3aed; font-style:italic; line-height:1.4; }
@@ -158,7 +155,7 @@
     <div class="angle-hint-row" id="ah_su_yt"><div class="angle-hint-text"></div></div>
     <div class="caption-row"><textarea class="caption-input" id="cap_su_yt" placeholder="Topic / hook / description / tags..." rows="1" oninput="autoResize(this);saveCaption('su_yt',this.value)" onfocus="autoResize(this)"></textarea></div>
 
-    <div class="item" data-id="su_fr" data-brand="fr" data-angle="fr" onclick="toggle(this)">
+    <div class="item" data-id="su_fr" data-brand="fr sun" data-angle="fr" onclick="toggle(this)">
       <div class="check"><span class="check-icon">✓</span></div>
       <div class="item-body">
         <div class="item-title">☕ Before the First Draw</div>
@@ -169,7 +166,7 @@
     <div class="angle-hint-row" id="ah_su_fr"><div class="angle-hint-text"></div></div>
     <div class="caption-row"><textarea class="caption-input" id="cap_su_fr" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('su_fr',this.value)" onfocus="autoResize(this)"></textarea></div>
 
-    <div class="item" data-id="su_ca" data-brand="myash" data-angle="ma" onclick="toggle(this)">
+    <div class="item" data-id="su_ca" data-brand="myash sun" data-angle="ma" onclick="toggle(this)">
       <div class="check"><span class="check-icon">✓</span></div>
       <div class="item-body">
         <div class="item-title">☕🍂 Coffee &amp; Ash — Ritual</div>
@@ -180,7 +177,7 @@
     <div class="angle-hint-row" id="ah_su_ca"><div class="angle-hint-text"></div></div>
     <div class="caption-row"><textarea class="caption-input" id="cap_su_ca" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('su_ca',this.value)" onfocus="autoResize(this)"></textarea></div>
 
-    <div class="item" data-id="su_nd" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
+    <div class="item" data-id="su_nd" data-brand="alexa sun" data-angle="ar" onclick="toggle(this)">
       <div class="check"><span class="check-icon">✓</span></div>
       <div class="item-body">
         <div class="item-title">🙏 Sunday Gratitude — Community</div>
@@ -328,8 +325,8 @@
 
 <!-- WEDNESDAY -->
 <div class="day-section">
-  <div class="day-header"><span class="day-dot" style="background:#EAB308"></span>Wednesday</div>
-  <div class="rec-banner rec-wed">🟡 WEDNESDAY RECORDING — Primary batch day. Privacy. Can smoke on camera. Record everything marked REC WED.</div>
+  <div class="day-header"><span class="day-dot" style="background:#EAB308"></span>Wednesday — Recording Day</div>
+  <div class="rec-banner rec-wed">🟡 WEDNESDAY RECORDING — 4 recordings only. Privacy. Can smoke on camera.</div>
   <div class="card">
     <div class="item" data-id="w_ae_rec" data-brand="youtube wed" data-angle="all" onclick="toggle(this)">
       <div class="check"><span class="check-icon">✓</span></div>
@@ -353,21 +350,21 @@
     <div class="angle-hint-row" id="ah_w_yts_rec"><div class="angle-hint-text"></div></div>
     <div class="caption-row"><textarea class="caption-input" id="cap_w_yts_rec" placeholder="Script / hook / cover text..." rows="1" oninput="autoResize(this);saveCaption('w_yts_rec',this.value)" onfocus="autoResize(this)"></textarea></div>
 
-    <div class="item" data-id="w_ttr_rec" data-brand="myash wed" data-angle="ma" onclick="toggle(this)">
+    <div class="item" data-id="w_cc_batch_rec" data-brand="alexa wed" data-angle="ar" onclick="toggle(this)">
       <div class="check"><span class="check-icon">✓</span></div>
       <div class="item-body">
-        <div class="item-title">🎵 RECORD: Native TikTok Re-record <span class="b-wed">REC NOW · uploads Thu</span></div>
-        <div class="item-meta"><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill-time">Same topic as Short · rawer delivery · no YT branding</span></div>
+        <div class="item-title">🚗 RECORD: Car Confessions Batch <span class="b-wed">REC NOW · both versions</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">Tue real estate + Thu entrepreneur · one car session</span></div>
       </div>
     </div>
-    <div class="thread-connector" id="tc_w_ttr_rec"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
-    <div class="angle-hint-row" id="ah_w_ttr_rec"><div class="angle-hint-text"></div></div>
-    <div class="caption-row"><textarea class="caption-input" id="cap_w_ttr_rec" placeholder="Raw TikTok script..." rows="1" oninput="autoResize(this);saveCaption('w_ttr_rec',this.value)" onfocus="autoResize(this)"></textarea></div>
+    <div class="thread-connector" id="tc_w_cc_batch_rec"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_w_cc_batch_rec"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_w_cc_batch_rec" placeholder="Tue hook + Thu hook..." rows="1" oninput="autoResize(this);saveCaption('w_cc_batch_rec',this.value)" onfocus="autoResize(this)"></textarea></div>
 
     <div class="item" data-id="w_cc_ash_rec" data-brand="myash wed" data-angle="ma" onclick="toggle(this)">
       <div class="check"><span class="check-icon">✓</span></div>
       <div class="item-body">
-        <div class="item-title">🚗 Car Confession — Entrepreneur &amp; Cigars <span class="b-wed">record any day · uploads Wed</span></div>
+        <div class="item-title">🚗 RECORD: Car Confession — Entrepreneur &amp; Cigars <span class="b-wed">uploads Wed</span></div>
         <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">Cigar lit · 20 sec · shock value · upload 12:00 PM</span></div>
       </div>
     </div>
@@ -375,49 +372,27 @@
     <div class="angle-hint-row" id="ah_w_cc_ash_rec"><div class="angle-hint-text"></div></div>
     <div class="caption-row"><textarea class="caption-input" id="cap_w_cc_ash_rec" placeholder="Hook / cover text / confession..." rows="1" oninput="autoResize(this);saveCaption('w_cc_ash_rec',this.value)" onfocus="autoResize(this)"></textarea></div>
 
-    <div class="item" data-id="w_cc_alexa_tue_rec" data-brand="alexa wed" data-angle="ar" onclick="toggle(this)">
-      <div class="check"><span class="check-icon">✓</span></div>
-      <div class="item-body">
-        <div class="item-title">🚗 Car Confession — Real Estate <span class="b-wed">record any day · uploads Tue</span></div>
-        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">Batch record · uploads Tuesday</span></div>
-      </div>
-    </div>
-    <div class="thread-connector" id="tc_w_cc_alexa_tue_rec"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
-    <div class="angle-hint-row" id="ah_w_cc_alexa_tue_rec"><div class="angle-hint-text"></div></div>
-    <div class="caption-row"><textarea class="caption-input" id="cap_w_cc_alexa_tue_rec" placeholder="Hook / cover text / confession..." rows="1" oninput="autoResize(this);saveCaption('w_cc_alexa_tue_rec',this.value)" onfocus="autoResize(this)"></textarea></div>
-
-    <div class="item" data-id="w_cc_alexa_thu_rec" data-brand="alexa wed" data-angle="ar" onclick="toggle(this)">
-      <div class="check"><span class="check-icon">✓</span></div>
-      <div class="item-body">
-        <div class="item-title">🚗 Car Confession — Entrepreneur <span class="b-wed">record any day · uploads Thu</span></div>
-        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">Batch record · uploads Thursday</span></div>
-      </div>
-    </div>
-    <div class="thread-connector" id="tc_w_cc_alexa_thu_rec"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
-    <div class="angle-hint-row" id="ah_w_cc_alexa_thu_rec"><div class="angle-hint-text"></div></div>
-    <div class="caption-row"><textarea class="caption-input" id="cap_w_cc_alexa_thu_rec" placeholder="Hook / cover text / confession..." rows="1" oninput="autoResize(this);saveCaption('w_cc_alexa_thu_rec',this.value)" onfocus="autoResize(this)"></textarea></div>
-
     <div class="item" data-id="w_ts_batch_rec" data-brand="myash wed" data-angle="ma" onclick="toggle(this)">
       <div class="check"><span class="check-icon">✓</span></div>
       <div class="item-body">
-        <div class="item-title">🌙 RECORD: Tonight's Smoke Batch — Mon + Thu <span class="b-wed">REC NOW</span></div>
-        <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill-time">Cigar content · batch both carousel concepts</span></div>
+        <div class="item-title">🌙 RECORD: Tonight's Smoke Batch <span class="b-wed">REC NOW · uploads Mon</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill-time">Cigar content · carousel concept for Monday</span></div>
       </div>
     </div>
     <div class="thread-connector" id="tc_w_ts_batch_rec"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
     <div class="angle-hint-row" id="ah_w_ts_batch_rec"><div class="angle-hint-text"></div></div>
-    <div class="caption-row"><textarea class="caption-input" id="cap_w_ts_batch_rec" placeholder="Mon + Thu carousel concepts..." rows="1" oninput="autoResize(this);saveCaption('w_ts_batch_rec',this.value)" onfocus="autoResize(this)"></textarea></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_w_ts_batch_rec" placeholder="Mon carousel concept..." rows="1" oninput="autoResize(this);saveCaption('w_ts_batch_rec',this.value)" onfocus="autoResize(this)"></textarea></div>
 
-    <div class="item" data-id="w_fr_pair_rec" data-brand="fr wed" data-angle="fr" onclick="toggle(this)">
+    <div class="item" data-id="w_fr_photo" data-brand="fr wed" data-angle="fr" onclick="toggle(this)">
       <div class="check"><span class="check-icon">✓</span></div>
       <div class="item-body">
-        <div class="item-title">🍃 RECORD: F&amp;R Pairing Content <span class="b-wed">REC NOW · uploads Fri</span></div>
-        <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">Coffee + cigar setup live · capture for Friday</span></div>
+        <div class="item-title">📸 F&amp;R Pairing — Photo Capture Only <span class="b-story">video records Thu/Fri</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill-time">Coffee + cigar setup · capture stills only today</span></div>
       </div>
     </div>
-    <div class="thread-connector" id="tc_w_fr_pair_rec"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
-    <div class="angle-hint-row" id="ah_w_fr_pair_rec"><div class="angle-hint-text"></div></div>
-    <div class="caption-row"><textarea class="caption-input" id="cap_w_fr_pair_rec" placeholder="Blend + cigar pairing this week..." rows="1" oninput="autoResize(this);saveCaption('w_fr_pair_rec',this.value)" onfocus="autoResize(this)"></textarea></div>
+    <div class="thread-connector" id="tc_w_fr_photo"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_w_fr_photo"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_w_fr_photo" placeholder="Blend + cigar pairing this week..." rows="1" oninput="autoResize(this);saveCaption('w_fr_photo',this.value)" onfocus="autoResize(this)"></textarea></div>
 
     <div class="item" data-id="w_ash" data-brand="myash" data-angle="ma" onclick="toggle(this)">
       <div class="check"><span class="check-icon">✓</span></div>
@@ -444,8 +419,8 @@
     <div class="item" data-id="w_uc" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
       <div class="check"><span class="check-icon">✓</span></div>
       <div class="item-body">
-        <div class="item-title">🏷 Under Contract — Upload</div>
-        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:#0D5FBF">FB Biz</span><span class="pill-time">11:00 AM</span></div>
+        <div class="item-title">🏷 Under Contract — Story Only <span class="b-story">Story · not feed</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG Story</span><span class="pill" style="background:#0D5FBF">FB Story</span><span class="pill-time">11:00 AM · feed post only on Just Sold</span></div>
       </div>
     </div>
     <div class="thread-connector" id="tc_w_uc"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
@@ -455,8 +430,8 @@
     <div class="item" data-id="w_collab" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
       <div class="check"><span class="check-icon">✓</span></div>
       <div class="item-body">
-        <div class="item-title">🤝 Local Collab (1x/month)</div>
-        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">9:00 AM</span></div>
+        <div class="item-title">🤝 Local Collab (1x/month) <span class="b-story">Story · not feed</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG Story</span><span class="pill-time">Tag partner · no feed slot used</span></div>
       </div>
     </div>
     <div class="thread-connector" id="tc_w_collab"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
@@ -505,8 +480,8 @@
     <div class="item" data-id="th_ttr" data-brand="myash" data-angle="ma" onclick="toggle(this)">
       <div class="check"><span class="check-icon">✓</span></div>
       <div class="item-body">
-        <div class="item-title">🎵 Native TikTok Re-record — Upload <span class="b-warn">TikTok · no watermark</span></div>
-        <div class="item-meta"><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill-time">Recorded Wed · upload 12:00 PM</span></div>
+        <div class="item-title">🎵 Native TikTok Re-record — Record &amp; Upload <span class="b-warn">TikTok · no watermark</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--tiktok)">TikTok</span><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill-time">Record Thu morning · same topic as Short · upload 12:00 PM</span></div>
       </div>
     </div>
     <div class="thread-connector" id="tc_th_ttr"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
@@ -535,16 +510,16 @@
     <div class="angle-hint-row" id="ah_th_inv"><div class="angle-hint-text"></div></div>
     <div class="caption-row"><textarea class="caption-input" id="cap_th_inv" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('th_inv',this.value)" onfocus="autoResize(this)"></textarea></div>
 
-    <div class="item" data-id="th_ts" data-brand="myash" data-angle="ma" onclick="toggle(this)">
+    <div class="item" data-id="th_fr_rec" data-brand="fr" data-angle="fr" onclick="toggle(this)">
       <div class="check"><span class="check-icon">✓</span></div>
       <div class="item-body">
-        <div class="item-title">🌙 Tonight's Smoke (Upload)</div>
-        <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">Recorded Wed · upload 7:00 PM</span></div>
+        <div class="item-title">🍃 RECORD: F&amp;R Pairing Video <span class="b-wed">record Thu · uploads Fri</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill-time">Photos already captured Wed · record video now</span></div>
       </div>
     </div>
-    <div class="thread-connector" id="tc_th_ts"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
-    <div class="angle-hint-row" id="ah_th_ts"><div class="angle-hint-text"></div></div>
-    <div class="caption-row"><textarea class="caption-input" id="cap_th_ts" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('th_ts',this.value)" onfocus="autoResize(this)"></textarea></div>
+    <div class="thread-connector" id="tc_th_fr_rec"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
+    <div class="angle-hint-row" id="ah_th_fr_rec"><div class="angle-hint-text"></div></div>
+    <div class="caption-row"><textarea class="caption-input" id="cap_th_fr_rec" placeholder="Pairing video notes..." rows="1" oninput="autoResize(this);saveCaption('th_fr_rec',this.value)" onfocus="autoResize(this)"></textarea></div>
 
     <div class="item" data-id="th_nd" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
       <div class="check"><span class="check-icon">✓</span></div>
@@ -578,7 +553,7 @@
       <div class="check"><span class="check-icon">✓</span></div>
       <div class="item-body">
         <div class="item-title">🍃 The Pairing — Cigar + Coffee Ed. <span class="b-new">bi-weekly</span></div>
-        <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">Recorded Wed · upload 10:00 AM</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--fr)">@fillerandroast</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">Recorded Thu · upload 10:00 AM</span></div>
       </div>
     </div>
     <div class="thread-connector" id="tc_f_pair"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
@@ -622,7 +597,7 @@
       <div class="check"><span class="check-icon">✓</span></div>
       <div class="item-body">
         <div class="item-title">🥃 Weekend Smoke — Reel</div>
-        <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">5:00 PM</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">5:00 PM · feed post · Sat is Stories only</span></div>
       </div>
     </div>
     <div class="thread-connector" id="tc_f_ws"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
@@ -633,7 +608,7 @@
 
 <!-- SATURDAY -->
 <div class="day-section">
-  <div class="day-header"><span class="day-dot" style="background:#A855F7"></span>Saturday</div>
+  <div class="day-header"><span class="day-dot" style="background:#A855F7"></span>Saturday — Stories Only</div>
   <div class="card">
     <div class="item" data-id="sa_nd" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
       <div class="check"><span class="check-icon">✓</span></div>
@@ -649,35 +624,13 @@
     <div class="item" data-id="sa_bts" data-brand="myash" data-angle="ma" onclick="toggle(this)">
       <div class="check"><span class="check-icon">✓</span></div>
       <div class="item-body">
-        <div class="item-title">📸 Stories — Behind the Scenes</div>
-        <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG Story</span><span class="pill-time">2:00 PM</span></div>
+        <div class="item-title">📸 Stories — Behind the Scenes <span class="b-story">Story only</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG Story</span><span class="pill-time">2:00 PM · no feed post Sat</span></div>
       </div>
     </div>
     <div class="thread-connector" id="tc_sa_bts"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
     <div class="angle-hint-row" id="ah_sa_bts"><div class="angle-hint-text"></div></div>
     <div class="caption-row"><textarea class="caption-input" id="cap_sa_bts" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('sa_bts',this.value)" onfocus="autoResize(this)"></textarea></div>
-
-    <div class="item" data-id="sa_cb" data-brand="myash" data-angle="all" onclick="toggle(this)">
-      <div class="check"><span class="check-icon">✓</span></div>
-      <div class="item-body">
-        <div class="item-title">🔀 Cross-Brand Feature</div>
-        <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill-time">3:00 PM</span></div>
-      </div>
-    </div>
-    <div class="thread-connector" id="tc_sa_cb"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
-    <div class="angle-hint-row" id="ah_sa_cb"><div class="angle-hint-text"></div></div>
-    <div class="caption-row"><textarea class="caption-input" id="cap_sa_cb" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('sa_cb',this.value)" onfocus="autoResize(this)"></textarea></div>
-
-    <div class="item" data-id="sa_ws" data-brand="myash" data-angle="ma" onclick="toggle(this)">
-      <div class="check"><span class="check-icon">✓</span></div>
-      <div class="item-body">
-        <div class="item-title">🥃 Weekend Smoke + FB Caption</div>
-        <div class="item-meta"><span class="pill" style="background:var(--myash)">@its.myash</span><span class="pill" style="background:#E1306C">IG</span><span class="pill" style="background:#1877F2">FB</span><span class="pill-time">5:00 PM</span></div>
-      </div>
-    </div>
-    <div class="thread-connector" id="tc_sa_ws"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
-    <div class="angle-hint-row" id="ah_sa_ws"><div class="angle-hint-text"></div></div>
-    <div class="caption-row"><textarea class="caption-input" id="cap_sa_ws" placeholder="Caption / notes..." rows="1" oninput="autoResize(this);saveCaption('sa_ws',this.value)" onfocus="autoResize(this)"></textarea></div>
   </div>
 </div>
 
@@ -689,7 +642,7 @@
       <div class="check"><span class="check-icon">✓</span></div>
       <div class="item-body">
         <div class="item-title">🆕 Just Listed — IG + FB Biz</div>
-        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill-time">Within 24hrs of MLS</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill-time">Within 24hrs of MLS · counts as your 4th IG post</span></div>
       </div>
     </div>
     <div class="thread-connector" id="tc_ev_jl"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
@@ -699,8 +652,8 @@
     <div class="item" data-id="ev_uc" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
       <div class="check"><span class="check-icon">✓</span></div>
       <div class="item-body">
-        <div class="item-title">📋 Under Contract — IG Story</div>
-        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill-time">On contract</span></div>
+        <div class="item-title">📋 Under Contract — Story Only <span class="b-story">Story · not feed</span></div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill" style="background:#E1306C">IG Story</span><span class="pill-time">On contract</span></div>
       </div>
     </div>
     <div class="thread-connector" id="tc_ev_uc"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
@@ -710,8 +663,8 @@
     <div class="item" data-id="ev_js" data-brand="alexa" data-angle="ar" onclick="toggle(this)">
       <div class="check"><span class="check-icon">✓</span></div>
       <div class="item-body">
-        <div class="item-title">🎉 Just Sold — IG + LinkedIn</div>
-        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill-time">On close</span></div>
+        <div class="item-title">🎉 Just Sold — IG Feed + LinkedIn</div>
+        <div class="item-meta"><span class="pill" style="background:var(--alexa)">@alexa.realtor</span><span class="pill-time">On close · this earns a feed slot</span></div>
       </div>
     </div>
     <div class="thread-connector" id="tc_ev_js"><span class="thread-connector-dot"></span><span class="tc-text"></span></div>
@@ -792,7 +745,7 @@
   </div>
 </div>
 
-</div><!-- end content -->
+</div>
 
 <script>
 const SB_URL='https://gzqgeehcvmgstzenkyfnw.supabase.co';
@@ -807,70 +760,25 @@ async function getChecks(){const r=await sbGet(CK);if(r!==null){localStorage.set
 async function saveChecks(s){const j=JSON.stringify(s);localStorage.setItem(CK,j);await sbSet(CK,j);}
 async function getCaptions(){const r=await sbGet(CAK);if(r!==null){localStorage.setItem(CAK,r);return JSON.parse(r);}const l=localStorage.getItem(CAK);return l?JSON.parse(l):{};}
 async function saveCaption(id,v){const c=await getCaptions();if(v.trim())c[id]=v;else delete c[id];const j=JSON.stringify(c);localStorage.setItem(CAK,j);await sbSet(CAK,j);showSync();}
-
-async function saveThread(){
-  const v=document.getElementById('thread-input').value;
-  localStorage.setItem(TRK,v);
-  await sbSet(TRK,v);
-}
-async function saveAngles(){
-  const angles={ar:document.getElementById('angle-ar').value,ma:document.getElementById('angle-ma').value,fr:document.getElementById('angle-fr').value};
-  const j=JSON.stringify(angles);
-  localStorage.setItem(ANK,j);
-  await sbSet(ANK,j);
-}
-async function loadThread(){
-  const r=await sbGet(TRK);
-  document.getElementById('thread-input').value=r!==null?r:(localStorage.getItem(TRK)||'');
-  const ra=await sbGet(ANK);
-  const angles=ra!==null?JSON.parse(ra):(localStorage.getItem(ANK)?JSON.parse(localStorage.getItem(ANK)):{});
-  if(angles.ar)document.getElementById('angle-ar').value=angles.ar;
-  if(angles.ma)document.getElementById('angle-ma').value=angles.ma;
-  if(angles.fr)document.getElementById('angle-fr').value=angles.fr;
-  updateAngleHints();
-}
+async function saveThread(){const v=document.getElementById('thread-input').value;localStorage.setItem(TRK,v);await sbSet(TRK,v);}
+async function saveAngles(){const angles={ar:document.getElementById('angle-ar').value,ma:document.getElementById('angle-ma').value,fr:document.getElementById('angle-fr').value};const j=JSON.stringify(angles);localStorage.setItem(ANK,j);await sbSet(ANK,j);}
+async function loadThread(){const r=await sbGet(TRK);document.getElementById('thread-input').value=r!==null?r:(localStorage.getItem(TRK)||'');const ra=await sbGet(ANK);const angles=ra!==null?JSON.parse(ra):(localStorage.getItem(ANK)?JSON.parse(localStorage.getItem(ANK)):{});if(angles.ar)document.getElementById('angle-ar').value=angles.ar;if(angles.ma)document.getElementById('angle-ma').value=angles.ma;if(angles.fr)document.getElementById('angle-fr').value=angles.fr;updateAngleHints();}
 
 function updateAngleHints(){
   const thread=document.getElementById('thread-input').value.trim();
-  const angles={
-    ar:document.getElementById('angle-ar').value.trim(),
-    ma:document.getElementById('angle-ma').value.trim(),
-    fr:document.getElementById('angle-fr').value.trim()
-  };
+  const angles={ar:document.getElementById('angle-ar').value.trim(),ma:document.getElementById('angle-ma').value.trim(),fr:document.getElementById('angle-fr').value.trim()};
   const hasThread=thread.length>0;
-  const hint=document.getElementById('thread-hint');
-  if(hasThread){
-    hint.textContent='Thread active — angle hints are live below each item.';
-  } else {
-    hint.textContent='Fill in the thread above — each item below will show which brand angle applies.';
-  }
-
+  document.getElementById('thread-hint').textContent=hasThread?'Thread active — angle hints live below each item.':'Fill in the thread above — each item below will show which brand angle applies.';
   document.querySelectorAll('.item[data-angle]').forEach(item=>{
-    const id=item.dataset.id;
-    const angleKey=item.dataset.angle;
-    const tc=document.getElementById('tc_'+id);
-    const ah=document.getElementById('ah_'+id);
+    const id=item.dataset.id;const angleKey=item.dataset.angle;
+    const tc=document.getElementById('tc_'+id);const ah=document.getElementById('ah_'+id);
     if(!tc||!ah)return;
     if(!hasThread){tc.classList.remove('visible');ah.classList.remove('visible');return;}
     let angleText='';
-    if(angleKey==='all'){
-      const parts=[];
-      if(angles.ar)parts.push('Realtor: '+angles.ar);
-      if(angles.ma)parts.push('Myash: '+angles.ma);
-      if(angles.fr)parts.push('F&R: '+angles.fr);
-      angleText=parts.length?parts.join(' · '):'All 3 brands connect to this thread.';
-    } else if(angles[angleKey]){
-      angleText=angles[angleKey];
-    }
-    if(angleText){
-      tc.querySelector('.tc-text').textContent='Thread: '+thread.substring(0,60)+(thread.length>60?'...':'');
-      tc.classList.add('visible');
-      ah.querySelector('.angle-hint-text').textContent=angleText;
-      ah.classList.add('visible');
-    } else {
-      tc.classList.remove('visible');
-      ah.classList.remove('visible');
-    }
+    if(angleKey==='all'){const parts=[];if(angles.ar)parts.push('Realtor: '+angles.ar);if(angles.ma)parts.push('Myash: '+angles.ma);if(angles.fr)parts.push('F&R: '+angles.fr);angleText=parts.length?parts.join(' · '):'All 3 brands connect to this thread.';}
+    else if(angles[angleKey]){angleText=angles[angleKey];}
+    if(angleText){tc.querySelector('.tc-text').textContent='Thread: '+thread.substring(0,60)+(thread.length>60?'...':'');tc.classList.add('visible');ah.querySelector('.angle-hint-text').textContent=angleText;ah.classList.add('visible');}
+    else{tc.classList.remove('visible');ah.classList.remove('visible');}
   });
 }
 
@@ -878,27 +786,11 @@ async function toggle(el){const id=el.dataset.id;const s=await getChecks();if(el
 
 async function restoreChecks(){setSS('Syncing...');try{const s=await getChecks();document.querySelectorAll('.item').forEach(el=>{if(s[el.dataset.id])el.classList.add('done');else el.classList.remove('done');});const c=await getCaptions();Object.entries(c).forEach(([id,v])=>{const el=document.getElementById('cap_'+id);if(el){el.value=v;autoResize(el);}});setSS('✓ Synced');}catch(e){setSS('⚠ Offline');}setTimeout(()=>setSS(''),2000);updateProgress();}
 
-async function resetAll(){
-  if(!confirm('Start a new week? Clears all checkboxes, captions, thread, and angles on ALL devices.'))return;
-  await saveChecks({});
-  await sbSet(CAK,'{}');localStorage.setItem(CAK,'{}');
-  await sbSet(TRK,'');localStorage.setItem(TRK,'');
-  await sbSet(ANK,'{}');localStorage.setItem(ANK,'{}');
-  document.querySelectorAll('.caption-input').forEach(el=>{el.value='';autoResize(el);});
-  document.querySelectorAll('.item').forEach(el=>el.classList.remove('done'));
-  document.getElementById('thread-input').value='';
-  document.getElementById('angle-ar').value='';
-  document.getElementById('angle-ma').value='';
-  document.getElementById('angle-fr').value='';
-  updateAngleHints();
-  updateProgress();
-  setSS('✓ Reset');setTimeout(()=>setSS(''),2000);
-}
+async function resetAll(){if(!confirm('Start a new week? Clears all checkboxes, captions, thread, and angles on ALL devices.'))return;await saveChecks({});await sbSet(CAK,'{}');localStorage.setItem(CAK,'{}');await sbSet(TRK,'');localStorage.setItem(TRK,'');await sbSet(ANK,'{}');localStorage.setItem(ANK,'{}');document.querySelectorAll('.caption-input').forEach(el=>{el.value='';autoResize(el);});document.querySelectorAll('.item').forEach(el=>el.classList.remove('done'));document.getElementById('thread-input').value='';document.getElementById('angle-ar').value='';document.getElementById('angle-ma').value='';document.getElementById('angle-fr').value='';updateAngleHints();updateProgress();setSS('✓ Reset');setTimeout(()=>setSS(''),2000);}
 
 function setSS(m){const el=document.getElementById('sync-status');if(el)el.textContent=m;}
 function showSync(){setSS('✓ Saved');setTimeout(()=>setSS(''),1500);}
 function autoResize(el){el.style.height='auto';el.style.height=Math.max(36,el.scrollHeight)+'px';}
-
 function updateProgress(){const all=document.querySelectorAll('.item:not(.hidden)').length;const done=document.querySelectorAll('.item.done:not(.hidden)').length;const pct=all?Math.round(done/all*100):0;document.getElementById('progress-bar').style.width=pct+'%';document.getElementById('progress-label').textContent=done+' of '+all+' done ('+pct+'%)';}
 
 function switchTab(tab){
@@ -906,11 +798,8 @@ function switchTab(tab){
   document.querySelectorAll('.item,.caption-row,.thread-connector,.angle-hint-row').forEach(el=>{
     const b=el.dataset.brand||(el.previousElementSibling&&el.previousElementSibling.dataset&&el.previousElementSibling.dataset.brand)||'';
     const shouldHide=tab!=='all'&&!b.includes(tab);
-    if(el.classList.contains('thread-connector')||el.classList.contains('angle-hint-row')){
-      if(shouldHide)el.style.display='none'; else el.style.display='';
-    } else {
-      el.classList.toggle('hidden',shouldHide);
-    }
+    if(el.classList.contains('thread-connector')||el.classList.contains('angle-hint-row')){el.style.display=shouldHide?'none':'';}
+    else{el.classList.toggle('hidden',shouldHide);}
   });
   updateProgress();
 }
