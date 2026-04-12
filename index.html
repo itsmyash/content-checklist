@@ -1208,51 +1208,50 @@ function seedDefaults() {
   }
   if (state.content.length === 0) {
     state.content = [
-      // SUNDAY
+      // SUNDAY — Recording day. Hub video record & upload. Coffee & Ash ritual.
+      // Note: Before the First Draw (@fillerandroast) and Sunday Gratitude (Nextdoor) removed from active cadence.
       { id:1,  brand:'system',   day:0, title:'🟢 SUNDAY RECORDING — Hub video only. Coffee in hand. One camera. ~30 min.', type:'Recording Block', goal:'Grow Following', done:false },
-      { id:2,  brand:'realtor',  day:0, title:'Hub Video — Record & Upload', type:'YouTube · 8–12 min · all 3 brands', goal:'Grow Following', done:false },
-      { id:3,  brand:'fnr',      day:0, title:'☕ Before the First Draw', type:'IG · FB Biz · 9:30 AM', goal:'Drive Sales', done:false },
+      { id:2,  brand:'realtor',  day:0, title:'▶ Hub Video — Record & Upload', type:'YouTube · 8–12 min · all 3 brands · upload Sunday', goal:'RE Leads', done:false },
       { id:4,  brand:'myash',    day:0, title:'☕🍂 Coffee & Ash — Ritual', type:'IG · FB · 10:15 AM', goal:'Drive Sales', done:false },
-      { id:5,  brand:'realtor',  day:0, title:'🙏 Sunday Gratitude — Community', type:'Nextdoor · 9:15 AM', goal:'RE Leads', done:false },
       // MONDAY
       { id:6,  brand:'substack', day:1, title:'✍️ The Lifestyle Market Letter — Operator Life', type:'Substack · personal story first · 8:00 AM', goal:'Grow Following', done:false },
-      { id:7,  brand:'myash',    day:1, title:'🌙 Tonight\'s Smoke — Carousel', type:'IG · 7:00 PM', goal:'Drive Sales', done:false },
-      { id:8,  brand:'myash',    day:1, title:'🎬 TikTok — Hub Repurpose', type:'TikTok · 6:00 PM', goal:'Grow Following', done:false },
+      { id:11, brand:'realtor',  day:1, title:'🏠 Real Estate Insight', type:'FB Personal · 8:00 AM', goal:'RE Leads', done:false },
       { id:9,  brand:'realtor',  day:1, title:'📊 Market Signal', type:'LinkedIn · 8:00 AM', goal:'RE Leads', done:false },
       { id:10, brand:'realtor',  day:1, title:'📍 Google Business Post', type:'Google Biz · 9:00 AM · keyword-rich', goal:'RE Leads', done:false },
-      { id:11, brand:'realtor',  day:1, title:'🏠 Real Estate Insight', type:'FB Personal · 8:00 AM', goal:'RE Leads', done:false },
+      { id:8,  brand:'myash',    day:1, title:'🎬 TikTok — Hub Repurpose', type:'TikTok · 6:00 PM', goal:'Grow Following', done:false },
+      { id:7,  brand:'myash',    day:1, title:'🌙 Tonight\'s Smoke — Carousel', type:'IG · 7:00 PM', goal:'Drive Sales', done:false },
       // TUESDAY
       { id:12, brand:'myash',    day:2, title:'🎬 IG Reel — Hub Repurpose', type:'IG Reel · all brands · 10:00 AM', goal:'Grow Following', done:false },
       { id:13, brand:'realtor',  day:2, title:'📍 Pocono Pulse — Market Update', type:'IG · 11:00 AM · stat · trend · takeaway', goal:'RE Leads', done:false },
-      { id:14, brand:'realtor',  day:2, title:'🚗 Car Confession — Real Estate', type:'IG · 12:00 PM · 20 sec · from car', goal:'RE Leads', done:false },
+      { id:14, brand:'realtor',  day:2, title:'🚗 Car Confession — Real Estate', type:'IG · 12:00 PM · 20 sec · recorded Wed', goal:'RE Leads', done:false },
       { id:15, brand:'realtor',  day:2, title:'🏡 Neighborly Post', type:'Nextdoor · 6:00 PM', goal:'RE Leads', done:false },
       { id:16, brand:'fnr',      day:2, title:'🔥 Nell\'s Social — This Week\'s Smoke', type:'FB tag · 6:00 PM', goal:'Drive Sales', done:false },
-      // WEDNESDAY
-      { id:17, brand:'system',   day:3, title:'🟡 WEDNESDAY RECORDING — 4 recordings. Privacy. Can smoke on camera.', type:'Recording Block', goal:'Grow Following', done:false },
-      { id:18, brand:'realtor',  day:3, title:'🎬 RECORD: Ashes & Escrows Episode', type:'YouTube · 6–8 min · uploads Thu', goal:'RE Leads', done:false },
-      { id:19, brand:'realtor',  day:3, title:'▶ RECORD: YouTube Short', type:'YouTube Short · under 60 sec · uploads Thu', goal:'RE Leads', done:false },
+      // WEDNESDAY — Primary recording day
+      { id:17, brand:'system',   day:3, title:'🟡 WEDNESDAY RECORDING — 4+ recordings. Privacy. Can smoke on camera.', type:'Recording Block', goal:'Grow Following', done:false },
+      { id:18, brand:'realtor',  day:3, title:'🎬 RECORD: Ashes & Escrows Episode', type:'YouTube · 6–8 min · uploads Thu 10AM', goal:'RE Leads', done:false },
+      { id:19, brand:'realtor',  day:3, title:'▶ RECORD: YouTube Short', type:'YouTube Short · under 60 sec · uploads Thu 11AM', goal:'RE Leads', done:false },
       { id:20, brand:'realtor',  day:3, title:'🚗 RECORD: Car Confessions Batch', type:'IG · Tue RE + Thu Entrepreneur · one session', goal:'RE Leads', done:false },
       { id:21, brand:'myash',    day:3, title:'🚗 RECORD: Car Confession — Entrepreneur & Cigars', type:'IG · 20 sec · shock value · upload 12:00 PM', goal:'Grow Following', done:false },
-      { id:22, brand:'myash',    day:3, title:'🌙 RECORD: Tonight\'s Smoke Batch', type:'Cigar content · carousel for Monday', goal:'Drive Sales', done:false },
-      { id:23, brand:'fnr',      day:3, title:'📸 F&R Pairing — Photo Capture Only', type:'Coffee + cigar setup · stills only today', goal:'Drive Sales', done:false },
+      { id:22, brand:'myash',    day:3, title:'🌙 RECORD: Tonight\'s Smoke Batch', type:'Cigar content · carousel for Monday 7PM', goal:'Drive Sales', done:false },
+      { id:23, brand:'fnr',      day:3, title:'📸 F&R Pairing — Photo Capture Only', type:'Coffee + cigar setup · stills only · video records Thu', goal:'Drive Sales', done:false },
       { id:24, brand:'myash',    day:3, title:'📸 Ash Shot — Upload', type:'IG · 8:00 AM', goal:'Grow Following', done:false },
       { id:25, brand:'realtor',  day:3, title:'📊 Market Insight — LinkedIn Upload', type:'LinkedIn · 9:00 AM', goal:'RE Leads', done:false },
       { id:26, brand:'realtor',  day:3, title:'🏷 Under Contract — Story Only', type:'IG Story · FB Story · 11:00 AM', goal:'RE Leads', done:false },
+      { id:31, brand:'myash',    day:3, title:'🎵 Native TikTok Re-record — Record & Upload', type:'TikTok · no watermark · same topic as Short · 12:00 PM', goal:'Grow Following', done:false },
       { id:27, brand:'realtor',  day:3, title:'🤝 Local Collab (1x/month)', type:'IG Story · tag partner · no feed slot', goal:'Grow Following', done:false },
       // THURSDAY
       { id:28, brand:'substack', day:4, title:'✍️ The Lifestyle Market Letter — Experience Economy', type:'Substack · ritual · lifestyle · 8:00 AM', goal:'Grow Following', done:false },
+      { id:33, brand:'realtor',  day:4, title:'📊 Investor Signal (pre-sched)', type:'LinkedIn · 8:30 AM', goal:'RE Leads', done:false },
       { id:29, brand:'realtor',  day:4, title:'🎬 Ashes & Escrows — Upload', type:'YouTube · recorded Wed · 10:00 AM', goal:'RE Leads', done:false },
       { id:30, brand:'realtor',  day:4, title:'▶ YouTube Short — Upload', type:'YouTube Short · recorded Wed · 11:00 AM', goal:'RE Leads', done:false },
-      { id:31, brand:'myash',    day:4, title:'🎵 Native TikTok Re-record — Record & Upload', type:'TikTok · no watermark · same topic as Short · 12:00 PM', goal:'Grow Following', done:false },
       { id:32, brand:'realtor',  day:4, title:'🚗 Car Confession — Entrepreneur Life (Upload)', type:'IG · recorded Wed · 12:00 PM', goal:'RE Leads', done:false },
-      { id:33, brand:'realtor',  day:4, title:'📊 Investor Signal (pre-sched)', type:'LinkedIn · 8:30 AM', goal:'RE Leads', done:false },
-      { id:34, brand:'fnr',      day:4, title:'🍃 RECORD: F&R Pairing Video', type:'Photos captured Wed · uploads Fri', goal:'Drive Sales', done:false },
+      { id:34, brand:'fnr',      day:4, title:'🍃 RECORD: F&R Pairing Video', type:'Photos captured Wed · uploads Fri · biweekly', goal:'Drive Sales', done:false },
       { id:35, brand:'realtor',  day:4, title:'🏘 Community Roundup', type:'Nextdoor · 6:00 PM', goal:'RE Leads', done:false },
       // FRIDAY
+      { id:39, brand:'realtor',  day:5, title:'📊 Market Insight (pre-sched)', type:'FB Biz · 8:00 AM', goal:'RE Leads', done:false },
       { id:36, brand:'fnr',      day:5, title:'☕ Coffee for the Leaf', type:'IG · FB Biz · 9:00 AM', goal:'Drive Sales', done:false },
       { id:37, brand:'fnr',      day:5, title:'🍃 The Pairing — Cigar + Coffee Ed. (bi-weekly)', type:'IG · recorded Thu · 10:00 AM', goal:'Drive Sales', done:false },
       { id:38, brand:'myash',    day:5, title:'☕ Coffee for the Leaf TikTok', type:'TikTok via @its.myash · different edit · 11:00 AM', goal:'Drive Sales', done:false },
-      { id:39, brand:'realtor',  day:5, title:'📊 Market Insight (pre-sched)', type:'FB Biz · 8:00 AM', goal:'RE Leads', done:false },
       { id:40, brand:'system',   day:5, title:'📣 Facebook — All Brands Repurpose', type:'FB · all brands · captions repurposed · 12:00 PM', goal:'Grow Following', done:false },
       { id:41, brand:'myash',    day:5, title:'🥃 Weekend Smoke — Reel', type:'IG · 5:00 PM · feed post', goal:'Drive Sales', done:false },
       // SATURDAY
