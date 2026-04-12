@@ -48,6 +48,7 @@
     position: sticky;
     top: 0;
     z-index: 100;
+    gap: 12px;
   }
   .topbar-logo {
     font-family: 'Bebas Neue', sans-serif;
@@ -71,6 +72,24 @@
     border-radius: 2px;
     letter-spacing: 1px;
   }
+  .system-docs-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #6B1F3A;
+    color: #F2EDE3;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 2px;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+  .system-docs-btn:hover { background: #8A2A4E; }
 
   /* ── TAB NAV ── */
   .tab-nav {
@@ -518,6 +537,7 @@
     .week-grid { grid-template-columns: repeat(3, 1fr); }
     .kpi-grid { grid-template-columns: repeat(2, 1fr); }
     .col-span-2 { grid-column: span 1; }
+    .system-docs-btn { font-size: 9px; padding: 5px 10px; }
   }
 </style>
 </head>
@@ -528,6 +548,7 @@
   <div class="topbar-logo">MYASH<span> // OPS</span></div>
   <div class="topbar-date" id="topbar-date"></div>
   <div id="sync-badge" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text3);">⟳ loading...</div>
+  <a href="ROAST-Complete-System.html" target="_blank" class="system-docs-btn">📋 System Docs</a>
   <div class="topbar-badge">OPERATOR MODE</div>
 </div>
 
@@ -1110,7 +1131,6 @@ function initRealtime() {
   try {
     supabaseClient = supabase.createClient(SB_URL, SB_KEY);
 
-    // Listen for changes on ops_leads
     supabaseClient.channel('ops_leads_changes')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_leads' }, async () => {
         const leads = await sbGet('ops_leads');
@@ -1118,7 +1138,6 @@ function initRealtime() {
       })
       .subscribe();
 
-    // Listen for changes on ops_content
     supabaseClient.channel('ops_content_changes')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_content' }, async () => {
         const content = await sbGet('ops_content');
@@ -1126,7 +1145,6 @@ function initRealtime() {
       })
       .subscribe();
 
-    // Listen for changes on ops_outreach
     supabaseClient.channel('ops_outreach_changes')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_outreach' }, async () => {
         const outreach = await sbGet('ops_outreach');
@@ -1134,7 +1152,6 @@ function initRealtime() {
       })
       .subscribe();
 
-    // Listen for check changes
     supabaseClient.channel('ops_checks_changes')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_checks' }, async () => {
         const checks = await sbGet('ops_checks');
@@ -1278,7 +1295,6 @@ function renderKPIs() {
   document.getElementById('kpi-hot').textContent = hotLeads;
   document.getElementById('kpi-outreach').textContent = outreach;
 
-  // Progress bars
   const myash = state.content.filter(c => c.brand === 'myash');
   const realtor = state.content.filter(c => c.brand === 'realtor');
   const fnr = state.content.filter(c => c.brand === 'fnr');
@@ -1421,7 +1437,6 @@ function renderCannonball() {
     }).join('');
   }
 
-  // Outreach log
   const logEl = document.getElementById('outreach-log');
   if (state.outreach.length === 0) {
     logEl.innerHTML = '<div class="empty"><div class="empty-icon">📋</div><div class="empty-label">No outreach logged yet.</div></div>';
@@ -1522,7 +1537,6 @@ function saveLead() {
   state.currentSignals = {};
   save();
   closeModal('modal-add-lead');
-  // Reset form
   ['l-fname','l-lname','l-phone','l-email','l-addr','l-value','l-equity','l-years','l-notes'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('l-status').value = 'New';
   document.querySelectorAll('.signal-check').forEach(el => el.classList.remove('active'));
