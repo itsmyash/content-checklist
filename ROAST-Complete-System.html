@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROAST — Complete Weekly Operating System</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F2EDE3;
+    --navy: #1A1A2E;
+    --burgundy: #6B1F3A;
+    --gold: #C4973A;
+    --warm-gray: #8A8278;
+    --light-border: #E0D9CF;
+    --text-dark: #1A1A1A;
+    --text-mid: #4A4540;
+    --green: #2D5A3D;
+    --code-bg: #1E1E2E;
+    --code-text: #E8E4DC;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #EDEAE3;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-dark);
+    padding: 0;
+  }
+
+  .wrapper { max-width: 860px; margin: 0 auto; padding: 32px 16px; }
+
+  /* ── MASTER HEADER ── */
+  .master-header {
+    background: var(--navy);
+    padding: 48px 52px 40px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 4px;
+  }
+  .master-header::before {
+    content: 'ROAST';
+    position: absolute;
+    right: -20px;
+    bottom: -30px;
+    font-family: 'Playfair Display', serif;
+    font-size: 160px;
+    font-weight: 900;
+    color: rgba(196,151,58,0.05);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .master-header::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(196,151,58,0.03) 40px, rgba(196,151,58,0.03) 41px);
+  }
+  .mh-inner { position: relative; z-index: 1; }
+  .mh-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .mh-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .mh-title em { color: var(--gold); font-style: italic; }
+  .mh-sub {
+    font-size: 13.5px;
+    color: rgba(242,237,227,0.55);
+    line-height: 1.7;
+    max-width: 580px;
+  }
+  .mh-rule { width: 48px; height: 2px; background: var(--burgundy); margin-top: 20px; }
+
+  /* ── RHYTHM BAR ── */
+  .rhythm-bar {
+    background: var(--burgundy);
+    padding: 0;
+    display: flex;
+    margin-bottom: 32px;
+  }
+  .rhythm-day {
+    flex: 1;
+    padding: 16px 20px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+  }
+  .rhythm-day:last-child { border-right: none; }
+  .rhythm-day-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(242,237,227,0.5);
+    margin-bottom: 5px;
+  }
+  .rhythm-day-action {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--cream);
+    line-height: 1.4;
+  }
+  .rhythm-day.active { background: rgba(196,151,58,0.15); }
+  .rhythm-day.active .rhythm-day-name { color: var(--gold); }
+
+  /* ── SECTION DIVIDER ── */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 8px 0 20px;
+  }
+  .sd-line { flex: 1; height: 1px; background: var(--light-border); }
+  .sd-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    flex-shrink: 0;
+  }
+  .sd-diamond {
+    width: 6px; height: 6px;
+    background: var(--burgundy);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* ── DAY HEADER ── */
+  .day-header {
+    padding: 20px 28px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .day-header-thu { background: var(--navy); }
+  .day-header-sun { background: var(--burgundy); }
+  .dh-day {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 900;
+    color: rgba(242,237,227,0.15);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .dh-content { flex: 1; }
+  .dh-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .dh-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+  .dh-sub {
+    font-size: 12px;
+    color: rgba(242,237,227,0.5);
+    margin-top: 4px;
+  }
+
+  /* ── INSTRUCTION BOX ── */
+  .instruction-box {
+    background: var(--cream);
+    border: 1px solid var(--light-border);
+    border-left: 4px solid var(--gold);
+    padding: 20px 24px;
+    margin-bottom: 20px;
+  }
+  .ib-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .ib-text {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+  .ib-text strong { color: var(--text-dark); }
+
+  /* ── PROMPT CARD ── */
+  .prompt-card {
+    background: var(--cream);
+    border: 1px solid var(--light-border);
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .pc-header {
+    background: var(--navy);
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .pc-header-sun { background: #2A0A1A; }
+  .pc-left { flex: 1; }
+  .pc-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 3px;
+  }
+  .pc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--cream);
+  }
+  .pc-badges { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
+  .badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+  }
+  .b-weekly { background: var(--burgundy); color: var(--cream); }
+  .b-monthly { background: var(--navy); color: var(--cream); border: 1px solid rgba(255,255,255,0.2); }
+  .b-biweekly { background: var(--green); color: var(--cream); }
+  .b-deep { background: var(--gold); color: var(--navy); }
+  .b-fixed { background: rgba(255,255,255,0.1); color: rgba(242,237,227,0.7); }
+
+  .pc-purpose {
+    padding: 12px 24px;
+    background: #F8F4EE;
+    border-bottom: 1px solid var(--light-border);
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .pc-prompt-label {
+    padding: 10px 24px 4px;
+    background: #F0EBE1;
+    border-bottom: 1px solid var(--light-border);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+  }
+
+  .pc-prompt {
+    background: var(--code-bg);
+    padding: 22px 24px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11.5px;
+    line-height: 1.8;
+    color: var(--code-text);
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .ph { color: var(--gold); }
+  .cm { color: #5A7A5A; font-style: italic; }
+  .hl { color: #C4A882; font-weight: 500; }
+  .section-marker { color: #7A9CC4; font-weight: 500; }
+
+  /* ── SUNDAY SECTION BLOCKS ── */
+  .sun-section {
+    background: var(--cream);
+    border: 1px solid var(--light-border);
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .sun-section-header {
+    background: #2A0A1A;
+    padding: 12px 24px;
+  }
+  .ssh-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 3px;
+  }
+  .ssh-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--cream);
+  }
+
+  /* ── OUTPUT CHECKLIST ── */
+  .output-grid {
+    background: var(--cream);
+    border: 1px solid var(--light-border);
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .og-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--burgundy);
+    margin-bottom: 16px;
+  }
+  .og-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .og-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 10px 12px;
+    background: #F8F4EE;
+    border: 1px solid var(--light-border);
+  }
+  .og-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--burgundy);
+    flex-shrink: 0;
+    font-weight: 500;
+    margin-top: 1px;
+  }
+  .og-text {
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+  .og-text strong { color: var(--text-dark); font-size: 12px; display: block; margin-bottom: 1px; }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--navy);
+    padding: 22px 28px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(242,237,227,0.4);
+    line-height: 1.9;
+  }
+  .footer strong { color: var(--gold); }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- MASTER HEADER -->
+  <div class="master-header">
+    <div class="mh-inner">
+      <div class="mh-eyebrow">ROAST · Complete Weekly Operating System</div>
+      <div class="mh-title">Thursday gathers. <em>Sunday produces.</em></div>
+      <div class="mh-sub">Everything you need to run ROAST in one document. Five Perplexity prompts for Thursday. One Claude production prompt for Sunday. Thirteen outputs. One newsletter. Full week covered.</div>
+      <div class="mh-rule"></div>
+    </div>
+  </div>
+
+  <!-- RHYTHM BAR -->
+  <div class="rhythm-bar">
+    <div class="rhythm-day active">
+      <div class="rhythm-day-name">Thursday</div>
+      <div class="rhythm-day-action">Run 5 Perplexity prompts → Save all outputs</div>
+    </div>
+    <div class="rhythm-day">
+      <div class="rhythm-day-name">Sunday</div>
+      <div class="rhythm-day-action">Paste outputs into Claude → 13 outputs produced</div>
+    </div>
+    <div class="rhythm-day">
+      <div class="rhythm-day-name">Monday</div>
+      <div class="rhythm-day-action">ROAST publishes</div>
+    </div>
+    <div class="rhythm-day">
+      <div class="rhythm-day-name">Thursday</div>
+      <div class="rhythm-day-action">Ashes & Escrows uploads → Experience Economy publishes</div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- THURSDAY SECTION -->
+  <!-- ════════════════════════════════════════ -->
+
+  <div class="day-header day-header-thu">
+    <div class="dh-day">THU</div>
+    <div class="dh-content">
+      <div class="dh-label">Step One — Thursday</div>
+      <div class="dh-title">Run Your Perplexity Pro Prompts</div>
+      <div class="dh-sub">Open Perplexity Pro → Select Deep Research mode → Run each prompt in order → Save every output</div>
+    </div>
+  </div>
+
+  <div class="instruction-box">
+    <div class="ib-title">Before You Start</div>
+    <div class="ib-text"><strong>Always use Deep Research mode</strong> — not standard search. Standard gives you headlines. Deep Research gives you intelligence. Fill in the current date where you see [INSERT CURRENT DATE] before running each prompt. Save each output in one running doc labeled with the date — you'll paste them all into Claude on Sunday.</div>
+  </div>
+
+  <!-- PROMPT 01 -->
+  <div class="prompt-card">
+    <div class="pc-header">
+      <div class="pc-left">
+        <div class="pc-num">Prompt 01 — Market Pulse</div>
+        <div class="pc-title">Policy, Legislation & Zoning Intelligence</div>
+      </div>
+      <div class="pc-badges">
+        <span class="badge b-weekly">Every Thursday</span>
+        <span class="badge b-deep">Deep Research</span>
+      </div>
+    </div>
+    <div class="pc-purpose">Surfaces policy and legislative signals affecting your clients before they hit mainstream media. Federal → Pennsylvania → Monroe County → Township level.</div>
+    <div class="pc-prompt-label">Copy & Paste Into Perplexity Pro → Deep Research</div>
+    <div class="pc-prompt">You are a real estate policy analyst. I am a licensed realtor in Pennsylvania (PA License #RS326383) working in the Pocono Mountains / Monroe County short-term rental investor market. I also work Dominican Republic real estate.
+
+Research and report on ALL of the following for the week of <span class="ph">[INSERT CURRENT DATE]</span>:
+
+<span class="section-marker">FEDERAL LEVEL:</span>
+- Any new or proposed federal real estate legislation introduced or advanced this week
+- FEMA flood zone policy updates, National Flood Insurance Program news
+- Federal housing policy changes affecting investors or STR operators
+- IRS or Treasury updates affecting real estate investors (depreciation, 1031 exchanges, short-term rental tax classification)
+- NAR policy updates or legal developments
+
+<span class="section-marker">PENNSYLVANIA STATE LEVEL:</span>
+- Pennsylvania Association of Realtors (PAR) legislative updates — track HB 818, SB 803, SB 815, HB 214, HB 986, HB 1103 and any new bills introduced
+- Pennsylvania housing market policy changes
+- Pennsylvania STR legislation or proposed regulations
+- Pennsylvania transfer tax, mortgage, or financing law changes
+
+<span class="section-marker">MONROE COUNTY & POCONO MOUNTAINS LOCAL:</span>
+- Monroe County zoning or STR ordinance updates
+- Township-level STR regulation changes — specifically: Barrett Township, Smithfield Township, Hamilton Township, Paradise Township, Pocono Township, Jackson Township
+- Any HOA regulation changes in major Pocono developments
+- Local government actions affecting real estate or STR operations
+- Monroe County court decisions affecting property rights or STR operations
+
+<span class="section-marker">FORMAT AS:</span>
+1. TOP SIGNAL THIS WEEK (the single most important development and why it matters to STR investors)
+2. FEDERAL UPDATES (bullet points with source citations)
+3. PENNSYLVANIA UPDATES (bullet points with source citations)
+4. LOCAL / MONROE COUNTY UPDATES (bullet points with source citations)
+5. WHAT TO WATCH NEXT WEEK (1-2 items developing that haven't landed yet)
+
+Be specific. Cite sources. Flag anything that directly affects STR investors buying in Monroe County, Pennsylvania.</div>
+  </div>
+
+  <!-- PROMPT 02A -->
+  <div class="prompt-card">
+    <div class="pc-header">
+      <div class="pc-left">
+        <div class="pc-num">Prompt 02A — Investor Intel</div>
+        <div class="pc-title">Pocono STR Weekly Pulse</div>
+      </div>
+      <div class="pc-badges">
+        <span class="badge b-weekly">Every Thursday</span>
+        <span class="badge b-deep">Deep Research</span>
+      </div>
+    </div>
+    <div class="pc-purpose">Weekly light pulse on market movement, listings with yield potential, and STR signals. Keeps Investor Intel fresh every week without waiting for the monthly deep dive.</div>
+    <div class="pc-prompt-label">Copy & Paste Into Perplexity Pro → Deep Research</div>
+    <div class="pc-prompt">You are a short-term rental market analyst specializing in the Pocono Mountains, Monroe County, Pennsylvania. I publish a weekly newsletter for STR investors in this market.
+
+For the week of <span class="ph">[INSERT CURRENT DATE]</span>, research and report on:
+
+<span class="section-marker">MARKET MOVEMENT:</span>
+- Any notable shifts in Pocono Mountains STR demand, occupancy, or pricing this week
+- New data from AirDNA, Mashvisor, Rabbu, or similar STR analytics platforms covering the Pocono Mountains
+- Booking pace signals — are platforms showing strong or weak forward demand?
+- Any STR platform (Airbnb, VRBO) policy or fee changes affecting hosts this week
+
+<span class="section-marker">ACTIVE LISTINGS WITH INVESTOR POTENTIAL:</span>
+- Search Zillow, Realtor.com, and Redfin for residential listings in Monroe County, PA priced under $500,000 that appear to have STR potential (lake access, ski proximity, large bedroom count, or listed as investment property)
+- For any promising listings found, note: address, list price, bedroom count, and any STR-relevant features mentioned
+- Note days on market for any listings that have been sitting 60+ days — these are negotiation opportunities
+
+<span class="section-marker">US HOUSING MARKET SIGNALS AFFECTING STR INVESTORS:</span>
+- Mortgage rate movement this week and impact on investor financing
+- Any national STR market news affecting investor sentiment
+- Notable investor activity in vacation rental markets nationally
+
+<span class="section-marker">POCONO-SPECIFIC NEWS:</span>
+- Any local news affecting the Pocono Mountains as a travel destination (resort openings, events, infrastructure, weather events)
+- New businesses, attractions, or developments that strengthen the STR investment thesis
+
+<span class="section-marker">FORMAT AS:</span>
+1. WEEK'S TOP INVESTOR SIGNAL (one paragraph, the most actionable insight)
+2. MARKET MOVEMENT SUMMARY (bullet points with sources)
+3. LISTINGS WORTH WATCHING (table format: address, price, bedrooms, STR angle)
+4. NATIONAL CONTEXT (2-3 bullets affecting Pocono investors)
+5. LOCAL POCONO NEWS (bullet points)
+
+Be specific and cite sources throughout.</div>
+  </div>
+
+  <!-- PROMPT 02B -->
+  <div class="prompt-card">
+    <div class="pc-header">
+      <div class="pc-left">
+        <div class="pc-num">Prompt 02B — Investor Intel</div>
+        <div class="pc-title">Pocono STR Monthly Deep Dive</div>
+      </div>
+      <div class="pc-badges">
+        <span class="badge b-monthly">1st Monday/Month</span>
+        <span class="badge b-deep">Deep Research</span>
+      </div>
+    </div>
+    <div class="pc-purpose">Full monthly intelligence pull — submarket scores, closed sales trends, yield data, and the competitive landscape. Run on the first Monday of each month only.</div>
+    <div class="pc-prompt-label">Copy & Paste Into Perplexity Pro → Deep Research — FIRST MONDAY OF MONTH ONLY</div>
+    <div class="pc-prompt">You are a short-term rental market analyst. I am a PA-licensed realtor publishing a monthly STR investor newsletter covering the Pocono Mountains, Monroe County, Pennsylvania. Run this on the first Monday of <span class="ph">[INSERT MONTH AND YEAR]</span>.
+
+Pull the most current available data on the following:
+
+<span class="section-marker">AIRDNA POCONO MOUNTAINS DATA:</span>
+- Overall Pocono Mountains Market Score (out of 100)
+- Total active listings and year-over-year change
+- Annual revenue average and year-over-year change
+- Average daily rate and occupancy rate where available
+- Submarket scores and daily rates for: Jim Thorpe, Mt Pocono, Gouldsboro, Camelback, Bushkill, Canadensis, East Stroudsburg, Lake Harmony, Tobyhanna, Honesdale, Eastern Poconos, Pocono Lake, Emerald Lakes, Lake Wallenpaupack, Stroudsburg
+
+<span class="section-marker">MONROE COUNTY RESIDENTIAL MARKET:</span>
+- Median sale price and year-over-year change
+- Number of closed sales and year-over-year change
+- Median days on market
+- List-to-sale price ratio
+- Active inventory levels and months of supply
+- Any notable price appreciation by submarket (Mt Pocono, East Stroudsburg, Stroudsburg, Tobyhanna)
+
+<span class="section-marker">HIGH-YIELD ACTIVE LISTINGS:</span>
+- Search for Monroe County, PA residential listings currently active that STR analytics tools project at 40%+ annual yield
+- Include: address, list price, projected annual revenue, projected yield percentage, occupancy rate, average daily rate, bedroom count
+- Flag any listings that have been on market 90+ days as negotiation opportunities
+
+<span class="section-marker">STR REGULATORY SNAPSHOT UPDATE:</span>
+- Any changes to STR regulations in Monroe County townships since last month
+- Current STR permit status in: Barrett, Smithfield, Hamilton, Paradise, Pocono, Jackson townships
+
+<span class="section-marker">FORMAT AS:</span>
+1. MONTHLY MARKET SNAPSHOT (key metrics table)
+2. SUBMARKET SCORECARD (table: submarket, score, daily rate, signal/trend)
+3. TOP YIELD OPPORTUNITIES THIS MONTH (table: address, price, yield %, revenue, occupancy, ADR)
+4. REGULATORY UPDATE (bullet points by township)
+5. MONTH'S INVESTOR THESIS (one paragraph — the single most important insight for STR investors this month)
+
+Cite all data sources. Note data collection date for all figures.</div>
+  </div>
+
+  <!-- PROMPT 03 -->
+  <div class="prompt-card">
+    <div class="pc-header">
+      <div class="pc-left">
+        <div class="pc-num">Prompt 03 — The DR Play</div>
+        <div class="pc-title">Dominican Republic Full Market Intelligence</div>
+      </div>
+      <div class="pc-badges">
+        <span class="badge b-monthly">1st Thursday/Month</span>
+        <span class="badge b-deep">Deep Research</span>
+      </div>
+    </div>
+    <div class="pc-purpose">Monthly DR intelligence — tourism signals, infrastructure updates, active listings, and CONFOTUR policy. Powers both the DR Play newsletter section and your monthly DR content drop across all platforms.</div>
+    <div class="pc-prompt-label">Copy & Paste Into Perplexity Pro → Deep Research — FIRST THURSDAY OF MONTH ONLY</div>
+    <div class="pc-prompt">You are a Caribbean real estate and tourism analyst. I am a realtor and operator who covers Dominican Republic real estate investment for a US investor audience. Run this for <span class="ph">[INSERT MONTH AND YEAR]</span>.
+
+Research and report on all of the following:
+
+<span class="section-marker">TOURISM & DEMAND SIGNALS:</span>
+- Most recent Dominican Republic visitor arrival numbers (source: Banco Central DR or MITUR)
+- Year-over-year tourism growth rate
+- Top source markets sending tourists to the DR
+- Hotel occupancy rates in Punta Cana and Cap Cana if available
+- Any new airline routes or flight capacity additions to Punta Cana International Airport (PUJ)
+- Cruise ship arrival data or new port developments — specifically the Punta Cana cruise port project status
+
+<span class="section-marker">INFRASTRUCTURE & DEVELOPMENT:</span>
+- Status update on the Punta Cana cruise port ($1.5B project) — opening timeline, construction progress
+- New hotel or resort projects announced or breaking ground in Punta Cana, Cap Cana, or Bavaro
+- Road, airport, or utility infrastructure updates
+- Any major foreign investment announcements in the DR tourism corridor
+
+<span class="section-marker">REAL ESTATE MARKET DATA:</span>
+- Average property prices in Cap Cana (condos, villas, golf-front)
+- Average property prices in Punta Cana / Bavaro
+- Rental yield data for short-term or vacation rentals in these markets
+- Any new luxury or master-planned development launches accepting reservations
+- Pre-construction opportunities currently available to foreign buyers
+
+<span class="section-marker">ACTIVE LISTINGS WORTH HIGHLIGHTING:</span>
+- Search for residential listings in Cap Cana and Punta Cana currently listed between $200,000 and $2,000,000 USD
+- For each notable listing: development name, property type, price, bedrooms, projected rental yield if available, any CONFOTUR tax incentive eligibility
+- Flag any listings in established luxury developments (Puntacana Resort & Club, Cap Cana, Roco Ki, Aquamarina, Eden Roc)
+
+<span class="section-marker">LEGAL & POLICY ENVIRONMENT:</span>
+- CONFOTUR Law 158-01 — any updates to tax incentive eligibility or approved projects
+- Foreign ownership rights — any legislative changes
+- Any new DR government policies affecting real estate investment
+- Currency or banking updates affecting USD-denominated transactions
+
+<span class="section-marker">FORMAT AS:</span>
+1. MONTH'S TOP DR SIGNAL (the single most urgent opportunity or development)
+2. TOURISM SNAPSHOT (key metrics with sources)
+3. INFRASTRUCTURE UPDATE (bullet points — what's being built and when it opens)
+4. REAL ESTATE MARKET OVERVIEW (prices, yields, trends by zone)
+5. LISTINGS WORTH WATCHING (table: development, type, price, bedrooms, yield, CONFOTUR status)
+6. LEGAL & POLICY UPDATES (bullet points)
+7. INVESTOR THESIS THIS MONTH (one paragraph — why now, why DR, what's the play)
+
+Cite all sources. Note DR government sources, international real estate portals (Point2Homes, GlobalListings, Properstar), and news outlets (Listin Diario, Diario Libre) where relevant.</div>
+  </div>
+
+  <!-- PROMPT 04A -->
+  <div class="prompt-card">
+    <div class="pc-header">
+      <div class="pc-left">
+        <div class="pc-num">Prompt 04A — Filler & Roast</div>
+        <div class="pc-title">Specialty Coffee Intelligence</div>
+      </div>
+      <div class="pc-badges">
+        <span class="badge b-biweekly">Every Other Thursday</span>
+        <span class="badge b-deep">Deep Research</span>
+      </div>
+    </div>
+    <div class="pc-purpose">Keeps coffee content culturally relevant — surfaces trends, pairing angles, and brand positioning intelligence for Filler & Roast before they go mainstream.</div>
+    <div class="pc-prompt-label">Copy & Paste Into Perplexity Pro → Deep Research — EVERY OTHER THURSDAY</div>
+    <div class="pc-prompt">You are a specialty coffee industry analyst and lifestyle brand consultant. I run an artisanal coffee brand called Filler & Roast, sold exclusively at a premium cigar lounge. My audience is entrepreneurial, lifestyle-driven, and interested in the ritual of coffee — not just the caffeine.
+
+Research and report on the following for <span class="ph">[INSERT CURRENT DATE]</span>:
+
+<span class="section-marker">SPECIALTY COFFEE TRENDS:</span>
+- What brewing methods, origins, or roast profiles are generating the most cultural conversation right now
+- Emerging coffee rituals and how people are incorporating intentional coffee moments into their routines
+- Any notable specialty coffee brand launches, collaborations, or campaigns worth noting
+- Coffee and lifestyle brand crossovers — coffee meeting fashion, music, real estate, travel, cigars
+
+<span class="section-marker">ORIGIN STORY & SOURCING INTELLIGENCE:</span>
+- Notable single-origin coffees gaining attention — specifically Caribbean, Central American, or Dominican Republic origins
+- Any DR coffee news — the Dominican Republic has an emerging specialty coffee sector worth tracking
+- Consumer interest in traceable, story-driven coffee sourcing
+
+<span class="section-marker">PAIRING CULTURE:</span>
+- Coffee and food pairing trends
+- Coffee and cigar pairing — any new conversations, content, or brand positioning in this space
+- Premium lounge and experiential hospitality trends where coffee plays a role
+
+<span class="section-marker">RETAIL & BRAND POSITIONING:</span>
+- How are successful artisanal coffee brands positioning themselves in 2026
+- Pricing trends for premium / specialty coffee products
+- Any direct-to-consumer or exclusive-venue coffee brand models generating attention
+
+<span class="section-marker">FORMAT AS:</span>
+1. TOP TREND THIS CYCLE (the one coffee insight most relevant to Filler & Roast positioning)
+2. CULTURAL CONVERSATION (what's being talked about in specialty coffee right now)
+3. PAIRING ANGLES (2-3 specific pairing ideas or trends to consider for the lounge)
+4. BRAND INTELLIGENCE (positioning and retail insights)
+5. CONTENT ANGLES FOR SOCIAL (3 specific coffee content ideas for Instagram or TikTok based on current trends)
+
+Cite sources. Focus on content that feels premium, intentional, and lifestyle-driven — not mass market coffee trends.</div>
+  </div>
+
+  <!-- PROMPT 04B -->
+  <div class="prompt-card">
+    <div class="pc-header">
+      <div class="pc-left">
+        <div class="pc-num">Prompt 04B — Filler & Roast</div>
+        <div class="pc-title">Cigar Industry & Culture Intelligence</div>
+      </div>
+      <div class="pc-badges">
+        <span class="badge b-weekly">Every Thursday</span>
+        <span class="badge b-deep">Deep Research</span>
+      </div>
+    </div>
+    <div class="pc-purpose">Keeps you ahead of the cigar industry conversation — critical for your Cigar Authority positioning, upcoming boutique DR cigar brand launch, and @its.myash content calendar.</div>
+    <div class="pc-prompt-label">Copy & Paste Into Perplexity Pro → Deep Research</div>
+    <div class="pc-prompt">You are a premium cigar industry analyst. I am building a personal brand as a cigar authority (@its.myash) and developing a boutique Dominican Republic cigar brand. I also host content at a premium cigar lounge. Research and report for the week of <span class="ph">[INSERT CURRENT DATE]</span>:
+
+<span class="section-marker">DOMINICAN REPUBLIC CIGAR INDUSTRY:</span>
+- Any new DR cigar releases, limited editions, or brand announcements this week
+- Procigar news or upcoming DR cigar industry events
+- DR tobacco growing region news — any crop, weather, or supply chain developments
+- How established DR brands (La Aurora, Davidoff, General Cigar Dominicana, Tabacalera Palma, Casa Carrillo) are positioning their DR origin story in marketing
+- Any collaborations between DR cigar brands and lifestyle brands (fashion, spirits, real estate, music)
+
+<span class="section-marker">BOUTIQUE BRAND LANDSCAPE:</span>
+- New boutique cigar brand launches announced this week
+- Limited release cigars generating conversation (under 10,000 cigars, story-driven)
+- How boutique brands are using scarcity, origin story, and artisan positioning to compete with established players
+- PCA Trade Show news — upcoming releases, brand announcements, industry movements
+
+<span class="section-marker">LOUNGE CULTURE & EXPERIENTIAL:</span>
+- Premium cigar lounge trends — what are successful lounges doing differently in 2026
+- Experiential cigar events, pairing dinners, or intimate cigar sessions gaining cultural traction
+- Any cigar and lifestyle crossovers (cigars + music, cigars + real estate, cigars + coffee) in brand marketing
+
+<span class="section-marker">CIGAR AUTHORITY CONTENT INTELLIGENCE:</span>
+- What cigar topics are generating the most engagement on Instagram, TikTok, and YouTube right now
+- Any cigar misconceptions or beginner questions trending in online communities
+- Cigar review content that's performing well and why
+
+<span class="section-marker">FORMAT AS:</span>
+1. WEEK'S TOP CIGAR SIGNAL (most relevant to boutique DR brand positioning or @its.myash content)
+2. DR INDUSTRY UPDATE (bullet points with sources)
+3. BOUTIQUE BRAND WATCH (new launches or limited releases worth noting)
+4. LOUNGE CULTURE INTELLIGENCE (experiential trends)
+5. CONTENT ANGLES FOR @its.myash (3 specific cigar content ideas based on this week's intelligence)
+6. BRAND POSITIONING INSIGHT (one observation about how successful cigar brands are telling their story right now — relevant to your upcoming brand launch)
+
+Cite sources including Halfwheel, Cigar Aficionado, Cigar Journal, PCA announcements, and brand direct communications where available.</div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- SUNDAY SECTION -->
+  <!-- ════════════════════════════════════════ -->
+
+  <div class="section-divider" style="margin-top: 32px;">
+    <div class="sd-line"></div>
+    <div class="sd-diamond"></div>
+    <div class="sd-label">Step Two</div>
+    <div class="sd-diamond"></div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div class="day-header day-header-sun">
+    <div class="dh-day">SUN</div>
+    <div class="dh-content">
+      <div class="dh-label">Step Two — Sunday</div>
+      <div class="dh-title">Run Your Claude Production Prompt</div>
+      <div class="dh-sub">Open Claude → New conversation → Copy everything below → Fill in your inputs → Send it</div>
+    </div>
+  </div>
+
+  <div class="instruction-box">
+    <div class="ib-title">How Sunday Works</div>
+    <div class="ib-text">Copy the entire prompt below — Section A through Section C — into a new Claude conversation every Sunday. Fill in the date, paste your Perplexity outputs into their labeled slots, and add your personal moment for the week. If you didn't run a particular Perplexity prompt this week, write <strong>SKIP</strong> in that slot. Claude produces all 13 outputs in one session.</div>
+  </div>
+
+  <!-- OUTPUT SUMMARY -->
+  <div class="output-grid">
+    <div class="og-title">What One Sunday Session Produces — 13 Outputs</div>
+    <div class="og-items">
+      <div class="og-item"><span class="og-num">01</span><div class="og-text"><strong>ROAST Newsletter Draft</strong>All 5 sections, ready to publish Monday</div></div>
+      <div class="og-item"><span class="og-num">02</span><div class="og-text"><strong>Monday Substack Article</strong>Operator Life — personal story first</div></div>
+      <div class="og-item"><span class="og-num">03</span><div class="og-text"><strong>Thursday Substack Article</strong>Experience Economy — ritual and lifestyle</div></div>
+      <div class="og-item"><span class="og-num">04</span><div class="og-text"><strong>21 Substack Notes</strong>7 Morning + 7 Midday + 7 Evening</div></div>
+      <div class="og-item"><span class="og-num">05</span><div class="og-text"><strong>YouTube Hub Video</strong>Full script, thumbnail, description, tags</div></div>
+      <div class="og-item"><span class="og-num">06</span><div class="og-text"><strong>Ashes & Escrows Episode</strong>Full script, thumbnail, description</div></div>
+      <div class="og-item"><span class="og-num">07</span><div class="og-text"><strong>YouTube Short</strong>Script + cover text direction</div></div>
+      <div class="og-item"><span class="og-num">08</span><div class="og-text"><strong>Native TikTok Re-record</strong>Car Confession version @alexa.realtor</div></div>
+      <div class="og-item"><span class="og-num">09</span><div class="og-text"><strong>TikTok Angle</strong>Separate topic for @its.myash</div></div>
+      <div class="og-item"><span class="og-num">10</span><div class="og-text"><strong>4 Car Confession Hooks</strong>Tue/Wed/Thu @alexa.realtor + Wed @its.myash</div></div>
+      <div class="og-item"><span class="og-num">11</span><div class="og-text"><strong>2 LinkedIn Posts</strong>@alexa.realtor operator voice</div></div>
+      <div class="og-item"><span class="og-num">12</span><div class="og-text"><strong>2 Google Business Posts</strong>Monroe County keyword-rich</div></div>
+      <div class="og-item"><span class="og-num">13</span><div class="og-text"><strong>ZCM Tags + Monetization Goals</strong>Every piece of content mapped</div></div>
+    </div>
+  </div>
+
+  <!-- SUNDAY PROMPT — SECTION A -->
+  <div class="sun-section">
+    <div class="sun-section-header">
+      <div class="ssh-label">Section A — Fill This In Every Sunday</div>
+      <div class="ssh-title">Your Intelligence Inputs + Personal Moment</div>
+    </div>
+    <div class="pc-prompt-label">Copy from here ↓</div>
+    <div class="pc-prompt"><span class="cm">// SECTION A — FILL IN EVERY SUNDAY
+// Paste your Perplexity outputs below. Write SKIP for any you didn't run this week.</span>
+
+<span class="hl">TODAY'S DATE:</span> <span class="ph">[INSERT DATE]</span>
+
+<span class="hl">THIS WEEK'S PERSONAL MOMENT:</span>
+<span class="ph">[2-4 sentences. One real thing that happened this week across any of your brands — a deal, a moment at Nell's, a cigar, a DR thought, a client situation, something you almost didn't do. Raw version. This becomes the human opening of your Operator Life article.]</span>
+
+<span class="hl">--- PERPLEXITY OUTPUT 1: MARKET PULSE ---</span>
+<span class="ph">[Paste Prompt 01 output here — or write SKIP]</span>
+
+<span class="hl">--- PERPLEXITY OUTPUT 2A: INVESTOR INTEL WEEKLY ---</span>
+<span class="ph">[Paste Prompt 02A output here — or write SKIP]</span>
+
+<span class="hl">--- PERPLEXITY OUTPUT 2B: INVESTOR INTEL MONTHLY ---</span>
+<span class="ph">[Paste Prompt 02B output here if first week of month — or write SKIP]</span>
+
+<span class="hl">--- PERPLEXITY OUTPUT 3: THE DR PLAY ---</span>
+<span class="ph">[Paste Prompt 03 output here if first week of month — or write SKIP]</span>
+
+<span class="hl">--- PERPLEXITY OUTPUT 4A: COFFEE ---</span>
+<span class="ph">[Paste Prompt 04A output here if coffee week — or write SKIP]</span>
+
+<span class="hl">--- PERPLEXITY OUTPUT 4B: CIGARS ---</span>
+<span class="ph">[Paste Prompt 04B output here — or write SKIP]</span></div>
+  </div>
+
+  <!-- SUNDAY PROMPT — SECTION B -->
+  <div class="sun-section">
+    <div class="sun-section-header">
+      <div class="ssh-label">Section B — Never Change This</div>
+      <div class="ssh-title">Your Fixed Identity & Brand Context</div>
+    </div>
+    <div class="pc-prompt-label">Fixed — Copy Exactly As Written</div>
+    <div class="pc-prompt"><span class="cm">// SECTION B — FIXED CONTEXT. NEVER EDIT THIS SECTION.
+// This tells Claude everything about you, your brands, your voice, and your rules.</span>
+
+You are the production engine for ROAST, the newsletter and content brand of Alexa Sanchez.
+
+<span class="hl">IDENTITY:</span>
+Alexa Sanchez. Licensed Realtor, PA License #RS326383, Smart Way America Realty. Focused on Pocono Mountains STR investor market (Monroe County) and Dominican Republic real estate. Creator of Filler & Roast — artisanal coffee sold exclusively at Nell's Social cigar lounge. Personal brand @its.myash — cigar culture, entrepreneurship, lifestyle. Boutique DR cigar brand in development — DR origin story. Contact: (570) 688-8147 | Alexa@alexasanchez.net
+
+<span class="hl">THE NEWSLETTER — ROAST (@itsmyash on Substack):</span>
+"The work behind the work. Real estate. Cigars. Coffee. Three businesses, one operator, zero filters."
+Published Monday. Sections: Market Pulse → Investor Intel → The DR Play (monthly) → Filler & Roast → What We're Reading.
+Voice: Personal, direct, operator-first. Never a market report. Never a press release. Always a human building something real.
+Client privacy rule: Never use client names or property addresses in any content. Buyers are "a buyer." Sellers are "a seller." Locations stay at town level — East Stroudsburg, Tobyhanna, Mount Pocono.
+
+<span class="hl">SOCIAL ACCOUNTS:</span>
+@alexa.realtor — real estate + entrepreneur life (IG, TikTok, YouTube, LinkedIn, Facebook)
+@its.myash — cigars, lifestyle, entrepreneurship, DR origin story (IG, TikTok)
+@fillerandroast — Filler & Roast coffee brand (IG, TikTok, YouTube Shorts)
+
+<span class="hl">FILLER & ROAST POSTING CADENCE:</span>
+Sunday IG: "Before the First Draw" — coffee + cigar morning ritual
+Friday IG + TikTok: "Coffee for the Leaf" — pairing content
+Friday YouTube Shorts: "Coffee for the Leaf" — different edit than TikTok
+Core pairings: House Blend/Maduro | Butter Pecan/Connecticut | Amaretto/Evening Draw
+
+<span class="hl">VIDEO SCRIPT RULES — ALL PLATFORMS:</span>
+Strong hook in first 2 seconds. Direct statements only — no questions. No fluff. Short punchy lines. Bold, factual, edgy. List-style beats. Executive cover energy.
+
+<span class="hl">CAR CONFESSION RULES:</span>
+20 seconds max. Shock value. Direct and edgy. How Alexa actually talks — not a report.
+Cover text: neon green for stats, red or white for confessions. Chunky tilted font over face.
+
+<span class="hl">ASHES & ESCROWS RULES:</span>
+Quirky, intelligently insulting, talking to best friend. One-take confessional — cigar or coffee in hand. Under 60 seconds. Raw, no-fluff, realistic verbiage. Five roast targets: lowball buyers, realtors who don't know the market, Pocono skeptics, cigar beginners, tie-it-all-together anchor.
+
+<span class="hl">SUBSTACK ARTICLE RULES:</span>
+Monday = Operator Life: personal story first, business second. Something real that happened.
+Thursday = Experience Economy: ritual, lifestyle, coffee, cigars, operator aesthetic.
+Never a market report. Never a press release. Always a human building something real.
+
+<span class="hl">SUBSTACK NOTES RULES — 21 per week:</span>
+7 Morning Notes: sharpest line from the article, one per day
+7 Midday Notes: thematic, fits the article's world, stands alone
+7 Evening Notes: pure personal voice — cigar moment, operator insight, DR thought
+Each Note must: (1) lead with a specific personal moment not a tip, (2) make the reader feel something before teaching them anything, (3) end with a line that's about the reader not the writer.
+
+<span class="hl">DR CONTENT — MONTHLY DROP:</span>
+@its.myash leads DR cigar/tobacco origin + lifestyle. @alexa.realtor leads DR real estate investment. Drops once per month across all platforms.
+
+<span class="hl">RECORDING SCHEDULE:</span>
+Wednesday morning = primary heavy recording day (most privacy, can smoke on camera)
+Sunday = secondary for hub content
+
+<span class="hl">ZCM TAGS — apply to every piece:</span>
+Environment: Social Feed | Video Platform | Community | AI Visibility
+Monetization goal: Grow followers | Drive sales | Generate leads</div>
+  </div>
+
+  <!-- SUNDAY PROMPT — SECTION C -->
+  <div class="sun-section">
+    <div class="sun-section-header">
+      <div class="ssh-label">Section C — Never Change This</div>
+      <div class="ssh-title">The 13 Outputs — Production Instructions</div>
+    </div>
+    <div class="pc-prompt-label">Fixed — Copy Exactly As Written</div>
+    <div class="pc-prompt"><span class="cm">// SECTION C — PRODUCTION INSTRUCTIONS. NEVER EDIT THIS SECTION.
+// Claude works through all 13 outputs in sequence using the Perplexity data from Section A.</span>
+
+Using the intelligence from the Perplexity outputs in Section A — plus the personal moment provided — produce all of the following in order:
+
+<span class="hl">OUTPUT 1 — ROAST NEWSLETTER DRAFT</span>
+Write the full ROAST newsletter for this Monday in the following structure:
+
+OPENER (3 short paragraphs):
+- Paragraph 1: Personal hook — seasonal, operational, or human. Reference the personal moment.
+- Paragraph 2: Bridge to this week's themes — what's in the data, what it means.
+- Paragraph 3: What's in this issue — natural, not a bulleted list.
+
+SECTION 01 — MARKET PULSE:
+Headline and dek. 3-4 paragraphs using Market Pulse data. Pull quote in Alexa's voice. Takeaway box: 3 bullet points with emoji, bold lead-in, actionable content.
+
+SECTION 02 — INVESTOR INTEL:
+Headline and dek. 3-4 paragraphs using Investor Intel data. Submarket table if monthly deep dive available. Property spotlight if a strong listing was surfaced. Investor checklist takeaway box: 3 items.
+
+SECTION 03 — THE DR PLAY (include only if DR output was provided):
+DR banner headline. 3 paragraphs using DR data. Stats row: 3 key metrics. Takeaway box: 3 items.
+
+SECTION 04 — FILLER & ROAST:
+Headline and dek. 2 paragraphs — what's happening at Nell's, what's pairing well. Keep it personal and lounge-specific.
+
+SECTION 05 — WHAT WE'RE READING:
+4 items curated from signals across all Perplexity outputs. Format: emoji | source | headline | 2-sentence summary.
+
+<span class="hl">OUTPUT 2 — MONDAY SUBSTACK ARTICLE (Operator Life)</span>
+Title, subtitle, full article 600-900 words. Open with personal moment expanded into a scene. Build to operator insight. Personal story first, lesson second. Voice: direct, no fluff, a little edgy, self-aware. Never a market report.
+
+<span class="hl">OUTPUT 3 — THURSDAY SUBSTACK ARTICLE (Experience Economy)</span>
+Title, subtitle, full article 500-800 words. Topic: ritual, lifestyle, coffee, cigars, or operator aesthetic drawn from coffee or cigar intelligence. Feel: sensory, intentional, slower pace. Read with a drink in hand.
+
+<span class="hl">OUTPUT 4 — 21 SUBSTACK NOTES</span>
+Label clearly: Morning Notes (7) | Midday Notes (7) | Evening Notes (7).
+Rules: personal moment first, feeling before teaching, end with the reader.
+Morning and Midday drawn from both articles. Evening Notes are pure voice.
+Schedule: 3 per day, Monday through Sunday (Morning / Midday / Evening).
+
+<span class="hl">OUTPUT 5 — YOUTUBE HUB VIDEO</span>
+Full script for @alexa.realtor. Topic from strongest Investor Intel or Market Pulse signal.
+Hook (0:00-0:08), open (0:08-0:30), 3 body sections with timestamps, CTA.
+Thumbnail direction. YouTube-optimized description + tags.
+
+<span class="hl">OUTPUT 6 — ASHES & ESCROWS EPISODE</span>
+Full script. Under 60 seconds. Quirky, intelligently insulting, one-take confessional.
+Uploads Thursday. Cigar or coffee in hand. Roast one of the five targets.
+Thumbnail direction + description.
+
+<span class="hl">OUTPUT 7 — YOUTUBE SHORT + COVER TEXT</span>
+Full script under 60 seconds from hub video's sharpest insight.
+Cover text: bold chunky font, slightly tilted, neon green for stats, red/white for statements.
+
+<span class="hl">OUTPUT 8 — NATIVE TIKTOK RE-RECORD (@alexa.realtor)</span>
+Same topic as Output 7 but rawer. Written as Car Confession — not a report. No YouTube branding.
+
+<span class="hl">OUTPUT 9 — TIKTOK ANGLE (@its.myash)</span>
+Separate topic from Output 8. From cigar or coffee intelligence. Cigar authority voice.
+
+<span class="hl">OUTPUT 10 — CAR CONFESSION HOOKS (4 total)</span>
+20 seconds max each. Shock value. Direct and edgy. Cover text direction for each.
+- Tuesday @alexa.realtor — real estate + entrepreneur life
+- Wednesday @alexa.realtor — real estate focus
+- Thursday @alexa.realtor — entrepreneur life
+- Wednesday @its.myash — entrepreneur + cigars
+
+<span class="hl">OUTPUT 11 — LINKEDIN POSTS (2 total, @alexa.realtor)</span>
+Professional but not corporate. Operator voice. One real estate focused, one entrepreneur/operator. Hook line, 3-4 short paragraphs, CTA. No hashtag dumps.
+
+<span class="hl">OUTPUT 12 — GOOGLE BUSINESS POSTS (2 total, @alexa.realtor)</span>
+Short. Local. Keyword-rich. Under 150 words each. Monroe County / Pocono Mountains specific.
+
+<span class="hl">OUTPUT 13 — ZCM TAGS + MONETIZATION GOALS</span>
+For every piece of content above, list ZCM Environment and Monetization Goal in a clean table.
+
+<span class="cm">// END OF PROMPT
+// Copy Sections A + B + C into Claude every Sunday.
+// Only fill in Section A — never change B or C.</span></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p><strong>ROAST</strong> · @itsmyash · Alexa Sanchez · PA License #RS326383</p>
+    <p>Thursday: Perplexity gathers · Sunday: Claude produces · Monday: ROAST publishes</p>
+    <p>(570) 688-8147 · Alexa@alexasanchez.net</p>
+  </div>
+
+</div>
+</body>
+</html>
