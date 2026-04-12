@@ -83,6 +83,32 @@
   }
   .mh-rule { width: 48px; height: 2px; background: var(--burgundy); margin-top: 20px; }
 
+  /* ── CHANGELOG BANNER ── */
+  .changelog-banner {
+    background: #2A1A08;
+    border-left: 3px solid var(--gold);
+    padding: 16px 24px;
+    margin-bottom: 4px;
+  }
+  .cl-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .cl-items { display: flex; flex-direction: column; gap: 4px; }
+  .cl-item {
+    font-size: 11.5px;
+    color: rgba(242,237,227,0.6);
+    line-height: 1.5;
+    padding-left: 12px;
+    position: relative;
+  }
+  .cl-item::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-size: 10px; }
+  .cl-item strong { color: rgba(242,237,227,0.9); }
+
   /* ── RHYTHM BAR ── */
   .rhythm-bar {
     background: var(--burgundy);
@@ -244,6 +270,7 @@
   .b-biweekly { background: var(--green); color: var(--cream); }
   .b-deep { background: var(--gold); color: var(--navy); }
   .b-fixed { background: rgba(255,255,255,0.1); color: rgba(242,237,227,0.7); }
+  .b-suspended { background: #3A1A1A; color: rgba(242,237,227,0.5); text-decoration: line-through; }
 
   .pc-purpose {
     padding: 12px 24px;
@@ -376,8 +403,21 @@
     <div class="mh-inner">
       <div class="mh-eyebrow">ROAST · Complete Weekly Operating System</div>
       <div class="mh-title">Thursday gathers. <em>Sunday produces.</em></div>
-      <div class="mh-sub">Everything you need to run ROAST in one document. Five Perplexity prompts for Thursday. One Claude production prompt for Sunday. Thirteen outputs. One newsletter. Full week covered.</div>
+      <div class="mh-sub">Five Perplexity prompts for Thursday. One Claude production prompt for Sunday. Twelve outputs. Full week covered.</div>
       <div class="mh-rule"></div>
+    </div>
+  </div>
+
+  <!-- CHANGELOG BANNER -->
+  <div class="changelog-banner">
+    <div class="cl-label">Updated April 2026 — What Changed</div>
+    <div class="cl-items">
+      <div class="cl-item"><strong>Newsletter (Output 1) suspended</strong> — Substack is new with no subscriber list. Resumes when list is active. Now 12 outputs total.</div>
+      <div class="cl-item"><strong>Monday Substack article is now the primary weekly publish</strong> — this is Output 1.</div>
+      <div class="cl-item"><strong>Hub video moved to Sunday</strong> — record AND upload same day. ~30 min. Coffee in hand. One camera.</div>
+      <div class="cl-item"><strong>Native TikTok re-record moved to Wednesday</strong> — record and upload same day at 12PM. Previously listed as Thursday.</div>
+      <div class="cl-item"><strong>Sunday cadence updated</strong> — Coffee &amp; Ash Ritual (@its.myash IG/FB 10:15AM) is the active Sunday post. Before the First Draw (@fillerandroast) and Sunday Gratitude (Nextdoor) removed from active cadence.</div>
+      <div class="cl-item"><strong>Wednesday recording load updated</strong> — now captures: Ashes &amp; Escrows, Short, Car Confession batch, @its.myash Car Confession, Native TikTok, Tonight's Smoke Batch, F&amp;R stills.</div>
     </div>
   </div>
 
@@ -387,17 +427,21 @@
       <div class="rhythm-day-name">Thursday</div>
       <div class="rhythm-day-action">Run 5 Perplexity prompts → Save all outputs</div>
     </div>
-    <div class="rhythm-day">
+    <div class="rhythm-day active">
       <div class="rhythm-day-name">Sunday</div>
-      <div class="rhythm-day-action">Paste outputs into Claude → 13 outputs produced</div>
+      <div class="rhythm-day-action">Claude prompt → 12 outputs + hub video record &amp; upload</div>
     </div>
     <div class="rhythm-day">
       <div class="rhythm-day-name">Monday</div>
-      <div class="rhythm-day-action">ROAST publishes</div>
+      <div class="rhythm-day-action">Operator Life article publishes</div>
+    </div>
+    <div class="rhythm-day">
+      <div class="rhythm-day-name">Wednesday</div>
+      <div class="rhythm-day-action">4+ recordings: Ashes &amp; Escrows, Short, Car Confessions, TikTok re-record</div>
     </div>
     <div class="rhythm-day">
       <div class="rhythm-day-name">Thursday</div>
-      <div class="rhythm-day-action">Ashes & Escrows uploads → Experience Economy publishes</div>
+      <div class="rhythm-day-action">Ashes &amp; Escrows uploads · Experience Economy publishes</div>
     </div>
   </div>
 
@@ -523,13 +567,13 @@ Be specific and cite sources throughout.</div>
         <div class="pc-title">Pocono STR Monthly Deep Dive</div>
       </div>
       <div class="pc-badges">
-        <span class="badge b-monthly">1st Monday/Month</span>
+        <span class="badge b-monthly">1st Thursday/Month</span>
         <span class="badge b-deep">Deep Research</span>
       </div>
     </div>
-    <div class="pc-purpose">Full monthly intelligence pull — submarket scores, closed sales trends, yield data, and the competitive landscape. Run on the first Monday of each month only.</div>
-    <div class="pc-prompt-label">Copy & Paste Into Perplexity Pro → Deep Research — FIRST MONDAY OF MONTH ONLY</div>
-    <div class="pc-prompt">You are a short-term rental market analyst. I am a PA-licensed realtor publishing a monthly STR investor newsletter covering the Pocono Mountains, Monroe County, Pennsylvania. Run this on the first Monday of <span class="ph">[INSERT MONTH AND YEAR]</span>.
+    <div class="pc-purpose">Full monthly intelligence pull — submarket scores, closed sales trends, yield data, and the competitive landscape. Run on the first Thursday of each month only.</div>
+    <div class="pc-prompt-label">Copy & Paste Into Perplexity Pro → Deep Research — FIRST THURSDAY OF MONTH ONLY</div>
+    <div class="pc-prompt">You are a short-term rental market analyst. I am a PA-licensed realtor publishing a monthly STR investor newsletter covering the Pocono Mountains, Monroe County, Pennsylvania. Run this on the first Thursday of <span class="ph">[INSERT MONTH AND YEAR]</span>.
 
 Pull the most current available data on the following:
 
@@ -579,7 +623,7 @@ Cite all data sources. Note data collection date for all figures.</div>
         <span class="badge b-deep">Deep Research</span>
       </div>
     </div>
-    <div class="pc-purpose">Monthly DR intelligence — tourism signals, infrastructure updates, active listings, and CONFOTUR policy. Powers both the DR Play newsletter section and your monthly DR content drop across all platforms.</div>
+    <div class="pc-purpose">Monthly DR intelligence — tourism signals, infrastructure updates, active listings, and CONFOTUR policy. Powers the DR Play content drop across all platforms once per month.</div>
     <div class="pc-prompt-label">Copy & Paste Into Perplexity Pro → Deep Research — FIRST THURSDAY OF MONTH ONLY</div>
     <div class="pc-prompt">You are a Caribbean real estate and tourism analyst. I am a realtor and operator who covers Dominican Republic real estate investment for a US investor audience. Run this for <span class="ph">[INSERT MONTH AND YEAR]</span>.
 
@@ -744,33 +788,32 @@ Cite sources including Halfwheel, Cigar Aficionado, Cigar Journal, PCA announcem
     <div class="dh-day">SUN</div>
     <div class="dh-content">
       <div class="dh-label">Step Two — Sunday</div>
-      <div class="dh-title">Run Your Claude Production Prompt</div>
-      <div class="dh-sub">Open Claude → New conversation → Copy everything below → Fill in your inputs → Send it</div>
+      <div class="dh-title">Run Your Claude Production Prompt + Record Hub Video</div>
+      <div class="dh-sub">Claude prompt first → 12 outputs → then record & upload hub video (~30 min, coffee in hand, one camera)</div>
     </div>
   </div>
 
   <div class="instruction-box">
     <div class="ib-title">How Sunday Works</div>
-    <div class="ib-text">Copy the entire prompt below — Section A through Section C — into a new Claude conversation every Sunday. Fill in the date, paste your Perplexity outputs into their labeled slots, and add your personal moment for the week. If you didn't run a particular Perplexity prompt this week, write <strong>SKIP</strong> in that slot. Claude produces all 13 outputs in one session.</div>
+    <div class="ib-text">Copy the entire prompt below — Section A through Section C — into a new Claude conversation every Sunday. Fill in the date, paste your Perplexity outputs into their labeled slots, and add your personal moment for the week. If you didn't run a particular Perplexity prompt this week, write <strong>SKIP</strong> in that slot. Claude produces all 12 outputs in one session. After outputs are done — record and upload your hub video.</div>
   </div>
 
-  <!-- OUTPUT SUMMARY -->
+  <!-- OUTPUT SUMMARY — 12 outputs -->
   <div class="output-grid">
-    <div class="og-title">What One Sunday Session Produces — 13 Outputs</div>
+    <div class="og-title">What One Sunday Session Produces — 12 Outputs</div>
     <div class="og-items">
-      <div class="og-item"><span class="og-num">01</span><div class="og-text"><strong>ROAST Newsletter Draft</strong>All 5 sections, ready to publish Monday</div></div>
-      <div class="og-item"><span class="og-num">02</span><div class="og-text"><strong>Monday Substack Article</strong>Operator Life — personal story first</div></div>
-      <div class="og-item"><span class="og-num">03</span><div class="og-text"><strong>Thursday Substack Article</strong>Experience Economy — ritual and lifestyle</div></div>
-      <div class="og-item"><span class="og-num">04</span><div class="og-text"><strong>21 Substack Notes</strong>7 Morning + 7 Midday + 7 Evening</div></div>
-      <div class="og-item"><span class="og-num">05</span><div class="og-text"><strong>YouTube Hub Video</strong>Full script, thumbnail, description, tags</div></div>
-      <div class="og-item"><span class="og-num">06</span><div class="og-text"><strong>Ashes & Escrows Episode</strong>Full script, thumbnail, description</div></div>
-      <div class="og-item"><span class="og-num">07</span><div class="og-text"><strong>YouTube Short</strong>Script + cover text direction</div></div>
-      <div class="og-item"><span class="og-num">08</span><div class="og-text"><strong>Native TikTok Re-record</strong>Car Confession version @alexa.realtor</div></div>
-      <div class="og-item"><span class="og-num">09</span><div class="og-text"><strong>TikTok Angle</strong>Separate topic for @its.myash</div></div>
-      <div class="og-item"><span class="og-num">10</span><div class="og-text"><strong>4 Car Confession Hooks</strong>Tue/Wed/Thu @alexa.realtor + Wed @its.myash</div></div>
-      <div class="og-item"><span class="og-num">11</span><div class="og-text"><strong>2 LinkedIn Posts</strong>@alexa.realtor operator voice</div></div>
-      <div class="og-item"><span class="og-num">12</span><div class="og-text"><strong>2 Google Business Posts</strong>Monroe County keyword-rich</div></div>
-      <div class="og-item"><span class="og-num">13</span><div class="og-text"><strong>ZCM Tags + Monetization Goals</strong>Every piece of content mapped</div></div>
+      <div class="og-item"><span class="og-num">01</span><div class="og-text"><strong>Monday Substack Article</strong>Operator Life — personal story first · publishes Monday 8AM</div></div>
+      <div class="og-item"><span class="og-num">02</span><div class="og-text"><strong>Thursday Substack Article</strong>Experience Economy — ritual and lifestyle · publishes Thursday 8AM</div></div>
+      <div class="og-item"><span class="og-num">03</span><div class="og-text"><strong>21 Substack Notes</strong>7 Morning + 7 Midday + 7 Evening · 3/day · growth engine</div></div>
+      <div class="og-item"><span class="og-num">04</span><div class="og-text"><strong>YouTube Hub Video Script</strong>Full script, thumbnail direction, description + tags · record & upload Sunday</div></div>
+      <div class="og-item"><span class="og-num">05</span><div class="og-text"><strong>Ashes & Escrows Episode</strong>Full script, thumbnail, description · record Wed · uploads Thu 10AM</div></div>
+      <div class="og-item"><span class="og-num">06</span><div class="og-text"><strong>YouTube Short + Cover Text</strong>Script + cover text direction · record Wed · uploads Thu 11AM</div></div>
+      <div class="og-item"><span class="og-num">07</span><div class="og-text"><strong>Native TikTok Re-record</strong>@its.myash · rawer · no watermark · record & upload Wed 12PM</div></div>
+      <div class="og-item"><span class="og-num">08</span><div class="og-text"><strong>TikTok Angle — @its.myash</strong>Cigar/coffee topic · cigar authority voice · Coffee & Ash or Tonight's Smoke angle</div></div>
+      <div class="og-item"><span class="og-num">09</span><div class="og-text"><strong>Car Confession Hooks (3)</strong>Tue @alexa.realtor real estate · Thu @alexa.realtor entrepreneur · Wed @its.myash cigars</div></div>
+      <div class="og-item"><span class="og-num">10</span><div class="og-text"><strong>LinkedIn Posts (2)</strong>@alexa.realtor · Mon market signal + Thu investor signal · operator voice</div></div>
+      <div class="og-item"><span class="og-num">11</span><div class="og-text"><strong>Google Business Posts (2)</strong>Monroe County keyword-rich · Mon 9AM + Wed 9AM · under 150 words each</div></div>
+      <div class="og-item"><span class="og-num">12</span><div class="og-text"><strong>ZCM Tags + Monetization Goals</strong>Every piece mapped · Environment + Goal · full reference table</div></div>
     </div>
   </div>
 
@@ -796,10 +839,10 @@ Cite sources including Halfwheel, Cigar Aficionado, Cigar Journal, PCA announcem
 <span class="ph">[Paste Prompt 02A output here — or write SKIP]</span>
 
 <span class="hl">--- PERPLEXITY OUTPUT 2B: INVESTOR INTEL MONTHLY ---</span>
-<span class="ph">[Paste Prompt 02B output here if first week of month — or write SKIP]</span>
+<span class="ph">[Paste Prompt 02B output here if first Thursday of month — or write SKIP]</span>
 
 <span class="hl">--- PERPLEXITY OUTPUT 3: THE DR PLAY ---</span>
-<span class="ph">[Paste Prompt 03 output here if first week of month — or write SKIP]</span>
+<span class="ph">[Paste Prompt 03 output here if first Thursday of month — or write SKIP]</span>
 
 <span class="hl">--- PERPLEXITY OUTPUT 4A: COFFEE ---</span>
 <span class="ph">[Paste Prompt 04A output here if coffee week — or write SKIP]</span>
@@ -818,26 +861,40 @@ Cite sources including Halfwheel, Cigar Aficionado, Cigar Journal, PCA announcem
     <div class="pc-prompt"><span class="cm">// SECTION B — FIXED CONTEXT. NEVER EDIT THIS SECTION.
 // This tells Claude everything about you, your brands, your voice, and your rules.</span>
 
-You are the production engine for ROAST, the newsletter and content brand of Alexa Sanchez.
+You are the production engine for the weekly content brand of Alexa Sanchez.
 
 <span class="hl">IDENTITY:</span>
 Alexa Sanchez. Licensed Realtor, PA License #RS326383, Smart Way America Realty. Focused on Pocono Mountains STR investor market (Monroe County) and Dominican Republic real estate. Creator of Filler & Roast — artisanal coffee sold exclusively at Nell's Social cigar lounge. Personal brand @its.myash — cigar culture, entrepreneurship, lifestyle. Boutique DR cigar brand in development — DR origin story. Contact: (570) 688-8147 | Alexa@alexasanchez.net
 
-<span class="hl">THE NEWSLETTER — ROAST (@itsmyash on Substack):</span>
+<span class="hl">SUBSTACK — THE LIFESTYLE MARKET LETTER (@itsmyash):</span>
 "The work behind the work. Real estate. Cigars. Coffee. Three businesses, one operator, zero filters."
-Published Monday. Sections: Market Pulse → Investor Intel → The DR Play (monthly) → Filler & Roast → What We're Reading.
+NOTE: Substack is brand new with no subscriber list. The newsletter format (full email blast) is suspended until the list is active. The Monday Substack article (Operator Life) is the primary weekly post. The 21 Substack Notes are the growth engine — they surface to non-subscribers and drive new follows.
+2x/week articles: Monday = Operator Life (personal story first, 600-900 words), Thursday = Experience Economy (ritual, lifestyle, coffee, cigars, 500-800 words).
 Voice: Personal, direct, operator-first. Never a market report. Never a press release. Always a human building something real.
 Client privacy rule: Never use client names or property addresses in any content. Buyers are "a buyer." Sellers are "a seller." Locations stay at town level — East Stroudsburg, Tobyhanna, Mount Pocono.
 
 <span class="hl">SOCIAL ACCOUNTS:</span>
-@alexa.realtor — real estate + entrepreneur life (IG, TikTok, YouTube, LinkedIn, Facebook)
-@its.myash — cigars, lifestyle, entrepreneurship, DR origin story (IG, TikTok)
-@fillerandroast — Filler & Roast coffee brand (IG, TikTok, YouTube Shorts)
+@alexa.realtor — real estate + entrepreneur life (IG, TikTok, YouTube @AlexaSanchezRealtor, LinkedIn, Facebook Personal, Facebook Business, Nextdoor, Google Business)
+@its.myash — cigars, lifestyle, entrepreneurship, DR origin story (IG, TikTok, FB)
+@fillerandroast — Filler & Roast coffee brand (IG + FB only — no separate TikTok account)
 
-<span class="hl">FILLER & ROAST POSTING CADENCE:</span>
-Sunday IG: "Before the First Draw" — coffee + cigar morning ritual
-Friday IG + TikTok: "Coffee for the Leaf" — pairing content
-Friday YouTube Shorts: "Coffee for the Leaf" — different edit than TikTok
+<span class="hl">RECORDING SCHEDULE:</span>
+Sunday = hub video recording AND upload day. ~30 min. Coffee in hand. One camera. Record and upload same day.
+Wednesday morning = primary heavy recording day. 4+ recordings. Most privacy. Can smoke on camera.
+Wednesday captures: Ashes & Escrows episode (uploads Thu 10AM) · YouTube Short (uploads Thu 11AM) · Car Confession batch @alexa.realtor — Tue real estate + Thu entrepreneur · Car Confession @its.myash entrepreneur + cigars (upload Wed 12PM) · Native TikTok re-record same topic as Short no watermark (upload Wed 12PM) · Tonight's Smoke Batch cigar carousel (uploads Mon 7PM) · F&R Pairing stills only — video records Thu uploads Fri.
+
+<span class="hl">WEEKLY POSTING CADENCE:</span>
+Sunday: Hub video record + upload @alexa.realtor YouTube · Coffee & Ash Ritual @its.myash IG+FB 10:15AM
+Monday: Operator Life Substack 8AM · Real Estate Insight @alexa.realtor FB Personal 8AM · Market Signal @alexa.realtor LinkedIn 8AM · Google Business Post 9AM · TikTok Hub Repurpose @its.myash 6PM · Tonight's Smoke Carousel @its.myash IG 7PM
+Tuesday: IG Reel Hub Repurpose @its.myash 10AM · Pocono Pulse @alexa.realtor IG 11AM · Car Confession Real Estate @alexa.realtor IG 12PM · Neighborly Post @alexa.realtor Nextdoor 6PM · Nell's Social This Week's Smoke @fillerandroast FB tag 6PM
+Wednesday: Ash Shot @its.myash IG 8AM · Market Insight @alexa.realtor LinkedIn 9AM · Under Contract Story @alexa.realtor IG+FB Story 11AM · Car Confession + Native TikTok @its.myash upload 12PM
+Thursday: Experience Economy Substack 8AM · Investor Signal @alexa.realtor LinkedIn 8:30AM · Ashes & Escrows upload @alexa.realtor YouTube 10AM · YouTube Short upload 11AM · Car Confession Entrepreneur @alexa.realtor IG 12PM · Community Roundup @alexa.realtor Nextdoor 6PM
+Friday: Market Insight @alexa.realtor FB Biz 8AM · Coffee for the Leaf @fillerandroast IG+FB 9AM · The Pairing biweekly @fillerandroast IG 10AM · Coffee for the Leaf TikTok @its.myash 11AM · All Brands FB Repurpose 12PM · Weekend Smoke Reel @its.myash IG 5PM
+Saturday: Weekend Market Tip @alexa.realtor Nextdoor 10AM · Behind the Scenes Stories @its.myash IG Story 2PM
+
+<span class="hl">FILLER & ROAST CADENCE:</span>
+Tuesday: Nell's Social — This Week's Smoke (FB tag only — Alexa has no direct access to Nell's accounts)
+Friday: Coffee for the Leaf (IG + FB Biz 9AM) · The Pairing biweekly (IG 10AM, recorded Thu)
 Core pairings: House Blend/Maduro | Butter Pecan/Connecticut | Amaretto/Evening Draw
 
 <span class="hl">VIDEO SCRIPT RULES — ALL PLATFORMS:</span>
@@ -850,23 +907,15 @@ Cover text: neon green for stats, red or white for confessions. Chunky tilted fo
 <span class="hl">ASHES & ESCROWS RULES:</span>
 Quirky, intelligently insulting, talking to best friend. One-take confessional — cigar or coffee in hand. Under 60 seconds. Raw, no-fluff, realistic verbiage. Five roast targets: lowball buyers, realtors who don't know the market, Pocono skeptics, cigar beginners, tie-it-all-together anchor.
 
-<span class="hl">SUBSTACK ARTICLE RULES:</span>
-Monday = Operator Life: personal story first, business second. Something real that happened.
-Thursday = Experience Economy: ritual, lifestyle, coffee, cigars, operator aesthetic.
-Never a market report. Never a press release. Always a human building something real.
-
 <span class="hl">SUBSTACK NOTES RULES — 21 per week:</span>
-7 Morning Notes: sharpest line from the article, one per day
-7 Midday Notes: thematic, fits the article's world, stands alone
-7 Evening Notes: pure personal voice — cigar moment, operator insight, DR thought
+3 per day, Monday through Sunday (Morning / Midday / Evening).
+7 Morning Notes: sharpest line from the article, one per day.
+7 Midday Notes: thematic, fits the article's world, stands alone.
+7 Evening Notes: pure personal voice — cigar moment, operator insight, DR thought.
 Each Note must: (1) lead with a specific personal moment not a tip, (2) make the reader feel something before teaching them anything, (3) end with a line that's about the reader not the writer.
 
 <span class="hl">DR CONTENT — MONTHLY DROP:</span>
 @its.myash leads DR cigar/tobacco origin + lifestyle. @alexa.realtor leads DR real estate investment. Drops once per month across all platforms.
-
-<span class="hl">RECORDING SCHEDULE:</span>
-Wednesday morning = primary heavy recording day (most privacy, can smoke on camera)
-Sunday = secondary for hub content
 
 <span class="hl">ZCM TAGS — apply to every piece:</span>
 Environment: Social Feed | Video Platform | Community | AI Visibility
@@ -877,84 +926,72 @@ Monetization goal: Grow followers | Drive sales | Generate leads</div>
   <div class="sun-section">
     <div class="sun-section-header">
       <div class="ssh-label">Section C — Never Change This</div>
-      <div class="ssh-title">The 13 Outputs — Production Instructions</div>
+      <div class="ssh-title">The 12 Outputs — Production Instructions</div>
     </div>
     <div class="pc-prompt-label">Fixed — Copy Exactly As Written</div>
     <div class="pc-prompt"><span class="cm">// SECTION C — PRODUCTION INSTRUCTIONS. NEVER EDIT THIS SECTION.
-// Claude works through all 13 outputs in sequence using the Perplexity data from Section A.</span>
+// Claude works through all 12 outputs in sequence using the Perplexity data from Section A.
+// Note: Newsletter format is suspended (no subscriber list yet). Starting at Output 1 = Monday article.</span>
 
 Using the intelligence from the Perplexity outputs in Section A — plus the personal moment provided — produce all of the following in order:
 
-<span class="hl">OUTPUT 1 — ROAST NEWSLETTER DRAFT</span>
-Write the full ROAST newsletter for this Monday in the following structure:
-
-OPENER (3 short paragraphs):
-- Paragraph 1: Personal hook — seasonal, operational, or human. Reference the personal moment.
-- Paragraph 2: Bridge to this week's themes — what's in the data, what it means.
-- Paragraph 3: What's in this issue — natural, not a bulleted list.
-
-SECTION 01 — MARKET PULSE:
-Headline and dek. 3-4 paragraphs using Market Pulse data. Pull quote in Alexa's voice. Takeaway box: 3 bullet points with emoji, bold lead-in, actionable content.
-
-SECTION 02 — INVESTOR INTEL:
-Headline and dek. 3-4 paragraphs using Investor Intel data. Submarket table if monthly deep dive available. Property spotlight if a strong listing was surfaced. Investor checklist takeaway box: 3 items.
-
-SECTION 03 — THE DR PLAY (include only if DR output was provided):
-DR banner headline. 3 paragraphs using DR data. Stats row: 3 key metrics. Takeaway box: 3 items.
-
-SECTION 04 — FILLER & ROAST:
-Headline and dek. 2 paragraphs — what's happening at Nell's, what's pairing well. Keep it personal and lounge-specific.
-
-SECTION 05 — WHAT WE'RE READING:
-4 items curated from signals across all Perplexity outputs. Format: emoji | source | headline | 2-sentence summary.
-
-<span class="hl">OUTPUT 2 — MONDAY SUBSTACK ARTICLE (Operator Life)</span>
+<span class="hl">OUTPUT 1 — MONDAY SUBSTACK ARTICLE (Operator Life)</span>
 Title, subtitle, full article 600-900 words. Open with personal moment expanded into a scene. Build to operator insight. Personal story first, lesson second. Voice: direct, no fluff, a little edgy, self-aware. Never a market report.
 
-<span class="hl">OUTPUT 3 — THURSDAY SUBSTACK ARTICLE (Experience Economy)</span>
+<span class="hl">OUTPUT 2 — THURSDAY SUBSTACK ARTICLE (Experience Economy)</span>
 Title, subtitle, full article 500-800 words. Topic: ritual, lifestyle, coffee, cigars, or operator aesthetic drawn from coffee or cigar intelligence. Feel: sensory, intentional, slower pace. Read with a drink in hand.
 
-<span class="hl">OUTPUT 4 — 21 SUBSTACK NOTES</span>
+<span class="hl">OUTPUT 3 — 21 SUBSTACK NOTES</span>
 Label clearly: Morning Notes (7) | Midday Notes (7) | Evening Notes (7).
 Rules: personal moment first, feeling before teaching, end with the reader.
 Morning and Midday drawn from both articles. Evening Notes are pure voice.
 Schedule: 3 per day, Monday through Sunday (Morning / Midday / Evening).
 
-<span class="hl">OUTPUT 5 — YOUTUBE HUB VIDEO</span>
-Full script for @alexa.realtor. Topic from strongest Investor Intel or Market Pulse signal.
+<span class="hl">OUTPUT 4 — YOUTUBE HUB VIDEO</span>
+Full script for @alexa.realtor YouTube channel. Topic from strongest Investor Intel or Market Pulse signal.
 Hook (0:00-0:08), open (0:08-0:30), 3 body sections with timestamps, CTA.
 Thumbnail direction. YouTube-optimized description + tags.
+Note: Script is used for recording on Sunday. Record and upload same day.
 
-<span class="hl">OUTPUT 6 — ASHES & ESCROWS EPISODE</span>
+<span class="hl">OUTPUT 5 — ASHES & ESCROWS EPISODE</span>
 Full script. Under 60 seconds. Quirky, intelligently insulting, one-take confessional.
-Uploads Thursday. Cigar or coffee in hand. Roast one of the five targets.
+Recorded Wednesday. Uploads Thursday 10AM. Cigar or coffee in hand. Roast one of the five targets.
 Thumbnail direction + description.
 
-<span class="hl">OUTPUT 7 — YOUTUBE SHORT + COVER TEXT</span>
+<span class="hl">OUTPUT 6 — YOUTUBE SHORT + COVER TEXT</span>
 Full script under 60 seconds from hub video's sharpest insight.
 Cover text: bold chunky font, slightly tilted, neon green for stats, red/white for statements.
+Recorded Wednesday. Uploads Thursday 11AM.
 
-<span class="hl">OUTPUT 8 — NATIVE TIKTOK RE-RECORD (@alexa.realtor)</span>
-Same topic as Output 7 but rawer. Written as Car Confession — not a report. No YouTube branding.
+<span class="hl">OUTPUT 7 — NATIVE TIKTOK RE-RECORD (@its.myash)</span>
+Same topic as Output 6 but rawer delivery. Written as Car Confession format — not a report. No YouTube branding. No watermark.
+Recorded and uploaded Wednesday 12PM.
 
-<span class="hl">OUTPUT 9 — TIKTOK ANGLE (@its.myash)</span>
-Separate topic from Output 8. From cigar or coffee intelligence. Cigar authority voice.
+<span class="hl">OUTPUT 8 — TIKTOK ANGLE (@its.myash cigar/coffee)</span>
+Separate topic from Output 7. From cigar or coffee intelligence. Cigar authority voice.
+Coffee & Ash Ritual angle OR Tonight's Smoke concept — whichever fits this week's intelligence better.
 
-<span class="hl">OUTPUT 10 — CAR CONFESSION HOOKS (4 total)</span>
+<span class="hl">OUTPUT 9 — CAR CONFESSION HOOKS (3 total)</span>
 20 seconds max each. Shock value. Direct and edgy. Cover text direction for each.
-- Tuesday @alexa.realtor — real estate + entrepreneur life
-- Wednesday @alexa.realtor — real estate focus
-- Thursday @alexa.realtor — entrepreneur life
-- Wednesday @its.myash — entrepreneur + cigars
+- Tuesday @alexa.realtor — real estate angle (recorded Wednesday, uploads Tuesday)
+- Thursday @alexa.realtor — entrepreneur life (recorded Wednesday, uploads Thursday)
+- Wednesday @its.myash — entrepreneur + cigars (recorded and uploaded Wednesday 12PM)
 
-<span class="hl">OUTPUT 11 — LINKEDIN POSTS (2 total, @alexa.realtor)</span>
-Professional but not corporate. Operator voice. One real estate focused, one entrepreneur/operator. Hook line, 3-4 short paragraphs, CTA. No hashtag dumps.
+<span class="hl">OUTPUT 10 — LINKEDIN POSTS (2 total, @alexa.realtor)</span>
+Professional but not corporate. Operator voice.
+- Post 1 (Monday 8AM): Market signal from Market Pulse or Investor Intel. Hook line, 3-4 short paragraphs, CTA.
+- Post 2 (Thursday 8:30AM): Investor signal — STR buy-box, seasonal timing, or zoning diligence angle.
+No hashtag dumps.
 
-<span class="hl">OUTPUT 12 — GOOGLE BUSINESS POSTS (2 total, @alexa.realtor)</span>
+<span class="hl">OUTPUT 11 — GOOGLE BUSINESS POSTS (2 total, @alexa.realtor)</span>
 Short. Local. Keyword-rich. Under 150 words each. Monroe County / Pocono Mountains specific.
+- Post 1 (Monday 9AM): STR investor market angle
+- Post 2 (Wednesday 9AM): Zoning diligence or compliance angle
 
-<span class="hl">OUTPUT 13 — ZCM TAGS + MONETIZATION GOALS</span>
-For every piece of content above, list ZCM Environment and Monetization Goal in a clean table.
+<span class="hl">OUTPUT 12 — ZCM TAGS + MONETIZATION GOALS</span>
+For every piece of content in the full weekly calendar, list ZCM Environment and Monetization Goal in a clean table.
+Environments: Social Feed | Video Platform | Community | AI Visibility
+Goals: Grow followers | Drive sales | Generate leads
 
 <span class="cm">// END OF PROMPT
 // Copy Sections A + B + C into Claude every Sunday.
@@ -964,7 +1001,7 @@ For every piece of content above, list ZCM Environment and Monetization Goal in 
   <!-- FOOTER -->
   <div class="footer">
     <p><strong>ROAST</strong> · @itsmyash · Alexa Sanchez · PA License #RS326383</p>
-    <p>Thursday: Perplexity gathers · Sunday: Claude produces · Monday: ROAST publishes</p>
+    <p>Thursday: Perplexity gathers · Sunday: Claude produces + hub video records · Full week runs itself</p>
     <p>(570) 688-8147 · Alexa@alexasanchez.net</p>
   </div>
 
