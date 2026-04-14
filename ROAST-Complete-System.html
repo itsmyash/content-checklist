@@ -16,6 +16,7 @@
     --text-dark: #1A1A1A;
     --text-mid: #4A4540;
     --green: #2D5A3D;
+    --teal: #0F6E56;
     --code-bg: #1E1E2E;
     --code-text: #E8E4DC;
   }
@@ -223,6 +224,120 @@
   }
   .ib-text strong { color: var(--text-dark); }
 
+  /* ── SCHEDULE GRID ── */
+  .schedule-section {
+    background: var(--cream);
+    border: 1px solid var(--light-border);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .schedule-header {
+    background: var(--teal);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .sh-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(242,237,227,0.7);
+    margin-bottom: 3px;
+  }
+  .sh-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--cream);
+  }
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+  }
+  .sched-day {
+    border-right: 1px solid var(--light-border);
+    padding: 0;
+  }
+  .sched-day:last-child { border-right: none; }
+  .sched-day-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cream);
+    padding: 8px 10px;
+    background: var(--navy);
+    border-bottom: 1px solid var(--light-border);
+    text-align: center;
+  }
+  .sched-items { padding: 8px; display: flex; flex-direction: column; gap: 5px; }
+  .sched-item {
+    padding: 6px 8px;
+    border-radius: 3px;
+    border-left: 3px solid transparent;
+  }
+  .sched-item-brand {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .sched-item-title {
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--text-dark);
+  }
+  .sched-item-meta {
+    font-size: 9px;
+    color: var(--warm-gray);
+    margin-top: 1px;
+  }
+  .si-realtor { background: #EBF3FB; border-left-color: #378ADD; }
+  .si-realtor .sched-item-brand { color: #185FA5; }
+  .si-myash { background: #FEF6E8; border-left-color: #EF9F27; }
+  .si-myash .sched-item-brand { color: #854F0B; }
+  .si-fr { background: #EDF5E5; border-left-color: #639922; }
+  .si-fr .sched-item-brand { color: #3B6D11; }
+  .si-substack { background: #EEEDFE; border-left-color: #7F77DD; }
+  .si-substack .sched-item-brand { color: #534AB7; }
+  .si-system { background: #F1EFE8; border-left-color: #888780; }
+  .si-system .sched-item-brand { color: #5F5E5A; }
+  .si-fb { background: #FBEAF0; border-left-color: #D4537E; }
+  .si-fb .sched-item-brand { color: #993556; }
+  .si-lba { background: #E1F5EE; border-left-color: #1D9E75; }
+  .si-lba .sched-item-brand { color: #0F6E56; }
+
+  /* ── BRAND LEGEND ── */
+  .brand-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 16px;
+    background: #F8F4EE;
+    border-top: 1px solid var(--light-border);
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-mid);
+  }
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
   /* ── PROMPT CARD ── */
   .prompt-card {
     background: var(--cream);
@@ -373,6 +488,28 @@
   }
   .og-text strong { color: var(--text-dark); font-size: 12px; display: block; margin-bottom: 1px; }
 
+  /* ── HASHTAG BANNER ── */
+  .hashtag-banner {
+    background: var(--teal);
+    padding: 14px 24px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .hb-tag {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--cream);
+    letter-spacing: 2px;
+  }
+  .hb-text {
+    font-size: 12px;
+    color: rgba(242,237,227,0.7);
+    line-height: 1.5;
+  }
+
   /* ── FOOTER ── */
   .footer {
     background: var(--navy);
@@ -399,13 +536,19 @@
     <div class="mh-inner">
       <div class="mh-eyebrow">ROAST · Complete Weekly Operating System</div>
       <div class="mh-title">Thursday gathers. <em>Sunday produces.</em></div>
-      <div class="mh-sub">Everything you need to run ROAST in one document. Five Perplexity prompts for Thursday. One Claude production prompt for Sunday. Twelve outputs. Full week covered.</div>
+      <div class="mh-sub">Everything you need to run the full brand system in one document. Five Perplexity prompts for Thursday. One Claude production prompt for Sunday. Full week scheduled, captioned, and ready to post.</div>
       <div class="mh-rule"></div>
       <div class="mh-update">
-        <span class="mh-update-badge">Updated April 2026</span>
-        <span class="mh-update-text">Newsletter suspended · Hub video → Sunday · TikTok re-record → Wednesday · 12 outputs</span>
+        <span class="mh-update-badge">Updated April 14, 2026</span>
+        <span class="mh-update-text">@life.byalexa added · #LifeByAlexa master hashtag · new posting schedule · Sunday = schedule day · FB sprinkled daily · TikTok 4x/week · Car Confessions Tue/Wed/Thu same-day</span>
       </div>
     </div>
+  </div>
+
+  <!-- HASHTAG BANNER -->
+  <div class="hashtag-banner">
+    <div class="hb-tag">#LifeByAlexa</div>
+    <div class="hb-text">Master hashtag — goes on every post, every brand, every platform, every week without exception. Instagram · TikTok · LinkedIn · Facebook · YouTube · Nextdoor · Google Business · Substack</div>
   </div>
 
   <!-- RHYTHM BAR -->
@@ -416,21 +559,281 @@
     </div>
     <div class="rhythm-day">
       <div class="rhythm-day-name">Sunday</div>
-      <div class="rhythm-day-action">Record & upload hub video → Paste outputs into Claude → 12 outputs produced</div>
+      <div class="rhythm-day-action">Record hub video + @life.byalexa → Schedule all pre-written posts → Paste outputs into Claude</div>
     </div>
     <div class="rhythm-day">
       <div class="rhythm-day-name">Monday</div>
-      <div class="rhythm-day-action">Operator Life article publishes</div>
+      <div class="rhythm-day-action">Operator Life article publishes · Market Signal goes live</div>
     </div>
     <div class="rhythm-day">
       <div class="rhythm-day-name">Thursday</div>
-      <div class="rhythm-day-action">Ashes & Escrows uploads → Experience Economy publishes</div>
+      <div class="rhythm-day-action">Ashes &amp; Escrows uploads · Lifestyle Market Letter publishes</div>
     </div>
   </div>
 
-  <!-- ════════════════════════════════════════ -->
+  <!-- WEEKLY SCHEDULE -->
+  <div class="section-divider">
+    <div class="sd-line"></div>
+    <div class="sd-diamond"></div>
+    <div class="sd-label">Weekly Posting Schedule</div>
+    <div class="sd-diamond"></div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div class="schedule-section">
+    <div class="schedule-header">
+      <div>
+        <div class="sh-label">All Brands · All Platforms</div>
+        <div class="sh-title">Full Week — Schedule on Sunday Morning</div>
+      </div>
+    </div>
+    <div class="schedule-grid">
+
+      <!-- SUNDAY -->
+      <div class="sched-day">
+        <div class="sched-day-name">Sun</div>
+        <div class="sched-items">
+          <div class="sched-item si-system">
+            <div class="sched-item-brand">System</div>
+            <div class="sched-item-title">Recording Block</div>
+            <div class="sched-item-meta">Hub video + @life.byalexa</div>
+          </div>
+          <div class="sched-item si-realtor">
+            <div class="sched-item-brand">@alexa.realtor</div>
+            <div class="sched-item-title">Hub Video Upload</div>
+            <div class="sched-item-meta">YouTube · 10 AM</div>
+          </div>
+          <div class="sched-item si-realtor">
+            <div class="sched-item-brand">@alexa.realtor</div>
+            <div class="sched-item-title">Sunday Gratitude Post</div>
+            <div class="sched-item-meta">IG · 9:15 AM</div>
+          </div>
+          <div class="sched-item si-realtor">
+            <div class="sched-item-brand">@alexa.realtor</div>
+            <div class="sched-item-title">Sunday Gratitude Post</div>
+            <div class="sched-item-meta">Nextdoor · 9:30 AM</div>
+          </div>
+          <div class="sched-item si-lba">
+            <div class="sched-item-brand">@life.byalexa</div>
+            <div class="sched-item-title">Lifestyle Moment</div>
+            <div class="sched-item-meta">IG + TikTok · 11 AM</div>
+          </div>
+          <div class="sched-item si-fb">
+            <div class="sched-item-brand">Facebook</div>
+            <div class="sched-item-title">Gratitude Repurpose</div>
+            <div class="sched-item-meta">FB · 10 AM</div>
+          </div>
+          <div class="sched-item si-substack">
+            <div class="sched-item-brand">Substack</div>
+            <div class="sched-item-title">Notes — Morning Batch</div>
+            <div class="sched-item-meta">Article-tied · 8 AM</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MONDAY -->
+      <div class="sched-day">
+        <div class="sched-day-name">Mon</div>
+        <div class="sched-items">
+          <div class="sched-item si-substack">
+            <div class="sched-item-brand">Substack</div>
+            <div class="sched-item-title">Operator Life Article</div>
+            <div class="sched-item-meta">Primary post · 8 AM</div>
+          </div>
+          <div class="sched-item si-realtor">
+            <div class="sched-item-brand">@alexa.realtor</div>
+            <div class="sched-item-title">Market Signal</div>
+            <div class="sched-item-meta">LinkedIn · 8 AM</div>
+          </div>
+          <div class="sched-item si-realtor">
+            <div class="sched-item-brand">@alexa.realtor</div>
+            <div class="sched-item-title">Google Business Post</div>
+            <div class="sched-item-meta">Google · 9 AM</div>
+          </div>
+          <div class="sched-item si-myash">
+            <div class="sched-item-brand">@its.myash</div>
+            <div class="sched-item-title">Tonight's Smoke Carousel</div>
+            <div class="sched-item-meta">IG · 7 PM</div>
+          </div>
+          <div class="sched-item si-fr">
+            <div class="sched-item-brand">@fillerandroast</div>
+            <div class="sched-item-title">Monday Brew Post</div>
+            <div class="sched-item-meta">IG · 9 AM</div>
+          </div>
+          <div class="sched-item si-fb">
+            <div class="sched-item-brand">Facebook</div>
+            <div class="sched-item-title">Brew Post Repurpose</div>
+            <div class="sched-item-meta">FB · 10 AM</div>
+          </div>
+          <div class="sched-item si-system">
+            <div class="sched-item-brand">TikTok</div>
+            <div class="sched-item-title">Operator Content</div>
+            <div class="sched-item-meta">@its.myash · 6 PM</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TUESDAY -->
+      <div class="sched-day">
+        <div class="sched-day-name">Tue</div>
+        <div class="sched-items">
+          <div class="sched-item si-realtor">
+            <div class="sched-item-brand">@alexa.realtor</div>
+            <div class="sched-item-title">Car Confession</div>
+            <div class="sched-item-meta">IG · record + post · 12 PM</div>
+          </div>
+          <div class="sched-item si-realtor">
+            <div class="sched-item-brand">@alexa.realtor</div>
+            <div class="sched-item-title">Neighborly Post</div>
+            <div class="sched-item-meta">Nextdoor · 6 PM</div>
+          </div>
+          <div class="sched-item si-fb">
+            <div class="sched-item-brand">Facebook</div>
+            <div class="sched-item-title">Market Insight Repurpose</div>
+            <div class="sched-item-meta">FB · 8 AM</div>
+          </div>
+          <div class="sched-item si-substack">
+            <div class="sched-item-brand">Substack</div>
+            <div class="sched-item-title">Notes — Midday Batch</div>
+            <div class="sched-item-meta">Thematic · 12 PM</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WEDNESDAY -->
+      <div class="sched-day">
+        <div class="sched-day-name">Wed</div>
+        <div class="sched-items">
+          <div class="sched-item si-system">
+            <div class="sched-item-brand">System</div>
+            <div class="sched-item-title">Ashes &amp; Escrows Record</div>
+            <div class="sched-item-meta">YouTube · uploads Thu</div>
+          </div>
+          <div class="sched-item si-realtor">
+            <div class="sched-item-brand">@alexa.realtor</div>
+            <div class="sched-item-title">Car Confession</div>
+            <div class="sched-item-meta">IG · record + post · 12 PM</div>
+          </div>
+          <div class="sched-item si-system">
+            <div class="sched-item-brand">TikTok</div>
+            <div class="sched-item-title">Cigar Brand / Culture</div>
+            <div class="sched-item-meta">@its.myash · 6 PM</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- THURSDAY -->
+      <div class="sched-day">
+        <div class="sched-day-name">Thu</div>
+        <div class="sched-items">
+          <div class="sched-item si-substack">
+            <div class="sched-item-brand">Substack</div>
+            <div class="sched-item-title">Lifestyle Market Letter</div>
+            <div class="sched-item-meta">Article publish · 8 AM</div>
+          </div>
+          <div class="sched-item si-realtor">
+            <div class="sched-item-brand">@alexa.realtor</div>
+            <div class="sched-item-title">Ashes &amp; Escrows Upload</div>
+            <div class="sched-item-meta">YouTube · 10 AM</div>
+          </div>
+          <div class="sched-item si-realtor">
+            <div class="sched-item-brand">@alexa.realtor</div>
+            <div class="sched-item-title">Car Confession</div>
+            <div class="sched-item-meta">IG · record + post · 12 PM</div>
+          </div>
+          <div class="sched-item si-realtor">
+            <div class="sched-item-brand">@alexa.realtor</div>
+            <div class="sched-item-title">Local Happenings</div>
+            <div class="sched-item-meta">Nextdoor · 6 PM</div>
+          </div>
+          <div class="sched-item si-fr">
+            <div class="sched-item-brand">@fillerandroast</div>
+            <div class="sched-item-title">Coffee for the Leaf</div>
+            <div class="sched-item-meta">IG · TikTok · 10 AM</div>
+          </div>
+          <div class="sched-item si-fb">
+            <div class="sched-item-brand">Facebook</div>
+            <div class="sched-item-title">Coffee for the Leaf</div>
+            <div class="sched-item-meta">FB · 11 AM</div>
+          </div>
+          <div class="sched-item si-substack">
+            <div class="sched-item-brand">Substack</div>
+            <div class="sched-item-title">Notes — Evening Batch</div>
+            <div class="sched-item-meta">Personal voice · 6 PM</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FRIDAY -->
+      <div class="sched-day">
+        <div class="sched-day-name">Fri</div>
+        <div class="sched-items">
+          <div class="sched-item si-realtor">
+            <div class="sched-item-brand">@alexa.realtor</div>
+            <div class="sched-item-title">Market Insight</div>
+            <div class="sched-item-meta">LinkedIn · 8 AM</div>
+          </div>
+          <div class="sched-item si-myash">
+            <div class="sched-item-brand">@its.myash</div>
+            <div class="sched-item-title">Weekend Smoke Reel</div>
+            <div class="sched-item-meta">IG · 5 PM</div>
+          </div>
+          <div class="sched-item si-fb">
+            <div class="sched-item-brand">Facebook</div>
+            <div class="sched-item-title">Car Confession Repurpose</div>
+            <div class="sched-item-meta">FB · 12 PM</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SATURDAY -->
+      <div class="sched-day">
+        <div class="sched-day-name">Sat</div>
+        <div class="sched-items">
+          <div class="sched-item si-myash">
+            <div class="sched-item-brand">@its.myash</div>
+            <div class="sched-item-title">Behind the Scenes Story</div>
+            <div class="sched-item-meta">IG Story only · 2 PM</div>
+          </div>
+          <div class="sched-item si-system">
+            <div class="sched-item-brand">TikTok</div>
+            <div class="sched-item-title">RE Investor Tip</div>
+            <div class="sched-item-meta">@alexa.realtor · 11 AM</div>
+          </div>
+          <div class="sched-item si-fb">
+            <div class="sched-item-brand">Facebook</div>
+            <div class="sched-item-title">Weekend Tip Repurpose</div>
+            <div class="sched-item-meta">FB · 11 AM</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="brand-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#378ADD;"></div>@alexa.realtor</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#EF9F27;"></div>@its.myash</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#639922;"></div>@fillerandroast</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#1D9E75;"></div>@life.byalexa</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#7F77DD;"></div>Substack</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#D4537E;"></div>Facebook</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#888780;"></div>System / TikTok</div>
+    </div>
+  </div>
+
+  <!-- SUNDAY SCHEDULING NOTE -->
+  <div class="instruction-box">
+    <div class="ib-title">Sunday = Full Scheduling Day</div>
+    <div class="ib-text">Every Sunday morning, all pre-written content is ready to copy, paste, and schedule before recording begins. <strong>Pre-schedule:</strong> all Facebook posts (6) · both LinkedIn posts · Google Business post · Substack Monday article · Substack Thursday article · all 21 Substack Notes · Sunday Gratitude captions for IG and Nextdoor. Each piece includes caption, image suggestion, and <strong>#LifeByAlexa</strong> plus brand-specific hashtags. <strong>Record same day:</strong> Hub video · @life.byalexa content. <strong>Record Tue/Wed/Thu in the car:</strong> Car Confessions — caption ready, record and drop it in.</div>
+  </div>
+
   <!-- THURSDAY SECTION -->
-  <!-- ════════════════════════════════════════ -->
+  <div class="section-divider" style="margin-top: 32px;">
+    <div class="sd-line"></div>
+    <div class="sd-diamond"></div>
+    <div class="sd-label">Step One — Thursday</div>
+    <div class="sd-diamond"></div>
+    <div class="sd-line"></div>
+  </div>
 
   <div class="day-header day-header-thu">
     <div class="dh-day">THU</div>
@@ -755,10 +1158,7 @@ Cite sources. Focus on content that feels premium, intentional, and lifestyle-dr
 Cite sources including Halfwheel, Cigar Aficionado, Cigar Journal, PCA announcements, and brand direct communications where available.</div>
   </div>
 
-  <!-- ════════════════════════════════════════ -->
   <!-- SUNDAY SECTION -->
-  <!-- ════════════════════════════════════════ -->
-
   <div class="section-divider" style="margin-top: 32px;">
     <div class="sd-line"></div>
     <div class="sd-diamond"></div>
@@ -771,32 +1171,34 @@ Cite sources including Halfwheel, Cigar Aficionado, Cigar Journal, PCA announcem
     <div class="dh-day">SUN</div>
     <div class="dh-content">
       <div class="dh-label">Step Two — Sunday</div>
-      <div class="dh-title">Run Your Claude Production Prompt</div>
-      <div class="dh-sub">Open Claude → New conversation → Copy everything below → Fill in your inputs → Send it</div>
+      <div class="dh-title">Schedule Everything. Then Run Claude.</div>
+      <div class="dh-sub">Morning: schedule all pre-written posts across all platforms. Then: paste Perplexity outputs into Claude → full week of content produced in one session.</div>
     </div>
   </div>
 
   <div class="instruction-box">
     <div class="ib-title">How Sunday Works</div>
-    <div class="ib-text">Copy the entire prompt below — Section A through Section C — into a new Claude conversation every Sunday. Fill in the date, paste your Perplexity outputs into their labeled slots, and add your personal moment for the week. If you didn't run a particular Perplexity prompt this week, write <strong>SKIP</strong> in that slot. Claude produces all 12 outputs in one session.</div>
+    <div class="ib-text">Copy the entire prompt below — Section A through Section C — into a new Claude conversation every Sunday. Fill in the date, paste your Perplexity outputs into their labeled slots, and add your personal moment for the week. If you didn't run a particular Perplexity prompt this week, write <strong>SKIP</strong> in that slot. Claude produces all outputs in one session — every caption is written, every hashtag is included, every piece is tagged with <strong>#LifeByAlexa</strong> plus brand-specific hashtags. Pre-schedulable posts are clearly marked so you can sit at your computer Sunday morning and schedule the full week before you record anything.</div>
   </div>
 
   <!-- OUTPUT SUMMARY -->
   <div class="output-grid">
-    <div class="og-title">What One Sunday Session Produces — 12 Outputs</div>
+    <div class="og-title">What One Sunday Session Produces</div>
     <div class="og-items">
       <div class="og-item"><span class="og-num">01</span><div class="og-text"><strong>Monday Substack Article</strong>Operator Life — personal story first · publishes Monday 8AM</div></div>
-      <div class="og-item"><span class="og-num">02</span><div class="og-text"><strong>Thursday Substack Article</strong>Experience Economy — ritual and lifestyle · publishes Thursday 8AM</div></div>
-      <div class="og-item"><span class="og-num">03</span><div class="og-text"><strong>21 Substack Notes</strong>7 Morning + 7 Midday + 7 Evening · growth engine</div></div>
-      <div class="og-item"><span class="og-num">04</span><div class="og-text"><strong>YouTube Hub Video</strong>Full script, thumbnail, description, tags · record &amp; upload Sunday</div></div>
+      <div class="og-item"><span class="og-num">02</span><div class="og-text"><strong>Thursday Substack Article</strong>Lifestyle Market Letter — ritual and lifestyle · publishes Thursday 8AM</div></div>
+      <div class="og-item"><span class="og-num">03</span><div class="og-text"><strong>21 Substack Notes</strong>7 Morning + 7 Midday + 7 Evening · growth engine · schedule Sun morning</div></div>
+      <div class="og-item"><span class="og-num">04</span><div class="og-text"><strong>YouTube Hub Video</strong>Full script, thumbnail, description, tags · record + upload Sunday</div></div>
       <div class="og-item"><span class="og-num">05</span><div class="og-text"><strong>Ashes &amp; Escrows Episode</strong>Full script, thumbnail, description · record Wed · uploads Thu 10AM</div></div>
-      <div class="og-item"><span class="og-num">06</span><div class="og-text"><strong>YouTube Short</strong>Script + cover text direction · record Wed · uploads Thu 11AM</div></div>
-      <div class="og-item"><span class="og-num">07</span><div class="og-text"><strong>Native TikTok Re-record</strong>@its.myash · rawer · no watermark · record &amp; upload Wed 12PM</div></div>
-      <div class="og-item"><span class="og-num">08</span><div class="og-text"><strong>TikTok — @its.myash Cigar Angle</strong>Coffee &amp; Ash Ritual or Tonight's Smoke concept · Sunday or Monday</div></div>
-      <div class="og-item"><span class="og-num">09</span><div class="og-text"><strong>Car Confession Hooks (3)</strong>Tue @alexa.realtor real estate · Thu @alexa.realtor entrepreneur · Wed @its.myash cigars</div></div>
-      <div class="og-item"><span class="og-num">10</span><div class="og-text"><strong>LinkedIn Posts (2)</strong>@alexa.realtor · Mon market signal + Thu investor signal</div></div>
-      <div class="og-item"><span class="og-num">11</span><div class="og-text"><strong>Google Business Posts (2)</strong>Monroe County keyword-rich · Mon + Wed</div></div>
-      <div class="og-item"><span class="og-num">12</span><div class="og-text"><strong>ZCM Tags + Monetization Goals</strong>Every piece mapped · Environment + Goal</div></div>
+      <div class="og-item"><span class="og-num">06</span><div class="og-text"><strong>@life.byalexa Content</strong>Caption + concept · personal/lifestyle/behind the scenes · IG + TikTok Sunday</div></div>
+      <div class="og-item"><span class="og-num">07</span><div class="og-text"><strong>Car Confession Hooks (3)</strong>Tue @alexa.realtor RE · Wed @alexa.realtor · Thu @alexa.realtor entrepreneur</div></div>
+      <div class="og-item"><span class="og-num">08</span><div class="og-text"><strong>TikTok Content (4)</strong>Mon operator · Wed cigar culture · Thu Coffee for the Leaf · Sat RE investor tip</div></div>
+      <div class="og-item"><span class="og-num">09</span><div class="og-text"><strong>LinkedIn Posts (2)</strong>Mon Market Signal + Fri Market Insight · #LifeByAlexa included</div></div>
+      <div class="og-item"><span class="og-num">10</span><div class="og-text"><strong>Google Business Post (1)</strong>Monroe County keyword-rich · Monday 9AM · pre-schedulable</div></div>
+      <div class="og-item"><span class="og-num">11</span><div class="og-text"><strong>Facebook Posts (6)</strong>Sun / Mon / Tue / Thu / Fri / Sat · all captions + image suggestions ready</div></div>
+      <div class="og-item"><span class="og-num">12</span><div class="og-text"><strong>@fillerandroast Posts (2)</strong>Mon Monday Brew + Thu Coffee for the Leaf · captions + image suggestions</div></div>
+      <div class="og-item"><span class="og-num">13</span><div class="og-text"><strong>Nextdoor Posts (3)</strong>Sun Gratitude + Tue Neighborly + Thu Local Happenings · captions ready</div></div>
+      <div class="og-item"><span class="og-num">14</span><div class="og-text"><strong>ZCM Tags + Monetization Goals</strong>Every piece mapped · Environment + Goal · #LifeByAlexa on all</div></div>
     </div>
   </div>
 
@@ -813,7 +1215,10 @@ Cite sources including Halfwheel, Cigar Aficionado, Cigar Journal, PCA announcem
 <span class="hl">TODAY'S DATE:</span> <span class="ph">[INSERT DATE]</span>
 
 <span class="hl">THIS WEEK'S PERSONAL MOMENT:</span>
-<span class="ph">[2-4 sentences. One real thing that happened this week across any of your brands — a deal, a moment at Nell's, a cigar, a DR thought, a client situation, something you almost didn't do. Raw version. This becomes the human opening of your Operator Life article.]</span>
+<span class="ph">[2-4 sentences. One real thing that happened this week across any of your brands — a deal, a moment at Nell's, a cigar, a DR thought, a client situation, something you almost didn't do. Raw version. This becomes the human opening of your Operator Life article and threads across platforms.]</span>
+
+<span class="hl">THIS WEEK'S @life.byalexa MOMENT:</span>
+<span class="ph">[1-2 sentences. A personal behind-the-scenes moment to capture Sunday morning — family time, morning ritual, a quiet moment before the week starts. Emily in Paris energy. This becomes the @life.byalexa IG + TikTok post.]</span>
 
 <span class="hl">--- PERPLEXITY OUTPUT 1: MARKET PULSE ---</span>
 <span class="ph">[Paste Prompt 01 output here — or write SKIP]</span>
@@ -847,46 +1252,64 @@ Cite sources including Halfwheel, Cigar Aficionado, Cigar Journal, PCA announcem
 You are the production engine for the weekly content brand of Alexa Sanchez.
 
 <span class="hl">IDENTITY:</span>
-Alexa Sanchez. Licensed Realtor, PA License #RS326383, Smart Way America Realty. Focused on Pocono Mountains STR investor market (Monroe County) and Dominican Republic real estate. Creator of Filler &amp; Roast — artisanal coffee sold exclusively at Nell's Social cigar lounge. Personal brand @its.myash — cigar culture, entrepreneurship, lifestyle. Boutique DR cigar brand in development — DR origin story. Contact: (570) 688-8147 | Alexa@alexasanchez.net
+Alexa Sanchez. Licensed Realtor, PA License #RS326383, Smart Way America Realty. Focused on Pocono Mountains STR investor market (Monroe County) and Dominican Republic real estate. Creator of Filler &amp; Roast — artisanal coffee sold exclusively at Nell's Social cigar lounge. Co-owner of Nell's Social cigar lounge. Personal brand @its.myash — cigar culture, entrepreneurship, lifestyle. Boutique DR cigar brand in development — DR origin story, Boutique Cigar Brand Developer. Lifestyle brand @life.byalexa — personal, behind the scenes, building moments, family time. Emily in Paris energy — one woman's curated world. Contact: (570) 688-8147 | Alexa@alexasanchez.net
+
+<span class="hl">MASTER HASHTAG:</span>
+#LifeByAlexa goes on EVERY piece of content across EVERY brand on EVERY platform without exception. Stack brand-specific hashtags underneath it.
+
+<span class="hl">BRAND PHILOSOPHY — ALEXA IS THE BRAND:</span>
+All content across all platforms is woven together. Alexa is not four separate brands — she is one person who does four interesting things. Topics thread across platforms intentionally. A deal, a cigar moment, a DR trip, a coffee at Nell's — each event generates content across multiple brands from one human perspective. The audience on each platform gets a piece of Alexa. If they follow all of them, they get the full picture.
 
 <span class="hl">SUBSTACK — THE LIFESTYLE MARKET LETTER (@itsmyash):</span>
 "The work behind the work. Real estate. Cigars. Coffee. Three businesses, one operator, zero filters."
-Note: Substack is brand new with no subscriber list. The newsletter (Output 1) is suspended until the list is active. The Monday Substack article (Operator Life) is the primary weekly post. The 21 Notes are the growth engine.
-2x/week articles: Monday = Operator Life (personal story first), Thursday = Experience Economy (ritual, lifestyle, coffee, cigars).
+2x/week articles: Monday = Operator Life (personal story first), Thursday = Lifestyle Market Letter (ritual, lifestyle, coffee, cigars, operator aesthetic).
 Voice: Personal, direct, operator-first. Never a market report. Never a press release. Always a human building something real.
-Client privacy rule: Never use client names or property addresses in any content. Buyers are "a buyer." Sellers are "a seller." Locations stay at town level — East Stroudsburg, Tobyhanna, Mount Pocono.
+Client privacy rule: Never use client names or property addresses in any content. Buyers are "a buyer." Sellers are "a seller." Locations stay at town level.
 
 <span class="hl">SOCIAL ACCOUNTS:</span>
-@alexa.realtor — real estate + entrepreneur life (IG, TikTok, YouTube @AlexaSanchezRealtor, LinkedIn, Facebook, Nextdoor, Google Business)
-@its.myash — cigars, lifestyle, entrepreneurship, DR origin story (IG, TikTok, FB)
-@fillerandroast — Filler &amp; Roast coffee brand (IG, FB only — no TikTok)
+@alexa.realtor — real estate + entrepreneur life (IG 4x/week, TikTok, YouTube, LinkedIn 2x/week, Facebook, Nextdoor 3x/week Sun+Tue+Thu, Google Business 1x/week)
+@its.myash — cigars, lifestyle, entrepreneurship, DR origin story (IG 3x/week, TikTok, FB)
+@fillerandroast — Filler &amp; Roast coffee brand (IG 2x/week Mon+Thu, FB — no TikTok)
+@life.byalexa — personal lifestyle, behind the scenes, building moments, family (IG 1x/week Sun, TikTok 1x/week Sun — private while building, launching slowly)
 
 <span class="hl">RECORDING SCHEDULE:</span>
-Sunday = hub video recording AND upload day. ~30 min. Coffee in hand. One camera. Record and upload same day.
-Wednesday morning = primary heavy recording day. 4+ recordings. Most privacy. Can smoke on camera.
-Wednesday captures in one session: Ashes &amp; Escrows episode (uploads Thu 10AM) · YouTube Short (uploads Thu 11AM) · Car Confession batch — @alexa.realtor Tue real estate + Thu entrepreneur · Car Confession @its.myash entrepreneur + cigars (upload Wed 12PM) · Native TikTok re-record same topic as Short no watermark (upload Wed 12PM) · Tonight's Smoke Batch carousel (uploads Mon 7PM) · F&R Pairing stills (video records Thu, uploads Fri).
+Sunday = primary recording day. Hub video + @life.byalexa content. ~30 min. Coffee in hand. One camera. Record and upload same day.
+Tuesday = Car Confession in the car. @alexa.realtor real estate angle. Record + post same day 12PM.
+Wednesday = Ashes &amp; Escrows recording only. Uploads Thursday 10AM.
+Wednesday = Car Confession in the car. @alexa.realtor angle. Record + post same day 12PM.
+Thursday = Car Confession in the car. @alexa.realtor entrepreneur angle. Record + post same day 12PM.
+
+<span class="hl">TIKTOK — 4x/week (no smoking or drinking on camera):</span>
+Monday — Operator/entrepreneur content (@its.myash · 6PM)
+Wednesday — Cigar brand/lifestyle, product-focused, behind the scenes, culture — no smoking (@its.myash · 6PM)
+Thursday — Coffee for the Leaf (@fillerandroast content · 10AM)
+Saturday — Real estate investor tip (@alexa.realtor · 11AM)
+
+<span class="hl">FACEBOOK — sprinkled daily:</span>
+Sunday — Gratitude repurpose (10AM)
+Monday — Brew post repurpose (10AM)
+Tuesday — Market Insight repurpose (8AM)
+Thursday — Coffee for the Leaf repurpose (11AM)
+Friday — Car Confession repurpose (12PM)
+Saturday — Weekend tip repurpose (11AM)
 
 <span class="hl">FILLER &amp; ROAST POSTING CADENCE:</span>
-Sunday IG/FB @its.myash: Coffee &amp; Ash Ritual — 10:15AM (cigar + coffee morning ritual)
-Tuesday FB: Nell's Social — This Week's Smoke (tag only — no direct account access)
-Friday IG + FB Biz @fillerandroast: "Coffee for the Leaf" — pairing content 9AM
-Friday TikTok @its.myash: "Coffee for the Leaf" — different edit than IG version 11AM
+Monday IG: Monday Brew Post — 9AM (new concept, not Before the First Draw)
+Thursday IG + TikTok @its.myash: Coffee for the Leaf — 10AM (pairing content)
 Core pairings: House Blend/Maduro | Butter Pecan/Connecticut | Amaretto/Evening Draw
 
+<span class="hl">@life.byalexa RULES:</span>
+Sunday only — 1 post IG + 1 post TikTok. Personal, human, behind the scenes. Building moments, family time, morning rituals. No stats, no market reports, no selling. Emily in Paris energy — aspirational without being unattainable. Come-with-me tone. This is who Alexa is when the brands go quiet.
+
 <span class="hl">VIDEO SCRIPT RULES — ALL PLATFORMS:</span>
-Strong hook in first 2 seconds. Direct statements only — no questions. No fluff. Short punchy lines. Bold, factual, edgy. List-style beats. Executive cover energy.
+Strong hook in first 2 seconds. Direct statements only — no questions. No fluff. Short punchy lines. Bold, factual, edgy. List-style beats. Executive cover energy. Bronx cadence — direct, fast, punchy, realistic filler language.
 
 <span class="hl">CAR CONFESSION RULES:</span>
-20 seconds max. Shock value. Direct and edgy. How Alexa actually talks — not a report.
+20 seconds max. Shock value. Direct and edgy. How Alexa actually talks — not a report. Record in the car Tue/Wed/Thu — post same day.
 Cover text: neon green for stats, red or white for confessions. Chunky tilted font over face.
 
 <span class="hl">ASHES &amp; ESCROWS RULES:</span>
 Quirky, intelligently insulting, talking to best friend. One-take confessional — cigar or coffee in hand. Under 60 seconds. Raw, no-fluff, realistic verbiage. Five roast targets: lowball buyers, realtors who don't know the market, Pocono skeptics, cigar beginners, tie-it-all-together anchor.
-
-<span class="hl">SUBSTACK ARTICLE RULES:</span>
-Monday = Operator Life: personal story first, business second. Something real that happened.
-Thursday = Experience Economy: ritual, lifestyle, coffee, cigars, operator aesthetic.
-Never a market report. Never a press release. Always a human building something real.
 
 <span class="hl">SUBSTACK NOTES RULES — 21 per week:</span>
 7 Morning Notes: sharpest line from the article, one per day
@@ -894,8 +1317,17 @@ Never a market report. Never a press release. Always a human building something 
 7 Evening Notes: pure personal voice — cigar moment, operator insight, DR thought
 Each Note must: (1) lead with a specific personal moment not a tip, (2) make the reader feel something before teaching them anything, (3) end with a line that's about the reader not the writer.
 
+<span class="hl">SUNDAY SCHEDULING RULE:</span>
+All pre-schedulable content must be clearly marked [PRE-SCHEDULE] in Claude's output. This includes: all Facebook posts, both LinkedIn posts, Google Business post, both Substack articles, all 21 Substack Notes, Sunday Gratitude captions for IG and Nextdoor. Each pre-schedulable piece must include: full caption, image suggestion, and complete hashtag set with #LifeByAlexa first.
+
 <span class="hl">DR CONTENT — MONTHLY DROP:</span>
 @its.myash leads DR cigar/tobacco origin + lifestyle. @alexa.realtor leads DR real estate investment. Drops once per month across all platforms.
+
+<span class="hl">LINKEDIN PROFILE NOTE:</span>
+Headline: Realtor | STR Investor Specialist &amp; International Real Estate | Cigar Lounge Co-Owner | Boutique Cigar Brand Developer. Content should reflect all four lanes — not just real estate.
+
+<span class="hl">3-YEAR GOAL:</span>
+Cigar Aficionado cover or boutique cigar brand sold in 50+ lounges nationwide. All cigar content, brand development updates, and lounge culture posts serve this goal.
 
 <span class="hl">ZCM TAGS — apply to every piece:</span>
 Environment: Social Feed | Video Platform | Community | AI Visibility
@@ -906,22 +1338,22 @@ Monetization goal: Grow followers | Drive sales | Generate leads</div>
   <div class="sun-section">
     <div class="sun-section-header">
       <div class="ssh-label">Section C — Never Change This</div>
-      <div class="ssh-title">The 12 Outputs — Production Instructions</div>
+      <div class="ssh-title">The Full Output — Production Instructions</div>
     </div>
     <div class="pc-prompt-label">Fixed — Copy Exactly As Written</div>
     <div class="pc-prompt"><span class="cm">// SECTION C — PRODUCTION INSTRUCTIONS. NEVER EDIT THIS SECTION.
-// Claude works through all 12 outputs in sequence using the Perplexity data from Section A.
-// Note: Newsletter (Output 1) is suspended until subscriber list is active. Starting at Output 1 = Monday article.</span>
+// Claude works through all outputs in sequence using the Perplexity data from Section A.
+// All pre-schedulable content is marked [PRE-SCHEDULE] with full caption + image suggestion + hashtags.</span>
 
-Using the intelligence from the Perplexity outputs in Section A — plus the personal moment provided — produce all of the following in order:
+Using the intelligence from the Perplexity outputs in Section A — plus the personal moments provided — produce all of the following in order. For every piece: include #LifeByAlexa as the first hashtag, then add brand-specific hashtags appropriate to the platform and content. Mark all pre-schedulable items clearly.
 
-<span class="hl">OUTPUT 1 — MONDAY SUBSTACK ARTICLE (Operator Life)</span>
-Title, subtitle, full article 600-900 words. Open with personal moment expanded into a scene. Build to operator insight. Personal story first, lesson second. Voice: direct, no fluff, a little edgy, self-aware. Never a market report.
+<span class="hl">OUTPUT 1 — MONDAY SUBSTACK ARTICLE (Operator Life) [PRE-SCHEDULE]</span>
+Title, subtitle, full article 600-900 words. Open with personal moment expanded into a scene. Build to operator insight. Personal story first, lesson second. Voice: direct, no fluff, a little edgy, self-aware. Never a market report. Thread the week's topic across at least two brands.
 
-<span class="hl">OUTPUT 2 — THURSDAY SUBSTACK ARTICLE (Experience Economy)</span>
+<span class="hl">OUTPUT 2 — THURSDAY SUBSTACK ARTICLE (Lifestyle Market Letter) [PRE-SCHEDULE]</span>
 Title, subtitle, full article 500-800 words. Topic: ritual, lifestyle, coffee, cigars, or operator aesthetic drawn from coffee or cigar intelligence. Feel: sensory, intentional, slower pace. Read with a drink in hand.
 
-<span class="hl">OUTPUT 3 — 21 SUBSTACK NOTES</span>
+<span class="hl">OUTPUT 3 — 21 SUBSTACK NOTES [PRE-SCHEDULE]</span>
 Label clearly: Morning Notes (7) | Midday Notes (7) | Evening Notes (7).
 Rules: personal moment first, feeling before teaching, end with the reader.
 Morning and Midday drawn from both articles. Evening Notes are pure voice.
@@ -930,59 +1362,74 @@ Schedule: 3 per day, Monday through Sunday (Morning / Midday / Evening).
 <span class="hl">OUTPUT 4 — YOUTUBE HUB VIDEO</span>
 Full script for @alexa.realtor. Topic from strongest Investor Intel or Market Pulse signal.
 Hook (0:00-0:08), open (0:08-0:30), 3 body sections with timestamps, CTA.
-Thumbnail direction. YouTube-optimized description + tags.
+Thumbnail direction. YouTube-optimized description + tags + #LifeByAlexa.
 Note: recorded and uploaded Sunday same day.
 
 <span class="hl">OUTPUT 5 — ASHES &amp; ESCROWS EPISODE</span>
 Full script. Under 60 seconds. Quirky, intelligently insulting, one-take confessional.
 Recorded Wednesday. Uploads Thursday 10AM. Cigar or coffee in hand. Roast one of the five targets.
-Thumbnail direction + description.
+Thumbnail direction + description + #LifeByAlexa.
 
-<span class="hl">OUTPUT 6 — YOUTUBE SHORT + COVER TEXT</span>
-Full script under 60 seconds from hub video's sharpest insight.
-Cover text: bold chunky font, slightly tilted, neon green for stats, red/white for statements.
-Recorded Wednesday. Uploads Thursday 11AM.
+<span class="hl">OUTPUT 6 — @life.byalexa POST (IG + TikTok) [PRE-SCHEDULE]</span>
+Caption for the personal moment from Section A. Emily in Paris energy — come-with-me tone. Personal, warm, no selling. Image suggestion for the Sunday morning capture. #LifeByAlexa first + lifestyle hashtags.
 
-<span class="hl">OUTPUT 7 — NATIVE TIKTOK RE-RECORD (@its.myash)</span>
-Same topic as Output 6 but rawer delivery. Written as Car Confession format — not a report. No YouTube branding. No watermark.
-Recorded and uploaded Wednesday 12PM.
+<span class="hl">OUTPUT 7 — CAR CONFESSION HOOKS (3 total)</span>
+20 seconds max each. Shock value. Direct and edgy. Cover text direction for each. Record in the car same day as posting.
+- Tuesday @alexa.realtor — real estate angle (record + post Tue 12PM)
+- Wednesday @alexa.realtor — operator angle (record + post Wed 12PM)
+- Thursday @alexa.realtor — entrepreneur life (record + post Thu 12PM)
 
-<span class="hl">OUTPUT 8 — TIKTOK ANGLE (@its.myash cigar/coffee)</span>
-Separate topic from Output 7. From cigar or coffee intelligence. Cigar authority voice.
-Coffee &amp; Ash Ritual angle or Tonight's Smoke concept.
+<span class="hl">OUTPUT 8 — TIKTOK CONTENT (4 total)</span>
+No smoking or drinking on camera. Product-focused or cultural for cigar content.
+- Monday: Operator/entrepreneur content @its.myash (6PM) — caption + hook
+- Wednesday: Cigar brand/culture @its.myash (6PM) — caption + hook, no smoking
+- Thursday: Coffee for the Leaf (10AM) — caption + hook (same content as @fillerandroast IG, different edit)
+- Saturday: RE investor tip @alexa.realtor (11AM) — caption + hook
 
-<span class="hl">OUTPUT 9 — CAR CONFESSION HOOKS (3 total)</span>
-20 seconds max each. Shock value. Direct and edgy. Cover text direction for each.
-- Tuesday @alexa.realtor — real estate angle (recorded Wed, uploads Tue)
-- Thursday @alexa.realtor — entrepreneur life (recorded Wed, uploads Thu)
-- Wednesday @its.myash — entrepreneur + cigars (recorded and uploaded Wed 12PM)
+<span class="hl">OUTPUT 9 — LINKEDIN POSTS (2 total) [PRE-SCHEDULE]</span>
+Professional but not corporate. Operator voice. Reflects multi-lane identity.
+- Post 1 Monday 8AM: Market signal from Market Pulse or Investor Intel. Hook line, 3-4 short paragraphs, CTA. #LifeByAlexa + professional hashtags.
+- Post 2 Friday 8AM: Market Insight — STR buy-box, seasonal timing, or zoning angle. #LifeByAlexa + professional hashtags.
 
-<span class="hl">OUTPUT 10 — LINKEDIN POSTS (2 total, @alexa.realtor)</span>
-Professional but not corporate. Operator voice.
-- Post 1 (Monday 8AM): Market signal from Market Pulse or Investor Intel data. Hook line, 3-4 short paragraphs, CTA.
-- Post 2 (Thursday 8:30AM): Investor signal — STR buy-box, seasonal timing, or zoning diligence angle.
-No hashtag dumps.
+<span class="hl">OUTPUT 10 — GOOGLE BUSINESS POST (1 total) [PRE-SCHEDULE]</span>
+Short. Local. Keyword-rich. Under 150 words. Monroe County / Pocono Mountains specific. Monday 9AM. STR investor market angle. #LifeByAlexa included.
 
-<span class="hl">OUTPUT 11 — GOOGLE BUSINESS POSTS (2 total, @alexa.realtor)</span>
-Short. Local. Keyword-rich. Under 150 words each. Monroe County / Pocono Mountains specific.
-- Post 1 (Monday 9AM): STR investor market angle.
-- Post 2 (Wednesday 9AM): Zoning diligence or compliance angle.
+<span class="hl">OUTPUT 11 — FACEBOOK POSTS (6 total) [PRE-SCHEDULE ALL 6]</span>
+All 6 posts ready to schedule Sunday morning. Each includes full caption + image suggestion + #LifeByAlexa + brand hashtags.
+- Sunday 10AM: Gratitude repurpose from @alexa.realtor IG
+- Monday 10AM: Monday Brew Post repurpose from @fillerandroast
+- Tuesday 8AM: Market Insight repurpose from LinkedIn
+- Thursday 11AM: Coffee for the Leaf repurpose from @fillerandroast
+- Friday 12PM: Car Confession repurpose from @alexa.realtor
+- Saturday 11AM: Weekend tip repurpose
 
-<span class="hl">OUTPUT 12 — ZCM TAGS + MONETIZATION GOALS</span>
-For every piece of content in the full weekly calendar, list ZCM Environment and Monetization Goal in a clean table.
+<span class="hl">OUTPUT 12 — @fillerandroast POSTS (2 total) [PRE-SCHEDULE]</span>
+- Monday 9AM: Monday Brew Post — new concept (not Before the First Draw). Image suggestion for coffee setup. #LifeByAlexa + coffee hashtags.
+- Thursday 10AM: Coffee for the Leaf — cigar pairing content. Image suggestion. #LifeByAlexa + pairing hashtags.
+
+<span class="hl">OUTPUT 13 — NEXTDOOR POSTS (3 total) [PRE-SCHEDULE]</span>
+Community tone. Local. Warm but informative. Not salesy.
+- Sunday 9:30AM: Gratitude post — personal, community-focused, different from IG version
+- Tuesday 6PM: Neighborly Post — real estate tip or local market insight
+- Thursday 6PM: Local Happenings — community events, local news, Pocono area update
+
+<span class="hl">OUTPUT 14 — ZCM TAGS + MONETIZATION GOALS</span>
+For every piece of content produced, list in a clean table: Content Title | Platform | ZCM Environment | Monetization Goal | #LifeByAlexa confirmed.
 Environments: Social Feed | Video Platform | Community | AI Visibility
 Goals: Grow followers | Drive sales | Generate leads
 
 <span class="cm">// END OF PROMPT
 // Copy Sections A + B + C into Claude every Sunday.
-// Only fill in Section A — never change B or C.</span></div>
+// Only fill in Section A — never change B or C.
+// #LifeByAlexa on everything. Always.</span></div>
   </div>
 
   <!-- FOOTER -->
   <div class="footer">
-    <p><strong>ROAST</strong> · @itsmyash · Alexa Sanchez · PA License #RS326383</p>
-    <p>Thursday: Perplexity gathers · Sunday: Claude produces · Monday: article publishes</p>
-    <p>(570) 688-8147 · Alexa@alexasanchez.net</p>
+    <p><strong>ROAST · Complete Weekly Operating System</strong> · Updated April 14, 2026</p>
+    <p>@alexa.realtor · @its.myash · @fillerandroast · @life.byalexa · #LifeByAlexa</p>
+    <p>Thursday: Perplexity gathers · Sunday: schedule + record + Claude produces · Week runs itself</p>
+    <p>(570) 688-8147 · Alexa@alexasanchez.net · PA License #RS326383</p>
   </div>
 
 </div>
