@@ -16,14 +16,16 @@
     --text: #1a1a18;
     --text2: #555550;
     --text3: #999990;
-    --accent: #4a8c0f;       /* darker green — readable on light */
-    --accent2: #d63a08;      /* hot orange-red */
-    --accent3: #1a7aad;      /* cool blue */
+    --accent: #4a8c0f;
+    --accent2: #d63a08;
+    --accent3: #1a7aad;
     --gold: #b08a00;
     --hot: #d63a08;
     --warm: #b08a00;
     --cold: #1a7aad;
     --purple: #7a30c0;
+    --teal: #0F6E56;
+    --pink: #993556;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -62,6 +64,16 @@
     font-size: 11px;
     color: var(--text3);
     letter-spacing: 1px;
+  }
+  .topbar-hashtag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--teal);
+    letter-spacing: 1px;
+    font-weight: 600;
+    border: 1px solid var(--teal);
+    padding: 3px 10px;
+    border-radius: 2px;
   }
   .topbar-badge {
     background: var(--accent);
@@ -299,11 +311,7 @@
 
   /* ── SIGNAL DOTS ── */
   .sig-dots { display: flex; gap: 3px; flex-wrap: wrap; }
-  .sig-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    title: '';
-  }
+  .sig-dot { width: 8px; height: 8px; border-radius: 50%; }
   .dot-probate   { background: var(--hot); }
   .dot-prefc     { background: var(--accent2); }
   .dot-divorce   { background: var(--purple); }
@@ -371,7 +379,7 @@
     transition: all 0.15s;
   }
   .btn-primary { background: var(--accent); color: #fff; font-weight: 600; }
-  .btn-primary:hover { background: #b8e050; }
+  .btn-primary:hover { background: #3a7008; }
   .btn-ghost { background: transparent; border: 1px solid var(--border2); color: var(--text2); }
   .btn-ghost:hover { border-color: var(--text2); color: var(--text); }
   .btn-danger { background: transparent; border: 1px solid #3a1010; color: var(--hot); }
@@ -418,11 +426,13 @@
     color: var(--text3);
     margin-top: 3px;
   }
-  .brand-myash  { color: var(--accent); }
+  .brand-myash   { color: var(--accent); }
   .brand-realtor { color: var(--accent3); }
-  .brand-fnr   { color: var(--gold); }
-  .brand-sub   { color: #888; }
-  .brand-system { color: var(--text3); font-style: italic; }
+  .brand-fnr     { color: var(--gold); }
+  .brand-lba     { color: var(--teal); }
+  .brand-sub     { color: var(--purple); }
+  .brand-fb      { color: var(--pink); }
+  .brand-system  { color: var(--text3); font-style: italic; }
 
   /* ── CANNONBALL ── */
   .target-card {
@@ -479,10 +489,12 @@
   .progress-label { display: flex; justify-content: space-between; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text3); margin-bottom: 4px; }
   .progress-bar { height: 4px; background: var(--bg3); border-radius: 2px; overflow: hidden; }
   .progress-fill { height: 100%; border-radius: 2px; transition: width 0.5s ease; }
-  .fill-green { background: var(--accent); }
-  .fill-red { background: var(--hot); }
-  .fill-blue { background: var(--accent3); }
-  .fill-gold { background: var(--gold); }
+  .fill-green  { background: var(--accent); }
+  .fill-red    { background: var(--hot); }
+  .fill-blue   { background: var(--accent3); }
+  .fill-gold   { background: var(--gold); }
+  .fill-teal   { background: var(--teal); }
+  .fill-purple { background: var(--purple); }
 
   /* ── MODAL ── */
   .modal-overlay {
@@ -531,6 +543,20 @@
   .empty-icon { font-size: 32px; margin-bottom: 10px; }
   .empty-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 1px; }
 
+  /* ── HASHTAG STRIP ── */
+  .hashtag-strip {
+    background: var(--teal);
+    padding: 8px 24px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .hashtag-strip strong { color: #fff; font-size: 13px; letter-spacing: 3px; }
+
   @media (max-width: 900px) {
     .grid-4 { grid-template-columns: repeat(2, 1fr); }
     .grid-3 { grid-template-columns: 1fr 1fr; }
@@ -538,6 +564,7 @@
     .kpi-grid { grid-template-columns: repeat(2, 1fr); }
     .col-span-2 { grid-column: span 1; }
     .system-docs-btn { font-size: 9px; padding: 5px 10px; }
+    .topbar-hashtag { display: none; }
   }
 </style>
 </head>
@@ -550,6 +577,13 @@
   <div id="sync-badge" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text3);">⟳ loading...</div>
   <a href="ROAST-Complete-System.html" target="_blank" class="system-docs-btn">📋 System Docs</a>
   <div class="topbar-badge">OPERATOR MODE</div>
+</div>
+
+<!-- HASHTAG STRIP -->
+<div class="hashtag-strip">
+  <strong>#LifeByAlexa</strong>
+  <span>on every post · every brand · every platform · no exceptions</span>
+  <span style="margin-left:auto;opacity:0.6;">@alexa.realtor · @its.myash · @fillerandroast · @life.byalexa</span>
 </div>
 
 <!-- TAB NAV -->
@@ -631,20 +665,24 @@
       </div>
       <div class="card-body">
         <div class="progress-wrap">
-          <div class="progress-label"><span>@its.myash</span><span id="prog-myash-label">0/7</span></div>
-          <div class="progress-bar"><div class="progress-fill fill-green" id="prog-myash" style="width:0%"></div></div>
-        </div>
-        <div class="progress-wrap">
-          <div class="progress-label"><span>@alexa.realtor</span><span id="prog-realtor-label">0/7</span></div>
+          <div class="progress-label"><span>@alexa.realtor</span><span id="prog-realtor-label">0/4</span></div>
           <div class="progress-bar"><div class="progress-fill fill-blue" id="prog-realtor" style="width:0%"></div></div>
         </div>
         <div class="progress-wrap">
-          <div class="progress-label"><span>@fillerandroast</span><span id="prog-fnr-label">0/3</span></div>
+          <div class="progress-label"><span>@its.myash</span><span id="prog-myash-label">0/3</span></div>
+          <div class="progress-bar"><div class="progress-fill fill-green" id="prog-myash" style="width:0%"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label"><span>@fillerandroast</span><span id="prog-fnr-label">0/2</span></div>
           <div class="progress-bar"><div class="progress-fill fill-gold" id="prog-fnr" style="width:0%"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label"><span>@life.byalexa</span><span id="prog-lba-label">0/1</span></div>
+          <div class="progress-bar"><div class="progress-fill fill-teal" id="prog-lba" style="width:0%"></div></div>
         </div>
         <div class="progress-wrap" style="margin-top:12px">
           <div class="progress-label"><span>Substack Notes (21/wk)</span><span id="prog-sub-label">0/21</span></div>
-          <div class="progress-bar"><div class="progress-fill fill-green" id="prog-sub" style="width:0%"></div></div>
+          <div class="progress-bar"><div class="progress-fill fill-purple" id="prog-sub" style="width:0%"></div></div>
         </div>
         <div class="spacer"></div>
         <div class="progress-wrap">
@@ -661,15 +699,17 @@
 <div class="tab-panel" id="tab-content">
   <div class="section-hdr">
     <div class="section-title">Content Ops</div>
-    <div class="section-sub">weekly schedule · all three brands</div>
+    <div class="section-sub">weekly schedule · all four brands · #LifeByAlexa on everything</div>
   </div>
 
   <div class="legend">
-    <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div>@its.myash</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--accent3)"></div>@alexa.realtor</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div>@its.myash</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div>@fillerandroast</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#888"></div>Substack</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--text3)"></div>Recording Block</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div>@life.byalexa</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div>Substack</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--pink)"></div>Facebook</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--text3)"></div>System / TikTok</div>
     <div style="margin-left:auto; display:flex; gap:8px;">
       <button class="btn btn-ghost btn-sm" onclick="resetContent()">↺ Reset Schedule</button>
       <button class="btn btn-primary btn-sm" onclick="openModal('modal-add-content')">+ Add Item</button>
@@ -718,14 +758,8 @@
       <table class="sig-table">
         <thead>
           <tr>
-            <th>Owner</th>
-            <th>Address</th>
-            <th>Sources ✓</th>
-            <th>Signals</th>
-            <th>Score</th>
-            <th>Priority</th>
-            <th>Status</th>
-            <th></th>
+            <th>Owner</th><th>Address</th><th>Sources ✓</th>
+            <th>Signals</th><th>Score</th><th>Priority</th><th>Status</th><th></th>
           </tr>
         </thead>
         <tbody id="leads-tbody"></tbody>
@@ -763,7 +797,6 @@
     </div>
   </div>
 
-  <!-- Weekly script quick-ref -->
   <div class="card">
     <div class="card-hdr"><div class="card-hdr-title">📜 Script Quick Reference</div></div>
     <div class="card-body">
@@ -835,7 +868,6 @@
           </select>
         </div>
       </div>
-
       <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin:12px 0 6px;">Sources Checked</div>
       <div class="form-row">
         <label style="display:flex;align-items:center;gap:6px;cursor:pointer;"><input type="checkbox" id="src-lf" style="width:auto;"> LeadFlow</label>
@@ -843,7 +875,6 @@
         <label style="display:flex;align-items:center;gap:6px;cursor:pointer;"><input type="checkbox" id="src-mls" style="width:auto;"> Flex MLS</label>
         <label style="display:flex;align-items:center;gap:6px;cursor:pointer;"><input type="checkbox" id="src-pub" style="width:auto;"> Public Records</label>
       </div>
-
       <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin:12px 0 6px;">Signals Found (tap to select)</div>
       <div class="signal-grid" id="signal-picker">
         <label class="signal-check" onclick="toggleSignal(this,'probate',5)"><input type="checkbox"><div class="signal-check-dot dot-probate"></div><span class="signal-check-label">Probate</span><span class="signal-check-pts">+5</span></label>
@@ -858,8 +889,7 @@
         <label class="signal-check" onclick="toggleSignal(this,'pricedrop',2)"><input type="checkbox"><div class="signal-check-dot" style="background:#f0a060"></div><span class="signal-check-label">Price Drop</span><span class="signal-check-pts">+2</span></label>
         <label class="signal-check" onclick="toggleSignal(this,'lien',2)"><input type="checkbox"><div class="signal-check-dot" style="background:#60f0f0"></div><span class="signal-check-label">Lien Release</span><span class="signal-check-pts">+2</span></label>
       </div>
-  <div style="margin-top:10px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);">Total Score: <span id="score-preview" style="color:var(--accent);font-size:16px;font-family:'Bebas Neue',sans-serif;">0</span></div>
-
+      <div style="margin-top:10px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);">Total Score: <span id="score-preview" style="color:var(--accent);font-size:16px;font-family:'Bebas Neue',sans-serif;">0</span></div>
       <div class="form-full" style="margin-top:12px;"><label>Notes</label><textarea id="l-notes" placeholder="What you know about this lead..."></textarea></div>
     </div>
     <div class="modal-foot">
@@ -880,11 +910,13 @@
       <div class="form-row">
         <div><label>Brand</label>
           <select id="c-brand">
-            <option value="myash">@its.myash</option>
             <option value="realtor">@alexa.realtor</option>
+            <option value="myash">@its.myash</option>
             <option value="fnr">@fillerandroast</option>
+            <option value="lba">@life.byalexa</option>
             <option value="substack">Substack</option>
-            <option value="system">Recording Block</option>
+            <option value="fb">Facebook</option>
+            <option value="system">System / TikTok</option>
           </select>
         </div>
         <div><label>Day</label>
@@ -1037,14 +1069,8 @@ async function sbDelete(table, id) {
 }
 
 // ── STATE ─────────────────────────────────────────────────────────────────────
-const STORAGE_KEY = 'myash_ops_v2';
-let state = {
-  leads: [],
-  content: [],
-  outreach: [],
-  checks: {},
-  currentSignals: {},
-};
+const STORAGE_KEY = 'myash_ops_v3';
+let state = { leads: [], content: [], outreach: [], checks: {}, currentSignals: {} };
 let sbReady = false;
 
 function loadLocal() {
@@ -1060,10 +1086,7 @@ function saveLocal() {
 async function loadFromSupabase() {
   showSyncBadge('syncing');
   const [leads, content, outreach, checks] = await Promise.all([
-    sbGet('ops_leads'),
-    sbGet('ops_content'),
-    sbGet('ops_outreach'),
-    sbGet('ops_checks'),
+    sbGet('ops_leads'), sbGet('ops_content'), sbGet('ops_outreach'), sbGet('ops_checks'),
   ]);
   if (leads && leads.length > 0) state.leads = leads;
   if (content && content.length > 0) state.content = content;
@@ -1113,9 +1136,7 @@ async function saveOutreachToSB(entry) {
   });
 }
 
-async function deleteLeadFromSB(id) {
-  await sbDelete('ops_leads', String(id));
-}
+async function deleteLeadFromSB(id) { await sbDelete('ops_leads', String(id)); }
 
 function showSyncBadge(status) {
   const badge = document.getElementById('sync-badge');
@@ -1130,48 +1151,36 @@ let supabaseClient = null;
 function initRealtime() {
   try {
     supabaseClient = supabase.createClient(SB_URL, SB_KEY);
-
     supabaseClient.channel('ops_leads_changes')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_leads' }, async () => {
         const leads = await sbGet('ops_leads');
         if (leads !== null) { state.leads = leads; saveLocal(); renderLeads(); renderCannonball(); renderContacts(); renderKPIs(); }
-      })
-      .subscribe();
-
+      }).subscribe();
     supabaseClient.channel('ops_content_changes')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_content' }, async () => {
         const content = await sbGet('ops_content');
         if (content && content.length > 0) { state.content = content; saveLocal(); renderWeekGrid(); renderKPIs(); }
-      })
-      .subscribe();
-
+      }).subscribe();
     supabaseClient.channel('ops_outreach_changes')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_outreach' }, async () => {
         const outreach = await sbGet('ops_outreach');
         if (outreach !== null) { state.outreach = outreach; saveLocal(); renderCannonball(); renderKPIs(); }
-      })
-      .subscribe();
-
+      }).subscribe();
     supabaseClient.channel('ops_checks_changes')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_checks' }, async () => {
         const checks = await sbGet('ops_checks');
         if (checks && checks.length > 0) {
           state.checks = {};
           checks.forEach(r => { state.checks[r.check_id] = r.checked; });
-          saveLocal();
-          renderMondayChecks();
+          saveLocal(); renderMondayChecks();
         }
-      })
-      .subscribe();
-
-  } catch(e) {
-    console.log('Realtime init failed:', e);
-  }
+      }).subscribe();
+  } catch(e) { console.log('Realtime init failed:', e); }
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
 function resetContent() {
-  if (confirm('Reset the content schedule to the master template? Your check-offs will be cleared.')) {
+  if (confirm('Reset the content schedule to the updated master template?')) {
     state.content = [];
     seedDefaults();
     save();
@@ -1200,63 +1209,55 @@ function setDate() {
 function seedDefaults() {
   if (state.leads.length === 0) {
     state.leads = [
-      { id: 1, fname:'Mary', lname:'Davis', phone:'610-555-0303', email:'mary@email.com', addr:'789 Pine Rd, Wayne PA 18087', value:550000, equity:100, years:22, status:'Warm Lead', sources:{lf:true,tax:true,mls:false,pub:true}, signals:{permit:4,equity:2,tenure:2}, notes:'Permit pulled Jan — kitchen + bath. Free & clear. Watch for spring.', date: new Date().toISOString() },
-      { id: 2, fname:'Tom', lname:'Wilson', phone:'570-555-0404', email:'twilson@email.com', addr:'22 Deer Trail, Mt Pocono PA 18344', value:380000, equity:72, years:18, status:'Hot Lead', sources:{lf:true,tax:true,mls:true,pub:true}, signals:{probate:5,equity:2,tenure:2}, notes:'Probate filed Feb 3. Send sympathy letter this week. Follow-up call Feb 17.', date: new Date().toISOString() },
-      { id: 3, fname:'Jane', lname:'Smith', phone:'215-555-0101', email:'jane@email.com', addr:'123 Maple St, Stroudsburg PA 18360', value:450000, equity:58, years:14, status:'Warm Lead', sources:{lf:true,tax:true,mls:true,pub:true}, signals:{expired:3,equity:2,tenure:2}, notes:'Expired twice. Called Jan 15 — said maybe spring. Follow up Apr 1.', date: new Date().toISOString() },
-      { id: 4, fname:'Carol', lname:'White', phone:'570-555-0505', email:'', addr:'8 Birch Ln, Tobyhanna PA 18466', value:295000, equity:30, years:5, status:'New', sources:{lf:true,tax:false,mls:true,pub:true}, signals:{prefc:4}, notes:'Sheriff sale Mar 1 — contact NOW. Low equity but time pressure.', date: new Date().toISOString() },
+      { id:1, fname:'Mary', lname:'Davis', phone:'610-555-0303', email:'mary@email.com', addr:'789 Pine Rd, Wayne PA 18087', value:550000, equity:100, years:22, status:'Warm Lead', sources:{lf:true,tax:true,mls:false,pub:true}, signals:{permit:4,equity:2,tenure:2}, notes:'Permit pulled Jan — kitchen + bath. Free & clear. Watch for spring.', date: new Date().toISOString() },
+      { id:2, fname:'Tom', lname:'Wilson', phone:'570-555-0404', email:'twilson@email.com', addr:'22 Deer Trail, Mt Pocono PA 18344', value:380000, equity:72, years:18, status:'Hot Lead', sources:{lf:true,tax:true,mls:true,pub:true}, signals:{probate:5,equity:2,tenure:2}, notes:'Probate filed Feb 3. Send sympathy letter this week.', date: new Date().toISOString() },
+      { id:3, fname:'Jane', lname:'Smith', phone:'215-555-0101', email:'jane@email.com', addr:'123 Maple St, Stroudsburg PA 18360', value:450000, equity:58, years:14, status:'Warm Lead', sources:{lf:true,tax:true,mls:true,pub:true}, signals:{expired:3,equity:2,tenure:2}, notes:'Expired twice. Follow up Apr 1.', date: new Date().toISOString() },
+      { id:4, fname:'Carol', lname:'White', phone:'570-555-0505', email:'', addr:'8 Birch Ln, Tobyhanna PA 18466', value:295000, equity:30, years:5, status:'New', sources:{lf:true,tax:false,mls:true,pub:true}, signals:{prefc:4}, notes:'Sheriff sale — contact NOW.', date: new Date().toISOString() },
     ];
   }
   if (state.content.length === 0) {
     state.content = [
-      // SUNDAY — Recording day. Hub video record & upload. Coffee & Ash ritual.
-      // Note: Before the First Draw (@fillerandroast) and Sunday Gratitude (Nextdoor) removed from active cadence.
-      { id:1,  brand:'system',   day:0, title:'🟢 SUNDAY RECORDING — Hub video only. Coffee in hand. One camera. ~30 min.', type:'Recording Block', goal:'Grow Following', done:false },
-      { id:2,  brand:'realtor',  day:0, title:'▶ Hub Video — Record & Upload', type:'YouTube · 8–12 min · all 3 brands · upload Sunday', goal:'RE Leads', done:false },
-      { id:4,  brand:'myash',    day:0, title:'☕🍂 Coffee & Ash — Ritual', type:'IG · FB · 10:15 AM', goal:'Drive Sales', done:false },
+      // SUNDAY
+      { id:1,  brand:'system',  day:0, title:'🟢 SUNDAY RECORDING — Hub video + @life.byalexa content. ~30 min.', type:'Recording Block', goal:'Grow Following', done:false },
+      { id:2,  brand:'realtor', day:0, title:'▶ Hub Video — Record & Upload', type:'YouTube · 10 AM · all brands', goal:'RE Leads', done:false },
+      { id:3,  brand:'realtor', day:0, title:'🙏 Sunday Gratitude Post', type:'IG · 9:15 AM · #LifeByAlexa', goal:'RE Leads', done:false },
+      { id:4,  brand:'realtor', day:0, title:'🙏 Sunday Gratitude Post', type:'Nextdoor · 9:30 AM', goal:'RE Leads', done:false },
+      { id:5,  brand:'lba',     day:0, title:'✨ Lifestyle Moment', type:'IG + TikTok · 11 AM · #LifeByAlexa', goal:'Grow Following', done:false },
+      { id:6,  brand:'fb',      day:0, title:'📘 Gratitude Repurpose', type:'Facebook · 10 AM', goal:'RE Leads', done:false },
+      { id:7,  brand:'substack',day:0, title:'✍️ Notes — Morning Batch', type:'Substack · article-tied · 8 AM', goal:'Grow Following', done:false },
       // MONDAY
-      { id:6,  brand:'substack', day:1, title:'✍️ The Lifestyle Market Letter — Operator Life', type:'Substack · personal story first · 8:00 AM', goal:'Grow Following', done:false },
-      { id:11, brand:'realtor',  day:1, title:'🏠 Real Estate Insight', type:'FB Personal · 8:00 AM', goal:'RE Leads', done:false },
-      { id:9,  brand:'realtor',  day:1, title:'📊 Market Signal', type:'LinkedIn · 8:00 AM', goal:'RE Leads', done:false },
-      { id:10, brand:'realtor',  day:1, title:'📍 Google Business Post', type:'Google Biz · 9:00 AM · keyword-rich', goal:'RE Leads', done:false },
-      { id:8,  brand:'myash',    day:1, title:'🎬 TikTok — Hub Repurpose', type:'TikTok · 6:00 PM', goal:'Grow Following', done:false },
-      { id:7,  brand:'myash',    day:1, title:'🌙 Tonight\'s Smoke — Carousel', type:'IG · 7:00 PM', goal:'Drive Sales', done:false },
+      { id:8,  brand:'substack',day:1, title:'✍️ Operator Life Article', type:'Substack · primary post · 8 AM', goal:'Grow Following', done:false },
+      { id:9,  brand:'realtor', day:1, title:'📊 Market Signal', type:'LinkedIn · 8 AM · #LifeByAlexa', goal:'RE Leads', done:false },
+      { id:10, brand:'realtor', day:1, title:'📍 Google Business Post', type:'Google · 9 AM · keyword-rich', goal:'RE Leads', done:false },
+      { id:11, brand:'myash',   day:1, title:'🌙 Tonight\'s Smoke Carousel', type:'IG · 7 PM · #LifeByAlexa', goal:'Drive Sales', done:false },
+      { id:12, brand:'fnr',     day:1, title:'☕ Monday Brew Post', type:'IG · 9 AM · #LifeByAlexa', goal:'Drive Sales', done:false },
+      { id:13, brand:'fb',      day:1, title:'📘 Brew Post Repurpose', type:'Facebook · 10 AM', goal:'Drive Sales', done:false },
+      { id:14, brand:'system',  day:1, title:'🎬 TikTok — Operator Content', type:'@its.myash · 6 PM · no smoking', goal:'Grow Following', done:false },
       // TUESDAY
-      { id:12, brand:'myash',    day:2, title:'🎬 IG Reel — Hub Repurpose', type:'IG Reel · all brands · 10:00 AM', goal:'Grow Following', done:false },
-      { id:13, brand:'realtor',  day:2, title:'📍 Pocono Pulse — Market Update', type:'IG · 11:00 AM · stat · trend · takeaway', goal:'RE Leads', done:false },
-      { id:14, brand:'realtor',  day:2, title:'🚗 Car Confession — Real Estate', type:'IG · 12:00 PM · 20 sec · recorded Wed', goal:'RE Leads', done:false },
-      { id:15, brand:'realtor',  day:2, title:'🏡 Neighborly Post', type:'Nextdoor · 6:00 PM', goal:'RE Leads', done:false },
-      { id:16, brand:'fnr',      day:2, title:'🔥 Nell\'s Social — This Week\'s Smoke', type:'FB tag · 6:00 PM', goal:'Drive Sales', done:false },
-      // WEDNESDAY — Primary recording day
-      { id:17, brand:'system',   day:3, title:'🟡 WEDNESDAY RECORDING — 4+ recordings. Privacy. Can smoke on camera.', type:'Recording Block', goal:'Grow Following', done:false },
-      { id:18, brand:'realtor',  day:3, title:'🎬 RECORD: Ashes & Escrows Episode', type:'YouTube · 6–8 min · uploads Thu 10AM', goal:'RE Leads', done:false },
-      { id:19, brand:'realtor',  day:3, title:'▶ RECORD: YouTube Short', type:'YouTube Short · under 60 sec · uploads Thu 11AM', goal:'RE Leads', done:false },
-      { id:20, brand:'realtor',  day:3, title:'🚗 RECORD: Car Confessions Batch', type:'IG · Tue RE + Thu Entrepreneur · one session', goal:'RE Leads', done:false },
-      { id:21, brand:'myash',    day:3, title:'🚗 RECORD: Car Confession — Entrepreneur & Cigars', type:'IG · 20 sec · shock value · upload 12:00 PM', goal:'Grow Following', done:false },
-      { id:22, brand:'myash',    day:3, title:'🌙 RECORD: Tonight\'s Smoke Batch', type:'Cigar content · carousel for Monday 7PM', goal:'Drive Sales', done:false },
-      { id:23, brand:'fnr',      day:3, title:'📸 F&R Pairing — Photo Capture Only', type:'Coffee + cigar setup · stills only · video records Thu', goal:'Drive Sales', done:false },
-      { id:24, brand:'myash',    day:3, title:'📸 Ash Shot — Upload', type:'IG · 8:00 AM', goal:'Grow Following', done:false },
-      { id:25, brand:'realtor',  day:3, title:'📊 Market Insight — LinkedIn Upload', type:'LinkedIn · 9:00 AM', goal:'RE Leads', done:false },
-      { id:26, brand:'realtor',  day:3, title:'🏷 Under Contract — Story Only', type:'IG Story · FB Story · 11:00 AM', goal:'RE Leads', done:false },
-      { id:31, brand:'myash',    day:3, title:'🎵 Native TikTok Re-record — Record & Upload', type:'TikTok · no watermark · same topic as Short · 12:00 PM', goal:'Grow Following', done:false },
-      { id:27, brand:'realtor',  day:3, title:'🤝 Local Collab (1x/month)', type:'IG Story · tag partner · no feed slot', goal:'Grow Following', done:false },
+      { id:15, brand:'realtor', day:2, title:'🚗 Car Confession', type:'IG · record + post · 12 PM · RE angle', goal:'RE Leads', done:false },
+      { id:16, brand:'realtor', day:2, title:'🏡 Neighborly Post', type:'Nextdoor · 6 PM', goal:'RE Leads', done:false },
+      { id:17, brand:'fb',      day:2, title:'📘 Market Insight Repurpose', type:'Facebook · 8 AM', goal:'RE Leads', done:false },
+      { id:18, brand:'substack',day:2, title:'✍️ Notes — Midday Batch', type:'Substack · thematic · 12 PM', goal:'Grow Following', done:false },
+      // WEDNESDAY
+      { id:19, brand:'system',  day:3, title:'🟡 Ashes & Escrows — Record Only', type:'Recording Block · uploads Thu 10AM', goal:'RE Leads', done:false },
+      { id:20, brand:'realtor', day:3, title:'🚗 Car Confession', type:'IG · record + post · 12 PM', goal:'RE Leads', done:false },
+      { id:21, brand:'system',  day:3, title:'🎬 TikTok — Cigar Brand / Culture', type:'@its.myash · 6 PM · no smoking', goal:'Grow Following', done:false },
       // THURSDAY
-      { id:28, brand:'substack', day:4, title:'✍️ The Lifestyle Market Letter — Experience Economy', type:'Substack · ritual · lifestyle · 8:00 AM', goal:'Grow Following', done:false },
-      { id:33, brand:'realtor',  day:4, title:'📊 Investor Signal (pre-sched)', type:'LinkedIn · 8:30 AM', goal:'RE Leads', done:false },
-      { id:29, brand:'realtor',  day:4, title:'🎬 Ashes & Escrows — Upload', type:'YouTube · recorded Wed · 10:00 AM', goal:'RE Leads', done:false },
-      { id:30, brand:'realtor',  day:4, title:'▶ YouTube Short — Upload', type:'YouTube Short · recorded Wed · 11:00 AM', goal:'RE Leads', done:false },
-      { id:32, brand:'realtor',  day:4, title:'🚗 Car Confession — Entrepreneur Life (Upload)', type:'IG · recorded Wed · 12:00 PM', goal:'RE Leads', done:false },
-      { id:34, brand:'fnr',      day:4, title:'🍃 RECORD: F&R Pairing Video', type:'Photos captured Wed · uploads Fri · biweekly', goal:'Drive Sales', done:false },
-      { id:35, brand:'realtor',  day:4, title:'🏘 Community Roundup', type:'Nextdoor · 6:00 PM', goal:'RE Leads', done:false },
+      { id:22, brand:'substack',day:4, title:'✍️ Lifestyle Market Letter', type:'Substack · article publish · 8 AM', goal:'Grow Following', done:false },
+      { id:23, brand:'realtor', day:4, title:'🎬 Ashes & Escrows Upload', type:'YouTube · recorded Wed · 10 AM', goal:'RE Leads', done:false },
+      { id:24, brand:'realtor', day:4, title:'🚗 Car Confession', type:'IG · record + post · 12 PM · entrepreneur', goal:'RE Leads', done:false },
+      { id:25, brand:'realtor', day:4, title:'📍 Local Happenings', type:'Nextdoor · 6 PM', goal:'RE Leads', done:false },
+      { id:26, brand:'fnr',     day:4, title:'🍃 Coffee for the Leaf', type:'IG · TikTok · 10 AM · #LifeByAlexa', goal:'Drive Sales', done:false },
+      { id:27, brand:'fb',      day:4, title:'📘 Coffee for the Leaf Repurpose', type:'Facebook · 11 AM', goal:'Drive Sales', done:false },
+      { id:28, brand:'substack',day:4, title:'✍️ Notes — Evening Batch', type:'Substack · personal voice · 6 PM', goal:'Grow Following', done:false },
       // FRIDAY
-      { id:39, brand:'realtor',  day:5, title:'📊 Market Insight (pre-sched)', type:'FB Biz · 8:00 AM', goal:'RE Leads', done:false },
-      { id:36, brand:'fnr',      day:5, title:'☕ Coffee for the Leaf', type:'IG · FB Biz · 9:00 AM', goal:'Drive Sales', done:false },
-      { id:37, brand:'fnr',      day:5, title:'🍃 The Pairing — Cigar + Coffee Ed. (bi-weekly)', type:'IG · recorded Thu · 10:00 AM', goal:'Drive Sales', done:false },
-      { id:38, brand:'myash',    day:5, title:'☕ Coffee for the Leaf TikTok', type:'TikTok via @its.myash · different edit · 11:00 AM', goal:'Drive Sales', done:false },
-      { id:40, brand:'system',   day:5, title:'📣 Facebook — All Brands Repurpose', type:'FB · all brands · captions repurposed · 12:00 PM', goal:'Grow Following', done:false },
-      { id:41, brand:'myash',    day:5, title:'🥃 Weekend Smoke — Reel', type:'IG · 5:00 PM · feed post', goal:'Drive Sales', done:false },
+      { id:29, brand:'realtor', day:5, title:'📊 Market Insight', type:'LinkedIn · 8 AM · #LifeByAlexa', goal:'RE Leads', done:false },
+      { id:30, brand:'myash',   day:5, title:'🥃 Weekend Smoke Reel', type:'IG · 5 PM · #LifeByAlexa', goal:'Drive Sales', done:false },
+      { id:31, brand:'fb',      day:5, title:'📘 Car Confession Repurpose', type:'Facebook · 12 PM', goal:'RE Leads', done:false },
       // SATURDAY
-      { id:42, brand:'realtor',  day:6, title:'🏡 Weekend Market Tip', type:'Nextdoor · 10:00 AM', goal:'RE Leads', done:false },
-      { id:43, brand:'myash',    day:6, title:'📸 Stories — Behind the Scenes', type:'IG Story only · 2:00 PM · no feed post Sat', goal:'Grow Following', done:false },
+      { id:32, brand:'myash',   day:6, title:'📸 Behind the Scenes Story', type:'IG Story only · 2 PM', goal:'Grow Following', done:false },
+      { id:33, brand:'system',  day:6, title:'🎬 TikTok — RE Investor Tip', type:'@alexa.realtor · 11 AM', goal:'RE Leads', done:false },
+      { id:34, brand:'fb',      day:6, title:'📘 Weekend Tip Repurpose', type:'Facebook · 11 AM', goal:'RE Leads', done:false },
     ];
   }
 }
@@ -1294,21 +1295,25 @@ function renderKPIs() {
   document.getElementById('kpi-hot').textContent = hotLeads;
   document.getElementById('kpi-outreach').textContent = outreach;
 
-  const myash = state.content.filter(c => c.brand === 'myash');
-  const realtor = state.content.filter(c => c.brand === 'realtor');
-  const fnr = state.content.filter(c => c.brand === 'fnr');
-  const sub = state.content.filter(c => c.brand === 'substack');
+  const realtor  = state.content.filter(c => c.brand === 'realtor');
+  const myash    = state.content.filter(c => c.brand === 'myash');
+  const fnr      = state.content.filter(c => c.brand === 'fnr');
+  const lba      = state.content.filter(c => c.brand === 'lba');
+  const sub      = state.content.filter(c => c.brand === 'substack');
 
-  updateProg('myash', myash.filter(c=>c.done).length, myash.length || 7);
-  updateProg('realtor', realtor.filter(c=>c.done).length, realtor.length || 7);
-  updateProg('fnr', fnr.filter(c=>c.done).length, fnr.length || 3);
-  updateProg('sub', sub.filter(c=>c.done).length, Math.max(sub.length, 21));
-  updateProg('out', outreach, 25);
+  updateProg('realtor', realtor.filter(c=>c.done).length, Math.max(realtor.length, 4));
+  updateProg('myash',   myash.filter(c=>c.done).length,   Math.max(myash.length, 3));
+  updateProg('fnr',     fnr.filter(c=>c.done).length,     Math.max(fnr.length, 2));
+  updateProg('lba',     lba.filter(c=>c.done).length,     Math.max(lba.length, 1));
+  updateProg('sub',     sub.filter(c=>c.done).length,     Math.max(sub.length, 21));
+  updateProg('out',     outreach, 25);
 }
 function updateProg(id, val, total) {
   const pct = Math.min(100, Math.round((val/total)*100));
-  document.getElementById('prog-'+id).style.width = pct + '%';
-  document.getElementById('prog-'+id+'-label').textContent = val + '/' + total;
+  const el = document.getElementById('prog-'+id);
+  const lbl = document.getElementById('prog-'+id+'-label');
+  if (el) el.style.width = pct + '%';
+  if (lbl) lbl.textContent = val + '/' + total;
 }
 
 // ── MONDAY CHECKS ─────────────────────────────────────────────────────────────
@@ -1327,6 +1332,9 @@ function renderMondayChecks() {
 
 // ── WEEK GRID ─────────────────────────────────────────────────────────────────
 const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const BRAND_CLASS = { myash:'brand-myash', realtor:'brand-realtor', fnr:'brand-fnr', lba:'brand-lba', substack:'brand-sub', fb:'brand-fb', system:'brand-system' };
+const BRAND_LABEL = { myash:'@its.myash', realtor:'@alexa.realtor', fnr:'@fillerandroast', lba:'@life.byalexa', substack:'Substack', fb:'Facebook', system:'⚙ System' };
+
 function renderWeekGrid() {
   const today = new Date().getDay();
   const grid = document.getElementById('week-grid');
@@ -1342,9 +1350,9 @@ function renderWeekGrid() {
     items.forEach(item => {
       const el = document.createElement('div');
       el.className = 'content-item' + (item.done ? ' done' : '');
-      const brandClass = { myash:'brand-myash', realtor:'brand-realtor', fnr:'brand-fnr', substack:'brand-sub', system:'brand-system' }[item.brand] || '';
-      const brandLabel = { myash:'@its.myash', realtor:'@alexa.realtor', fnr:'@fillerandroast', substack:'Substack', system:'⚙️ SYSTEM' }[item.brand] || '';
-      el.innerHTML = `<div class="ci-brand ${brandClass}">${brandLabel}</div><div class="ci-title">${item.title}</div><div class="ci-type">${item.type}</div>`;
+      const bc = BRAND_CLASS[item.brand] || '';
+      const bl = BRAND_LABEL[item.brand] || item.brand;
+      el.innerHTML = `<div class="ci-brand ${bc}">${bl}</div><div class="ci-title">${item.title}</div><div class="ci-type">${item.type}</div>`;
       el.onclick = () => { item.done = !item.done; save(); renderAll(); };
       col.appendChild(el);
     });
@@ -1374,15 +1382,13 @@ function renderLeads() {
   let leads = [...state.leads];
   if (filter) leads = leads.filter(l => priorityOf(scoreOf(l)).key === filter);
   leads.sort((a,b) => scoreOf(b) - scoreOf(a));
-
   if (leads.length === 0) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
   empty.style.display = 'none';
-
   tbody.innerHTML = leads.map(l => {
     const score = scoreOf(l);
     const pri = priorityOf(score);
     const srcChecks = [l.sources?.lf && 'LF', l.sources?.tax && 'TAX', l.sources?.mls && 'MLS', l.sources?.pub && 'PUB'].filter(Boolean).join(' · ') || '–';
-    const dots = Object.keys(l.signals || {}).map(k => `<div class="sig-dot ${SIG_DOT_MAP[k]||''}" title="${k}" style="background:${SIG_DOT_MAP[k]?'':' #888'}"></div>`).join('');
+    const dots = Object.keys(l.signals || {}).map(k => `<div class="sig-dot ${SIG_DOT_MAP[k]||''}" title="${k}"></div>`).join('');
     return `<tr>
       <td><strong>${l.fname} ${l.lname}</strong></td>
       <td style="color:var(--text2);font-size:11px;">${l.addr}</td>
@@ -1405,11 +1411,7 @@ function deleteLead(id) {
 
 // ── CANNONBALL ────────────────────────────────────────────────────────────────
 function renderCannonball() {
-  const targets = [...state.leads]
-    .filter(l => scoreOf(l) >= 5)
-    .sort((a,b) => scoreOf(b) - scoreOf(a))
-    .slice(0, 10);
-
+  const targets = [...state.leads].filter(l => scoreOf(l) >= 5).sort((a,b) => scoreOf(b)-scoreOf(a)).slice(0,10);
   const el = document.getElementById('cannonball-targets');
   if (targets.length === 0) {
     el.innerHTML = '<div class="empty"><div class="empty-icon">🎯</div><div class="empty-label">Hot + Warm leads from Signal Tracker appear here.</div></div>';
@@ -1441,8 +1443,7 @@ function renderCannonball() {
     logEl.innerHTML = '<div class="empty"><div class="empty-icon">📋</div><div class="empty-label">No outreach logged yet.</div></div>';
   } else {
     logEl.innerHTML = [...state.outreach].reverse().map(o => {
-      const sentiment = ['Appointment Set','Positive — Follow Up','Listed'].includes(o.response) ? 'hot' :
-                        o.response === 'Maybe Later' ? 'warm' : 'cold';
+      const sentiment = ['Appointment Set','Positive — Follow Up','Listed'].includes(o.response) ? 'hot' : o.response === 'Maybe Later' ? 'warm' : 'cold';
       return `<div class="log-entry ${sentiment}">
         <div class="log-meta">${o.date} · ${o.method}</div>
         <div class="log-name">${o.name}</div>
@@ -1521,12 +1522,7 @@ function saveLead() {
     equity: parseInt(document.getElementById('l-equity').value) || 0,
     years: parseInt(document.getElementById('l-years').value) || 0,
     status: document.getElementById('l-status').value,
-    sources: {
-      lf: document.getElementById('src-lf').checked,
-      tax: document.getElementById('src-tax').checked,
-      mls: document.getElementById('src-mls').checked,
-      pub: document.getElementById('src-pub').checked,
-    },
+    sources: { lf: document.getElementById('src-lf').checked, tax: document.getElementById('src-tax').checked, mls: document.getElementById('src-mls').checked, pub: document.getElementById('src-pub').checked },
     signals: { ...state.currentSignals },
     notes: document.getElementById('l-notes').value.trim(),
     date: new Date().toISOString(),
