@@ -1132,28 +1132,23 @@
 const SB_URL = 'https://gzqgeehcvmgstzenkyfnw.supabase.co';
 const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6cWdlZWhjdm1nc3R6bmt5Zm53Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1OTIxMDgsImV4cCI6MjA4OTE2ODEwOH0.sw98v41oTub5p64cuP5Sqx574wNUd6kzOU1UxdoahWA';
 const SB_HDR = { 'Content-Type': 'application/json', 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY };
+const SB_TABLE = 'checklist_state';
 
-async function sbGet(table) {
+async function sbGetKey(key) {
   try {
-    const r = await fetch(`${SB_URL}/rest/v1/${table}?select=*&order=id`, { headers: SB_HDR });
+    const r = await fetch(`${SB_URL}/rest/v1/${SB_TABLE}?key=eq.${encodeURIComponent(key)}&select=value`, { headers: SB_HDR });
     if (!r.ok) return null;
-    return await r.json();
+    const rows = await r.json();
+    return rows.length > 0 ? rows[0].value : null;
   } catch(e) { return null; }
 }
-async function sbUpsert(table, row) {
+
+async function sbSetKey(key, value) {
   try {
-    const r = await fetch(`${SB_URL}/rest/v1/${table}`, {
+    const r = await fetch(`${SB_URL}/rest/v1/${SB_TABLE}`, {
       method: 'POST',
       headers: { ...SB_HDR, 'Prefer': 'resolution=merge-duplicates' },
-      body: JSON.stringify(row)
-    });
-    return r.ok;
-  } catch(e) { return false; }
-}
-async function sbDelete(table, id) {
-  try {
-    const r = await fetch(`${SB_URL}/rest/v1/${table}?id=eq.${id}`, {
-      method: 'DELETE', headers: SB_HDR
+      body: JSON.stringify({ key, value })
     });
     return r.ok;
   } catch(e) { return false; }
@@ -1163,6 +1158,7 @@ async function sbDelete(table, id) {
 const STORAGE_KEY = 'myash_ops_v3';
 let state = { leads: [], content: [], outreach: [], checks: {}, currentSignals: {} };
 let sbReady = false;
+let syncTimer = null;
 
 function loadLocal() {
   try {
@@ -1176,16 +1172,18 @@ function saveLocal() {
 
 async function loadFromSupabase() {
   showSyncBadge('syncing');
-  const [leads, content, outreach, checks] = await Promise.all([
-    sbGet('ops_leads'), sbGet('ops_content'), sbGet('ops_outreach'), sbGet('ops_checks'),
-  ]);
-  if (leads && leads.length > 0) state.leads = leads;
-  if (content && content.length > 0) state.content = content;
-  if (outreach && outreach.length > 0) state.outreach = outreach;
-  if (checks && checks.length > 0) {
-    state.checks = {};
-    checks.forEach(r => { state.checks[r.check_id] = r.checked; });
-  }
+  try {
+    const [leadsRaw, contentRaw, outreachRaw, checksRaw] = await Promise.all([
+      sbGetKey('ops_leads'),
+      sbGetKey('ops_content'),
+      sbGetKey('ops_outreach'),
+      sbGetKey('ops_checks'),
+    ]);
+    if (leadsRaw)   { const d = JSON.parse(leadsRaw);   if (d.length > 0) state.leads = d; }
+    if (contentRaw) { const d = JSON.parse(contentRaw); if (d.length > 0) state.content = d; }
+    if (outreachRaw){ const d = JSON.parse(outreachRaw);if (d.length > 0) state.outreach = d; }
+    if (checksRaw)  { state.checks = JSON.parse(checksRaw); }
+  } catch(e) { console.log('Load from Supabase error:', e); }
   saveLocal();
   sbReady = true;
   showSyncBadge('synced');
@@ -1194,40 +1192,25 @@ async function loadFromSupabase() {
 
 function save() {
   saveLocal();
-  if (sbReady) syncToSupabase();
+  if (syncTimer) clearTimeout(syncTimer);
+  syncTimer = setTimeout(() => {
+    if (sbReady) syncToSupabase();
+  }, 800);
 }
 
 async function syncToSupabase() {
-  for (const lead of state.leads) {
-    await sbUpsert('ops_leads', {
-      id: String(lead.id), fname: lead.fname, lname: lead.lname,
-      phone: lead.phone || '', email: lead.email || '', addr: lead.addr || '',
-      value: lead.value || 0, equity: lead.equity || 0, years: lead.years || 0,
-      status: lead.status || 'New', sources: JSON.stringify(lead.sources || {}),
-      signals: JSON.stringify(lead.signals || {}), notes: lead.notes || ''
-    });
-  }
-  for (const item of state.content) {
-    await sbUpsert('ops_content', {
-      id: String(item.id), brand: item.brand, day: item.day,
-      title: item.title, type: item.type, goal: item.goal, done: item.done
-    });
-  }
-  for (const [check_id, checked] of Object.entries(state.checks)) {
-    await sbUpsert('ops_checks', { check_id, checked });
-  }
+  showSyncBadge('syncing');
+  await Promise.all([
+    sbSetKey('ops_leads',   JSON.stringify(state.leads)),
+    sbSetKey('ops_content', JSON.stringify(state.content)),
+    sbSetKey('ops_outreach',JSON.stringify(state.outreach)),
+    sbSetKey('ops_checks',  JSON.stringify(state.checks)),
+  ]);
   showSyncBadge('synced');
 }
 
-async function saveOutreachToSB(entry) {
-  await sbUpsert('ops_outreach', {
-    id: String(entry.id), name: entry.name, method: entry.method,
-    response: entry.response, followup: entry.followup || '',
-    notes: entry.notes || '', date: entry.date
-  });
-}
-
-async function deleteLeadFromSB(id) { await sbDelete('ops_leads', String(id)); }
+async function saveOutreachToSB() { /* handled by syncToSupabase */ }
+async function deleteLeadFromSB() { /* handled by syncToSupabase */ }
 
 function showSyncBadge(status) {
   const badge = document.getElementById('sync-badge');
@@ -1236,37 +1219,30 @@ function showSyncBadge(status) {
   badge.style.color = status === 'syncing' ? 'var(--gold)' : 'var(--accent)';
 }
 
-// ── REALTIME SYNC ─────────────────────────────────────────────────────────────
-let supabaseClient = null;
+// ── POLL FOR CHANGES (replaces broken realtime on mobile) ─────────────────────
+let lastSyncHash = '';
+let pollInterval = null;
+
+function startPolling() {
+  pollInterval = setInterval(async () => {
+    try {
+      const contentRaw = await sbGetKey('ops_content');
+      const checksRaw  = await sbGetKey('ops_checks');
+      const hash = (contentRaw || '') + (checksRaw || '');
+      if (hash !== lastSyncHash && lastSyncHash !== '') {
+        if (contentRaw) { const d = JSON.parse(contentRaw); if (d.length > 0) state.content = d; }
+        if (checksRaw)  { state.checks = JSON.parse(checksRaw); }
+        saveLocal();
+        renderAll();
+        showSyncBadge('synced');
+      }
+      lastSyncHash = hash;
+    } catch(e) {}
+  }, 10000);
+}
 
 function initRealtime() {
-  try {
-    supabaseClient = supabase.createClient(SB_URL, SB_KEY);
-    supabaseClient.channel('ops_leads_changes')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_leads' }, async () => {
-        const leads = await sbGet('ops_leads');
-        if (leads !== null) { state.leads = leads; saveLocal(); renderLeads(); renderCannonball(); renderContacts(); renderKPIs(); }
-      }).subscribe();
-    supabaseClient.channel('ops_content_changes')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_content' }, async () => {
-        const content = await sbGet('ops_content');
-        if (content && content.length > 0) { state.content = content; saveLocal(); renderWeekGrid(); renderKPIs(); }
-      }).subscribe();
-    supabaseClient.channel('ops_outreach_changes')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_outreach' }, async () => {
-        const outreach = await sbGet('ops_outreach');
-        if (outreach !== null) { state.outreach = outreach; saveLocal(); renderCannonball(); renderKPIs(); }
-      }).subscribe();
-    supabaseClient.channel('ops_checks_changes')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_checks' }, async () => {
-        const checks = await sbGet('ops_checks');
-        if (checks && checks.length > 0) {
-          state.checks = {};
-          checks.forEach(r => { state.checks[r.check_id] = r.checked; });
-          saveLocal(); renderMondayChecks();
-        }
-      }).subscribe();
-  } catch(e) { console.log('Realtime init failed:', e); }
+  startPolling();
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
@@ -1298,6 +1274,7 @@ function setDate() {
 }
 
 function seedDefaults() {
+  let seeded = false;
   if (state.leads.length === 0) {
     state.leads = [
       { id:1, fname:'Mary', lname:'Davis', phone:'610-555-0303', email:'mary@email.com', addr:'789 Pine Rd, Wayne PA 18087', value:550000, equity:100, years:22, status:'Warm Lead', sources:{lf:true,tax:true,mls:false,pub:true}, signals:{permit:4,equity:2,tenure:2}, notes:'Permit pulled Jan — kitchen + bath. Free & clear. Watch for spring.', date: new Date().toISOString() },
@@ -1305,6 +1282,7 @@ function seedDefaults() {
       { id:3, fname:'Jane', lname:'Smith', phone:'215-555-0101', email:'jane@email.com', addr:'123 Maple St, Stroudsburg PA 18360', value:450000, equity:58, years:14, status:'Warm Lead', sources:{lf:true,tax:true,mls:true,pub:true}, signals:{expired:3,equity:2,tenure:2}, notes:'Expired twice. Follow up Apr 1.', date: new Date().toISOString() },
       { id:4, fname:'Carol', lname:'White', phone:'570-555-0505', email:'', addr:'8 Birch Ln, Tobyhanna PA 18466', value:295000, equity:30, years:5, status:'New', sources:{lf:true,tax:false,mls:true,pub:true}, signals:{prefc:4}, notes:'Sheriff sale — contact NOW.', date: new Date().toISOString() },
     ];
+    seeded = true;
   }
   if (state.content.length === 0) {
     state.content = [
@@ -1351,6 +1329,10 @@ function seedDefaults() {
       { id:33, brand:'system',  day:6, title:'🎬 TikTok — RE Investor Tip', type:'@alexa.realtor · 11 AM', goal:'RE Leads', done:false },
       { id:34, brand:'fb',      day:6, title:'📘 Weekend Tip Repurpose', type:'Facebook · 11 AM', goal:'RE Leads', done:false },
     ];
+    seeded = true;
+  }
+  if (seeded && sbReady) {
+    syncToSupabase();
   }
 }
 
