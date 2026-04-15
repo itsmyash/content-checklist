@@ -20,538 +20,134 @@
     --code-bg: #1E1E2E;
     --code-text: #E8E4DC;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: #EDEAE3;
-    font-family: 'DM Sans', sans-serif;
-    color: var(--text-dark);
-    padding: 0;
-  }
-
+  body { background: #EDEAE3; font-family: 'DM Sans', sans-serif; color: var(--text-dark); padding: 0; }
   .wrapper { max-width: 860px; margin: 0 auto; padding: 32px 16px; }
 
-  /* ── MASTER HEADER ── */
-  .master-header {
-    background: var(--navy);
-    padding: 48px 52px 40px;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 4px;
-  }
-  .master-header::before {
-    content: 'ROAST';
-    position: absolute;
-    right: -20px;
-    bottom: -30px;
-    font-family: 'Playfair Display', serif;
-    font-size: 160px;
-    font-weight: 900;
-    color: rgba(196,151,58,0.05);
-    line-height: 1;
-    pointer-events: none;
-  }
-  .master-header::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(196,151,58,0.03) 40px, rgba(196,151,58,0.03) 41px);
-  }
+  .master-header { background: var(--navy); padding: 48px 52px 40px; position: relative; overflow: hidden; margin-bottom: 4px; }
+  .master-header::before { content: 'ROAST'; position: absolute; right: -20px; bottom: -30px; font-family: 'Playfair Display', serif; font-size: 160px; font-weight: 900; color: rgba(196,151,58,0.05); line-height: 1; pointer-events: none; }
+  .master-header::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(196,151,58,0.03) 40px, rgba(196,151,58,0.03) 41px); }
   .mh-inner { position: relative; z-index: 1; }
-  .mh-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 12px;
-  }
-  .mh-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 38px;
-    font-weight: 900;
-    color: var(--cream);
-    line-height: 1.1;
-    margin-bottom: 10px;
-  }
+  .mh-eyebrow { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .mh-title { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 900; color: var(--cream); line-height: 1.1; margin-bottom: 10px; }
   .mh-title em { color: var(--gold); font-style: italic; }
-  .mh-sub {
-    font-size: 13.5px;
-    color: rgba(242,237,227,0.55);
-    line-height: 1.7;
-    max-width: 580px;
-  }
+  .mh-sub { font-size: 13.5px; color: rgba(242,237,227,0.55); line-height: 1.7; max-width: 580px; }
   .mh-rule { width: 48px; height: 2px; background: var(--burgundy); margin-top: 20px; }
-  .mh-update {
-    margin-top: 16px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  .mh-update-badge {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    border: 1px solid rgba(196,151,58,0.4);
-    padding: 4px 10px;
-    white-space: nowrap;
-  }
-  .mh-update-text {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    color: rgba(242,237,227,0.5);
-    line-height: 1.5;
-  }
+  .mh-update { margin-top: 16px; display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .mh-update-badge { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(196,151,58,0.4); padding: 4px 10px; white-space: nowrap; }
+  .mh-update-text { font-family: 'DM Sans', sans-serif; font-size: 12px; color: rgba(242,237,227,0.5); line-height: 1.5; }
 
-  /* ── RHYTHM BAR ── */
-  .rhythm-bar {
-    background: var(--burgundy);
-    padding: 0;
-    display: flex;
-    margin-bottom: 32px;
-  }
-  .rhythm-day {
-    flex: 1;
-    padding: 16px 20px;
-    border-right: 1px solid rgba(255,255,255,0.1);
-    position: relative;
-  }
+  .hashtag-banner { background: var(--teal); padding: 14px 24px; margin-bottom: 4px; display: flex; align-items: center; gap: 16px; }
+  .hb-tag { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--cream); }
+  .hb-rule { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(242,237,227,0.6); }
+
+  .rhythm-bar { background: var(--burgundy); padding: 0; display: flex; margin-bottom: 32px; }
+  .rhythm-day { flex: 1; padding: 16px 20px; border-right: 1px solid rgba(255,255,255,0.1); }
   .rhythm-day:last-child { border-right: none; }
-  .rhythm-day-name {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(242,237,227,0.5);
-    margin-bottom: 5px;
-  }
-  .rhythm-day-action {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--cream);
-    line-height: 1.4;
-  }
+  .rhythm-day-name { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: rgba(242,237,227,0.5); margin-bottom: 5px; }
+  .rhythm-day-action { font-size: 12px; font-weight: 600; color: var(--cream); line-height: 1.4; }
   .rhythm-day.active { background: rgba(196,151,58,0.15); }
   .rhythm-day.active .rhythm-day-name { color: var(--gold); }
 
-  /* ── SECTION DIVIDER ── */
-  .section-divider {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin: 8px 0 20px;
-  }
+  .section-divider { display: flex; align-items: center; gap: 14px; margin: 8px 0 20px; }
   .sd-line { flex: 1; height: 1px; background: var(--light-border); }
-  .sd-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--warm-gray);
-    flex-shrink: 0;
-  }
-  .sd-diamond {
-    width: 6px; height: 6px;
-    background: var(--burgundy);
-    transform: rotate(45deg);
-    flex-shrink: 0;
-  }
+  .sd-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--warm-gray); flex-shrink: 0; }
+  .sd-diamond { width: 6px; height: 6px; background: var(--burgundy); transform: rotate(45deg); flex-shrink: 0; }
 
-  /* ── DAY HEADER ── */
-  .day-header {
-    padding: 20px 28px;
-    margin-bottom: 4px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
+  .day-header { padding: 20px 28px; margin-bottom: 4px; display: flex; align-items: center; gap: 16px; }
   .day-header-thu { background: var(--navy); }
   .day-header-sun { background: var(--burgundy); }
-  .dh-day {
-    font-family: 'Playfair Display', serif;
-    font-size: 42px;
-    font-weight: 900;
-    color: rgba(242,237,227,0.15);
-    line-height: 1;
-    flex-shrink: 0;
-  }
+  .dh-day { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 900; color: rgba(242,237,227,0.15); line-height: 1; flex-shrink: 0; }
   .dh-content { flex: 1; }
-  .dh-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 4px;
-  }
-  .dh-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--cream);
-    line-height: 1.2;
-  }
-  .dh-sub {
-    font-size: 12px;
-    color: rgba(242,237,227,0.5);
-    margin-top: 4px;
-  }
+  .dh-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+  .dh-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--cream); line-height: 1.2; }
+  .dh-sub { font-size: 12px; color: rgba(242,237,227,0.5); margin-top: 4px; }
 
-  /* ── INSTRUCTION BOX ── */
-  .instruction-box {
-    background: var(--cream);
-    border: 1px solid var(--light-border);
-    border-left: 4px solid var(--gold);
-    padding: 20px 24px;
-    margin-bottom: 20px;
-  }
-  .ib-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 10px;
-  }
-  .ib-text {
-    font-size: 13px;
-    color: var(--text-mid);
-    line-height: 1.65;
-  }
+  .instruction-box { background: var(--cream); border: 1px solid var(--light-border); border-left: 4px solid var(--gold); padding: 20px 24px; margin-bottom: 20px; }
+  .ib-title { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .ib-text { font-size: 13px; color: var(--text-mid); line-height: 1.65; }
   .ib-text strong { color: var(--text-dark); }
 
-  /* ── SCHEDULE GRID ── */
-  .schedule-section {
-    background: var(--cream);
-    border: 1px solid var(--light-border);
-    margin-bottom: 20px;
-    overflow: hidden;
-  }
-  .schedule-header {
-    background: var(--teal);
-    padding: 14px 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .sh-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(242,237,227,0.7);
-    margin-bottom: 3px;
-  }
-  .sh-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--cream);
-  }
-  .schedule-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 0;
-  }
-  .sched-day {
-    border-right: 1px solid var(--light-border);
-    padding: 0;
-  }
-  .sched-day:last-child { border-right: none; }
-  .sched-day-name {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--cream);
-    padding: 8px 10px;
-    background: var(--navy);
-    border-bottom: 1px solid var(--light-border);
-    text-align: center;
-  }
-  .sched-items { padding: 8px; display: flex; flex-direction: column; gap: 5px; }
-  .sched-item {
-    padding: 6px 8px;
-    border-radius: 3px;
-    border-left: 3px solid transparent;
-  }
-  .sched-item-brand {
-    font-family: 'DM Mono', monospace;
-    font-size: 8px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 2px;
-  }
-  .sched-item-title {
-    font-size: 10px;
-    font-weight: 600;
-    line-height: 1.3;
-    color: var(--text-dark);
-  }
-  .sched-item-meta {
-    font-size: 9px;
-    color: var(--warm-gray);
-    margin-top: 1px;
-  }
-  .si-realtor { background: #EBF3FB; border-left-color: #378ADD; }
-  .si-realtor .sched-item-brand { color: #185FA5; }
-  .si-myash { background: #FEF6E8; border-left-color: #EF9F27; }
-  .si-myash .sched-item-brand { color: #854F0B; }
-  .si-fr { background: #EDF5E5; border-left-color: #639922; }
-  .si-fr .sched-item-brand { color: #3B6D11; }
-  .si-substack { background: #EEEDFE; border-left-color: #7F77DD; }
-  .si-substack .sched-item-brand { color: #534AB7; }
-  .si-system { background: #F1EFE8; border-left-color: #888780; }
-  .si-system .sched-item-brand { color: #5F5E5A; }
-  .si-fb { background: #FBEAF0; border-left-color: #D4537E; }
-  .si-fb .sched-item-brand { color: #993556; }
-  .si-lba { background: #E1F5EE; border-left-color: #1D9E75; }
-  .si-lba .sched-item-brand { color: #0F6E56; }
+  .schedule-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-bottom: 24px; background: var(--cream); border: 1px solid var(--light-border); padding: 20px; overflow-x: auto; }
+  .sg-day { display: flex; flex-direction: column; gap: 5px; min-width: 90px; }
+  .sg-day-header { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--warm-gray); padding: 4px 0; border-bottom: 1.5px solid var(--light-border); margin-bottom: 3px; }
+  .sg-item { padding: 5px 7px; font-size: 10px; line-height: 1.4; border-left: 2px solid transparent; }
+  .sg-item-brand { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.5px; margin-bottom: 1px; }
+  .sg-item-title { font-weight: 600; color: var(--text-dark); }
+  .sg-item-meta { color: var(--warm-gray); font-size: 9px; }
+  .sg-realtor { border-left-color: #378ADD; background: #f0f5fc; }
+  .sg-myash { border-left-color: #EF9F27; background: #fdf6ec; }
+  .sg-fr { border-left-color: #639922; background: #f3f8eb; }
+  .sg-substack { border-left-color: #7F77DD; background: #f4f3fd; }
+  .sg-lba { border-left-color: #1D9E75; background: #eaf5f1; }
+  .sg-fb { border-left-color: #D4537E; background: #fdf0f5; }
+  .sg-system { border-left-color: #8A8278; background: #f5f3f0; }
+  .brand-realtor { color: #185FA5; }
+  .brand-myash { color: #854F0B; }
+  .brand-fr { color: #3B6D11; }
+  .brand-substack { color: #534AB7; }
+  .brand-lba { color: #0F6E56; }
+  .brand-fb { color: #993556; }
+  .brand-system { color: #8A8278; }
 
-  /* ── BRAND LEGEND ── */
-  .brand-legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 12px 16px;
-    background: #F8F4EE;
-    border-top: 1px solid var(--light-border);
-  }
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--text-mid);
-  }
-  .legend-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 2px;
-    flex-shrink: 0;
-  }
-
-  /* ── PROMPT CARD ── */
-  .prompt-card {
-    background: var(--cream);
-    border: 1px solid var(--light-border);
-    margin-bottom: 16px;
-    overflow: hidden;
-  }
-  .pc-header {
-    background: var(--navy);
-    padding: 14px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-  }
-  .pc-header-sun { background: #2A0A1A; }
+  .prompt-card { background: var(--cream); border: 1px solid var(--light-border); margin-bottom: 16px; overflow: hidden; }
+  .pc-header { background: var(--navy); padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
   .pc-left { flex: 1; }
-  .pc-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 3px;
-  }
-  .pc-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--cream);
-  }
+  .pc-num { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 3px; }
+  .pc-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--cream); }
   .pc-badges { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
-  .badge {
-    font-family: 'DM Mono', monospace;
-    font-size: 8px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 3px 8px;
-  }
+  .badge { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 8px; }
   .b-weekly { background: var(--burgundy); color: var(--cream); }
   .b-monthly { background: var(--navy); color: var(--cream); border: 1px solid rgba(255,255,255,0.2); }
   .b-biweekly { background: var(--green); color: var(--cream); }
   .b-deep { background: var(--gold); color: var(--navy); }
-  .b-fixed { background: rgba(255,255,255,0.1); color: rgba(242,237,227,0.7); }
-
-  .pc-purpose {
-    padding: 12px 24px;
-    background: #F8F4EE;
-    border-bottom: 1px solid var(--light-border);
-    font-size: 12px;
-    color: var(--text-mid);
-    line-height: 1.6;
-    font-style: italic;
-  }
-
-  .pc-prompt-label {
-    padding: 10px 24px 4px;
-    background: #F0EBE1;
-    border-bottom: 1px solid var(--light-border);
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--warm-gray);
-  }
-
-  .pc-prompt {
-    background: var(--code-bg);
-    padding: 22px 24px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11.5px;
-    line-height: 1.8;
-    color: var(--code-text);
-    white-space: pre-wrap;
-    word-break: break-word;
-  }
+  .pc-purpose { padding: 12px 24px; background: #F8F4EE; border-bottom: 1px solid var(--light-border); font-size: 12px; color: var(--text-mid); line-height: 1.6; font-style: italic; }
+  .pc-prompt-label { padding: 10px 24px 4px; background: #F0EBE1; border-bottom: 1px solid var(--light-border); font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--warm-gray); }
+  .pc-prompt { background: var(--code-bg); padding: 22px 24px; font-family: 'DM Mono', monospace; font-size: 11.5px; line-height: 1.8; color: var(--code-text); white-space: pre-wrap; word-break: break-word; }
   .ph { color: var(--gold); }
   .cm { color: #5A7A5A; font-style: italic; }
   .hl { color: #C4A882; font-weight: 500; }
   .section-marker { color: #7A9CC4; font-weight: 500; }
 
-  /* ── SUNDAY SECTION BLOCKS ── */
-  .sun-section {
-    background: var(--cream);
-    border: 1px solid var(--light-border);
-    margin-bottom: 16px;
-    overflow: hidden;
-  }
-  .sun-section-header {
-    background: #2A0A1A;
-    padding: 12px 24px;
-  }
-  .ssh-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 3px;
-  }
-  .ssh-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--cream);
-  }
+  .sun-section { background: var(--cream); border: 1px solid var(--light-border); margin-bottom: 16px; overflow: hidden; }
+  .sun-section-header { background: #2A0A1A; padding: 12px 24px; }
+  .ssh-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 3px; }
+  .ssh-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--cream); }
 
-  /* ── OUTPUT CHECKLIST ── */
-  .output-grid {
-    background: var(--cream);
-    border: 1px solid var(--light-border);
-    padding: 24px;
-    margin-bottom: 20px;
-  }
-  .og-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--burgundy);
-    margin-bottom: 16px;
-  }
-  .og-items {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
-  .og-item {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    padding: 10px 12px;
-    background: #F8F4EE;
-    border: 1px solid var(--light-border);
-  }
-  .og-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--burgundy);
-    flex-shrink: 0;
-    font-weight: 500;
-    margin-top: 1px;
-  }
-  .og-text {
-    font-size: 12px;
-    color: var(--text-mid);
-    line-height: 1.5;
-  }
+  .output-grid { background: var(--cream); border: 1px solid var(--light-border); padding: 24px; margin-bottom: 20px; }
+  .og-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--burgundy); margin-bottom: 16px; }
+  .og-items { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .og-item { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; background: #F8F4EE; border: 1px solid var(--light-border); }
+  .og-num { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--burgundy); flex-shrink: 0; font-weight: 500; margin-top: 1px; }
+  .og-text { font-size: 12px; color: var(--text-mid); line-height: 1.5; }
   .og-text strong { color: var(--text-dark); font-size: 12px; display: block; margin-bottom: 1px; }
 
-  /* ── HASHTAG BANNER ── */
-  .hashtag-banner {
-    background: var(--teal);
-    padding: 14px 24px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .hb-tag {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--cream);
-    letter-spacing: 2px;
-  }
-  .hb-text {
-    font-size: 12px;
-    color: rgba(242,237,227,0.7);
-    line-height: 1.5;
-  }
-
-  /* ── FOOTER ── */
-  .footer {
-    background: var(--navy);
-    padding: 22px 28px;
-    text-align: center;
-    margin-top: 8px;
-  }
-  .footer p {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: rgba(242,237,227,0.4);
-    line-height: 1.9;
-  }
+  .footer { background: var(--navy); padding: 22px 28px; text-align: center; margin-top: 8px; }
+  .footer p { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(242,237,227,0.4); line-height: 1.9; }
   .footer strong { color: var(--gold); }
 </style>
 </head>
 <body>
 <div class="wrapper">
 
-  <!-- MASTER HEADER -->
   <div class="master-header">
     <div class="mh-inner">
       <div class="mh-eyebrow">ROAST · Complete Weekly Operating System</div>
       <div class="mh-title">Thursday gathers. <em>Sunday produces.</em></div>
-      <div class="mh-sub">Everything you need to run the full brand system in one document. Five Perplexity prompts for Thursday. One Claude production prompt for Sunday. Full week scheduled, captioned, and ready to post.</div>
+      <div class="mh-sub">Everything you need to run four brands in one document. Five Perplexity prompts for Thursday. One Claude production prompt for Sunday. Fourteen outputs. Full week pre-scheduled and ready to post.</div>
       <div class="mh-rule"></div>
       <div class="mh-update">
-        <span class="mh-update-badge">Updated April 14, 2026</span>
-        <span class="mh-update-text">@life.byalexa added · #LifeByAlexa master hashtag · new posting schedule · Sunday = schedule day · FB sprinkled daily · TikTok 4x/week · Car Confessions Tue/Wed/Thu same-day</span>
+        <span class="mh-update-badge">Updated April 2026</span>
+        <span class="mh-update-text">#LifeByAlexa master tag · @life.byalexa launched · Schedule rebuilt · Sunday = full scheduling day · 14 outputs · Car Confessions record + post Tue/Wed/Thu · Cigar Aficionado 3-year goal</span>
       </div>
     </div>
   </div>
 
-  <!-- HASHTAG BANNER -->
   <div class="hashtag-banner">
     <div class="hb-tag">#LifeByAlexa</div>
-    <div class="hb-text">Master hashtag — goes on every post, every brand, every platform, every week without exception. Instagram · TikTok · LinkedIn · Facebook · YouTube · Nextdoor · Google Business · Substack</div>
+    <div class="hb-rule">Master hashtag — every post · every brand · every platform · every week · no exceptions</div>
   </div>
 
-  <!-- RHYTHM BAR -->
   <div class="rhythm-bar">
     <div class="rhythm-day active">
       <div class="rhythm-day-name">Thursday</div>
@@ -559,11 +155,11 @@
     </div>
     <div class="rhythm-day">
       <div class="rhythm-day-name">Sunday</div>
-      <div class="rhythm-day-action">Record hub video + @life.byalexa → Schedule all pre-written posts → Paste outputs into Claude</div>
+      <div class="rhythm-day-action">Record hub video + @life.byalexa · Run Claude · Schedule all pre-schedulable content</div>
     </div>
     <div class="rhythm-day">
       <div class="rhythm-day-name">Monday</div>
-      <div class="rhythm-day-action">Operator Life article publishes · Market Signal goes live</div>
+      <div class="rhythm-day-action">Operator Life article publishes · Market Signal posts</div>
     </div>
     <div class="rhythm-day">
       <div class="rhythm-day-name">Thursday</div>
@@ -571,268 +167,71 @@
     </div>
   </div>
 
-  <!-- WEEKLY SCHEDULE -->
   <div class="section-divider">
     <div class="sd-line"></div>
     <div class="sd-diamond"></div>
-    <div class="sd-label">Weekly Posting Schedule</div>
+    <div class="sd-label">Weekly Posting Schedule — All Four Brands</div>
     <div class="sd-diamond"></div>
     <div class="sd-line"></div>
   </div>
 
-  <div class="schedule-section">
-    <div class="schedule-header">
-      <div>
-        <div class="sh-label">All Brands · All Platforms</div>
-        <div class="sh-title">Full Week — Schedule on Sunday Morning</div>
-      </div>
+  <div class="schedule-grid">
+    <div class="sg-day">
+      <div class="sg-day-header">Sun</div>
+      <div class="sg-item sg-system"><span class="sg-item-brand brand-system">SYSTEM</span><div class="sg-item-title">Recording Block</div><div class="sg-item-meta">Hub video + @life.byalexa</div></div>
+      <div class="sg-item sg-realtor"><span class="sg-item-brand brand-realtor">@alexa.realtor</span><div class="sg-item-title">Hub Video Upload</div><div class="sg-item-meta">YouTube · 10 AM</div></div>
+      <div class="sg-item sg-realtor"><span class="sg-item-brand brand-realtor">@alexa.realtor</span><div class="sg-item-title">Sunday Gratitude</div><div class="sg-item-meta">IG · 9:15 AM</div></div>
+      <div class="sg-item sg-realtor"><span class="sg-item-brand brand-realtor">@alexa.realtor</span><div class="sg-item-title">Sunday Gratitude</div><div class="sg-item-meta">Nextdoor · 9:30 AM</div></div>
+      <div class="sg-item sg-lba"><span class="sg-item-brand brand-lba">@life.byalexa</span><div class="sg-item-title">Lifestyle Moment</div><div class="sg-item-meta">IG + TikTok · 11 AM</div></div>
+      <div class="sg-item sg-fb"><span class="sg-item-brand brand-fb">Facebook</span><div class="sg-item-title">Gratitude Repurpose</div><div class="sg-item-meta">FB · 10 AM</div></div>
+      <div class="sg-item sg-substack"><span class="sg-item-brand brand-substack">Substack</span><div class="sg-item-title">Notes — Morning Batch</div><div class="sg-item-meta">8 AM</div></div>
     </div>
-    <div class="schedule-grid">
-
-      <!-- SUNDAY -->
-      <div class="sched-day">
-        <div class="sched-day-name">Sun</div>
-        <div class="sched-items">
-          <div class="sched-item si-system">
-            <div class="sched-item-brand">System</div>
-            <div class="sched-item-title">Recording Block</div>
-            <div class="sched-item-meta">Hub video + @life.byalexa</div>
-          </div>
-          <div class="sched-item si-realtor">
-            <div class="sched-item-brand">@alexa.realtor</div>
-            <div class="sched-item-title">Hub Video Upload</div>
-            <div class="sched-item-meta">YouTube · 10 AM</div>
-          </div>
-          <div class="sched-item si-realtor">
-            <div class="sched-item-brand">@alexa.realtor</div>
-            <div class="sched-item-title">Sunday Gratitude Post</div>
-            <div class="sched-item-meta">IG · 9:15 AM</div>
-          </div>
-          <div class="sched-item si-realtor">
-            <div class="sched-item-brand">@alexa.realtor</div>
-            <div class="sched-item-title">Sunday Gratitude Post</div>
-            <div class="sched-item-meta">Nextdoor · 9:30 AM</div>
-          </div>
-          <div class="sched-item si-lba">
-            <div class="sched-item-brand">@life.byalexa</div>
-            <div class="sched-item-title">Lifestyle Moment</div>
-            <div class="sched-item-meta">IG + TikTok · 11 AM</div>
-          </div>
-          <div class="sched-item si-fb">
-            <div class="sched-item-brand">Facebook</div>
-            <div class="sched-item-title">Gratitude Repurpose</div>
-            <div class="sched-item-meta">FB · 10 AM</div>
-          </div>
-          <div class="sched-item si-substack">
-            <div class="sched-item-brand">Substack</div>
-            <div class="sched-item-title">Notes — Morning Batch</div>
-            <div class="sched-item-meta">Article-tied · 8 AM</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- MONDAY -->
-      <div class="sched-day">
-        <div class="sched-day-name">Mon</div>
-        <div class="sched-items">
-          <div class="sched-item si-substack">
-            <div class="sched-item-brand">Substack</div>
-            <div class="sched-item-title">Operator Life Article</div>
-            <div class="sched-item-meta">Primary post · 8 AM</div>
-          </div>
-          <div class="sched-item si-realtor">
-            <div class="sched-item-brand">@alexa.realtor</div>
-            <div class="sched-item-title">Market Signal</div>
-            <div class="sched-item-meta">LinkedIn · 8 AM</div>
-          </div>
-          <div class="sched-item si-realtor">
-            <div class="sched-item-brand">@alexa.realtor</div>
-            <div class="sched-item-title">Google Business Post</div>
-            <div class="sched-item-meta">Google · 9 AM</div>
-          </div>
-          <div class="sched-item si-myash">
-            <div class="sched-item-brand">@its.myash</div>
-            <div class="sched-item-title">Tonight's Smoke Carousel</div>
-            <div class="sched-item-meta">IG · 7 PM</div>
-          </div>
-          <div class="sched-item si-fr">
-            <div class="sched-item-brand">@fillerandroast</div>
-            <div class="sched-item-title">Monday Brew Post</div>
-            <div class="sched-item-meta">IG · 9 AM</div>
-          </div>
-          <div class="sched-item si-fb">
-            <div class="sched-item-brand">Facebook</div>
-            <div class="sched-item-title">Brew Post Repurpose</div>
-            <div class="sched-item-meta">FB · 10 AM</div>
-          </div>
-          <div class="sched-item si-system">
-            <div class="sched-item-brand">TikTok</div>
-            <div class="sched-item-title">Operator Content</div>
-            <div class="sched-item-meta">@its.myash · 6 PM</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- TUESDAY -->
-      <div class="sched-day">
-        <div class="sched-day-name">Tue</div>
-        <div class="sched-items">
-          <div class="sched-item si-realtor">
-            <div class="sched-item-brand">@alexa.realtor</div>
-            <div class="sched-item-title">Car Confession</div>
-            <div class="sched-item-meta">IG · record + post · 12 PM</div>
-          </div>
-          <div class="sched-item si-realtor">
-            <div class="sched-item-brand">@alexa.realtor</div>
-            <div class="sched-item-title">Neighborly Post</div>
-            <div class="sched-item-meta">Nextdoor · 6 PM</div>
-          </div>
-          <div class="sched-item si-fb">
-            <div class="sched-item-brand">Facebook</div>
-            <div class="sched-item-title">Market Insight Repurpose</div>
-            <div class="sched-item-meta">FB · 8 AM</div>
-          </div>
-          <div class="sched-item si-substack">
-            <div class="sched-item-brand">Substack</div>
-            <div class="sched-item-title">Notes — Midday Batch</div>
-            <div class="sched-item-meta">Thematic · 12 PM</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- WEDNESDAY -->
-      <div class="sched-day">
-        <div class="sched-day-name">Wed</div>
-        <div class="sched-items">
-          <div class="sched-item si-system">
-            <div class="sched-item-brand">System</div>
-            <div class="sched-item-title">Ashes &amp; Escrows Record</div>
-            <div class="sched-item-meta">YouTube · uploads Thu</div>
-          </div>
-          <div class="sched-item si-realtor">
-            <div class="sched-item-brand">@alexa.realtor</div>
-            <div class="sched-item-title">Car Confession</div>
-            <div class="sched-item-meta">IG · record + post · 12 PM</div>
-          </div>
-          <div class="sched-item si-system">
-            <div class="sched-item-brand">TikTok</div>
-            <div class="sched-item-title">Cigar Brand / Culture</div>
-            <div class="sched-item-meta">@its.myash · 6 PM</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- THURSDAY -->
-      <div class="sched-day">
-        <div class="sched-day-name">Thu</div>
-        <div class="sched-items">
-          <div class="sched-item si-substack">
-            <div class="sched-item-brand">Substack</div>
-            <div class="sched-item-title">Lifestyle Market Letter</div>
-            <div class="sched-item-meta">Article publish · 8 AM</div>
-          </div>
-          <div class="sched-item si-realtor">
-            <div class="sched-item-brand">@alexa.realtor</div>
-            <div class="sched-item-title">Ashes &amp; Escrows Upload</div>
-            <div class="sched-item-meta">YouTube · 10 AM</div>
-          </div>
-          <div class="sched-item si-realtor">
-            <div class="sched-item-brand">@alexa.realtor</div>
-            <div class="sched-item-title">Car Confession</div>
-            <div class="sched-item-meta">IG · record + post · 12 PM</div>
-          </div>
-          <div class="sched-item si-realtor">
-            <div class="sched-item-brand">@alexa.realtor</div>
-            <div class="sched-item-title">Local Happenings</div>
-            <div class="sched-item-meta">Nextdoor · 6 PM</div>
-          </div>
-          <div class="sched-item si-fr">
-            <div class="sched-item-brand">@fillerandroast</div>
-            <div class="sched-item-title">Coffee for the Leaf</div>
-            <div class="sched-item-meta">IG · TikTok · 10 AM</div>
-          </div>
-          <div class="sched-item si-fb">
-            <div class="sched-item-brand">Facebook</div>
-            <div class="sched-item-title">Coffee for the Leaf</div>
-            <div class="sched-item-meta">FB · 11 AM</div>
-          </div>
-          <div class="sched-item si-substack">
-            <div class="sched-item-brand">Substack</div>
-            <div class="sched-item-title">Notes — Evening Batch</div>
-            <div class="sched-item-meta">Personal voice · 6 PM</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- FRIDAY -->
-      <div class="sched-day">
-        <div class="sched-day-name">Fri</div>
-        <div class="sched-items">
-          <div class="sched-item si-realtor">
-            <div class="sched-item-brand">@alexa.realtor</div>
-            <div class="sched-item-title">Market Insight</div>
-            <div class="sched-item-meta">LinkedIn · 8 AM</div>
-          </div>
-          <div class="sched-item si-myash">
-            <div class="sched-item-brand">@its.myash</div>
-            <div class="sched-item-title">Weekend Smoke Reel</div>
-            <div class="sched-item-meta">IG · 5 PM</div>
-          </div>
-          <div class="sched-item si-fb">
-            <div class="sched-item-brand">Facebook</div>
-            <div class="sched-item-title">Car Confession Repurpose</div>
-            <div class="sched-item-meta">FB · 12 PM</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SATURDAY -->
-      <div class="sched-day">
-        <div class="sched-day-name">Sat</div>
-        <div class="sched-items">
-          <div class="sched-item si-myash">
-            <div class="sched-item-brand">@its.myash</div>
-            <div class="sched-item-title">Behind the Scenes Story</div>
-            <div class="sched-item-meta">IG Story only · 2 PM</div>
-          </div>
-          <div class="sched-item si-system">
-            <div class="sched-item-brand">TikTok</div>
-            <div class="sched-item-title">RE Investor Tip</div>
-            <div class="sched-item-meta">@alexa.realtor · 11 AM</div>
-          </div>
-          <div class="sched-item si-fb">
-            <div class="sched-item-brand">Facebook</div>
-            <div class="sched-item-title">Weekend Tip Repurpose</div>
-            <div class="sched-item-meta">FB · 11 AM</div>
-          </div>
-        </div>
-      </div>
-
+    <div class="sg-day">
+      <div class="sg-day-header">Mon</div>
+      <div class="sg-item sg-substack"><span class="sg-item-brand brand-substack">Substack</span><div class="sg-item-title">Operator Life Article</div><div class="sg-item-meta">8 AM</div></div>
+      <div class="sg-item sg-realtor"><span class="sg-item-brand brand-realtor">@alexa.realtor</span><div class="sg-item-title">Market Signal</div><div class="sg-item-meta">LinkedIn · 8 AM</div></div>
+      <div class="sg-item sg-realtor"><span class="sg-item-brand brand-realtor">@alexa.realtor</span><div class="sg-item-title">Google Business Post</div><div class="sg-item-meta">Google · 9 AM</div></div>
+      <div class="sg-item sg-fr"><span class="sg-item-brand brand-fr">@fillerandroast</span><div class="sg-item-title">Monday Brew Post</div><div class="sg-item-meta">IG · 9 AM</div></div>
+      <div class="sg-item sg-myash"><span class="sg-item-brand brand-myash">@its.myash</span><div class="sg-item-title">Tonight's Smoke Carousel</div><div class="sg-item-meta">IG · 7 PM</div></div>
+      <div class="sg-item sg-fb"><span class="sg-item-brand brand-fb">Facebook</span><div class="sg-item-title">Brew Post Repurpose</div><div class="sg-item-meta">FB · 10 AM</div></div>
+      <div class="sg-item sg-system"><span class="sg-item-brand brand-system">TikTok</span><div class="sg-item-title">Operator Content</div><div class="sg-item-meta">6 PM</div></div>
     </div>
-    <div class="brand-legend">
-      <div class="legend-item"><div class="legend-dot" style="background:#378ADD;"></div>@alexa.realtor</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#EF9F27;"></div>@its.myash</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#639922;"></div>@fillerandroast</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#1D9E75;"></div>@life.byalexa</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#7F77DD;"></div>Substack</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#D4537E;"></div>Facebook</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#888780;"></div>System / TikTok</div>
+    <div class="sg-day">
+      <div class="sg-day-header">Tue</div>
+      <div class="sg-item sg-realtor"><span class="sg-item-brand brand-realtor">@alexa.realtor</span><div class="sg-item-title">Car Confession</div><div class="sg-item-meta">IG · record + post · 12 PM</div></div>
+      <div class="sg-item sg-realtor"><span class="sg-item-brand brand-realtor">@alexa.realtor</span><div class="sg-item-title">Neighborly Post</div><div class="sg-item-meta">Nextdoor · 6 PM</div></div>
+      <div class="sg-item sg-fb"><span class="sg-item-brand brand-fb">Facebook</span><div class="sg-item-title">Market Insight Repurpose</div><div class="sg-item-meta">FB · 8 AM</div></div>
+      <div class="sg-item sg-substack"><span class="sg-item-brand brand-substack">Substack</span><div class="sg-item-title">Notes — Midday Batch</div><div class="sg-item-meta">12 PM</div></div>
     </div>
-  </div>
-
-  <!-- SUNDAY SCHEDULING NOTE -->
-  <div class="instruction-box">
-    <div class="ib-title">Sunday = Full Scheduling Day</div>
-    <div class="ib-text">Every Sunday morning, all pre-written content is ready to copy, paste, and schedule before recording begins. <strong>Pre-schedule:</strong> all Facebook posts (6) · both LinkedIn posts · Google Business post · Substack Monday article · Substack Thursday article · all 21 Substack Notes · Sunday Gratitude captions for IG and Nextdoor. Each piece includes caption, image suggestion, and <strong>#LifeByAlexa</strong> plus brand-specific hashtags. <strong>Record same day:</strong> Hub video · @life.byalexa content. <strong>Record Tue/Wed/Thu in the car:</strong> Car Confessions — caption ready, record and drop it in.</div>
-  </div>
-
-  <!-- THURSDAY SECTION -->
-  <div class="section-divider" style="margin-top: 32px;">
-    <div class="sd-line"></div>
-    <div class="sd-diamond"></div>
-    <div class="sd-label">Step One — Thursday</div>
-    <div class="sd-diamond"></div>
-    <div class="sd-line"></div>
+    <div class="sg-day">
+      <div class="sg-day-header">Wed</div>
+      <div class="sg-item sg-system"><span class="sg-item-brand brand-system">SYSTEM</span><div class="sg-item-title">Ashes &amp; Escrows Record</div><div class="sg-item-meta">Uploads Thursday</div></div>
+      <div class="sg-item sg-realtor"><span class="sg-item-brand brand-realtor">@alexa.realtor</span><div class="sg-item-title">Car Confession</div><div class="sg-item-meta">IG · record + post · 12 PM</div></div>
+      <div class="sg-item sg-system"><span class="sg-item-brand brand-system">TikTok</span><div class="sg-item-title">Cigar Brand / Culture</div><div class="sg-item-meta">6 PM · no smoking on cam</div></div>
+    </div>
+    <div class="sg-day">
+      <div class="sg-day-header">Thu</div>
+      <div class="sg-item sg-substack"><span class="sg-item-brand brand-substack">Substack</span><div class="sg-item-title">Lifestyle Market Letter</div><div class="sg-item-meta">8 AM</div></div>
+      <div class="sg-item sg-realtor"><span class="sg-item-brand brand-realtor">@alexa.realtor</span><div class="sg-item-title">Ashes &amp; Escrows Upload</div><div class="sg-item-meta">YouTube · 10 AM</div></div>
+      <div class="sg-item sg-realtor"><span class="sg-item-brand brand-realtor">@alexa.realtor</span><div class="sg-item-title">Car Confession</div><div class="sg-item-meta">IG · record + post · 12 PM</div></div>
+      <div class="sg-item sg-realtor"><span class="sg-item-brand brand-realtor">@alexa.realtor</span><div class="sg-item-title">Local Happenings</div><div class="sg-item-meta">Nextdoor · 6 PM</div></div>
+      <div class="sg-item sg-realtor"><span class="sg-item-brand brand-realtor">@alexa.realtor</span><div class="sg-item-title">Google Business Post</div><div class="sg-item-meta">Google · 9 AM · STR investor</div></div>
+      <div class="sg-item sg-fr"><span class="sg-item-brand brand-fr">@fillerandroast</span><div class="sg-item-title">Coffee for the Leaf</div><div class="sg-item-meta">IG + TikTok · 10 AM</div></div>
+      <div class="sg-item sg-fb"><span class="sg-item-brand brand-fb">Facebook</span><div class="sg-item-title">Coffee for the Leaf</div><div class="sg-item-meta">FB · 11 AM</div></div>
+      <div class="sg-item sg-substack"><span class="sg-item-brand brand-substack">Substack</span><div class="sg-item-title">Notes — Evening Batch</div><div class="sg-item-meta">6 PM</div></div>
+    </div>
+    <div class="sg-day">
+      <div class="sg-day-header">Fri</div>
+      <div class="sg-item sg-realtor"><span class="sg-item-brand brand-realtor">@alexa.realtor</span><div class="sg-item-title">Market Insight</div><div class="sg-item-meta">LinkedIn · 8 AM</div></div>
+      <div class="sg-item sg-myash"><span class="sg-item-brand brand-myash">@its.myash</span><div class="sg-item-title">Weekend Smoke Reel</div><div class="sg-item-meta">IG · 5 PM</div></div>
+      <div class="sg-item sg-fb"><span class="sg-item-brand brand-fb">Facebook</span><div class="sg-item-title">Car Confession Repurpose</div><div class="sg-item-meta">FB · 12 PM</div></div>
+    </div>
+    <div class="sg-day">
+      <div class="sg-day-header">Sat</div>
+      <div class="sg-item sg-myash"><span class="sg-item-brand brand-myash">@its.myash</span><div class="sg-item-title">Behind the Scenes Story</div><div class="sg-item-meta">IG Story · 2 PM</div></div>
+      <div class="sg-item sg-system"><span class="sg-item-brand brand-system">TikTok</span><div class="sg-item-title">RE Investor Tip</div><div class="sg-item-meta">11 AM</div></div>
+      <div class="sg-item sg-fb"><span class="sg-item-brand brand-fb">Facebook</span><div class="sg-item-title">Weekend Tip Repurpose</div><div class="sg-item-meta">FB · 11 AM</div></div>
+    </div>
   </div>
 
   <div class="day-header day-header-thu">
@@ -849,17 +248,13 @@
     <div class="ib-text"><strong>Always use Deep Research mode</strong> — not standard search. Standard gives you headlines. Deep Research gives you intelligence. Fill in the current date where you see [INSERT CURRENT DATE] before running each prompt. Save each output in one running doc labeled with the date — you'll paste them all into Claude on Sunday.</div>
   </div>
 
-  <!-- PROMPT 01 -->
   <div class="prompt-card">
     <div class="pc-header">
       <div class="pc-left">
         <div class="pc-num">Prompt 01 — Market Pulse</div>
         <div class="pc-title">Policy, Legislation &amp; Zoning Intelligence</div>
       </div>
-      <div class="pc-badges">
-        <span class="badge b-weekly">Every Thursday</span>
-        <span class="badge b-deep">Deep Research</span>
-      </div>
+      <div class="pc-badges"><span class="badge b-weekly">Every Thursday</span><span class="badge b-deep">Deep Research</span></div>
     </div>
     <div class="pc-purpose">Surfaces policy and legislative signals affecting your clients before they hit mainstream media. Federal → Pennsylvania → Monroe County → Township level.</div>
     <div class="pc-prompt-label">Copy &amp; Paste Into Perplexity Pro → Deep Research</div>
@@ -897,17 +292,13 @@ Research and report on ALL of the following for the week of <span class="ph">[IN
 Be specific. Cite sources. Flag anything that directly affects STR investors buying in Monroe County, Pennsylvania.</div>
   </div>
 
-  <!-- PROMPT 02A -->
   <div class="prompt-card">
     <div class="pc-header">
       <div class="pc-left">
         <div class="pc-num">Prompt 02A — Investor Intel</div>
         <div class="pc-title">Pocono STR Weekly Pulse</div>
       </div>
-      <div class="pc-badges">
-        <span class="badge b-weekly">Every Thursday</span>
-        <span class="badge b-deep">Deep Research</span>
-      </div>
+      <div class="pc-badges"><span class="badge b-weekly">Every Thursday</span><span class="badge b-deep">Deep Research</span></div>
     </div>
     <div class="pc-purpose">Weekly light pulse on market movement, listings with yield potential, and STR signals. Keeps Investor Intel fresh every week without waiting for the monthly deep dive.</div>
     <div class="pc-prompt-label">Copy &amp; Paste Into Perplexity Pro → Deep Research</div>
@@ -945,17 +336,13 @@ For the week of <span class="ph">[INSERT CURRENT DATE]</span>, research and repo
 Be specific and cite sources throughout.</div>
   </div>
 
-  <!-- PROMPT 02B -->
   <div class="prompt-card">
     <div class="pc-header">
       <div class="pc-left">
         <div class="pc-num">Prompt 02B — Investor Intel</div>
         <div class="pc-title">Pocono STR Monthly Deep Dive</div>
       </div>
-      <div class="pc-badges">
-        <span class="badge b-monthly">1st Monday/Month</span>
-        <span class="badge b-deep">Deep Research</span>
-      </div>
+      <div class="pc-badges"><span class="badge b-monthly">1st Monday/Month</span><span class="badge b-deep">Deep Research</span></div>
     </div>
     <div class="pc-purpose">Full monthly intelligence pull — submarket scores, closed sales trends, yield data, and the competitive landscape. Run on the first Monday of each month only.</div>
     <div class="pc-prompt-label">Copy &amp; Paste Into Perplexity Pro → Deep Research — FIRST MONDAY OF MONTH ONLY</div>
@@ -997,17 +384,13 @@ Pull the most current available data on the following:
 Cite all data sources. Note data collection date for all figures.</div>
   </div>
 
-  <!-- PROMPT 03 -->
   <div class="prompt-card">
     <div class="pc-header">
       <div class="pc-left">
         <div class="pc-num">Prompt 03 — The DR Play</div>
         <div class="pc-title">Dominican Republic Full Market Intelligence</div>
       </div>
-      <div class="pc-badges">
-        <span class="badge b-monthly">1st Thursday/Month</span>
-        <span class="badge b-deep">Deep Research</span>
-      </div>
+      <div class="pc-badges"><span class="badge b-monthly">1st Thursday/Month</span><span class="badge b-deep">Deep Research</span></div>
     </div>
     <div class="pc-purpose">Monthly DR intelligence — tourism signals, infrastructure updates, active listings, and CONFOTUR policy. Powers both the DR Play newsletter section and your monthly DR content drop across all platforms.</div>
     <div class="pc-prompt-label">Copy &amp; Paste Into Perplexity Pro → Deep Research — FIRST THURSDAY OF MONTH ONLY</div>
@@ -1059,17 +442,13 @@ Research and report on all of the following:
 Cite all sources. Note DR government sources, international real estate portals (Point2Homes, GlobalListings, Properstar), and news outlets (Listin Diario, Diario Libre) where relevant.</div>
   </div>
 
-  <!-- PROMPT 04A -->
   <div class="prompt-card">
     <div class="pc-header">
       <div class="pc-left">
         <div class="pc-num">Prompt 04A — Filler &amp; Roast</div>
         <div class="pc-title">Specialty Coffee Intelligence</div>
       </div>
-      <div class="pc-badges">
-        <span class="badge b-biweekly">Every Other Thursday</span>
-        <span class="badge b-deep">Deep Research</span>
-      </div>
+      <div class="pc-badges"><span class="badge b-biweekly">Every Other Thursday</span><span class="badge b-deep">Deep Research</span></div>
     </div>
     <div class="pc-purpose">Keeps coffee content culturally relevant — surfaces trends, pairing angles, and brand positioning intelligence for Filler &amp; Roast before they go mainstream.</div>
     <div class="pc-prompt-label">Copy &amp; Paste Into Perplexity Pro → Deep Research — EVERY OTHER THURSDAY</div>
@@ -1108,21 +487,17 @@ Research and report on the following for <span class="ph">[INSERT CURRENT DATE]<
 Cite sources. Focus on content that feels premium, intentional, and lifestyle-driven — not mass market coffee trends.</div>
   </div>
 
-  <!-- PROMPT 04B -->
   <div class="prompt-card">
     <div class="pc-header">
       <div class="pc-left">
-        <div class="pc-num">Prompt 04B — Filler &amp; Roast</div>
+        <div class="pc-num">Prompt 04B — Cigar Authority</div>
         <div class="pc-title">Cigar Industry &amp; Culture Intelligence</div>
       </div>
-      <div class="pc-badges">
-        <span class="badge b-weekly">Every Thursday</span>
-        <span class="badge b-deep">Deep Research</span>
-      </div>
+      <div class="pc-badges"><span class="badge b-weekly">Every Thursday</span><span class="badge b-deep">Deep Research</span></div>
     </div>
-    <div class="pc-purpose">Keeps you ahead of the cigar industry conversation — critical for your Cigar Authority positioning, upcoming boutique DR cigar brand launch, and @its.myash content calendar.</div>
+    <div class="pc-purpose">Keeps you ahead of the cigar industry conversation — critical for your Cigar Authority positioning, upcoming boutique DR cigar brand launch (goal: 50+ lounges nationwide, Cigar Aficionado cover within 3 years), and @its.myash content calendar.</div>
     <div class="pc-prompt-label">Copy &amp; Paste Into Perplexity Pro → Deep Research</div>
-    <div class="pc-prompt">You are a premium cigar industry analyst. I am building a personal brand as a cigar authority (@its.myash) and developing a boutique Dominican Republic cigar brand. I also host content at a premium cigar lounge. Research and report for the week of <span class="ph">[INSERT CURRENT DATE]</span>:
+    <div class="pc-prompt">You are a premium cigar industry analyst. I am building a personal brand as a cigar authority (@its.myash), co-own a premium cigar lounge (Nell's Social), and am developing a boutique Dominican Republic cigar brand with a goal of 50+ lounges nationwide within 3 years and a Cigar Aficionado cover within 3 years. Research and report for the week of <span class="ph">[INSERT CURRENT DATE]</span>:
 
 <span class="section-marker">DOMINICAN REPUBLIC CIGAR INDUSTRY:</span>
 - Any new DR cigar releases, limited editions, or brand announcements this week
@@ -1136,6 +511,7 @@ Cite sources. Focus on content that feels premium, intentional, and lifestyle-dr
 - Limited release cigars generating conversation (under 10,000 cigars, story-driven)
 - How boutique brands are using scarcity, origin story, and artisan positioning to compete with established players
 - PCA Trade Show news — upcoming releases, brand announcements, industry movements
+- How boutique brands are getting into lounges — distribution models, launch strategies, lounge partnership approaches
 
 <span class="section-marker">LOUNGE CULTURE &amp; EXPERIENTIAL:</span>
 - Premium cigar lounge trends — what are successful lounges doing differently in 2026
@@ -1153,12 +529,12 @@ Cite sources. Focus on content that feels premium, intentional, and lifestyle-dr
 3. BOUTIQUE BRAND WATCH (new launches or limited releases worth noting)
 4. LOUNGE CULTURE INTELLIGENCE (experiential trends)
 5. CONTENT ANGLES FOR @its.myash (3 specific cigar content ideas based on this week's intelligence)
-6. BRAND POSITIONING INSIGHT (one observation about how successful cigar brands are telling their story right now — relevant to your upcoming brand launch)
+6. BRAND POSITIONING INSIGHT (one observation about how successful cigar brands are telling their story right now)
+7. DISTRIBUTION INTELLIGENCE (how boutique brands are getting into lounges — models, strategies, lounge partnerships)
 
 Cite sources including Halfwheel, Cigar Aficionado, Cigar Journal, PCA announcements, and brand direct communications where available.</div>
   </div>
 
-  <!-- SUNDAY SECTION -->
   <div class="section-divider" style="margin-top: 32px;">
     <div class="sd-line"></div>
     <div class="sd-diamond"></div>
@@ -1171,38 +547,36 @@ Cite sources including Halfwheel, Cigar Aficionado, Cigar Journal, PCA announcem
     <div class="dh-day">SUN</div>
     <div class="dh-content">
       <div class="dh-label">Step Two — Sunday</div>
-      <div class="dh-title">Schedule Everything. Then Run Claude.</div>
-      <div class="dh-sub">Morning: schedule all pre-written posts across all platforms. Then: paste Perplexity outputs into Claude → full week of content produced in one session.</div>
+      <div class="dh-title">Record · Produce · Schedule</div>
+      <div class="dh-sub">Record hub video + @life.byalexa · Run Claude production prompt · Schedule all pre-schedulable content · Sit down once, walk away covered</div>
     </div>
   </div>
 
   <div class="instruction-box">
     <div class="ib-title">How Sunday Works</div>
-    <div class="ib-text">Copy the entire prompt below — Section A through Section C — into a new Claude conversation every Sunday. Fill in the date, paste your Perplexity outputs into their labeled slots, and add your personal moment for the week. If you didn't run a particular Perplexity prompt this week, write <strong>SKIP</strong> in that slot. Claude produces all outputs in one session — every caption is written, every hashtag is included, every piece is tagged with <strong>#LifeByAlexa</strong> plus brand-specific hashtags. Pre-schedulable posts are clearly marked so you can sit at your computer Sunday morning and schedule the full week before you record anything.</div>
+    <div class="ib-text"><strong>Sunday has three jobs:</strong> (1) Record hub video and @life.byalexa content. (2) Run the Claude production prompt below — paste Perplexity outputs, get 14 outputs back. (3) Pre-schedule everything that doesn't need to be recorded: all 6 Facebook posts, both LinkedIn posts, both Google Business posts, both Substack articles, all 21 Notes. Copy the captions Claude writes — paste, schedule, done. Car Confessions record live in the car Tue/Wed/Thu. Ashes &amp; Escrows records Wednesday. Everything else is already scheduled before Sunday ends. <strong>Every piece gets #LifeByAlexa.</strong></div>
   </div>
 
-  <!-- OUTPUT SUMMARY -->
   <div class="output-grid">
-    <div class="og-title">What One Sunday Session Produces</div>
+    <div class="og-title">What One Sunday Session Produces — 14 Outputs</div>
     <div class="og-items">
       <div class="og-item"><span class="og-num">01</span><div class="og-text"><strong>Monday Substack Article</strong>Operator Life — personal story first · publishes Monday 8AM</div></div>
       <div class="og-item"><span class="og-num">02</span><div class="og-text"><strong>Thursday Substack Article</strong>Lifestyle Market Letter — ritual and lifestyle · publishes Thursday 8AM</div></div>
-      <div class="og-item"><span class="og-num">03</span><div class="og-text"><strong>21 Substack Notes</strong>7 Morning + 7 Midday + 7 Evening · growth engine · schedule Sun morning</div></div>
+      <div class="og-item"><span class="og-num">03</span><div class="og-text"><strong>21 Substack Notes</strong>7 Morning + 7 Midday + 7 Evening · growth engine · schedule Sunday</div></div>
       <div class="og-item"><span class="og-num">04</span><div class="og-text"><strong>YouTube Hub Video</strong>Full script, thumbnail, description, tags · record + upload Sunday</div></div>
       <div class="og-item"><span class="og-num">05</span><div class="og-text"><strong>Ashes &amp; Escrows Episode</strong>Full script, thumbnail, description · record Wed · uploads Thu 10AM</div></div>
-      <div class="og-item"><span class="og-num">06</span><div class="og-text"><strong>@life.byalexa Content</strong>Caption + concept · personal/lifestyle/behind the scenes · IG + TikTok Sunday</div></div>
-      <div class="og-item"><span class="og-num">07</span><div class="og-text"><strong>Car Confession Hooks (3)</strong>Tue @alexa.realtor RE · Wed @alexa.realtor · Thu @alexa.realtor entrepreneur</div></div>
-      <div class="og-item"><span class="og-num">08</span><div class="og-text"><strong>TikTok Content (4)</strong>Mon operator · Wed cigar culture · Thu Coffee for the Leaf · Sat RE investor tip</div></div>
-      <div class="og-item"><span class="og-num">09</span><div class="og-text"><strong>LinkedIn Posts (2)</strong>Mon Market Signal + Fri Market Insight · #LifeByAlexa included</div></div>
-      <div class="og-item"><span class="og-num">10</span><div class="og-text"><strong>Google Business Post (1)</strong>Monroe County keyword-rich · Monday 9AM · pre-schedulable</div></div>
-      <div class="og-item"><span class="og-num">11</span><div class="og-text"><strong>Facebook Posts (6)</strong>Sun / Mon / Tue / Thu / Fri / Sat · all captions + image suggestions ready</div></div>
-      <div class="og-item"><span class="og-num">12</span><div class="og-text"><strong>@fillerandroast Posts (2)</strong>Mon Monday Brew + Thu Coffee for the Leaf · captions + image suggestions</div></div>
-      <div class="og-item"><span class="og-num">13</span><div class="og-text"><strong>Nextdoor Posts (3)</strong>Sun Gratitude + Tue Neighborly + Thu Local Happenings · captions ready</div></div>
-      <div class="og-item"><span class="og-num">14</span><div class="og-text"><strong>ZCM Tags + Monetization Goals</strong>Every piece mapped · Environment + Goal · #LifeByAlexa on all</div></div>
+      <div class="og-item"><span class="og-num">06</span><div class="og-text"><strong>Car Confession Hooks (3)</strong>Tue + Wed + Thu @alexa.realtor · record in car same day · captions ready Sunday</div></div>
+      <div class="og-item"><span class="og-num">07</span><div class="og-text"><strong>LinkedIn Posts (2)</strong>Mon Market Signal + Fri Market Insight · @alexa.realtor · schedule Sunday</div></div>
+      <div class="og-item"><span class="og-num">08</span><div class="og-text"><strong>Google Business Posts (2)</strong>Monroe County keyword-rich · Mon 9AM STR market · Thu 9AM STR investor angle · both pre-schedule Sunday</div></div>
+      <div class="og-item"><span class="og-num">09</span><div class="og-text"><strong>Facebook Posts (6)</strong>Sun/Mon/Tue/Thu/Fri/Sat · all brands repurposed · captions + image notes · schedule Sunday</div></div>
+      <div class="og-item"><span class="og-num">10</span><div class="og-text"><strong>@fillerandroast Posts (2)</strong>Mon Monday Brew + Thu Coffee for the Leaf · IG captions + image notes</div></div>
+      <div class="og-item"><span class="og-num">11</span><div class="og-text"><strong>@its.myash Posts (3)</strong>Mon Tonight's Smoke · Fri Weekend Smoke Reel · Sat Story · captions + concepts</div></div>
+      <div class="og-item"><span class="og-num">12</span><div class="og-text"><strong>@life.byalexa Post (1)</strong>Sunday IG + TikTok · personal lifestyle moment · record Sunday morning · #LifeByAlexa</div></div>
+      <div class="og-item"><span class="og-num">13</span><div class="og-text"><strong>TikTok Posts (4)</strong>Mon operator · Wed cigar culture (no smoking) · Thu Coffee for the Leaf · Sat RE tip</div></div>
+      <div class="og-item"><span class="og-num">14</span><div class="og-text"><strong>ZCM Tags + Monetization Goals</strong>Every piece mapped · Environment + Goal · cross-brand thread noted · #LifeByAlexa on all</div></div>
     </div>
   </div>
 
-  <!-- SUNDAY PROMPT — SECTION A -->
   <div class="sun-section">
     <div class="sun-section-header">
       <div class="ssh-label">Section A — Fill This In Every Sunday</div>
@@ -1217,8 +591,8 @@ Cite sources including Halfwheel, Cigar Aficionado, Cigar Journal, PCA announcem
 <span class="hl">THIS WEEK'S PERSONAL MOMENT:</span>
 <span class="ph">[2-4 sentences. One real thing that happened this week across any of your brands — a deal, a moment at Nell's, a cigar, a DR thought, a client situation, something you almost didn't do. Raw version. This becomes the human opening of your Operator Life article and threads across platforms.]</span>
 
-<span class="hl">THIS WEEK'S @life.byalexa MOMENT:</span>
-<span class="ph">[1-2 sentences. A personal behind-the-scenes moment to capture Sunday morning — family time, morning ritual, a quiet moment before the week starts. Emily in Paris energy. This becomes the @life.byalexa IG + TikTok post.]</span>
+<span class="hl">THIS WEEK'S CROSS-BRAND THREAD:</span>
+<span class="ph">[Optional. One topic, deal, or moment that can be told from multiple brand angles this week. Example: a closing → Car Confession on @alexa.realtor + cigar celebration on @its.myash + Filler & Roast "closing day blend" caption + Substack note about what the deal taught you. Leave blank if nothing obvious.]</span>
 
 <span class="hl">--- PERPLEXITY OUTPUT 1: MARKET PULSE ---</span>
 <span class="ph">[Paste Prompt 01 output here — or write SKIP]</span>
@@ -1239,197 +613,178 @@ Cite sources including Halfwheel, Cigar Aficionado, Cigar Journal, PCA announcem
 <span class="ph">[Paste Prompt 04B output here — or write SKIP]</span></div>
   </div>
 
-  <!-- SUNDAY PROMPT — SECTION B -->
   <div class="sun-section">
     <div class="sun-section-header">
       <div class="ssh-label">Section B — Never Change This</div>
       <div class="ssh-title">Your Fixed Identity &amp; Brand Context</div>
     </div>
     <div class="pc-prompt-label">Fixed — Copy Exactly As Written</div>
-    <div class="pc-prompt"><span class="cm">// SECTION B — FIXED CONTEXT. NEVER EDIT THIS SECTION.
-// This tells Claude everything about you, your brands, your voice, and your rules.</span>
+    <div class="pc-prompt"><span class="cm">// SECTION B — FIXED CONTEXT. NEVER EDIT THIS SECTION.</span>
 
 You are the production engine for the weekly content brand of Alexa Sanchez.
 
 <span class="hl">IDENTITY:</span>
-Alexa Sanchez. Licensed Realtor, PA License #RS326383, Smart Way America Realty. Focused on Pocono Mountains STR investor market (Monroe County) and Dominican Republic real estate. Creator of Filler &amp; Roast — artisanal coffee sold exclusively at Nell's Social cigar lounge. Co-owner of Nell's Social cigar lounge. Personal brand @its.myash — cigar culture, entrepreneurship, lifestyle. Boutique DR cigar brand in development — DR origin story, Boutique Cigar Brand Developer. Lifestyle brand @life.byalexa — personal, behind the scenes, building moments, family time. Emily in Paris energy — one woman's curated world. Contact: (570) 688-8147 | Alexa@alexasanchez.net
+Alexa Sanchez. Licensed Realtor, PA License #RS326383, Smart Way America Realty. Focused on Pocono Mountains STR investor market (Monroe County) and Dominican Republic real estate. Co-owner of Nell's Social cigar lounge. Creator of Filler &amp; Roast — artisanal coffee sold exclusively at Nell's Social. Personal brand @its.myash — cigar culture, entrepreneurship, lifestyle. Boutique DR cigar brand in development — DR origin story — goal: 50+ lounges nationwide within 3 years, Cigar Aficionado cover within 3 years. Lifestyle brand @life.byalexa — personal, behind-the-scenes, building moments, family, the human life behind the brands. Contact: (570) 688-8147 | Alexa@alexasanchez.net
 
 <span class="hl">MASTER HASHTAG:</span>
-#LifeByAlexa goes on EVERY piece of content across EVERY brand on EVERY platform without exception. Stack brand-specific hashtags underneath it.
+#LifeByAlexa goes on EVERY piece of content across EVERY brand on EVERY platform. No exceptions. Stack brand-specific hashtags beneath it.
 
-<span class="hl">BRAND PHILOSOPHY — ALEXA IS THE BRAND:</span>
-All content across all platforms is woven together. Alexa is not four separate brands — she is one person who does four interesting things. Topics thread across platforms intentionally. A deal, a cigar moment, a DR trip, a coffee at Nell's — each event generates content across multiple brands from one human perspective. The audience on each platform gets a piece of Alexa. If they follow all of them, they get the full picture.
+<span class="hl">BRAND VOICE PHILOSOPHY:</span>
+Alexa is not four separate brands. She is one person — a Bronx-raised operator — who happens to do four interesting things. All content is woven together. When a cross-brand thread is provided in Section A, weave it across as many outputs as possible. One story, many rooms.
 
 <span class="hl">SUBSTACK — THE LIFESTYLE MARKET LETTER (@itsmyash):</span>
 "The work behind the work. Real estate. Cigars. Coffee. Three businesses, one operator, zero filters."
-2x/week articles: Monday = Operator Life (personal story first), Thursday = Lifestyle Market Letter (ritual, lifestyle, coffee, cigars, operator aesthetic).
+2x/week: Monday = Operator Life (personal story first), Thursday = Lifestyle Market Letter (ritual, lifestyle, coffee, cigars).
 Voice: Personal, direct, operator-first. Never a market report. Never a press release. Always a human building something real.
-Client privacy rule: Never use client names or property addresses in any content. Buyers are "a buyer." Sellers are "a seller." Locations stay at town level.
+Client privacy: Never use client names or addresses. Buyers = "a buyer." Sellers = "a seller." Locations = town level only.
 
 <span class="hl">SOCIAL ACCOUNTS:</span>
-@alexa.realtor — real estate + entrepreneur life (IG 4x/week, TikTok, YouTube, LinkedIn 2x/week, Facebook, Nextdoor 3x/week Sun+Tue+Thu, Google Business 1x/week)
-@its.myash — cigars, lifestyle, entrepreneurship, DR origin story (IG 3x/week, TikTok, FB)
-@fillerandroast — Filler &amp; Roast coffee brand (IG 2x/week Mon+Thu, FB — no TikTok)
-@life.byalexa — personal lifestyle, behind the scenes, building moments, family (IG 1x/week Sun, TikTok 1x/week Sun — private while building, launching slowly)
+@alexa.realtor — real estate + entrepreneur life (IG 4x/wk, YouTube, LinkedIn 2x/wk, Facebook, Nextdoor Sun/Tue/Thu, Google Business Mon+Thu)
+@its.myash — cigars, lifestyle, entrepreneurship, DR origin story (IG 3x/wk, TikTok, FB)
+@fillerandroast — Filler &amp; Roast coffee brand (IG Mon + Thu, FB — no TikTok)
+@life.byalexa — lifestyle, personal, behind-the-scenes (IG + TikTok · 1x/wk · Sunday · private while building)
 
 <span class="hl">RECORDING SCHEDULE:</span>
-Sunday = primary recording day. Hub video + @life.byalexa content. ~30 min. Coffee in hand. One camera. Record and upload same day.
-Tuesday = Car Confession in the car. @alexa.realtor real estate angle. Record + post same day 12PM.
-Wednesday = Ashes &amp; Escrows recording only. Uploads Thursday 10AM.
-Wednesday = Car Confession in the car. @alexa.realtor angle. Record + post same day 12PM.
-Thursday = Car Confession in the car. @alexa.realtor entrepreneur angle. Record + post same day 12PM.
+Sunday = hub video + @life.byalexa content. Record and upload same day.
+Tuesday = Car Confession @alexa.realtor real estate angle. Record in car, post same day 12PM.
+Wednesday = Ashes &amp; Escrows only (record, uploads Thu 10AM) + Car Confession @alexa.realtor operator angle, record in car post same day 12PM.
+Thursday = Car Confession @alexa.realtor entrepreneur angle. Record in car, post same day 12PM.
+TikTok rule: NO smoking or drinking alcohol on camera. All cigar content on TikTok = product-focused, behind the scenes, culture, origin story.
 
-<span class="hl">TIKTOK — 4x/week (no smoking or drinking on camera):</span>
-Monday — Operator/entrepreneur content (@its.myash · 6PM)
-Wednesday — Cigar brand/lifestyle, product-focused, behind the scenes, culture — no smoking (@its.myash · 6PM)
-Thursday — Coffee for the Leaf (@fillerandroast content · 10AM)
-Saturday — Real estate investor tip (@alexa.realtor · 11AM)
-
-<span class="hl">FACEBOOK — sprinkled daily:</span>
-Sunday — Gratitude repurpose (10AM)
-Monday — Brew post repurpose (10AM)
-Tuesday — Market Insight repurpose (8AM)
-Thursday — Coffee for the Leaf repurpose (11AM)
-Friday — Car Confession repurpose (12PM)
-Saturday — Weekend tip repurpose (11AM)
+<span class="hl">TIKTOK SCHEDULE (4x/week):</span>
+Monday 6PM — Operator/entrepreneur content
+Wednesday 6PM — Cigar brand/culture (no smoking on camera)
+Thursday 10AM — Coffee for the Leaf repurpose
+Saturday 11AM — Real estate investor tip
 
 <span class="hl">FILLER &amp; ROAST POSTING CADENCE:</span>
-Monday IG: Monday Brew Post — 9AM (new concept, not Before the First Draw)
-Thursday IG + TikTok @its.myash: Coffee for the Leaf — 10AM (pairing content)
+Monday IG 9AM: Monday Brew Post — lifestyle-forward, coffee ritual
+Thursday IG + TikTok 10AM: Coffee for the Leaf — cigar pairing content
 Core pairings: House Blend/Maduro | Butter Pecan/Connecticut | Amaretto/Evening Draw
 
-<span class="hl">@life.byalexa RULES:</span>
-Sunday only — 1 post IG + 1 post TikTok. Personal, human, behind the scenes. Building moments, family time, morning rituals. No stats, no market reports, no selling. Emily in Paris energy — aspirational without being unattainable. Come-with-me tone. This is who Alexa is when the brands go quiet.
+<span class="hl">@life.byalexa CONTENT RULES:</span>
+Personal, human, behind the scenes. Building moments. Family time. NOT stats, selling, or brand promotion.
+Emily in Paris energy — aspirational, one woman's world, people want to live inside it.
+One post per week. Sunday only. Building slowly. Private until grid is ready.
 
-<span class="hl">VIDEO SCRIPT RULES — ALL PLATFORMS:</span>
-Strong hook in first 2 seconds. Direct statements only — no questions. No fluff. Short punchy lines. Bold, factual, edgy. List-style beats. Executive cover energy. Bronx cadence — direct, fast, punchy, realistic filler language.
+<span class="hl">VIDEO SCRIPT RULES:</span>
+Strong hook in first 2 seconds. Direct statements only — no questions. No fluff. Short punchy lines. Bold, factual, edgy. Bronx cadence — direct, fast, punchy, realistic filler language.
 
 <span class="hl">CAR CONFESSION RULES:</span>
-20 seconds max. Shock value. Direct and edgy. How Alexa actually talks — not a report. Record in the car Tue/Wed/Thu — post same day.
+20 seconds max. Shock value. Direct and edgy. Record in car Tue/Wed/Thu, post same day.
 Cover text: neon green for stats, red or white for confessions. Chunky tilted font over face.
 
 <span class="hl">ASHES &amp; ESCROWS RULES:</span>
-Quirky, intelligently insulting, talking to best friend. One-take confessional — cigar or coffee in hand. Under 60 seconds. Raw, no-fluff, realistic verbiage. Five roast targets: lowball buyers, realtors who don't know the market, Pocono skeptics, cigar beginners, tie-it-all-together anchor.
+Quirky, intelligently insulting, talking to best friend. One-take confessional. Under 60 seconds. Operational/lifestyle — not a market report. Records Wednesday, uploads Thursday 10AM.
 
-<span class="hl">SUBSTACK NOTES RULES — 21 per week:</span>
-7 Morning Notes: sharpest line from the article, one per day
-7 Midday Notes: thematic, fits the article's world, stands alone
-7 Evening Notes: pure personal voice — cigar moment, operator insight, DR thought
-Each Note must: (1) lead with a specific personal moment not a tip, (2) make the reader feel something before teaching them anything, (3) end with a line that's about the reader not the writer.
+<span class="hl">SUBSTACK NOTES — 21 per week:</span>
+7 Morning: sharpest line from the article · 7 Midday: thematic, stands alone · 7 Evening: pure personal voice
+Each Note: (1) lead with specific personal moment, (2) feeling before teaching, (3) end with a line about the reader.
 
-<span class="hl">SUNDAY SCHEDULING RULE:</span>
-All pre-schedulable content must be clearly marked [PRE-SCHEDULE] in Claude's output. This includes: all Facebook posts, both LinkedIn posts, Google Business post, both Substack articles, all 21 Substack Notes, Sunday Gratitude captions for IG and Nextdoor. Each pre-schedulable piece must include: full caption, image suggestion, and complete hashtag set with #LifeByAlexa first.
+<span class="hl">SUNDAY PRE-SCHEDULE RULE:</span>
+Every output that doesn't require recording must be fully written and ready to copy/paste and schedule Sunday. Include image suggestions for every post. Include #LifeByAlexa on everything.
 
-<span class="hl">DR CONTENT — MONTHLY DROP:</span>
-@its.myash leads DR cigar/tobacco origin + lifestyle. @alexa.realtor leads DR real estate investment. Drops once per month across all platforms.
-
-<span class="hl">LINKEDIN PROFILE NOTE:</span>
-Headline: Realtor | STR Investor Specialist &amp; International Real Estate | Cigar Lounge Co-Owner | Boutique Cigar Brand Developer. Content should reflect all four lanes — not just real estate.
-
-<span class="hl">3-YEAR GOAL:</span>
-Cigar Aficionado cover or boutique cigar brand sold in 50+ lounges nationwide. All cigar content, brand development updates, and lounge culture posts serve this goal.
-
-<span class="hl">ZCM TAGS — apply to every piece:</span>
+<span class="hl">ZCM TAGS:</span>
 Environment: Social Feed | Video Platform | Community | AI Visibility
 Monetization goal: Grow followers | Drive sales | Generate leads</div>
   </div>
 
-  <!-- SUNDAY PROMPT — SECTION C -->
   <div class="sun-section">
     <div class="sun-section-header">
       <div class="ssh-label">Section C — Never Change This</div>
-      <div class="ssh-title">The Full Output — Production Instructions</div>
+      <div class="ssh-title">The 14 Outputs — Production Instructions</div>
     </div>
     <div class="pc-prompt-label">Fixed — Copy Exactly As Written</div>
     <div class="pc-prompt"><span class="cm">// SECTION C — PRODUCTION INSTRUCTIONS. NEVER EDIT THIS SECTION.
-// Claude works through all outputs in sequence using the Perplexity data from Section A.
-// All pre-schedulable content is marked [PRE-SCHEDULE] with full caption + image suggestion + hashtags.</span>
+// Every output gets #LifeByAlexa + brand-specific hashtags.
+// If a cross-brand thread was provided in Section A, weave it across as many outputs as possible.</span>
 
-Using the intelligence from the Perplexity outputs in Section A — plus the personal moments provided — produce all of the following in order. For every piece: include #LifeByAlexa as the first hashtag, then add brand-specific hashtags appropriate to the platform and content. Mark all pre-schedulable items clearly.
+Using the intelligence from Section A — plus the personal moment and cross-brand thread — produce all 14 outputs in order:
 
-<span class="hl">OUTPUT 1 — MONDAY SUBSTACK ARTICLE (Operator Life) [PRE-SCHEDULE]</span>
-Title, subtitle, full article 600-900 words. Open with personal moment expanded into a scene. Build to operator insight. Personal story first, lesson second. Voice: direct, no fluff, a little edgy, self-aware. Never a market report. Thread the week's topic across at least two brands.
+<span class="hl">OUTPUT 1 — MONDAY SUBSTACK ARTICLE (Operator Life)</span>
+Title, subtitle, full article 600-900 words. Open with personal moment expanded into a scene. Build to operator insight. Personal story first, lesson second. Voice: direct, no fluff, a little edgy, self-aware.
 
-<span class="hl">OUTPUT 2 — THURSDAY SUBSTACK ARTICLE (Lifestyle Market Letter) [PRE-SCHEDULE]</span>
-Title, subtitle, full article 500-800 words. Topic: ritual, lifestyle, coffee, cigars, or operator aesthetic drawn from coffee or cigar intelligence. Feel: sensory, intentional, slower pace. Read with a drink in hand.
+<span class="hl">OUTPUT 2 — THURSDAY SUBSTACK ARTICLE (Lifestyle Market Letter)</span>
+Title, subtitle, full article 500-800 words. Topic: ritual, lifestyle, coffee, cigars, or operator aesthetic. Feel: sensory, intentional, slower pace. Read with a drink in hand.
 
-<span class="hl">OUTPUT 3 — 21 SUBSTACK NOTES [PRE-SCHEDULE]</span>
-Label clearly: Morning Notes (7) | Midday Notes (7) | Evening Notes (7).
-Rules: personal moment first, feeling before teaching, end with the reader.
-Morning and Midday drawn from both articles. Evening Notes are pure voice.
-Schedule: 3 per day, Monday through Sunday (Morning / Midday / Evening).
+<span class="hl">OUTPUT 3 — 21 SUBSTACK NOTES</span>
+Morning Notes (7) | Midday Notes (7) | Evening Notes (7).
+Personal moment first, feeling before teaching, end with the reader.
+Schedule: 3 per day Mon–Sun. Include suggested post time for each. Ready to copy and paste.
 
 <span class="hl">OUTPUT 4 — YOUTUBE HUB VIDEO</span>
 Full script for @alexa.realtor. Topic from strongest Investor Intel or Market Pulse signal.
 Hook (0:00-0:08), open (0:08-0:30), 3 body sections with timestamps, CTA.
-Thumbnail direction. YouTube-optimized description + tags + #LifeByAlexa.
-Note: recorded and uploaded Sunday same day.
+Thumbnail direction. YouTube-optimized description + tags. Record and upload Sunday.
 
 <span class="hl">OUTPUT 5 — ASHES &amp; ESCROWS EPISODE</span>
-Full script. Under 60 seconds. Quirky, intelligently insulting, one-take confessional.
-Recorded Wednesday. Uploads Thursday 10AM. Cigar or coffee in hand. Roast one of the five targets.
-Thumbnail direction + description + #LifeByAlexa.
+Full script. Under 60 seconds. Quirky, intelligently insulting, one-take confessional. Operational/lifestyle.
+Records Wednesday. Uploads Thursday 10AM. Thumbnail direction + description.
 
-<span class="hl">OUTPUT 6 — @life.byalexa POST (IG + TikTok) [PRE-SCHEDULE]</span>
-Caption for the personal moment from Section A. Emily in Paris energy — come-with-me tone. Personal, warm, no selling. Image suggestion for the Sunday morning capture. #LifeByAlexa first + lifestyle hashtags.
+<span class="hl">OUTPUT 6 — CAR CONFESSION HOOKS (3 total)</span>
+20 seconds max each. Shock value. Direct and edgy. Cover text direction for each.
+- Tuesday @alexa.realtor — real estate angle (record in car Tue, post 12PM)
+- Wednesday @alexa.realtor — operator/lifestyle angle (record in car Wed, post 12PM)
+- Thursday @alexa.realtor — entrepreneur life angle (record in car Thu, post 12PM)
 
-<span class="hl">OUTPUT 7 — CAR CONFESSION HOOKS (3 total)</span>
-20 seconds max each. Shock value. Direct and edgy. Cover text direction for each. Record in the car same day as posting.
-- Tuesday @alexa.realtor — real estate angle (record + post Tue 12PM)
-- Wednesday @alexa.realtor — operator angle (record + post Wed 12PM)
-- Thursday @alexa.realtor — entrepreneur life (record + post Thu 12PM)
+<span class="hl">OUTPUT 7 — LINKEDIN POSTS (2 total, @alexa.realtor)</span>
+Professional but not corporate. Operator voice. #LifeByAlexa included.
+- Post 1 (Monday 8AM): Market signal from Market Pulse or Investor Intel.
+- Post 2 (Friday 8AM): Market Insight — STR buy-box, seasonal timing, or zoning angle.
+Ready to copy and schedule Sunday.
 
-<span class="hl">OUTPUT 8 — TIKTOK CONTENT (4 total)</span>
-No smoking or drinking on camera. Product-focused or cultural for cigar content.
-- Monday: Operator/entrepreneur content @its.myash (6PM) — caption + hook
-- Wednesday: Cigar brand/culture @its.myash (6PM) — caption + hook, no smoking
-- Thursday: Coffee for the Leaf (10AM) — caption + hook (same content as @fillerandroast IG, different edit)
-- Saturday: RE investor tip @alexa.realtor (11AM) — caption + hook
+<span class="hl">OUTPUT 8 — GOOGLE BUSINESS POSTS (2 total) [PRE-SCHEDULE BOTH]</span>
+Short. Local. Keyword-rich. Under 150 words each. Monroe County / Pocono Mountains specific.
+- Post 1 Monday 9AM: STR investor market angle — new listing activity, yield data, or buyer demand signal.
+- Post 2 Thursday 9AM: STR investor angle — zoning diligence, seasonal timing, or Pocono market insight.
+Both ready to copy and schedule Sunday. #LifeByAlexa included.
 
-<span class="hl">OUTPUT 9 — LINKEDIN POSTS (2 total) [PRE-SCHEDULE]</span>
-Professional but not corporate. Operator voice. Reflects multi-lane identity.
-- Post 1 Monday 8AM: Market signal from Market Pulse or Investor Intel. Hook line, 3-4 short paragraphs, CTA. #LifeByAlexa + professional hashtags.
-- Post 2 Friday 8AM: Market Insight — STR buy-box, seasonal timing, or zoning angle. #LifeByAlexa + professional hashtags.
+<span class="hl">OUTPUT 9 — FACEBOOK POSTS (6 total)</span>
+One per day Sun/Mon/Tue/Thu/Fri/Sat. Each repurposes the day's primary content. Image suggestion included. #LifeByAlexa included.
+- Sunday: Gratitude repurpose · Monday: Monday Brew repurpose · Tuesday: Market Insight repurpose
+- Thursday: Coffee for the Leaf repurpose · Friday: Car Confession repurpose · Saturday: Weekend tip repurpose
+All 6 ready to copy and schedule Sunday.
 
-<span class="hl">OUTPUT 10 — GOOGLE BUSINESS POST (1 total) [PRE-SCHEDULE]</span>
-Short. Local. Keyword-rich. Under 150 words. Monroe County / Pocono Mountains specific. Monday 9AM. STR investor market angle. #LifeByAlexa included.
+<span class="hl">OUTPUT 10 — @fillerandroast POSTS (2 total)</span>
+Monday IG 9AM: Monday Brew Post — lifestyle-forward, coffee ritual, pairs with a moment.
+Thursday IG + TikTok 10AM: Coffee for the Leaf — cigar pairing angle, sensory, intentional.
+Image suggestion for each. #LifeByAlexa + coffee hashtags.
 
-<span class="hl">OUTPUT 11 — FACEBOOK POSTS (6 total) [PRE-SCHEDULE ALL 6]</span>
-All 6 posts ready to schedule Sunday morning. Each includes full caption + image suggestion + #LifeByAlexa + brand hashtags.
-- Sunday 10AM: Gratitude repurpose from @alexa.realtor IG
-- Monday 10AM: Monday Brew Post repurpose from @fillerandroast
-- Tuesday 8AM: Market Insight repurpose from LinkedIn
-- Thursday 11AM: Coffee for the Leaf repurpose from @fillerandroast
-- Friday 12PM: Car Confession repurpose from @alexa.realtor
-- Saturday 11AM: Weekend tip repurpose
+<span class="hl">OUTPUT 11 — @its.myash POSTS (3 total)</span>
+Monday IG 7PM: Tonight's Smoke Carousel — cigar of the week, 3-5 slides, concept + copy.
+Friday IG 5PM: Weekend Smoke Reel — hook + concept (record that day).
+Saturday IG 2PM: Behind the Scenes Story — concept only, IG Story format.
+Image/video suggestions. #LifeByAlexa + cigar hashtags.
 
-<span class="hl">OUTPUT 12 — @fillerandroast POSTS (2 total) [PRE-SCHEDULE]</span>
-- Monday 9AM: Monday Brew Post — new concept (not Before the First Draw). Image suggestion for coffee setup. #LifeByAlexa + coffee hashtags.
-- Thursday 10AM: Coffee for the Leaf — cigar pairing content. Image suggestion. #LifeByAlexa + pairing hashtags.
+<span class="hl">OUTPUT 12 — @life.byalexa POST (1 total)</span>
+Sunday IG + TikTok 11AM. Personal lifestyle moment. Behind the scenes. Building moment or aspirational day-in-the-life.
+NOT selling. NOT stats. NOT brand promotion. Just Alexa living her life.
+Caption: personal, warm, inviting. Emily in Paris energy. #LifeByAlexa.
+Video concept: what to capture Sunday morning during recording block.
+Note: account is private while building. Write it anyway — it gets queued.
 
-<span class="hl">OUTPUT 13 — NEXTDOOR POSTS (3 total) [PRE-SCHEDULE]</span>
-Community tone. Local. Warm but informative. Not salesy.
-- Sunday 9:30AM: Gratitude post — personal, community-focused, different from IG version
-- Tuesday 6PM: Neighborly Post — real estate tip or local market insight
-- Thursday 6PM: Local Happenings — community events, local news, Pocono area update
+<span class="hl">OUTPUT 13 — TIKTOK POSTS (4 total)</span>
+Monday 6PM: Operator/entrepreneur — hook + concept + caption.
+Wednesday 6PM: Cigar brand/culture — NO smoking on camera. Product-focused, origin story, behind the scenes.
+Thursday 10AM: Coffee for the Leaf repurpose — different hook than IG version.
+Saturday 11AM: Real estate investor tip — punchy, 20-30 sec, Pocono/STR angle.
+All 4: hook + concept + caption + #LifeByAlexa + relevant hashtags.
 
 <span class="hl">OUTPUT 14 — ZCM TAGS + MONETIZATION GOALS</span>
-For every piece of content produced, list in a clean table: Content Title | Platform | ZCM Environment | Monetization Goal | #LifeByAlexa confirmed.
-Environments: Social Feed | Video Platform | Community | AI Visibility
-Goals: Grow followers | Drive sales | Generate leads
+Clean table for every piece of content:
+- Content title | Platform | ZCM Environment | Monetization Goal | Cross-brand thread (yes/no)
 
 <span class="cm">// END OF PROMPT
 // Copy Sections A + B + C into Claude every Sunday.
-// Only fill in Section A — never change B or C.
-// #LifeByAlexa on everything. Always.</span></div>
+// Only fill in Section A.
+// Every output gets #LifeByAlexa.
+// Sunday = schedule everything. The week runs itself.</span></div>
   </div>
 
-  <!-- FOOTER -->
   <div class="footer">
-    <p><strong>ROAST · Complete Weekly Operating System</strong> · Updated April 14, 2026</p>
-    <p>@alexa.realtor · @its.myash · @fillerandroast · @life.byalexa · #LifeByAlexa</p>
-    <p>Thursday: Perplexity gathers · Sunday: schedule + record + Claude produces · Week runs itself</p>
-    <p>(570) 688-8147 · Alexa@alexasanchez.net · PA License #RS326383</p>
+    <p><strong>ROAST</strong> · @itsmyash · Alexa Sanchez · PA License #RS326383</p>
+    <p>Thursday: Perplexity gathers · Sunday: Claude produces + schedules · The week runs itself</p>
+    <p><strong>#LifeByAlexa</strong> · @life.byalexa · (570) 688-8147 · Alexa@alexasanchez.net</p>
   </div>
 
 </div>
