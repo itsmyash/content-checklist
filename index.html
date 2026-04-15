@@ -603,6 +603,9 @@
   <button class="tab-btn" data-tab="contacts">
     <span class="tab-dot" style="background:var(--accent3)"></span>Contact Cards
   </button>
+  <button class="tab-btn" data-tab="website">
+    <span class="tab-dot" style="background:var(--teal)"></span>Website Checklist
+  </button>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════ OVERVIEW ══ -->
@@ -831,6 +834,94 @@
   <div class="empty" id="contacts-empty">
     <div class="empty-icon">📇</div>
     <div class="empty-label">Leads scored 5+ appear here as full contact cards.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ WEBSITE ══ -->
+<div class="tab-panel" id="tab-website">
+  <div class="section-hdr">
+    <div class="section-title">Website Checklist</div>
+    <div class="section-sub">alexa.realtor · update every sunday · keep it current</div>
+    <div style="margin-left:auto;">
+      <button class="btn btn-ghost btn-sm" onclick="resetWebChecks()">↺ Reset</button>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:20px;">
+
+    <!-- WEEKLY UPDATES -->
+    <div class="card">
+      <div class="card-hdr">
+        <div class="card-hdr-title">🔄 Weekly Updates — Do Every Sunday</div>
+      </div>
+      <div class="card-body">
+        <ul class="checklist" id="web-weekly">
+          <li data-id="ww1" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Swap featured listing in Local Life & Global Vibes section — use most current active listing</span><span class="check-tag tag-mls">LISTING</span></li>
+          <li data-id="ww2" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Update market stat or insight line — one current Pocono/Monroe County data point</span><span class="check-tag tag-pub">MARKET</span></li>
+          <li data-id="ww3" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Check contact form is working — submit a test and confirm email delivery</span><span class="check-tag tag-pub">TECH</span></li>
+          <li data-id="ww4" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Add or update one client testimonial if available from the week</span><span class="check-tag tag-content">SOCIAL PROOF</span></li>
+          <li data-id="ww5" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Confirm Calendly booking link is live and showing correct availability</span><span class="check-tag tag-pub">TECH</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- MONTHLY UPDATES -->
+    <div class="card">
+      <div class="card-hdr">
+        <div class="card-hdr-title">📅 Monthly Updates — First Sunday of Month</div>
+      </div>
+      <div class="card-body">
+        <ul class="checklist" id="web-monthly">
+          <li data-id="wm1" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Update Areas Covered section with any new submarkets or activity</span><span class="check-tag tag-pub">CONTENT</span></li>
+          <li data-id="wm2" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Refresh DR section with latest monthly intelligence from Perplexity Prompt 03</span><span class="check-tag tag-pub">DR</span></li>
+          <li data-id="wm3" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Update buyer/seller guide PDFs if any content has changed</span><span class="check-tag tag-content">GUIDES</span></li>
+          <li data-id="wm4" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Check all links — listings, guides, Calendly, social profiles — confirm none are broken</span><span class="check-tag tag-pub">TECH</span></li>
+          <li data-id="wm5" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Review Google Business profile — confirm website link, hours, and photos are current</span><span class="check-tag tag-pub">SEO</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- REPOSITIONING TRACKER -->
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-hdr">
+      <div class="card-hdr-title">🏗️ Repositioning To-Do — One-Time Updates (Before Sunday Apr 20)</div>
+    </div>
+    <div class="card-body">
+      <ul class="checklist" id="web-reposition">
+        <li data-id="wr1" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Update hero headline — add STR investor specialist positioning, remove generic language</span><span class="check-tag tag-content">COPY</span></li>
+        <li data-id="wr2" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Update bio section — reflect full operator identity: realtor, cigar lounge co-owner, boutique cigar brand developer, coffee brand</span><span class="check-tag tag-content">COPY</span></li>
+        <li data-id="wr3" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Add STR Investor section — Pocono Mountains yield data, what to look for, why work with Alexa</span><span class="check-tag tag-content">SECTION</span></li>
+        <li data-id="wr4" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Add social links — Instagram (@alexa.realtor, @its.myash), YouTube, LinkedIn, Substack</span><span class="check-tag tag-content">LINKS</span></li>
+        <li data-id="wr5" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Add #LifeByAlexa to footer and hero section</span><span class="check-tag tag-content">BRAND</span></li>
+        <li data-id="wr6" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Update Areas of Specialty list — add STR investment, Boutique Cigar Brand Developer, Nell's Social co-owner</span><span class="check-tag tag-content">COPY</span></li>
+        <li data-id="wr7" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Replace generic "Local Life & Global Vibes" copy with branded STR + DR investor angle</span><span class="check-tag tag-content">COPY</span></li>
+        <li data-id="wr8" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Add Filler & Roast and Nell's Social mentions — operator lifestyle section</span><span class="check-tag tag-content">SECTION</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SEO QUICK REFERENCE -->
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-hdr-title">🔍 SEO Keywords to Use in Every Update</div>
+    </div>
+    <div class="card-body">
+      <div class="grid-3">
+        <div style="border:1px solid var(--border);border-radius:3px;padding:12px;">
+          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);margin-bottom:8px;">POCONO / MONROE COUNTY</div>
+          <div style="font-size:12px;color:var(--text2);line-height:2;">Pocono Mountains STR realtor<br>Monroe County short-term rental<br>Pocono investment property<br>vacation rental agent Poconos<br>STR investor specialist PA</div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:3px;padding:12px;">
+          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent3);margin-bottom:8px;">DOMINICAN REPUBLIC</div>
+          <div style="font-size:12px;color:var(--text2);line-height:2;">Dominican Republic real estate<br>Cap Cana investment property<br>Punta Cana realtor US buyers<br>DR vacation home investment<br>CONFOTUR tax incentive DR</div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:3px;padding:12px;">
+          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:8px;">BRAND / OPERATOR</div>
+          <div style="font-size:12px;color:var(--text2);line-height:2;">Alexa Sanchez realtor<br>bilingual realtor Pennsylvania<br>STR operator Pocono Mountains<br>#LifeByAlexa<br>Smart Way America Realty</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1247,6 +1338,7 @@ function seedDefaults() {
       { id:23, brand:'realtor', day:4, title:'🎬 Ashes & Escrows Upload', type:'YouTube · recorded Wed · 10 AM', goal:'RE Leads', done:false },
       { id:24, brand:'realtor', day:4, title:'🚗 Car Confession', type:'IG · record + post · 12 PM · entrepreneur', goal:'RE Leads', done:false },
       { id:25, brand:'realtor', day:4, title:'📍 Local Happenings', type:'Nextdoor · 6 PM', goal:'RE Leads', done:false },
+      { id:251,brand:'realtor', day:4, title:'📍 Google Business Post', type:'Google · 9 AM · STR investor angle', goal:'RE Leads', done:false },
       { id:26, brand:'fnr',     day:4, title:'🍃 Coffee for the Leaf', type:'IG · TikTok · 10 AM · #LifeByAlexa', goal:'Drive Sales', done:false },
       { id:27, brand:'fb',      day:4, title:'📘 Coffee for the Leaf Repurpose', type:'Facebook · 11 AM', goal:'Drive Sales', done:false },
       { id:28, brand:'substack',day:4, title:'✍️ Notes — Evening Batch', type:'Substack · personal voice · 6 PM', goal:'Grow Following', done:false },
@@ -1281,6 +1373,7 @@ function renderAll() {
   renderLeads();
   renderCannonball();
   renderContacts();
+  renderWebChecks();
 }
 
 // ── KPIs ──────────────────────────────────────────────────────────────────────
@@ -1586,6 +1679,32 @@ function closeModal(id) { document.getElementById(id).classList.remove('open'); 
 document.querySelectorAll('.modal-overlay').forEach(m => {
   m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
 });
+
+// ── WEBSITE CHECKS ────────────────────────────────────────────────────────────
+function toggleWebCheck(el) {
+  el.classList.toggle('done');
+  const id = el.dataset.id;
+  state.checks[id] = el.classList.contains('done');
+  save();
+}
+function renderWebChecks() {
+  ['web-weekly','web-monthly','web-reposition'].forEach(listId => {
+    const list = document.getElementById(listId);
+    if (!list) return;
+    list.querySelectorAll('li').forEach(li => {
+      if (state.checks[li.dataset.id]) li.classList.add('done');
+    });
+  });
+}
+function resetWebChecks() {
+  if (!confirm('Reset all website checklist items?')) return;
+  ['ww1','ww2','ww3','ww4','ww5','wm1','wm2','wm3','wm4','wm5'].forEach(id => {
+    state.checks[id] = false;
+    const el = document.querySelector(`[data-id="${id}"]`);
+    if (el) el.classList.remove('done');
+  });
+  save();
+}
 
 init();
 </script>
