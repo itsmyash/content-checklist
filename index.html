@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>itsmyash // operator dashboard</title>
+<title>myash // operator dashboard</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -16,16 +16,14 @@
     --text: #1a1a18;
     --text2: #555550;
     --text3: #999990;
-    --accent: #4a8c0f;
-    --accent2: #d63a08;
-    --accent3: #1a7aad;
+    --accent: #4a8c0f;       /* darker green — readable on light */
+    --accent2: #d63a08;      /* hot orange-red */
+    --accent3: #1a7aad;      /* cool blue */
     --gold: #b08a00;
     --hot: #d63a08;
     --warm: #b08a00;
     --cold: #1a7aad;
     --purple: #7a30c0;
-    --teal: #0F6E56;
-    --pink: #993556;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -64,16 +62,6 @@
     font-size: 11px;
     color: var(--text3);
     letter-spacing: 1px;
-  }
-  .topbar-hashtag {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--teal);
-    letter-spacing: 1px;
-    font-weight: 600;
-    border: 1px solid var(--teal);
-    padding: 3px 10px;
-    border-radius: 2px;
   }
   .topbar-badge {
     background: var(--accent);
@@ -311,7 +299,11 @@
 
   /* ── SIGNAL DOTS ── */
   .sig-dots { display: flex; gap: 3px; flex-wrap: wrap; }
-  .sig-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .sig-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    title: '';
+  }
   .dot-probate   { background: var(--hot); }
   .dot-prefc     { background: var(--accent2); }
   .dot-divorce   { background: var(--purple); }
@@ -379,7 +371,7 @@
     transition: all 0.15s;
   }
   .btn-primary { background: var(--accent); color: #fff; font-weight: 600; }
-  .btn-primary:hover { background: #3a7008; }
+  .btn-primary:hover { background: #b8e050; }
   .btn-ghost { background: transparent; border: 1px solid var(--border2); color: var(--text2); }
   .btn-ghost:hover { border-color: var(--text2); color: var(--text); }
   .btn-danger { background: transparent; border: 1px solid #3a1010; color: var(--hot); }
@@ -426,13 +418,11 @@
     color: var(--text3);
     margin-top: 3px;
   }
-  .brand-myash   { color: var(--accent); }
+  .brand-myash  { color: var(--accent); }
   .brand-realtor { color: var(--accent3); }
-  .brand-fnr     { color: var(--gold); }
-  .brand-lba     { color: var(--teal); }
-  .brand-sub     { color: var(--purple); }
-  .brand-fb      { color: var(--pink); }
-  .brand-system  { color: var(--text3); font-style: italic; }
+  .brand-fnr   { color: var(--gold); }
+  .brand-sub   { color: #888; }
+  .brand-system { color: var(--text3); font-style: italic; }
 
   /* ── CANNONBALL ── */
   .target-card {
@@ -489,12 +479,10 @@
   .progress-label { display: flex; justify-content: space-between; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text3); margin-bottom: 4px; }
   .progress-bar { height: 4px; background: var(--bg3); border-radius: 2px; overflow: hidden; }
   .progress-fill { height: 100%; border-radius: 2px; transition: width 0.5s ease; }
-  .fill-green  { background: var(--accent); }
-  .fill-red    { background: var(--hot); }
-  .fill-blue   { background: var(--accent3); }
-  .fill-gold   { background: var(--gold); }
-  .fill-teal   { background: var(--teal); }
-  .fill-purple { background: var(--purple); }
+  .fill-green { background: var(--accent); }
+  .fill-red { background: var(--hot); }
+  .fill-blue { background: var(--accent3); }
+  .fill-gold { background: var(--gold); }
 
   /* ── MODAL ── */
   .modal-overlay {
@@ -505,6 +493,8 @@
     z-index: 200;
     align-items: center;
     justify-content: center;
+    overflow-y: auto;
+    padding: 16px;
   }
   .modal-overlay.open { display: flex; }
   .modal {
@@ -512,9 +502,11 @@
     border: 1px solid var(--border2);
     border-radius: 6px;
     width: 580px;
-    max-width: 95vw;
+    max-width: 100%;
     max-height: 90vh;
     overflow-y: auto;
+    margin: auto;
+    flex-shrink: 0;
   }
   .modal-hdr {
     padding: 16px 20px;
@@ -543,20 +535,6 @@
   .empty-icon { font-size: 32px; margin-bottom: 10px; }
   .empty-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 1px; }
 
-  /* ── HASHTAG STRIP ── */
-  .hashtag-strip {
-    background: var(--teal);
-    padding: 8px 24px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: rgba(255,255,255,0.9);
-    letter-spacing: 2px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .hashtag-strip strong { color: #fff; font-size: 13px; letter-spacing: 3px; }
-
   @media (max-width: 900px) {
     .grid-4 { grid-template-columns: repeat(2, 1fr); }
     .grid-3 { grid-template-columns: 1fr 1fr; }
@@ -564,7 +542,12 @@
     .kpi-grid { grid-template-columns: repeat(2, 1fr); }
     .col-span-2 { grid-column: span 1; }
     .system-docs-btn { font-size: 9px; padding: 5px 10px; }
-    .topbar-hashtag { display: none; }
+  }
+  @media (max-width: 600px) {
+    .signal-grid { grid-template-columns: 1fr 1fr; }
+    .modal { width: 96vw; max-width: 96vw; margin: 0 2vw; }
+    .modal-body { padding: 14px; }
+    .form-row { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -572,39 +555,29 @@
 
 <!-- TOP BAR -->
 <div class="topbar">
-  <div class="topbar-logo">MYASH<span> // OPS</span></div>
+  <div class="topbar-logo">ITSMYASH<span> // OPS</span></div>
   <div class="topbar-date" id="topbar-date"></div>
-  <div id="sync-badge" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text3);">⟳ loading...</div>
+  <button id="sync-badge" onclick="forcSync()" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text3);background:none;border:1px solid var(--border);border-radius:2px;padding:4px 10px;cursor:pointer;transition:all 0.15s;" title="Tap to force sync">⟳ loading...</button>
   <a href="ROAST-Complete-System.html" target="_blank" class="system-docs-btn">📋 System Docs</a>
   <div class="topbar-badge">OPERATOR MODE</div>
 </div>
 
-<!-- HASHTAG STRIP -->
-<div class="hashtag-strip">
-  <strong>#LifeByAlexa</strong>
-  <span>on every post · every brand · every platform · no exceptions</span>
-  <span style="margin-left:auto;opacity:0.6;">@alexa.realtor · @its.myash · @fillerandroast · @life.byalexa</span>
-</div>
-
 <!-- TAB NAV -->
 <div class="tab-nav">
-  <button class="tab-btn active" data-tab="overview">
+  <button class="tab-btn active" data-tab="overview" onclick="switchTab('overview')">
     <span class="tab-dot" style="background:var(--accent)"></span>Overview
   </button>
-  <button class="tab-btn" data-tab="content">
+  <button class="tab-btn" data-tab="content" onclick="switchTab('content')">
     <span class="tab-dot" style="background:#f060c0"></span>Content Ops
   </button>
-  <button class="tab-btn" data-tab="signals">
+  <button class="tab-btn" data-tab="signals" onclick="switchTab('signals')">
     <span class="tab-dot" style="background:var(--gold)"></span>Signal Tracker
   </button>
-  <button class="tab-btn" data-tab="cannonball">
+  <button class="tab-btn" data-tab="cannonball" onclick="switchTab('cannonball')">
     <span class="tab-dot" style="background:var(--hot)"></span>Cannonball Campaign
   </button>
-  <button class="tab-btn" data-tab="contacts">
+  <button class="tab-btn" data-tab="contacts" onclick="switchTab('contacts')">
     <span class="tab-dot" style="background:var(--accent3)"></span>Contact Cards
-  </button>
-  <button class="tab-btn" data-tab="website">
-    <span class="tab-dot" style="background:var(--teal)"></span>Website Checklist
   </button>
 </div>
 
@@ -668,24 +641,20 @@
       </div>
       <div class="card-body">
         <div class="progress-wrap">
-          <div class="progress-label"><span>@alexa.realtor</span><span id="prog-realtor-label">0/4</span></div>
-          <div class="progress-bar"><div class="progress-fill fill-blue" id="prog-realtor" style="width:0%"></div></div>
-        </div>
-        <div class="progress-wrap">
-          <div class="progress-label"><span>@its.myash</span><span id="prog-myash-label">0/3</span></div>
+          <div class="progress-label"><span>@its.myash</span><span id="prog-myash-label">0/7</span></div>
           <div class="progress-bar"><div class="progress-fill fill-green" id="prog-myash" style="width:0%"></div></div>
         </div>
         <div class="progress-wrap">
-          <div class="progress-label"><span>@fillerandroast</span><span id="prog-fnr-label">0/2</span></div>
-          <div class="progress-bar"><div class="progress-fill fill-gold" id="prog-fnr" style="width:0%"></div></div>
+          <div class="progress-label"><span>@alexa.realtor</span><span id="prog-realtor-label">0/7</span></div>
+          <div class="progress-bar"><div class="progress-fill fill-blue" id="prog-realtor" style="width:0%"></div></div>
         </div>
         <div class="progress-wrap">
-          <div class="progress-label"><span>@life.byalexa</span><span id="prog-lba-label">0/1</span></div>
-          <div class="progress-bar"><div class="progress-fill fill-teal" id="prog-lba" style="width:0%"></div></div>
+          <div class="progress-label"><span>@fillerandroast</span><span id="prog-fnr-label">0/3</span></div>
+          <div class="progress-bar"><div class="progress-fill fill-gold" id="prog-fnr" style="width:0%"></div></div>
         </div>
         <div class="progress-wrap" style="margin-top:12px">
           <div class="progress-label"><span>Substack Notes (21/wk)</span><span id="prog-sub-label">0/21</span></div>
-          <div class="progress-bar"><div class="progress-fill fill-purple" id="prog-sub" style="width:0%"></div></div>
+          <div class="progress-bar"><div class="progress-fill fill-green" id="prog-sub" style="width:0%"></div></div>
         </div>
         <div class="spacer"></div>
         <div class="progress-wrap">
@@ -702,17 +671,15 @@
 <div class="tab-panel" id="tab-content">
   <div class="section-hdr">
     <div class="section-title">Content Ops</div>
-    <div class="section-sub">weekly schedule · all four brands · #LifeByAlexa on everything</div>
+    <div class="section-sub">weekly schedule · all three brands</div>
   </div>
 
   <div class="legend">
-    <div class="legend-item"><div class="legend-dot" style="background:var(--accent3)"></div>@alexa.realtor</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div>@its.myash</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--accent3)"></div>@alexa.realtor</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div>@fillerandroast</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div>@life.byalexa</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div>Substack</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--pink)"></div>Facebook</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--text3)"></div>System / TikTok</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#888"></div>Substack</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--text3)"></div>Recording Block</div>
     <div style="margin-left:auto; display:flex; gap:8px;">
       <button class="btn btn-ghost btn-sm" onclick="resetContent()">↺ Reset Schedule</button>
       <button class="btn btn-primary btn-sm" onclick="openModal('modal-add-content')">+ Add Item</button>
@@ -761,8 +728,14 @@
       <table class="sig-table">
         <thead>
           <tr>
-            <th>Owner</th><th>Address</th><th>Sources ✓</th>
-            <th>Signals</th><th>Score</th><th>Priority</th><th>Status</th><th></th>
+            <th>Owner</th>
+            <th>Address</th>
+            <th>Sources ✓</th>
+            <th>Signals</th>
+            <th>Score</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th></th>
           </tr>
         </thead>
         <tbody id="leads-tbody"></tbody>
@@ -800,6 +773,7 @@
     </div>
   </div>
 
+  <!-- Weekly script quick-ref -->
   <div class="card">
     <div class="card-hdr"><div class="card-hdr-title">📜 Script Quick Reference</div></div>
     <div class="card-body">
@@ -837,94 +811,6 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════ WEBSITE ══ -->
-<div class="tab-panel" id="tab-website">
-  <div class="section-hdr">
-    <div class="section-title">Website Checklist</div>
-    <div class="section-sub">alexa.realtor · update every sunday · keep it current</div>
-    <div style="margin-left:auto;">
-      <button class="btn btn-ghost btn-sm" onclick="resetWebChecks()">↺ Reset</button>
-    </div>
-  </div>
-
-  <div class="grid-2" style="margin-bottom:20px;">
-
-    <!-- WEEKLY UPDATES -->
-    <div class="card">
-      <div class="card-hdr">
-        <div class="card-hdr-title">🔄 Weekly Updates — Do Every Sunday</div>
-      </div>
-      <div class="card-body">
-        <ul class="checklist" id="web-weekly">
-          <li data-id="ww1" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Swap featured listing in Local Life & Global Vibes section — use most current active listing</span><span class="check-tag tag-mls">LISTING</span></li>
-          <li data-id="ww2" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Update market stat or insight line — one current Pocono/Monroe County data point</span><span class="check-tag tag-pub">MARKET</span></li>
-          <li data-id="ww3" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Check contact form is working — submit a test and confirm email delivery</span><span class="check-tag tag-pub">TECH</span></li>
-          <li data-id="ww4" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Add or update one client testimonial if available from the week</span><span class="check-tag tag-content">SOCIAL PROOF</span></li>
-          <li data-id="ww5" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Confirm Calendly booking link is live and showing correct availability</span><span class="check-tag tag-pub">TECH</span></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- MONTHLY UPDATES -->
-    <div class="card">
-      <div class="card-hdr">
-        <div class="card-hdr-title">📅 Monthly Updates — First Sunday of Month</div>
-      </div>
-      <div class="card-body">
-        <ul class="checklist" id="web-monthly">
-          <li data-id="wm1" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Update Areas Covered section with any new submarkets or activity</span><span class="check-tag tag-pub">CONTENT</span></li>
-          <li data-id="wm2" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Refresh DR section with latest monthly intelligence from Perplexity Prompt 03</span><span class="check-tag tag-pub">DR</span></li>
-          <li data-id="wm3" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Update buyer/seller guide PDFs if any content has changed</span><span class="check-tag tag-content">GUIDES</span></li>
-          <li data-id="wm4" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Check all links — listings, guides, Calendly, social profiles — confirm none are broken</span><span class="check-tag tag-pub">TECH</span></li>
-          <li data-id="wm5" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Review Google Business profile — confirm website link, hours, and photos are current</span><span class="check-tag tag-pub">SEO</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- REPOSITIONING TRACKER -->
-  <div class="card" style="margin-bottom:20px;">
-    <div class="card-hdr">
-      <div class="card-hdr-title">🏗️ Repositioning To-Do — One-Time Updates (Before Sunday Apr 20)</div>
-    </div>
-    <div class="card-body">
-      <ul class="checklist" id="web-reposition">
-        <li data-id="wr1" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Update hero headline — add STR investor specialist positioning, remove generic language</span><span class="check-tag tag-content">COPY</span></li>
-        <li data-id="wr2" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Update bio section — reflect full operator identity: realtor, cigar lounge co-owner, boutique cigar brand developer, coffee brand</span><span class="check-tag tag-content">COPY</span></li>
-        <li data-id="wr3" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Add STR Investor section — Pocono Mountains yield data, what to look for, why work with Alexa</span><span class="check-tag tag-content">SECTION</span></li>
-        <li data-id="wr4" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Add social links — Instagram (@alexa.realtor, @its.myash), YouTube, LinkedIn, Substack</span><span class="check-tag tag-content">LINKS</span></li>
-        <li data-id="wr5" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Add #LifeByAlexa to footer and hero section</span><span class="check-tag tag-content">BRAND</span></li>
-        <li data-id="wr6" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Update Areas of Specialty list — add STR investment, Boutique Cigar Brand Developer, Nell's Social co-owner</span><span class="check-tag tag-content">COPY</span></li>
-        <li data-id="wr7" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Replace generic "Local Life & Global Vibes" copy with branded STR + DR investor angle</span><span class="check-tag tag-content">COPY</span></li>
-        <li data-id="wr8" onclick="toggleWebCheck(this)"><span class="check-box"></span><span class="check-label">Add Filler & Roast and Nell's Social mentions — operator lifestyle section</span><span class="check-tag tag-content">SECTION</span></li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- SEO QUICK REFERENCE -->
-  <div class="card">
-    <div class="card-hdr">
-      <div class="card-hdr-title">🔍 SEO Keywords to Use in Every Update</div>
-    </div>
-    <div class="card-body">
-      <div class="grid-3">
-        <div style="border:1px solid var(--border);border-radius:3px;padding:12px;">
-          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);margin-bottom:8px;">POCONO / MONROE COUNTY</div>
-          <div style="font-size:12px;color:var(--text2);line-height:2;">Pocono Mountains STR realtor<br>Monroe County short-term rental<br>Pocono investment property<br>vacation rental agent Poconos<br>STR investor specialist PA</div>
-        </div>
-        <div style="border:1px solid var(--border);border-radius:3px;padding:12px;">
-          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent3);margin-bottom:8px;">DOMINICAN REPUBLIC</div>
-          <div style="font-size:12px;color:var(--text2);line-height:2;">Dominican Republic real estate<br>Cap Cana investment property<br>Punta Cana realtor US buyers<br>DR vacation home investment<br>CONFOTUR tax incentive DR</div>
-        </div>
-        <div style="border:1px solid var(--border);border-radius:3px;padding:12px;">
-          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:8px;">BRAND / OPERATOR</div>
-          <div style="font-size:12px;color:var(--text2);line-height:2;">Alexa Sanchez realtor<br>bilingual realtor Pennsylvania<br>STR operator Pocono Mountains<br>#LifeByAlexa<br>Smart Way America Realty</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 </div><!-- /main -->
 
 <!-- ══════════════════════════════════════════════ MODALS ══ -->
@@ -959,6 +845,7 @@
           </select>
         </div>
       </div>
+
       <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin:12px 0 6px;">Sources Checked</div>
       <div class="form-row">
         <label style="display:flex;align-items:center;gap:6px;cursor:pointer;"><input type="checkbox" id="src-lf" style="width:auto;"> LeadFlow</label>
@@ -966,6 +853,7 @@
         <label style="display:flex;align-items:center;gap:6px;cursor:pointer;"><input type="checkbox" id="src-mls" style="width:auto;"> Flex MLS</label>
         <label style="display:flex;align-items:center;gap:6px;cursor:pointer;"><input type="checkbox" id="src-pub" style="width:auto;"> Public Records</label>
       </div>
+
       <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin:12px 0 6px;">Signals Found (tap to select)</div>
       <div class="signal-grid" id="signal-picker">
         <label class="signal-check" onclick="toggleSignal(this,'probate',5)"><input type="checkbox"><div class="signal-check-dot dot-probate"></div><span class="signal-check-label">Probate</span><span class="signal-check-pts">+5</span></label>
@@ -980,7 +868,8 @@
         <label class="signal-check" onclick="toggleSignal(this,'pricedrop',2)"><input type="checkbox"><div class="signal-check-dot" style="background:#f0a060"></div><span class="signal-check-label">Price Drop</span><span class="signal-check-pts">+2</span></label>
         <label class="signal-check" onclick="toggleSignal(this,'lien',2)"><input type="checkbox"><div class="signal-check-dot" style="background:#60f0f0"></div><span class="signal-check-label">Lien Release</span><span class="signal-check-pts">+2</span></label>
       </div>
-      <div style="margin-top:10px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);">Total Score: <span id="score-preview" style="color:var(--accent);font-size:16px;font-family:'Bebas Neue',sans-serif;">0</span></div>
+  <div style="margin-top:10px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);">Total Score: <span id="score-preview" style="color:var(--accent);font-size:16px;font-family:'Bebas Neue',sans-serif;">0</span></div>
+
       <div class="form-full" style="margin-top:12px;"><label>Notes</label><textarea id="l-notes" placeholder="What you know about this lead..."></textarea></div>
     </div>
     <div class="modal-foot">
@@ -1001,13 +890,11 @@
       <div class="form-row">
         <div><label>Brand</label>
           <select id="c-brand">
-            <option value="realtor">@alexa.realtor</option>
             <option value="myash">@its.myash</option>
+            <option value="realtor">@alexa.realtor</option>
             <option value="fnr">@fillerandroast</option>
-            <option value="lba">@life.byalexa</option>
             <option value="substack">Substack</option>
-            <option value="fb">Facebook</option>
-            <option value="system">System / TikTok</option>
+            <option value="system">Recording Block</option>
           </select>
         </div>
         <div><label>Day</label>
@@ -1132,33 +1019,43 @@
 const SB_URL = 'https://gzqgeehcvmgstzenkyfnw.supabase.co';
 const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6cWdlZWhjdm1nc3R6bmt5Zm53Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1OTIxMDgsImV4cCI6MjA4OTE2ODEwOH0.sw98v41oTub5p64cuP5Sqx574wNUd6kzOU1UxdoahWA';
 const SB_HDR = { 'Content-Type': 'application/json', 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY };
-const SB_TABLE = 'checklist_state';
 
-async function sbGetKey(key) {
+async function sbGet(table) {
   try {
-    const r = await fetch(`${SB_URL}/rest/v1/${SB_TABLE}?key=eq.${encodeURIComponent(key)}&select=value`, { headers: SB_HDR });
+    const r = await fetch(`${SB_URL}/rest/v1/${table}?select=*&order=id`, { headers: SB_HDR });
     if (!r.ok) return null;
-    const rows = await r.json();
-    return rows.length > 0 ? rows[0].value : null;
+    return await r.json();
   } catch(e) { return null; }
 }
-
-async function sbSetKey(key, value) {
+async function sbUpsert(table, row) {
   try {
-    const r = await fetch(`${SB_URL}/rest/v1/${SB_TABLE}`, {
+    const r = await fetch(`${SB_URL}/rest/v1/${table}`, {
       method: 'POST',
       headers: { ...SB_HDR, 'Prefer': 'resolution=merge-duplicates' },
-      body: JSON.stringify({ key, value })
+      body: JSON.stringify(row)
+    });
+    return r.ok;
+  } catch(e) { return false; }
+}
+async function sbDelete(table, id) {
+  try {
+    const r = await fetch(`${SB_URL}/rest/v1/${table}?id=eq.${id}`, {
+      method: 'DELETE', headers: SB_HDR
     });
     return r.ok;
   } catch(e) { return false; }
 }
 
 // ── STATE ─────────────────────────────────────────────────────────────────────
-const STORAGE_KEY = 'myash_ops_v3';
-let state = { leads: [], content: [], outreach: [], checks: {}, currentSignals: {} };
+const STORAGE_KEY = 'myash_ops_v2';
+let state = {
+  leads: [],
+  content: [],
+  outreach: [],
+  checks: {},
+  currentSignals: {},
+};
 let sbReady = false;
-let syncTimer = null;
 
 function loadLocal() {
   try {
@@ -1173,81 +1070,142 @@ function saveLocal() {
 async function loadFromSupabase() {
   showSyncBadge('syncing');
   try {
-    const [leadsRaw, contentRaw, outreachRaw, checksRaw] = await Promise.all([
-      sbGetKey('ops_leads'),
-      sbGetKey('ops_content'),
-      sbGetKey('ops_outreach'),
-      sbGetKey('ops_checks'),
+    const [leads, content, outreach, checks] = await Promise.all([
+      sbGet('ops_leads'),
+      sbGet('ops_content'),
+      sbGet('ops_outreach'),
+      sbGet('ops_checks'),
     ]);
-    if (leadsRaw)   { const d = JSON.parse(leadsRaw);   if (d.length > 0) state.leads = d; }
-    if (contentRaw) { const d = JSON.parse(contentRaw); if (d.length > 0) state.content = d; }
-    if (outreachRaw){ const d = JSON.parse(outreachRaw);if (d.length > 0) state.outreach = d; }
-    if (checksRaw)  { state.checks = JSON.parse(checksRaw); }
-  } catch(e) { console.log('Load from Supabase error:', e); }
-  saveLocal();
-  sbReady = true;
-  showSyncBadge('synced');
-  renderAll();
+    // Supabase is always source of truth — accept even empty arrays
+    if (leads !== null) state.leads = leads;
+    if (content !== null) state.content = content;
+    if (outreach !== null) state.outreach = outreach;
+    if (checks !== null) {
+      state.checks = {};
+      checks.forEach(r => { state.checks[r.check_id] = r.checked; });
+    }
+    saveLocal();
+    sbReady = true;
+    showSyncBadge('synced');
+    renderAll();
+  } catch(e) {
+    showSyncBadge('error');
+  }
 }
 
 function save() {
   saveLocal();
-  if (syncTimer) clearTimeout(syncTimer);
-  syncTimer = setTimeout(() => {
-    if (sbReady) syncToSupabase();
-  }, 800);
+  if (sbReady) syncToSupabase();
 }
 
 async function syncToSupabase() {
-  showSyncBadge('syncing');
-  await Promise.all([
-    sbSetKey('ops_leads',   JSON.stringify(state.leads)),
-    sbSetKey('ops_content', JSON.stringify(state.content)),
-    sbSetKey('ops_outreach',JSON.stringify(state.outreach)),
-    sbSetKey('ops_checks',  JSON.stringify(state.checks)),
-  ]);
+  for (const lead of state.leads) {
+    await sbUpsert('ops_leads', {
+      id: String(lead.id), fname: lead.fname, lname: lead.lname,
+      phone: lead.phone || '', email: lead.email || '', addr: lead.addr || '',
+      value: lead.value || 0, equity: lead.equity || 0, years: lead.years || 0,
+      status: lead.status || 'New', sources: JSON.stringify(lead.sources || {}),
+      signals: JSON.stringify(lead.signals || {}), notes: lead.notes || ''
+    });
+  }
+  for (const item of state.content) {
+    await sbUpsert('ops_content', {
+      id: String(item.id), brand: item.brand, day: item.day,
+      title: item.title, type: item.type, goal: item.goal, done: item.done
+    });
+  }
+  for (const [check_id, checked] of Object.entries(state.checks)) {
+    await sbUpsert('ops_checks', { check_id, checked });
+  }
   showSyncBadge('synced');
 }
 
-async function saveOutreachToSB() { /* handled by syncToSupabase */ }
-async function deleteLeadFromSB() { /* handled by syncToSupabase */ }
+async function saveOutreachToSB(entry) {
+  await sbUpsert('ops_outreach', {
+    id: String(entry.id), name: entry.name, method: entry.method,
+    response: entry.response, followup: entry.followup || '',
+    notes: entry.notes || '', date: entry.date
+  });
+}
+
+async function deleteLeadFromSB(id) {
+  await sbDelete('ops_leads', String(id));
+}
 
 function showSyncBadge(status) {
   const badge = document.getElementById('sync-badge');
   if (!badge) return;
-  badge.textContent = status === 'syncing' ? '⟳ syncing...' : '✓ synced';
-  badge.style.color = status === 'syncing' ? 'var(--gold)' : 'var(--accent)';
+  const now = new Date();
+  const t = now.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+  if (status === 'syncing') {
+    badge.textContent = '⟳ syncing...';
+    badge.style.color = 'var(--gold)';
+    badge.style.borderColor = 'var(--gold)';
+  } else if (status === 'error') {
+    badge.textContent = '⚠ sync failed — tap to retry';
+    badge.style.color = 'var(--hot)';
+    badge.style.borderColor = 'var(--hot)';
+  } else {
+    badge.textContent = `✓ synced ${t}`;
+    badge.style.color = 'var(--accent)';
+    badge.style.borderColor = 'var(--accent)';
+  }
 }
 
-// ── POLL FOR CHANGES (replaces broken realtime on mobile) ─────────────────────
-let lastSyncHash = '';
-let pollInterval = null;
-
-function startPolling() {
-  pollInterval = setInterval(async () => {
-    try {
-      const contentRaw = await sbGetKey('ops_content');
-      const checksRaw  = await sbGetKey('ops_checks');
-      const hash = (contentRaw || '') + (checksRaw || '');
-      if (hash !== lastSyncHash && lastSyncHash !== '') {
-        if (contentRaw) { const d = JSON.parse(contentRaw); if (d.length > 0) state.content = d; }
-        if (checksRaw)  { state.checks = JSON.parse(checksRaw); }
-        saveLocal();
-        renderAll();
-        showSyncBadge('synced');
-      }
-      lastSyncHash = hash;
-    } catch(e) {}
-  }, 10000);
+async function forcSync() {
+  sbReady = false;
+  await loadFromSupabase();
 }
+
+// ── REALTIME SYNC ─────────────────────────────────────────────────────────────
+let supabaseClient = null;
 
 function initRealtime() {
-  startPolling();
+  try {
+    supabaseClient = supabase.createClient(SB_URL, SB_KEY);
+
+    supabaseClient.channel('ops_leads_changes')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_leads' }, async () => {
+        const leads = await sbGet('ops_leads');
+        if (leads !== null) { state.leads = leads; saveLocal(); renderLeads(); renderCannonball(); renderContacts(); renderKPIs(); showSyncBadge('synced'); }
+      })
+      .subscribe();
+
+    supabaseClient.channel('ops_content_changes')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_content' }, async () => {
+        const content = await sbGet('ops_content');
+        if (content !== null) { state.content = content; saveLocal(); renderWeekGrid(); renderKPIs(); showSyncBadge('synced'); }
+      })
+      .subscribe();
+
+    supabaseClient.channel('ops_outreach_changes')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_outreach' }, async () => {
+        const outreach = await sbGet('ops_outreach');
+        if (outreach !== null) { state.outreach = outreach; saveLocal(); renderCannonball(); renderKPIs(); showSyncBadge('synced'); }
+      })
+      .subscribe();
+
+    supabaseClient.channel('ops_checks_changes')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_checks' }, async () => {
+        const checks = await sbGet('ops_checks');
+        if (checks !== null) {
+          state.checks = {};
+          checks.forEach(r => { state.checks[r.check_id] = r.checked; });
+          saveLocal();
+          renderMondayChecks();
+          showSyncBadge('synced');
+        }
+      })
+      .subscribe();
+
+  } catch(e) {
+    console.log('Realtime init failed:', e);
+  }
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
 function resetContent() {
-  if (confirm('Reset the content schedule to the updated master template?')) {
+  if (confirm('Reset the content schedule to the master template? Your check-offs will be cleared.')) {
     state.content = [];
     seedDefaults();
     save();
@@ -1256,12 +1214,11 @@ function resetContent() {
 }
 
 function init() {
-  loadLocal();
   setDate();
-  seedDefaults();
-  renderAll();
+  seedDefaults();   // seeds only if state arrays are empty — safe to call before Supabase
+  renderAll();      // render skeleton immediately so page isn't blank
   bindTabs();
-  loadFromSupabase().then(() => initRealtime());
+  loadFromSupabase().then(() => initRealtime());  // Supabase overwrites skeleton with real data
 }
 
 function setDate() {
@@ -1274,65 +1231,66 @@ function setDate() {
 }
 
 function seedDefaults() {
-  let seeded = false;
   if (state.leads.length === 0) {
     state.leads = [
-      { id:1, fname:'Mary', lname:'Davis', phone:'610-555-0303', email:'mary@email.com', addr:'789 Pine Rd, Wayne PA 18087', value:550000, equity:100, years:22, status:'Warm Lead', sources:{lf:true,tax:true,mls:false,pub:true}, signals:{permit:4,equity:2,tenure:2}, notes:'Permit pulled Jan — kitchen + bath. Free & clear. Watch for spring.', date: new Date().toISOString() },
-      { id:2, fname:'Tom', lname:'Wilson', phone:'570-555-0404', email:'twilson@email.com', addr:'22 Deer Trail, Mt Pocono PA 18344', value:380000, equity:72, years:18, status:'Hot Lead', sources:{lf:true,tax:true,mls:true,pub:true}, signals:{probate:5,equity:2,tenure:2}, notes:'Probate filed Feb 3. Send sympathy letter this week.', date: new Date().toISOString() },
-      { id:3, fname:'Jane', lname:'Smith', phone:'215-555-0101', email:'jane@email.com', addr:'123 Maple St, Stroudsburg PA 18360', value:450000, equity:58, years:14, status:'Warm Lead', sources:{lf:true,tax:true,mls:true,pub:true}, signals:{expired:3,equity:2,tenure:2}, notes:'Expired twice. Follow up Apr 1.', date: new Date().toISOString() },
-      { id:4, fname:'Carol', lname:'White', phone:'570-555-0505', email:'', addr:'8 Birch Ln, Tobyhanna PA 18466', value:295000, equity:30, years:5, status:'New', sources:{lf:true,tax:false,mls:true,pub:true}, signals:{prefc:4}, notes:'Sheriff sale — contact NOW.', date: new Date().toISOString() },
+      { id: 1, fname:'Mary', lname:'Davis', phone:'610-555-0303', email:'mary@email.com', addr:'789 Pine Rd, Wayne PA 18087', value:550000, equity:100, years:22, status:'Warm Lead', sources:{lf:true,tax:true,mls:false,pub:true}, signals:{permit:4,equity:2,tenure:2}, notes:'Permit pulled Jan — kitchen + bath. Free & clear. Watch for spring.', date: new Date().toISOString() },
+      { id: 2, fname:'Tom', lname:'Wilson', phone:'570-555-0404', email:'twilson@email.com', addr:'22 Deer Trail, Mt Pocono PA 18344', value:380000, equity:72, years:18, status:'Hot Lead', sources:{lf:true,tax:true,mls:true,pub:true}, signals:{probate:5,equity:2,tenure:2}, notes:'Probate filed Feb 3. Send sympathy letter this week. Follow-up call Feb 17.', date: new Date().toISOString() },
+      { id: 3, fname:'Jane', lname:'Smith', phone:'215-555-0101', email:'jane@email.com', addr:'123 Maple St, Stroudsburg PA 18360', value:450000, equity:58, years:14, status:'Warm Lead', sources:{lf:true,tax:true,mls:true,pub:true}, signals:{expired:3,equity:2,tenure:2}, notes:'Expired twice. Called Jan 15 — said maybe spring. Follow up Apr 1.', date: new Date().toISOString() },
+      { id: 4, fname:'Carol', lname:'White', phone:'570-555-0505', email:'', addr:'8 Birch Ln, Tobyhanna PA 18466', value:295000, equity:30, years:5, status:'New', sources:{lf:true,tax:false,mls:true,pub:true}, signals:{prefc:4}, notes:'Sheriff sale Mar 1 — contact NOW. Low equity but time pressure.', date: new Date().toISOString() },
     ];
-    seeded = true;
   }
   if (state.content.length === 0) {
     state.content = [
-      // SUNDAY
-      { id:1,  brand:'system',  day:0, title:'🟢 SUNDAY RECORDING — Hub video + @life.byalexa content. ~30 min.', type:'Recording Block', goal:'Grow Following', done:false },
-      { id:2,  brand:'realtor', day:0, title:'▶ Hub Video — Record & Upload', type:'YouTube · 10 AM · all brands', goal:'RE Leads', done:false },
-      { id:3,  brand:'realtor', day:0, title:'🙏 Sunday Gratitude Post', type:'IG · 9:15 AM · #LifeByAlexa', goal:'RE Leads', done:false },
-      { id:4,  brand:'realtor', day:0, title:'🙏 Sunday Gratitude Post', type:'Nextdoor · 9:30 AM', goal:'RE Leads', done:false },
-      { id:5,  brand:'lba',     day:0, title:'✨ Lifestyle Moment', type:'IG + TikTok · 11 AM · #LifeByAlexa', goal:'Grow Following', done:false },
-      { id:6,  brand:'fb',      day:0, title:'📘 Gratitude Repurpose', type:'Facebook · 10 AM', goal:'RE Leads', done:false },
-      { id:7,  brand:'substack',day:0, title:'✍️ Notes — Morning Batch', type:'Substack · article-tied · 8 AM', goal:'Grow Following', done:false },
+      // SUNDAY — Recording day. Hub video record & upload. Coffee & Ash ritual.
+      // Note: Before the First Draw (@fillerandroast) and Sunday Gratitude (Nextdoor) removed from active cadence.
+      { id:1,  brand:'system',   day:0, title:'🟢 SUNDAY RECORDING — Hub video only. Coffee in hand. One camera. ~30 min.', type:'Recording Block', goal:'Grow Following', done:false },
+      { id:2,  brand:'realtor',  day:0, title:'▶ Hub Video — Record & Upload', type:'YouTube · 8–12 min · all 3 brands · upload Sunday', goal:'RE Leads', done:false },
+      { id:4,  brand:'myash',    day:0, title:'☕🍂 Coffee & Ash — Ritual', type:'IG · FB · 10:15 AM', goal:'Drive Sales', done:false },
       // MONDAY
-      { id:8,  brand:'substack',day:1, title:'✍️ Operator Life Article', type:'Substack · primary post · 8 AM', goal:'Grow Following', done:false },
-      { id:9,  brand:'realtor', day:1, title:'📊 Market Signal', type:'LinkedIn · 8 AM · #LifeByAlexa', goal:'RE Leads', done:false },
-      { id:10, brand:'realtor', day:1, title:'📍 Google Business Post', type:'Google · 9 AM · keyword-rich', goal:'RE Leads', done:false },
-      { id:11, brand:'myash',   day:1, title:'🌙 Tonight\'s Smoke Carousel', type:'IG · 7 PM · #LifeByAlexa', goal:'Drive Sales', done:false },
-      { id:12, brand:'fnr',     day:1, title:'☕ Monday Brew Post', type:'IG · 9 AM · #LifeByAlexa', goal:'Drive Sales', done:false },
-      { id:13, brand:'fb',      day:1, title:'📘 Brew Post Repurpose', type:'Facebook · 10 AM', goal:'Drive Sales', done:false },
-      { id:14, brand:'system',  day:1, title:'🎬 TikTok — Operator Content', type:'@its.myash · 6 PM · no smoking', goal:'Grow Following', done:false },
+      { id:6,  brand:'substack', day:1, title:'✍️ The Lifestyle Market Letter — Operator Life', type:'Substack · personal story first · 8:00 AM', goal:'Grow Following', done:false },
+      { id:11, brand:'realtor',  day:1, title:'🏠 Real Estate Insight', type:'FB Personal · 8:00 AM', goal:'RE Leads', done:false },
+      { id:9,  brand:'realtor',  day:1, title:'📊 Market Signal', type:'LinkedIn · 8:00 AM', goal:'RE Leads', done:false },
+      { id:10, brand:'realtor',  day:1, title:'📍 Google Business Post', type:'Google Biz · 9:00 AM · keyword-rich', goal:'RE Leads', done:false },
+      { id:8,  brand:'myash',    day:1, title:'🎬 TikTok — Hub Repurpose', type:'TikTok · 6:00 PM', goal:'Grow Following', done:false },
+      { id:7,  brand:'myash',    day:1, title:'🌙 Tonight\'s Smoke — Carousel', type:'IG · 7:00 PM', goal:'Drive Sales', done:false },
       // TUESDAY
-      { id:15, brand:'realtor', day:2, title:'🚗 Car Confession', type:'IG · record + post · 12 PM · RE angle', goal:'RE Leads', done:false },
-      { id:16, brand:'realtor', day:2, title:'🏡 Neighborly Post', type:'Nextdoor · 6 PM', goal:'RE Leads', done:false },
-      { id:17, brand:'fb',      day:2, title:'📘 Market Insight Repurpose', type:'Facebook · 8 AM', goal:'RE Leads', done:false },
-      { id:18, brand:'substack',day:2, title:'✍️ Notes — Midday Batch', type:'Substack · thematic · 12 PM', goal:'Grow Following', done:false },
-      // WEDNESDAY
-      { id:19, brand:'system',  day:3, title:'🟡 Ashes & Escrows — Record Only', type:'Recording Block · uploads Thu 10AM', goal:'RE Leads', done:false },
-      { id:20, brand:'realtor', day:3, title:'🚗 Car Confession', type:'IG · record + post · 12 PM', goal:'RE Leads', done:false },
-      { id:21, brand:'system',  day:3, title:'🎬 TikTok — Cigar Brand / Culture', type:'@its.myash · 6 PM · no smoking', goal:'Grow Following', done:false },
+      { id:12, brand:'myash',    day:2, title:'🎬 IG Reel — Hub Repurpose', type:'IG Reel · all brands · 10:00 AM', goal:'Grow Following', done:false },
+      { id:13, brand:'realtor',  day:2, title:'📍 Pocono Pulse — Market Update', type:'IG · 11:00 AM · stat · trend · takeaway', goal:'RE Leads', done:false },
+      { id:14, brand:'realtor',  day:2, title:'🚗 Car Confession — Real Estate', type:'IG · 12:00 PM · 20 sec · recorded Wed', goal:'RE Leads', done:false },
+      { id:15, brand:'realtor',  day:2, title:'🏡 Neighborly Post', type:'Nextdoor · 6:00 PM', goal:'RE Leads', done:false },
+      { id:16, brand:'fnr',      day:2, title:'🔥 Nell\'s Social — This Week\'s Smoke', type:'FB tag · 6:00 PM', goal:'Drive Sales', done:false },
+      // WEDNESDAY — Primary recording day
+      { id:17, brand:'system',   day:3, title:'🟡 WEDNESDAY RECORDING — 4+ recordings. Privacy. Can smoke on camera.', type:'Recording Block', goal:'Grow Following', done:false },
+      { id:18, brand:'realtor',  day:3, title:'🎬 RECORD: Ashes & Escrows Episode', type:'YouTube · 6–8 min · uploads Thu 10AM', goal:'RE Leads', done:false },
+      { id:19, brand:'realtor',  day:3, title:'▶ RECORD: YouTube Short', type:'YouTube Short · under 60 sec · uploads Thu 11AM', goal:'RE Leads', done:false },
+      { id:20, brand:'realtor',  day:3, title:'🚗 RECORD: Car Confessions Batch', type:'IG · Tue RE + Thu Entrepreneur · one session', goal:'RE Leads', done:false },
+      { id:21, brand:'myash',    day:3, title:'🚗 RECORD: Car Confession — Entrepreneur & Cigars', type:'IG · 20 sec · shock value · upload 12:00 PM', goal:'Grow Following', done:false },
+      { id:22, brand:'myash',    day:3, title:'🌙 RECORD: Tonight\'s Smoke Batch', type:'Cigar content · carousel for Monday 7PM', goal:'Drive Sales', done:false },
+      { id:23, brand:'fnr',      day:3, title:'📸 F&R Pairing — Photo Capture Only', type:'Coffee + cigar setup · stills only · video records Thu', goal:'Drive Sales', done:false },
+      { id:24, brand:'myash',    day:3, title:'📸 Ash Shot — Upload', type:'IG · 8:00 AM', goal:'Grow Following', done:false },
+      { id:25, brand:'realtor',  day:3, title:'📊 Market Insight — LinkedIn Upload', type:'LinkedIn · 9:00 AM', goal:'RE Leads', done:false },
+      { id:26, brand:'realtor',  day:3, title:'🏷 Under Contract — Story Only', type:'IG Story · FB Story · 11:00 AM', goal:'RE Leads', done:false },
+      { id:31, brand:'myash',    day:3, title:'🎵 Native TikTok Re-record — Record & Upload', type:'TikTok · no watermark · same topic as Short · 12:00 PM', goal:'Grow Following', done:false },
+      { id:27, brand:'realtor',  day:3, title:'🤝 Local Collab (1x/month)', type:'IG Story · tag partner · no feed slot', goal:'Grow Following', done:false },
       // THURSDAY
-      { id:22, brand:'substack',day:4, title:'✍️ Lifestyle Market Letter', type:'Substack · article publish · 8 AM', goal:'Grow Following', done:false },
-      { id:23, brand:'realtor', day:4, title:'🎬 Ashes & Escrows Upload', type:'YouTube · recorded Wed · 10 AM', goal:'RE Leads', done:false },
-      { id:24, brand:'realtor', day:4, title:'🚗 Car Confession', type:'IG · record + post · 12 PM · entrepreneur', goal:'RE Leads', done:false },
-      { id:25, brand:'realtor', day:4, title:'📍 Local Happenings', type:'Nextdoor · 6 PM', goal:'RE Leads', done:false },
-      { id:251,brand:'realtor', day:4, title:'📍 Google Business Post', type:'Google · 9 AM · STR investor angle', goal:'RE Leads', done:false },
-      { id:26, brand:'fnr',     day:4, title:'🍃 Coffee for the Leaf', type:'IG · TikTok · 10 AM · #LifeByAlexa', goal:'Drive Sales', done:false },
-      { id:27, brand:'fb',      day:4, title:'📘 Coffee for the Leaf Repurpose', type:'Facebook · 11 AM', goal:'Drive Sales', done:false },
-      { id:28, brand:'substack',day:4, title:'✍️ Notes — Evening Batch', type:'Substack · personal voice · 6 PM', goal:'Grow Following', done:false },
+      { id:28, brand:'substack', day:4, title:'✍️ The Lifestyle Market Letter — Experience Economy', type:'Substack · ritual · lifestyle · 8:00 AM', goal:'Grow Following', done:false },
+      { id:33, brand:'realtor',  day:4, title:'📊 Investor Signal (pre-sched)', type:'LinkedIn · 8:30 AM', goal:'RE Leads', done:false },
+      { id:29, brand:'realtor',  day:4, title:'🎬 Ashes & Escrows — Upload', type:'YouTube · recorded Wed · 10:00 AM', goal:'RE Leads', done:false },
+      { id:30, brand:'realtor',  day:4, title:'▶ YouTube Short — Upload', type:'YouTube Short · recorded Wed · 11:00 AM', goal:'RE Leads', done:false },
+      { id:32, brand:'realtor',  day:4, title:'🚗 Car Confession — Entrepreneur Life (Upload)', type:'IG · recorded Wed · 12:00 PM', goal:'RE Leads', done:false },
+      { id:34, brand:'fnr',      day:4, title:'🍃 RECORD: F&R Pairing Video', type:'Photos captured Wed · uploads Fri · biweekly', goal:'Drive Sales', done:false },
+      { id:35, brand:'realtor',  day:4, title:'🏘 Community Roundup', type:'Nextdoor · 6:00 PM', goal:'RE Leads', done:false },
       // FRIDAY
-      { id:29, brand:'realtor', day:5, title:'📊 Market Insight', type:'LinkedIn · 8 AM · #LifeByAlexa', goal:'RE Leads', done:false },
-      { id:30, brand:'myash',   day:5, title:'🥃 Weekend Smoke Reel', type:'IG · 5 PM · #LifeByAlexa', goal:'Drive Sales', done:false },
-      { id:31, brand:'fb',      day:5, title:'📘 Car Confession Repurpose', type:'Facebook · 12 PM', goal:'RE Leads', done:false },
+      { id:39, brand:'realtor',  day:5, title:'📊 Market Insight (pre-sched)', type:'FB Biz · 8:00 AM', goal:'RE Leads', done:false },
+      { id:36, brand:'fnr',      day:5, title:'☕ Coffee for the Leaf', type:'IG · FB Biz · 9:00 AM', goal:'Drive Sales', done:false },
+      { id:37, brand:'fnr',      day:5, title:'🍃 The Pairing — Cigar + Coffee Ed. (bi-weekly)', type:'IG · recorded Thu · 10:00 AM', goal:'Drive Sales', done:false },
+      { id:38, brand:'myash',    day:5, title:'☕ Coffee for the Leaf TikTok', type:'TikTok via @its.myash · different edit · 11:00 AM', goal:'Drive Sales', done:false },
+      { id:40, brand:'system',   day:5, title:'📣 Facebook — All Brands Repurpose', type:'FB · all brands · captions repurposed · 12:00 PM', goal:'Grow Following', done:false },
+      { id:41, brand:'myash',    day:5, title:'🥃 Weekend Smoke — Reel', type:'IG · 5:00 PM · feed post', goal:'Drive Sales', done:false },
       // SATURDAY
-      { id:32, brand:'myash',   day:6, title:'📸 Behind the Scenes Story', type:'IG Story only · 2 PM', goal:'Grow Following', done:false },
-      { id:33, brand:'system',  day:6, title:'🎬 TikTok — RE Investor Tip', type:'@alexa.realtor · 11 AM', goal:'RE Leads', done:false },
-      { id:34, brand:'fb',      day:6, title:'📘 Weekend Tip Repurpose', type:'Facebook · 11 AM', goal:'RE Leads', done:false },
+      { id:42, brand:'realtor',  day:6, title:'🏡 Weekend Market Tip', type:'Nextdoor · 10:00 AM', goal:'RE Leads', done:false },
+      { id:43, brand:'myash',    day:6, title:'📸 Stories — Behind the Scenes', type:'IG Story only · 2:00 PM · no feed post Sat', goal:'Grow Following', done:false },
     ];
-    seeded = true;
-  }
-  if (seeded && sbReady) {
-    syncToSupabase();
   }
 }
 
@@ -1355,7 +1313,6 @@ function renderAll() {
   renderLeads();
   renderCannonball();
   renderContacts();
-  renderWebChecks();
 }
 
 // ── KPIs ──────────────────────────────────────────────────────────────────────
@@ -1370,25 +1327,21 @@ function renderKPIs() {
   document.getElementById('kpi-hot').textContent = hotLeads;
   document.getElementById('kpi-outreach').textContent = outreach;
 
-  const realtor  = state.content.filter(c => c.brand === 'realtor');
-  const myash    = state.content.filter(c => c.brand === 'myash');
-  const fnr      = state.content.filter(c => c.brand === 'fnr');
-  const lba      = state.content.filter(c => c.brand === 'lba');
-  const sub      = state.content.filter(c => c.brand === 'substack');
+  const myash = state.content.filter(c => c.brand === 'myash');
+  const realtor = state.content.filter(c => c.brand === 'realtor');
+  const fnr = state.content.filter(c => c.brand === 'fnr');
+  const sub = state.content.filter(c => c.brand === 'substack');
 
-  updateProg('realtor', realtor.filter(c=>c.done).length, Math.max(realtor.length, 4));
-  updateProg('myash',   myash.filter(c=>c.done).length,   Math.max(myash.length, 3));
-  updateProg('fnr',     fnr.filter(c=>c.done).length,     Math.max(fnr.length, 2));
-  updateProg('lba',     lba.filter(c=>c.done).length,     Math.max(lba.length, 1));
-  updateProg('sub',     sub.filter(c=>c.done).length,     Math.max(sub.length, 21));
-  updateProg('out',     outreach, 25);
+  updateProg('myash', myash.filter(c=>c.done).length, myash.length || 7);
+  updateProg('realtor', realtor.filter(c=>c.done).length, realtor.length || 7);
+  updateProg('fnr', fnr.filter(c=>c.done).length, fnr.length || 3);
+  updateProg('sub', sub.filter(c=>c.done).length, Math.max(sub.length, 21));
+  updateProg('out', outreach, 25);
 }
 function updateProg(id, val, total) {
   const pct = Math.min(100, Math.round((val/total)*100));
-  const el = document.getElementById('prog-'+id);
-  const lbl = document.getElementById('prog-'+id+'-label');
-  if (el) el.style.width = pct + '%';
-  if (lbl) lbl.textContent = val + '/' + total;
+  document.getElementById('prog-'+id).style.width = pct + '%';
+  document.getElementById('prog-'+id+'-label').textContent = val + '/' + total;
 }
 
 // ── MONDAY CHECKS ─────────────────────────────────────────────────────────────
@@ -1407,9 +1360,6 @@ function renderMondayChecks() {
 
 // ── WEEK GRID ─────────────────────────────────────────────────────────────────
 const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-const BRAND_CLASS = { myash:'brand-myash', realtor:'brand-realtor', fnr:'brand-fnr', lba:'brand-lba', substack:'brand-sub', fb:'brand-fb', system:'brand-system' };
-const BRAND_LABEL = { myash:'@its.myash', realtor:'@alexa.realtor', fnr:'@fillerandroast', lba:'@life.byalexa', substack:'Substack', fb:'Facebook', system:'⚙ System' };
-
 function renderWeekGrid() {
   const today = new Date().getDay();
   const grid = document.getElementById('week-grid');
@@ -1425,9 +1375,9 @@ function renderWeekGrid() {
     items.forEach(item => {
       const el = document.createElement('div');
       el.className = 'content-item' + (item.done ? ' done' : '');
-      const bc = BRAND_CLASS[item.brand] || '';
-      const bl = BRAND_LABEL[item.brand] || item.brand;
-      el.innerHTML = `<div class="ci-brand ${bc}">${bl}</div><div class="ci-title">${item.title}</div><div class="ci-type">${item.type}</div>`;
+      const brandClass = { myash:'brand-myash', realtor:'brand-realtor', fnr:'brand-fnr', substack:'brand-sub', system:'brand-system' }[item.brand] || '';
+      const brandLabel = { myash:'@its.myash', realtor:'@alexa.realtor', fnr:'@fillerandroast', substack:'Substack', system:'⚙️ SYSTEM' }[item.brand] || '';
+      el.innerHTML = `<div class="ci-brand ${brandClass}">${brandLabel}</div><div class="ci-title">${item.title}</div><div class="ci-type">${item.type}</div>`;
       el.onclick = () => { item.done = !item.done; save(); renderAll(); };
       col.appendChild(el);
     });
@@ -1457,13 +1407,15 @@ function renderLeads() {
   let leads = [...state.leads];
   if (filter) leads = leads.filter(l => priorityOf(scoreOf(l)).key === filter);
   leads.sort((a,b) => scoreOf(b) - scoreOf(a));
+
   if (leads.length === 0) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
   empty.style.display = 'none';
+
   tbody.innerHTML = leads.map(l => {
     const score = scoreOf(l);
     const pri = priorityOf(score);
     const srcChecks = [l.sources?.lf && 'LF', l.sources?.tax && 'TAX', l.sources?.mls && 'MLS', l.sources?.pub && 'PUB'].filter(Boolean).join(' · ') || '–';
-    const dots = Object.keys(l.signals || {}).map(k => `<div class="sig-dot ${SIG_DOT_MAP[k]||''}" title="${k}"></div>`).join('');
+    const dots = Object.keys(l.signals || {}).map(k => `<div class="sig-dot ${SIG_DOT_MAP[k]||''}" title="${k}" style="background:${SIG_DOT_MAP[k]?'':' #888'}"></div>`).join('');
     return `<tr>
       <td><strong>${l.fname} ${l.lname}</strong></td>
       <td style="color:var(--text2);font-size:11px;">${l.addr}</td>
@@ -1486,7 +1438,11 @@ function deleteLead(id) {
 
 // ── CANNONBALL ────────────────────────────────────────────────────────────────
 function renderCannonball() {
-  const targets = [...state.leads].filter(l => scoreOf(l) >= 5).sort((a,b) => scoreOf(b)-scoreOf(a)).slice(0,10);
+  const targets = [...state.leads]
+    .filter(l => scoreOf(l) >= 5)
+    .sort((a,b) => scoreOf(b) - scoreOf(a))
+    .slice(0, 10);
+
   const el = document.getElementById('cannonball-targets');
   if (targets.length === 0) {
     el.innerHTML = '<div class="empty"><div class="empty-icon">🎯</div><div class="empty-label">Hot + Warm leads from Signal Tracker appear here.</div></div>';
@@ -1518,7 +1474,8 @@ function renderCannonball() {
     logEl.innerHTML = '<div class="empty"><div class="empty-icon">📋</div><div class="empty-label">No outreach logged yet.</div></div>';
   } else {
     logEl.innerHTML = [...state.outreach].reverse().map(o => {
-      const sentiment = ['Appointment Set','Positive — Follow Up','Listed'].includes(o.response) ? 'hot' : o.response === 'Maybe Later' ? 'warm' : 'cold';
+      const sentiment = ['Appointment Set','Positive — Follow Up','Listed'].includes(o.response) ? 'hot' :
+                        o.response === 'Maybe Later' ? 'warm' : 'cold';
       return `<div class="log-entry ${sentiment}">
         <div class="log-meta">${o.date} · ${o.method}</div>
         <div class="log-name">${o.name}</div>
@@ -1597,7 +1554,12 @@ function saveLead() {
     equity: parseInt(document.getElementById('l-equity').value) || 0,
     years: parseInt(document.getElementById('l-years').value) || 0,
     status: document.getElementById('l-status').value,
-    sources: { lf: document.getElementById('src-lf').checked, tax: document.getElementById('src-tax').checked, mls: document.getElementById('src-mls').checked, pub: document.getElementById('src-pub').checked },
+    sources: {
+      lf: document.getElementById('src-lf').checked,
+      tax: document.getElementById('src-tax').checked,
+      mls: document.getElementById('src-mls').checked,
+      pub: document.getElementById('src-pub').checked,
+    },
     signals: { ...state.currentSignals },
     notes: document.getElementById('l-notes').value.trim(),
     date: new Date().toISOString(),
@@ -1661,32 +1623,6 @@ function closeModal(id) { document.getElementById(id).classList.remove('open'); 
 document.querySelectorAll('.modal-overlay').forEach(m => {
   m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
 });
-
-// ── WEBSITE CHECKS ────────────────────────────────────────────────────────────
-function toggleWebCheck(el) {
-  el.classList.toggle('done');
-  const id = el.dataset.id;
-  state.checks[id] = el.classList.contains('done');
-  save();
-}
-function renderWebChecks() {
-  ['web-weekly','web-monthly','web-reposition'].forEach(listId => {
-    const list = document.getElementById(listId);
-    if (!list) return;
-    list.querySelectorAll('li').forEach(li => {
-      if (state.checks[li.dataset.id]) li.classList.add('done');
-    });
-  });
-}
-function resetWebChecks() {
-  if (!confirm('Reset all website checklist items?')) return;
-  ['ww1','ww2','ww3','ww4','ww5','wm1','wm2','wm3','wm4','wm5'].forEach(id => {
-    state.checks[id] = false;
-    const el = document.querySelector(`[data-id="${id}"]`);
-    if (el) el.classList.remove('done');
-  });
-  save();
-}
 
 init();
 </script>
