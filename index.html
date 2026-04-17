@@ -8,618 +8,204 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f5f0e8;
-    --bg2: #fdf8f2;
-    --bg3: #ede8df;
-    --border: #ddd6c8;
-    --border2: #ccc4b4;
-    --text: #1a1a18;
-    --text2: #555550;
-    --text3: #999990;
-    --accent: #4a8c0f;       /* darker green — readable on light */
-    --accent2: #d63a08;      /* hot orange-red */
-    --accent3: #1a7aad;      /* cool blue */
-    --gold: #b08a00;
-    --hot: #d63a08;
-    --warm: #b08a00;
-    --cold: #1a7aad;
-    --purple: #7a30c0;
+    --bg:#f5f0e8;--bg2:#fdf8f2;--bg3:#ede8df;--border:#ddd6c8;--border2:#ccc4b4;
+    --text:#1a1a18;--text2:#555550;--text3:#999990;
+    --accent:#4a8c0f;--accent2:#d63a08;--accent3:#1a7aad;
+    --gold:#b08a00;--hot:#d63a08;--warm:#b08a00;--cold:#1a7aad;--purple:#7a30c0;
+    --spanish:#c0392b;--life:#8e44ad;
   }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* ── TOP BAR ── */
-  .topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 24px;
-    border-bottom: 1px solid var(--border);
-    background: var(--bg);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    gap: 12px;
-  }
-  .topbar-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 3px;
-    color: var(--accent);
-  }
-  .topbar-logo span { color: var(--text2); }
-  .topbar-date {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--text3);
-    letter-spacing: 1px;
-  }
-  .topbar-badge {
-    background: var(--accent);
-    color: #fff;
-    font-size: 10px;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 2px;
-    letter-spacing: 1px;
-  }
-  .system-docs-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: #6B1F3A;
-    color: #F2EDE3;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 6px 14px;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 2px;
-    white-space: nowrap;
-    transition: background 0.15s;
-  }
-  .system-docs-btn:hover { background: #8A2A4E; }
-
-  /* ── TAB NAV ── */
-  .tab-nav {
-    display: flex;
-    gap: 0;
-    border-bottom: 1px solid var(--border);
-    background: var(--bg2);
-    overflow-x: auto;
-    padding: 0 24px;
-  }
-  .tab-nav::-webkit-scrollbar { display: none; }
-  .tab-btn {
-    padding: 12px 20px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--text3);
-    background: none;
-    border: none;
-    border-bottom: 2px solid transparent;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.15s;
-  }
-  .tab-btn:hover { color: var(--text); }
-  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
-  .tab-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
-
-  /* ── LAYOUT ── */
-  .main { padding: 24px; max-width: 1400px; margin: 0 auto; }
-  .tab-panel { display: none; }
-  .tab-panel.active { display: block; animation: fadeIn 0.2s ease; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
-
-  /* ── SECTION HEADER ── */
-  .section-hdr {
-    display: flex;
-    align-items: baseline;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    letter-spacing: 2px;
-    color: var(--text);
-    line-height: 1;
-  }
-  .section-sub {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--text3);
-    letter-spacing: 1px;
-  }
-
-  /* ── GRID ── */
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-  .col-span-2 { grid-column: span 2; }
-
-  /* ── CARD ── */
-  .card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-  .card-hdr {
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .card-hdr-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--text2);
-  }
-  .card-body { padding: 14px; }
-
-  /* ── KPI STAT ── */
-  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
-  .kpi {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 16px;
-    position: relative;
-    overflow: hidden;
-  }
-  .kpi::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-  }
-  .kpi.green::before { background: var(--accent); }
-  .kpi.red::before { background: var(--hot); }
-  .kpi.blue::before { background: var(--accent3); }
-  .kpi.gold::before { background: var(--gold); }
-  .kpi.purple::before { background: var(--purple); }
-  .kpi-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 1px;
-    color: var(--text3);
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-  .kpi-value {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px;
-    line-height: 1;
-    color: var(--text);
-  }
-  .kpi-sub { font-size: 11px; color: var(--text3); margin-top: 4px; }
-
-  /* ── CHECKLIST ── */
-  .checklist { list-style: none; }
-  .checklist li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-    cursor: pointer;
-  }
-  .checklist li:last-child { border-bottom: none; }
-  .checklist li.done .check-label { text-decoration: line-through; color: var(--text3); }
-  .check-box {
-    width: 16px; height: 16px;
-    border: 1.5px solid var(--border2);
-    border-radius: 2px;
-    flex-shrink: 0;
-    margin-top: 1px;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.15s;
-  }
-  .checklist li.done .check-box {
-    background: var(--accent);
-    border-color: var(--accent);
-  }
-  .check-box::after { content: ''; }
-  .checklist li.done .check-box::after {
-    content: '✓';
-    font-size: 10px;
-    color: #000;
-    font-weight: 700;
-  }
-  .check-label { font-size: 13px; line-height: 1.4; }
-  .check-tag {
-    margin-left: auto;
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    padding: 2px 6px;
-    border-radius: 2px;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .tag-lf  { background: #e6f4e6; color: var(--accent); }
-  .tag-mls { background: #e6f0f8; color: var(--accent3); }
-  .tag-pub { background: #fdf6e3; color: var(--gold); }
-  .tag-tax { background: #f3eafd; color: var(--purple); }
-  .tag-content { background: #fce8f5; color: #b0308a; }
-
-  /* ── SIGNAL TABLE ── */
-  .sig-table { width: 100%; border-collapse: collapse; }
-  .sig-table th {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--text3);
-    text-align: left;
-    padding: 6px 8px;
-    border-bottom: 1px solid var(--border);
-  }
-  .sig-table td {
-    padding: 8px 8px;
-    border-bottom: 1px solid var(--border);
-    font-size: 12px;
-    vertical-align: middle;
-  }
-  .sig-table tr:last-child td { border-bottom: none; }
-  .sig-table tr:hover td { background: var(--bg3); }
-  .priority-badge {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 2px;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    font-weight: 500;
-  }
-  .p-hot  { background: #fde8e4; color: var(--hot); }
-  .p-warm { background: #fdf3d0; color: var(--warm); }
-  .p-cold { background: #e4f0fa; color: var(--cold); }
-  .score-pill {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
-    color: var(--text);
-  }
-
-  /* ── SIGNAL DOTS ── */
-  .sig-dots { display: flex; gap: 3px; flex-wrap: wrap; }
-  .sig-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    title: '';
-  }
-  .dot-probate   { background: var(--hot); }
-  .dot-prefc     { background: var(--accent2); }
-  .dot-divorce   { background: var(--purple); }
-  .dot-permit    { background: var(--accent); }
-  .dot-taxdel    { background: var(--gold); }
-  .dot-expired   { background: var(--accent3); }
-  .dot-vacant    { background: #888; }
-  .dot-equity    { background: #60f0a0; }
-  .dot-tenure    { background: #f060c0; }
-
-  /* ── INPUT STYLES ── */
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
-  .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 10px; }
-  .form-full { margin-bottom: 10px; }
-  label { display: block; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; color: var(--text3); margin-bottom: 4px; text-transform: uppercase; }
-  input, select, textarea {
-    width: 100%;
-    background: var(--bg3);
-    border: 1px solid var(--border2);
-    border-radius: 3px;
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    padding: 7px 10px;
-    outline: none;
-    transition: border-color 0.15s;
-  }
-  input:focus, select:focus, textarea:focus { border-color: var(--accent); }
-  textarea { resize: vertical; min-height: 60px; }
-  select option { background: var(--bg3); }
-
-  /* ── SIGNAL CHECKBOXES ── */
-  .signal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 10px 0; }
-  .signal-check {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    padding: 8px 10px;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-  .signal-check:hover { border-color: var(--border2); }
-  .signal-check.active { border-color: var(--accent); background: #edf7e0; }
-  .signal-check input[type=checkbox] { display: none; }
-  .signal-check-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-  .signal-check-label { font-size: 12px; flex: 1; }
-  .signal-check-pts { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); }
-
-  /* ── BTN ── */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 16px;
-    border-radius: 3px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    cursor: pointer;
-    border: none;
-    transition: all 0.15s;
-  }
-  .btn-primary { background: var(--accent); color: #fff; font-weight: 600; }
-  .btn-primary:hover { background: #b8e050; }
-  .btn-ghost { background: transparent; border: 1px solid var(--border2); color: var(--text2); }
-  .btn-ghost:hover { border-color: var(--text2); color: var(--text); }
-  .btn-danger { background: transparent; border: 1px solid #3a1010; color: var(--hot); }
-  .btn-sm { padding: 5px 10px; font-size: 10px; }
-
-  /* ── CONTENT WEEK GRID ── */
-  .week-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
-  .day-col { }
-  .day-hdr {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 1px;
-    color: var(--text3);
-    text-align: center;
-    padding: 6px 0;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 8px;
-  }
-  .day-hdr.today { color: var(--accent); border-bottom-color: var(--accent); }
-  .content-item {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    padding: 7px 8px;
-    margin-bottom: 6px;
-    cursor: pointer;
-    transition: all 0.15s;
-    font-size: 11px;
-    line-height: 1.4;
-  }
-  .content-item:hover { border-color: var(--border2); }
-  .content-item.done { opacity: 0.35; }
-  .content-item.done .ci-title { text-decoration: line-through; }
-  .ci-brand {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 1px;
-    margin-bottom: 3px;
-  }
-  .ci-title { font-size: 11px; color: var(--text); }
-  .ci-type {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    color: var(--text3);
-    margin-top: 3px;
-  }
-  .brand-myash  { color: var(--accent); }
-  .brand-realtor { color: var(--accent3); }
-  .brand-fnr   { color: var(--gold); }
-  .brand-sub   { color: #888; }
-  .brand-system { color: var(--text3); font-style: italic; }
-
-  /* ── CANNONBALL ── */
-  .target-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 14px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  .target-rank {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
-    color: var(--text3);
-    width: 36px;
-    flex-shrink: 0;
-    line-height: 1;
-  }
-  .target-info { flex: 1; }
-  .target-name { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
-  .target-addr { font-size: 11px; color: var(--text3); }
-  .target-signals { display: flex; gap: 4px; margin-top: 6px; }
-  .target-score { text-align: right; }
-  .target-score-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    line-height: 1;
-    color: var(--accent);
-  }
-  .target-score-label { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--text3); }
-  .target-actions { display: flex; gap: 6px; margin-left: 12px; }
-
-  /* ── OUTREACH LOG ── */
-  .log-entry {
-    border-left: 2px solid var(--border2);
-    padding: 8px 12px;
-    margin-bottom: 8px;
-    position: relative;
-    background: var(--bg3);
-    border-radius: 0 3px 3px 0;
-  }
-  .log-entry.hot { border-left-color: var(--hot); background: #fef4f2; }
-  .log-entry.warm { border-left-color: var(--warm); background: #fefae8; }
-  .log-entry.cold { border-left-color: var(--cold); background: #f0f6fc; }
-  .log-meta { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text3); margin-bottom: 3px; }
-  .log-name { font-size: 13px; font-weight: 500; }
-  .log-note { font-size: 12px; color: var(--text2); margin-top: 3px; }
-  .log-followup { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--gold); margin-top: 4px; }
-
-  /* ── PROGRESS BAR ── */
-  .progress-wrap { margin: 6px 0; }
-  .progress-label { display: flex; justify-content: space-between; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text3); margin-bottom: 4px; }
-  .progress-bar { height: 4px; background: var(--bg3); border-radius: 2px; overflow: hidden; }
-  .progress-fill { height: 100%; border-radius: 2px; transition: width 0.5s ease; }
-  .fill-green { background: var(--accent); }
-  .fill-red { background: var(--hot); }
-  .fill-blue { background: var(--accent3); }
-  .fill-gold { background: var(--gold); }
-
-  /* ── MODAL ── */
-  .modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.8);
-    z-index: 200;
-    align-items: center;
-    justify-content: center;
-    overflow-y: auto;
-    padding: 16px;
-  }
-  .modal-overlay.open { display: flex; }
-  .modal {
-    background: var(--bg2);
-    border: 1px solid var(--border2);
-    border-radius: 6px;
-    width: 580px;
-    max-width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    margin: auto;
-    flex-shrink: 0;
-  }
-  .modal-hdr {
-    padding: 16px 20px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .modal-title { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; }
-  .modal-close { background: none; border: none; color: var(--text3); font-size: 18px; cursor: pointer; }
-  .modal-close:hover { color: var(--text); }
-  .modal-body { padding: 20px; }
-  .modal-foot { padding: 14px 20px; border-top: 1px solid var(--border); display: flex; gap: 8px; justify-content: flex-end; }
-
-  /* ── DIVIDER ── */
-  .divider { height: 1px; background: var(--border); margin: 20px 0; }
-  .spacer { height: 16px; }
-
-  /* ── TOOLTIP LEGEND ── */
-  .legend { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
-  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text2); }
-  .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
-
-  /* ── EMPTY STATE ── */
-  .empty { text-align: center; padding: 40px 20px; color: var(--text3); }
-  .empty-icon { font-size: 32px; margin-bottom: 10px; }
-  .empty-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 1px; }
-
-  @media (max-width: 900px) {
-    .grid-4 { grid-template-columns: repeat(2, 1fr); }
-    .grid-3 { grid-template-columns: 1fr 1fr; }
-    .week-grid { grid-template-columns: repeat(3, 1fr); }
-    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
-    .col-span-2 { grid-column: span 1; }
-    .system-docs-btn { font-size: 9px; padding: 5px 10px; }
-  }
-  @media (max-width: 600px) {
-    .signal-grid { grid-template-columns: 1fr 1fr; }
-    .modal { width: 96vw; max-width: 96vw; margin: 0 2vw; }
-    .modal-body { padding: 14px; }
-    .form-row { grid-template-columns: 1fr; }
-  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;min-height:100vh;overflow-x:hidden;}
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100;gap:10px;flex-wrap:wrap;}
+  .topbar-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--accent);}
+  .topbar-logo span{color:var(--text2);}
+  .topbar-date{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:1px;}
+  .topbar-badge{background:var(--accent);color:#fff;font-size:10px;font-weight:600;padding:3px 10px;border-radius:2px;letter-spacing:1px;}
+  .system-docs-btn{display:inline-flex;align-items:center;gap:6px;background:#6B1F3A;color:#F2EDE3;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;text-decoration:none;font-weight:600;border-radius:2px;white-space:nowrap;transition:background 0.15s;}
+  .system-docs-btn:hover{background:#8A2A4E;}
+  .tab-nav{display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--bg2);overflow-x:auto;padding:0 24px;}
+  .tab-nav::-webkit-scrollbar{display:none;}
+  .tab-btn{padding:12px 20px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all 0.15s;}
+  .tab-btn:hover{color:var(--text);}
+  .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
+  .tab-dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:6px;vertical-align:middle;}
+  .main{padding:24px;max-width:1400px;margin:0 auto;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;animation:fadeIn 0.2s ease;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+  .section-hdr{display:flex;align-items:baseline;gap:12px;margin-bottom:20px;}
+  .section-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:var(--text);line-height:1;}
+  .section-sub{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:1px;}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .card{background:var(--bg2);border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+  .card-hdr{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+  .card-hdr-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2);}
+  .card-body{padding:14px;}
+  .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
+  .kpi{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:16px;position:relative;overflow:hidden;}
+  .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+  .kpi.green::before{background:var(--accent);}
+  .kpi.red::before{background:var(--hot);}
+  .kpi.blue::before{background:var(--accent3);}
+  .kpi.gold::before{background:var(--gold);}
+  .kpi-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text3);text-transform:uppercase;margin-bottom:6px;}
+  .kpi-value{font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:var(--text);}
+  .kpi-sub{font-size:11px;color:var(--text3);margin-top:4px;}
+  .checklist{list-style:none;}
+  .checklist li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);cursor:pointer;}
+  .checklist li:last-child{border-bottom:none;}
+  .checklist li.done .check-label{text-decoration:line-through;color:var(--text3);}
+  .check-box{width:16px;height:16px;border:1.5px solid var(--border2);border-radius:2px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all 0.15s;}
+  .checklist li.done .check-box{background:var(--accent);border-color:var(--accent);}
+  .check-box::after{content:'';}
+  .checklist li.done .check-box::after{content:'✓';font-size:10px;color:#000;font-weight:700;}
+  .check-label{font-size:13px;line-height:1.4;}
+  .check-tag{margin-left:auto;font-family:'DM Mono',monospace;font-size:9px;padding:2px 6px;border-radius:2px;white-space:nowrap;flex-shrink:0;}
+  .tag-lf{background:#e6f4e6;color:var(--accent);}
+  .tag-mls{background:#e6f0f8;color:var(--accent3);}
+  .tag-pub{background:#fdf6e3;color:var(--gold);}
+  .tag-tax{background:#f3eafd;color:var(--purple);}
+  .sig-table{width:100%;border-collapse:collapse;}
+  .sig-table th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--text3);text-align:left;padding:6px 8px;border-bottom:1px solid var(--border);}
+  .sig-table td{padding:8px;border-bottom:1px solid var(--border);font-size:12px;vertical-align:middle;}
+  .sig-table tr:last-child td{border-bottom:none;}
+  .sig-table tr:hover td{background:var(--bg3);}
+  .priority-badge{display:inline-block;padding:2px 8px;border-radius:2px;font-family:'DM Mono',monospace;font-size:10px;font-weight:500;}
+  .p-hot{background:#fde8e4;color:var(--hot);}
+  .p-warm{background:#fdf3d0;color:var(--warm);}
+  .p-cold{background:#e4f0fa;color:var(--cold);}
+  .score-pill{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--text);}
+  .sig-dots{display:flex;gap:3px;flex-wrap:wrap;}
+  .sig-dot{width:8px;height:8px;border-radius:50%;}
+  .dot-probate{background:var(--hot);}
+  .dot-prefc{background:var(--accent2);}
+  .dot-divorce{background:var(--purple);}
+  .dot-permit{background:var(--accent);}
+  .dot-taxdel{background:var(--gold);}
+  .dot-expired{background:var(--accent3);}
+  .dot-vacant{background:#888;}
+  .dot-equity{background:#60f0a0;}
+  .dot-tenure{background:#f060c0;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+  .form-full{margin-bottom:10px;}
+  label{display:block;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text3);margin-bottom:4px;text-transform:uppercase;}
+  input,select,textarea{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:3px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;padding:7px 10px;outline:none;transition:border-color 0.15s;}
+  input:focus,select:focus,textarea:focus{border-color:var(--accent);}
+  textarea{resize:vertical;min-height:60px;}
+  .signal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0;}
+  .signal-check{display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);border-radius:3px;padding:8px 10px;cursor:pointer;transition:all 0.15s;}
+  .signal-check.active{border-color:var(--accent);background:#edf7e0;}
+  .signal-check input[type=checkbox]{display:none;}
+  .signal-check-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+  .signal-check-label{font-size:12px;flex:1;}
+  .signal-check-pts{font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);}
+  .btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:3px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border:none;transition:all 0.15s;}
+  .btn-primary{background:var(--accent);color:#fff;font-weight:600;}
+  .btn-primary:hover{background:#5a9c1f;}
+  .btn-ghost{background:transparent;border:1px solid var(--border2);color:var(--text2);}
+  .btn-ghost:hover{border-color:var(--text2);color:var(--text);}
+  .btn-danger{background:transparent;border:1px solid #3a1010;color:var(--hot);}
+  .btn-sm{padding:5px 10px;font-size:10px;}
+  .week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;}
+  .day-hdr{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text3);text-align:center;padding:6px 0;border-bottom:1px solid var(--border);margin-bottom:8px;}
+  .day-hdr.today{color:var(--accent);border-bottom-color:var(--accent);}
+  .content-item{background:var(--bg3);border:1px solid var(--border);border-radius:3px;padding:7px 8px;margin-bottom:6px;cursor:pointer;transition:all 0.15s;font-size:11px;line-height:1.4;}
+  .content-item:hover{border-color:var(--border2);}
+  .content-item.done{opacity:0.35;}
+  .content-item.done .ci-title{text-decoration:line-through;}
+  .ci-brand{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;margin-bottom:3px;}
+  .ci-title{font-size:11px;color:var(--text);}
+  .ci-type{font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);margin-top:3px;}
+  .brand-myash{color:var(--accent);}
+  .brand-realtor{color:var(--accent3);}
+  .brand-fnr{color:var(--gold);}
+  .brand-sub{color:#888;}
+  .brand-system{color:var(--text3);font-style:italic;}
+  .brand-spanish{color:var(--spanish);}
+  .brand-life{color:var(--life);}
+  .target-card{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:14px;margin-bottom:10px;display:flex;align-items:center;gap:14px;}
+  .target-rank{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--text3);width:36px;flex-shrink:0;line-height:1;}
+  .target-info{flex:1;}
+  .target-name{font-size:14px;font-weight:500;margin-bottom:2px;}
+  .target-addr{font-size:11px;color:var(--text3);}
+  .target-signals{display:flex;gap:4px;margin-top:6px;}
+  .target-score{text-align:right;}
+  .target-score-num{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;color:var(--accent);}
+  .target-score-label{font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);}
+  .target-actions{display:flex;gap:6px;margin-left:12px;}
+  .log-entry{border-left:2px solid var(--border2);padding:8px 12px;margin-bottom:8px;background:var(--bg3);border-radius:0 3px 3px 0;}
+  .log-entry.hot{border-left-color:var(--hot);background:#fef4f2;}
+  .log-entry.warm{border-left-color:var(--warm);background:#fefae8;}
+  .log-entry.cold{border-left-color:var(--cold);background:#f0f6fc;}
+  .log-meta{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);margin-bottom:3px;}
+  .log-name{font-size:13px;font-weight:500;}
+  .log-note{font-size:12px;color:var(--text2);margin-top:3px;}
+  .log-followup{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);margin-top:4px;}
+  .progress-wrap{margin:6px 0;}
+  .progress-label{display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);margin-bottom:4px;}
+  .progress-bar{height:4px;background:var(--bg3);border-radius:2px;overflow:hidden;}
+  .progress-fill{height:100%;border-radius:2px;transition:width 0.5s ease;}
+  .fill-green{background:var(--accent);}
+  .fill-red{background:var(--hot);}
+  .fill-blue{background:var(--accent3);}
+  .fill-gold{background:var(--gold);}
+  .fill-spanish{background:var(--spanish);}
+  .fill-life{background:var(--life);}
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:200;align-items:center;justify-content:center;}
+  .modal-overlay.open{display:flex;}
+  .modal{background:var(--bg2);border:1px solid var(--border2);border-radius:6px;width:580px;max-width:95vw;max-height:90vh;overflow-y:auto;}
+  .modal-hdr{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+  .modal-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;}
+  .modal-close{background:none;border:none;color:var(--text3);font-size:18px;cursor:pointer;}
+  .modal-body{padding:20px;}
+  .modal-foot{padding:14px 20px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end;}
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;}
+  .legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2);}
+  .legend-dot{width:8px;height:8px;border-radius:50%;}
+  .empty{text-align:center;padding:40px 20px;color:var(--text3);}
+  .empty-icon{font-size:32px;margin-bottom:10px;}
+  .empty-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;}
+  .spacer{height:16px;}
+  @media(max-width:900px){.grid-4{grid-template-columns:repeat(2,1fr);}.grid-3{grid-template-columns:1fr 1fr;}.week-grid{grid-template-columns:repeat(3,1fr);}.kpi-grid{grid-template-columns:repeat(2,1fr);}.system-docs-btn{font-size:9px;padding:5px 10px;}}
 </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
 <div class="topbar">
-  <div class="topbar-logo">ITSMYASH<span> // OPS</span></div>
+  <div class="topbar-logo">MYASH<span> // OPS</span></div>
   <div class="topbar-date" id="topbar-date"></div>
-  <button id="sync-badge" onclick="forcSync()" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text3);background:none;border:1px solid var(--border);border-radius:2px;padding:4px 10px;cursor:pointer;transition:all 0.15s;" title="Tap to force sync">⟳ loading...</button>
+  <div id="sync-badge" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text3);">⟳ loading...</div>
   <a href="ROAST-Complete-System.html" target="_blank" class="system-docs-btn">📋 System Docs</a>
   <div class="topbar-badge">OPERATOR MODE</div>
 </div>
 
-<!-- TAB NAV -->
 <div class="tab-nav">
-  <button class="tab-btn active" data-tab="overview" onclick="switchTab('overview')">
-    <span class="tab-dot" style="background:var(--accent)"></span>Overview
-  </button>
-  <button class="tab-btn" data-tab="content" onclick="switchTab('content')">
-    <span class="tab-dot" style="background:#f060c0"></span>Content Ops
-  </button>
-  <button class="tab-btn" data-tab="signals" onclick="switchTab('signals')">
-    <span class="tab-dot" style="background:var(--gold)"></span>Signal Tracker
-  </button>
-  <button class="tab-btn" data-tab="cannonball" onclick="switchTab('cannonball')">
-    <span class="tab-dot" style="background:var(--hot)"></span>Cannonball Campaign
-  </button>
-  <button class="tab-btn" data-tab="contacts" onclick="switchTab('contacts')">
-    <span class="tab-dot" style="background:var(--accent3)"></span>Contact Cards
-  </button>
+  <button class="tab-btn active" data-tab="overview"><span class="tab-dot" style="background:var(--accent)"></span>Overview</button>
+  <button class="tab-btn" data-tab="content"><span class="tab-dot" style="background:#f060c0"></span>Content Ops</button>
+  <button class="tab-btn" data-tab="signals"><span class="tab-dot" style="background:var(--gold)"></span>Signal Tracker</button>
+  <button class="tab-btn" data-tab="cannonball"><span class="tab-dot" style="background:var(--hot)"></span>Cannonball Campaign</button>
+  <button class="tab-btn" data-tab="contacts"><span class="tab-dot" style="background:var(--accent3)"></span>Contact Cards</button>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════ OVERVIEW ══ -->
 <div class="main">
-<div class="tab-panel active" id="tab-overview">
 
+<!-- ══ OVERVIEW ══ -->
+<div class="tab-panel active" id="tab-overview">
   <div class="section-hdr">
     <div class="section-title">Weekly Overview</div>
     <div class="section-sub" id="week-label"></div>
   </div>
-
   <div class="kpi-grid">
-    <div class="kpi green">
-      <div class="kpi-label">Content Published</div>
-      <div class="kpi-value" id="kpi-content">0</div>
-      <div class="kpi-sub">of <span id="kpi-content-total">21</span> pieces this week</div>
-    </div>
-    <div class="kpi gold">
-      <div class="kpi-label">Signals Found</div>
-      <div class="kpi-value" id="kpi-signals">0</div>
-      <div class="kpi-sub">this week · Monroe County</div>
-    </div>
-    <div class="kpi red">
-      <div class="kpi-label">Hot Leads 🔥</div>
-      <div class="kpi-value" id="kpi-hot">0</div>
-      <div class="kpi-sub">score 10+ · contact this week</div>
-    </div>
-    <div class="kpi blue">
-      <div class="kpi-label">Outreach Done</div>
-      <div class="kpi-value" id="kpi-outreach">0</div>
-      <div class="kpi-sub">goal: 20–30 per week</div>
-    </div>
+    <div class="kpi green"><div class="kpi-label">Content Published</div><div class="kpi-value" id="kpi-content">0</div><div class="kpi-sub">of <span id="kpi-content-total">58</span> pieces this week</div></div>
+    <div class="kpi gold"><div class="kpi-label">Signals Found</div><div class="kpi-value" id="kpi-signals">0</div><div class="kpi-sub">this week · Monroe County</div></div>
+    <div class="kpi red"><div class="kpi-label">Hot Leads 🔥</div><div class="kpi-value" id="kpi-hot">0</div><div class="kpi-sub">score 10+ · contact this week</div></div>
+    <div class="kpi blue"><div class="kpi-label">Outreach Done</div><div class="kpi-value" id="kpi-outreach">0</div><div class="kpi-sub">goal: 20–30 per week</div></div>
   </div>
-
   <div class="grid-2">
-    <!-- Monday Pull Status -->
     <div class="card">
-      <div class="card-hdr">
-        <div class="card-hdr-title">📋 Monday Pull Status</div>
-        <button class="btn btn-ghost btn-sm" onclick="switchTab('signals')">Open Tracker →</button>
-      </div>
+      <div class="card-hdr"><div class="card-hdr-title">📋 Monday Pull Status</div><button class="btn btn-ghost btn-sm" onclick="switchTab('signals')">Open Tracker →</button></div>
       <div class="card-body">
         <ul class="checklist" id="monday-mini">
           <li data-id="mm1" onclick="toggleCheck(this)"><span class="check-box"></span><span class="check-label">LeadFlow — vacant + absentee export</span><span class="check-tag tag-lf">LEADFLOW</span></li>
@@ -632,74 +218,54 @@
         </ul>
       </div>
     </div>
-
-    <!-- Content This Week -->
     <div class="card">
-      <div class="card-hdr">
-        <div class="card-hdr-title">📱 Content This Week</div>
-        <button class="btn btn-ghost btn-sm" onclick="switchTab('content')">Full Schedule →</button>
-      </div>
+      <div class="card-hdr"><div class="card-hdr-title">📱 Content This Week</div><button class="btn btn-ghost btn-sm" onclick="switchTab('content')">Full Schedule →</button></div>
       <div class="card-body">
-        <div class="progress-wrap">
-          <div class="progress-label"><span>@its.myash</span><span id="prog-myash-label">0/7</span></div>
-          <div class="progress-bar"><div class="progress-fill fill-green" id="prog-myash" style="width:0%"></div></div>
-        </div>
-        <div class="progress-wrap">
-          <div class="progress-label"><span>@alexa.realtor</span><span id="prog-realtor-label">0/7</span></div>
-          <div class="progress-bar"><div class="progress-fill fill-blue" id="prog-realtor" style="width:0%"></div></div>
-        </div>
-        <div class="progress-wrap">
-          <div class="progress-label"><span>@fillerandroast</span><span id="prog-fnr-label">0/3</span></div>
-          <div class="progress-bar"><div class="progress-fill fill-gold" id="prog-fnr" style="width:0%"></div></div>
-        </div>
-        <div class="progress-wrap" style="margin-top:12px">
-          <div class="progress-label"><span>Substack Notes (21/wk)</span><span id="prog-sub-label">0/21</span></div>
-          <div class="progress-bar"><div class="progress-fill fill-green" id="prog-sub" style="width:0%"></div></div>
-        </div>
+        <div class="progress-wrap"><div class="progress-label"><span>@its.myash</span><span id="prog-myash-label">0/7</span></div><div class="progress-bar"><div class="progress-fill fill-green" id="prog-myash" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>@alexa.realtor</span><span id="prog-realtor-label">0/7</span></div><div class="progress-bar"><div class="progress-fill fill-blue" id="prog-realtor" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>@fillerandroast</span><span id="prog-fnr-label">0/3</span></div><div class="progress-bar"><div class="progress-fill fill-gold" id="prog-fnr" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>🇪🇸 En Español</span><span id="prog-spanish-label">0/7</span></div><div class="progress-bar"><div class="progress-fill fill-spanish" id="prog-spanish" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>@life.byalexa</span><span id="prog-life-label">0/3</span></div><div class="progress-bar"><div class="progress-fill fill-life" id="prog-life" style="width:0%"></div></div></div>
+        <div class="progress-wrap" style="margin-top:8px"><div class="progress-label"><span>Substack Notes (21/wk)</span><span id="prog-sub-label">0/21</span></div><div class="progress-bar"><div class="progress-fill fill-green" id="prog-sub" style="width:0%"></div></div></div>
         <div class="spacer"></div>
-        <div class="progress-wrap">
-          <div class="progress-label"><span>Outreach Contacts (goal 25)</span><span id="prog-out-label">0/25</span></div>
-          <div class="progress-bar"><div class="progress-fill fill-red" id="prog-out" style="width:0%"></div></div>
-        </div>
+        <div class="progress-wrap"><div class="progress-label"><span>Outreach Contacts (goal 25)</span><span id="prog-out-label">0/25</span></div><div class="progress-bar"><div class="progress-fill fill-red" id="prog-out" style="width:0%"></div></div></div>
       </div>
     </div>
   </div>
-
 </div>
 
-<!-- ═══════════════════════════════════════════════════ CONTENT OPS ══ -->
+<!-- ══ CONTENT OPS ══ -->
 <div class="tab-panel" id="tab-content">
   <div class="section-hdr">
     <div class="section-title">Content Ops</div>
-    <div class="section-sub">weekly schedule · all three brands</div>
+    <div class="section-sub">weekly schedule · all brands · English + Spanish</div>
   </div>
-
   <div class="legend">
     <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div>@its.myash</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--accent3)"></div>@alexa.realtor</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div>@fillerandroast</div>
     <div class="legend-item"><div class="legend-dot" style="background:#888"></div>Substack</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--spanish)"></div>🇪🇸 En Español</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--life)"></div>@life.byalexa</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--text3)"></div>Recording Block</div>
-    <div style="margin-left:auto; display:flex; gap:8px;">
+    <div style="margin-left:auto;display:flex;gap:8px;">
       <button class="btn btn-ghost btn-sm" onclick="resetContent()">↺ Reset Schedule</button>
       <button class="btn btn-primary btn-sm" onclick="openModal('modal-add-content')">+ Add Item</button>
     </div>
   </div>
-
   <div class="week-grid" id="week-grid"></div>
 </div>
 
-<!-- ══════════════════════════════════════════════ SIGNAL TRACKER ══ -->
+<!-- ══ SIGNAL TRACKER ══ -->
 <div class="tab-panel" id="tab-signals">
   <div class="section-hdr">
     <div class="section-title">Signal Tracker</div>
     <div class="section-sub">Monroe County · stack signals · score leads</div>
-    <div style="margin-left:auto; display:flex; gap:8px;">
+    <div style="margin-left:auto;display:flex;gap:8px;">
       <button class="btn btn-ghost btn-sm" onclick="openModal('modal-sources')">📋 Sources</button>
       <button class="btn btn-primary btn-sm" onclick="openModal('modal-add-lead')">+ Add Lead</button>
     </div>
   </div>
-
   <div class="legend">
     <div class="legend-item"><div class="legend-dot dot-probate"></div>Probate +5</div>
     <div class="legend-item"><div class="legend-dot dot-prefc"></div>Pre-FC +4</div>
@@ -711,7 +277,6 @@
     <div class="legend-item"><div class="legend-dot dot-equity"></div>Equity +2</div>
     <div class="legend-item"><div class="legend-dot dot-tenure"></div>10yr+ +2</div>
   </div>
-
   <div class="card">
     <div class="card-hdr">
       <div class="card-hdr-title">All Properties</div>
@@ -726,126 +291,66 @@
     </div>
     <div class="card-body" style="padding:0;">
       <table class="sig-table">
-        <thead>
-          <tr>
-            <th>Owner</th>
-            <th>Address</th>
-            <th>Sources ✓</th>
-            <th>Signals</th>
-            <th>Score</th>
-            <th>Priority</th>
-            <th>Status</th>
-            <th></th>
-          </tr>
-        </thead>
+        <thead><tr><th>Owner</th><th>Address</th><th>Sources ✓</th><th>Signals</th><th>Score</th><th>Priority</th><th>Status</th><th></th></tr></thead>
         <tbody id="leads-tbody"></tbody>
       </table>
-      <div class="empty" id="leads-empty" style="display:none;">
-        <div class="empty-icon">🔍</div>
-        <div class="empty-label">No leads yet. Add your first property above.</div>
-      </div>
+      <div class="empty" id="leads-empty" style="display:none;"><div class="empty-icon">🔍</div><div class="empty-label">No leads yet. Add your first property above.</div></div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════ CANNONBALL ══ -->
+<!-- ══ CANNONBALL ══ -->
 <div class="tab-panel" id="tab-cannonball">
   <div class="section-hdr">
     <div class="section-title">Cannonball Campaign</div>
     <div class="section-sub">top 20 targets · active outreach · Monroe County</div>
-    <div style="margin-left:auto;">
-      <button class="btn btn-primary btn-sm" onclick="openModal('modal-add-outreach')">+ Log Contact</button>
-    </div>
+    <div style="margin-left:auto;"><button class="btn btn-primary btn-sm" onclick="openModal('modal-add-outreach')">+ Log Contact</button></div>
   </div>
-
   <div class="grid-2" style="margin-bottom:16px;">
     <div class="card">
       <div class="card-hdr"><div class="card-hdr-title">🎯 This Week's Targets</div></div>
-      <div class="card-body" id="cannonball-targets" style="padding:10px;">
-        <div class="empty"><div class="empty-icon">🎯</div><div class="empty-label">Hot + Warm leads from Signal Tracker appear here.</div></div>
-      </div>
+      <div class="card-body" id="cannonball-targets" style="padding:10px;"><div class="empty"><div class="empty-icon">🎯</div><div class="empty-label">Hot + Warm leads from Signal Tracker appear here.</div></div></div>
     </div>
     <div class="card">
       <div class="card-hdr"><div class="card-hdr-title">📞 Outreach Log</div></div>
-      <div class="card-body" id="outreach-log" style="max-height:420px;overflow-y:auto;">
-        <div class="empty"><div class="empty-icon">📋</div><div class="empty-label">No outreach logged yet.</div></div>
-      </div>
+      <div class="card-body" id="outreach-log" style="max-height:420px;overflow-y:auto;"><div class="empty"><div class="empty-icon">📋</div><div class="empty-label">No outreach logged yet.</div></div></div>
     </div>
   </div>
-
-  <!-- Weekly script quick-ref -->
   <div class="card">
     <div class="card-hdr"><div class="card-hdr-title">📜 Script Quick Reference</div></div>
     <div class="card-body">
       <div class="grid-3">
-        <div style="border:1px solid var(--border);border-radius:3px;padding:12px;">
-          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--hot);margin-bottom:6px;">PROBATE OPEN</div>
-          <div style="font-size:12px;color:var(--text2);line-height:1.6;font-style:italic;">"Hi [Name] — I'm sorry for your loss. I work with families in Monroe County on estate properties. I'm not here to pressure anything — just wanted to be a resource. Do you have two minutes?"</div>
-        </div>
-        <div style="border:1px solid var(--border);border-radius:3px;padding:12px;">
-          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:6px;">EXPIRED OPEN</div>
-          <div style="font-size:12px;color:var(--text2);line-height:1.6;font-style:italic;">"Hi [Name] — I noticed your home on [Street] just came off the market. I'm not calling to pitch — I genuinely wanted to understand what happened. Do you have two minutes?"</div>
-        </div>
-        <div style="border:1px solid var(--border);border-radius:3px;padding:12px;">
-          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);margin-bottom:6px;">PERMIT OPEN (LETTER)</div>
-          <div style="font-size:12px;color:var(--text2);line-height:1.6;font-style:italic;">"I noticed you recently pulled a permit on [Address] — that's exactly the kind of investment that moves the needle. I wanted to introduce myself now so you know who to call when you're ready."</div>
-        </div>
+        <div style="border:1px solid var(--border);border-radius:3px;padding:12px;"><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--hot);margin-bottom:6px;">PROBATE OPEN</div><div style="font-size:12px;color:var(--text2);line-height:1.6;font-style:italic;">"Hi [Name] — I'm sorry for your loss. I work with families in Monroe County on estate properties. I'm not here to pressure anything — just wanted to be a resource. Do you have two minutes?"</div></div>
+        <div style="border:1px solid var(--border);border-radius:3px;padding:12px;"><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:6px;">EXPIRED OPEN</div><div style="font-size:12px;color:var(--text2);line-height:1.6;font-style:italic;">"Hi [Name] — I noticed your home on [Street] just came off the market. I'm not calling to pitch — I genuinely wanted to understand what happened. Do you have two minutes?"</div></div>
+        <div style="border:1px solid var(--border);border-radius:3px;padding:12px;"><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);margin-bottom:6px;">PERMIT OPEN (LETTER)</div><div style="font-size:12px;color:var(--text2);line-height:1.6;font-style:italic;">"I noticed you recently pulled a permit on [Address] — that's exactly the kind of investment that moves the needle. I wanted to introduce myself now so you know who to call when you're ready."</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════ CONTACTS ══ -->
+<!-- ══ CONTACTS ══ -->
 <div class="tab-panel" id="tab-contacts">
   <div class="section-hdr">
     <div class="section-title">Contact Cards</div>
     <div class="section-sub">full detail · warm + hot leads only</div>
-    <div style="margin-left:auto;">
-      <button class="btn btn-primary btn-sm" onclick="openModal('modal-add-lead')">+ Add Contact</button>
-    </div>
+    <div style="margin-left:auto;"><button class="btn btn-primary btn-sm" onclick="openModal('modal-add-lead')">+ Add Contact</button></div>
   </div>
   <div id="contact-cards-grid" class="grid-2"></div>
-  <div class="empty" id="contacts-empty">
-    <div class="empty-icon">📇</div>
-    <div class="empty-label">Leads scored 5+ appear here as full contact cards.</div>
-  </div>
+  <div class="empty" id="contacts-empty"><div class="empty-icon">📇</div><div class="empty-label">Leads scored 5+ appear here as full contact cards.</div></div>
 </div>
 
-</div><!-- /main -->
+</div>
 
-<!-- ══════════════════════════════════════════════ MODALS ══ -->
-
-<!-- ADD LEAD MODAL -->
+<!-- ══ MODALS ══ -->
 <div class="modal-overlay" id="modal-add-lead">
   <div class="modal">
-    <div class="modal-hdr">
-      <div class="modal-title">Add Property Lead</div>
-      <button class="modal-close" onclick="closeModal('modal-add-lead')">✕</button>
-    </div>
+    <div class="modal-hdr"><div class="modal-title">Add Property Lead</div><button class="modal-close" onclick="closeModal('modal-add-lead')">✕</button></div>
     <div class="modal-body">
-      <div class="form-row">
-        <div><label>First Name</label><input id="l-fname" placeholder="Jane"></div>
-        <div><label>Last Name</label><input id="l-lname" placeholder="Smith"></div>
-      </div>
-      <div class="form-row">
-        <div><label>Phone</label><input id="l-phone" placeholder="570-555-0101"></div>
-        <div><label>Email</label><input id="l-email" placeholder="jane@email.com"></div>
-      </div>
+      <div class="form-row"><div><label>First Name</label><input id="l-fname" placeholder="Jane"></div><div><label>Last Name</label><input id="l-lname" placeholder="Smith"></div></div>
+      <div class="form-row"><div><label>Phone</label><input id="l-phone" placeholder="570-555-0101"></div><div><label>Email</label><input id="l-email" placeholder="jane@email.com"></div></div>
       <div class="form-full"><label>Property Address</label><input id="l-addr" placeholder="123 Maple St, Stroudsburg PA 18360"></div>
-      <div class="form-row">
-        <div><label>Est. Value ($)</label><input id="l-value" type="number" placeholder="350000"></div>
-        <div><label>Equity %</label><input id="l-equity" type="number" placeholder="65"></div>
-      </div>
-      <div class="form-row">
-        <div><label>Years Owned</label><input id="l-years" type="number" placeholder="12"></div>
-        <div><label>Status</label>
-          <select id="l-status">
-            <option>New</option><option>Contacted</option><option>Warm Lead</option>
-            <option>Hot Lead</option><option>Appt Set</option><option>Not Interested</option>
-          </select>
-        </div>
-      </div>
-
+      <div class="form-row"><div><label>Est. Value ($)</label><input id="l-value" type="number" placeholder="350000"></div><div><label>Equity %</label><input id="l-equity" type="number" placeholder="65"></div></div>
+      <div class="form-row"><div><label>Years Owned</label><input id="l-years" type="number" placeholder="12"></div><div><label>Status</label><select id="l-status"><option>New</option><option>Contacted</option><option>Warm Lead</option><option>Hot Lead</option><option>Appt Set</option><option>Not Interested</option></select></div></div>
       <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin:12px 0 6px;">Sources Checked</div>
       <div class="form-row">
         <label style="display:flex;align-items:center;gap:6px;cursor:pointer;"><input type="checkbox" id="src-lf" style="width:auto;"> LeadFlow</label>
@@ -853,9 +358,8 @@
         <label style="display:flex;align-items:center;gap:6px;cursor:pointer;"><input type="checkbox" id="src-mls" style="width:auto;"> Flex MLS</label>
         <label style="display:flex;align-items:center;gap:6px;cursor:pointer;"><input type="checkbox" id="src-pub" style="width:auto;"> Public Records</label>
       </div>
-
-      <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin:12px 0 6px;">Signals Found (tap to select)</div>
-      <div class="signal-grid" id="signal-picker">
+      <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin:12px 0 6px;">Signals Found</div>
+      <div class="signal-grid">
         <label class="signal-check" onclick="toggleSignal(this,'probate',5)"><input type="checkbox"><div class="signal-check-dot dot-probate"></div><span class="signal-check-label">Probate</span><span class="signal-check-pts">+5</span></label>
         <label class="signal-check" onclick="toggleSignal(this,'prefc',4)"><input type="checkbox"><div class="signal-check-dot dot-prefc"></div><span class="signal-check-label">Pre-Foreclosure</span><span class="signal-check-pts">+4</span></label>
         <label class="signal-check" onclick="toggleSignal(this,'divorce',4)"><input type="checkbox"><div class="signal-check-dot dot-divorce"></div><span class="signal-check-label">Divorce</span><span class="signal-check-pts">+4</span></label>
@@ -868,24 +372,16 @@
         <label class="signal-check" onclick="toggleSignal(this,'pricedrop',2)"><input type="checkbox"><div class="signal-check-dot" style="background:#f0a060"></div><span class="signal-check-label">Price Drop</span><span class="signal-check-pts">+2</span></label>
         <label class="signal-check" onclick="toggleSignal(this,'lien',2)"><input type="checkbox"><div class="signal-check-dot" style="background:#60f0f0"></div><span class="signal-check-label">Lien Release</span><span class="signal-check-pts">+2</span></label>
       </div>
-  <div style="margin-top:10px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);">Total Score: <span id="score-preview" style="color:var(--accent);font-size:16px;font-family:'Bebas Neue',sans-serif;">0</span></div>
-
+      <div style="margin-top:10px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);">Total Score: <span id="score-preview" style="color:var(--accent);font-size:16px;font-family:'Bebas Neue',sans-serif;">0</span></div>
       <div class="form-full" style="margin-top:12px;"><label>Notes</label><textarea id="l-notes" placeholder="What you know about this lead..."></textarea></div>
     </div>
-    <div class="modal-foot">
-      <button class="btn btn-ghost" onclick="closeModal('modal-add-lead')">Cancel</button>
-      <button class="btn btn-primary" onclick="saveLead()">Save Lead</button>
-    </div>
+    <div class="modal-foot"><button class="btn btn-ghost" onclick="closeModal('modal-add-lead')">Cancel</button><button class="btn btn-primary" onclick="saveLead()">Save Lead</button></div>
   </div>
 </div>
 
-<!-- ADD CONTENT MODAL -->
 <div class="modal-overlay" id="modal-add-content">
   <div class="modal">
-    <div class="modal-hdr">
-      <div class="modal-title">Add Content Item</div>
-      <button class="modal-close" onclick="closeModal('modal-add-content')">✕</button>
-    </div>
+    <div class="modal-hdr"><div class="modal-title">Add Content Item</div><button class="modal-close" onclick="closeModal('modal-add-content')">✕</button></div>
     <div class="modal-body">
       <div class="form-row">
         <div><label>Brand</label>
@@ -894,18 +390,15 @@
             <option value="realtor">@alexa.realtor</option>
             <option value="fnr">@fillerandroast</option>
             <option value="substack">Substack</option>
+            <option value="spanish">🇪🇸 En Español</option>
+            <option value="life">@life.byalexa</option>
             <option value="system">Recording Block</option>
           </select>
         </div>
         <div><label>Day</label>
           <select id="c-day">
-            <option value="0">Sunday</option>
-            <option value="1">Monday</option>
-            <option value="2">Tuesday</option>
-            <option value="3">Wednesday</option>
-            <option value="4">Thursday</option>
-            <option value="5">Friday</option>
-            <option value="6">Saturday</option>
+            <option value="0">Sunday</option><option value="1">Monday</option><option value="2">Tuesday</option>
+            <option value="3">Wednesday</option><option value="4">Thursday</option><option value="5">Friday</option><option value="6">Saturday</option>
           </select>
         </div>
       </div>
@@ -914,716 +407,304 @@
         <div><label>Format</label>
           <select id="c-type">
             <option>Reel</option><option>Carousel</option><option>Photo</option>
-            <option>Car Confessions</option><option>Ashes & Escrows</option>
-            <option>TikTok</option><option>YouTube Short</option>
+            <option>Car Confessions</option><option>Car Confessions EN</option>
+            <option>Ashes &amp; Escrows</option><option>TikTok</option>
+            <option>YouTube Short</option><option>YouTube Short EN</option>
+            <option>YouTube Hub EN</option><option>DR Video</option>
+            <option>Cigar/Lounge Video</option>
             <option>Substack Note</option><option>Newsletter</option><option>LinkedIn</option>
+            <option>FB Post</option><option>FB Post EN</option>
+            <option>Google Business</option><option>Google Business EN</option>
           </select>
         </div>
         <div><label>Monetization Goal</label>
-          <select id="c-goal">
-            <option>Grow Following</option><option>Drive Sales</option><option>RE Leads</option>
-          </select>
+          <select id="c-goal"><option>Grow Following</option><option>Drive Sales</option><option>RE Leads</option></select>
         </div>
       </div>
     </div>
-    <div class="modal-foot">
-      <button class="btn btn-ghost" onclick="closeModal('modal-add-content')">Cancel</button>
-      <button class="btn btn-primary" onclick="saveContent()">Add to Schedule</button>
-    </div>
+    <div class="modal-foot"><button class="btn btn-ghost" onclick="closeModal('modal-add-content')">Cancel</button><button class="btn btn-primary" onclick="saveContent()">Add to Schedule</button></div>
   </div>
 </div>
 
-<!-- LOG OUTREACH MODAL -->
 <div class="modal-overlay" id="modal-add-outreach">
   <div class="modal">
-    <div class="modal-hdr">
-      <div class="modal-title">Log Outreach</div>
-      <button class="modal-close" onclick="closeModal('modal-add-outreach')">✕</button>
-    </div>
+    <div class="modal-hdr"><div class="modal-title">Log Outreach</div><button class="modal-close" onclick="closeModal('modal-add-outreach')">✕</button></div>
     <div class="modal-body">
-      <div class="form-row">
-        <div><label>Owner Name</label><input id="o-name" placeholder="Jane Smith"></div>
-        <div><label>Method</label>
-          <select id="o-method">
-            <option>Call</option><option>Text</option><option>Mailer</option>
-            <option>Door Knock</option><option>Email</option><option>Handwritten Note</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-row">
-        <div><label>Response</label>
-          <select id="o-response">
-            <option>No Answer</option><option>Not Interested</option>
-            <option>Maybe Later</option><option>Positive — Follow Up</option>
-            <option>Appointment Set</option><option>Listed</option>
-          </select>
-        </div>
-        <div><label>Follow-Up Date</label><input id="o-followup" type="date"></div>
-      </div>
+      <div class="form-row"><div><label>Owner Name</label><input id="o-name" placeholder="Jane Smith"></div><div><label>Method</label><select id="o-method"><option>Call</option><option>Text</option><option>Mailer</option><option>Door Knock</option><option>Email</option><option>Handwritten Note</option></select></div></div>
+      <div class="form-row"><div><label>Response</label><select id="o-response"><option>No Answer</option><option>Not Interested</option><option>Maybe Later</option><option>Positive — Follow Up</option><option>Appointment Set</option><option>Listed</option></select></div><div><label>Follow-Up Date</label><input id="o-followup" type="date"></div></div>
       <div class="form-full"><label>Notes</label><textarea id="o-notes" placeholder="What they said, tone, next step..."></textarea></div>
     </div>
-    <div class="modal-foot">
-      <button class="btn btn-ghost" onclick="closeModal('modal-add-outreach')">Cancel</button>
-      <button class="btn btn-primary" onclick="saveOutreach()">Log It</button>
-    </div>
+    <div class="modal-foot"><button class="btn btn-ghost" onclick="closeModal('modal-add-outreach')">Cancel</button><button class="btn btn-primary" onclick="saveOutreach()">Log It</button></div>
   </div>
 </div>
 
-<!-- SOURCES MODAL -->
 <div class="modal-overlay" id="modal-sources">
   <div class="modal" style="width:640px;">
-    <div class="modal-hdr">
-      <div class="modal-title">Monroe County Sources</div>
-      <button class="modal-close" onclick="closeModal('modal-sources')">✕</button>
-    </div>
+    <div class="modal-hdr"><div class="modal-title">Monroe County Sources</div><button class="modal-close" onclick="closeModal('modal-sources')">✕</button></div>
     <div class="modal-body">
       <div style="display:flex;flex-direction:column;gap:10px;">
-        <div style="border:1px solid var(--border);border-radius:3px;padding:10px;">
-          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);margin-bottom:4px;">LEADFLOW — Vacant / Absentee / Equity</div>
-          <div style="font-size:12px;color:var(--text2);">app.leadflow.com → Lists → Filter Monroe County, SFR, Absentee=Yes OR Vacant=Yes, Equity 40%+</div>
-        </div>
-        <div style="border:1px solid var(--border);border-radius:3px;padding:10px;">
-          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:4px;">TAX CLAIM BUREAU — Tax Delinquent</div>
-          <div style="font-size:12px;color:var(--text2);">monroecountypa.gov → Tax Claim → Delinquent List (updated quarterly)</div>
-        </div>
-        <div style="border:1px solid var(--border);border-radius:3px;padding:10px;">
-          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--hot);margin-bottom:4px;">REGISTER OF WILLS — Probate</div>
-          <div style="font-size:12px;color:var(--text2);">monroecountypa.gov → Register of Wills → New estate filings</div>
-        </div>
-        <div style="border:1px solid var(--border);border-radius:3px;padding:10px;">
-          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--hot);margin-bottom:4px;">SHERIFF SALES — Pre-Foreclosure</div>
-          <div style="font-size:12px;color:var(--text2);">monroecountypa.gov → Sheriff → Sheriff Sales</div>
-        </div>
-        <div style="border:1px solid var(--border);border-radius:3px;padding:10px;">
-          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--purple);margin-bottom:4px;">UJS PORTAL — Divorce + Foreclosure</div>
-          <div style="font-size:12px;color:var(--text2);">ujsportal.pacourts.us → Case Search → Monroe County → Domestic Relations (divorce) or Civil / mortgage foreclosure</div>
-        </div>
-        <div style="border:1px solid var(--border);border-radius:3px;padding:10px;">
-          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent3);margin-bottom:4px;">FLEX MLS — Expired + Price Drops</div>
-          <div style="font-size:12px;color:var(--text2);">Flex MLS → Monroe County, SFR, Status=Expired, last 30–60 days. Also: Active with 2+ price reductions.</div>
-        </div>
-        <div style="border:1px solid var(--border);border-radius:3px;padding:10px;">
-          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);margin-bottom:4px;">PERMITS ⭐ — Stroud / Pocono / Hamilton Townships</div>
-          <div style="font-size:12px;color:var(--text2);">stroudtownship.com · poconotownship.org · hamiltontownship.org → Building Dept → New permits (kitchen, bath, addition)</div>
-        </div>
+        <div style="border:1px solid var(--border);border-radius:3px;padding:10px;"><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);margin-bottom:4px;">LEADFLOW</div><div style="font-size:12px;color:var(--text2);">app.leadflow.com → Lists → Filter Monroe County, SFR, Absentee=Yes OR Vacant=Yes, Equity 40%+</div></div>
+        <div style="border:1px solid var(--border);border-radius:3px;padding:10px;"><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:4px;">TAX CLAIM BUREAU</div><div style="font-size:12px;color:var(--text2);">monroecountypa.gov → Tax Claim → Delinquent List (updated quarterly)</div></div>
+        <div style="border:1px solid var(--border);border-radius:3px;padding:10px;"><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--hot);margin-bottom:4px;">REGISTER OF WILLS — Probate</div><div style="font-size:12px;color:var(--text2);">monroecountypa.gov → Register of Wills → New estate filings</div></div>
+        <div style="border:1px solid var(--border);border-radius:3px;padding:10px;"><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--hot);margin-bottom:4px;">SHERIFF SALES</div><div style="font-size:12px;color:var(--text2);">monroecountypa.gov → Sheriff → Sheriff Sales</div></div>
+        <div style="border:1px solid var(--border);border-radius:3px;padding:10px;"><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--purple);margin-bottom:4px;">UJS PORTAL — Divorce + Foreclosure</div><div style="font-size:12px;color:var(--text2);">ujsportal.pacourts.us → Case Search → Monroe County → Domestic Relations or Civil</div></div>
+        <div style="border:1px solid var(--border);border-radius:3px;padding:10px;"><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent3);margin-bottom:4px;">FLEX MLS — Expired + Price Drops</div><div style="font-size:12px;color:var(--text2);">Flex MLS → Monroe County, SFR, Status=Expired, last 30–60 days.</div></div>
+        <div style="border:1px solid var(--border);border-radius:3px;padding:10px;"><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);margin-bottom:4px;">PERMITS ⭐</div><div style="font-size:12px;color:var(--text2);">stroudtownship.com · poconotownship.org · hamiltontownship.org → Building Dept</div></div>
       </div>
     </div>
-    <div class="modal-foot">
-      <button class="btn btn-primary" onclick="closeModal('modal-sources')">Got It</button>
-    </div>
+    <div class="modal-foot"><button class="btn btn-primary" onclick="closeModal('modal-sources')">Got It</button></div>
   </div>
 </div>
 
 <script>
-// ── SUPABASE CONFIG ───────────────────────────────────────────────────────────
-const SB_URL = 'https://gzqgeehcvmgstzenkyfnw.supabase.co';
-const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6cWdlZWhjdm1nc3R6bmt5Zm53Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1OTIxMDgsImV4cCI6MjA4OTE2ODEwOH0.sw98v41oTub5p64cuP5Sqx574wNUd6kzOU1UxdoahWA';
-const SB_HDR = { 'Content-Type': 'application/json', 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY };
+const SB_URL='https://gzqgeehcvmgstzenkyfnw.supabase.co';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6cWdlZWhjdm1nc3R6bmt5Zm53Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1OTIxMDgsImV4cCI6MjA4OTE2ODEwOH0.sw98v41oTub5p64cuP5Sqx574wNUd6kzOU1UxdoahWA';
+const SB_HDR={'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY};
+async function sbGet(t){try{const r=await fetch(`${SB_URL}/rest/v1/${t}?select=*&order=id`,{headers:SB_HDR});if(!r.ok)return null;return await r.json();}catch(e){return null;}}
+async function sbUpsert(t,row){try{const r=await fetch(`${SB_URL}/rest/v1/${t}`,{method:'POST',headers:{...SB_HDR,'Prefer':'resolution=merge-duplicates'},body:JSON.stringify(row)});return r.ok;}catch(e){return false;}}
+async function sbDelete(t,id){try{const r=await fetch(`${SB_URL}/rest/v1/${t}?id=eq.${id}`,{method:'DELETE',headers:SB_HDR});return r.ok;}catch(e){return false;}}
 
-async function sbGet(table) {
-  try {
-    const r = await fetch(`${SB_URL}/rest/v1/${table}?select=*&order=id`, { headers: SB_HDR });
-    if (!r.ok) return null;
-    return await r.json();
-  } catch(e) { return null; }
-}
-async function sbUpsert(table, row) {
-  try {
-    const r = await fetch(`${SB_URL}/rest/v1/${table}`, {
-      method: 'POST',
-      headers: { ...SB_HDR, 'Prefer': 'resolution=merge-duplicates' },
-      body: JSON.stringify(row)
-    });
-    return r.ok;
-  } catch(e) { return false; }
-}
-async function sbDelete(table, id) {
-  try {
-    const r = await fetch(`${SB_URL}/rest/v1/${table}?id=eq.${id}`, {
-      method: 'DELETE', headers: SB_HDR
-    });
-    return r.ok;
-  } catch(e) { return false; }
-}
-
-// ── STATE ─────────────────────────────────────────────────────────────────────
-const STORAGE_KEY = 'myash_ops_v2';
-let state = {
-  leads: [],
-  content: [],
-  outreach: [],
-  checks: {},
-  currentSignals: {},
-};
-let sbReady = false;
-
-function loadLocal() {
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) state = { ...state, ...JSON.parse(saved) };
-  } catch(e) {}
-}
-function saveLocal() {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
-}
-
-async function loadFromSupabase() {
+const STORAGE_KEY='myash_ops_v3';
+let state={leads:[],content:[],outreach:[],checks:{},currentSignals:{}};
+let sbReady=false;
+function loadLocal(){try{const s=localStorage.getItem(STORAGE_KEY);if(s)state={...state,...JSON.parse(s)};}catch(e){}}
+function saveLocal(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(e){}}
+async function loadFromSupabase(){
   showSyncBadge('syncing');
-  try {
-    const [leads, content, outreach, checks] = await Promise.all([
-      sbGet('ops_leads'),
-      sbGet('ops_content'),
-      sbGet('ops_outreach'),
-      sbGet('ops_checks'),
-    ]);
-    // Supabase is always source of truth — accept even empty arrays
-    if (leads !== null) state.leads = leads;
-    if (content !== null) state.content = content;
-    if (outreach !== null) state.outreach = outreach;
-    if (checks !== null) {
-      state.checks = {};
-      checks.forEach(r => { state.checks[r.check_id] = r.checked; });
-    }
-    saveLocal();
-    sbReady = true;
-    showSyncBadge('synced');
-    renderAll();
-  } catch(e) {
-    showSyncBadge('error');
-  }
+  const[leads,content,outreach,checks]=await Promise.all([sbGet('ops_leads'),sbGet('ops_content'),sbGet('ops_outreach'),sbGet('ops_checks')]);
+  if(leads&&leads.length>0)state.leads=leads;
+  if(content&&content.length>0)state.content=content;
+  if(outreach&&outreach.length>0)state.outreach=outreach;
+  if(checks&&checks.length>0){state.checks={};checks.forEach(r=>{state.checks[r.check_id]=r.checked;});}
+  saveLocal();sbReady=true;showSyncBadge('synced');renderAll();
 }
-
-function save() {
-  saveLocal();
-  if (sbReady) syncToSupabase();
-}
-
-async function syncToSupabase() {
-  for (const lead of state.leads) {
-    await sbUpsert('ops_leads', {
-      id: String(lead.id), fname: lead.fname, lname: lead.lname,
-      phone: lead.phone || '', email: lead.email || '', addr: lead.addr || '',
-      value: lead.value || 0, equity: lead.equity || 0, years: lead.years || 0,
-      status: lead.status || 'New', sources: JSON.stringify(lead.sources || {}),
-      signals: JSON.stringify(lead.signals || {}), notes: lead.notes || ''
-    });
-  }
-  for (const item of state.content) {
-    await sbUpsert('ops_content', {
-      id: String(item.id), brand: item.brand, day: item.day,
-      title: item.title, type: item.type, goal: item.goal, done: item.done
-    });
-  }
-  for (const [check_id, checked] of Object.entries(state.checks)) {
-    await sbUpsert('ops_checks', { check_id, checked });
-  }
+function save(){saveLocal();if(sbReady)syncToSupabase();}
+async function syncToSupabase(){
+  for(const l of state.leads)await sbUpsert('ops_leads',{id:String(l.id),fname:l.fname,lname:l.lname,phone:l.phone||'',email:l.email||'',addr:l.addr||'',value:l.value||0,equity:l.equity||0,years:l.years||0,status:l.status||'New',sources:JSON.stringify(l.sources||{}),signals:JSON.stringify(l.signals||{}),notes:l.notes||''});
+  for(const i of state.content)await sbUpsert('ops_content',{id:String(i.id),brand:i.brand,day:i.day,title:i.title,type:i.type,goal:i.goal,done:i.done});
+  for(const[k,v]of Object.entries(state.checks))await sbUpsert('ops_checks',{check_id:k,checked:v});
   showSyncBadge('synced');
 }
+async function saveOutreachToSB(e){await sbUpsert('ops_outreach',{id:String(e.id),name:e.name,method:e.method,response:e.response,followup:e.followup||'',notes:e.notes||'',date:e.date});}
+async function deleteLeadFromSB(id){await sbDelete('ops_leads',String(id));}
+function showSyncBadge(s){const b=document.getElementById('sync-badge');if(!b)return;b.textContent=s==='syncing'?'⟳ syncing...':'✓ synced';b.style.color=s==='syncing'?'var(--gold)':'var(--accent)';}
 
-async function saveOutreachToSB(entry) {
-  await sbUpsert('ops_outreach', {
-    id: String(entry.id), name: entry.name, method: entry.method,
-    response: entry.response, followup: entry.followup || '',
-    notes: entry.notes || '', date: entry.date
-  });
+let supabaseClient=null;
+function initRealtime(){
+  try{
+    supabaseClient=supabase.createClient(SB_URL,SB_KEY);
+    supabaseClient.channel('leads_ch').on('postgres_changes',{event:'*',schema:'public',table:'ops_leads'},async()=>{const l=await sbGet('ops_leads');if(l!==null){state.leads=l;saveLocal();renderLeads();renderCannonball();renderContacts();renderKPIs();}}).subscribe();
+    supabaseClient.channel('content_ch').on('postgres_changes',{event:'*',schema:'public',table:'ops_content'},async()=>{const c=await sbGet('ops_content');if(c&&c.length>0){state.content=c;saveLocal();renderWeekGrid();renderKPIs();}}).subscribe();
+    supabaseClient.channel('outreach_ch').on('postgres_changes',{event:'*',schema:'public',table:'ops_outreach'},async()=>{const o=await sbGet('ops_outreach');if(o!==null){state.outreach=o;saveLocal();renderCannonball();renderKPIs();}}).subscribe();
+    supabaseClient.channel('checks_ch').on('postgres_changes',{event:'*',schema:'public',table:'ops_checks'},async()=>{const c=await sbGet('ops_checks');if(c&&c.length>0){state.checks={};c.forEach(r=>{state.checks[r.check_id]=r.checked;});saveLocal();renderMondayChecks();}}).subscribe();
+  }catch(e){console.log('Realtime init failed:',e);}
 }
 
-async function deleteLeadFromSB(id) {
-  await sbDelete('ops_leads', String(id));
-}
+function resetContent(){if(confirm('Reset the content schedule to the master template?')){state.content=[];seedDefaults();save();renderAll();}}
+function init(){loadLocal();setDate();seedDefaults();renderAll();bindTabs();loadFromSupabase().then(()=>initRealtime());}
+function setDate(){const now=new Date();const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];document.getElementById('topbar-date').textContent=`${days[now.getDay()]} ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;document.getElementById('week-label').textContent=`week of ${months[now.getMonth()]} ${now.getDate()}`;}
 
-function showSyncBadge(status) {
-  const badge = document.getElementById('sync-badge');
-  if (!badge) return;
-  const now = new Date();
-  const t = now.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
-  if (status === 'syncing') {
-    badge.textContent = '⟳ syncing...';
-    badge.style.color = 'var(--gold)';
-    badge.style.borderColor = 'var(--gold)';
-  } else if (status === 'error') {
-    badge.textContent = '⚠ sync failed — tap to retry';
-    badge.style.color = 'var(--hot)';
-    badge.style.borderColor = 'var(--hot)';
-  } else {
-    badge.textContent = `✓ synced ${t}`;
-    badge.style.color = 'var(--accent)';
-    badge.style.borderColor = 'var(--accent)';
-  }
-}
-
-async function forcSync() {
-  sbReady = false;
-  await loadFromSupabase();
-}
-
-// ── REALTIME SYNC ─────────────────────────────────────────────────────────────
-let supabaseClient = null;
-
-function initRealtime() {
-  try {
-    supabaseClient = supabase.createClient(SB_URL, SB_KEY);
-
-    supabaseClient.channel('ops_leads_changes')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_leads' }, async () => {
-        const leads = await sbGet('ops_leads');
-        if (leads !== null) { state.leads = leads; saveLocal(); renderLeads(); renderCannonball(); renderContacts(); renderKPIs(); showSyncBadge('synced'); }
-      })
-      .subscribe();
-
-    supabaseClient.channel('ops_content_changes')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_content' }, async () => {
-        const content = await sbGet('ops_content');
-        if (content !== null) { state.content = content; saveLocal(); renderWeekGrid(); renderKPIs(); showSyncBadge('synced'); }
-      })
-      .subscribe();
-
-    supabaseClient.channel('ops_outreach_changes')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_outreach' }, async () => {
-        const outreach = await sbGet('ops_outreach');
-        if (outreach !== null) { state.outreach = outreach; saveLocal(); renderCannonball(); renderKPIs(); showSyncBadge('synced'); }
-      })
-      .subscribe();
-
-    supabaseClient.channel('ops_checks_changes')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'ops_checks' }, async () => {
-        const checks = await sbGet('ops_checks');
-        if (checks !== null) {
-          state.checks = {};
-          checks.forEach(r => { state.checks[r.check_id] = r.checked; });
-          saveLocal();
-          renderMondayChecks();
-          showSyncBadge('synced');
-        }
-      })
-      .subscribe();
-
-  } catch(e) {
-    console.log('Realtime init failed:', e);
-  }
-}
-
-// ── INIT ──────────────────────────────────────────────────────────────────────
-function resetContent() {
-  if (confirm('Reset the content schedule to the master template? Your check-offs will be cleared.')) {
-    state.content = [];
-    seedDefaults();
-    save();
-    renderAll();
-  }
-}
-
-function init() {
-  setDate();
-  seedDefaults();   // seeds only if state arrays are empty — safe to call before Supabase
-  renderAll();      // render skeleton immediately so page isn't blank
-  bindTabs();
-  loadFromSupabase().then(() => initRealtime());  // Supabase overwrites skeleton with real data
-}
-
-function setDate() {
-  const now = new Date();
-  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  document.getElementById('topbar-date').textContent =
-    `${days[now.getDay()]} ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
-  document.getElementById('week-label').textContent = `week of ${months[now.getMonth()]} ${now.getDate()}`;
-}
-
-function seedDefaults() {
-  if (state.leads.length === 0) {
-    state.leads = [
-      { id: 1, fname:'Mary', lname:'Davis', phone:'610-555-0303', email:'mary@email.com', addr:'789 Pine Rd, Wayne PA 18087', value:550000, equity:100, years:22, status:'Warm Lead', sources:{lf:true,tax:true,mls:false,pub:true}, signals:{permit:4,equity:2,tenure:2}, notes:'Permit pulled Jan — kitchen + bath. Free & clear. Watch for spring.', date: new Date().toISOString() },
-      { id: 2, fname:'Tom', lname:'Wilson', phone:'570-555-0404', email:'twilson@email.com', addr:'22 Deer Trail, Mt Pocono PA 18344', value:380000, equity:72, years:18, status:'Hot Lead', sources:{lf:true,tax:true,mls:true,pub:true}, signals:{probate:5,equity:2,tenure:2}, notes:'Probate filed Feb 3. Send sympathy letter this week. Follow-up call Feb 17.', date: new Date().toISOString() },
-      { id: 3, fname:'Jane', lname:'Smith', phone:'215-555-0101', email:'jane@email.com', addr:'123 Maple St, Stroudsburg PA 18360', value:450000, equity:58, years:14, status:'Warm Lead', sources:{lf:true,tax:true,mls:true,pub:true}, signals:{expired:3,equity:2,tenure:2}, notes:'Expired twice. Called Jan 15 — said maybe spring. Follow up Apr 1.', date: new Date().toISOString() },
-      { id: 4, fname:'Carol', lname:'White', phone:'570-555-0505', email:'', addr:'8 Birch Ln, Tobyhanna PA 18466', value:295000, equity:30, years:5, status:'New', sources:{lf:true,tax:false,mls:true,pub:true}, signals:{prefc:4}, notes:'Sheriff sale Mar 1 — contact NOW. Low equity but time pressure.', date: new Date().toISOString() },
+function seedDefaults(){
+  if(state.leads.length===0){
+    state.leads=[
+      {id:1,fname:'Mary',lname:'Davis',phone:'610-555-0303',email:'mary@email.com',addr:'789 Pine Rd, Wayne PA 18087',value:550000,equity:100,years:22,status:'Warm Lead',sources:{lf:true,tax:true,mls:false,pub:true},signals:{permit:4,equity:2,tenure:2},notes:'Permit pulled Jan — kitchen + bath. Free & clear.',date:new Date().toISOString()},
+      {id:2,fname:'Tom',lname:'Wilson',phone:'570-555-0404',email:'twilson@email.com',addr:'22 Deer Trail, Mt Pocono PA 18344',value:380000,equity:72,years:18,status:'Hot Lead',sources:{lf:true,tax:true,mls:true,pub:true},signals:{probate:5,equity:2,tenure:2},notes:'Probate filed Feb 3.',date:new Date().toISOString()},
+      {id:3,fname:'Jane',lname:'Smith',phone:'215-555-0101',email:'jane@email.com',addr:'123 Maple St, Stroudsburg PA 18360',value:450000,equity:58,years:14,status:'Warm Lead',sources:{lf:true,tax:true,mls:true,pub:true},signals:{expired:3,equity:2,tenure:2},notes:'Expired twice. Follow up Apr 1.',date:new Date().toISOString()},
+      {id:4,fname:'Carol',lname:'White',phone:'570-555-0505',email:'',addr:'8 Birch Ln, Tobyhanna PA 18466',value:295000,equity:30,years:5,status:'New',sources:{lf:true,tax:false,mls:true,pub:true},signals:{prefc:4},notes:'Sheriff sale — contact NOW.',date:new Date().toISOString()},
     ];
   }
-  if (state.content.length === 0) {
-    state.content = [
-      // SUNDAY — Recording day. Hub video record & upload. Coffee & Ash ritual.
-      // Note: Before the First Draw (@fillerandroast) and Sunday Gratitude (Nextdoor) removed from active cadence.
-      { id:1,  brand:'system',   day:0, title:'🟢 SUNDAY RECORDING — Hub video only. Coffee in hand. One camera. ~30 min.', type:'Recording Block', goal:'Grow Following', done:false },
-      { id:2,  brand:'realtor',  day:0, title:'▶ Hub Video — Record & Upload', type:'YouTube · 8–12 min · all 3 brands · upload Sunday', goal:'RE Leads', done:false },
-      { id:4,  brand:'myash',    day:0, title:'☕🍂 Coffee & Ash — Ritual', type:'IG · FB · 10:15 AM', goal:'Drive Sales', done:false },
+  if(state.content.length===0){
+    state.content=[
+      // SUNDAY
+      {id:1,brand:'system',day:0,title:'🟢 SUNDAY RECORDING — Hub video English + Spanish second take. ~45 min.',type:'Recording Block',goal:'Grow Following',done:false},
+      {id:2,brand:'realtor',day:0,title:'Hub Video — Record & Upload (English)',type:'YouTube · 8–12 min',goal:'Grow Following',done:false},
+      {id:3,brand:'spanish',day:0,title:'🇪🇸 Hub Video — Spanish Second Take & Upload',type:'YouTube · En Español Playlist',goal:'Grow Following',done:false},
+      {id:4,brand:'fnr',day:0,title:'☕ Before the First Draw',type:'IG · FB Biz · 9:30 AM',goal:'Drive Sales',done:false},
+      {id:5,brand:'myash',day:0,title:'☕🍂 Coffee & Ash — Ritual',type:'IG · FB · 10:15 AM',goal:'Drive Sales',done:false},
+      {id:6,brand:'realtor',day:0,title:'🙏 Sunday Gratitude — Community',type:'Nextdoor · 9:15 AM',goal:'RE Leads',done:false},
+      {id:7,brand:'life',day:0,title:'@life.byalexa — Behind the Operator',type:'IG · personal voice · operator life moment',goal:'Grow Following',done:false},
       // MONDAY
-      { id:6,  brand:'substack', day:1, title:'✍️ The Lifestyle Market Letter — Operator Life', type:'Substack · personal story first · 8:00 AM', goal:'Grow Following', done:false },
-      { id:11, brand:'realtor',  day:1, title:'🏠 Real Estate Insight', type:'FB Personal · 8:00 AM', goal:'RE Leads', done:false },
-      { id:9,  brand:'realtor',  day:1, title:'📊 Market Signal', type:'LinkedIn · 8:00 AM', goal:'RE Leads', done:false },
-      { id:10, brand:'realtor',  day:1, title:'📍 Google Business Post', type:'Google Biz · 9:00 AM · keyword-rich', goal:'RE Leads', done:false },
-      { id:8,  brand:'myash',    day:1, title:'🎬 TikTok — Hub Repurpose', type:'TikTok · 6:00 PM', goal:'Grow Following', done:false },
-      { id:7,  brand:'myash',    day:1, title:'🌙 Tonight\'s Smoke — Carousel', type:'IG · 7:00 PM', goal:'Drive Sales', done:false },
+      {id:8,brand:'substack',day:1,title:'✍️ ROAST — Operator Life',type:'Substack · personal story first · 8:00 AM',goal:'Grow Following',done:false},
+      {id:9,brand:'myash',day:1,title:"🌙 Tonight's Smoke — Carousel",type:'IG · 7:00 PM',goal:'Drive Sales',done:false},
+      {id:10,brand:'myash',day:1,title:'🎬 TikTok — Hub Repurpose',type:'TikTok · 6:00 PM',goal:'Grow Following',done:false},
+      {id:11,brand:'realtor',day:1,title:'📊 Market Signal',type:'LinkedIn · 8:00 AM',goal:'RE Leads',done:false},
+      {id:12,brand:'realtor',day:1,title:'📍 Google Business Post',type:'Google Biz · 9:00 AM',goal:'RE Leads',done:false},
+      {id:13,brand:'realtor',day:1,title:'🏠 Real Estate Insight',type:'FB Personal · 8:00 AM',goal:'RE Leads',done:false},
+      {id:14,brand:'life',day:1,title:'@life.byalexa — Operator Moment',type:'IG · personal · behind the scenes',goal:'Grow Following',done:false},
       // TUESDAY
-      { id:12, brand:'myash',    day:2, title:'🎬 IG Reel — Hub Repurpose', type:'IG Reel · all brands · 10:00 AM', goal:'Grow Following', done:false },
-      { id:13, brand:'realtor',  day:2, title:'📍 Pocono Pulse — Market Update', type:'IG · 11:00 AM · stat · trend · takeaway', goal:'RE Leads', done:false },
-      { id:14, brand:'realtor',  day:2, title:'🚗 Car Confession — Real Estate', type:'IG · 12:00 PM · 20 sec · recorded Wed', goal:'RE Leads', done:false },
-      { id:15, brand:'realtor',  day:2, title:'🏡 Neighborly Post', type:'Nextdoor · 6:00 PM', goal:'RE Leads', done:false },
-      { id:16, brand:'fnr',      day:2, title:'🔥 Nell\'s Social — This Week\'s Smoke', type:'FB tag · 6:00 PM', goal:'Drive Sales', done:false },
-      // WEDNESDAY — Primary recording day
-      { id:17, brand:'system',   day:3, title:'🟡 WEDNESDAY RECORDING — 4+ recordings. Privacy. Can smoke on camera.', type:'Recording Block', goal:'Grow Following', done:false },
-      { id:18, brand:'realtor',  day:3, title:'🎬 RECORD: Ashes & Escrows Episode', type:'YouTube · 6–8 min · uploads Thu 10AM', goal:'RE Leads', done:false },
-      { id:19, brand:'realtor',  day:3, title:'▶ RECORD: YouTube Short', type:'YouTube Short · under 60 sec · uploads Thu 11AM', goal:'RE Leads', done:false },
-      { id:20, brand:'realtor',  day:3, title:'🚗 RECORD: Car Confessions Batch', type:'IG · Tue RE + Thu Entrepreneur · one session', goal:'RE Leads', done:false },
-      { id:21, brand:'myash',    day:3, title:'🚗 RECORD: Car Confession — Entrepreneur & Cigars', type:'IG · 20 sec · shock value · upload 12:00 PM', goal:'Grow Following', done:false },
-      { id:22, brand:'myash',    day:3, title:'🌙 RECORD: Tonight\'s Smoke Batch', type:'Cigar content · carousel for Monday 7PM', goal:'Drive Sales', done:false },
-      { id:23, brand:'fnr',      day:3, title:'📸 F&R Pairing — Photo Capture Only', type:'Coffee + cigar setup · stills only · video records Thu', goal:'Drive Sales', done:false },
-      { id:24, brand:'myash',    day:3, title:'📸 Ash Shot — Upload', type:'IG · 8:00 AM', goal:'Grow Following', done:false },
-      { id:25, brand:'realtor',  day:3, title:'📊 Market Insight — LinkedIn Upload', type:'LinkedIn · 9:00 AM', goal:'RE Leads', done:false },
-      { id:26, brand:'realtor',  day:3, title:'🏷 Under Contract — Story Only', type:'IG Story · FB Story · 11:00 AM', goal:'RE Leads', done:false },
-      { id:31, brand:'myash',    day:3, title:'🎵 Native TikTok Re-record — Record & Upload', type:'TikTok · no watermark · same topic as Short · 12:00 PM', goal:'Grow Following', done:false },
-      { id:27, brand:'realtor',  day:3, title:'🤝 Local Collab (1x/month)', type:'IG Story · tag partner · no feed slot', goal:'Grow Following', done:false },
+      {id:15,brand:'myash',day:2,title:'🎬 IG Reel — Hub Repurpose (English)',type:'IG Reel · 10:00 AM',goal:'Grow Following',done:false},
+      {id:16,brand:'spanish',day:2,title:'🇪🇸 Car Confession — Real Estate EN',type:'IG @alexa.realtor · Spanish · 11:00 AM',goal:'RE Leads',done:false},
+      {id:17,brand:'realtor',day:2,title:'📍 Pocono Pulse — Market Update',type:'IG · 11:00 AM',goal:'RE Leads',done:false},
+      {id:18,brand:'realtor',day:2,title:'🚗 Car Confession — Real Estate (English)',type:'IG · 12:00 PM · 20 sec',goal:'RE Leads',done:false},
+      {id:19,brand:'realtor',day:2,title:'🏡 Neighborly Post',type:'Nextdoor · 6:00 PM',goal:'RE Leads',done:false},
+      {id:20,brand:'fnr',day:2,title:"🔥 Nell's Social — This Week's Smoke",type:'FB tag · 6:00 PM',goal:'Drive Sales',done:false},
+      // WEDNESDAY
+      {id:21,brand:'system',day:3,title:'🟡 WEDNESDAY RECORDING — English + Spanish second takes. Car confessions, Ashes & Escrows, Short, DR video, Cigar/Lounge video.',type:'Recording Block',goal:'Grow Following',done:false},
+      {id:22,brand:'realtor',day:3,title:'🎬 RECORD: Ashes & Escrows (English)',type:'YouTube · 6–8 min · uploads Thu',goal:'RE Leads',done:false},
+      {id:23,brand:'realtor',day:3,title:'▶ RECORD: YouTube Short (English)',type:'YouTube Short · under 60 sec · uploads Thu',goal:'RE Leads',done:false},
+      {id:24,brand:'realtor',day:3,title:'🚗 RECORD: Car Confessions Batch (English)',type:'IG · Tue RE + Thu Entrepreneur',goal:'RE Leads',done:false},
+      {id:25,brand:'spanish',day:3,title:'🇪🇸 RECORD: Car Confessions Spanish Batch',type:'IG @alexa.realtor · second takes in Spanish',goal:'RE Leads',done:false},
+      {id:26,brand:'myash',day:3,title:'🚗 RECORD: Car Confession — Entrepreneur & Cigars',type:'IG @its.myash · 20 sec · upload 12:00 PM',goal:'Grow Following',done:false},
+      {id:27,brand:'realtor',day:3,title:'🌴 RECORD: DR Video (English)',type:'YouTube · under 60 sec · one DR topic',goal:'RE Leads',done:false},
+      {id:28,brand:'spanish',day:3,title:'🇪🇸 RECORD: DR Video (Spanish)',type:'YouTube · En Español Playlist · same topic',goal:'RE Leads',done:false},
+      {id:29,brand:'myash',day:3,title:'🍂 RECORD: Cigar/Lounge Video',type:'IG · TikTok · @its.myash · under 60 sec',goal:'Drive Sales',done:false},
+      {id:30,brand:'myash',day:3,title:"🌙 RECORD: Tonight's Smoke Batch",type:'Cigar content · carousel for Monday',goal:'Drive Sales',done:false},
+      {id:31,brand:'fnr',day:3,title:'📸 F&R Pairing — Photo Capture Only',type:'Coffee + cigar setup · stills only today',goal:'Drive Sales',done:false},
+      {id:32,brand:'myash',day:3,title:'📸 Ash Shot — Upload',type:'IG · 8:00 AM',goal:'Grow Following',done:false},
+      {id:33,brand:'realtor',day:3,title:'📊 Market Insight — LinkedIn Upload',type:'LinkedIn · 9:00 AM',goal:'RE Leads',done:false},
+      {id:34,brand:'realtor',day:3,title:'🏷 Under Contract — Story Only',type:'IG Story · FB Story · 11:00 AM',goal:'RE Leads',done:false},
+      {id:35,brand:'life',day:3,title:'@life.byalexa — Wednesday Energy',type:'IG · recording day behind the scenes',goal:'Grow Following',done:false},
       // THURSDAY
-      { id:28, brand:'substack', day:4, title:'✍️ The Lifestyle Market Letter — Experience Economy', type:'Substack · ritual · lifestyle · 8:00 AM', goal:'Grow Following', done:false },
-      { id:33, brand:'realtor',  day:4, title:'📊 Investor Signal (pre-sched)', type:'LinkedIn · 8:30 AM', goal:'RE Leads', done:false },
-      { id:29, brand:'realtor',  day:4, title:'🎬 Ashes & Escrows — Upload', type:'YouTube · recorded Wed · 10:00 AM', goal:'RE Leads', done:false },
-      { id:30, brand:'realtor',  day:4, title:'▶ YouTube Short — Upload', type:'YouTube Short · recorded Wed · 11:00 AM', goal:'RE Leads', done:false },
-      { id:32, brand:'realtor',  day:4, title:'🚗 Car Confession — Entrepreneur Life (Upload)', type:'IG · recorded Wed · 12:00 PM', goal:'RE Leads', done:false },
-      { id:34, brand:'fnr',      day:4, title:'🍃 RECORD: F&R Pairing Video', type:'Photos captured Wed · uploads Fri · biweekly', goal:'Drive Sales', done:false },
-      { id:35, brand:'realtor',  day:4, title:'🏘 Community Roundup', type:'Nextdoor · 6:00 PM', goal:'RE Leads', done:false },
+      {id:36,brand:'substack',day:4,title:'✍️ ROAST — Experience Economy',type:'Substack · ritual · lifestyle · 8:00 AM',goal:'Grow Following',done:false},
+      {id:37,brand:'realtor',day:4,title:'🎬 Ashes & Escrows — Upload',type:'YouTube · recorded Wed · 10:00 AM',goal:'RE Leads',done:false},
+      {id:38,brand:'realtor',day:4,title:'▶ YouTube Short — Upload (English)',type:'YouTube Short · recorded Wed · 11:00 AM',goal:'RE Leads',done:false},
+      {id:39,brand:'realtor',day:4,title:'🌴 DR Video — Upload (English + Spanish)',type:'YouTube · both playlists · 12:00 PM',goal:'RE Leads',done:false},
+      {id:40,brand:'myash',day:4,title:'🎵 Native TikTok Re-record — Record & Upload',type:'TikTok · no watermark · 12:00 PM',goal:'Grow Following',done:false},
+      {id:41,brand:'spanish',day:4,title:'🇪🇸 Car Confession — Entrepreneur Life EN',type:'IG @alexa.realtor · Spanish · 1:00 PM',goal:'RE Leads',done:false},
+      {id:42,brand:'realtor',day:4,title:'🚗 Car Confession — Entrepreneur Life (Upload)',type:'IG · recorded Wed · 12:00 PM',goal:'RE Leads',done:false},
+      {id:43,brand:'realtor',day:4,title:'📊 Investor Signal (pre-sched)',type:'LinkedIn · 8:30 AM',goal:'RE Leads',done:false},
+      {id:44,brand:'myash',day:4,title:'🍂 Cigar/Lounge Video — Upload',type:'IG · TikTok · @its.myash · 3:00 PM',goal:'Drive Sales',done:false},
+      {id:45,brand:'fnr',day:4,title:'🍃 RECORD: F&R Pairing Video',type:'Photos captured Wed · uploads Fri',goal:'Drive Sales',done:false},
+      {id:46,brand:'realtor',day:4,title:'🏘 Community Roundup',type:'Nextdoor · 6:00 PM',goal:'RE Leads',done:false},
       // FRIDAY
-      { id:39, brand:'realtor',  day:5, title:'📊 Market Insight (pre-sched)', type:'FB Biz · 8:00 AM', goal:'RE Leads', done:false },
-      { id:36, brand:'fnr',      day:5, title:'☕ Coffee for the Leaf', type:'IG · FB Biz · 9:00 AM', goal:'Drive Sales', done:false },
-      { id:37, brand:'fnr',      day:5, title:'🍃 The Pairing — Cigar + Coffee Ed. (bi-weekly)', type:'IG · recorded Thu · 10:00 AM', goal:'Drive Sales', done:false },
-      { id:38, brand:'myash',    day:5, title:'☕ Coffee for the Leaf TikTok', type:'TikTok via @its.myash · different edit · 11:00 AM', goal:'Drive Sales', done:false },
-      { id:40, brand:'system',   day:5, title:'📣 Facebook — All Brands Repurpose', type:'FB · all brands · captions repurposed · 12:00 PM', goal:'Grow Following', done:false },
-      { id:41, brand:'myash',    day:5, title:'🥃 Weekend Smoke — Reel', type:'IG · 5:00 PM · feed post', goal:'Drive Sales', done:false },
+      {id:47,brand:'fnr',day:5,title:'☕ Coffee for the Leaf',type:'IG · FB Biz · 9:00 AM',goal:'Drive Sales',done:false},
+      {id:48,brand:'fnr',day:5,title:'🍃 The Pairing — Cigar + Coffee Ed. (bi-weekly)',type:'IG · recorded Thu · 10:00 AM',goal:'Drive Sales',done:false},
+      {id:49,brand:'myash',day:5,title:'☕ Coffee for the Leaf TikTok',type:'TikTok @its.myash · different edit · 11:00 AM',goal:'Drive Sales',done:false},
+      {id:50,brand:'realtor',day:5,title:'📊 Market Insight (pre-sched)',type:'FB Biz · 8:00 AM',goal:'RE Leads',done:false},
+      {id:51,brand:'spanish',day:5,title:'🇪🇸 Spanish Post — FB Business (bi-weekly)',type:'FB Biz @alexa.realtor · Spanish · real estate',goal:'RE Leads',done:false},
+      {id:52,brand:'spanish',day:5,title:'🇪🇸 Personal FB — Spanish Post (weekly)',type:'FB Personal · Alexa voice · community · en Español',goal:'Grow Following',done:false},
+      {id:53,brand:'spanish',day:5,title:'🇪🇸 Google Business Post EN (bi-weekly)',type:'Google Biz · Spanish · keyword-rich',goal:'RE Leads',done:false},
+      {id:54,brand:'system',day:5,title:'📣 Facebook — All Brands Repurpose',type:'FB · all brands · 12:00 PM',goal:'Grow Following',done:false},
+      {id:55,brand:'myash',day:5,title:'🥃 Weekend Smoke — Reel',type:'IG · 5:00 PM · feed post',goal:'Drive Sales',done:false},
       // SATURDAY
-      { id:42, brand:'realtor',  day:6, title:'🏡 Weekend Market Tip', type:'Nextdoor · 10:00 AM', goal:'RE Leads', done:false },
-      { id:43, brand:'myash',    day:6, title:'📸 Stories — Behind the Scenes', type:'IG Story only · 2:00 PM · no feed post Sat', goal:'Grow Following', done:false },
+      {id:56,brand:'realtor',day:6,title:'🏡 Weekend Market Tip',type:'Nextdoor · 10:00 AM',goal:'RE Leads',done:false},
+      {id:57,brand:'myash',day:6,title:'📸 Stories — Behind the Scenes',type:'IG Story only · 2:00 PM',goal:'Grow Following',done:false},
+      {id:58,brand:'spanish',day:6,title:'🇪🇸 Spanish IG Post — @alexa.realtor (weekly)',type:'IG @alexa.realtor · Spanish real estate post',goal:'RE Leads',done:false},
+      {id:59,brand:'spanish',day:6,title:'🇪🇸 LinkedIn Post EN (bi-weekly)',type:'LinkedIn @alexa.realtor · Spanish · real estate',goal:'RE Leads',done:false},
+      {id:60,brand:'life',day:6,title:'@life.byalexa — Weekend Operator Life',type:'IG · personal · lifestyle · 2:00 PM',goal:'Grow Following',done:false},
     ];
   }
 }
 
-// ── TABS ──────────────────────────────────────────────────────────────────────
-function bindTabs() {
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => switchTab(btn.dataset.tab));
-  });
-}
-function switchTab(tab) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'tab-' + tab));
-}
+function bindTabs(){document.querySelectorAll('.tab-btn').forEach(btn=>{btn.addEventListener('click',()=>switchTab(btn.dataset.tab));});}
+function switchTab(tab){document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.toggle('active',p.id==='tab-'+tab));}
+function renderAll(){renderKPIs();renderMondayChecks();renderWeekGrid();renderLeads();renderCannonball();renderContacts();}
 
-// ── RENDER ALL ────────────────────────────────────────────────────────────────
-function renderAll() {
-  renderKPIs();
-  renderMondayChecks();
-  renderWeekGrid();
-  renderLeads();
-  renderCannonball();
-  renderContacts();
+function renderKPIs(){
+  const done=state.content.filter(c=>c.done).length;
+  const hot=state.leads.filter(l=>scoreOf(l)>=10).length;
+  const sigs=state.leads.reduce((a,l)=>a+Object.keys(l.signals||{}).length,0);
+  const out=state.outreach.length;
+  document.getElementById('kpi-content').textContent=done;
+  document.getElementById('kpi-signals').textContent=sigs;
+  document.getElementById('kpi-hot').textContent=hot;
+  document.getElementById('kpi-outreach').textContent=out;
+  const myash=state.content.filter(c=>c.brand==='myash');
+  const realtor=state.content.filter(c=>c.brand==='realtor');
+  const fnr=state.content.filter(c=>c.brand==='fnr');
+  const sub=state.content.filter(c=>c.brand==='substack');
+  const spanish=state.content.filter(c=>c.brand==='spanish');
+  const life=state.content.filter(c=>c.brand==='life');
+  updateProg('myash',myash.filter(c=>c.done).length,myash.length||7);
+  updateProg('realtor',realtor.filter(c=>c.done).length,realtor.length||7);
+  updateProg('fnr',fnr.filter(c=>c.done).length,fnr.length||3);
+  updateProg('sub',sub.filter(c=>c.done).length,Math.max(sub.length,21));
+  updateProg('spanish',spanish.filter(c=>c.done).length,spanish.length||7);
+  updateProg('life',life.filter(c=>c.done).length,life.length||3);
+  updateProg('out',out,25);
 }
+function updateProg(id,val,total){const pct=Math.min(100,Math.round((val/total)*100));const el=document.getElementById('prog-'+id);const lb=document.getElementById('prog-'+id+'-label');if(el)el.style.width=pct+'%';if(lb)lb.textContent=val+'/'+total;}
+function toggleCheck(el){el.classList.toggle('done');const id=el.dataset.id;state.checks[id]=el.classList.contains('done');save();renderKPIs();}
+function renderMondayChecks(){document.querySelectorAll('#monday-mini li').forEach(li=>{if(state.checks[li.dataset.id])li.classList.add('done');});}
 
-// ── KPIs ──────────────────────────────────────────────────────────────────────
-function renderKPIs() {
-  const doneContent = state.content.filter(c => c.done).length;
-  const hotLeads = state.leads.filter(l => scoreOf(l) >= 10).length;
-  const signals = state.leads.reduce((a, l) => a + Object.keys(l.signals || {}).length, 0);
-  const outreach = state.outreach.length;
-
-  document.getElementById('kpi-content').textContent = doneContent;
-  document.getElementById('kpi-signals').textContent = signals;
-  document.getElementById('kpi-hot').textContent = hotLeads;
-  document.getElementById('kpi-outreach').textContent = outreach;
-
-  const myash = state.content.filter(c => c.brand === 'myash');
-  const realtor = state.content.filter(c => c.brand === 'realtor');
-  const fnr = state.content.filter(c => c.brand === 'fnr');
-  const sub = state.content.filter(c => c.brand === 'substack');
-
-  updateProg('myash', myash.filter(c=>c.done).length, myash.length || 7);
-  updateProg('realtor', realtor.filter(c=>c.done).length, realtor.length || 7);
-  updateProg('fnr', fnr.filter(c=>c.done).length, fnr.length || 3);
-  updateProg('sub', sub.filter(c=>c.done).length, Math.max(sub.length, 21));
-  updateProg('out', outreach, 25);
-}
-function updateProg(id, val, total) {
-  const pct = Math.min(100, Math.round((val/total)*100));
-  document.getElementById('prog-'+id).style.width = pct + '%';
-  document.getElementById('prog-'+id+'-label').textContent = val + '/' + total;
-}
-
-// ── MONDAY CHECKS ─────────────────────────────────────────────────────────────
-function toggleCheck(el) {
-  el.classList.toggle('done');
-  const id = el.dataset.id;
-  state.checks[id] = el.classList.contains('done');
-  save();
-  renderKPIs();
-}
-function renderMondayChecks() {
-  document.querySelectorAll('#monday-mini li').forEach(li => {
-    if (state.checks[li.dataset.id]) li.classList.add('done');
-  });
-}
-
-// ── WEEK GRID ─────────────────────────────────────────────────────────────────
-const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-function renderWeekGrid() {
-  const today = new Date().getDay();
-  const grid = document.getElementById('week-grid');
-  grid.innerHTML = '';
-  DAYS.forEach((day, di) => {
-    const col = document.createElement('div');
-    col.className = 'day-col';
-    const hdr = document.createElement('div');
-    hdr.className = 'day-hdr' + (di === today ? ' today' : '');
-    hdr.textContent = day;
-    col.appendChild(hdr);
-    const items = state.content.filter(c => parseInt(c.day) === di);
-    items.forEach(item => {
-      const el = document.createElement('div');
-      el.className = 'content-item' + (item.done ? ' done' : '');
-      const brandClass = { myash:'brand-myash', realtor:'brand-realtor', fnr:'brand-fnr', substack:'brand-sub', system:'brand-system' }[item.brand] || '';
-      const brandLabel = { myash:'@its.myash', realtor:'@alexa.realtor', fnr:'@fillerandroast', substack:'Substack', system:'⚙️ SYSTEM' }[item.brand] || '';
-      el.innerHTML = `<div class="ci-brand ${brandClass}">${brandLabel}</div><div class="ci-title">${item.title}</div><div class="ci-type">${item.type}</div>`;
-      el.onclick = () => { item.done = !item.done; save(); renderAll(); };
-      col.appendChild(el);
+const DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+function renderWeekGrid(){
+  const today=new Date().getDay();
+  const grid=document.getElementById('week-grid');
+  grid.innerHTML='';
+  DAYS.forEach((day,di)=>{
+    const col=document.createElement('div');col.className='day-col';
+    const hdr=document.createElement('div');hdr.className='day-hdr'+(di===today?' today':'');hdr.textContent=day;col.appendChild(hdr);
+    state.content.filter(c=>parseInt(c.day)===di).forEach(item=>{
+      const el=document.createElement('div');el.className='content-item'+(item.done?' done':'');
+      const bClass={myash:'brand-myash',realtor:'brand-realtor',fnr:'brand-fnr',substack:'brand-sub',system:'brand-system',spanish:'brand-spanish',life:'brand-life'}[item.brand]||'';
+      const bLabel={myash:'@its.myash',realtor:'@alexa.realtor',fnr:'@fillerandroast',substack:'Substack',system:'⚙️ SYSTEM',spanish:'🇪🇸 En Español',life:'@life.byalexa'}[item.brand]||'';
+      el.innerHTML=`<div class="ci-brand ${bClass}">${bLabel}</div><div class="ci-title">${item.title}</div><div class="ci-type">${item.type}</div>`;
+      el.onclick=()=>{item.done=!item.done;save();renderAll();};col.appendChild(el);
     });
     grid.appendChild(col);
   });
 }
 
-// ── LEADS ─────────────────────────────────────────────────────────────────────
-function scoreOf(lead) {
-  return Object.values(lead.signals || {}).reduce((a,v) => a + v, 0);
-}
-function priorityOf(score) {
-  if (score >= 10) return { label:'🔥 HOT', cls:'p-hot', key:'hot' };
-  if (score >= 5)  return { label:'⚡ WARM', cls:'p-warm', key:'warm' };
-  return { label:'❄️ COLD', cls:'p-cold', key:'cold' };
-}
-const SIG_DOT_MAP = {
-  probate:'dot-probate', prefc:'dot-prefc', divorce:'dot-divorce', permit:'dot-permit',
-  taxdel:'dot-taxdel', expired:'dot-expired', vacant:'dot-vacant',
-  equity:'dot-equity', tenure:'dot-tenure', pricedrop:'', lien:''
-};
+function scoreOf(l){return Object.values(l.signals||{}).reduce((a,v)=>a+v,0);}
+function priorityOf(s){if(s>=10)return{label:'🔥 HOT',cls:'p-hot',key:'hot'};if(s>=5)return{label:'⚡ WARM',cls:'p-warm',key:'warm'};return{label:'❄️ COLD',cls:'p-cold',key:'cold'};}
+const SIG_DOT_MAP={probate:'dot-probate',prefc:'dot-prefc',divorce:'dot-divorce',permit:'dot-permit',taxdel:'dot-taxdel',expired:'dot-expired',vacant:'dot-vacant',equity:'dot-equity',tenure:'dot-tenure',pricedrop:'',lien:''};
 
-function renderLeads() {
-  const filter = document.getElementById('filter-priority').value;
-  const tbody = document.getElementById('leads-tbody');
-  const empty = document.getElementById('leads-empty');
-  let leads = [...state.leads];
-  if (filter) leads = leads.filter(l => priorityOf(scoreOf(l)).key === filter);
-  leads.sort((a,b) => scoreOf(b) - scoreOf(a));
-
-  if (leads.length === 0) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
-  empty.style.display = 'none';
-
-  tbody.innerHTML = leads.map(l => {
-    const score = scoreOf(l);
-    const pri = priorityOf(score);
-    const srcChecks = [l.sources?.lf && 'LF', l.sources?.tax && 'TAX', l.sources?.mls && 'MLS', l.sources?.pub && 'PUB'].filter(Boolean).join(' · ') || '–';
-    const dots = Object.keys(l.signals || {}).map(k => `<div class="sig-dot ${SIG_DOT_MAP[k]||''}" title="${k}" style="background:${SIG_DOT_MAP[k]?'':' #888'}"></div>`).join('');
-    return `<tr>
-      <td><strong>${l.fname} ${l.lname}</strong></td>
-      <td style="color:var(--text2);font-size:11px;">${l.addr}</td>
-      <td style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);">${srcChecks}</td>
-      <td><div class="sig-dots">${dots}</div></td>
-      <td><span class="score-pill">${score}</span></td>
-      <td><span class="priority-badge ${pri.cls}">${pri.label}</span></td>
-      <td style="font-size:11px;color:var(--text2);">${l.status}</td>
-      <td><button class="btn btn-ghost btn-sm" onclick="deleteLead(${l.id})">✕</button></td>
-    </tr>`;
+function renderLeads(){
+  const filter=document.getElementById('filter-priority').value;
+  const tbody=document.getElementById('leads-tbody');
+  const empty=document.getElementById('leads-empty');
+  let leads=[...state.leads];
+  if(filter)leads=leads.filter(l=>priorityOf(scoreOf(l)).key===filter);
+  leads.sort((a,b)=>scoreOf(b)-scoreOf(a));
+  if(leads.length===0){tbody.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  tbody.innerHTML=leads.map(l=>{
+    const s=scoreOf(l);const p=priorityOf(s);
+    const src=[l.sources?.lf&&'LF',l.sources?.tax&&'TAX',l.sources?.mls&&'MLS',l.sources?.pub&&'PUB'].filter(Boolean).join(' · ')||'–';
+    const dots=Object.keys(l.signals||{}).map(k=>`<div class="sig-dot ${SIG_DOT_MAP[k]||''}" title="${k}"></div>`).join('');
+    return `<tr><td><strong>${l.fname} ${l.lname}</strong></td><td style="color:var(--text2);font-size:11px;">${l.addr}</td><td style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);">${src}</td><td><div class="sig-dots">${dots}</div></td><td><span class="score-pill">${s}</span></td><td><span class="priority-badge ${p.cls}">${p.label}</span></td><td style="font-size:11px;color:var(--text2);">${l.status}</td><td><button class="btn btn-ghost btn-sm" onclick="deleteLead(${l.id})">✕</button></td></tr>`;
   }).join('');
 }
+function deleteLead(id){state.leads=state.leads.filter(l=>l.id!==id);save();if(sbReady)deleteLeadFromSB(id);renderAll();}
 
-function deleteLead(id) {
-  state.leads = state.leads.filter(l => l.id !== id);
-  save();
-  if (sbReady) deleteLeadFromSB(id);
-  renderAll();
+function renderCannonball(){
+  const targets=[...state.leads].filter(l=>scoreOf(l)>=5).sort((a,b)=>scoreOf(b)-scoreOf(a)).slice(0,10);
+  const el=document.getElementById('cannonball-targets');
+  if(targets.length===0){el.innerHTML='<div class="empty"><div class="empty-icon">🎯</div><div class="empty-label">Hot + Warm leads from Signal Tracker appear here.</div></div>';}
+  else{el.innerHTML=targets.map((l,i)=>{const s=scoreOf(l);const p=priorityOf(s);const dots=Object.keys(l.signals||{}).map(k=>`<div class="sig-dot ${SIG_DOT_MAP[k]||''}" title="${k}"></div>`).join('');return `<div class="target-card"><div class="target-rank">${i+1}</div><div class="target-info"><div class="target-name">${l.fname} ${l.lname}</div><div class="target-addr">${l.addr} · ${l.phone||'–'}</div><div class="target-signals">${dots}</div></div><div class="target-score"><div class="target-score-num">${s}</div><div class="target-score-label">${p.label}</div></div><div class="target-actions"><button class="btn btn-ghost btn-sm" onclick="quickLog('${l.fname} ${l.lname}')">Log</button></div></div>`;}).join('');}
+  const logEl=document.getElementById('outreach-log');
+  if(state.outreach.length===0){logEl.innerHTML='<div class="empty"><div class="empty-icon">📋</div><div class="empty-label">No outreach logged yet.</div></div>';}
+  else{logEl.innerHTML=[...state.outreach].reverse().map(o=>{const sent=['Appointment Set','Positive — Follow Up','Listed'].includes(o.response)?'hot':o.response==='Maybe Later'?'warm':'cold';return `<div class="log-entry ${sent}"><div class="log-meta">${o.date} · ${o.method}</div><div class="log-name">${o.name}</div><div class="log-note">${o.response}${o.notes?' — '+o.notes:''}</div>${o.followup?`<div class="log-followup">↩ Follow up: ${o.followup}</div>`:''}</div>`;}).join('');}
+}
+function quickLog(name){document.getElementById('o-name').value=name;openModal('modal-add-outreach');}
+
+function renderContacts(){
+  const warm=state.leads.filter(l=>scoreOf(l)>=5).sort((a,b)=>scoreOf(b)-scoreOf(a));
+  const grid=document.getElementById('contact-cards-grid');
+  const empty=document.getElementById('contacts-empty');
+  if(warm.length===0){grid.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  grid.innerHTML=warm.map(l=>{const s=scoreOf(l);const p=priorityOf(s);const sigs=Object.keys(l.signals||{}).join(' · ')||'–';return `<div class="card"><div class="card-hdr"><div class="card-hdr-title">${l.fname} ${l.lname}</div><span class="priority-badge ${p.cls}">${p.label} · ${s}pts</span></div><div class="card-body" style="display:flex;flex-direction:column;gap:8px;"><div style="font-size:12px;color:var(--text2);">📍 ${l.addr}</div><div style="display:flex;gap:16px;"><div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);">PHONE</div><div>${l.phone||'–'}</div></div><div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);">EMAIL</div><div>${l.email||'–'}</div></div></div><div style="display:flex;gap:16px;"><div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);">VALUE</div><div>$${(l.value||0).toLocaleString()}</div></div><div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);">EQUITY</div><div>${l.equity||'–'}%</div></div><div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);">YEARS</div><div>${l.years||'–'}</div></div></div><div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:3px;">SIGNALS</div><div style="font-size:11px;color:var(--text2);">${sigs}</div></div>${l.notes?`<div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:3px;">NOTES</div><div style="font-size:12px;color:var(--text2);line-height:1.5;">${l.notes}</div></div>`:''}<div style="margin-top:4px;display:flex;gap:6px;"><button class="btn btn-ghost btn-sm" onclick="quickLog('${l.fname} ${l.lname}')">Log Contact</button><button class="btn btn-danger btn-sm" onclick="deleteLead(${l.id})">Remove</button></div></div></div>`;}).join('');
 }
 
-// ── CANNONBALL ────────────────────────────────────────────────────────────────
-function renderCannonball() {
-  const targets = [...state.leads]
-    .filter(l => scoreOf(l) >= 5)
-    .sort((a,b) => scoreOf(b) - scoreOf(a))
-    .slice(0, 10);
+function toggleSignal(el,key,pts){el.classList.toggle('active');if(el.classList.contains('active')){state.currentSignals[key]=pts;}else{delete state.currentSignals[key];}document.getElementById('score-preview').textContent=Object.values(state.currentSignals).reduce((a,v)=>a+v,0);}
 
-  const el = document.getElementById('cannonball-targets');
-  if (targets.length === 0) {
-    el.innerHTML = '<div class="empty"><div class="empty-icon">🎯</div><div class="empty-label">Hot + Warm leads from Signal Tracker appear here.</div></div>';
-  } else {
-    el.innerHTML = targets.map((l, i) => {
-      const score = scoreOf(l);
-      const pri = priorityOf(score);
-      const dots = Object.keys(l.signals || {}).map(k => `<div class="sig-dot ${SIG_DOT_MAP[k]||''}" title="${k}"></div>`).join('');
-      return `<div class="target-card">
-        <div class="target-rank">${i+1}</div>
-        <div class="target-info">
-          <div class="target-name">${l.fname} ${l.lname}</div>
-          <div class="target-addr">${l.addr} · ${l.phone || '–'}</div>
-          <div class="target-signals">${dots}</div>
-        </div>
-        <div class="target-score">
-          <div class="target-score-num">${score}</div>
-          <div class="target-score-label">${pri.label}</div>
-        </div>
-        <div class="target-actions">
-          <button class="btn btn-ghost btn-sm" onclick="quickLog('${l.fname} ${l.lname}')">Log</button>
-        </div>
-      </div>`;
-    }).join('');
-  }
-
-  const logEl = document.getElementById('outreach-log');
-  if (state.outreach.length === 0) {
-    logEl.innerHTML = '<div class="empty"><div class="empty-icon">📋</div><div class="empty-label">No outreach logged yet.</div></div>';
-  } else {
-    logEl.innerHTML = [...state.outreach].reverse().map(o => {
-      const sentiment = ['Appointment Set','Positive — Follow Up','Listed'].includes(o.response) ? 'hot' :
-                        o.response === 'Maybe Later' ? 'warm' : 'cold';
-      return `<div class="log-entry ${sentiment}">
-        <div class="log-meta">${o.date} · ${o.method}</div>
-        <div class="log-name">${o.name}</div>
-        <div class="log-note">${o.response}${o.notes ? ' — ' + o.notes : ''}</div>
-        ${o.followup ? `<div class="log-followup">↩ Follow up: ${o.followup}</div>` : ''}
-      </div>`;
-    }).join('');
-  }
+function saveLead(){
+  const l={id:Date.now(),fname:document.getElementById('l-fname').value.trim(),lname:document.getElementById('l-lname').value.trim(),phone:document.getElementById('l-phone').value.trim(),email:document.getElementById('l-email').value.trim(),addr:document.getElementById('l-addr').value.trim(),value:parseInt(document.getElementById('l-value').value)||0,equity:parseInt(document.getElementById('l-equity').value)||0,years:parseInt(document.getElementById('l-years').value)||0,status:document.getElementById('l-status').value,sources:{lf:document.getElementById('src-lf').checked,tax:document.getElementById('src-tax').checked,mls:document.getElementById('src-mls').checked,pub:document.getElementById('src-pub').checked},signals:{...state.currentSignals},notes:document.getElementById('l-notes').value.trim(),date:new Date().toISOString()};
+  if(!l.fname&&!l.addr){alert('Please enter at least a name or address.');return;}
+  state.leads.push(l);state.currentSignals={};save();closeModal('modal-add-lead');
+  ['l-fname','l-lname','l-phone','l-email','l-addr','l-value','l-equity','l-years','l-notes'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('l-status').value='New';
+  document.querySelectorAll('.signal-check').forEach(el=>el.classList.remove('active'));
+  document.getElementById('score-preview').textContent='0';
+  ['src-lf','src-tax','src-mls','src-pub'].forEach(id=>document.getElementById(id).checked=false);
+  renderAll();switchTab('signals');
 }
-
-function quickLog(name) {
-  document.getElementById('o-name').value = name;
-  openModal('modal-add-outreach');
+function saveContent(){
+  const i={id:Date.now(),brand:document.getElementById('c-brand').value,day:parseInt(document.getElementById('c-day').value),title:document.getElementById('c-title').value.trim(),type:document.getElementById('c-type').value,goal:document.getElementById('c-goal').value,done:false};
+  if(!i.title){alert('Please enter a title.');return;}
+  state.content.push(i);save();closeModal('modal-add-content');document.getElementById('c-title').value='';renderAll();
 }
-
-// ── CONTACTS ──────────────────────────────────────────────────────────────────
-function renderContacts() {
-  const warm = state.leads.filter(l => scoreOf(l) >= 5).sort((a,b) => scoreOf(b)-scoreOf(a));
-  const grid = document.getElementById('contact-cards-grid');
-  const empty = document.getElementById('contacts-empty');
-  if (warm.length === 0) { grid.innerHTML = ''; empty.style.display = 'block'; return; }
-  empty.style.display = 'none';
-  grid.innerHTML = warm.map(l => {
-    const score = scoreOf(l);
-    const pri = priorityOf(score);
-    const sigs = Object.keys(l.signals || {}).join(' · ') || '–';
-    return `<div class="card">
-      <div class="card-hdr">
-        <div class="card-hdr-title">${l.fname} ${l.lname}</div>
-        <span class="priority-badge ${pri.cls}">${pri.label} · ${score}pts</span>
-      </div>
-      <div class="card-body" style="display:flex;flex-direction:column;gap:8px;">
-        <div style="font-size:12px;color:var(--text2);">📍 ${l.addr}</div>
-        <div style="display:flex;gap:16px;">
-          <div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);">PHONE</div><div style="font-size:13px;">${l.phone || '–'}</div></div>
-          <div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);">EMAIL</div><div style="font-size:13px;">${l.email || '–'}</div></div>
-        </div>
-        <div style="display:flex;gap:16px;">
-          <div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);">VALUE</div><div style="font-size:13px;">$${(l.value||0).toLocaleString()}</div></div>
-          <div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);">EQUITY</div><div style="font-size:13px;">${l.equity||'–'}%</div></div>
-          <div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);">YEARS</div><div style="font-size:13px;">${l.years||'–'}</div></div>
-        </div>
-        <div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:3px;">SIGNALS</div><div style="font-size:11px;color:var(--text2);">${sigs}</div></div>
-        ${l.notes ? `<div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:3px;">NOTES</div><div style="font-size:12px;color:var(--text2);line-height:1.5;">${l.notes}</div></div>` : ''}
-        <div style="margin-top:4px;display:flex;gap:6px;">
-          <button class="btn btn-ghost btn-sm" onclick="quickLog('${l.fname} ${l.lname}')">Log Contact</button>
-          <button class="btn btn-danger btn-sm" onclick="deleteLead(${l.id})">Remove</button>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
+function saveOutreach(){
+  const e={id:Date.now(),name:document.getElementById('o-name').value.trim(),method:document.getElementById('o-method').value,response:document.getElementById('o-response').value,followup:document.getElementById('o-followup').value,notes:document.getElementById('o-notes').value.trim(),date:new Date().toLocaleDateString()};
+  if(!e.name){alert('Please enter a name.');return;}
+  state.outreach.push(e);save();if(sbReady)saveOutreachToSB(e);closeModal('modal-add-outreach');
+  ['o-name','o-followup','o-notes'].forEach(id=>document.getElementById(id).value='');renderAll();
 }
-
-// ── SIGNAL PICKER ─────────────────────────────────────────────────────────────
-function toggleSignal(el, key, pts) {
-  el.classList.toggle('active');
-  if (el.classList.contains('active')) {
-    state.currentSignals[key] = pts;
-  } else {
-    delete state.currentSignals[key];
-  }
-  const total = Object.values(state.currentSignals).reduce((a,v) => a+v, 0);
-  document.getElementById('score-preview').textContent = total;
-}
-
-// ── SAVE LEAD ─────────────────────────────────────────────────────────────────
-function saveLead() {
-  const lead = {
-    id: Date.now(),
-    fname: document.getElementById('l-fname').value.trim(),
-    lname: document.getElementById('l-lname').value.trim(),
-    phone: document.getElementById('l-phone').value.trim(),
-    email: document.getElementById('l-email').value.trim(),
-    addr: document.getElementById('l-addr').value.trim(),
-    value: parseInt(document.getElementById('l-value').value) || 0,
-    equity: parseInt(document.getElementById('l-equity').value) || 0,
-    years: parseInt(document.getElementById('l-years').value) || 0,
-    status: document.getElementById('l-status').value,
-    sources: {
-      lf: document.getElementById('src-lf').checked,
-      tax: document.getElementById('src-tax').checked,
-      mls: document.getElementById('src-mls').checked,
-      pub: document.getElementById('src-pub').checked,
-    },
-    signals: { ...state.currentSignals },
-    notes: document.getElementById('l-notes').value.trim(),
-    date: new Date().toISOString(),
-  };
-  if (!lead.fname && !lead.addr) { alert('Please enter at least a name or address.'); return; }
-  state.leads.push(lead);
-  state.currentSignals = {};
-  save();
-  closeModal('modal-add-lead');
-  ['l-fname','l-lname','l-phone','l-email','l-addr','l-value','l-equity','l-years','l-notes'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('l-status').value = 'New';
-  document.querySelectorAll('.signal-check').forEach(el => el.classList.remove('active'));
-  document.getElementById('score-preview').textContent = '0';
-  ['src-lf','src-tax','src-mls','src-pub'].forEach(id => document.getElementById(id).checked = false);
-  renderAll();
-  switchTab('signals');
-}
-
-// ── SAVE CONTENT ──────────────────────────────────────────────────────────────
-function saveContent() {
-  const item = {
-    id: Date.now(),
-    brand: document.getElementById('c-brand').value,
-    day: parseInt(document.getElementById('c-day').value),
-    title: document.getElementById('c-title').value.trim(),
-    type: document.getElementById('c-type').value,
-    goal: document.getElementById('c-goal').value,
-    done: false,
-  };
-  if (!item.title) { alert('Please enter a title.'); return; }
-  state.content.push(item);
-  save();
-  closeModal('modal-add-content');
-  document.getElementById('c-title').value = '';
-  renderAll();
-}
-
-// ── SAVE OUTREACH ─────────────────────────────────────────────────────────────
-function saveOutreach() {
-  const entry = {
-    id: Date.now(),
-    name: document.getElementById('o-name').value.trim(),
-    method: document.getElementById('o-method').value,
-    response: document.getElementById('o-response').value,
-    followup: document.getElementById('o-followup').value,
-    notes: document.getElementById('o-notes').value.trim(),
-    date: new Date().toLocaleDateString(),
-  };
-  if (!entry.name) { alert('Please enter a name.'); return; }
-  state.outreach.push(entry);
-  save();
-  if (sbReady) saveOutreachToSB(entry);
-  closeModal('modal-add-outreach');
-  ['o-name','o-followup','o-notes'].forEach(id => document.getElementById(id).value = '');
-  renderAll();
-}
-
-// ── MODAL HELPERS ─────────────────────────────────────────────────────────────
-function openModal(id) { document.getElementById(id).classList.add('open'); }
-function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-document.querySelectorAll('.modal-overlay').forEach(m => {
-  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
-});
-
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+document.querySelectorAll('.modal-overlay').forEach(m=>{m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');});});
 init();
 </script>
 </body>
