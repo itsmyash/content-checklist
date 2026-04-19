@@ -168,6 +168,12 @@
   .empty-icon{font-size:32px;margin-bottom:10px;}
   .empty-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;}
   .spacer{height:16px;}
+  /* ── BRIEFING TAB ── */
+  .briefing-meta{display:flex;gap:16px;align-items:center;margin-bottom:16px;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:4px;flex-wrap:wrap;}
+  .briefing-meta-item{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:1px;}
+  .briefing-meta-item strong{color:var(--text);font-size:12px;display:block;margin-top:2px;}
+  .briefing-iframe-wrap{border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+  .briefing-iframe-wrap iframe{width:100%;height:80vh;border:none;display:block;}
   @media(max-width:900px){.grid-4{grid-template-columns:repeat(2,1fr);}.grid-3{grid-template-columns:1fr 1fr;}.week-grid{grid-template-columns:repeat(3,1fr);}.kpi-grid{grid-template-columns:repeat(2,1fr);}.system-docs-btn{font-size:9px;padding:5px 10px;}}
 </style>
 </head>
@@ -187,6 +193,7 @@
   <button class="tab-btn" data-tab="signals"><span class="tab-dot" style="background:var(--gold)"></span>Signal Tracker</button>
   <button class="tab-btn" data-tab="cannonball"><span class="tab-dot" style="background:var(--hot)"></span>Cannonball Campaign</button>
   <button class="tab-btn" data-tab="contacts"><span class="tab-dot" style="background:var(--accent3)"></span>Contact Cards</button>
+  <button class="tab-btn" data-tab="briefing"><span class="tab-dot" style="background:var(--purple)"></span>Weekly Briefing</button>
 </div>
 
 <div class="main">
@@ -339,7 +346,28 @@
   <div class="empty" id="contacts-empty"><div class="empty-icon">📇</div><div class="empty-label">Leads scored 5+ appear here as full contact cards.</div></div>
 </div>
 
+<!-- ══ WEEKLY BRIEFING ══ -->
+<div class="tab-panel" id="tab-briefing">
+  <div class="section-hdr">
+    <div class="section-title">Weekly Briefing</div>
+    <div class="section-sub">all 20 outputs · scripts · captions · image direction · production tracker</div>
+    <div style="margin-left:auto;">
+      <a href="roast-weekly-scroll.html" target="_blank" class="btn btn-primary btn-sm">↗ Open Full Screen</a>
+    </div>
+  </div>
+  <div class="briefing-meta">
+    <div class="briefing-meta-item">WEEK OF<strong>April 20 – 26, 2026</strong></div>
+    <div class="briefing-meta-item">OUTPUTS<strong>20</strong></div>
+    <div class="briefing-meta-item">PIECES<strong>68</strong></div>
+    <div class="briefing-meta-item">BRANDS<strong>@its.myash · @alexa.realtor · @fillerandroast · @life.byalexa</strong></div>
+    <div style="margin-left:auto;font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);">Replace <code style="background:var(--bg3);padding:1px 5px;border-radius:2px;font-family:'DM Mono',monospace;">roast-weekly-scroll.html</code> every Sunday</div>
+  </div>
+  <div class="briefing-iframe-wrap">
+    <iframe src="roast-weekly-scroll.html" title="Weekly Briefing — Week of April 20, 2026"></iframe>
+  </div>
 </div>
+
+</div><!-- /main -->
 
 <!-- ══ MODALS ══ -->
 <div class="modal-overlay" id="modal-add-lead">
@@ -463,7 +491,6 @@ const SB_HDR={'Content-Type':'application/json','apikey':SB_KEY,'Authorization':
 async function sbGet(t){try{const r=await fetch(`${SB_URL}/rest/v1/${t}?select=*&order=id`,{headers:SB_HDR});if(!r.ok)return null;return await r.json();}catch(e){return null;}}
 async function sbUpsert(t,row){try{const r=await fetch(`${SB_URL}/rest/v1/${t}`,{method:'POST',headers:{...SB_HDR,'Prefer':'resolution=merge-duplicates'},body:JSON.stringify(row)});return r.ok;}catch(e){return false;}}
 async function sbDelete(t,id){try{const r=await fetch(`${SB_URL}/rest/v1/${t}?id=eq.${id}`,{method:'DELETE',headers:SB_HDR});return r.ok;}catch(e){return false;}}
-
 const STORAGE_KEY='myash_ops_v3';
 let state={leads:[],content:[],outreach:[],checks:{},currentSignals:{}};
 let sbReady=false;
@@ -488,7 +515,6 @@ async function syncToSupabase(){
 async function saveOutreachToSB(e){await sbUpsert('ops_outreach',{id:String(e.id),name:e.name,method:e.method,response:e.response,followup:e.followup||'',notes:e.notes||'',date:e.date});}
 async function deleteLeadFromSB(id){await sbDelete('ops_leads',String(id));}
 function showSyncBadge(s){const b=document.getElementById('sync-badge');if(!b)return;b.textContent=s==='syncing'?'⟳ syncing...':'✓ synced';b.style.color=s==='syncing'?'var(--gold)':'var(--accent)';}
-
 let supabaseClient=null;
 function initRealtime(){
   try{
@@ -499,129 +525,28 @@ function initRealtime(){
     supabaseClient.channel('checks_ch').on('postgres_changes',{event:'*',schema:'public',table:'ops_checks'},async()=>{const c=await sbGet('ops_checks');if(c&&c.length>0){state.checks={};c.forEach(r=>{state.checks[r.check_id]=r.checked;});saveLocal();renderMondayChecks();}}).subscribe();
   }catch(e){console.log('Realtime init failed:',e);}
 }
-
 function resetContent(){if(confirm('Reset the content schedule to the master template?')){state.content=[];seedDefaults();save();renderAll();}}
 function init(){loadLocal();setDate();seedDefaults();renderAll();bindTabs();loadFromSupabase().then(()=>initRealtime());}
 function setDate(){const now=new Date();const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];document.getElementById('topbar-date').textContent=`${days[now.getDay()]} ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;document.getElementById('week-label').textContent=`week of ${months[now.getMonth()]} ${now.getDate()}`;}
-
 function seedDefaults(){
-  if(state.leads.length===0){
-    state.leads=[
-      {id:1,fname:'Mary',lname:'Davis',phone:'610-555-0303',email:'mary@email.com',addr:'789 Pine Rd, Wayne PA 18087',value:550000,equity:100,years:22,status:'Warm Lead',sources:{lf:true,tax:true,mls:false,pub:true},signals:{permit:4,equity:2,tenure:2},notes:'Permit pulled Jan — kitchen + bath. Free & clear.',date:new Date().toISOString()},
-      {id:2,fname:'Tom',lname:'Wilson',phone:'570-555-0404',email:'twilson@email.com',addr:'22 Deer Trail, Mt Pocono PA 18344',value:380000,equity:72,years:18,status:'Hot Lead',sources:{lf:true,tax:true,mls:true,pub:true},signals:{probate:5,equity:2,tenure:2},notes:'Probate filed Feb 3.',date:new Date().toISOString()},
-      {id:3,fname:'Jane',lname:'Smith',phone:'215-555-0101',email:'jane@email.com',addr:'123 Maple St, Stroudsburg PA 18360',value:450000,equity:58,years:14,status:'Warm Lead',sources:{lf:true,tax:true,mls:true,pub:true},signals:{expired:3,equity:2,tenure:2},notes:'Expired twice. Follow up Apr 1.',date:new Date().toISOString()},
-      {id:4,fname:'Carol',lname:'White',phone:'570-555-0505',email:'',addr:'8 Birch Ln, Tobyhanna PA 18466',value:295000,equity:30,years:5,status:'New',sources:{lf:true,tax:false,mls:true,pub:true},signals:{prefc:4},notes:'Sheriff sale — contact NOW.',date:new Date().toISOString()},
-    ];
-  }
-  if(state.content.length===0){
-    state.content=[
-      // SUNDAY
-      {id:1,brand:'system',day:0,title:'🟢 SUNDAY RECORDING — Hub video English + Spanish second take. ~45 min.',type:'Recording Block',goal:'Grow Following',done:false},
-      {id:2,brand:'realtor',day:0,title:'Hub Video — Record & Upload (English)',type:'YouTube · 8–12 min',goal:'Grow Following',done:false},
-      {id:3,brand:'spanish',day:0,title:'🇪🇸 Hub Video — Spanish Second Take & Upload',type:'YouTube · En Español Playlist',goal:'Grow Following',done:false},
-      {id:4,brand:'fnr',day:0,title:'☕ Before the First Draw',type:'IG · FB Biz · 9:30 AM',goal:'Drive Sales',done:false},
-      {id:5,brand:'myash',day:0,title:'☕🍂 Coffee & Ash — Ritual',type:'IG · FB · 10:15 AM',goal:'Drive Sales',done:false},
-      {id:6,brand:'realtor',day:0,title:'🙏 Sunday Gratitude — Community',type:'Nextdoor · 9:15 AM',goal:'RE Leads',done:false},
-      {id:7,brand:'life',day:0,title:'@life.byalexa — Behind the Operator',type:'IG · personal voice · operator life moment',goal:'Grow Following',done:false},
-      // MONDAY
-      {id:8,brand:'substack',day:1,title:'✍️ ROAST — Operator Life',type:'Substack · personal story first · 8:00 AM',goal:'Grow Following',done:false},
-      {id:9,brand:'myash',day:1,title:"🌙 Tonight's Smoke — Carousel",type:'IG · 7:00 PM',goal:'Drive Sales',done:false},
-      {id:10,brand:'myash',day:1,title:'🎬 TikTok — Hub Repurpose',type:'TikTok · 6:00 PM',goal:'Grow Following',done:false},
-      {id:11,brand:'realtor',day:1,title:'📊 Market Signal',type:'LinkedIn · 8:00 AM',goal:'RE Leads',done:false},
-      {id:12,brand:'realtor',day:1,title:'📍 Google Business Post',type:'Google Biz · 9:00 AM',goal:'RE Leads',done:false},
-      {id:13,brand:'realtor',day:1,title:'🏠 Real Estate Insight',type:'FB Personal · 8:00 AM',goal:'RE Leads',done:false},
-      {id:14,brand:'life',day:1,title:'@life.byalexa — Operator Moment',type:'IG · personal · behind the scenes',goal:'Grow Following',done:false},
-      // TUESDAY
-      {id:15,brand:'myash',day:2,title:'🎬 IG Reel — Hub Repurpose (English)',type:'IG Reel · 10:00 AM',goal:'Grow Following',done:false},
-      {id:16,brand:'spanish',day:2,title:'🇪🇸 Car Confession — Real Estate EN',type:'IG @alexa.realtor · Spanish · 11:00 AM',goal:'RE Leads',done:false},
-      {id:17,brand:'realtor',day:2,title:'📍 Pocono Pulse — Market Update',type:'IG · 11:00 AM',goal:'RE Leads',done:false},
-      {id:18,brand:'realtor',day:2,title:'🚗 Car Confession — Real Estate (English)',type:'IG · 12:00 PM · 20 sec',goal:'RE Leads',done:false},
-      {id:19,brand:'realtor',day:2,title:'🏡 Neighborly Post',type:'Nextdoor · 6:00 PM',goal:'RE Leads',done:false},
-      {id:20,brand:'fnr',day:2,title:"🔥 Nell's Social — This Week's Smoke",type:'FB tag · 6:00 PM',goal:'Drive Sales',done:false},
-      // WEDNESDAY
-      {id:21,brand:'system',day:3,title:'🟡 WEDNESDAY RECORDING — English + Spanish second takes. Car confessions, Ashes & Escrows, Short, DR video, Cigar/Lounge video.',type:'Recording Block',goal:'Grow Following',done:false},
-      {id:22,brand:'realtor',day:3,title:'🎬 RECORD: Ashes & Escrows (English)',type:'YouTube · 6–8 min · uploads Thu',goal:'RE Leads',done:false},
-      {id:23,brand:'realtor',day:3,title:'▶ RECORD: YouTube Short (English)',type:'YouTube Short · under 60 sec · uploads Thu',goal:'RE Leads',done:false},
-      {id:24,brand:'realtor',day:3,title:'🚗 RECORD: Car Confessions Batch (English)',type:'IG · Tue RE + Thu Entrepreneur',goal:'RE Leads',done:false},
-      {id:25,brand:'spanish',day:3,title:'🇪🇸 RECORD: Car Confessions Spanish Batch',type:'IG @alexa.realtor · second takes in Spanish',goal:'RE Leads',done:false},
-      {id:26,brand:'myash',day:3,title:'🚗 RECORD: Car Confession — Entrepreneur & Cigars',type:'IG @its.myash · 20 sec · upload 12:00 PM',goal:'Grow Following',done:false},
-      {id:27,brand:'realtor',day:3,title:'🌴 RECORD: DR Video (English)',type:'YouTube · under 60 sec · one DR topic',goal:'RE Leads',done:false},
-      {id:28,brand:'spanish',day:3,title:'🇪🇸 RECORD: DR Video (Spanish)',type:'YouTube · En Español Playlist · same topic',goal:'RE Leads',done:false},
-      {id:29,brand:'myash',day:3,title:'🍂 RECORD: Cigar/Lounge Video',type:'IG · TikTok · @its.myash · under 60 sec',goal:'Drive Sales',done:false},
-      {id:30,brand:'myash',day:3,title:"🌙 RECORD: Tonight's Smoke Batch",type:'Cigar content · carousel for Monday',goal:'Drive Sales',done:false},
-      {id:31,brand:'fnr',day:3,title:'📸 F&R Pairing — Photo Capture Only',type:'Coffee + cigar setup · stills only today',goal:'Drive Sales',done:false},
-      {id:32,brand:'myash',day:3,title:'📸 Ash Shot — Upload',type:'IG · 8:00 AM',goal:'Grow Following',done:false},
-      {id:33,brand:'realtor',day:3,title:'📊 Market Insight — LinkedIn Upload',type:'LinkedIn · 9:00 AM',goal:'RE Leads',done:false},
-      {id:34,brand:'realtor',day:3,title:'🏷 Under Contract — Story Only',type:'IG Story · FB Story · 11:00 AM',goal:'RE Leads',done:false},
-      {id:35,brand:'life',day:3,title:'@life.byalexa — Wednesday Energy',type:'IG · recording day behind the scenes',goal:'Grow Following',done:false},
-      // THURSDAY
-      {id:36,brand:'substack',day:4,title:'✍️ ROAST — Experience Economy',type:'Substack · ritual · lifestyle · 8:00 AM',goal:'Grow Following',done:false},
-      {id:37,brand:'realtor',day:4,title:'🎬 Ashes & Escrows — Upload',type:'YouTube · recorded Wed · 10:00 AM',goal:'RE Leads',done:false},
-      {id:38,brand:'realtor',day:4,title:'▶ YouTube Short — Upload (English)',type:'YouTube Short · recorded Wed · 11:00 AM',goal:'RE Leads',done:false},
-      {id:39,brand:'realtor',day:4,title:'🌴 DR Video — Upload (English + Spanish)',type:'YouTube · both playlists · 12:00 PM',goal:'RE Leads',done:false},
-      {id:40,brand:'myash',day:4,title:'🎵 Native TikTok Re-record — Record & Upload',type:'TikTok · no watermark · 12:00 PM',goal:'Grow Following',done:false},
-      {id:41,brand:'spanish',day:4,title:'🇪🇸 Car Confession — Entrepreneur Life EN',type:'IG @alexa.realtor · Spanish · 1:00 PM',goal:'RE Leads',done:false},
-      {id:42,brand:'realtor',day:4,title:'🚗 Car Confession — Entrepreneur Life (Upload)',type:'IG · recorded Wed · 12:00 PM',goal:'RE Leads',done:false},
-      {id:43,brand:'realtor',day:4,title:'📊 Investor Signal (pre-sched)',type:'LinkedIn · 8:30 AM',goal:'RE Leads',done:false},
-      {id:44,brand:'myash',day:4,title:'🍂 Cigar/Lounge Video — Upload',type:'IG · TikTok · @its.myash · 3:00 PM',goal:'Drive Sales',done:false},
-      {id:45,brand:'fnr',day:4,title:'🍃 RECORD: F&R Pairing Video',type:'Photos captured Wed · uploads Fri',goal:'Drive Sales',done:false},
-      {id:46,brand:'realtor',day:4,title:'🏘 Community Roundup',type:'Nextdoor · 6:00 PM',goal:'RE Leads',done:false},
-      // FRIDAY
-      {id:47,brand:'fnr',day:5,title:'☕ Coffee for the Leaf',type:'IG · FB Biz · 9:00 AM',goal:'Drive Sales',done:false},
-      {id:48,brand:'fnr',day:5,title:'🍃 The Pairing — Cigar + Coffee Ed. (bi-weekly)',type:'IG · recorded Thu · 10:00 AM',goal:'Drive Sales',done:false},
-      {id:49,brand:'myash',day:5,title:'☕ Coffee for the Leaf TikTok',type:'TikTok @its.myash · different edit · 11:00 AM',goal:'Drive Sales',done:false},
-      {id:50,brand:'realtor',day:5,title:'📊 Market Insight (pre-sched)',type:'FB Biz · 8:00 AM',goal:'RE Leads',done:false},
-      {id:51,brand:'spanish',day:5,title:'🇪🇸 Spanish Post — FB Business (bi-weekly)',type:'FB Biz @alexa.realtor · Spanish · real estate',goal:'RE Leads',done:false},
-      {id:52,brand:'spanish',day:5,title:'🇪🇸 Personal FB — Spanish Post (weekly)',type:'FB Personal · Alexa voice · community · en Español',goal:'Grow Following',done:false},
-      {id:53,brand:'spanish',day:5,title:'🇪🇸 Google Business Post EN (bi-weekly)',type:'Google Biz · Spanish · keyword-rich',goal:'RE Leads',done:false},
-      {id:54,brand:'system',day:5,title:'📣 Facebook — All Brands Repurpose',type:'FB · all brands · 12:00 PM',goal:'Grow Following',done:false},
-      {id:55,brand:'myash',day:5,title:'🥃 Weekend Smoke — Reel',type:'IG · 5:00 PM · feed post',goal:'Drive Sales',done:false},
-      // SATURDAY
-      {id:56,brand:'realtor',day:6,title:'🏡 Weekend Market Tip',type:'Nextdoor · 10:00 AM',goal:'RE Leads',done:false},
-      {id:57,brand:'myash',day:6,title:'📸 Stories — Behind the Scenes',type:'IG Story only · 2:00 PM',goal:'Grow Following',done:false},
-      {id:58,brand:'spanish',day:6,title:'🇪🇸 Spanish IG Post — @alexa.realtor (weekly)',type:'IG @alexa.realtor · Spanish real estate post',goal:'RE Leads',done:false},
-      {id:59,brand:'spanish',day:6,title:'🇪🇸 LinkedIn Post EN (bi-weekly)',type:'LinkedIn @alexa.realtor · Spanish · real estate',goal:'RE Leads',done:false},
-      {id:60,brand:'life',day:6,title:'@life.byalexa — Weekend Operator Life',type:'IG · personal · lifestyle · 2:00 PM',goal:'Grow Following',done:false},
-    ];
-  }
+  if(state.leads.length===0){state.leads=[{id:1,fname:'Mary',lname:'Davis',phone:'610-555-0303',email:'mary@email.com',addr:'789 Pine Rd, Wayne PA 18087',value:550000,equity:100,years:22,status:'Warm Lead',sources:{lf:true,tax:true,mls:false,pub:true},signals:{permit:4,equity:2,tenure:2},notes:'Permit pulled Jan — kitchen + bath. Free & clear.',date:new Date().toISOString()},{id:2,fname:'Tom',lname:'Wilson',phone:'570-555-0404',email:'twilson@email.com',addr:'22 Deer Trail, Mt Pocono PA 18344',value:380000,equity:72,years:18,status:'Hot Lead',sources:{lf:true,tax:true,mls:true,pub:true},signals:{probate:5,equity:2,tenure:2},notes:'Probate filed Feb 3.',date:new Date().toISOString()},{id:3,fname:'Jane',lname:'Smith',phone:'215-555-0101',email:'jane@email.com',addr:'123 Maple St, Stroudsburg PA 18360',value:450000,equity:58,years:14,status:'Warm Lead',sources:{lf:true,tax:true,mls:true,pub:true},signals:{expired:3,equity:2,tenure:2},notes:'Expired twice. Follow up Apr 1.',date:new Date().toISOString()},{id:4,fname:'Carol',lname:'White',phone:'570-555-0505',email:'',addr:'8 Birch Ln, Tobyhanna PA 18466',value:295000,equity:30,years:5,status:'New',sources:{lf:true,tax:false,mls:true,pub:true},signals:{prefc:4},notes:'Sheriff sale — contact NOW.',date:new Date().toISOString()}];}
+  if(state.content.length===0){state.content=[{id:1,brand:'system',day:0,title:'🟢 SUNDAY RECORDING — Hub video English + Spanish second take. ~45 min.',type:'Recording Block',goal:'Grow Following',done:false},{id:2,brand:'realtor',day:0,title:'Hub Video — Record & Upload (English)',type:'YouTube · 8–12 min',goal:'Grow Following',done:false},{id:3,brand:'spanish',day:0,title:'🇪🇸 Hub Video — Spanish Second Take & Upload',type:'YouTube · En Español Playlist',goal:'Grow Following',done:false},{id:4,brand:'fnr',day:0,title:'☕ Before the First Draw',type:'IG · FB Biz · 9:30 AM',goal:'Drive Sales',done:false},{id:5,brand:'myash',day:0,title:'☕🍂 Coffee & Ash — Ritual',type:'IG · FB · 10:15 AM',goal:'Drive Sales',done:false},{id:6,brand:'realtor',day:0,title:'🙏 Sunday Gratitude — Community',type:'Nextdoor · 9:15 AM',goal:'RE Leads',done:false},{id:7,brand:'life',day:0,title:'@life.byalexa — Behind the Operator',type:'IG · personal voice · operator life moment',goal:'Grow Following',done:false},{id:8,brand:'substack',day:1,title:'✍️ ROAST — Operator Life',type:'Substack · personal story first · 8:00 AM',goal:'Grow Following',done:false},{id:9,brand:'myash',day:1,title:"🌙 Tonight's Smoke — Carousel",type:'IG · 7:00 PM',goal:'Drive Sales',done:false},{id:10,brand:'myash',day:1,title:'🎬 TikTok — Hub Repurpose',type:'TikTok · 6:00 PM',goal:'Grow Following',done:false},{id:11,brand:'realtor',day:1,title:'📊 Market Signal',type:'LinkedIn · 8:00 AM',goal:'RE Leads',done:false},{id:12,brand:'realtor',day:1,title:'📍 Google Business Post',type:'Google Biz · 9:00 AM',goal:'RE Leads',done:false},{id:13,brand:'realtor',day:1,title:'🏠 Real Estate Insight',type:'FB Personal · 8:00 AM',goal:'RE Leads',done:false},{id:14,brand:'life',day:1,title:'@life.byalexa — Operator Moment',type:'IG · personal · behind the scenes',goal:'Grow Following',done:false},{id:15,brand:'myash',day:2,title:'🎬 IG Reel — Hub Repurpose (English)',type:'IG Reel · 10:00 AM',goal:'Grow Following',done:false},{id:16,brand:'spanish',day:2,title:'🇪🇸 Car Confession — Real Estate EN',type:'IG @alexa.realtor · Spanish · 11:00 AM',goal:'RE Leads',done:false},{id:17,brand:'realtor',day:2,title:'📍 Pocono Pulse — Market Update',type:'IG · 11:00 AM',goal:'RE Leads',done:false},{id:18,brand:'realtor',day:2,title:'🚗 Car Confession — Real Estate (English)',type:'IG · 12:00 PM · 20 sec',goal:'RE Leads',done:false},{id:19,brand:'realtor',day:2,title:'🏡 Neighborly Post',type:'Nextdoor · 6:00 PM',goal:'RE Leads',done:false},{id:20,brand:'fnr',day:2,title:"🔥 Nell's Social — This Week's Smoke",type:'FB tag · 6:00 PM',goal:'Drive Sales',done:false},{id:21,brand:'system',day:3,title:'🟡 WEDNESDAY RECORDING — English + Spanish second takes. Car confessions, Ashes & Escrows, Short, DR video, Cigar/Lounge video.',type:'Recording Block',goal:'Grow Following',done:false},{id:22,brand:'realtor',day:3,title:'🎬 RECORD: Ashes & Escrows (English)',type:'YouTube · 6–8 min · uploads Thu',goal:'RE Leads',done:false},{id:23,brand:'realtor',day:3,title:'▶ RECORD: YouTube Short (English)',type:'YouTube Short · under 60 sec · uploads Thu',goal:'RE Leads',done:false},{id:24,brand:'realtor',day:3,title:'🚗 RECORD: Car Confessions Batch (English)',type:'IG · Tue RE + Thu Entrepreneur',goal:'RE Leads',done:false},{id:25,brand:'spanish',day:3,title:'🇪🇸 RECORD: Car Confessions Spanish Batch',type:'IG @alexa.realtor · second takes in Spanish',goal:'RE Leads',done:false},{id:26,brand:'myash',day:3,title:'🚗 RECORD: Car Confession — Entrepreneur & Cigars',type:'IG @its.myash · 20 sec · upload 12:00 PM',goal:'Grow Following',done:false},{id:27,brand:'realtor',day:3,title:'🌴 RECORD: DR Video (English)',type:'YouTube · under 60 sec · one DR topic',goal:'RE Leads',done:false},{id:28,brand:'spanish',day:3,title:'🇪🇸 RECORD: DR Video (Spanish)',type:'YouTube · En Español Playlist · same topic',goal:'RE Leads',done:false},{id:29,brand:'myash',day:3,title:'🍂 RECORD: Cigar/Lounge Video',type:'IG · TikTok · @its.myash · under 60 sec',goal:'Drive Sales',done:false},{id:30,brand:'myash',day:3,title:"🌙 RECORD: Tonight's Smoke Batch",type:'Cigar content · carousel for Monday',goal:'Drive Sales',done:false},{id:31,brand:'fnr',day:3,title:'📸 F&R Pairing — Photo Capture Only',type:'Coffee + cigar setup · stills only today',goal:'Drive Sales',done:false},{id:32,brand:'myash',day:3,title:'📸 Ash Shot — Upload',type:'IG · 8:00 AM',goal:'Grow Following',done:false},{id:33,brand:'realtor',day:3,title:'📊 Market Insight — LinkedIn Upload',type:'LinkedIn · 9:00 AM',goal:'RE Leads',done:false},{id:34,brand:'realtor',day:3,title:'🏷 Under Contract — Story Only',type:'IG Story · FB Story · 11:00 AM',goal:'RE Leads',done:false},{id:35,brand:'life',day:3,title:'@life.byalexa — Wednesday Energy',type:'IG · recording day behind the scenes',goal:'Grow Following',done:false},{id:36,brand:'substack',day:4,title:'✍️ ROAST — Experience Economy',type:'Substack · ritual · lifestyle · 8:00 AM',goal:'Grow Following',done:false},{id:37,brand:'realtor',day:4,title:'🎬 Ashes & Escrows — Upload',type:'YouTube · recorded Wed · 10:00 AM',goal:'RE Leads',done:false},{id:38,brand:'realtor',day:4,title:'▶ YouTube Short — Upload (English)',type:'YouTube Short · recorded Wed · 11:00 AM',goal:'RE Leads',done:false},{id:39,brand:'realtor',day:4,title:'🌴 DR Video — Upload (English + Spanish)',type:'YouTube · both playlists · 12:00 PM',goal:'RE Leads',done:false},{id:40,brand:'myash',day:4,title:'🎵 Native TikTok Re-record — Record & Upload',type:'TikTok · no watermark · 12:00 PM',goal:'Grow Following',done:false},{id:41,brand:'spanish',day:4,title:'🇪🇸 Car Confession — Entrepreneur Life EN',type:'IG @alexa.realtor · Spanish · 1:00 PM',goal:'RE Leads',done:false},{id:42,brand:'realtor',day:4,title:'🚗 Car Confession — Entrepreneur Life (Upload)',type:'IG · recorded Wed · 12:00 PM',goal:'RE Leads',done:false},{id:43,brand:'realtor',day:4,title:'📊 Investor Signal (pre-sched)',type:'LinkedIn · 8:30 AM',goal:'RE Leads',done:false},{id:44,brand:'myash',day:4,title:'🍂 Cigar/Lounge Video — Upload',type:'IG · TikTok · @its.myash · 3:00 PM',goal:'Drive Sales',done:false},{id:45,brand:'fnr',day:4,title:'🍃 RECORD: F&R Pairing Video',type:'Photos captured Wed · uploads Fri',goal:'Drive Sales',done:false},{id:46,brand:'realtor',day:4,title:'🏘 Community Roundup',type:'Nextdoor · 6:00 PM',goal:'RE Leads',done:false},{id:47,brand:'fnr',day:5,title:'☕ Coffee for the Leaf',type:'IG · FB Biz · 9:00 AM',goal:'Drive Sales',done:false},{id:48,brand:'fnr',day:5,title:'🍃 The Pairing — Cigar + Coffee Ed. (bi-weekly)',type:'IG · recorded Thu · 10:00 AM',goal:'Drive Sales',done:false},{id:49,brand:'myash',day:5,title:'☕ Coffee for the Leaf TikTok',type:'TikTok @its.myash · different edit · 11:00 AM',goal:'Drive Sales',done:false},{id:50,brand:'realtor',day:5,title:'📊 Market Insight (pre-sched)',type:'FB Biz · 8:00 AM',goal:'RE Leads',done:false},{id:51,brand:'spanish',day:5,title:'🇪🇸 Spanish Post — FB Business (bi-weekly)',type:'FB Biz @alexa.realtor · Spanish · real estate',goal:'RE Leads',done:false},{id:52,brand:'spanish',day:5,title:'🇪🇸 Personal FB — Spanish Post (weekly)',type:'FB Personal · Alexa voice · community · en Español',goal:'Grow Following',done:false},{id:53,brand:'spanish',day:5,title:'🇪🇸 Google Business Post EN (bi-weekly)',type:'Google Biz · Spanish · keyword-rich',goal:'RE Leads',done:false},{id:54,brand:'system',day:5,title:'📣 Facebook — All Brands Repurpose',type:'FB · all brands · 12:00 PM',goal:'Grow Following',done:false},{id:55,brand:'myash',day:5,title:'🥃 Weekend Smoke — Reel',type:'IG · 5:00 PM · feed post',goal:'Drive Sales',done:false},{id:56,brand:'realtor',day:6,title:'🏡 Weekend Market Tip',type:'Nextdoor · 10:00 AM',goal:'RE Leads',done:false},{id:57,brand:'myash',day:6,title:'📸 Stories — Behind the Scenes',type:'IG Story only · 2:00 PM',goal:'Grow Following',done:false},{id:58,brand:'spanish',day:6,title:'🇪🇸 Spanish IG Post — @alexa.realtor (weekly)',type:'IG @alexa.realtor · Spanish real estate post',goal:'RE Leads',done:false},{id:59,brand:'spanish',day:6,title:'🇪🇸 LinkedIn Post EN (bi-weekly)',type:'LinkedIn @alexa.realtor · Spanish · real estate',goal:'RE Leads',done:false},{id:60,brand:'life',day:6,title:'@life.byalexa — Weekend Operator Life',type:'IG · personal · lifestyle · 2:00 PM',goal:'Grow Following',done:false}];}
 }
-
 function bindTabs(){document.querySelectorAll('.tab-btn').forEach(btn=>{btn.addEventListener('click',()=>switchTab(btn.dataset.tab));});}
 function switchTab(tab){document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.toggle('active',p.id==='tab-'+tab));}
 function renderAll(){renderKPIs();renderMondayChecks();renderWeekGrid();renderLeads();renderCannonball();renderContacts();}
-
 function renderKPIs(){
-  const done=state.content.filter(c=>c.done).length;
-  const hot=state.leads.filter(l=>scoreOf(l)>=10).length;
-  const sigs=state.leads.reduce((a,l)=>a+Object.keys(l.signals||{}).length,0);
-  const out=state.outreach.length;
-  document.getElementById('kpi-content').textContent=done;
-  document.getElementById('kpi-signals').textContent=sigs;
-  document.getElementById('kpi-hot').textContent=hot;
-  document.getElementById('kpi-outreach').textContent=out;
-  const myash=state.content.filter(c=>c.brand==='myash');
-  const realtor=state.content.filter(c=>c.brand==='realtor');
-  const fnr=state.content.filter(c=>c.brand==='fnr');
-  const sub=state.content.filter(c=>c.brand==='substack');
-  const spanish=state.content.filter(c=>c.brand==='spanish');
-  const life=state.content.filter(c=>c.brand==='life');
-  updateProg('myash',myash.filter(c=>c.done).length,myash.length||7);
-  updateProg('realtor',realtor.filter(c=>c.done).length,realtor.length||7);
-  updateProg('fnr',fnr.filter(c=>c.done).length,fnr.length||3);
-  updateProg('sub',sub.filter(c=>c.done).length,Math.max(sub.length,21));
-  updateProg('spanish',spanish.filter(c=>c.done).length,spanish.length||7);
-  updateProg('life',life.filter(c=>c.done).length,life.length||3);
-  updateProg('out',out,25);
+  const done=state.content.filter(c=>c.done).length;const hot=state.leads.filter(l=>scoreOf(l)>=10).length;const sigs=state.leads.reduce((a,l)=>a+Object.keys(l.signals||{}).length,0);const out=state.outreach.length;
+  document.getElementById('kpi-content').textContent=done;document.getElementById('kpi-signals').textContent=sigs;document.getElementById('kpi-hot').textContent=hot;document.getElementById('kpi-outreach').textContent=out;
+  const myash=state.content.filter(c=>c.brand==='myash');const realtor=state.content.filter(c=>c.brand==='realtor');const fnr=state.content.filter(c=>c.brand==='fnr');const sub=state.content.filter(c=>c.brand==='substack');const spanish=state.content.filter(c=>c.brand==='spanish');const life=state.content.filter(c=>c.brand==='life');
+  updateProg('myash',myash.filter(c=>c.done).length,myash.length||7);updateProg('realtor',realtor.filter(c=>c.done).length,realtor.length||7);updateProg('fnr',fnr.filter(c=>c.done).length,fnr.length||3);updateProg('sub',sub.filter(c=>c.done).length,Math.max(sub.length,21));updateProg('spanish',spanish.filter(c=>c.done).length,spanish.length||7);updateProg('life',life.filter(c=>c.done).length,life.length||3);updateProg('out',out,25);
 }
 function updateProg(id,val,total){const pct=Math.min(100,Math.round((val/total)*100));const el=document.getElementById('prog-'+id);const lb=document.getElementById('prog-'+id+'-label');if(el)el.style.width=pct+'%';if(lb)lb.textContent=val+'/'+total;}
 function toggleCheck(el){el.classList.toggle('done');const id=el.dataset.id;state.checks[id]=el.classList.contains('done');save();renderKPIs();}
 function renderMondayChecks(){document.querySelectorAll('#monday-mini li').forEach(li=>{if(state.checks[li.dataset.id])li.classList.add('done');});}
-
 const DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 function renderWeekGrid(){
-  const today=new Date().getDay();
-  const grid=document.getElementById('week-grid');
-  grid.innerHTML='';
+  const today=new Date().getDay();const grid=document.getElementById('week-grid');grid.innerHTML='';
   DAYS.forEach((day,di)=>{
     const col=document.createElement('div');col.className='day-col';
     const hdr=document.createElement('div');hdr.className='day-hdr'+(di===today?' today':'');hdr.textContent=day;col.appendChild(hdr);
@@ -635,32 +560,18 @@ function renderWeekGrid(){
     grid.appendChild(col);
   });
 }
-
 function scoreOf(l){return Object.values(l.signals||{}).reduce((a,v)=>a+v,0);}
 function priorityOf(s){if(s>=10)return{label:'🔥 HOT',cls:'p-hot',key:'hot'};if(s>=5)return{label:'⚡ WARM',cls:'p-warm',key:'warm'};return{label:'❄️ COLD',cls:'p-cold',key:'cold'};}
 const SIG_DOT_MAP={probate:'dot-probate',prefc:'dot-prefc',divorce:'dot-divorce',permit:'dot-permit',taxdel:'dot-taxdel',expired:'dot-expired',vacant:'dot-vacant',equity:'dot-equity',tenure:'dot-tenure',pricedrop:'',lien:''};
-
 function renderLeads(){
-  const filter=document.getElementById('filter-priority').value;
-  const tbody=document.getElementById('leads-tbody');
-  const empty=document.getElementById('leads-empty');
-  let leads=[...state.leads];
-  if(filter)leads=leads.filter(l=>priorityOf(scoreOf(l)).key===filter);
-  leads.sort((a,b)=>scoreOf(b)-scoreOf(a));
-  if(leads.length===0){tbody.innerHTML='';empty.style.display='block';return;}
-  empty.style.display='none';
-  tbody.innerHTML=leads.map(l=>{
-    const s=scoreOf(l);const p=priorityOf(s);
-    const src=[l.sources?.lf&&'LF',l.sources?.tax&&'TAX',l.sources?.mls&&'MLS',l.sources?.pub&&'PUB'].filter(Boolean).join(' · ')||'–';
-    const dots=Object.keys(l.signals||{}).map(k=>`<div class="sig-dot ${SIG_DOT_MAP[k]||''}" title="${k}"></div>`).join('');
-    return `<tr><td><strong>${l.fname} ${l.lname}</strong></td><td style="color:var(--text2);font-size:11px;">${l.addr}</td><td style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);">${src}</td><td><div class="sig-dots">${dots}</div></td><td><span class="score-pill">${s}</span></td><td><span class="priority-badge ${p.cls}">${p.label}</span></td><td style="font-size:11px;color:var(--text2);">${l.status}</td><td><button class="btn btn-ghost btn-sm" onclick="deleteLead(${l.id})">✕</button></td></tr>`;
-  }).join('');
+  const filter=document.getElementById('filter-priority').value;const tbody=document.getElementById('leads-tbody');const empty=document.getElementById('leads-empty');
+  let leads=[...state.leads];if(filter)leads=leads.filter(l=>priorityOf(scoreOf(l)).key===filter);leads.sort((a,b)=>scoreOf(b)-scoreOf(a));
+  if(leads.length===0){tbody.innerHTML='';empty.style.display='block';return;}empty.style.display='none';
+  tbody.innerHTML=leads.map(l=>{const s=scoreOf(l);const p=priorityOf(s);const src=[l.sources?.lf&&'LF',l.sources?.tax&&'TAX',l.sources?.mls&&'MLS',l.sources?.pub&&'PUB'].filter(Boolean).join(' · ')||'–';const dots=Object.keys(l.signals||{}).map(k=>`<div class="sig-dot ${SIG_DOT_MAP[k]||''}" title="${k}"></div>`).join('');return `<tr><td><strong>${l.fname} ${l.lname}</strong></td><td style="color:var(--text2);font-size:11px;">${l.addr}</td><td style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);">${src}</td><td><div class="sig-dots">${dots}</div></td><td><span class="score-pill">${s}</span></td><td><span class="priority-badge ${p.cls}">${p.label}</span></td><td style="font-size:11px;color:var(--text2);">${l.status}</td><td><button class="btn btn-ghost btn-sm" onclick="deleteLead(${l.id})">✕</button></td></tr>`;}).join('');
 }
 function deleteLead(id){state.leads=state.leads.filter(l=>l.id!==id);save();if(sbReady)deleteLeadFromSB(id);renderAll();}
-
 function renderCannonball(){
-  const targets=[...state.leads].filter(l=>scoreOf(l)>=5).sort((a,b)=>scoreOf(b)-scoreOf(a)).slice(0,10);
-  const el=document.getElementById('cannonball-targets');
+  const targets=[...state.leads].filter(l=>scoreOf(l)>=5).sort((a,b)=>scoreOf(b)-scoreOf(a)).slice(0,10);const el=document.getElementById('cannonball-targets');
   if(targets.length===0){el.innerHTML='<div class="empty"><div class="empty-icon">🎯</div><div class="empty-label">Hot + Warm leads from Signal Tracker appear here.</div></div>';}
   else{el.innerHTML=targets.map((l,i)=>{const s=scoreOf(l);const p=priorityOf(s);const dots=Object.keys(l.signals||{}).map(k=>`<div class="sig-dot ${SIG_DOT_MAP[k]||''}" title="${k}"></div>`).join('');return `<div class="target-card"><div class="target-rank">${i+1}</div><div class="target-info"><div class="target-name">${l.fname} ${l.lname}</div><div class="target-addr">${l.addr} · ${l.phone||'–'}</div><div class="target-signals">${dots}</div></div><div class="target-score"><div class="target-score-num">${s}</div><div class="target-score-label">${p.label}</div></div><div class="target-actions"><button class="btn btn-ghost btn-sm" onclick="quickLog('${l.fname} ${l.lname}')">Log</button></div></div>`;}).join('');}
   const logEl=document.getElementById('outreach-log');
@@ -668,39 +579,27 @@ function renderCannonball(){
   else{logEl.innerHTML=[...state.outreach].reverse().map(o=>{const sent=['Appointment Set','Positive — Follow Up','Listed'].includes(o.response)?'hot':o.response==='Maybe Later'?'warm':'cold';return `<div class="log-entry ${sent}"><div class="log-meta">${o.date} · ${o.method}</div><div class="log-name">${o.name}</div><div class="log-note">${o.response}${o.notes?' — '+o.notes:''}</div>${o.followup?`<div class="log-followup">↩ Follow up: ${o.followup}</div>`:''}</div>`;}).join('');}
 }
 function quickLog(name){document.getElementById('o-name').value=name;openModal('modal-add-outreach');}
-
 function renderContacts(){
-  const warm=state.leads.filter(l=>scoreOf(l)>=5).sort((a,b)=>scoreOf(b)-scoreOf(a));
-  const grid=document.getElementById('contact-cards-grid');
-  const empty=document.getElementById('contacts-empty');
-  if(warm.length===0){grid.innerHTML='';empty.style.display='block';return;}
-  empty.style.display='none';
+  const warm=state.leads.filter(l=>scoreOf(l)>=5).sort((a,b)=>scoreOf(b)-scoreOf(a));const grid=document.getElementById('contact-cards-grid');const empty=document.getElementById('contacts-empty');
+  if(warm.length===0){grid.innerHTML='';empty.style.display='block';return;}empty.style.display='none';
   grid.innerHTML=warm.map(l=>{const s=scoreOf(l);const p=priorityOf(s);const sigs=Object.keys(l.signals||{}).join(' · ')||'–';return `<div class="card"><div class="card-hdr"><div class="card-hdr-title">${l.fname} ${l.lname}</div><span class="priority-badge ${p.cls}">${p.label} · ${s}pts</span></div><div class="card-body" style="display:flex;flex-direction:column;gap:8px;"><div style="font-size:12px;color:var(--text2);">📍 ${l.addr}</div><div style="display:flex;gap:16px;"><div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);">PHONE</div><div>${l.phone||'–'}</div></div><div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);">EMAIL</div><div>${l.email||'–'}</div></div></div><div style="display:flex;gap:16px;"><div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);">VALUE</div><div>$${(l.value||0).toLocaleString()}</div></div><div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);">EQUITY</div><div>${l.equity||'–'}%</div></div><div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);">YEARS</div><div>${l.years||'–'}</div></div></div><div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:3px;">SIGNALS</div><div style="font-size:11px;color:var(--text2);">${sigs}</div></div>${l.notes?`<div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:3px;">NOTES</div><div style="font-size:12px;color:var(--text2);line-height:1.5;">${l.notes}</div></div>`:''}<div style="margin-top:4px;display:flex;gap:6px;"><button class="btn btn-ghost btn-sm" onclick="quickLog('${l.fname} ${l.lname}')">Log Contact</button><button class="btn btn-danger btn-sm" onclick="deleteLead(${l.id})">Remove</button></div></div></div>`;}).join('');
 }
-
 function toggleSignal(el,key,pts){el.classList.toggle('active');if(el.classList.contains('active')){state.currentSignals[key]=pts;}else{delete state.currentSignals[key];}document.getElementById('score-preview').textContent=Object.values(state.currentSignals).reduce((a,v)=>a+v,0);}
-
 function saveLead(){
   const l={id:Date.now(),fname:document.getElementById('l-fname').value.trim(),lname:document.getElementById('l-lname').value.trim(),phone:document.getElementById('l-phone').value.trim(),email:document.getElementById('l-email').value.trim(),addr:document.getElementById('l-addr').value.trim(),value:parseInt(document.getElementById('l-value').value)||0,equity:parseInt(document.getElementById('l-equity').value)||0,years:parseInt(document.getElementById('l-years').value)||0,status:document.getElementById('l-status').value,sources:{lf:document.getElementById('src-lf').checked,tax:document.getElementById('src-tax').checked,mls:document.getElementById('src-mls').checked,pub:document.getElementById('src-pub').checked},signals:{...state.currentSignals},notes:document.getElementById('l-notes').value.trim(),date:new Date().toISOString()};
   if(!l.fname&&!l.addr){alert('Please enter at least a name or address.');return;}
   state.leads.push(l);state.currentSignals={};save();closeModal('modal-add-lead');
   ['l-fname','l-lname','l-phone','l-email','l-addr','l-value','l-equity','l-years','l-notes'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('l-status').value='New';
-  document.querySelectorAll('.signal-check').forEach(el=>el.classList.remove('active'));
-  document.getElementById('score-preview').textContent='0';
-  ['src-lf','src-tax','src-mls','src-pub'].forEach(id=>document.getElementById(id).checked=false);
+  document.getElementById('l-status').value='New';document.querySelectorAll('.signal-check').forEach(el=>el.classList.remove('active'));document.getElementById('score-preview').textContent='0';['src-lf','src-tax','src-mls','src-pub'].forEach(id=>document.getElementById(id).checked=false);
   renderAll();switchTab('signals');
 }
 function saveContent(){
   const i={id:Date.now(),brand:document.getElementById('c-brand').value,day:parseInt(document.getElementById('c-day').value),title:document.getElementById('c-title').value.trim(),type:document.getElementById('c-type').value,goal:document.getElementById('c-goal').value,done:false};
-  if(!i.title){alert('Please enter a title.');return;}
-  state.content.push(i);save();closeModal('modal-add-content');document.getElementById('c-title').value='';renderAll();
+  if(!i.title){alert('Please enter a title.');return;}state.content.push(i);save();closeModal('modal-add-content');document.getElementById('c-title').value='';renderAll();
 }
 function saveOutreach(){
   const e={id:Date.now(),name:document.getElementById('o-name').value.trim(),method:document.getElementById('o-method').value,response:document.getElementById('o-response').value,followup:document.getElementById('o-followup').value,notes:document.getElementById('o-notes').value.trim(),date:new Date().toLocaleDateString()};
-  if(!e.name){alert('Please enter a name.');return;}
-  state.outreach.push(e);save();if(sbReady)saveOutreachToSB(e);closeModal('modal-add-outreach');
-  ['o-name','o-followup','o-notes'].forEach(id=>document.getElementById(id).value='');renderAll();
+  if(!e.name){alert('Please enter a name.');return;}state.outreach.push(e);save();if(sbReady)saveOutreachToSB(e);closeModal('modal-add-outreach');['o-name','o-followup','o-notes'].forEach(id=>document.getElementById(id).value='');renderAll();
 }
 function openModal(id){document.getElementById(id).classList.add('open');}
 function closeModal(id){document.getElementById(id).classList.remove('open');}
