@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>ROAST · Week of April 20, 2026</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#c8b87a;--blue:#7ab8c8;--purple:#a87ac8;--green:#7dc87d;--red:#c87a7a;
+  --bg:#0d0d0d;--bg2:#111;--bg3:#161616;--border:#222;--border2:#1a1a1a;
+  --text:#e8e0d0;--text2:#bbb;--text3:#666;--text4:#444;
+}
+html,body{background:var(--bg);color:var(--text);font-family:'Georgia','Times New Roman',serif;font-size:14px;line-height:1.7}
+
+/* ── HEADER ── */
+.hdr{background:var(--bg2);border-bottom:2px solid var(--border);padding:16px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;position:sticky;top:0;z-index:200}
+.brand{font-size:22px;font-weight:bold;letter-spacing:.1em;color:var(--gold);text-transform:uppercase}
+.brand-sub{font-size:10px;letter-spacing:.12em;color:var(--text3);text-transform:uppercase;font-family:monospace;margin-top:2px}
+.hdr-right{margin-left:auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.week-badge{font-family:monospace;font-size:10px;color:var(--text3);border:1px solid var(--border);padding:4px 10px;border-radius:3px}
+.prog-wrap{text-align:right}
+.prog-lbl{font-family:monospace;font-size:10px;color:var(--text3);margin-bottom:4px}
+.prog-outer{width:130px;height:4px;background:var(--border);border-radius:2px}
+.prog-inner{height:100%;background:var(--gold);border-radius:2px;transition:width .3s}
+
+/* ── LAYOUT ── */
+.layout{display:flex;align-items:flex-start;max-width:1300px;margin:0 auto;padding:0 20px 60px}
+
+/* ── MAIN CONTENT ── */
+.main{flex:1;min-width:0;padding:32px 32px 32px 0}
+
+/* ── OUTPUT BLOCK ── */
+.output-block{margin-bottom:48px;border:1px solid var(--border2);border-radius:6px;overflow:hidden}
+.output-hdr{background:var(--bg2);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.output-label{font-family:monospace;font-size:10px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+.output-title{font-size:16px;font-weight:bold;color:var(--text)}
+.copy-btn{font-family:monospace;font-size:10px;letter-spacing:.08em;padding:6px 16px;border-radius:3px;border:1px solid var(--border);background:transparent;color:var(--gold);cursor:pointer;transition:all .2s;white-space:nowrap;flex-shrink:0}
+.copy-btn:hover{border-color:var(--gold);background:#1a1400}
+.copy-btn.done{background:#1a2e1a;border-color:var(--green);color:var(--green)}
+.output-body{padding:24px 28px;background:var(--bg)}
+.output-body pre{font-family:'Georgia',serif;font-size:13.5px;line-height:1.85;color:#d4ccbc;white-space:pre-wrap;word-break:break-word}
+
+/* ── CHECKLIST SIDEBAR ── */
+.cl-sidebar{width:260px;flex-shrink:0;position:sticky;top:72px;max-height:calc(100vh - 90px);display:flex;flex-direction:column;margin-top:32px;border:1px solid var(--border);border-radius:6px;overflow:hidden;background:#0f0f0f}
+.cl-hdr{padding:12px 14px 10px;border-bottom:1px solid var(--border2);background:var(--bg2);flex-shrink:0}
+.cl-hdr-title{font-family:monospace;font-size:9px;letter-spacing:.14em;color:var(--text3);text-transform:uppercase;margin-bottom:8px}
+.cl-filters{display:flex;gap:4px;flex-wrap:wrap}
+.cl-filter{font-family:monospace;font-size:9px;letter-spacing:.06em;padding:3px 7px;border-radius:3px;border:1px solid var(--border);background:transparent;color:var(--text3);cursor:pointer;transition:all .15s;text-transform:uppercase}
+.cl-filter.af{background:var(--gold);color:#0d0d0d;border-color:var(--gold)}
+.cl-filter.ff{background:var(--gold);color:#0d0d0d;border-color:var(--gold)}
+.cl-filter.pf{background:var(--blue);color:#0d0d0d;border-color:var(--blue)}
+.cl-filter.sf{background:var(--purple);color:#0d0d0d;border-color:var(--purple)}
+.cl-filter.df{background:var(--green);color:#0d0d0d;border-color:var(--green)}
+.cl-body{flex:1;overflow-y:auto}
+.cl-cat-hdr{padding:7px 12px;font-family:monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border2);position:sticky;top:0;z-index:2}
+.cl-cat-hdr.film{background:#1a1600;color:var(--gold)}
+.cl-cat-hdr.pub{background:#001416;color:var(--blue)}
+.cl-cat-hdr.sched{background:#12001a;color:var(--purple)}
+.cl-item{display:flex;align-items:flex-start;gap:9px;padding:7px 12px;border-bottom:1px solid #141414;cursor:pointer;transition:background .12s;user-select:none}
+.cl-item:hover{background:var(--bg3)}
+.cl-item.checked{background:#131313}
+.cl-cb{width:15px;height:15px;flex-shrink:0;margin-top:1px;border-radius:3px;border:1.5px solid var(--border);background:transparent;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:bold;color:#0d0d0d;transition:all .15s}
+.cl-item.checked.film .cl-cb{background:var(--gold);border-color:var(--gold)}
+.cl-item.checked.pub .cl-cb{background:var(--blue);border-color:var(--blue)}
+.cl-item.checked.sched .cl-cb{background:var(--purple);border-color:var(--purple)}
+.cl-txt{font-size:10.5px;line-height:1.35;color:var(--text2);transition:all .15s}
+.cl-item.checked .cl-txt{color:var(--text4);text-decoration:line-through}
+.cl-acct{font-family:monospace;font-size:9px;color:var(--text3);margin-top:1px}
+.cl-foot{padding:9px 12px;border-top:1px solid var(--border2);background:var(--bg2);display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.cl-foot-lbl{font-family:monospace;font-size:9px;color:var(--text3)}
+.cl-reset{font-family:monospace;font-size:9px;padding:3px 8px;background:transparent;border:1px solid var(--border);color:var(--text3);border-radius:3px;cursor:pointer;text-transform:uppercase}
+.cl-reset:hover{border-color:var(--red);color:var(--red)}
+
+/* ── SECTION DIVIDER ── */
+.section-divider{font-family:monospace;font-size:10px;letter-spacing:.16em;color:var(--text4);text-transform:uppercase;padding:8px 0 16px;border-bottom:1px solid var(--border2);margin-bottom:28px}
+
+/* ── FOOTER ── */
+.ftr{max-width:1300px;margin:0 auto;padding:20px 20px 40px;display:flex;gap:20px;font-family:monospace;font-size:9px;color:var(--text4);letter-spacing:.08em;flex-wrap:wrap;border-top:1px solid var(--border2)}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div>
+    <div class="brand">ROAST</div>
+    <div class="brand-sub">@itsmyash · Weekly Content Index · April 20–26, 2026</div>
+  </div>
+  <div class="hdr-right">
+    <div class="week-badge">APR 20 – APR 26, 2026</div>
+    <div class="prog-wrap">
+      <div class="prog-lbl" id="prog-lbl">0 / 47 · 0%</div>
+      <div class="prog-outer"><div class="prog-inner" id="prog-inner" style="width:0%"></div></div>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+
+<!-- ── MAIN SCROLLABLE CONTENT ── -->
+<div class="main" id="main-content"></div>
+
+<!-- ── STICKY CHECKLIST ── -->
+<div class="cl-sidebar">
+  <div class="cl-hdr">
+    <div class="cl-hdr-title">Production Tracker</div>
+    <div class="cl-filters">
+      <button class="cl-filter af" id="f-all"   onclick="setFilter('all')">All</button>
+      <button class="cl-filter"   id="f-film"  onclick="setFilter('film')">Film</button>
+      <button class="cl-filter"   id="f-pub"   onclick="setFilter('pub')">Publish</button>
+      <button class="cl-filter"   id="f-sched" onclick="setFilter('sched')">Schedule</button>
+      <button class="cl-filter"   id="f-done"  onclick="setFilter('done')">Done</button>
+    </div>
+  </div>
+  <div class="cl-body" id="cl-body"></div>
+  <div class="cl-foot">
+    <span class="cl-foot-lbl" id="cl-foot-lbl">0/47 done</span>
+    <button class="cl-reset" onclick="resetAll()">↺ Reset</button>
+  </div>
+</div>
+
+</div><!-- /layout -->
+
+<div class="ftr">
+  <span>@alexa.realtor</span><span>@its.myash</span><span>@fillerandroast</span>
+  <span>@life.byalexa</span><span>@AlexaSanchezRealtor (YouTube)</span>
+  <span>PA LIC #RS326383 · Smart Way America Realty</span>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// ALL 20 OUTPUTS
+// ═══════════════════════════════════════════════════════════════
+const OUTPUTS = [
+{id:1, label:"OUTPUT 1", title:"📰 ROAST Newsletter", content:`ROAST — THE LIFESTYLE MARKET LETTER
+Week of April 21, 2026 | @itsmyash on Substack
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+OPENER
+
+He had two days to pick up the phone. I'm still waiting.
+
+The contractor who ghosted me on a job he didn't finish tried to flip the script and come after me for money. I stood my ground. He got loud. Then his boss got involved and told him to apologize. That was two days ago. I'm writing this newsletter. He's still deciding if he has the guts to do the right thing. That's a whole story on its own — but what it really is, is a Tuesday in operator life. You hold the line, you let the noise pass, and you keep building. That's the job.
+
+This week the market is sending signals that require the same energy. Pennsylvania is moving toward statewide STR regulation. Monroe County's patchwork of township rules is still where the real decisions get made. And the Dominican Republic just had its biggest single month of tourism arrivals ever. There's a lot happening. The operators who know how to read it will be positioned. The ones waiting for someone else to explain it will be behind.
+
+Here's what's in this issue: Market Pulse breaks down HB 2303 and what it actually means for Pocono investors. Investor Intel has the submarket data, the rate update, and five listings worth screening. The DR Play hits different this month — 3.7 million Q1 arrivals and a $1.5B cruise port opening in Q2. Filler & Roast is pairing your morning brew with intention. What We're Reading closes it out with four pieces worth your time. Let's get into it.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 01 — MARKET PULSE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+HEADLINE: Pennsylvania Wants to Standardize STR Rules. Monroe County Already Has Its Own Plans.
+DEK: HB 2303 would create the state's first uniform short-term rental framework. That matters — but the township zoning map is still the first thing you check.
+
+HB 2303 dropped in March 2026 and it's the most important bill Pennsylvania STR investors haven't heard of yet. It would create countywide registries, require a 24/7 designated contact for every STR property, and establish baseline safety standards with tighter requirements for larger operators. For Monroe County — which already has a patchwork of township-level rules — this bill would layer a new set of state requirements on top of what already exists. That's not necessarily bad. But it does mean the compliance picture gets more complex, not simpler.
+
+Right now, Barrett Township is one of the more workable markets: STR permits required, inspections mandatory, and STRs allowed in all zoning districts unless an HOA says otherwise. Jackson Township requires a valid permit and treats operating without one as illegal — full stop. Paradise Township doesn't allow STRs in residential zoning at all, with updated ordinances posted as recently as February 2026. Hamilton Township doesn't allow them either. Middle Smithfield has an annual licensing requirement. This is not a market where you assume and figure it out later. You check the zoning map before you write an offer.
+
+At the federal level, the 21st Century ROAD to Housing Act — which includes a ban on large institutional investors buying single-family homes — is moving back to the House. It's not a direct STR restriction, but it signals continued federal pressure on investor activity in residential housing. And if you're underwriting anything lake-adjacent in the Poconos, start the NFIP conversation early — the National Flood Insurance Program is set to expire September 30, 2026, and a lapse would freeze new or renewal policies.
+
+PULL QUOTE: "Pennsylvania moving toward statewide STR standards sounds like progress. But the township zoning map is still the first line in the due diligence checklist. Always." — Alexa Sanchez
+
+TAKEAWAY BOX:
+🏘️ HB 2303 is the bill to watch. Committee movement or amendments to Pennsylvania's first statewide STR bill will directly affect how Monroe County operators register and comply going forward.
+⚠️ Know your township before you offer. Jackson, Paradise, and Hamilton are high-risk for STR investors. Barrett and Middle Smithfield are structured but workable.
+🌊 Flag flood-zone properties now. NFIP expires September 30. If you're buying near a lake or creek, your lender and insurance agent need to be in the conversation immediately.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 02 — INVESTOR INTEL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+HEADLINE: Pocono STRs Are Still in Play — But Only If You Buy the Right Submarket
+DEK: Mount Pocono is outperforming. Pocono Township is softer. Rates are at 6.46%. Here's where the math still works.
+
+The April 2026 Pocono submarket data is doing exactly what it should — separating the believers from the buyers. Mount Pocono is sitting at 45.9% occupancy and $499 ADR, generating roughly $69,866 in annual revenue with supply up 61.5% year-over-year. The market absorbed more inventory and revenue still climbed. That's a sign that the better-positioned properties are pulling ahead. Pocono Township tells a different story: 35.9% occupancy, $493 ADR, and about $63,438 in annual revenue. Same general region, materially different performance. The micro-market matters more than the county average.
+
+January 2026 STR revenue was down 18% year-over-year and February was down 31%. Weather and seasonality are cited factors, and March reportedly showed a 6.8% uptick as active listings fell 3.8%. Cash-on-cash math at 6.46% (Freddie Mac, April 2 — up from 6.38% the week prior) does not forgive optimistic occupancy assumptions. Build in conservative revenue floors. Most homes in Pocono Pines are sitting on market about 63 days. That's negotiation room — use it.
+
+PROPERTY SPOTLIGHTS:
+• 3246 Mountain View Dr, Tannersville | $439,900 | 4BR/3BA, 2,636 sqft | Ski proximity, dual suites, group format — strongest STR profile of the set
+• 114 Maxatawny Dr, Pocono Lake | $199,900 | 4BR/2BA, 1,248 sqft | Entry-level price, 4BR — classic group rental screen. Verify HOA/township first
+• 4193 Forest Dr, Kunkletown | $399,000 | 4BR/3BA, 2,535 sqft | Size and price work for family/group if zoning permits
+• 202 Tepee Dr, Pocono Lake | $299,900 | Lake location is the driver — verify lake rights and STR permissibility before offering
+
+INVESTOR CHECKLIST:
+📍 Run the township + HOA check before anything else. Jackson, Paradise, Hamilton = pass. Barrett, Middle Smithfield = proceed with verification.
+📊 Underwrite at 35–40% occupancy, not 46%. Model for the middle of the range, stress test at the bottom.
+💰 Target under-$500K with differentiated features. Lake access, ski proximity, 4BR+ group format. Generic supply is struggling. The right asset profile is still outperforming.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 03 — THE DR PLAY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+THE DOMINICAN REPUBLIC JUST HAD ITS BIGGEST MONTH OF TOURISM. EVER.
+
+March 2026 delivered 1,305,866 arrivals — the first time a single month crossed 1.3 million visitors. Q1 2026 total: 3,710,374 arrivals, up 10.8% versus 2025, 14.8% versus 2024, and 64.1% versus 2019. This is not a post-COVID bounce. This is a structural step-up in demand, compressing inventory in the markets where US investors are already active.
+
+Punta Cana–Bavaro posted peak-week occupancy between 88–95%. The national average over Easter week 2026 was 74.6%. American Airlines added four new US routes to Punta Cana — Indianapolis, Nashville, Pittsburgh, and Raleigh-Durham — bringing up to 95 weekly flights and 12%+ growth in seat capacity. The $1.5B cruise port is on track for a Q2 2026 opening, designed to handle 10,000+ passengers per call. The demand engine isn't slowing down. It's being deliberately amplified.
+
+Cap Cana luxury condos and villas are reporting 8–12% gross cash-on-cash yields in resale assets, rising to 12–16%+ in repositioned units. Punta Cana/Bavaro resort-managed condos are running 6–10% gross. CONFOTUR (Law 158-01) remains active — income-tax-free and duty-free benefits for qualified tourism developments.
+
+STATS:
+✈️ 3,710,374 — Q1 2026 DR arrivals, up 10.8% YOY
+🏨 88–95% — Punta Cana–Bavaro peak occupancy, recent holiday weeks
+💵 8–16% — Gross cash-on-cash yield range, Cap Cana operating assets
+
+TAKEAWAY BOX:
+✈️ American Airlines added 4 new US–Punta Cana routes. More direct access = more demand compression = harder to find below-market entry. Pre-construction window is tightening.
+🏗️ $1.5B cruise port opens Q2 2026. New tourism node on the east coast with hotel, retail, and excursion infrastructure. Proximity matters.
+📋 Verify CONFOTUR eligibility per project. Not all developments in Punta Cana qualify. Run this check through MITUR or local DR counsel before committing.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 04 — FILLER & ROAST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+HEADLINE: The Ritual Isn't Optional
+DEK: Specialty coffee is moving toward intentional experience. Filler & Roast was built for exactly this moment.
+
+The specialty coffee market is slowing down on purpose. Lighter roasts, single-origin transparency, cleaner fermentation profiles, and precision brewing are becoming the language of premium coffee — not because they're trendy, but because consumers are treating coffee like an experience, not a product. That's exactly the positioning Filler & Roast was built for. Coffee for the pause before the draw. A ritual that belongs in the lounge because it earns its place there.
+
+At Nell's Social this week, the pairing that's been landing is the Butter Pecan with a Connecticut wrapper. Smooth on both sides — the brightness of the butter pecan cuts through the creaminess of the Connecticut without competing with it. The Amaretto evening draw is designed for the after-dinner pour, something to sip slow while the room gets quiet. The House Blend with a Maduro is the anchor pairing — if you haven't tried it, that's where to start.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 05 — WHAT WE'RE READING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 AirROI | "Mount Pocono April 2026 STR Data" — 45.9% occupancy, $499 ADR, supply up 61.5% YOY. The market is absorbing inventory but only differentiated listings are outperforming.
+
+📋 DR1 | "Q1 2026 Dominican Republic Tourism Arrivals" — 3.7 million visitors in Q1. March broke the single-month record at 1.3 million. US visitors account for 45% of March traffic.
+
+📋 LegiScan | "HB 2303 — Pennsylvania STR Regulation" — Pennsylvania's first uniform STR bill would create countywide registries, 24/7 contact requirements, and baseline safety standards. Committee movement is the next trigger to watch.
+
+📋 Halfwheel | "2026 Dominican Cigar Releases" — Procigar Festival 2026 inaugurated in Santiago with 40+ countries. Dominican origin is being positioned as premium cultural identity, not just a manufacturing label.`},
+
+{id:2, label:"OUTPUT 2", title:"✍️ Monday Substack — Operator Life", content:`TITLE: He Was Told to Apologize. He Hasn't.
+SUBTITLE: On holding the line when someone else expects you to fold.
+PUBLISH: Monday April 21 | 7:00 AM | @itsmyash Substack
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+He didn't finish the job.
+
+Then he ghosted. Then — and this is the part that still gets me — he had the nerve to come back and shake me down for money on a job he didn't complete. I don't know what version of me he expected to find on the other end of that conversation, but it wasn't the one he got. I stood my ground. He got loud. I didn't.
+
+His boss called him in. Told him to apologize.
+
+That was two days ago. I'm still waiting.
+
+I've been running businesses long enough to know that the people who test you are rarely the ones who quit after one try. They push because somewhere, someone folded. That fold taught them this move works. So they run it again. Until they find the person who doesn't fold. I was that person on Thursday. I'm still that person today.
+
+Here's what I've learned about the moment when someone gets loud: loud is almost never about you. Loud is what desperation sounds like when it runs out of options. He didn't have the money. He didn't have the completed work. He didn't have a case. So he got loud. And I got quiet. Because quiet, in that moment, was the power move.
+
+Running three businesses means I've been tested by buyers who think they can lowball me into embarrassment, by contractors who think that because I'm a woman I'll eventually cave, by situations designed to make you feel like you're the problem when you're actually the one holding the standard. Every time, the move is the same: hold the line, let the noise pass, document everything, and keep building.
+
+This is the part nobody talks about when they talk about entrepreneurship. The glossy version is the closing table. The contracts. The brand shoots. The lounge nights. What nobody puts in the caption is the Thursday at 11am when someone is threatening you over a job they didn't do and you're sitting there deciding whether you're going to be the version of yourself that shrinks or the version that doesn't. The decision you make in that moment is the one that actually defines the business.
+
+I chose not to shrink. I chose not to write the check. And I chose to wait — because his apology isn't for me. It's for him. It's his chance to do the right thing and put the situation behind him. If he takes it, fine. If he doesn't, that tells me everything I need to know about the next decision.
+
+The operator lesson isn't complicated: know what you owe, know what you don't, and don't let anyone make you confuse the two under pressure. Contracts exist for this exact reason. Timelines exist. Deliverables exist. When they don't get met, the obligation doesn't flip — it stays with the person who didn't deliver.
+
+You will deal with people like this. The skill isn't avoiding them — you can't. The skill is knowing your ground well enough that when someone tries to take it, you're already standing on something solid.
+
+He has my number. He knows what he needs to do. I'll be here.
+
+— Alexa`},
+
+{id:3, label:"OUTPUT 3", title:"✍️ Thursday Substack — Experience Economy", content:`TITLE: Two Rituals, One Rhythm
+SUBTITLE: Why coffee and cigars belong together — and what it means for how you experience both.
+PUBLISH: Thursday April 24 | 7:00 AM | @itsmyash Substack
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Before the first draw, there is always coffee.
+
+Not always consciously. Not always as a decision. But if you watch the people who've been doing this long enough — who've built a real relationship with a good cigar — there's almost always something in the cup first. A moment before the moment. A ritual that prepares the palate, settles the pace, and tells the brain: we're not rushing now.
+
+That's not an accident. It's physiology, but it's also culture. And it's the reason Filler & Roast exists at all.
+
+The specialty coffee world has been moving toward this idea for a few years now — the idea that coffee is a ritual, not a product. Lighter roasts, single-origin transparency, precision brewing. The language of premium coffee has gotten intentional. What's interesting is that the cigar world has always been this way. We've never treated it as fast. We've never treated it as casual. The ritual was already built in — the cut, the toast, the light, the first third. Coffee is just the part that happens before all of that, and it deserves the same attention.
+
+The Butter Pecan with a Connecticut wrapper is the pairing I keep coming back to at Nell's. There's something in the brightness of the butter pecan that doesn't fight the Connecticut — it doesn't compete, it just opens the profile up. The creaminess in the Connecticut translates differently when your palate has already registered that warmth. You taste more of what's already there. That's what a good pairing does: it doesn't add flavor, it reveals it.
+
+The Amaretto evening draw is a different experience entirely. It's built for the end of the session — after dinner, when the room gets quieter and the cigar is deeper into its second third. Amaretto has a sweetness that lands soft, not sharp, and it extends the contemplative quality of that part of the smoke. It's not a coffee you'd drink at 9am. It's specifically for the hour when you stop moving.
+
+And the House Blend with a Maduro is the anchor. If you haven't tried it, that's where to start — it's the pairing that explains why we built this whole thing. The roast depth of the house blend meets the earthiness of the Maduro and they hold each other up. Neither dominates. That's the goal.
+
+What I want people to feel at Nell's Social is exactly this: that the coffee and the cigar are two parts of the same experience. Not a coffee bar that happens to have cigars. Not a lounge that happens to have a pour-over station. A place where both are taken seriously, where both are chosen deliberately, and where the ritual of one prepares you for the ritual of the other.
+
+The experience economy is moving toward this. Consumers don't want transactions. They want to be inside something. Filler & Roast is that philosophy in a cup.
+
+— Alexa`},
+
+{id:4, label:"OUTPUT 4", title:"📝 21 Substack Notes", content:`21 SUBSTACK NOTES — WEEK OF APRIL 20, 2026
+3 per day · Monday–Sunday · Morning / Midday / Evening
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+MONDAY Apr 21
+🌅 MORNING: He had two days to apologize. I had a newsletter to write. Both things happened on schedule — one of them mine. If you run a business, you already know: holding the line doesn't feel powerful in the moment. It just feels quiet. But quiet is where the work lives. You'll recognize yourself in today's Operator Life piece.
+
+☀️ MIDDAY: Pocono STR operators — HB 2303 just became the most important bill you haven't Googled yet. Pennsylvania's first statewide STR framework would create countywide registries and 24/7 contact requirements. It doesn't replace township zoning. It layers on top of it. More compliance, not less. Start reading the bill now.
+
+🌙 EVENING: I sat with a Maduro and the house blend tonight. Didn't plan it. Just reached for both. There's something that happens when two rituals overlap — they make each other slower. More deliberate. If you've never had coffee before a cigar, you're missing the first chapter of the experience.
+
+TUESDAY Apr 22
+🌅 MORNING: A contractor tried to shake me down for a job he didn't finish. I stood my ground. What I didn't expect: how clear everything gets when someone forces you to decide what your standards actually are. Read today's piece if you've ever had to hold a line someone else expected you to cross.
+
+☀️ MIDDAY: Mount Pocono: 45.9% occupancy. $499 ADR. Supply up 61.5% year-over-year and revenue still climbed. This is what a market looks like when the right assets are winning and the generic ones are bleeding. Buy the differentiated property. Every time.
+
+🌙 EVENING: The Dominican Republic had 3.7 million visitors in Q1 2026. March alone was 1.3 million — first time a single month ever crossed that number. I think about what that means for the people who bought in Cap Cana three years ago. And what it means for the people still waiting to decide.
+
+WEDNESDAY Apr 23
+🌅 MORNING: Recording day. Smoke on camera. No editing around it, no apologizing for it. The cigar is part of the brand. If that's not for you, that's okay. You're not the audience. Real ones stay.
+
+☀️ MIDDAY: Pennsylvania's HB 2303 would require a 24/7 designated contact for every STR. Not a hotline. A person. Think about what that means for operators managing 5+ properties in Monroe County. The compliance model just got more expensive if this passes.
+
+🌙 EVENING: CONFOTUR is the word every US investor buying in the DR needs to understand. Tax-free. Duty-free. Legal for foreign ownership. Not every project qualifies. Run the check before you wire the deposit.
+
+THURSDAY Apr 24
+🌅 MORNING: Coffee for the end of the session is a different animal than coffee to start one. The Amaretto evening draw exists specifically for that hour when the cigar is in its second third and the room has gotten quiet. Today's Experience Economy piece is about why those moments are worth designing deliberately.
+
+☀️ MIDDAY: 6.46%. That's the 30-year fixed rate as of April 2, 2026. Up from 6.38% the week before. Every tenth of a point matters when you're running cash-on-cash calculations on a $400K STR. Underwrite conservatively. Stress test the occupancy. Know your floor.
+
+🌙 EVENING: Procigar Festival 2026 in Santiago. 40+ countries represented. The Dominican Republic isn't just where premium cigars come from. It's becoming what premium cigar culture means. The origin story is the brand now.
+
+FRIDAY Apr 25
+🌅 MORNING: Butter Pecan with a Connecticut wrapper is the pairing that keeps showing up at Nell's. Not because it's the most complex combination. Because it's the most honest one — each side doing exactly what it should without competing. Good pairings feel inevitable in hindsight. This one does.
+
+☀️ MIDDAY: Paradise Township: STRs not permitted in residential zoning. Updated February 2026. Jackson Township: STRs illegal without a permit. No exceptions. No workarounds. If you're buying in Monroe County and skipping the township check, you're making a very expensive assumption.
+
+🌙 EVENING: The weekend starts tonight for a lot of people. For me it starts with a Connecticut and a Butter Pecan and about 45 minutes of nothing urgent. Whatever your ritual is — protect it. The week will try to take it from you. Don't let it.
+
+SATURDAY Apr 26
+🌅 MORNING: The $1.5B Punta Cana cruise port is set to open Q2 2026. Ten thousand passengers per call. New hotel, retail, and excursion infrastructure on the east coast. This is the kind of demand multiplier that changes the investment thesis on surrounding inventory.
+
+☀️ MIDDAY: Running three businesses doesn't mean doing three times the work. It means building systems that work while you're working on something else. I didn't always do this right. I still don't always do it right. But I do it better than I did a year ago. That's the only metric that matters.
+
+🌙 EVENING: The best cigar I've had lately wasn't the most expensive one. It was the one I sat with long enough to actually taste. Slow down. Whatever you're smoking tonight deserves your full attention.
+
+SUNDAY Apr 27
+🌅 MORNING: Sunday batch day. Coffee first — always. Before the first draw there's always something in the cup. Today it's the house blend and it's doing exactly what it should.
+
+☀️ MIDDAY: American Airlines added four new US routes to Punta Cana in 2026: Indianapolis, Nashville, Pittsburgh, Raleigh-Durham. That's 12%+ more seat capacity. The window for favorable pre-construction pricing in the DR is tightening.
+
+🌙 EVENING: If you're the person who runs the systems, builds the content, closes the deals, and still finds time for a cigar on a Sunday evening — this is for you. You are not going to burn out if you keep protecting the rituals. The rituals are what keep the machine running.`},
+
+{id:5, label:"OUTPUT 5", title:"🎥 YouTube Hub Video (English)", content:`YOUTUBE HUB VIDEO — ENGLISH
+@AlexaSanchezRealtor | Record Sunday | Upload Sunday April 20
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TITLE: Pennsylvania Is About to Change the STR Game in the Poconos — Here's What Investors Need to Know
+
+SCRIPT:
+
+[0:00–0:08] HOOK:
+Pennsylvania just introduced its first statewide short-term rental law — and if you own property in the Poconos, this affects you directly.
+
+[0:08–0:30] OPEN:
+I'm Alexa Sanchez, licensed Pennsylvania realtor specializing in the Pocono Mountains STR market. Every week I break down what's actually happening in this market so you can make better investment decisions. This week: HB 2303, what it means for Monroe County operators, and the submarket data that tells you where the money is still being made.
+
+[0:30–1:45] SECTION 1 — HB 2303:
+Here's what HB 2303 would require. Number one: countywide STR registries. You would have to register in your county, not just comply with your township. Number two: a 24/7 designated contact person for every property. Not a phone number — a real person, on call. Number three: baseline safety standards with tighter rules for larger operators. This doesn't replace your township zoning — it layers on top of it. Barrett Township still has its own rules. Jackson still requires a permit and treats operating without one as illegal. Paradise and Hamilton still don't allow STRs in residential zoning at all. The state bill adds a new compliance level, not a simpler one. If you own or are looking to buy in Monroe County, you need to understand both layers.
+
+[1:45–2:45] SECTION 2 — SUBMARKET DATA:
+Mount Pocono is at 45.9% occupancy and $499 ADR, generating roughly $69,000 in annual revenue — with supply up 61.5% year-over-year and revenue still climbing. Pocono Township is softer: 35.9% occupancy, $493 ADR, about $63,000 annually. Same county, different story. The 30-year fixed rate is at 6.46% as of early April — up from 6.38% the week prior. Model occupancy at 35–40%, not 46%. Know your cash-on-cash floor before you make an offer.
+
+[2:45–3:30] SECTION 3 — LISTINGS:
+Five properties I'm watching this week: 3246 Mountain View Drive in Tannersville at $439,900 — 4BR, 3BA, 2,600+ sqft. Ski proximity, dual suites, group format. Strongest STR profile of the set. 114 Maxatawny Drive in Pocono Lake at $199,900 — 4BR, 2BA, 1,200 sqft. Entry-level price with group rental bedroom count. 4193 Forest Drive in Kunkletown at $399,000 — 4BR, 3BA. 202 Tepee Drive in Pocono Lake at $299,900 — lake location is the play, verify lake rights. Most homes are sitting about 63 days on market — that's room to negotiate.
+
+[3:30–3:50] CTA:
+If you want personalized help analyzing a Monroe County property — running the township check, the HOA review, and the occupancy model — reach out directly. Link in the description. Subscribe for weekly STR market breakdowns.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CAPTION:
+Pennsylvania's first statewide STR regulation — HB 2303 — would create countywide registries, 24/7 contact requirements, and new safety standards for Pocono Mountains STR operators. Mount Pocono: 45.9% occupancy / $499 ADR. Pocono Township: 35.9% / $493 ADR. 30-year fixed rate at 6.46%. Five listings worth screening under $500K.
+
+Alexa Sanchez | PA License #RS326383 | Smart Way America Realty
+(570) 688-8147 | Alexa@alexasanchez.net
+
+#PoconoRealEstate #STRInvesting #ShortTermRental #MonroeCounty #PARealEstate
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+THUMBNAIL DIRECTION:
+Alexa in foreground, dark/charcoal background. Burgundy blazer or structured black jacket — executive energy. Direct camera eye contact, no smile, slight forward lean. Left side: bold white block text "PENNSYLVANIA CHANGES STR RULES" in chunky slightly-tilted font. Neon green callout: "HB 2303" in smaller bold. Bottom right: PA state outline in minimal white line.`},
+
+{id:6, label:"OUTPUT 6", title:"🎥🇩🇴 YouTube Hub Video (Spanish)", content:`YOUTUBE HUB VIDEO — ESPAÑOL
+@AlexaSanchezRealtor | Playlist: En Español | Record Sunday (2nd take) | Upload Sunday April 20
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TITLE: Pennsylvania va a cambiar las reglas para rentas a corto plazo — esto te afecta si tienes propiedad en Pocono
+
+SCRIPT (Dominican Spanish):
+
+[0:00–0:08] HOOK:
+Óyeme bien — Pennsylvania acaba de introducir su primera ley estatal para rentas a corto plazo, y si tú tienes propiedad en los Poconos, esto te afecta directamente.
+
+[0:08–0:30] APERTURA:
+Soy Alexa Sánchez, realtora licenciada en Pennsylvania, especializada en el mercado de inversiones en los Pocono Mountains. Cada semana te traigo lo que realmente está pasando en este mercado pa' que tomes mejores decisiones. Esta semana tamos hablando del proyecto de ley HB 2303, qué significa pa' los operadores en Monroe County, y los datos de mercado que te dicen dónde todavía se puede ganar dinero.
+
+[0:30–1:45] SECCIÓN 1 — HB 2303:
+Esto es lo que HB 2303 requeriría. Primero: registros de rentas a corto plazo a nivel de condado. Tú tendrías que registrarte en tu condado, no solo cumplir con las reglas de tu municipio. Segundo: una persona de contacto disponible las 24 horas, los 7 días de la semana. No un número de teléfono — una persona real, disponible. Tercero: estándares básicos de seguridad con reglas más estrictas para operadores grandes. Esto no reemplaza el zoning de tu municipio — se añade encima. Barrett Township todavía tiene sus propias reglas. Jackson todavía requiere permiso y sin permiso es ilegal operar. Paradise y Hamilton todavía no permiten rentas en zonas residenciales. La ley estatal añade un nivel de cumplimiento, no lo simplifica.
+
+[1:45–2:45] SECCIÓN 2 — DATOS DE SUBMERCADO:
+Mount Pocono está a 45.9% de ocupación y $499 de tarifa promedio diaria, generando unos $69,000 anuales — con oferta subiendo 61.5% año tras año y los ingresos todavía creciendo. Pocono Township está más flojo: 35.9% de ocupación, $493 ADR, unos $63,000 anuales. El mismo condado, pero matemáticas muy distintas. La tasa hipotecaria a 30 años está a 6.46%. Modela ocupación entre 35–40%, no 46%. Conoce tu piso de retorno antes de hacer ninguna oferta.
+
+[2:45–3:30] SECCIÓN 3 — PROPIEDADES:
+3246 Mountain View Drive en Tannersville a $439,900 — 4 cuartos, 3 baños, más de 2,600 pies cuadrados. Cerca de las pistas, suites dobles, formato ideal para grupos. 114 Maxatawny Drive en Pocono Lake a $199,900 — 4 cuartos, 2 baños. 4193 Forest Drive en Kunkletown a $399,000. 202 Tepee Drive en Pocono Lake a $299,900. La mayoría de las casas llevan unos 63 días en el mercado — eso es espacio para negociar.
+
+[3:30–3:50] CTA:
+Si quieres ayuda personalizada analizando una propiedad en Monroe County — contáctame directamente. El link está en la descripción. Suscríbete para análisis de mercado STR cada semana.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CAPTION (Español):
+HB 2303 crearía registros de condado, contacto 24/7, y nuevos estándares de seguridad para operadores en los Pocono Mountains. Datos de submercado de abril 2026. Alexa Sánchez | Licencia PA #RS326383 | (570) 688-8147
+
+#BienesRaices #InversionesEnPoconos #MercadoInmobiliario #PARealEstate #LifeByAlexa`},
+
+{id:7, label:"OUTPUT 7", title:"🔥 Ashes & Escrows Episode", content:`ASHES & ESCROWS EPISODE
+Upload Thursday April 24 | @AlexaSanchezRealtor
+TARGET: Realtors who don't know the Pocono STR market
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SCRIPT:
+
+You just listed a Pocono Mountain property as an "income-producing STR opportunity" — in Hamilton Township.
+
+Hamilton Township doesn't allow short-term rentals.
+
+[takes a slow drag]
+
+Let me explain what happened. You saw a nice house in Monroe County, you Googled "Pocono STR market," skimmed one blog post from 2022, and wrote "investment potential" in the MLS remarks. You didn't call the township. You didn't read the ordinance. You definitely didn't Google the zoning map. And now some investor is under contract on a property they can't legally rent. That's on you.
+
+Barrett Township: STRs allowed, permit required. Jackson Township: illegal without a permit — and they mean it. Paradise Township: not in residential zoning, updated February 2026. Hamilton: nope. These are not hidden. They're on the township websites. Which means the only way you didn't know is because you didn't look.
+
+[looks directly at camera]
+
+Knowing the market you work in is not a bonus feature of being a realtor. It's the job.
+
+[final drag]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CAPTION (YouTube — upload Thursday April 24):
+She just listed a Monroe County property as an "STR opportunity." One problem — that township doesn't allow short-term rentals. Another episode of Ashes & Escrows, where the cigar is lit and the BS is not.
+@AlexaSanchezRealtor | #PoconoRealEstate #STRInvesting #AshesAndEscrows #MonroeCounty #LifeByAlexa
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+THUMBNAIL DIRECTION:
+Alexa with cigar in hand, slight smirk, direct eye contact. Lounge background dark and moody. Bold red text overlay: "THEY LISTED IT WHERE?!" in chunky tilted caps. Bottom: white text "Ashes & Escrows" in smaller serif. Cigar smoke visible in frame. Raw, unpolished energy.`},
+
+{id:8, label:"OUTPUT 8", title:"📱 YouTube Short + IG Reel", content:`YOUTUBE SHORT + IG REEL
+@AlexaSanchezRealtor | Record Wednesday | Upload Thursday April 24
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SCRIPT (under 60 sec):
+
+The Pocono STR market is not one market. It's six townships with six different rule sets and one wrong assumption can cost you everything.
+
+Mount Pocono is at 45.9% occupancy. $499 average daily rate. Revenue still climbing even with supply up over 60% year-over-year.
+
+Pocono Township? 35.9% occupancy. Same county. Completely different math.
+
+Barrett Township: STRs allowed with a permit. Jackson Township: illegal without one — and they enforce it. Paradise Township: not permitted in residential zones as of February 2026. Hamilton: not allowed at all.
+
+Pennsylvania is also about to introduce statewide STR registration requirements through HB 2303. That layers on top of the township rules — it doesn't replace them.
+
+At 6.46% on a 30-year fixed, you don't have room for optimistic assumptions. Model conservative. Know the township. Verify the HOA.
+
+I'm Alexa Sanchez. I specialize in Pocono STR investor transactions. Link in bio if you're ready to do this right.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+COVER TEXT DIRECTION:
+Main text: "WRONG TOWNSHIP = WRONG INVESTMENT" — chunky, bold, slightly tilted, white
+Neon green stat: "45.9% OCC"
+Red accent text: "KNOW THE RULES"
+Dark moody background — lounge or car interior
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+YOUTUBE SHORTS CAPTION:
+Pocono STR investing is NOT one market. Six townships. Six rule sets. One wrong assumption = an expensive mistake. Here's the April 2026 breakdown.
+#PoconoRealEstate #STRInvesting #ShortTermRental #MonroeCounty #LifeByAlexa
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+IG REEL CAPTION (@alexa.realtor):
+Six townships. Six different STR rule sets. One wrong assumption can kill your deal before you close.
+
+Mount Pocono: 45.9% occupancy. Barrett: permits required. Jackson: illegal without one. Hamilton: not allowed. Period.
+
+This is the market. Know it or don't buy it.
+
+#PoconoRealEstate #STRInvesting #MonroeCounty #ShortTermRental #InvestorMindset #LifeByAlexa`},
+
+{id:9, label:"OUTPUT 9", title:"🇩🇴 DR Video — CONFOTUR", content:`DR VIDEO — CONFOTUR LAW (English + Spanish)
+Record Wednesday | Upload Thursday April 24 | @alexa.realtor
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TOPIC: CONFOTUR Law — What Every US Investor Needs to Know Before Buying in the DR
+
+ENGLISH SCRIPT:
+
+[0:00–0:02] HOOK:
+The Dominican Republic has a law that lets US investors pay zero income tax on their rental property. Here's how it works.
+
+[0:02–0:45] BODY:
+It's called CONFOTUR — Law 158-01 — and it's one of the most investor-friendly tax structures in the Caribbean. If your property is in a CONFOTUR-approved development, you get income-tax-free returns on your rental income and duty-free benefits when you import materials or furnishings for the property. Foreign ownership is fully legal — fee-simple title, same rights as a Dominican national. These benefits run for up to 20 years from the project's approval date, depending on the zone. Here's what you need to know: not every project in Punta Cana or Cap Cana qualifies. CONFOTUR status has to be verified per development, per tower. You check through MITUR — the Ministry of Tourism — or you work with local Dominican counsel who can pull the official approval documentation. If a developer says you're in a CONFOTUR zone, you verify it before you wire anything. This is not the document you skip.
+
+[0:45–0:58] CTA:
+I work with buyers in the Dominican Republic and the Pocono Mountains. If you want help understanding what CONFOTUR means for a specific development, reach out directly. Link in bio.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SPANISH SCRIPT (Dominican Spanish):
+
+[0:00–0:02] HOOK:
+La República Dominicana tiene una ley que le permite a los inversionistas americanos pagar cero impuestos sobre los ingresos de su propiedad en alquiler. Óyeme bien — te explico cómo funciona.
+
+[0:02–0:45] CUERPO:
+Se llama CONFOTUR — Ley 158-01 — y es una de las estructuras tributarias más favorables para inversionistas en todo el Caribe. Si tu propiedad está en un desarrollo aprobado por CONFOTUR, recibes ingresos de alquiler libre de impuestos sobre la renta y beneficios de exención arancelaria cuando importas materiales o mobiliario para la propiedad. La propiedad extranjera es completamente legal — título en plena propiedad, los mismos derechos que un nacional dominicano. Estos beneficios aplican hasta 20 años desde la fecha de aprobación del proyecto, dependiendo de la zona. Ahora bien, mi amor — no todos los proyectos en Punta Cana o Cap Cana califican. El estatus CONFOTUR hay que verificarlo por desarrollo, por torre, a través del MITUR o con un abogado dominicano local. Si el desarrollador dice que estás en zona CONFOTUR, tú lo verificas antes de enviar ningún dinero. Este no es el documento que tú brincas.
+
+[0:45–0:58] CTA:
+Trabajo con compradores en la República Dominicana y en los Pocono Mountains. El link está en el bio.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ENGLISH CAPTION (IG/TikTok):
+Zero income tax on your Dominican Republic rental property. It's real — and it's called CONFOTUR (Law 158-01). Here's what every US investor needs to verify before wiring a single dollar.
+#DominicanRepublic #DRRealEstate #STRInvesting #CONFOTUR #InvestorMindset #LifeByAlexa
+
+SPANISH CAPTION (@alexa.realtor IG + TikTok En Español):
+Cero impuestos sobre tus ingresos de alquiler en la República Dominicana. Se llama CONFOTUR (Ley 158-01). Lo que todo inversionista americano tiene que verificar antes de firmar.
+#RepublicaDominicana #InversionesEnRD #BienesRaices #CONFOTUR #MercadoInmobiliario #LifeByAlexa
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+IMAGE DIRECTION:
+Alexa on camera, direct to lens. On-screen text overlay: "CONFOTUR LAW 158-01" bold white block. B-roll text slide: "0% INCOME TAX" in neon green. DR map or PUJ airport aerial for transition if available. One take, tight, no wasted seconds.`},
+
+{id:10, label:"OUTPUT 10", title:"🚬 Cigar/Lounge Video", content:`CIGAR / LOUNGE VIDEO
+Topic: How to Toast and Light a Cigar
+Record Wednesday | Upload Thursday April 24 | @its.myash
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SCRIPT:
+
+[0:00–0:02] HOOK:
+Most people light a cigar the same way they light a gas stove. That's why the first third tastes wrong.
+
+[0:02–0:45] BODY:
+Here's how you actually do it. First — toast the foot. Rotate the cigar at about a 45-degree angle, two to three inches from the flame. You're not trying to light it. You're warming the tobacco so it opens up and the oils start to move. You'll see the foot start to glow around the edges. That's what you want. Take your time. Twenty, thirty seconds minimum.
+
+Now bring the cigar to your lips. Keep the flame below the foot — never touch the flame to the tobacco directly. Draw slowly. Rotate again. You're coaxing the light, not forcing it. The burn should be even — no one side lit darker than the other. If it is, you torch just the darker side.
+
+Let me tell you what skipping the toast gives you: a hot, uneven burn, a bitter first third, and a cigar that tastes like you're in a hurry. The cigar knows when you're in a hurry. It punishes you for it.
+
+Butane lighter or torch — not matches, not a Bic. The chemicals will get into the tobacco.
+
+[0:45–0:58] CTA:
+Toast first. Light slow. Rotate throughout. You've been doing this wrong — now you know. Follow for more. @its.myash — Nell's Social, Poconos.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+IG CAPTION (@its.myash):
+The cigar knows when you're rushing. Toast first. Light slow. The first third should never taste like a mistake.
+
+Step by step — how to properly toast and light a premium cigar. Don't skip this. 🔥
+
+#CigarLife #CigarAuthority #PremiumCigars #NellsSocial #CigarLounge #LifeByAlexa #DominicanCigars
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TIKTOK CAPTION (@its.myash):
+Why your first third always tastes off — and how to fix it. Toast the foot first. Always.
+#CigarTok #CigarLife #CigarAuthority #NellsSocial #LifeByAlexa
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+IMAGE DIRECTION:
+Film at Nell's Social. Cigar in right hand, butane torch in left. Macro shot of the foot during toasting — show the glow developing at the edges. Alexa on camera for verbal instruction portions. Dark background, warm amber lounge light. Show the full sequence: angle, toast, draw, rotate. B-roll: close-up of even cherry, clean ash forming. One take, 60 seconds, authority energy.`},
+
+{id:11, label:"OUTPUT 11", title:"📲 Native TikTok Re-record", content:`NATIVE TIKTOK RE-RECORD
+@alexa.realtor | Car Confession delivery | Record Wednesday | Upload Thursday
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SCRIPT:
+
+Six townships. Six sets of STR rules. One wrong assumption.
+
+Jackson Township — illegal without a permit. Hamilton — not allowed, period. Paradise — updated their ordinance February 2026. No STRs in residential zones.
+
+And now Pennsylvania is introducing HB 2303 — statewide STR registration. That goes on top of all of that. Not instead of it.
+
+Mount Pocono is at 45.9% occupancy. $499 ADR. That math works. But only if you're in the right township with the right property type.
+
+I'm Alexa Sanchez. I run STR transactions in Monroe County. You want to buy right — let's talk.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TIKTOK CAPTION:
+Six townships. Six rule sets. One wrong assumption = one very expensive mistake. Pocono STR market breakdown — what nobody told you before you offered.
+#PoconoRealEstate #STRInvesting #MonroeCounty #ShortTermRental #LifeByAlexa`},
+
+{id:12, label:"OUTPUT 12", title:"🎵 TikTok @its.myash", content:`TIKTOK — @its.myash
+Topic: Why Dominican Cigars Are the New Premium Language
+Record Wednesday | Upload Thursday
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SCRIPT:
+
+There's a shift happening in cigar culture and if you're not paying attention, you're going to be behind on it.
+
+The Dominican Republic is no longer just where premium cigars get made. It's becoming what premium cigar culture means.
+
+Procigar Festival 2026 — 40 countries in Santiago. Dominican tobacco is being marketed as a cultural destination, not just a manufacturing origin. The brands getting attention are the ones with a story: the region, the factory, the relationship to the land.
+
+That's the shift. It's not about the price of the cigar anymore. It's about whether you can explain it in 10 seconds. Origin. Process. Identity.
+
+Dominican cigars are the ones right now where you can do that. And that's why they're winning.
+
+Follow @its.myash. Nell's Social, Pocono Mountains.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CAPTION:
+Dominican cigars aren't just premium — they're becoming the language of premium cigar culture. Here's what's driving the shift.
+#DominicanCigars #CigarAuthority #CigarLife #PremiumCigars #LifeByAlexa`},
+
+{id:13, label:"OUTPUT 13", title:"🚗 Car Confessions (English)", content:`CAR CONFESSION HOOKS — ENGLISH (4 total)
+All recorded Wednesday April 23
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+① TUESDAY @alexa.realtor — Real Estate + Entrepreneur Life
+POST: Tuesday April 22 | 7:00 AM
+
+SCRIPT:
+A contractor ghosted me on a job he didn't finish. Then he tried to come after me for money. Then he got loud. Two days later — still waiting on that apology. Running a business means knowing what you owe and what you don't. I don't owe him anything. I do owe you this: don't skip the contract. Don't assume the job is done until you sign off. That's it.
+
+CAPTION (IG):
+He didn't finish the job. Then tried to shake me down for it. Then got loud. Two days later — still no apology. Running businesses means knowing your ground. I know mine.
+#OperatorLife #EntrepreneurLife #PoconoRealEstate #LifeByAlexa
+
+HASHTAGS: #OperatorLife #EntrepreneurLife #PoconoRealEstate #InvestorMindset #LifeByAlexa
+
+COVER TEXT:
+Main (white bold tilted): "HE DIDN'T FINISH THE JOB"
+Sub (neon green): "THEN TRIED TO CHARGE ME"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+② WEDNESDAY @alexa.realtor — Real Estate Focus
+POST: Wednesday April 23 | 9:00 AM
+
+SCRIPT:
+Hamilton Township doesn't allow short-term rentals. Paradise Township updated their ordinance February 2026 — no STRs in residential zones. Jackson Township — illegal without a permit, and they enforce it. If you are buying a Pocono Mountain property marketed as an STR opportunity and you have not called the township yet — call the township. Today. Right now.
+
+CAPTION (IG):
+Three Monroe County townships that will shut down your STR before it starts. Most people find out after they close. Don't be most people.
+#PoconoRealEstate #STRInvesting #MonroeCounty #ShortTermRental #LifeByAlexa
+
+HASHTAGS: #PoconoRealEstate #STRInvesting #MonroeCounty #ShortTermRental #LifeByAlexa
+
+COVER TEXT:
+Main (red block): "CALL THE TOWNSHIP FIRST"
+Sub (neon green): "THREE TOWNSHIPS = NO STRs"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+③ THURSDAY @alexa.realtor — Entrepreneur Life
+POST: Thursday April 24 | 7:00 AM
+
+SCRIPT:
+Pennsylvania is about to introduce statewide STR registration — HB 2303. Countywide registry. 24/7 contact requirement. New safety standards. This doesn't replace your township rules. It adds to them. More compliance, not less. If you're an STR operator in the Poconos and you haven't looked this bill up yet — look it up today. Because by the time it passes, you're going to want to have already been ready.
+
+CAPTION (IG):
+Pennsylvania HB 2303 — the statewide STR bill you haven't heard of yet. Countywide registry. 24/7 contact requirement. Layers on top of your township rules, not instead of them. Start reading.
+#PoconoRealEstate #STRInvesting #PARealEstate #InvestorMindset #LifeByAlexa
+
+HASHTAGS: #PoconoRealEstate #STRInvesting #PARealEstate #HB2303 #LifeByAlexa
+
+COVER TEXT:
+Main (white bold): "HB 2303 JUST DROPPED"
+Sub (neon green): "POCONO STR OPERATORS READ THIS"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+④ WEDNESDAY @its.myash — Entrepreneur + Cigars
+POST: Wednesday April 23 | 6:00 PM
+
+SCRIPT:
+Procigar Festival 2026. Santiago. Forty countries. The Dominican Republic is not just being talked about as where premium cigars get made — it's being talked about as what premium cigar culture is. That's a different conversation. And the brands that are winning right now are the ones with an origin story, a real factory relationship, and something worth saying in ten seconds. That's the shift. Pay attention.
+
+CAPTION (IG):
+Procigar 2026. 40 countries in Santiago. Dominican cigar culture is no longer just origin — it's identity. The brands winning right now have a story you can say in 10 seconds.
+#CigarLife #DominicanCigars #CigarAuthority #NellsSocial #LifeByAlexa
+
+HASHTAGS: #CigarLife #DominicanCigars #CigarAuthority #NellsSocial #OperatorLife #LifeByAlexa
+
+COVER TEXT:
+Main (white bold): "DR CIGARS ARE WINNING"
+Sub (neon green): "HERE'S WHY"`},
+
+{id:14, label:"OUTPUT 14", title:"🚗🇩🇴 Car Confessions (Spanish)", content:`CAR CONFESSION HOOKS — ESPAÑOL (2 total)
+Dominican Spanish | Record Wednesday April 23 (2nd takes)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+① TUESDAY @alexa.realtor — Spanish Real Estate Car Confession (WEEKLY)
+POST: Tuesday April 22 | 12:00 PM
+
+SCRIPT:
+Óyeme bien — Hamilton Township no permite rentas a corto plazo. Paradise Township lo actualizó en febrero de este año — tampoco en zonas residenciales. Jackson Township lo tiene clarísimo: sin permiso es ilegal y lo aplican. Si tú estás comprando una propiedad en los Pocono Mountains como inversión STR, mi amor, tienes que llamar al municipio antes de hacer ninguna oferta. Antes. No después de cerrar. Antes.
+
+CAPTION (Spanish):
+Tres municipios en Monroe County que van a cerrar tu STR antes de que empiece. La mayoría de la gente se entera después de firmar. Tú no.
+#BienesRaices #InversionesEnPoconos #MercadoInmobiliario #LifeByAlexa
+
+HASHTAGS: #BienesRaices #InversionesEnPoconos #MercadoInmobiliario #RepublicaDominicana #LifeByAlexa
+
+COVER TEXT:
+Main (white bold tilted): "LLAMA AL MUNICIPIO PRIMERO"
+Sub (neon green): "3 MUNICIPIOS = NO STRs"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+② THURSDAY @alexa.realtor — Spanish Entrepreneur Life Car Confession (WEEKLY)
+POST: Thursday April 24 | 12:00 PM
+
+SCRIPT:
+Un contratista me abandonó a medio trabajo. Después intentó cobrarme por eso. Después se puso agresivo. Dos días después, su jefe le dijo que se disculpara. Tú estás esperando esa llamada conmigo, mi amor. Esto es lo que aprendí: tú sabes lo que debes y lo que no debes. Cuando alguien te presiona pa' que confundas las dos cosas — mantenlo firme. El trabajo es tuyo. Las reglas son tuyas. Que el ruido pase.
+
+CAPTION (Spanish):
+Un contratista que no terminó el trabajo intentó cobrarme por él. Dos días esperando la disculpa. Esto es la vida del operador — tú conoces tu terreno y no te mueves.
+#OperatorLife #EmpresariaLatina #BienesRaices #LifeByAlexa
+
+HASHTAGS: #OperatorLife #EmpresariaLatina #BienesRaices #EntrepreneurLife #LifeByAlexa
+
+COVER TEXT:
+Main (red block): "NO LE DEBO NADA"
+Sub (white tilted): "ASÍ SE MANTIENE EL TERRENO"`},
+
+{id:15, label:"OUTPUT 15", title:"📋 All Platform Captions + Image Direction", content:`ALL PLATFORM CAPTIONS + IMAGE DIRECTION
+Full week — every non-video scheduled post
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SUNDAY April 20
+───────────────
+
+@fillerandroast "Before the First Draw" IG | 8:00 AM
+CAPTION: Before the draw, there's always the cup. House Blend. Dark roast. Nell's Social before anyone else gets here. This is the reset. ☕🔥
+IMAGE: Coffee cup in foreground, cigar resting on ashtray beside it. Lounge background soft and dim, early morning light quality. No text overlay. Clean, intentional, slow.
+HASHTAGS: #FillerAndRoast #CigarAndCoffee #NellsSocial #CoffeeCulture #BeforeTheFirstDraw #LifeByAlexa
+
+@its.myash Coffee & Ash Ritual IG | 9:30 AM
+CAPTION: Sunday morning. Coffee in one hand. Plans for the week in the other. The cigar comes after. This is the operating system. #LifeByAlexa
+IMAGE: Alexa seated at lounge table, coffee cup in left hand, unlit cigar resting on ashtray to the right. Direct eye contact with camera. Dark lounge ambiance, warm light. No props except coffee and cigar.
+HASHTAGS: #CigarLife #OperatorLife #NellsSocial #CigarAuthority #LifeByAlexa #CigarAndCoffee
+
+@life.byalexa Behind the Operator IG | 11:00 AM
+CAPTION: Sunday batch. Coffee first. Everything else after. #LifeByAlexa
+IMAGE: Flat lay of Sunday setup — notebook, coffee cup, phone, laptop at edge of frame. Overhead or angled close. Personal, no branding, natural light. Raw.
+HASHTAGS: #LifeByAlexa #OperatorLife #BehindTheBrands
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+MONDAY April 21
+───────────────
+
+@its.myash Tonight's Smoke Carousel IG | 7:00 PM
+CAPTION: Monday smoke selection. Connecticut wrapper tonight. Running light on the pep talk — the market briefing did enough work today. Slide through for the week's pairing guide. 🔥
+CAROUSEL SLIDES:
+  Slide 1: "TONIGHT'S SMOKE" bold header, cigar image
+  Slide 2: Connecticut + Butter Pecan | "Smooth on both sides"
+  Slide 3: Maduro + House Blend | "The anchor pairing"
+  Slide 4: Amaretto + Evening Draw | "For the long session"
+  Slide 5: "Find us at Nell's Social — Pocono Mountains"
+IMAGE: Dark background throughout. Each slide: cigar or coffee photo + bold white text overlay. Consistent aesthetic.
+HASHTAGS: #CigarLife #TonightSmoke #PremiumCigars #NellsSocial #CigarLounge #LifeByAlexa
+
+@alexa.realtor Market Signal LinkedIn | 8:00 AM
+CAPTION: Pennsylvania's HB 2303 would create the state's first statewide STR framework — countywide registries, 24/7 contact requirements, baseline safety standards. For Monroe County investors, that's a new compliance layer stacking on top of existing township rules. Barrett, Jackson, Paradise, Hamilton, Middle Smithfield each have their own ordinances. The state bill doesn't replace them — it adds to them. Know both layers. Questions on your specific township? I run these checks every week for clients. Reach out.
+HASHTAGS: #PoconoRealEstate #STRInvesting #PARealEstate #InvestorMindset
+
+@alexa.realtor Google Business Post 1 | 9:00 AM
+CAPTION: Monroe County STR investors — Pennsylvania's new statewide short-term rental bill (HB 2303) would layer new compliance requirements on top of existing township rules. Barrett, Jackson, Paradise, Hamilton, and Middle Smithfield each operate differently. Know your township before you offer. Alexa Sanchez | PA License #RS326383 | Smart Way America Realty | (570) 688-8147
+(No hashtags on Google Business)
+
+@alexa.realtor Real Estate Insight FB Personal | 10:00 AM
+CAPTION: If you're looking at Pocono Mountain investment properties right now — please, please check the township first. Three of the major townships in Monroe County don't allow STRs in residential zones at all. One requires a permit and will shut you down without one. The state of Pennsylvania is also moving toward adding a statewide registration requirement on top of that. I break this down every week. Reach out if you need help navigating it.
+(No hashtags on FB personal)
+
+@life.byalexa Operator Moment IG | 12:00 PM
+CAPTION: Newsletter is live. Market briefing done. Substack published. Now a cigar. That's the Monday operating system. #LifeByAlexa
+IMAGE: Alexa with coffee or cigar, relaxed posture, somewhere between focused and done. Natural light or warm lounge light. Not staged.
+HASHTAGS: #LifeByAlexa #OperatorLife #BehindTheBrands
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TUESDAY April 22
+────────────────
+
+@alexa.realtor Pocono Pulse Market Update IG | 8:00 AM
+CAPTION: April 2026 Pocono STR data just dropped. Mount Pocono: 45.9% occupancy. $499 ADR. ~$70K annual revenue even with supply up 60%+. Pocono Township: 35.9% occupancy. $63K annually. Same county. Very different math. The difference is the asset type and the submarket. Ski proximity. Lake access. Group format capacity. The generic properties are struggling. The right ones aren't. DM me if you want to break down a specific address.
+IMAGE: Clean data graphic. Dark background. Two-column comparison: Mount Pocono vs Pocono Township. Key metrics in neon green. Bold white font. @alexa.realtor logo bottom right.
+HASHTAGS: #PoconoRealEstate #STRInvesting #MonroeCounty #AirbnbInvesting #LifeByAlexa
+
+@alexa.realtor Neighborly Post Nextdoor | 9:00 AM
+CAPTION: Monroe County neighbors — if you're curious about your property's potential for short-term rental or looking to invest in an STR nearby, I do free initial consultations. I specialize in the Pocono Mountains market and can walk you through what's allowed in your specific township before you make any decisions. Alexa Sanchez | (570) 688-8147
+(No hashtags on Nextdoor)
+
+@fillerandroast Nell's Social FB Tag | 11:00 AM
+CAPTION: Tuesday morning at Nell's Social. The Butter Pecan is ready. If you haven't tried it with a Connecticut wrapper yet, you're missing the best pairing on the menu. Come in. ☕
+IMAGE: Coffee cup with Filler & Roast branding, cigar resting alongside, Nell's Social interior in background. Warm, welcoming, morning light quality.
+(Minimal hashtags on FB) #FillerAndRoast #NellsSocial #CoffeeAndCigars
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+WEDNESDAY April 23
+──────────────────
+
+@alexa.realtor Under Contract Story | 11:00 AM
+CAPTION: Under contract in the Poconos. Township verified. HOA confirmed. Occupancy modeled conservative. This is how you buy right. 🏔️ #PoconoRealEstate #UnderContract #LifeByAlexa
+IMAGE: Clean "UNDER CONTRACT" graphic. Dark navy background, white bold text, Alexa Sanchez logo. No property address, no client names.
+
+@life.byalexa Recording Day Energy IG | 10:00 AM
+CAPTION: Wednesday. Camera is on. Cigar is lit. The apology still hasn't come. Some things you wait on. Most things you don't. #LifeByAlexa
+IMAGE: Behind-the-scenes recording setup — camera in frame, lounge setting visible, Alexa getting ready or mid-setup. Candid. Not polished. Real.
+HASHTAGS: #LifeByAlexa #OperatorLife #BehindTheBrands
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+THURSDAY April 24
+─────────────────
+
+@alexa.realtor Investor Signal LinkedIn | 8:00 AM
+CAPTION: 6.46%. That's the 30-year fixed rate as of April 2, 2026. Up from 6.38% the week prior. For STR investors running cash-on-cash calculations on a $400K Pocono property, every tenth of a point matters. Model occupancy at 35–40%, not the market's best-case 46%. Know your floor before you write the offer. The listings I'm watching this week in Monroe County are under $500K with 4BR+ and lake or ski access. That's the profile that's outperforming right now. I help buyers run this math. Happy to look at any address.
+HASHTAGS: #STRInvesting #PoconoRealEstate #InvestorMindset #RealEstateTips
+
+@alexa.realtor Community Roundup Nextdoor | 10:00 AM
+CAPTION: Quick market update for the Pocono Mountains community — the most watched real estate development right now for STR owners is Pennsylvania's proposed HB 2303, which would create statewide registration requirements for short-term rentals. If you own or are thinking of operating an STR in Monroe County, I'd encourage you to look the bill up. Happy to answer questions. Alexa Sanchez | Smart Way America Realty | (570) 688-8147
+(No hashtags on Nextdoor)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+FRIDAY April 25
+───────────────
+
+@fillerandroast Coffee for the Leaf IG + FB Biz | 9:00 AM
+CAPTION: Coffee for the Leaf — Friday pairing. Butter Pecan meets Connecticut. The brightness cuts through the cream without competing. That's the whole idea. This is what coffee looks like when it's built for the ritual, not just the morning. ☕🔥 @fillerandroast at Nell's Social.
+IMAGE: Butter Pecan coffee in elegant cup, Connecticut cigar beside it on ashtray, dark warm background. Slight steam visible from coffee. "COFFEE FOR THE LEAF" text overlay in clean serif font. No clutter.
+HASHTAGS: #FillerAndRoast #CoffeeForTheLeaf #CigarAndCoffee #NellsSocial #ArtisanCoffee #LifeByAlexa
+
+@its.myash Weekend Smoke Reel IG | 6:00 PM
+CAPTION: The week earned this. Dominican wrapper. Connecticut. Doesn't matter — whatever's in the humidor that you've been saving for Friday. Light it right. Toast first. Draw slow. The weekend started when you cut the cap. 🔥
+IMAGE: Short reel. Alexa in lounge, toasting and lighting a cigar — full ritual on camera. Slow motion moment of foot glowing. Real lounge setting, warm amber light.
+HASHTAGS: #CigarLife #WeekendSmoke #PremiumCigars #NellsSocial #CigarLounge #LifeByAlexa
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SATURDAY April 26
+─────────────────
+
+@alexa.realtor Weekend Market Tip Nextdoor | 10:00 AM
+CAPTION: Thinking about a Pocono Mountains property this weekend? Quick tip: most homes in Monroe County are sitting on market about 63 days right now. That's leverage. If a listing is sitting, ask about it. The sellers and agents who have been patient will often negotiate — especially on price, credits, and timeline. Alexa Sanchez | Smart Way America Realty | PA License #RS326383 | (570) 688-8147
+(No hashtags on Nextdoor)
+
+@life.byalexa Weekend Operator Life IG | 11:00 AM
+CAPTION: Saturday means the week worked. Two businesses running. One apology still pending. One cigar definitely happening. #LifeByAlexa
+IMAGE: Alexa relaxed, weekend energy — cigar or coffee in hand, lounge or outdoor setting. Candid. Weekend vibe. Not a brand post. Real.
+HASHTAGS: #LifeByAlexa #OperatorLife #BehindTheBrands`},
+
+{id:16, label:"OUTPUT 16", title:"🇩🇴📱 Spanish Posts — All Platforms", content:`SPANISH POSTS — ALL PLATFORMS
+Dominican Spanish | Weekly + Biweekly items
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[WEEKLY] @alexa.realtor IG Spanish Post | Saturday April 26 | 10:00 AM
+CAPTION: El mercado de rentas a corto plazo en los Pocono Mountains no es un solo mercado — son seis municipios con seis sets de reglas diferentes. Mount Pocono: 45.9% de ocupación, $499 de tarifa promedio diaria. Pocono Township: 35.9% de ocupación. El mismo condado, mi amor, pero matemáticas muy distintas. Y Pennsylvania está a punto de añadir un registro estatal encima de eso con el proyecto de ley HB 2303. Si tú estás pensando en invertir en los Poconos — llámame. Yo te ayudo a revisar el municipio, el HOA, y las proyecciones antes de que hagas ninguna oferta.
+IMAGE: Clean market data graphic in Spanish. "MERCADO STR POCONO — ABRIL 2026" as header. Neon green for occupancy stats. Dark background. @alexa.realtor logo. Bold white font, chunky and direct.
+HASHTAGS: #BienesRaices #InversionesEnPoconos #MercadoInmobiliario #PARealEstate #LifeByAlexa
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[WEEKLY] Personal Facebook Spanish Post | Friday April 25 | 7:00 PM
+CAPTION: Esta semana tuve que mantener el terreno con alguien que no terminó un trabajo y después tuvo el descaro de pedirme dinero por eso. Se puso agresivo. Su jefe le pidió que se disculpara. Llevan dos días. Todavía esperando. Esto es la vida del operador, mi amor — no siempre es glamorosa, pero siempre es tuya. Lo que tú construyes, nadie te lo quita. Sigan construyendo.
+IMAGE: Personal — no branding. Alexa photo, candid or contemplative. Warm tone. Community voice, not a business post.
+HASHTAGS: (none on FB personal)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[WEEKLY] @its.myash TikTok Spanish DR/Cigar | Thursday April 24 | 6:00 PM
+SCRIPT (30 sec): Óyeme bien — hay un cambio pasando en el mundo del puro y si no le estás prestando atención, tú vas a quedar atrás. La República Dominicana en el Festival Procigar 2026 — cuarenta países en Santiago. Ya no hablan solo de dónde se fabrica el puro. Hablan de qué significa la cultura dominicana del tabaco en el mundo del lujo. Los puros que están ganando ahora tienen origen, tienen historia, tienen una relación con la finca. Eso es lo que tú puedes decir en diez segundos. Eso es el cambio. Sígueme — @its.myash — Nell's Social, Pocono Mountains.
+CAPTION: La República Dominicana ya no es solo donde se hacen los puros premium — es lo que la cultura del puro premium significa. Procigar 2026 en Santiago. Cuarenta países. Ese es el cambio, mi amor.
+HASHTAGS: #PurosDominicanos #CigarAuthority #RepublicaDominicana #NellsSocial #LifeByAlexa
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[BIWEEKLY] @alexa.realtor FB Business Spanish Post | Saturday April 26 | 12:00 PM
+CAPTION: ¿Estás pensando en invertir en los Pocono Mountains? Los datos de abril 2026 muestran que Mount Pocono tiene 45.9% de ocupación y $499 de tarifa promedio diaria, con ingresos todavía creciendo a pesar de que la oferta subió más de 60% año tras año. Antes de hacer ninguna oferta, tienes que verificar el municipio y el HOA. Contáctame: (570) 688-8147 | Alexa@alexasanchez.net | Licencia PA #RS326383
+HASHTAGS: #BienesRaices #InversionesEnPoconos #MercadoInmobiliario #LifeByAlexa
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[BIWEEKLY] @alexa.realtor LinkedIn Spanish Post | Monday April 21 | 2:00 PM
+CAPTION: Inversionistas en los Pocono Mountains — Pennsylvania está en proceso de introducir HB 2303, la primera regulación estatal para rentas a corto plazo. Esto crearía registros de condado, un requisito de contacto disponible 24/7, y nuevos estándares de seguridad. No reemplaza las reglas municipales — se añade encima de ellas. Para propietarios en Monroe County, eso significa más cumplimiento, no menos. Estoy disponible para revisar el impacto en propiedades específicas. Alexa Sánchez | Smart Way America Realty | PA #RS326383
+HASHTAGS: #BienesRaices #InversionesEnPoconos #MercadoInmobiliario
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[BIWEEKLY] @alexa.realtor Google Business Spanish Post | Monday April 21 | 9:30 AM
+CAPTION: Inversionistas en Monroe County — el proyecto de ley HB 2303 de Pennsylvania añadiría nuevos requisitos estatales para rentas a corto plazo encima de las reglas municipales existentes. Antes de comprar, verifica el municipio y el HOA. Alexa Sánchez | Licencia PA #RS326383 | Smart Way America Realty | (570) 688-8147
+(No hashtags on Google Business)`},
+
+{id:17, label:"OUTPUT 17", title:"💃 @life.byalexa Content", content:`@life.byalexa CONTENT — 3 POSTS
+Personal account | Alexa the human
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+POST 1 | Tuesday April 22 | 8:00 AM
+
+CAPTION:
+He didn't finish the job. Then came after me for the money. Then got loud when I didn't move. His boss told him to apologize two days ago.
+
+Still waiting.
+
+I'm not rushing it. Some things you let play out at their own pace. My ground doesn't move. #LifeByAlexa
+
+IMAGE: Alexa in car, morning light, direct to camera. No setup. No smile. Not performing calm — actually calm. Minimal. Just her face and the window behind.
+HASHTAGS: #LifeByAlexa #OperatorLife
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+POST 2 | Wednesday April 23 | 10:00 AM
+
+CAPTION:
+Recording day. Cigar lit. Camera on. El apology still hasn't arrived.
+
+Some people take their time doing the right thing. I take my time doing everything else.
+
+#LifeByAlexa
+
+IMAGE: Candid BTS shot — Alexa mid-setup in lounge or recording space. Camera visible, cigar in ashtray or hand, notes somewhere in frame. Real. Not staged. The kind of photo someone takes when they're about to get to work.
+HASHTAGS: #LifeByAlexa #OperatorLife #BehindTheBrands
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+POST 3 | Saturday April 26 | 12:00 PM
+
+CAPTION:
+Week status: three businesses running, two closings coming, one apology pending, zero patience for people who don't finish what they start.
+
+Saturday tastes good. 🔥 #LifeByAlexa
+
+IMAGE: Alexa with cigar or coffee, somewhere she actually is on Saturday — lounge, outdoor, wherever is real. Relaxed energy. Weekend. Not a photoshoot. The real Saturday.
+HASHTAGS: #LifeByAlexa #OperatorLife`},
+
+{id:18, label:"OUTPUT 18", title:"💼 LinkedIn Posts", content:`LINKEDIN POSTS (2 total)
+@alexa.realtor | Professional but operator voice
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+POST 1 — Real Estate | Monday April 21 | 8:00 AM
+
+Pennsylvania is about to change the compliance landscape for every STR investor in the Poconos.
+
+HB 2303 — introduced in March 2026 — would create Pennsylvania's first statewide short-term rental framework. Here's what that means for Monroe County investors:
+
+1. Countywide registries. Not township-level — county. That's a new filing layer on top of your existing township permit.
+2. 24/7 designated contact requirement. A real person, not a phone service.
+3. Baseline safety standards with tighter rules for operators managing multiple properties.
+
+This doesn't replace what already exists at the township level. Barrett, Jackson, Paradise, Hamilton, and Middle Smithfield each have their own ordinances — and those still control whether you can operate at all.
+
+The practical implication: the due diligence process for STR acquisitions in Monroe County is getting more complex. Buyers who understand both layers — state and local — will make better decisions.
+
+If you're evaluating a Pocono property for STR use and want help running the township check, occupancy model, and compliance review, I do this every week for clients.
+
+Alexa Sanchez | PA License #RS326383 | Smart Way America Realty
+(570) 688-8147 | Alexa@alexasanchez.net
+
+#PoconoRealEstate #STRInvesting #PARealEstate #InvestorMindset
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+POST 2 — Entrepreneur/Operator | Thursday April 24 | 8:00 AM
+
+I had a contractor try to shake me down for money on a job he didn't finish. Here's the operator lesson.
+
+He ghosted. Then came back and tried to collect payment. Then got loud when I didn't comply. His boss told him to apologize. That was two days ago.
+
+Running three businesses means this kind of test shows up regularly. The pattern is the same: someone applies pressure, expecting you to fold because it's easier than holding the line.
+
+Three things I've learned to do in these moments:
+
+1. Know exactly what the agreement said. Contracts aren't bureaucracy — they're the documentation that tells you exactly where you stand when someone tries to blur the line.
+2. Stay quiet. Loud is the signal that someone is out of options. You don't need to match the energy — you need to hold your position.
+3. Let the process work. His boss told him to apologize. That's the process doing its job. I don't need to chase it.
+
+The version of operator life that gets shared publicly is the closings, the deals, the launches. The version that actually builds something durable is this one — the Thursday at 11am when you decide who you're going to be under pressure.
+
+Alexa Sanchez | Realtor + Entrepreneur + EP, Suite317 Entertainment
+Smart Way America Realty | PA License #RS326383
+
+#OperatorLife #Entrepreneurship #RealEstate #InvestorMindset`},
+
+{id:19, label:"OUTPUT 19", title:"🗺️ Google Business Posts", content:`GOOGLE BUSINESS POSTS (2 total)
+@alexa.realtor | Local, keyword-rich, under 150 words each
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+POST 1 | Monday April 21 | 9:00 AM
+TITLE: Monroe County STR Investors — What You Need to Know This Week
+
+If you own or are purchasing a short-term rental in Monroe County, Pennsylvania's proposed HB 2303 is the most important legislative development to watch right now. This bill would create countywide STR registries, a 24/7 contact requirement, and baseline safety standards — layering on top of existing township rules in Barrett, Jackson, Paradise, Hamilton, and Middle Smithfield. Not all townships allow STRs. Know your zoning before you offer.
+
+I specialize in STR investor transactions in the Pocono Mountains. I help buyers run township verification, HOA review, and occupancy modeling before any offer is made.
+
+Alexa Sanchez | PA License #RS326383 | Smart Way America Realty
+(570) 688-8147 | Alexa@alexasanchez.net
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+POST 2 | Thursday April 24 | 9:00 AM
+TITLE: April 2026 Pocono STR Market Data — Where the Occupancy Numbers Actually Are
+
+April 2026 submarket data for Monroe County STR investors: Mount Pocono is running at 45.9% occupancy with $499 average daily rate and approximately $69,000 in annual revenue — even as supply grew 61% year-over-year. Pocono Township sits at 35.9% occupancy and approximately $63,000 annually. Most homes in the area are at about 63 days on market, which means negotiation leverage exists.
+
+The 30-year fixed rate is at 6.46%. Model occupancy conservatively. Know your floor before you offer.
+
+I help STR investors in the Pocono Mountains find, analyze, and close the right properties.
+
+Alexa Sanchez | PA License #RS326383 | Smart Way America Realty
+(570) 688-8147 | Alexa@alexasanchez.net`},
+
+{id:20, label:"OUTPUT 20", title:"📅 ZCM Tags + Schedule Table", content:`ZCM TAGS + WEEKLY SCHEDULE TABLE
+Week of April 20–26, 2026 | 68 total production items
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CONTENT PIECE                            | ACCOUNT              | PLATFORM        | DATE/TIME    | ZCM ENVIRONMENT | GOAL
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+SUNDAY April 20
+Before the First Draw IG Post            | @fillerandroast      | Instagram       | Sun 8:00 AM  | Social Feed     | Grow followers
+Coffee & Ash Ritual IG Post             | @its.myash           | Instagram       | Sun 9:30 AM  | Social Feed     | Grow followers
+Behind the Operator IG Post             | @life.byalexa        | Instagram       | Sun 11:00 AM | Social Feed     | Grow followers
+YouTube Hub Video (English)             | @AlexaSanchezRealtor | YouTube         | Sun 12:00 PM | Video Platform  | Generate leads
+YouTube Hub Video (Spanish)             | @AlexaSanchezRealtor | YouTube ES      | Sun 12:00 PM | Video Platform  | Generate leads
+
+MONDAY April 21
+ROAST Newsletter                        | @itsmyash            | Substack        | Mon 7:00 AM  | Community       | Grow followers
+Monday Substack — Operator Life         | @itsmyash            | Substack        | Mon 7:00 AM  | Community       | Grow followers
+Tonight's Smoke Carousel                | @its.myash           | Instagram       | Mon 7:00 PM  | Social Feed     | Grow followers
+Market Signal LinkedIn                  | @alexa.realtor       | LinkedIn        | Mon 8:00 AM  | Community       | Generate leads
+Google Business Post 1 (EN)            | @alexa.realtor       | Google Business | Mon 9:00 AM  | AI Visibility   | Generate leads
+Google Business Post (ES Biweekly)     | @alexa.realtor       | Google Business | Mon 9:30 AM  | AI Visibility   | Generate leads
+Real Estate Insight FB Personal         | Personal FB          | Facebook        | Mon 10:00 AM | Social Feed     | Generate leads
+Operator Moment IG                      | @life.byalexa        | Instagram       | Mon 12:00 PM | Social Feed     | Grow followers
+LinkedIn Spanish Post (Biweekly)        | @alexa.realtor       | LinkedIn        | Mon 2:00 PM  | Community       | Generate leads
+
+TUESDAY April 22
+Car Confession — Tue EN (Contractor)   | @alexa.realtor       | IG/TikTok       | Tue 7:00 AM  | Social Feed     | Generate leads
+@life.byalexa Post 1 (Contractor)      | @life.byalexa        | Instagram       | Tue 8:00 AM  | Social Feed     | Grow followers
+Pocono Pulse Market Update IG          | @alexa.realtor       | Instagram       | Tue 8:00 AM  | Social Feed     | Generate leads
+Neighborly Post Nextdoor               | @alexa.realtor       | Nextdoor        | Tue 9:00 AM  | Community       | Generate leads
+Nell's Social FB Tag                   | @fillerandroast      | Facebook        | Tue 11:00 AM | Social Feed     | Drive sales
+Car Confession — Tue ES (Township)     | @alexa.realtor       | IG/TikTok       | Tue 12:00 PM | Social Feed     | Generate leads
+
+WEDNESDAY April 23
+Car Confession — Wed EN (Township)     | @alexa.realtor       | IG/TikTok       | Wed 9:00 AM  | Social Feed     | Generate leads
+@life.byalexa Post 2 (Recording Day)   | @life.byalexa        | Instagram       | Wed 10:00 AM | Social Feed     | Grow followers
+Under Contract Story                   | @alexa.realtor       | IG Story        | Wed 11:00 AM | Social Feed     | Generate leads
+Car Confession — Wed @its.myash        | @its.myash           | Instagram       | Wed 6:00 PM  | Social Feed     | Grow followers
+
+THURSDAY April 24
+Car Confession — Thu EN (HB 2303)      | @alexa.realtor       | IG/TikTok       | Thu 7:00 AM  | Social Feed     | Generate leads
+Investor Signal LinkedIn               | @alexa.realtor       | LinkedIn        | Thu 8:00 AM  | Community       | Generate leads
+Google Business Post 2                 | @alexa.realtor       | Google Business | Thu 9:00 AM  | AI Visibility   | Generate leads
+Community Roundup Nextdoor             | @alexa.realtor       | Nextdoor        | Thu 10:00 AM | Community       | Generate leads
+Car Confession — Thu ES (Contractor)   | @alexa.realtor       | IG/TikTok       | Thu 12:00 PM | Social Feed     | Generate leads
+Thursday Substack — Experience Economy | @itsmyash            | Substack        | Thu 7:00 AM  | Community       | Grow followers
+Ashes & Escrows Episode                | @AlexaSanchezRealtor | YouTube         | Thu 12:00 PM | Video Platform  | Generate leads
+YouTube Short                          | @AlexaSanchezRealtor | YouTube Shorts  | Thu 12:00 PM | Video Platform  | Grow followers
+IG Reel (repurposed Short)             | @alexa.realtor       | Instagram       | Thu 12:00 PM | Social Feed     | Generate leads
+DR Video (English)                     | @alexa.realtor       | IG/TikTok/YT    | Thu 6:00 PM  | Video Platform  | Generate leads
+DR Video (Spanish)                     | @alexa.realtor       | TikTok ES/IG/YT | Thu 6:00 PM  | Video Platform  | Generate leads
+Cigar/Lounge Video — Toast & Light     | @its.myash           | IG/TikTok       | Thu 6:00 PM  | Video Platform  | Grow followers
+@its.myash TikTok (DR Cigars)          | @its.myash           | TikTok          | Thu 6:00 PM  | Video Platform  | Grow followers
+Native TikTok Re-record                | @alexa.realtor       | TikTok          | Thu 9:00 AM  | Video Platform  | Generate leads
+@its.myash TikTok Spanish DR/Cigar    | @its.myash           | TikTok          | Thu 6:00 PM  | Video Platform  | Grow followers
+
+FRIDAY April 25
+Personal Facebook Spanish Post         | Personal FB          | Facebook        | Fri 7:00 PM  | Social Feed     | Grow followers
+Coffee for the Leaf IG + FB Biz        | @fillerandroast      | IG + FB Biz     | Fri 9:00 AM  | Social Feed     | Drive sales
+Weekend Smoke Reel                     | @its.myash           | Instagram       | Fri 6:00 PM  | Social Feed     | Grow followers
+
+SATURDAY April 26
+@alexa.realtor IG Spanish Post         | @alexa.realtor       | Instagram       | Sat 10:00 AM | Social Feed     | Generate leads
+Weekend Market Tip Nextdoor            | @alexa.realtor       | Nextdoor        | Sat 10:00 AM | Community       | Generate leads
+@life.byalexa Post 3 (Weekend)         | @life.byalexa        | Instagram       | Sat 12:00 PM | Social Feed     | Grow followers
+FB Business Spanish Post (Biweekly)    | @alexa.realtor       | Facebook Biz    | Sat 12:00 PM | Social Feed     | Generate leads
+
+SUBSTACK NOTES — 21 total
+21 Substack Notes (3/day, Mon–Sun)     | @itsmyash            | Substack        | Mon–Sun      | Community       | Grow followers
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TOTAL PIECES: 68
+ZCM: Social Feed | Video Platform | Community | AI Visibility
+GOALS: Grow followers | Generate leads | Drive sales`}
+];
+
+// ═══════════════════════════════════════════════════════════════
+// CHECKLIST DATA
+// ═══════════════════════════════════════════════════════════════
+const CL_ITEMS = {
+  film:[
+    {id:"yt_hub_en",  label:"YouTube Hub Video (English)",             acct:"@AlexaSanchezRealtor"},
+    {id:"yt_hub_es",  label:"YouTube Hub Video (Spanish)",             acct:"@AlexaSanchezRealtor"},
+    {id:"ashes",      label:"Ashes & Escrows Episode",                 acct:"@AlexaSanchezRealtor"},
+    {id:"yt_short",   label:"YouTube Short",                           acct:"@AlexaSanchezRealtor"},
+    {id:"dr_en",      label:"DR Video — CONFOTUR (English)",           acct:"@alexa.realtor"},
+    {id:"dr_es",      label:"DR Video — CONFOTUR (Spanish)",           acct:"@alexa.realtor"},
+    {id:"cigar_vid",  label:"Cigar/Lounge Video — Toast & Light",      acct:"@its.myash"},
+    {id:"tiktok_re",  label:"Native TikTok Re-record",                 acct:"@alexa.realtor"},
+    {id:"tiktok_ash", label:"TikTok — DR Cigars Shift",                acct:"@its.myash"},
+    {id:"cc_tue_en",  label:"Car Confession — Tue EN",                 acct:"@alexa.realtor"},
+    {id:"cc_wed_en",  label:"Car Confession — Wed EN",                 acct:"@alexa.realtor"},
+    {id:"cc_thu_en",  label:"Car Confession — Thu EN",                 acct:"@alexa.realtor"},
+    {id:"cc_wed_ash", label:"Car Confession — Wed @its.myash",         acct:"@its.myash"},
+    {id:"cc_tue_es",  label:"Car Confession — Tue ES",                 acct:"@alexa.realtor"},
+    {id:"cc_thu_es",  label:"Car Confession — Thu ES",                 acct:"@alexa.realtor"},
+    {id:"ig_reel",    label:"IG Reel (repurposed Short)",              acct:"@alexa.realtor"},
+    {id:"smoke_reel", label:"Weekend Smoke Reel",                      acct:"@its.myash"},
+    {id:"smoke_car",  label:"Tonight's Smoke Carousel shoot",          acct:"@its.myash"},
+    {id:"bts_wed",    label:"Recording Day BTS photo/video",           acct:"@life.byalexa"},
+  ],
+  pub:[
+    {id:"newsletter", label:"ROAST Newsletter",                        acct:"@itsmyash · Substack"},
+    {id:"sub_mon",    label:"Monday Substack — Operator Life",         acct:"@itsmyash · Substack"},
+    {id:"sub_thu",    label:"Thursday Substack — Experience Economy",  acct:"@itsmyash · Substack"},
+    {id:"sub_notes",  label:"21 Substack Notes (batch)",               acct:"@itsmyash · Substack"},
+  ],
+  sched:[
+    {id:"sun_filler", label:"Before the First Draw IG",               acct:"@fillerandroast"},
+    {id:"sun_myash",  label:"Coffee & Ash Ritual IG",                 acct:"@its.myash"},
+    {id:"sun_life",   label:"Behind the Operator IG",                 acct:"@life.byalexa"},
+    {id:"mon_smoke",  label:"Tonight's Smoke Carousel IG",            acct:"@its.myash"},
+    {id:"mon_li",     label:"Market Signal LinkedIn",                 acct:"@alexa.realtor"},
+    {id:"mon_gb",     label:"Google Business Post 1 (EN)",            acct:"@alexa.realtor"},
+    {id:"mon_gb_es",  label:"Google Business Post (ES · Biweekly)",   acct:"@alexa.realtor"},
+    {id:"mon_li_es",  label:"LinkedIn Spanish Post (Biweekly)",       acct:"@alexa.realtor"},
+    {id:"mon_fb",     label:"Real Estate Insight FB Personal",        acct:"Personal FB"},
+    {id:"mon_life",   label:"Operator Moment IG",                     acct:"@life.byalexa"},
+    {id:"tue_pulse",  label:"Pocono Pulse Market Update IG",          acct:"@alexa.realtor"},
+    {id:"tue_nd",     label:"Neighborly Post Nextdoor",               acct:"@alexa.realtor"},
+    {id:"tue_fb",     label:"Nell's Social FB Tag",                   acct:"@fillerandroast"},
+    {id:"tue_life",   label:"@life.byalexa Post 1 (Contractor)",      acct:"@life.byalexa"},
+    {id:"wed_story",  label:"Under Contract Story",                   acct:"@alexa.realtor"},
+    {id:"wed_life",   label:"Recording Day Energy IG",                acct:"@life.byalexa"},
+    {id:"thu_li",     label:"Investor Signal LinkedIn",               acct:"@alexa.realtor"},
+    {id:"thu_nd",     label:"Community Roundup Nextdoor",             acct:"@alexa.realtor"},
+    {id:"fri_coffee", label:"Coffee for the Leaf IG + FB Biz",       acct:"@fillerandroast"},
+    {id:"fri_fb_es",  label:"Personal Facebook Spanish Post",         acct:"Personal FB · ES"},
+    {id:"sat_ig_es",  label:"@alexa.realtor IG Spanish Post",         acct:"@alexa.realtor"},
+    {id:"sat_fb_es",  label:"FB Business Spanish Post (Biweekly)",    acct:"@alexa.realtor"},
+    {id:"sat_nd",     label:"Weekend Market Tip Nextdoor",            acct:"@alexa.realtor"},
+    {id:"sat_life",   label:"Weekend Operator Life IG",               acct:"@life.byalexa"},
+  ]
+};
+
+const CAT_CFG = {
+  film: {label:"🎥 To Film",     cls:"film"},
+  pub:  {label:"✍️ To Publish", cls:"pub"},
+  sched:{label:"📅 To Schedule", cls:"sched"},
+};
+
+const STORAGE_KEY = "roast_2026_04_20";
+const TOTAL = Object.values(CL_ITEMS).reduce((a,b)=>a+b.length,0);
+let clFilter = "all";
+let clState  = {};
+
+function loadState(){try{clState=JSON.parse(localStorage.getItem(STORAGE_KEY))||{};}catch{clState={};}}
+function saveState(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(clState));}catch{}}
+
+// ── Build main content ──────────────────────────────────────────
+function buildContent(){
+  const main = document.getElementById("main-content");
+  main.innerHTML = "";
+  OUTPUTS.forEach((o,i)=>{
+    if(i>0 && i%5===0){
+      const div=document.createElement("div");
+      div.className="section-divider";
+      div.textContent="─────────────────────────────────";
+      main.appendChild(div);
+    }
+    const block=document.createElement("div");
+    block.className="output-block";
+    block.id="output-"+o.id;
+    block.innerHTML=`
+      <div class="output-hdr">
+        <div>
+          <div class="output-label">${o.label}</div>
+          <div class="output-title">${o.title}</div>
+        </div>
+        <button class="copy-btn" id="copy-${o.id}" onclick="copyOutput(${o.id})">COPY</button>
+      </div>
+      <div class="output-body"><pre>${escHtml(o.content)}</pre></div>`;
+    main.appendChild(block);
+  });
+}
+
+function escHtml(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function copyOutput(id){
+  const o=OUTPUTS.find(x=>x.id===id);
+  navigator.clipboard.writeText(o.content).then(()=>{
+    const btn=document.getElementById("copy-"+id);
+    btn.textContent="✓ COPIED"; btn.className="copy-btn done";
+    setTimeout(()=>{btn.textContent="COPY"; btn.className="copy-btn";},2200);
+  });
+}
+
+// ── Build checklist ─────────────────────────────────────────────
+function buildChecklist(){
+  const body=document.getElementById("cl-body");
+  body.innerHTML="";
+  ["film","pub","sched"].forEach(cat=>{
+    const items=CL_ITEMS[cat].filter(i=>
+      clFilter==="all"  ? true :
+      clFilter==="done" ? !!clState[i.id] :
+      clFilter===cat
+    );
+    if(!items.length) return;
+    const done=CL_ITEMS[cat].filter(i=>clState[i.id]).length;
+    const total=CL_ITEMS[cat].length;
+    const hdr=document.createElement("div");
+    hdr.className=`cl-cat-hdr ${cat}`;
+    hdr.innerHTML=`<span>${CAT_CFG[cat].label}</span><span>${done}/${total}</span>`;
+    body.appendChild(hdr);
+    items.forEach(item=>{
+      const ck=!!clState[item.id];
+      const row=document.createElement("div");
+      row.className=`cl-item${ck?" checked":""} ${cat}`;
+      row.onclick=()=>toggleItem(item.id);
+      row.innerHTML=`<div class="cl-cb">${ck?"✓":""}</div><div><div class="cl-txt">${item.label}</div><div class="cl-acct">${item.acct}</div></div>`;
+      body.appendChild(row);
+    });
+  });
+  updateProgress();
+}
+
+function toggleItem(id){
+  clState[id]=!clState[id];
+  saveState();
+  buildChecklist();
+}
+
+function setFilter(f){
+  clFilter=f;
+  ["all","film","pub","sched","done"].forEach(k=>{
+    const el=document.getElementById("f-"+k);
+    if(!el) return;
+    const map={all:"af",film:"ff",pub:"pf",sched:"sf",done:"df"};
+    el.className="cl-filter"+(k===f?" "+map[k]:"");
+  });
+  buildChecklist();
+}
+
+function resetAll(){
+  if(!confirm("Reset all checkboxes for this week?")) return;
+  clState={};
+  saveState();
+  buildChecklist();
+}
+
+function updateProgress(){
+  const done=Object.values(clState).filter(Boolean).length;
+  const pct=Math.round(done/TOTAL*100);
+  document.getElementById("prog-lbl").textContent=done+" / "+TOTAL+" · "+pct+"%";
+  const bar=document.getElementById("prog-inner");
+  bar.style.width=pct+"%";
+  bar.style.background=pct===100?"var(--green)":"var(--gold)";
+  document.getElementById("cl-foot-lbl").textContent=done+"/"+TOTAL+" done";
+}
+
+// ── Init ────────────────────────────────────────────────────────
+loadState();
+buildContent();
+buildChecklist();
+document.getElementById("f-all").className="cl-filter af";
+</script>
+</body>
+</html>
