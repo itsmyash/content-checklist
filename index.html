@@ -169,11 +169,7 @@
   .empty-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;}
   .spacer{height:16px;}
   /* ── BRIEFING TAB ── */
-  .briefing-meta{display:flex;gap:16px;align-items:center;margin-bottom:16px;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:4px;flex-wrap:wrap;}
-  .briefing-meta-item{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:1px;}
-  .briefing-meta-item strong{color:var(--text);font-size:12px;display:block;margin-top:2px;}
-  .briefing-iframe-wrap{border:1px solid var(--border);border-radius:4px;overflow:hidden;}
-  .briefing-iframe-wrap iframe{width:100%;height:80vh;border:none;display:block;}
+
   @media(max-width:900px){.grid-4{grid-template-columns:repeat(2,1fr);}.grid-3{grid-template-columns:1fr 1fr;}.week-grid{grid-template-columns:repeat(3,1fr);}.kpi-grid{grid-template-columns:repeat(2,1fr);}.system-docs-btn{font-size:9px;padding:5px 10px;}}
 </style>
 </head>
@@ -184,6 +180,7 @@
   <div class="topbar-date" id="topbar-date"></div>
   <div id="sync-badge" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text3);">⟳ loading...</div>
   <a href="ROAST-Complete-System.html" target="_blank" class="system-docs-btn">📋 System Docs</a>
+  <a href="roast-weekly-scroll.html" target="_blank" class="system-docs-btn" style="background:#1a3a8a;">📅 Weekly Briefing</a>
   <div class="topbar-badge">OPERATOR MODE</div>
 </div>
 
@@ -193,7 +190,6 @@
   <button class="tab-btn" data-tab="signals"><span class="tab-dot" style="background:var(--gold)"></span>Signal Tracker</button>
   <button class="tab-btn" data-tab="cannonball"><span class="tab-dot" style="background:var(--hot)"></span>Cannonball Campaign</button>
   <button class="tab-btn" data-tab="contacts"><span class="tab-dot" style="background:var(--accent3)"></span>Contact Cards</button>
-  <button class="tab-btn" data-tab="briefing"><span class="tab-dot" style="background:var(--purple)"></span>Weekly Briefing</button>
 </div>
 
 <div class="main">
@@ -346,10 +342,6 @@
   <div class="empty" id="contacts-empty"><div class="empty-icon">📇</div><div class="empty-label">Leads scored 5+ appear here as full contact cards.</div></div>
 </div>
 
-<!-- ══ WEEKLY BRIEFING ══ -->
-<div class="tab-panel" id="tab-briefing">
-  <div class="section-hdr">
-    <div class="section-title">Weekly Briefing</div>
     <div class="section-sub">all 20 outputs · scripts · captions · image direction · production tracker</div>
     <div style="margin-left:auto;">
       <a href="roast-weekly-scroll.html" target="_blank" class="btn btn-primary btn-sm">↗ Open Full Screen</a>
