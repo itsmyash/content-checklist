@@ -26,6 +26,8 @@ body{background:#fff;color:#111;font-family:'Georgia','Times New Roman',serif;fo
 /* DAY SECTIONS */
 .day-section{border-bottom:2px solid #111}
 .day-header{background:#111;color:#fff;padding:12px 28px;display:flex;align-items:baseline;gap:12px;cursor:pointer;user-select:none}
+.day-header.brief{background:#1a3a1a;border-left:4px solid #4a8c0f}
+.item-content.brief-input{background:#f0f7f0;border-left:3px solid #4a8c0f;font-family:monospace;font-size:13px;white-space:pre-wrap}
 .day-header h2{font-family:monospace;font-size:15px;font-weight:bold;letter-spacing:2px;text-transform:uppercase}
 .day-header span{font-family:monospace;font-size:11px;color:#aaa;letter-spacing:1px}
 .day-header .day-toggle{margin-left:auto;font-family:monospace;font-size:12px;color:#aaa}
@@ -131,6 +133,129 @@ body{background:#fff;color:#111;font-family:'Georgia','Times New Roman',serif;fo
 // ═══════════════════════════════════════════════════
 const DAYS = [
   {
+    day: "Brief Inputs",
+    date: "Fill in every Sunday before running the brief",
+    items: [
+      {
+        id:"brief_personal_moment",
+        type:"publish",
+        time:"Step 1",
+        account:"All Brands",
+        title:"THIS WEEK'S PERSONAL MOMENT",
+        content:`Write 2–3 sentences about something real that happened this week — a win, a loss, a frustration, a conversation, a moment. This becomes the throughline for the Monday Substack article, the @life.byalexa posts, and the Car Confessions.
+
+THIS WEEK'S PERSONAL MOMENT:
+[fill in here]`
+      },
+      {
+        id:"brief_q1",
+        type:"publish",
+        time:"Step 2",
+        account:"@life.byalexa",
+        title:"Q1 — Behind the Scenes (One of the Three Businesses)",
+        content:`What's something happening behind the scenes of one of your three businesses right now — something most people wouldn't see — that's either exciting, frustrating, or just real?
+
+Q1 ANSWER:
+[fill in here]
+
+→ This feeds: @life.byalexa TikTok 1, Monday Car Confession, Thursday Substack operator moment`
+      },
+      {
+        id:"brief_q2",
+        type:"publish",
+        time:"Step 3",
+        account:"@life.byalexa",
+        title:"Q2 — What Does a Random Day Actually Look Like?",
+        content:`Walk me through a typical day this week — at Nell's Social, on a showing, on set, in the car, wherever you actually were. Who was there. What happened. What you were thinking.
+
+Q2 ANSWER:
+[fill in here]
+
+→ This feeds: @life.byalexa TikTok 2, Wednesday BTS post, Substack Notes`
+      },
+      {
+        id:"brief_q3",
+        type:"publish",
+        time:"Step 4",
+        account:"@life.byalexa",
+        title:"Q3 — What Nobody Talks About",
+        content:`What's one thing about running multiple businesses simultaneously that nobody talks about — something you learned this week, something that surprised you, something that's hard and real?
+
+Q3 ANSWER:
+[fill in here]
+
+→ This feeds: @life.byalexa TikTok 3, Friday evening Substack Note, LinkedIn Operator Post`
+      },
+      {
+        id:"brief_dr_topic",
+        type:"publish",
+        time:"Step 5",
+        account:"@alexa.realtor",
+        title:"THIS WEEK'S DR VIDEO TOPIC",
+        content:`What DR real estate or lifestyle topic are you covering this week?
+
+DR VIDEO TOPIC:
+[fill in here]
+
+→ This feeds: DR Video (English + Spanish), Thursday upload
+
+━━━ @ALEXA.REALTOR REPURPOSING REMINDER ━━━
+All 4 weekly @alexa.realtor IG posts trace back to the Sunday YouTube Hub Video.
+LinkedIn · Google Business · FB Biz repurpose FROM those 4 IG posts — not new content.
+
+FLOW:  YouTube Hub → 4 IG Posts (Tue/Wed/Thu/Sat) → LinkedIn / GBP / FB Biz`
+      },
+      {
+        id:"brief_cigar_topic",
+        type:"publish",
+        time:"Step 6",
+        account:"@its.myash",
+        title:"THIS WEEK'S CIGAR/LOUNGE VIDEO TOPIC",
+        content:`What cigar or lounge topic are you covering this week?
+
+CIGAR/LOUNGE TOPIC:
+[fill in here]
+
+→ This feeds: Cigar/Lounge Video (recorded Wed, uploaded Thu), TikTok @its.myash
+
+━━━ @ITS.MYASH CONFIRMED SCHEDULE ━━━
+
+POSTING DAYS: Monday · Wednesday · Thursday · Friday
+
+MONDAY     → Tonight's Smoke Carousel (shot Sunday, posts Monday)
+WEDNESDAY  → Talking Head post (cigar industry OR operator life from Q2/Q3 answers)
+THURSDAY   → Cigar/Lounge Education Video upload (recorded Wednesday)
+             + Talking Head FILMED Thursday (posts same day or Friday)
+FRIDAY     → Weekend Smoke Reel + TikTok (pairing, DR cigar, or second talking head)
+
+FILMING SCHEDULE:
+  Sunday    → Shoot Tonight's Smoke Carousel
+  Wednesday → Record Cigar/Lounge Education Video
+  Thursday  → Film Talking Head (cigar industry + operator life mix)
+  Friday    → Shoot Weekend Smoke Reel (flexible)
+
+CONTENT THAT LIVES HERE: Cigar industry · Operator life · Coffee (Filler & Roast pairings) · DR cigar culture
+DR VIDEO REPURPOSING: DR Video (recorded Wed, uploaded Thu) → YouTube Shorts → @its.myash TikTok
+
+━━━ @LIFE.BYALEXA CONFIRMED SCHEDULE ━━━
+
+POSTING DAYS: Wednesday · Saturday (IG) · Monday · Wednesday · Thursday · Friday (TikTok)
+
+IG POSTS (2/week):
+  Wednesday  → Recording day BTS (Q2 answer — what a random day actually looks like)
+  Saturday   → End of week operator life (Q1 or personal moment)
+
+TIKTOK (4/week):
+  Monday     → Q1 answer (behind the scenes of one business)
+  Wednesday  → Q2 answer (what a random day actually looks like)
+  Thursday   → Personal moment / contractor / week throughline
+  Friday     → Q3 answer (what nobody talks about)
+
+ALL CONTENT: Raw BTS of Nell's Social · Real estate · Suite317 · Personal voice · No hard sell · No cross-posting`
+      }
+    ]
+  },
+  {
     day: "Sunday",
     date: "April 20",
     items: [
@@ -141,6 +266,25 @@ const DAYS = [
         account:"@AlexaSanchezRealtor",
         title:"RECORD: YouTube Hub Video (English + Spanish 2nd take)",
         content:`RECORD SUNDAY MORNING — Both takes in one session (~45 min total)
+
+━━━ REPURPOSING FLOW — THIS VIDEO FEEDS EVERYTHING BELOW ━━━
+
+YouTube Hub Video (recorded Sunday)
+        ↓
+4 @alexa.realtor IG posts (Tue / Wed / Thu / Sat)
+        ↓
+LinkedIn · Google Business · FB Biz
+(repurposed FROM the 4 IG posts — no new content needed)
+
+TUESDAY   → Car Confession (sharpest 20-sec insight from the hub, shot from the car)
+WEDNESDAY → Reel or punchy data point pulled from the hub
+THURSDAY  → Pocono Pulse Reel (market data section of the hub, reformatted as a Short)
+SATURDAY  → Spanish IG post (same hub content, Dominican Spanish, different take)
+
+LinkedIn, Google Business, and FB Biz copy DIRECTLY from whichever IG post ran that day.
+Nothing on @alexa.realtor should be original content that doesn't trace back to this video.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ENGLISH TITLE: Pennsylvania Is About to Change the STR Game in the Poconos — Here's What Investors Need to Know
 
@@ -347,6 +491,24 @@ Alexa Sanchez | PA License #RS326383 | Smart Way America Realty | (570) 688-8147
         content:`If you're looking at Pocono Mountain investment properties right now — please, please check the township first. Three of the major townships in Monroe County don't allow STRs in residential zones at all. One requires a permit and will shut you down without one. The state of Pennsylvania is also moving toward adding a statewide registration requirement on top of that. I break this down every week. Reach out if you need help navigating it.`
       },
       {
+        id:"mon_lba_tiktok",
+        type:"post",
+        time:"9:00 AM",
+        account:"@life.byalexa · TikTok",
+        title:"@life.byalexa TikTok 1 — Q1: Behind the Scenes",
+        content:`SOURCE: Your Q1 answer from Brief Inputs.
+
+FORMAT: Talking head. 30–60 seconds. Start mid-story — no intro, no "hey guys."
+Talk directly to camera like you're telling a friend something they don't know.
+Raw. Specific. One business, one real moment.
+
+DIRECTION: Film wherever you are Monday morning — car, lounge, home. 
+No setup needed. Real location = real content.
+
+CAPTION DIRECTION: First line is the hook — the most surprising or honest thing from your Q1 answer.
+No hashtag dumps. Max 3 hashtags. Always #LifeByAlexa.`
+      },
+      {
         id:"mon_life_post",
         type:"post",
         time:"12:00 PM",
@@ -405,7 +567,7 @@ HASHTAGS: #CigarLife #TonightSmoke #PremiumCigars #NellsSocial #CigarLounge #Lif
       {
         id:"tue_cc_en",
         type:"post",
-        time:"7:00 AM",
+        time:"3:00 PM",
         account:"@alexa.realtor · IG/TikTok",
         title:"Car Confession — Contractor / Entrepreneur Life (English)",
         content:`SCRIPT (20 sec):
@@ -433,23 +595,6 @@ I'm not rushing him. My ground doesn't move. #LifeByAlexa
 
 IMAGE: Alexa in car, morning light, direct to camera. No setup. No smile. Not performing calm — actually calm.
 HASHTAGS: #LifeByAlexa #OperatorLife`
-      },
-      {
-        id:"tue_market_pulse_ig",
-        type:"post",
-        time:"8:00 AM",
-        account:"@alexa.realtor · IG",
-        title:"Pocono Pulse Market Update",
-        content:`CAPTION: Same county. Two completely different STR markets.
-
-Mount Pocono: 45.9% occupancy. $499 ADR. $70K annually.
-Pocono Township: 35.9% occupancy. $63K annually.
-
-Buying county averages is how you end up with the wrong property. DM me before you offer on anything.
-
-IMAGE: Clean data graphic. Dark background. Two-column comparison: Mount Pocono vs Pocono Township. Key metrics in neon green. Bold white font. @alexa.realtor logo bottom right.
-
-HASHTAGS: #PoconoRealEstate #STRInvesting #MonroeCounty #AirbnbInvesting #LifeByAlexa`
       },
       {
         id:"tue_nextdoor",
@@ -583,6 +728,25 @@ His timeline. Not mine.
 
 IMAGE: Candid BTS — Alexa mid-setup in lounge or recording space. Camera visible, cigar in ashtray or hand. Real. Not staged.
 HASHTAGS: #LifeByAlexa #OperatorLife #BehindTheBrands`
+      },
+      {
+        id:"wed_lba_tiktok",
+        type:"post",
+        time:"11:00 AM",
+        account:"@life.byalexa · TikTok",
+        title:"@life.byalexa TikTok 2 — Q2: What a Random Day Actually Looks Like",
+        content:`SOURCE: Your Q2 answer from Brief Inputs.
+
+FORMAT: Talking head OR phone-filmed day footage stitched together. 
+30–60 seconds. Walk through the day — who was there, what happened, what you were thinking.
+Specific details only. No generalizing.
+
+DIRECTION: Film Wednesday while you're already recording other content.
+Point the phone at the reality of the day — the quiet lounge, the empty seat, 
+the paperwork, whatever is actually there.
+
+CAPTION DIRECTION: Something specific from the day that most people would never see.
+#LifeByAlexa + 1–2 others max.`
       },
       {
         id:"wed_cc_myash",
@@ -875,6 +1039,26 @@ CAPTION: The DR stopped being just where premium cigars come from. Now it's what
 #DominicanCigars #CigarAuthority #CigarLife #PremiumCigars #LifeByAlexa`
       },
       {
+        id:"thu_lba_tiktok",
+        type:"post",
+        time:"10:00 AM",
+        account:"@life.byalexa · TikTok",
+        title:"@life.byalexa TikTok 3 — Personal Moment / Week Throughline",
+        content:`SOURCE: The personal moment from Brief Inputs — the contractor story, 
+a business challenge, a decision you're sitting with, anything real from this week.
+
+FORMAT: Talking head. 30–60 seconds. The most honest version of what's happening.
+No resolution needed — you don't have to wrap it up neatly.
+Film Thursday after your talking head recording session for @its.myash.
+Same setup, different account, different energy — more personal, less authority.
+
+DIRECTION: This is Alexa the person, not Alexa the cigar authority or Alexa the realtor.
+Talk about the week the way you'd talk to your best friend.
+
+CAPTION DIRECTION: Whatever line from the video hits hardest. One sentence.
+#LifeByAlexa + 1 other max.`
+      },
+      {
         id:"thu_sub_morning",
         type:"publish",
         time:"8:00 AM",
@@ -922,7 +1106,24 @@ Alexa Sanchez | Realtor + Entrepreneur + EP, Suite317 Entertainment
 Smart Way America Realty | PA License #RS326383
 
 #OperatorLife #Entrepreneurship #RealEstate #InvestorMindset`
-      }
+      },
+      {
+        id:"tue_market_pulse_ig",
+        type:"post",
+        time:"10:00 AM",
+        account:"@alexa.realtor · IG",
+        title:"Pocono Pulse Market Update — Reel",
+        content:`CAPTION: Same county. Two completely different STR markets.
+
+Mount Pocono: 45.9% occupancy. $499 ADR. $70K annually.
+Pocono Township: 35.9% occupancy. $63K annually.
+
+Buying county averages is how you end up with the wrong property. DM me before you offer on anything.
+
+IMAGE: Clean data graphic. Dark background. Two-column comparison: Mount Pocono vs Pocono Township. Key metrics in neon green. Bold white font. @alexa.realtor logo bottom right.
+
+HASHTAGS: #PoconoRealEstate #STRInvesting #MonroeCounty #AirbnbInvesting #LifeByAlexa`
+      },
     ]
   },
   {
@@ -966,6 +1167,26 @@ IMAGE: Personal — no branding. Alexa photo, candid or contemplative. Warm tone
 IMAGE: Short reel. Alexa in lounge, toasting and lighting a cigar — full ritual on camera. Slow motion of foot glowing. Real lounge setting, warm amber light.
 
 HASHTAGS: #CigarLife #WeekendSmoke #PremiumCigars #NellsSocial #CigarLounge #LifeByAlexa`
+      },
+      {
+        id:"fri_lba_tiktok",
+        type:"post",
+        time:"10:00 AM",
+        account:"@life.byalexa · TikTok",
+        title:"@life.byalexa TikTok 4 — Q3: What Nobody Talks About",
+        content:`SOURCE: Your Q3 answer from Brief Inputs — the thing nobody talks about 
+when it comes to running multiple businesses simultaneously.
+
+FORMAT: Talking head. 30–60 seconds. This one can feel a little more reflective.
+Friday energy — slower, more honest, end of week.
+No inspirational wrap-up. Just the real thing.
+
+FILM: Flexible — car, lounge, home, wherever Friday puts you.
+Natural light preferred. No setup.
+
+CAPTION DIRECTION: Start with "Nobody talks about..." or "What they don't tell you..."
+or just drop straight into the truth. 
+#LifeByAlexa + 1–2 others max.`
       },
       {
         id:"fri_sub_morning",
@@ -1040,12 +1261,18 @@ Alexa Sanchez | Smart Way America Realty | PA License #RS326383 | (570) 688-8147
         type:"post",
         time:"12:00 PM",
         account:"@life.byalexa · IG",
-        title:"@life.byalexa — Weekend Operator Life",
-        content:`CAPTION: Three businesses. Two closings. One apology still MIA. Zero regrets.
+        title:"@life.byalexa IG Post — End of Week Operator Life (Q1 or personal moment)",
+        content:`SOURCE: Use your Q1 answer or personal moment from the Brief Inputs section.
+
+CAPTION DIRECTION: End of week energy. Real operator life. What actually happened this week 
+behind the scenes of one of the three businesses. Short. Punchy. Personal.
+
+THIS WEEK'S CAPTION:
+Three businesses. Two closings. One apology still MIA. Zero regrets.
 
 Saturday. 🔥 #LifeByAlexa
 
-IMAGE: Alexa with cigar or coffee, somewhere she actually is on Saturday. Relaxed. Weekend. Real.
+IMAGE: Alexa wherever she actually is Saturday — lounge, outdoor, real. Not staged.
 HASHTAGS: #LifeByAlexa #OperatorLife`
       },
       {
@@ -1081,7 +1308,7 @@ HASHTAGS: #BienesRaices #InversionesEnPoconos #MercadoInmobiliario #LifeByAlexa`
         account:"@itsmyash · Substack Note",
         title:"Substack Note — Saturday Evening",
         content:`The best cigar I've had lately wasn't the most expensive one. It was the one I sat with long enough to actually taste. Slow down. Whatever you're smoking tonight deserves your full attention.`
-      }
+      },
     ]
   }
 ];
@@ -1100,13 +1327,14 @@ const CL_ITEMS = [
   {id:"mon_gb",           day:"Mon", label:"Google Business Post 1",         acct:"@alexa.realtor", type:"post"},
   {id:"mon_gb_es",        day:"Mon", label:"Google Business (ES · Biweekly)",acct:"@alexa.realtor", type:"post"},
   {id:"mon_fb_personal",  day:"Mon", label:"Real Estate Insight FB Personal",acct:"Personal FB", type:"post"},
+  {id:"mon_lba_tiktok",   day:"Mon", label:"@life.byalexa TikTok 1 — Q1 BTS",        acct:"@life.byalexa", type:"post"},
   {id:"mon_life_post",    day:"Mon", label:"Operator Moment IG",             acct:"@life.byalexa", type:"post"},
   {id:"mon_li_es",        day:"Mon", label:"LinkedIn Spanish (Biweekly)",    acct:"@alexa.realtor", type:"post"},
   {id:"mon_smoke_carousel_post", day:"Mon", label:"Tonight's Smoke Carousel",acct:"@its.myash", type:"post"},
   // TUESDAY
-  {id:"tue_cc_en",        day:"Tue", label:"Car Confession — Contractor EN", acct:"@alexa.realtor", type:"post"},
+  {id:"tue_cc_en",        day:"Tue", label:"Car Confession — Contractor EN (3PM)", acct:"@alexa.realtor", type:"post"},
   {id:"tue_life_post1",   day:"Tue", label:"@life.byalexa Post (Contractor)",acct:"@life.byalexa", type:"post"},
-  {id:"tue_market_pulse_ig", day:"Tue", label:"Pocono Pulse Market Update IG",acct:"@alexa.realtor", type:"post"},
+  {id:"tue_market_pulse_ig", day:"Thu", label:"Pocono Pulse Market Update — Reel",acct:"@alexa.realtor", type:"post"},
   {id:"tue_nextdoor",     day:"Tue", label:"Neighborly Post Nextdoor",       acct:"@alexa.realtor", type:"post"},
   {id:"tue_cc_es",        day:"Tue", label:"Car Confession — Township ES",   acct:"@alexa.realtor", type:"post"},
   {id:"tue_filler_fb",    day:"Tue", label:"Nell's Social FB Tag",           acct:"@fillerandroast", type:"post"},
@@ -1131,6 +1359,7 @@ const CL_ITEMS = [
   {id:"thu_its_myash_tiktok_es",day:"Fri",label:"TikTok Spanish — DR Cigar", acct:"@its.myash", type:"post"},
   {id:"thu_li_operator",  day:"Thu", label:"LinkedIn — Operator Post",       acct:"@alexa.realtor", type:"post"},
   // FRIDAY
+  {id:"fri_lba_tiktok",   day:"Fri", label:"@life.byalexa TikTok 4 — Q3 Nobody Talks About", acct:"@life.byalexa", type:"post"},
   {id:"fri_coffee_leaf",  day:"Fri", label:"Coffee for the Leaf IG + FB",    acct:"@fillerandroast", type:"post"},
   {id:"fri_fb_personal_es",day:"Fri",label:"Personal FB Spanish Post",       acct:"Personal FB", type:"post"},
   {id:"fri_weekend_smoke",day:"Fri", label:"Weekend Smoke Reel",             acct:"@its.myash", type:"post"},
@@ -1156,7 +1385,7 @@ function buildContent(){
   DAYS.forEach(dayObj => {
     const sec = document.createElement("div");
     sec.className = "day-section";
-    sec.innerHTML = `<div class="day-header" onclick="toggleDay('day-body-${dayObj.day}', this)">
+    sec.innerHTML = `<div class="day-header${dayObj.day === 'Brief Inputs' ? ' brief' : ''}" onclick="toggleDay('day-body-${dayObj.day}', this)">
       <h2>${dayObj.day}</h2>
       <span>${dayObj.date}</span>
       <span class="day-toggle">▼</span>
@@ -1169,6 +1398,7 @@ function buildContent(){
       const isChecked = !!clState[item.id];
       div.className = "item" + (isChecked ? " checked" : "");
       div.id = "item-" + item.id;
+      const isBriefInput = item.id && item.id.startsWith('brief_');
       const badgeCls = item.type === "film" ? "badge-film" : item.type === "publish" ? "badge-publish" : item.type === "post" ? "badge-post" : "badge-schedule";
       const badgeTxt = item.type === "film" ? "🎥 FILM" : item.type === "publish" ? "✍️ PUBLISH" : "📅 POST";
       div.innerHTML = `
@@ -1182,7 +1412,7 @@ function buildContent(){
             <span class="item-type-badge ${badgeCls}">${badgeTxt}</span>
           </div>
           <div class="item-title">${item.title}</div>
-          <div class="item-content">${escHtml(item.content)}</div>
+          <div class="item-content${isBriefInput ? ' brief-input' : ''}">${escHtml(item.content)}</div>
           <button class="copy-btn" id="copybtn-${item.id}" onclick="copyItem('${item.id}')">COPY</button>
         </div>`;
       body.appendChild(div);
