@@ -12,7 +12,7 @@
     --text:#1a1a18;--text2:#555550;--text3:#999990;
     --accent:#4a8c0f;--accent2:#d63a08;--accent3:#1a7aad;
     --gold:#b08a00;--hot:#d63a08;--warm:#b08a00;--cold:#1a7aad;--purple:#7a30c0;
-    --spanish:#c0392b;--life:#8e44ad;
+    --spanish:#c0392b;--life:#8e44ad;--veteran:#1a4a6b;
   }
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
   body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;min-height:100vh;overflow-x:hidden;}
@@ -125,6 +125,7 @@
   .brand-system{color:var(--text3);font-style:italic;}
   .brand-spanish{color:var(--spanish);}
   .brand-life{color:var(--life);}
+  .brand-veteran{color:var(--veteran);}
   .target-card{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:14px;margin-bottom:10px;display:flex;align-items:center;gap:14px;}
   .target-rank{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--text3);width:36px;flex-shrink:0;line-height:1;}
   .target-info{flex:1;}
@@ -247,6 +248,7 @@
     <div class="legend-item"><div class="legend-dot" style="background:#888"></div>Substack</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--spanish)"></div>🇪🇸 En Español</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--life)"></div>@life.byalexa</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--veteran)"></div>🎖️ Veteran</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--text3)"></div>Recording Block</div>
     <div style="margin-left:auto;display:flex;gap:8px;">
       <button class="btn btn-ghost btn-sm" onclick="resetContent()">↺ Reset Schedule</button>
@@ -392,6 +394,7 @@
             <option value="substack">Substack</option>
             <option value="spanish">🇪🇸 En Español</option>
             <option value="life">@life.byalexa</option>
+            <option value="veteran">🎖️ Veteran</option>
             <option value="system">Recording Block</option>
           </select>
         </div>
@@ -415,6 +418,7 @@
             <option>Substack Note</option><option>Newsletter</option><option>LinkedIn</option>
             <option>FB Post</option><option>FB Post EN</option>
             <option>Google Business</option><option>Google Business EN</option>
+            <option>Veteran Reel</option>
           </select>
         </div>
         <div><label>Monetization Goal</label>
@@ -503,37 +507,47 @@ function setDate(){const now=new Date();const days=['Sunday','Monday','Tuesday',
 function seedDefaults(){
   if(state.leads.length===0){state.leads=[{id:1,fname:'Mary',lname:'Davis',phone:'610-555-0303',email:'mary@email.com',addr:'789 Pine Rd, Wayne PA 18087',value:550000,equity:100,years:22,status:'Warm Lead',sources:{lf:true,tax:true,mls:false,pub:true},signals:{permit:4,equity:2,tenure:2},notes:'Permit pulled Jan — kitchen + bath. Free & clear.',date:new Date().toISOString()},{id:2,fname:'Tom',lname:'Wilson',phone:'570-555-0404',email:'twilson@email.com',addr:'22 Deer Trail, Mt Pocono PA 18344',value:380000,equity:72,years:18,status:'Hot Lead',sources:{lf:true,tax:true,mls:true,pub:true},signals:{probate:5,equity:2,tenure:2},notes:'Probate filed Feb 3.',date:new Date().toISOString()},{id:3,fname:'Jane',lname:'Smith',phone:'215-555-0101',email:'jane@email.com',addr:'123 Maple St, Stroudsburg PA 18360',value:450000,equity:58,years:14,status:'Warm Lead',sources:{lf:true,tax:true,mls:true,pub:true},signals:{expired:3,equity:2,tenure:2},notes:'Expired twice. Follow up Apr 1.',date:new Date().toISOString()},{id:4,fname:'Carol',lname:'White',phone:'570-555-0505',email:'',addr:'8 Birch Ln, Tobyhanna PA 18466',value:295000,equity:30,years:5,status:'New',sources:{lf:true,tax:false,mls:true,pub:true},signals:{prefc:4},notes:'Sheriff sale — contact NOW.',date:new Date().toISOString()}];}
   if(state.content.length===0){state.content=[
+
+// ── SUNDAY ──
 {id:1,brand:'system',day:0,title:'🟢 SUNDAY RECORDING — Hub video English + Spanish second take. ~45 min.',type:'Recording Block',goal:'Grow Following',done:false},
-{id:2,brand:'realtor',day:0,title:'🎬 Hub Video — Record & Upload (English)',type:'YouTube · 8-12 min',goal:'RE Leads',done:false},
-{id:3,brand:'spanish',day:0,title:'🇪🇸 Hub Video — Spanish Second Take & Upload',type:'YouTube · En Español Playlist',goal:'RE Leads',done:false},
+{id:2,brand:'realtor',day:0,title:'🎬 Hub Video — Record & Upload (English)',type:'YouTube · main playlist · 12:00 PM',goal:'RE Leads',done:false},
+{id:3,brand:'spanish',day:0,title:'🇪🇸 Hub Video — Spanish Second Take & Upload',type:'YouTube · En Español Playlist · 12:00 PM',goal:'RE Leads',done:false},
 {id:4,brand:'fnr',day:0,title:'☕ Before the First Draw',type:'IG · 8:00 AM',goal:'Drive Sales',done:false},
 {id:5,brand:'myash',day:0,title:'☕🍂 Coffee & Ash — Ritual',type:'IG · 9:30 AM',goal:'Drive Sales',done:false},
 {id:6,brand:'myash',day:0,title:"📸 SHOOT: Tonight's Smoke Carousel",type:'Shoot Sunday · Posts Monday 7PM',goal:'Drive Sales',done:false},
 {id:7,brand:'life',day:0,title:'@life.byalexa — Behind the Operator',type:'IG · 11:00 AM · personal voice',goal:'Grow Following',done:false},
+
+// ── MONDAY ──
 {id:8,brand:'substack',day:1,title:'✍️ Substack Article — Operator Life',type:'Substack · personal story first · 7:00 AM',goal:'Grow Following',done:false},
 {id:9,brand:'myash',day:1,title:"🌙 Tonight's Smoke — Carousel",type:'IG · 7:00 PM · shot Sunday',goal:'Drive Sales',done:false},
 {id:10,brand:'realtor',day:1,title:'📊 Market Signal',type:'LinkedIn · 8:00 AM',goal:'RE Leads',done:false},
 {id:11,brand:'realtor',day:1,title:'📍 Google Business Post 1',type:'Google Biz · 9:00 AM',goal:'RE Leads',done:false},
 {id:12,brand:'realtor',day:1,title:'🏠 Real Estate Insight',type:'FB Personal · 10:00 AM',goal:'RE Leads',done:false},
 {id:13,brand:'life',day:1,title:'@life.byalexa — Operator Moment',type:'IG · 12:00 PM · behind the scenes',goal:'Grow Following',done:false},
-{id:14,brand:'life',day:1,title:'@life.byalexa TikTok 1',type:'TikTok @lifebyalexa · 9:00 AM',goal:'Grow Following',done:false},
-{id:15,brand:'system',day:2,title:'🎥 FILM: DR Video EN + ES',type:'Film Tuesday · 15 min · uploads Thursday',goal:'RE Leads',done:false},
+{id:14,brand:'life',day:1,title:'@life.byalexa TikTok 1 — Q1 BTS',type:'TikTok @lifebyalexa · 9:00 AM',goal:'Grow Following',done:false},
+
+// ── TUESDAY ──
+{id:49,brand:'system',day:2,title:'🎬 RECORD + UPLOAD: Ashes & Escrows — cigar in hand · under 60 sec · upload same day or Wed morning',type:'Recording Block · Tuesday · 11:00 AM',goal:'RE Leads',done:false},
+{id:15,brand:'system',day:2,title:'🎥 FILM: DR Video EN + ES',type:'Film Tuesday · 15 min · uploads Friday',goal:'RE Leads',done:false},
+{id:28,brand:'realtor',day:2,title:'🎬 Ashes & Escrows — Upload',type:'YouTube · recorded Tue · upload same day or Wed morning',goal:'RE Leads',done:false},
 {id:16,brand:'realtor',day:2,title:'🚗 Car Confession — Real Estate EN',type:'IG · TikTok · 3:00 PM · 20 sec',goal:'RE Leads',done:false},
 {id:17,brand:'spanish',day:2,title:'🇪🇸 Car Confession — Real Estate ES',type:'IG @alexa.realtor · Spanish · 3:30 PM',goal:'RE Leads',done:false},
 {id:18,brand:'fnr',day:2,title:"🔥 Nell's Social FB Tag",type:'FB · @fillerandroast · 11:00 AM',goal:'Drive Sales',done:false},
 {id:19,brand:'realtor',day:2,title:'📍 Neighborly Post',type:'Nextdoor · 9:00 AM',goal:'RE Leads',done:false},
 {id:20,brand:'life',day:2,title:'@life.byalexa — Personal Moment',type:'IG · 8:00 AM',goal:'Grow Following',done:false},
-{id:21,brand:'system',day:3,title:'🟡 WEDNESDAY RECORDING — Ashes & Escrows, YouTube Short, Cigar Video, Car Confessions, Weekend Smoke Reel · ~90 min',type:'Recording Block · Primary Day',goal:'Grow Following',done:false},
+
+// ── WEDNESDAY ──
+{id:21,brand:'system',day:3,title:'🟡 WEDNESDAY RECORDING — YouTube Short, Cigar Video, Car Confessions, Weekend Smoke Reel · ~75 min',type:'Recording Block · Primary Day',goal:'Grow Following',done:false},
 {id:22,brand:'realtor',day:3,title:'🏡 Under Contract Story',type:'IG Story · 11:00 AM',goal:'RE Leads',done:false},
 {id:23,brand:'realtor',day:3,title:'🚗 Car Confession — Township Rules EN',type:'IG · TikTok · 9:00 AM',goal:'RE Leads',done:false},
 {id:24,brand:'myash',day:3,title:'🚗 Car Confession — DR Cigars',type:'IG @its.myash · 6:00 PM',goal:'Grow Following',done:false},
 {id:25,brand:'life',day:3,title:'@life.byalexa — Recording Day BTS',type:'IG · 10:00 AM',goal:'Grow Following',done:false},
-{id:26,brand:'life',day:3,title:'@life.byalexa TikTok 2',type:'TikTok @lifebyalexa · 11:00 AM',goal:'Grow Following',done:false},
+{id:26,brand:'life',day:3,title:'@life.byalexa TikTok 2 — Q2 Random Day',type:'TikTok @lifebyalexa · 11:00 AM',goal:'Grow Following',done:false},
+
+// ── THURSDAY ──
 {id:27,brand:'substack',day:4,title:'✍️ Substack Article — Experience Economy',type:'Substack · ritual · lifestyle · 7:00 AM',goal:'Grow Following',done:false},
-{id:28,brand:'realtor',day:4,title:'🎬 Ashes & Escrows — Upload',type:'YouTube · recorded Wed · 12:00 PM',goal:'RE Leads',done:false},
-{id:29,brand:'realtor',day:4,title:'▶ YouTube Short + IG Reel — Upload',type:'YouTube Short + IG · recorded Wed · 12:00 PM',goal:'RE Leads',done:false},
-{id:30,brand:'realtor',day:4,title:'🌴 DR Video — Upload (EN + ES)',type:'YouTube · both playlists · 6:00 PM',goal:'RE Leads',done:false},
-{id:31,brand:'realtor',day:4,title:'📊 Pocono Pulse — Market Update Reel',type:'IG · repurposed from hub · 9:00 AM',goal:'RE Leads',done:false},
+{id:29,brand:'realtor',day:4,title:'▶ YouTube Short + IG Reel — Upload',type:'YouTube Short + IG · recorded Wed · 12:00 PM · only YT upload today',goal:'RE Leads',done:false},
+{id:31,brand:'realtor',day:4,title:'📊 Pocono Pulse OR 🎖️ Veteran Reel — rotating weekly',type:'IG · Pocono Pulse / VA-PA / VA-DR / Pocono Pulse 4-week cycle · 9:00 AM',goal:'RE Leads',done:false},
 {id:32,brand:'realtor',day:4,title:'🚗 Car Confession — Entrepreneur Life EN',type:'IG · TikTok · 7:00 AM · recorded Wed',goal:'RE Leads',done:false},
 {id:33,brand:'spanish',day:4,title:'🇪🇸 Car Confession — Entrepreneur Life ES',type:'IG @alexa.realtor · Spanish · 12:00 PM',goal:'RE Leads',done:false},
 {id:34,brand:'realtor',day:4,title:'🎬 Native TikTok Re-record — Upload',type:'TikTok · no watermark · 9:00 AM',goal:'RE Leads',done:false},
@@ -541,16 +555,22 @@ function seedDefaults(){
 {id:36,brand:'realtor',day:4,title:'🏘 Community Roundup',type:'Nextdoor · 10:00 AM',goal:'RE Leads',done:false},
 {id:37,brand:'myash',day:4,title:'🍂 Cigar/Lounge Video — Upload',type:'IG · TikTok @its.myash · 6:00 PM',goal:'Drive Sales',done:false},
 {id:38,brand:'realtor',day:4,title:'💼 LinkedIn — Operator Post',type:'LinkedIn · 8:00 AM',goal:'RE Leads',done:false},
-{id:39,brand:'life',day:4,title:'@life.byalexa TikTok 3',type:'TikTok @lifebyalexa · 10:00 AM',goal:'Grow Following',done:false},
+{id:39,brand:'life',day:4,title:'@life.byalexa TikTok 3 — Week Throughline',type:'TikTok @lifebyalexa · 10:00 AM',goal:'Grow Following',done:false},
+
+// ── FRIDAY ──
+{id:30,brand:'realtor',day:5,title:'🌴 DR Video — Upload (EN + ES)',type:'YouTube · both playlists · 6:00 PM · recorded Tuesday',goal:'RE Leads',done:false},
 {id:40,brand:'fnr',day:5,title:'☕ Coffee for the Leaf',type:'IG + FB Biz · 9:00 AM',goal:'Drive Sales',done:false},
 {id:41,brand:'myash',day:5,title:'🥃 Weekend Smoke — Reel',type:'IG · 6:00 PM · recorded Wed',goal:'Drive Sales',done:false},
 {id:42,brand:'spanish',day:5,title:'🇪🇸 TikTok — DR Cigar Culture (Spanish)',type:'TikTok @its.myash · 6:00 PM',goal:'Grow Following',done:false},
 {id:43,brand:'spanish',day:5,title:'🇪🇸 Personal FB — Spanish Post',type:'FB Personal · Alexa voice · 7:00 PM',goal:'Grow Following',done:false},
-{id:44,brand:'life',day:5,title:'@life.byalexa TikTok 4',type:'TikTok @lifebyalexa · 10:00 AM',goal:'Grow Following',done:false},
+{id:44,brand:'life',day:5,title:'@life.byalexa TikTok 4 — Q3 Nobody Talks About',type:'TikTok @lifebyalexa · 10:00 AM',goal:'Grow Following',done:false},
+
+// ── SATURDAY ──
 {id:45,brand:'realtor',day:6,title:'🇪🇸 Spanish IG Post — @alexa.realtor',type:'IG · Spanish real estate · 10:00 AM',goal:'RE Leads',done:false},
 {id:46,brand:'realtor',day:6,title:'🏡 Weekend Market Tip',type:'Nextdoor · 10:00 AM',goal:'RE Leads',done:false},
 {id:47,brand:'spanish',day:6,title:'🇪🇸 FB Business — Spanish Post (bi-weekly)',type:'FB Biz @alexa.realtor · 12:00 PM',goal:'RE Leads',done:false},
 {id:48,brand:'life',day:6,title:'@life.byalexa — Weekend Operator Life',type:'IG · personal · 12:00 PM',goal:'Grow Following',done:false}
+
 ];}
 }
 function bindTabs(){document.querySelectorAll('.tab-btn').forEach(btn=>{btn.addEventListener('click',()=>switchTab(btn.dataset.tab));});}
@@ -573,8 +593,8 @@ function renderWeekGrid(){
     const hdr=document.createElement('div');hdr.className='day-hdr'+(di===today?' today':'');hdr.textContent=day;col.appendChild(hdr);
     state.content.filter(c=>parseInt(c.day)===di).forEach(item=>{
       const el=document.createElement('div');el.className='content-item'+(item.done?' done':'');
-      const bClass={myash:'brand-myash',realtor:'brand-realtor',fnr:'brand-fnr',substack:'brand-sub',system:'brand-system',spanish:'brand-spanish',life:'brand-life'}[item.brand]||'';
-      const bLabel={myash:'@its.myash',realtor:'@alexa.realtor',fnr:'@fillerandroast',substack:'Substack',system:'⚙️ SYSTEM',spanish:'🇪🇸 En Español',life:'@life.byalexa'}[item.brand]||'';
+      const bClass={myash:'brand-myash',realtor:'brand-realtor',fnr:'brand-fnr',substack:'brand-sub',system:'brand-system',spanish:'brand-spanish',life:'brand-life',veteran:'brand-veteran'}[item.brand]||'';
+      const bLabel={myash:'@its.myash',realtor:'@alexa.realtor',fnr:'@fillerandroast',substack:'Substack',system:'⚙️ SYSTEM',spanish:'🇪🇸 En Español',life:'@life.byalexa',veteran:'🎖️ Veteran'}[item.brand]||'';
       el.innerHTML=`<div class="ci-brand ${bClass}">${bLabel}</div><div class="ci-title">${item.title}</div><div class="ci-type">${item.type}</div>`;
       el.onclick=()=>{item.done=!item.done;save();renderAll();};col.appendChild(el);
     });
