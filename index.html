@@ -199,7 +199,7 @@
     <div class="section-sub" id="week-label"></div>
   </div>
   <div class="kpi-grid">
-    <div class="kpi green"><div class="kpi-label">Content Published</div><div class="kpi-value" id="kpi-content">0</div><div class="kpi-sub">of <span id="kpi-content-total">58</span> pieces this week</div></div>
+    <div class="kpi green"><div class="kpi-label">Content Published</div><div class="kpi-value" id="kpi-content">0</div><div class="kpi-sub">of <span id="kpi-content-total">35</span> pieces this week</div></div>
     <div class="kpi gold"><div class="kpi-label">Signals Found</div><div class="kpi-value" id="kpi-signals">0</div><div class="kpi-sub">this week · Monroe County</div></div>
     <div class="kpi red"><div class="kpi-label">Hot Leads 🔥</div><div class="kpi-value" id="kpi-hot">0</div><div class="kpi-sub">score 10+ · contact this week</div></div>
     <div class="kpi blue"><div class="kpi-label">Outreach Done</div><div class="kpi-value" id="kpi-outreach">0</div><div class="kpi-sub">goal: 20–30 per week</div></div>
@@ -222,11 +222,10 @@
     <div class="card">
       <div class="card-hdr"><div class="card-hdr-title">📱 Content This Week</div><button class="btn btn-ghost btn-sm" onclick="switchTab('content')">Full Schedule →</button></div>
       <div class="card-body">
-        <div class="progress-wrap"><div class="progress-label"><span>@its.myash</span><span id="prog-myash-label">0/7</span></div><div class="progress-bar"><div class="progress-fill fill-green" id="prog-myash" style="width:0%"></div></div></div>
-        <div class="progress-wrap"><div class="progress-label"><span>@alexa.realtor</span><span id="prog-realtor-label">0/7</span></div><div class="progress-bar"><div class="progress-fill fill-blue" id="prog-realtor" style="width:0%"></div></div></div>
-        <div class="progress-wrap"><div class="progress-label"><span>@fillerandroast</span><span id="prog-fnr-label">0/3</span></div><div class="progress-bar"><div class="progress-fill fill-gold" id="prog-fnr" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>@its.myash IG+TikTok</span><span id="prog-myash-label">0/7</span></div><div class="progress-bar"><div class="progress-fill fill-green" id="prog-myash" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>@alexa.realtor IG (4/wk)</span><span id="prog-realtor-label">0/4</span></div><div class="progress-bar"><div class="progress-fill fill-blue" id="prog-realtor" style="width:0%"></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span>@fillerandroast (1/wk · Fri)</span><span id="prog-fnr-label">0/1</span></div><div class="progress-bar"><div class="progress-fill fill-gold" id="prog-fnr" style="width:0%"></div></div></div>
         <div class="progress-wrap"><div class="progress-label"><span>🇪🇸 En Español</span><span id="prog-spanish-label">0/7</span></div><div class="progress-bar"><div class="progress-fill fill-spanish" id="prog-spanish" style="width:0%"></div></div></div>
-        <div class="progress-wrap"><div class="progress-label"><span>@life.byalexa</span><span id="prog-life-label">0/3</span></div><div class="progress-bar"><div class="progress-fill fill-life" id="prog-life" style="width:0%"></div></div></div>
         <div class="progress-wrap" style="margin-top:8px"><div class="progress-label"><span>Substack Notes (21/wk)</span><span id="prog-sub-label">0/21</span></div><div class="progress-bar"><div class="progress-fill fill-green" id="prog-sub" style="width:0%"></div></div></div>
         <div class="spacer"></div>
         <div class="progress-wrap"><div class="progress-label"><span>Outreach Contacts (goal 25)</span><span id="prog-out-label">0/25</span></div><div class="progress-bar"><div class="progress-fill fill-red" id="prog-out" style="width:0%"></div></div></div>
@@ -247,7 +246,6 @@
     <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div>@fillerandroast</div>
     <div class="legend-item"><div class="legend-dot" style="background:#888"></div>Substack</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--spanish)"></div>🇪🇸 En Español</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--life)"></div>@life.byalexa</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--veteran)"></div>🎖️ Veteran</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--text3)"></div>Recording Block</div>
     <div style="margin-left:auto;display:flex;gap:8px;">
@@ -393,7 +391,6 @@
             <option value="fnr">@fillerandroast</option>
             <option value="substack">Substack</option>
             <option value="spanish">🇪🇸 En Español</option>
-            <option value="life">@life.byalexa</option>
             <option value="veteran">🎖️ Veteran</option>
             <option value="system">Recording Block</option>
           </select>
@@ -512,64 +509,49 @@ function seedDefaults(){
 {id:1,brand:'system',day:0,title:'🟢 SUNDAY RECORDING — Hub video English + Spanish second take. ~45 min.',type:'Recording Block',goal:'Grow Following',done:false},
 {id:2,brand:'realtor',day:0,title:'🎬 Hub Video — Record & Upload (English)',type:'YouTube · main playlist · 12:00 PM',goal:'RE Leads',done:false},
 {id:3,brand:'spanish',day:0,title:'🇪🇸 Hub Video — Spanish Second Take & Upload',type:'YouTube · En Español Playlist · 12:00 PM',goal:'RE Leads',done:false},
-{id:4,brand:'fnr',day:0,title:'☕ Before the First Draw',type:'IG · 8:00 AM',goal:'Drive Sales',done:false},
-{id:5,brand:'myash',day:0,title:'☕🍂 Coffee & Ash — Ritual',type:'IG · 9:30 AM',goal:'Drive Sales',done:false},
-{id:6,brand:'myash',day:0,title:"📸 SHOOT: Tonight's Smoke Carousel",type:'Shoot Sunday · Posts Monday 7PM',goal:'Drive Sales',done:false},
-{id:7,brand:'life',day:0,title:'@life.byalexa — Behind the Operator',type:'IG · 11:00 AM · personal voice',goal:'Grow Following',done:false},
+{id:5,brand:'myash',day:0,title:'☕🍂 Coffee & Ash — Ritual',type:'IG @its.myash · 9:30 AM · #LifeByAlexa',goal:'Drive Sales',done:false},
 
 // ── MONDAY ──
 {id:8,brand:'substack',day:1,title:'✍️ Substack Article — Operator Life',type:'Substack · personal story first · 7:00 AM',goal:'Grow Following',done:false},
-{id:9,brand:'myash',day:1,title:"🌙 Tonight's Smoke — Carousel",type:'IG · 7:00 PM · shot Sunday',goal:'Drive Sales',done:false},
-{id:10,brand:'realtor',day:1,title:'📊 Market Signal',type:'LinkedIn · 8:00 AM',goal:'RE Leads',done:false},
+{id:10,brand:'realtor',day:1,title:'📊 Market Signal',type:'LinkedIn · 8:00 AM · post 1/3',goal:'RE Leads',done:false},
 {id:11,brand:'realtor',day:1,title:'📍 Google Business Post 1',type:'Google Biz · 9:00 AM',goal:'RE Leads',done:false},
 {id:12,brand:'realtor',day:1,title:'🏠 Real Estate Insight',type:'FB Personal · 10:00 AM',goal:'RE Leads',done:false},
-{id:13,brand:'life',day:1,title:'@life.byalexa — Operator Moment',type:'IG · 12:00 PM · behind the scenes',goal:'Grow Following',done:false},
-{id:14,brand:'life',day:1,title:'@life.byalexa TikTok 1 — Q1 BTS',type:'TikTok @lifebyalexa · 9:00 AM',goal:'Grow Following',done:false},
+{id:53,brand:'myash',day:1,title:'🎬 BTS Talking Head — Q1 Behind the Scenes',type:'TikTok @itsmyash · 30-60 sec · 9:00 AM',goal:'Grow Following',done:false},
 
 // ── TUESDAY ──
 {id:49,brand:'system',day:2,title:'🎬 RECORD + UPLOAD: Ashes & Escrows — cigar in hand · under 60 sec · upload same day or Wed morning',type:'Recording Block · Tuesday · 11:00 AM',goal:'RE Leads',done:false},
 {id:15,brand:'system',day:2,title:'🎥 FILM: DR Video EN + ES',type:'Film Tuesday · 15 min · uploads Friday',goal:'RE Leads',done:false},
 {id:28,brand:'realtor',day:2,title:'🎬 Ashes & Escrows — Upload',type:'YouTube · recorded Tue · upload same day or Wed morning',goal:'RE Leads',done:false},
-{id:16,brand:'realtor',day:2,title:'🚗 Car Confession — Real Estate EN',type:'IG · TikTok · 3:00 PM · 20 sec',goal:'RE Leads',done:false},
-{id:17,brand:'spanish',day:2,title:'🇪🇸 Car Confession — Real Estate ES',type:'IG @alexa.realtor · Spanish · 3:30 PM',goal:'RE Leads',done:false},
-{id:18,brand:'fnr',day:2,title:"🔥 Nell's Social FB Tag",type:'FB · @fillerandroast · 11:00 AM',goal:'Drive Sales',done:false},
+{id:16,brand:'realtor',day:2,title:'🚗 Car Confession — Real Estate EN',type:'IG @alexa.realtor · 3:00 PM · 20 sec · #LifeByAlexa',goal:'RE Leads',done:false},
+{id:17,brand:'spanish',day:2,title:'🇪🇸 Car Confession — Real Estate ES',type:'YouTube · En Español playlist · second take · same day',goal:'RE Leads',done:false},
 {id:19,brand:'realtor',day:2,title:'📍 Neighborly Post',type:'Nextdoor · 9:00 AM',goal:'RE Leads',done:false},
-{id:20,brand:'life',day:2,title:'@life.byalexa — Personal Moment',type:'IG · 8:00 AM',goal:'Grow Following',done:false},
 
 // ── WEDNESDAY ──
-{id:21,brand:'system',day:3,title:'🟡 WEDNESDAY RECORDING — YouTube Short, Cigar Video, Car Confessions, Weekend Smoke Reel · ~75 min',type:'Recording Block · Primary Day',goal:'Grow Following',done:false},
-{id:22,brand:'realtor',day:3,title:'🏡 Under Contract Story',type:'IG Story · 11:00 AM',goal:'RE Leads',done:false},
-{id:23,brand:'realtor',day:3,title:'🚗 Car Confession — Township Rules EN',type:'IG · TikTok · 9:00 AM',goal:'RE Leads',done:false},
-{id:24,brand:'myash',day:3,title:'🚗 Car Confession — DR Cigars',type:'IG @its.myash · 6:00 PM',goal:'Grow Following',done:false},
-{id:25,brand:'life',day:3,title:'@life.byalexa — Recording Day BTS',type:'IG · 10:00 AM',goal:'Grow Following',done:false},
-{id:26,brand:'life',day:3,title:'@life.byalexa TikTok 2 — Q2 Random Day',type:'TikTok @lifebyalexa · 11:00 AM',goal:'Grow Following',done:false},
+{id:21,brand:'system',day:3,title:'🟡 WEDNESDAY RECORDING — YouTube Short, Cigar Video, Talking Head, Weekend Smoke Reel · ~75 min',type:'Recording Block · Primary Day',goal:'Grow Following',done:false},
+{id:22,brand:'realtor',day:3,title:'🏡 Under Contract Story',type:'IG @alexa.realtor · 11:00 AM · IG post 2/4',goal:'RE Leads',done:false},
+{id:50,brand:'myash',day:3,title:'💼 Talking Head — Operational/Cigar Content',type:'IG @its.myash · from Q2/Q3 · 2:00 PM · #LifeByAlexa',goal:'Grow Following',done:false},
+{id:54,brand:'myash',day:3,title:'🎬 Q2 Random Day Clip',type:'TikTok @itsmyash · 30-60 sec · 6:00 PM',goal:'Grow Following',done:false},
 
 // ── THURSDAY ──
 {id:27,brand:'substack',day:4,title:'✍️ Substack Article — Experience Economy',type:'Substack · ritual · lifestyle · 7:00 AM',goal:'Grow Following',done:false},
-{id:29,brand:'realtor',day:4,title:'▶ YouTube Short + IG Reel — Upload',type:'YouTube Short + IG · recorded Wed · 12:00 PM · only YT upload today',goal:'RE Leads',done:false},
-{id:31,brand:'realtor',day:4,title:'📊 Pocono Pulse OR 🎖️ Veteran Reel — rotating weekly',type:'IG · Pocono Pulse / VA-PA / VA-DR / Pocono Pulse 4-week cycle · 9:00 AM',goal:'RE Leads',done:false},
-{id:32,brand:'realtor',day:4,title:'🚗 Car Confession — Entrepreneur Life EN',type:'IG · TikTok · 7:00 AM · recorded Wed',goal:'RE Leads',done:false},
-{id:33,brand:'spanish',day:4,title:'🇪🇸 Car Confession — Entrepreneur Life ES',type:'IG @alexa.realtor · Spanish · 12:00 PM',goal:'RE Leads',done:false},
-{id:34,brand:'realtor',day:4,title:'🎬 Native TikTok Re-record — Upload',type:'TikTok · no watermark · 9:00 AM',goal:'RE Leads',done:false},
+{id:38,brand:'realtor',day:4,title:'💼 LinkedIn — Operator Post',type:'LinkedIn · 8:00 AM · post 2/3',goal:'RE Leads',done:false},
+{id:31,brand:'realtor',day:4,title:'📊 Pocono Pulse OR 🎖️ Veteran Reel — rotating weekly',type:'IG @alexa.realtor · 4-week cycle · 9:00 AM · IG post 3/4',goal:'RE Leads',done:false},
 {id:35,brand:'realtor',day:4,title:'📍 Google Business Post 2',type:'Google Biz · 9:00 AM',goal:'RE Leads',done:false},
 {id:36,brand:'realtor',day:4,title:'🏘 Community Roundup',type:'Nextdoor · 10:00 AM',goal:'RE Leads',done:false},
-{id:37,brand:'myash',day:4,title:'🍂 Cigar/Lounge Video — Upload',type:'IG · TikTok @its.myash · 6:00 PM',goal:'Drive Sales',done:false},
-{id:38,brand:'realtor',day:4,title:'💼 LinkedIn — Operator Post',type:'LinkedIn · 8:00 AM',goal:'RE Leads',done:false},
-{id:39,brand:'life',day:4,title:'@life.byalexa TikTok 3 — Week Throughline',type:'TikTok @lifebyalexa · 10:00 AM',goal:'Grow Following',done:false},
+{id:29,brand:'realtor',day:4,title:'▶ YouTube Short — Upload',type:'YouTube Short · recorded Wed · 12:00 PM',goal:'RE Leads',done:false},
+{id:37,brand:'myash',day:4,title:'🍂 Cigar/Lounge Video — Upload',type:'IG @its.myash · 6:00 PM · IG post 3/4 myash',goal:'Drive Sales',done:false},
 
 // ── FRIDAY ──
+{id:55,brand:'realtor',day:5,title:'🎖️ LinkedIn — Veteran Post',type:'LinkedIn · 8:00 AM · post 3/3',goal:'RE Leads',done:false},
+{id:40,brand:'fnr',day:5,title:'☕ Coffee for the Leaf',type:'IG + FB Biz @fillerandroast · 9:00 AM · #LifeByAlexa',goal:'Drive Sales',done:false},
+{id:41,brand:'myash',day:5,title:'🥃 Weekend Smoke — Reel',type:'IG @its.myash · 6:00 PM · recorded Wed · #LifeByAlexa · IG post 4/4 myash',goal:'Drive Sales',done:false},
 {id:30,brand:'realtor',day:5,title:'🌴 DR Video — Upload (EN + ES)',type:'YouTube · both playlists · 6:00 PM · recorded Tuesday',goal:'RE Leads',done:false},
-{id:40,brand:'fnr',day:5,title:'☕ Coffee for the Leaf',type:'IG + FB Biz · 9:00 AM',goal:'Drive Sales',done:false},
-{id:41,brand:'myash',day:5,title:'🥃 Weekend Smoke — Reel',type:'IG · 6:00 PM · recorded Wed',goal:'Drive Sales',done:false},
-{id:42,brand:'spanish',day:5,title:'🇪🇸 TikTok — DR Cigar Culture (Spanish)',type:'TikTok @its.myash · 6:00 PM',goal:'Grow Following',done:false},
 {id:43,brand:'spanish',day:5,title:'🇪🇸 Personal FB — Spanish Post',type:'FB Personal · Alexa voice · 7:00 PM',goal:'Grow Following',done:false},
-{id:44,brand:'life',day:5,title:'@life.byalexa TikTok 4 — Q3 Nobody Talks About',type:'TikTok @lifebyalexa · 10:00 AM',goal:'Grow Following',done:false},
 
 // ── SATURDAY ──
-{id:45,brand:'realtor',day:6,title:'🇪🇸 Spanish IG Post — @alexa.realtor',type:'IG · Spanish real estate · 10:00 AM',goal:'RE Leads',done:false},
+{id:45,brand:'realtor',day:6,title:'🇪🇸 Spanish IG Post — @alexa.realtor',type:'IG @alexa.realtor · Spanish real estate · 10:00 AM · IG post 4/4',goal:'RE Leads',done:false},
 {id:46,brand:'realtor',day:6,title:'🏡 Weekend Market Tip',type:'Nextdoor · 10:00 AM',goal:'RE Leads',done:false},
-{id:47,brand:'spanish',day:6,title:'🇪🇸 FB Business — Spanish Post (bi-weekly)',type:'FB Biz @alexa.realtor · 12:00 PM',goal:'RE Leads',done:false},
-{id:48,brand:'life',day:6,title:'@life.byalexa — Weekend Operator Life',type:'IG · personal · 12:00 PM',goal:'Grow Following',done:false}
+{id:47,brand:'spanish',day:6,title:'🇪🇸 FB Business — Spanish Post (bi-weekly)',type:'FB Biz @alexa.realtor · 12:00 PM',goal:'RE Leads',done:false}
 
 ];}
 }
@@ -579,8 +561,8 @@ function renderAll(){renderKPIs();renderMondayChecks();renderWeekGrid();renderLe
 function renderKPIs(){
   const done=state.content.filter(c=>c.done).length;const hot=state.leads.filter(l=>scoreOf(l)>=10).length;const sigs=state.leads.reduce((a,l)=>a+Object.keys(l.signals||{}).length,0);const out=state.outreach.length;
   document.getElementById('kpi-content').textContent=done;document.getElementById('kpi-signals').textContent=sigs;document.getElementById('kpi-hot').textContent=hot;document.getElementById('kpi-outreach').textContent=out;
-  const myash=state.content.filter(c=>c.brand==='myash');const realtor=state.content.filter(c=>c.brand==='realtor');const fnr=state.content.filter(c=>c.brand==='fnr');const sub=state.content.filter(c=>c.brand==='substack');const spanish=state.content.filter(c=>c.brand==='spanish');const life=state.content.filter(c=>c.brand==='life');
-  updateProg('myash',myash.filter(c=>c.done).length,myash.length||7);updateProg('realtor',realtor.filter(c=>c.done).length,realtor.length||7);updateProg('fnr',fnr.filter(c=>c.done).length,fnr.length||3);updateProg('sub',sub.filter(c=>c.done).length,Math.max(sub.length,21));updateProg('spanish',spanish.filter(c=>c.done).length,spanish.length||7);updateProg('life',life.filter(c=>c.done).length,life.length||3);updateProg('out',out,25);
+  const myash=state.content.filter(c=>c.brand==='myash');const realtor=state.content.filter(c=>c.brand==='realtor');const fnr=state.content.filter(c=>c.brand==='fnr');const sub=state.content.filter(c=>c.brand==='substack');const spanish=state.content.filter(c=>c.brand==='spanish');
+  updateProg('myash',myash.filter(c=>c.done).length,myash.length||7);updateProg('realtor',realtor.filter(c=>c.done).length,realtor.length||4);updateProg('fnr',fnr.filter(c=>c.done).length,fnr.length||1);updateProg('sub',sub.filter(c=>c.done).length,Math.max(sub.length,21));updateProg('spanish',spanish.filter(c=>c.done).length,spanish.length||7);updateProg('out',out,25);
 }
 function updateProg(id,val,total){const pct=Math.min(100,Math.round((val/total)*100));const el=document.getElementById('prog-'+id);const lb=document.getElementById('prog-'+id+'-label');if(el)el.style.width=pct+'%';if(lb)lb.textContent=val+'/'+total;}
 function toggleCheck(el){el.classList.toggle('done');const id=el.dataset.id;state.checks[id]=el.classList.contains('done');save();renderKPIs();}
@@ -593,8 +575,8 @@ function renderWeekGrid(){
     const hdr=document.createElement('div');hdr.className='day-hdr'+(di===today?' today':'');hdr.textContent=day;col.appendChild(hdr);
     state.content.filter(c=>parseInt(c.day)===di).forEach(item=>{
       const el=document.createElement('div');el.className='content-item'+(item.done?' done':'');
-      const bClass={myash:'brand-myash',realtor:'brand-realtor',fnr:'brand-fnr',substack:'brand-sub',system:'brand-system',spanish:'brand-spanish',life:'brand-life',veteran:'brand-veteran'}[item.brand]||'';
-      const bLabel={myash:'@its.myash',realtor:'@alexa.realtor',fnr:'@fillerandroast',substack:'Substack',system:'⚙️ SYSTEM',spanish:'🇪🇸 En Español',life:'@life.byalexa',veteran:'🎖️ Veteran'}[item.brand]||'';
+      const bClass={myash:'brand-myash',realtor:'brand-realtor',fnr:'brand-fnr',substack:'brand-sub',system:'brand-system',spanish:'brand-spanish',veteran:'brand-veteran'}[item.brand]||'';
+      const bLabel={myash:'@its.myash',realtor:'@alexa.realtor',fnr:'@fillerandroast',substack:'Substack',system:'⚙️ SYSTEM',spanish:'🇪🇸 En Español',veteran:'🎖️ Veteran'}[item.brand]||'';
       el.innerHTML=`<div class="ci-brand ${bClass}">${bLabel}</div><div class="ci-title">${item.title}</div><div class="ci-type">${item.type}</div>`;
       el.onclick=()=>{item.done=!item.done;save();renderAll();};col.appendChild(el);
     });
