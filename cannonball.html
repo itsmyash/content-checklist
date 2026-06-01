@@ -7,23 +7,25 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0d0d0d;
-    --surface: #161616;
-    --surface2: #1e1e1e;
-    --border: rgba(255,255,255,0.08);
-    --border-hover: rgba(255,255,255,0.15);
-    --text: #f0ede8;
-    --muted: #888;
-    --dim: #555;
-    --realtor: #378ADD;
-    --realtor-bg: rgba(55,138,221,0.12);
-    --myash: #9b8fe8;
-    --myash-bg: rgba(155,143,232,0.12);
-    --fnr: #7bc47a;
-    --fnr-bg: rgba(123,196,122,0.12);
-    --accent: #f0ede8;
+    --bg: #F5F0E8;
+    --surface: #fdf8f2;
+    --surface2: #ede8df;
+    --border: rgba(0,0,0,0.10);
+    --border-hover: rgba(0,0,0,0.20);
+    --text: #1a1a18;
+    --muted: #666;
+    --dim: #999;
+    --realtor: #1a7aad;
+    --realtor-bg: rgba(26,122,173,0.10);
+    --myash: #6B3FA0;
+    --myash-bg: rgba(107,63,160,0.10);
+    --fnr: #4a8c0f;
+    --fnr-bg: rgba(74,140,15,0.10);
+    --accent: #1A1A2E;
     --radius: 10px;
     --radius-sm: 6px;
+    --gold: #b08a00;
+    --burgundy: #6B1F3A;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,10 +35,10 @@
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
-    padding: 2rem 1rem 4rem;
+    padding: 0 1rem 4rem;
   }
 
-  .container { max-width: 680px; margin: 0 auto; }
+  .container { max-width: 680px; margin: 0 auto; padding-top: 2rem; }
 
   header { margin-bottom: 2.5rem; }
 
@@ -57,10 +59,7 @@
     color: var(--text);
   }
 
-  h1 span {
-    color: var(--muted);
-    font-weight: 400;
-  }
+  h1 span { color: var(--muted); font-weight: 400; }
 
   .sub {
     font-size: 14px;
@@ -71,10 +70,11 @@
 
   .card {
     background: var(--surface);
-    border: 0.5px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 1.25rem;
     margin-bottom: 1rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
   }
 
   .card-title {
@@ -101,7 +101,7 @@
   select, input[type="text"] {
     width: 100%;
     background: var(--surface2);
-    border: 0.5px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     color: var(--text);
     font-family: 'DM Sans', sans-serif;
@@ -113,13 +113,9 @@
     transition: border-color 0.15s;
   }
 
-  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; background-color: var(--surface2); padding-right: 32px; }
 
-  select:focus, input[type="text"]:focus {
-    border-color: var(--border-hover);
-  }
-
-  select option { background: #1e1e1e; }
+  select:focus, input[type="text"]:focus { border-color: var(--border-hover); }
 
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
@@ -162,7 +158,7 @@
     font-size: 11px;
     padding: 6px 4px;
     border-radius: var(--radius-sm);
-    border: 0.5px solid var(--border);
+    border: 1px solid var(--border);
     background: var(--surface2);
     color: var(--dim);
     cursor: pointer;
@@ -173,83 +169,28 @@
 
   .pill:hover { border-color: var(--border-hover); color: var(--muted); }
 
-  .pill.on-realtor {
-    background: var(--realtor-bg);
-    border-color: var(--realtor);
-    color: var(--realtor);
-  }
+  .pill.on-realtor { background: var(--realtor-bg); border-color: var(--realtor); color: var(--realtor); }
+  .pill.on-myash   { background: var(--myash-bg);   border-color: var(--myash);   color: var(--myash); }
+  .pill.on-fnr     { background: var(--fnr-bg);     border-color: var(--fnr);     color: var(--fnr); }
 
-  .pill.on-myash {
-    background: var(--myash-bg);
-    border-color: var(--myash);
-    color: var(--myash);
-  }
+  .legend { display: flex; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; font-family: 'DM Mono', monospace; color: var(--muted); }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
 
-  .pill.on-fnr {
-    background: var(--fnr-bg);
-    border-color: var(--fnr);
-    color: var(--fnr);
-  }
-
-  .legend {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 14px;
-    flex-wrap: wrap;
-  }
-
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    font-family: 'DM Mono', monospace;
-    color: var(--muted);
-  }
-
-  .legend-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-  }
-
-  .counter {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 14px;
-  }
-
-  .counter-item {
-    background: var(--surface2);
-    border-radius: var(--radius-sm);
-    padding: 8px 12px;
-    text-align: center;
-  }
-
-  .counter-val {
-    font-size: 20px;
-    font-weight: 600;
-    font-family: 'DM Mono', monospace;
-  }
-
-  .counter-lbl {
-    font-size: 10px;
-    color: var(--dim);
-    font-family: 'DM Mono', monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-top: 2px;
-  }
+  .counter { display: flex; gap: 12px; margin-bottom: 14px; }
+  .counter-item { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 12px; text-align: center; }
+  .counter-val { font-size: 20px; font-weight: 600; font-family: 'DM Mono', monospace; color: var(--text); }
+  .counter-lbl { font-size: 10px; color: var(--dim); font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
 
   .btn {
     width: 100%;
     padding: 13px;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     font-family: 'DM Sans', sans-serif;
     letter-spacing: 0.01em;
-    background: var(--text);
-    color: var(--bg);
+    background: #1A1A2E;
+    color: #F2EDE3;
     border: none;
     border-radius: var(--radius);
     cursor: pointer;
@@ -257,7 +198,7 @@
     margin-top: 0.5rem;
   }
 
-  .btn:hover { opacity: 0.9; }
+  .btn:hover { opacity: 0.88; }
   .btn:active { transform: scale(0.99); }
 
   .output-section { margin-top: 1.25rem; display: none; }
@@ -272,14 +213,14 @@
   }
 
   .output-box {
-    background: var(--surface);
-    border: 0.5px solid var(--border);
+    background: #1E1E2E;
+    border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 1.25rem;
     font-family: 'DM Mono', monospace;
     font-size: 12px;
     line-height: 1.8;
-    color: var(--text);
+    color: #E8E4DC;
     white-space: pre-wrap;
     word-break: break-word;
   }
@@ -291,7 +232,7 @@
     font-size: 13px;
     font-family: 'DM Mono', monospace;
     background: transparent;
-    border: 0.5px solid var(--border-hover);
+    border: 1px solid var(--border-hover);
     border-radius: var(--radius-sm);
     color: var(--muted);
     cursor: pointer;
@@ -308,12 +249,22 @@
     line-height: 1.6;
   }
 
-  hr { border: none; border-top: 0.5px solid var(--border); margin: 1.5rem 0; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
 
   #custom-row { display: none; }
 </style>
 </head>
 <body>
+<style>
+.global-nav{background:#1A1A2E;padding:10px 24px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-bottom:2px solid #6B1F3A;position:sticky;top:0;z-index:9999;font-family:'DM Mono',monospace;}
+.gn-logo{font-size:11px;letter-spacing:2px;color:#C4973A;text-transform:uppercase;margin-right:8px;white-space:nowrap;}
+.gn-link{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:6px 12px;text-decoration:none;border-radius:2px;white-space:nowrap;transition:all 0.15s;border:1px solid transparent;}
+.gn-link:hover{border-color:rgba(196,151,58,0.4);background:rgba(196,151,58,0.08);}
+.gn-link.gn-active{background:#6B1F3A;border-color:#6B1F3A;color:#F2EDE3 !important;}
+.gn-link-dash{color:#F2EDE3;}.gn-link-docs{color:#C4973A;}.gn-link-scroll{color:#7AB4D4;}.gn-link-perp{color:#7AB4D4;}.gn-link-cannon{color:#d63a08;}
+</style>
+<nav class="global-nav"><div class="gn-logo">ROAST //</div>  <a href="index.html" class="gn-link gn-link-dash">🏠 Dashboard</a>  <a href="ROAST-Complete-System.html" class="gn-link gn-link-docs">📋 System Docs</a>  <a href="roast-weekly-scroll.html" class="gn-link gn-link-scroll">📅 Weekly Scroll</a>  <a href="perplexity-spaces.html" class="gn-link gn-link-perp">🔍 Perplexity</a>  <a href="cannonball.html" class="gn-link gn-link-cannon gn-active">🎯 Cannonball</a></nav>
+
 <div class="container">
 
   <header>
@@ -375,28 +326,16 @@
       <div class="legend-item"><div class="legend-dot" style="background:var(--fnr);"></div>Filler & Roast</div>
     </div>
     <div class="counter">
-      <div class="counter-item">
-        <div class="counter-val" id="cnt-total">0</div>
-        <div class="counter-lbl">fires/week</div>
-      </div>
-      <div class="counter-item">
-        <div class="counter-val" id="cnt-r" style="color:var(--realtor);">0</div>
-        <div class="counter-lbl">realtor</div>
-      </div>
-      <div class="counter-item">
-        <div class="counter-val" id="cnt-m" style="color:var(--myash);">0</div>
-        <div class="counter-lbl">myash</div>
-      </div>
-      <div class="counter-item">
-        <div class="counter-val" id="cnt-f" style="color:var(--fnr);">0</div>
-        <div class="counter-lbl">f&amp;r</div>
-      </div>
+      <div class="counter-item"><div class="counter-val" id="cnt-total">0</div><div class="counter-lbl">fires/week</div></div>
+      <div class="counter-item"><div class="counter-val" id="cnt-r" style="color:var(--realtor);">0</div><div class="counter-lbl">realtor</div></div>
+      <div class="counter-item"><div class="counter-val" id="cnt-m" style="color:var(--myash);">0</div><div class="counter-lbl">myash</div></div>
+      <div class="counter-item"><div class="counter-val" id="cnt-f" style="color:var(--fnr);">0</div><div class="counter-lbl">f&r</div></div>
     </div>
     <div class="grid-header">
       <div></div>
       <div class="grid-header-label">@alexa.realtor</div>
       <div class="grid-header-label">@its.myash</div>
-      <div class="grid-header-label">F&amp;R</div>
+      <div class="grid-header-label">F&R</div>
     </div>
     <div id="week-grid"></div>
     <p style="font-size:11px; color:var(--dim); font-family:'DM Mono',monospace; margin-top:10px;">tap to toggle · aim for 3+ fires/week</p>
@@ -466,7 +405,6 @@ function render() {
   const grid = document.getElementById('week-grid');
   grid.innerHTML = '';
   let totals = {realtor:0, myash:0, fnr:0};
-
   DAYS.forEach((day, i) => {
     const row = document.createElement('div');
     row.className = 'day-row';
@@ -484,7 +422,6 @@ function render() {
     });
     grid.appendChild(row);
   });
-
   const total = totals.realtor + totals.myash + totals.fnr;
   document.getElementById('cnt-total').textContent = total;
   document.getElementById('cnt-r').textContent = totals.realtor;
