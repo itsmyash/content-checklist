@@ -174,6 +174,27 @@
 </style>
 </head>
 <body>
+<style>
+.global-nav{background:#1A1A2E;padding:10px 24px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-bottom:2px solid #6B1F3A;position:sticky;top:0;z-index:999;}
+.gn-logo{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:#C4973A;text-transform:uppercase;margin-right:8px;white-space:nowrap;}
+.gn-link{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:6px 12px;text-decoration:none;border-radius:2px;white-space:nowrap;transition:all 0.15s;border:1px solid transparent;}
+.gn-link:hover{border-color:rgba(196,151,58,0.4);background:rgba(196,151,58,0.08);}
+.gn-link.gn-active{background:#6B1F3A;border-color:#6B1F3A;color:#F2EDE3 !important;}
+.gn-link-dash{color:#F2EDE3;}
+.gn-link-docs{color:#C4973A;}
+.gn-link-scroll{color:#7AB4D4;}
+.gn-link-perp{color:#7AB4D4;}
+.gn-link-cannon{color:#d63a08;}
+</style>
+<nav class="global-nav">
+  <div class="gn-logo">ROAST //</div>
+  <a href="index.html" class="gn-link gn-link-dash gn-active">🏠 Dashboard</a>
+  <a href="ROAST-Complete-System.html" class="gn-link gn-link-docs">📋 System Docs</a>
+  <a href="roast-weekly-scroll.html" class="gn-link gn-link-scroll">📅 Weekly Scroll</a>
+  <a href="perplexity-spaces.html" class="gn-link gn-link-perp">🔍 Perplexity</a>
+  <a href="cannonball.html" class="gn-link gn-link-cannon">🎯 Cannonball</a>
+</nav>
+
 
 <div class="topbar">
   <div class="topbar-logo">MYASH<span> // OPS</span></div>
