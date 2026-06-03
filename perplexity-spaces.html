@@ -14,9 +14,14 @@
     --text-mid:#4A4540;--code-bg:#1E1E2E;--code-text:#E8E4DC;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{background:#EDEAE3;font-family:'DM Sans',sans-serif;color:var(--text-dark);padding:32px 16px;}
-  .wrapper{max-width:900px;margin:0 auto;}
-
+  body{background:#EDEAE3;font-family:'DM Sans',sans-serif;color:var(--text-dark);padding:0 16px 32px;}
+  .wrapper{max-width:900px;margin:0 auto;padding-top:28px;}
+  .global-nav{background:#1A1A2E;padding:10px 24px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-bottom:2px solid #6B1F3A;position:sticky;top:0;z-index:9999;font-family:'DM Mono',monospace;}
+  .gn-logo{font-size:11px;letter-spacing:2px;color:#C4973A;text-transform:uppercase;margin-right:8px;white-space:nowrap;}
+  .gn-link{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:6px 12px;text-decoration:none;border-radius:2px;white-space:nowrap;transition:all 0.15s;border:1px solid transparent;}
+  .gn-link:hover{border-color:rgba(196,151,58,0.4);background:rgba(196,151,58,0.08);}
+  .gn-link.gn-active{background:#6B1F3A;border-color:#6B1F3A;color:#F2EDE3 !important;}
+  .gn-link-dash{color:#F2EDE3;}.gn-link-docs{color:#C4973A;}.gn-link-scroll{color:#7AB4D4;}.gn-link-perp{color:#7AB4D4;}.gn-link-cannon{color:#d63a08;}
   .master-header{background:var(--navy);padding:44px 48px 36px;position:relative;overflow:hidden;margin-bottom:28px;}
   .master-header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(196,151,58,0.04) 40px,rgba(196,151,58,0.04) 41px);}
   .mh-inner{position:relative;z-index:1;}
@@ -25,16 +30,12 @@
   .mh-title em{color:var(--gold);font-style:italic;}
   .mh-sub{font-size:13px;color:rgba(242,237,227,0.55);line-height:1.65;max-width:600px;}
   .mh-rule{width:48px;height:2px;background:var(--burgundy);margin-top:18px;}
-
-  /* SPACE CARD */
   .space-card{background:var(--cream);border:1px solid var(--light-border);margin-bottom:32px;overflow:hidden;}
   .space-hdr-vet{background:var(--veteran);padding:24px 32px;}
   .space-hdr-sel{background:var(--seller);padding:24px 32px;}
   .sh-eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(242,237,227,0.6);margin-bottom:8px;}
   .sh-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:var(--cream);line-height:1.2;margin-bottom:6px;}
   .sh-sub{font-size:12px;color:rgba(242,237,227,0.55);line-height:1.6;}
-
-  /* SETUP STEPS */
   .setup-strip{background:#F8F4EE;border-bottom:1px solid var(--light-border);padding:14px 32px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
   .setup-step{display:flex;align-items:center;gap:8px;}
   .setup-num{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;flex-shrink:0;}
@@ -42,8 +43,6 @@
   .setup-num-sel{background:var(--seller);color:#fff;}
   .setup-text{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text-mid);}
   .setup-arrow{color:var(--warm-gray);font-size:12px;}
-
-  /* SECTION BLOCKS */
   .space-section{border-bottom:1px solid var(--light-border);overflow:hidden;}
   .space-section:last-child{border-bottom:none;}
   .ss-hdr{padding:14px 32px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;}
@@ -57,19 +56,14 @@
   .badge-weekly{background:var(--burgundy);color:#fff;}
   .badge-ondemand{background:var(--gold);color:var(--navy);}
   .badge-monthly{background:var(--navy);color:#fff;}
-
   .ss-body{padding:0 32px 24px;}
   .ss-purpose{font-size:12px;color:var(--text-mid);line-height:1.65;font-style:italic;margin-bottom:16px;padding:10px 14px;background:#F8F4EE;border-left:3px solid var(--light-border);}
   .ss-purpose-vet{border-left-color:var(--veteran);}
   .ss-purpose-sel{border-left-color:var(--seller);}
-
-  /* SPACE SETTINGS */
   .settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
   .setting-item{background:#F8F4EE;border:1px solid var(--light-border);padding:12px 16px;}
   .setting-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--warm-gray);margin-bottom:4px;}
   .setting-value{font-size:12px;color:var(--text-dark);line-height:1.5;}
-
-  /* PROMPT BLOCK */
   .prompt-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--warm-gray);padding:8px 0 4px;border-top:1px solid var(--light-border);margin-top:16px;margin-bottom:0;}
   .prompt-block{background:var(--code-bg);padding:20px 24px;font-family:'DM Mono',monospace;font-size:11px;line-height:1.8;color:var(--code-text);white-space:pre-wrap;word-break:break-word;margin-top:0;}
   .ph{color:var(--gold);}
@@ -78,8 +72,6 @@
   .sm{color:#7A9CC4;font-weight:500;}
   .vt{color:#7AB4D4;font-weight:500;}
   .gr{color:#7AC47A;font-weight:500;}
-
-  /* HOW TO USE */
   .how-to{background:#F8F4EE;border:1px solid var(--light-border);padding:20px 24px;margin-bottom:20px;}
   .how-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--warm-gray);margin-bottom:12px;}
   .how-step{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start;}
@@ -89,25 +81,25 @@
   .how-num-sel{color:var(--seller);}
   .how-text{font-size:12px;color:var(--text-mid);line-height:1.6;}
   .how-text strong{color:var(--text-dark);}
-
-  /* CLIENT-FACING NOTE */
   .client-note{background:rgba(26,74,107,0.06);border:1px solid var(--veteran-border);padding:14px 18px;margin-bottom:16px;}
   .client-note-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--veteran);margin-bottom:6px;}
   .client-note-text{font-size:12px;color:var(--text-mid);line-height:1.6;}
-
-  .divider{display:flex;align-items:center;gap:12px;margin:8px 0 24px;}
-  .divider-line{flex:1;height:1px;background:var(--light-border);}
-  .divider-diamond{width:6px;height:6px;background:var(--burgundy);transform:rotate(45deg);}
-
   .footer{background:var(--navy);padding:20px 28px;text-align:center;margin-top:8px;}
   .footer p{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(242,237,227,0.4);line-height:1.9;}
   .footer strong{color:var(--gold);}
 </style>
 </head>
 <body>
+<nav class="global-nav">
+  <div class="gn-logo">ROAST //</div>
+  <a href="index.html" class="gn-link gn-link-dash">🏠 Dashboard</a>
+  <a href="ROAST-Complete-System.html" class="gn-link gn-link-docs">📋 System Docs</a>
+  <a href="roast-weekly-scroll.html" class="gn-link gn-link-scroll">📅 Weekly Scroll</a>
+  <a href="perplexity-spaces.html" class="gn-link gn-link-perp gn-active">🔍 Perplexity</a>
+  <a href="cannonball.html" class="gn-link gn-link-cannon">🎯 Cannonball</a>
+</nav>
 <div class="wrapper">
 
-<!-- HEADER -->
 <div class="master-header">
   <div class="mh-inner">
     <div class="mh-eyebrow">Alexa Sanchez · PA License #RS326383 · Smart Way America Realty</div>
@@ -117,15 +109,13 @@
   </div>
 </div>
 
-<!-- ══════════════════════ SPACE 01 — VA INTEL ══════════════════════ -->
-
+<!-- SPACE 01 -->
 <div class="space-card">
   <div class="space-hdr-vet">
     <div class="sh-eyebrow">Space 01 of 02</div>
     <div class="sh-title">Veteran Real Estate Intelligence Hub</div>
     <div class="sh-sub">PA veteran homebuyer benefits · DR residency & CONFOTUR · VA loan mechanics · FMP healthcare · Purely educational — no personal narrative</div>
   </div>
-
   <div class="setup-strip">
     <div class="setup-step"><div class="setup-num setup-num-vet">1</div><div class="setup-text">perplexity.ai/spaces</div></div>
     <div class="setup-arrow">→</div>
@@ -135,15 +125,8 @@
     <div class="setup-arrow">→</div>
     <div class="setup-step"><div class="setup-num setup-num-vet">4</div><div class="setup-text">Save · Share with veteran clients (optional)</div></div>
   </div>
-
-  <!-- SPACE SETTINGS -->
   <div class="space-section">
-    <div class="ss-hdr ss-hdr-vet">
-      <div>
-        <div class="ss-label ss-label-vet">Space Configuration</div>
-        <div class="ss-title">Settings & Setup</div>
-      </div>
-    </div>
+    <div class="ss-hdr ss-hdr-vet"><div><div class="ss-label ss-label-vet">Space Configuration</div><div class="ss-title">Settings & Setup</div></div></div>
     <div class="ss-body">
       <div class="settings-grid">
         <div class="setting-item"><div class="setting-label">Space Name</div><div class="setting-value">Veteran Real Estate — PA + DR</div></div>
@@ -153,12 +136,10 @@
         <div class="setting-item"><div class="setting-label">Focus URLs to add</div><div class="setting-value">va.gov · benefits.va.gov · dmva.pa.gov · phfa.org · pa.gov · monroecountypa.gov · mitur.gob.do · retireindr.com · drlawyer.com</div></div>
         <div class="setting-item"><div class="setting-label">Compliance Note</div><div class="setting-value">Every output must include PA License #RS326383 + Smart Way America Realty per 49 Pa. Code §35.305</div></div>
       </div>
-
       <div class="client-note">
         <div class="client-note-title">Client-Facing Version</div>
         <div class="client-note-text">If you share this Space with veteran clients, they can ask questions directly and get the same research you use. Frame it as: <em>"I built this as a resource for veteran homebuyers — feel free to use it to research PA benefits or DR residency options."</em> It positions you as the expert before the first call.</div>
       </div>
-
       <div class="prompt-label">Space Instructions — Paste Into Perplexity Space "Instructions" Field</div>
       <div class="prompt-block"><span class="cm">// PASTE THIS INTO THE SPACE INSTRUCTIONS FIELD WHEN CREATING THE SPACE</span>
 
@@ -200,15 +181,8 @@ Suggest specific Reel and YouTube topics based on current news, legislation upda
     </div>
   </div>
 
-  <!-- PROMPT 1: WEEKLY RESEARCH -->
   <div class="space-section">
-    <div class="ss-hdr ss-hdr-vet">
-      <div>
-        <div class="ss-label ss-label-vet">Prompt 01</div>
-        <div class="ss-title">Weekly VA Intelligence Brief</div>
-      </div>
-      <span class="ss-badge badge-weekly">Every Thursday</span>
-    </div>
+    <div class="ss-hdr ss-hdr-vet"><div><div class="ss-label ss-label-vet">Prompt 01</div><div class="ss-title">Weekly VA Intelligence Brief</div></div><span class="ss-badge badge-weekly">Every Thursday</span></div>
     <div class="ss-body">
       <div class="ss-purpose ss-purpose-vet">Run every Thursday alongside your ROAST Prompt 05. Surfaces the week's most timely veteran real estate signal for content and client conversations in both markets.</div>
       <div class="prompt-label">Copy & Paste Into Space → Deep Research</div>
@@ -242,15 +216,8 @@ Suggest specific Reel and YouTube topics based on current news, legislation upda
     </div>
   </div>
 
-  <!-- PROMPT 2: PA DEEP DIVE -->
   <div class="space-section">
-    <div class="ss-hdr ss-hdr-vet">
-      <div>
-        <div class="ss-label ss-label-vet">Prompt 02</div>
-        <div class="ss-title">PA Veteran Homebuyer Deep Dive</div>
-      </div>
-      <span class="ss-badge badge-ondemand">On Demand</span>
-    </div>
+    <div class="ss-hdr ss-hdr-vet"><div><div class="ss-label ss-label-vet">Prompt 02</div><div class="ss-title">PA Veteran Homebuyer Deep Dive</div></div><span class="ss-badge badge-ondemand">On Demand</span></div>
     <div class="ss-body">
       <div class="ss-purpose ss-purpose-vet">Run when preparing for a veteran buyer consultation or creating a PA veteran content series. Produces a complete benefit stack for a specific buyer profile.</div>
       <div class="prompt-label">Copy & Paste Into Space → Deep Research</div>
@@ -265,18 +232,15 @@ Suggest specific Reel and YouTube topics based on current news, legislation upda
 - First-time use of VA loan? [YES/NO]
 - Prior VA loan outstanding? [YES/NO]</span>
 
-Based on this profile, research and report:
-
 <span class="vt">VA LOAN ANALYSIS:</span>
 - VA funding fee: exact amount based on disability rating and first/subsequent use
 - If disability rated: funding fee waiver eligibility and how to claim it
 - 2026 conforming limit for Monroe County and whether this client has a loan cap
 - Current VA rate estimate and monthly payment at target price with $0 down
 - VA loan vs conventional comparison at this price point
-- Any assumability advantage if they are selling a prior VA-financed home
 
 <span class="vt">PA TAX BENEFIT ANALYSIS:</span>
-- DVRETX eligibility: does this veteran qualify? If yes: full property tax exemption estimate based on Monroe County millage rates. If not: what would HB 1257 mean for them if passed?
+- DVRETX eligibility: does this veteran qualify?
 - PTRR eligibility: income threshold check, estimated rebate
 - Homestead/farmstead exclusion: how to apply, deadline, estimated savings by school district
 - Monroe County millage calculation: estimated annual tax at target purchase price
@@ -295,15 +259,8 @@ Cite all sources. Include exact current figures from VA.gov, PHFA.org, DMVA.pa.g
     </div>
   </div>
 
-  <!-- PROMPT 3: DR VETERAN DEEP DIVE -->
   <div class="space-section">
-    <div class="ss-hdr ss-hdr-vet">
-      <div>
-        <div class="ss-label ss-label-vet">Prompt 03</div>
-        <div class="ss-title">DR Veteran Buyer & Residency Deep Dive</div>
-      </div>
-      <span class="ss-badge badge-ondemand">On Demand</span>
-    </div>
+    <div class="ss-hdr ss-hdr-vet"><div><div class="ss-label ss-label-vet">Prompt 03</div><div class="ss-title">DR Veteran Buyer & Residency Deep Dive</div></div><span class="ss-badge badge-ondemand">On Demand</span></div>
     <div class="ss-body">
       <div class="ss-purpose ss-purpose-vet">Run when a veteran client expresses interest in the Dominican Republic — buying property, establishing residency, or exploring retirement options. Educational only.</div>
       <div class="prompt-label">Copy & Paste Into Space → Deep Research</div>
@@ -317,54 +274,37 @@ Cite all sources. Include exact current figures from VA.gov, PHFA.org, DMVA.pa.g
 - Budget: [INSERT USD range]
 - Target DR zone: [Punta Cana / Cap Cana / Las Terrenas / Sosúa / Santo Domingo / undecided]</span>
 
-Research and report:
-
 <span class="vt">RESIDENCY ELIGIBILITY (Law 171-07):</span>
 - Which residency track fits: Pensionado, Rentista, or Investor?
 - Does VA income qualify for pensionado? (requires $1,500/month lifetime pension + $250/dependent)
-- Required documents for this profile: apostilled VA award letter, translations, medical exam, police clearance
-- Current DGM processing timeline and total estimated cost (attorney + government fees)
+- Required documents, current DGM processing timeline and total estimated cost
 - 6-month citizenship pathway via Investor track — requirements and current status
 
 <span class="vt">CONFOTUR PROPERTY ANALYSIS:</span>
 - What CONFOTUR means for this buyer: 0% transfer tax, 15-year IPI exemption, 15-year rental income exemption
 - How to verify CONFOTUR status on a specific property: MITUR Resolución number requirement
 - 2026 IPI exemption threshold: RD$10,695,494 — what this means for their budget
-- SRL (Dominican LLC) structure for resale CONFOTUR preservation
 - Estimated savings on a property at their budget: transfer tax + IPI over 15 years
 
 <span class="vt">VA BENEFITS IN DR:</span>
 - Which VA benefits transfer: disability compensation ✓ | VA pension ✓ | military retirement ✓ | GI Bill (limited) ✓ | FMP healthcare (SC conditions only) ✓
 - Which do NOT transfer: TRICARE (non-retired) ✗ | VA home loan ✗ | VA healthcare facilities ✗
 - FMP: how to register, what it covers, July 2026 FTIN requirement
-- Private health insurance gap: estimated cost of ARS local plan vs international plan (Cigna Global, GeoBlue) for their age
 
 <span class="vt">FINANCING OPTIONS IN DR:</span>
 - VA loan: does NOT work in DR — explain restriction (US + territories only per 38 USC §36.4202)
 - VA cash-out refi on US home: how this works, funding fee waiver if disabled
 - Scotiabank DR USD mortgage: current 7.25–8.00% range, 70% LTV, 20-40% down, FICO 660+, completed homes only
-- Seller financing availability in their target zone
 
 <span class="vt">ZONE-SPECIFIC MARKET DATA:</span>
 For their target zone — current pricing, rental yields, CONFOTUR availability, healthcare access, expat community size
-
-<span class="vt">PROFESSIONAL REFERRALS NEEDED:</span>
-- DR immigration attorney (recommend: Guzmán Ariza or Morillo Suriel)
-- US expat CPA for FBAR/FATCA compliance
-- Title insurance: Stewart Title Latin America or American Title Insurance Company
 
 Note: Always direct clients to verify with a licensed DR attorney before taking any action. This research is educational only.</div>
     </div>
   </div>
 
-  <!-- HOW TO USE -->
   <div class="space-section">
-    <div class="ss-hdr ss-hdr-vet">
-      <div>
-        <div class="ss-label ss-label-vet">Usage Guide</div>
-        <div class="ss-title">How to Use This Space</div>
-      </div>
-    </div>
+    <div class="ss-hdr ss-hdr-vet"><div><div class="ss-label ss-label-vet">Usage Guide</div><div class="ss-title">How to Use This Space</div></div></div>
     <div class="ss-body">
       <div class="how-to">
         <div class="how-title">Weekly Workflow</div>
@@ -377,15 +317,13 @@ Note: Always direct clients to verify with a licensed DR attorney before taking 
   </div>
 </div>
 
-<!-- ══════════════════════ SPACE 02 — PRELISTING & SELLER REPORTS ══════════════════════ -->
-
+<!-- SPACE 02 -->
 <div class="space-card">
   <div class="space-hdr-sel">
     <div class="sh-eyebrow">Space 02 of 02</div>
     <div class="sh-title">Pocono Mountains Prelisting & Seller Intelligence</div>
     <div class="sh-sub">Monroe County CMA · Prelisting packets · Seller reports · STR potential analysis · Township compliance · Net sheets</div>
   </div>
-
   <div class="setup-strip">
     <div class="setup-step"><div class="setup-num setup-num-sel">1</div><div class="setup-text">perplexity.ai/spaces</div></div>
     <div class="setup-arrow">→</div>
@@ -396,24 +334,17 @@ Note: Always direct clients to verify with a licensed DR attorney before taking 
     <div class="setup-step"><div class="setup-num setup-num-sel">4</div><div class="setup-text">Run before every listing appointment</div></div>
   </div>
 
-  <!-- SPACE SETTINGS -->
   <div class="space-section">
-    <div class="ss-hdr ss-hdr-sel">
-      <div>
-        <div class="ss-label ss-label-sel">Space Configuration</div>
-        <div class="ss-title">Settings & Setup</div>
-      </div>
-    </div>
+    <div class="ss-hdr ss-hdr-sel"><div><div class="ss-label ss-label-sel">Space Configuration</div><div class="ss-title">Settings & Setup</div></div></div>
     <div class="ss-body">
       <div class="settings-grid">
         <div class="setting-item"><div class="setting-label">Space Name</div><div class="setting-value">Pocono Prelisting & Seller Reports</div></div>
         <div class="setting-item"><div class="setting-label">Access</div><div class="setting-value">Private — your internal research only</div></div>
         <div class="setting-item"><div class="setting-label">Search Mode</div><div class="setting-value">Deep Research — always</div></div>
         <div class="setting-item"><div class="setting-label">Run Frequency</div><div class="setting-value">Before every listing appointment · Monthly market update</div></div>
-        <div class="setting-item"><div class="setting-label">Focus URLs to add</div><div class="setting-value">monroecountypa.gov · airdna.co · zillow.com · realtor.com · redfin.com · phfa.org · barretttownship.org · poconotownship.org · barretttownship.org</div></div>
+        <div class="setting-item"><div class="setting-label">Focus URLs to add</div><div class="setting-value">monroecountypa.gov · airdna.co · zillow.com · realtor.com · redfin.com · phfa.org · barretttownship.org · poconotownship.org</div></div>
         <div class="setting-item"><div class="setting-label">Primary Use</div><div class="setting-value">Listing appointments · Seller prep · STR investor sellers · Monthly market reports for content</div></div>
       </div>
-
       <div class="prompt-label">Space Instructions — Paste Into Perplexity Space "Instructions" Field</div>
       <div class="prompt-block"><span class="cm">// PASTE THIS INTO THE SPACE INSTRUCTIONS FIELD WHEN CREATING THE SPACE</span>
 
@@ -422,21 +353,12 @@ You are a real estate market analyst and listing specialist supporting <span cla
 <span class="gr">YOUR EXPERTISE COVERS:</span>
 
 <span class="sm">MARKET KNOWLEDGE — MONROE COUNTY:</span>
-- Pocono Mountains STR (short-term rental) market dynamics — AirDNA data, occupancy rates, ADR, annual revenue by submarket
+- Pocono Mountains STR market dynamics — AirDNA data, occupancy rates, ADR, annual revenue by submarket
 - Monroe County township zoning and STR regulations: Barrett Township (permits required), Jackson Township (permit required — enforces), Paradise Township (no STRs in residential — updated Feb 2026), Hamilton Township (not allowed), Middle Smithfield (annual licensing), Pocono Township, Smithfield Township
 - Monroe County residential market: median prices, days on market, list-to-sale ratio, active inventory
 - Monroe County 2025 millage rates by school district: Pocono Mountain SD (23.25), East Stroudsburg SD (31.67), Stroudsburg SD (27.395), Pleasant Valley SD (25.6157)
-- Active listings, comparable sales (comps), and price trends by Pocono submarket
-- HB 2303 — Pennsylvania's proposed statewide STR registration bill: countywide registries, 24/7 contact requirement, baseline safety standards — not yet passed
+- HB 2303 — Pennsylvania's proposed statewide STR registration bill: not yet passed
 - NFIP and flood zone considerations for lake-adjacent Pocono properties
-
-<span class="sm">PRELISTING INTELLIGENCE:</span>
-- CMA (Comparative Market Analysis) research: active, pending, and sold comps within 6 months, 1-mile radius
-- Property positioning: how to frame a property's STR potential compliantly and accurately
-- Pricing strategy: days on market trends, negotiation leverage, list-to-sale ratios
-- Seller net sheet components: commission, transfer taxes (1% state + 1% local), mortgage payoff, closing costs
-- Home prep and staging priorities for the Pocono vacation home market
-- Marketing strategy: STR investor buyers vs primary residence buyers vs second home buyers
 
 <span class="sm">RULES FOR EVERY RESPONSE:</span>
 - Cite sources for all market data (AirDNA, MLS trends, monroecountypa.gov, Zillow, Realtor.com)
@@ -444,161 +366,73 @@ You are a real estate market analyst and listing specialist supporting <span cla
 - Always include exact figures — no vague ranges
 - Flag any data that needs MLS verification (Perplexity cannot access live MLS)
 - Note: PA License #RS326383 and Smart Way America Realty must appear in all advertising per 49 Pa. Code §35.305
-- Client privacy: never use client names or specific addresses in research outputs — use "the subject property" or "the seller"</div>
+- Client privacy: never use client names or specific addresses — use "the subject property" or "the seller"</div>
     </div>
   </div>
 
-  <!-- PROMPT 1: PRELISTING PACKET -->
   <div class="space-section">
-    <div class="ss-hdr ss-hdr-sel">
-      <div>
-        <div class="ss-label ss-label-sel">Prompt 01</div>
-        <div class="ss-title">Prelisting Packet — Full Research Build</div>
-      </div>
-      <span class="ss-badge badge-ondemand">Before Every Listing Appt</span>
-    </div>
+    <div class="ss-hdr ss-hdr-sel"><div><div class="ss-label ss-label-sel">Prompt 01</div><div class="ss-title">Prelisting Packet — Full Research Build</div></div><span class="ss-badge badge-ondemand">Before Every Listing Appt</span></div>
     <div class="ss-body">
       <div class="ss-purpose ss-purpose-sel">Run 48-72 hours before a listing appointment. Produces the market intelligence foundation for your prelisting presentation — CMA context, STR analysis, positioning strategy, and pricing intelligence.</div>
       <div class="prompt-label">Copy & Paste Into Space → Deep Research</div>
       <div class="prompt-block">Build prelisting research for a seller consultation in Monroe County, PA.
 
 <span class="ph">PROPERTY DETAILS:
-- General location (town/area — no exact address needed): [INSERT e.g. "Barrett Township, near Camelback"]
+- General location (town/area — no exact address needed): [INSERT]
 - Property type: [SFR / townhouse / condo / cabin]
 - Approximate bedrooms / bathrooms: [INSERT]
-- Approximate square footage: [INSERT if known]
-- Approximate year built: [INSERT if known]
 - Key features: [e.g. lake access, ski proximity, mountain views, pool, game room, hot tub]
 - HOA: [YES / NO / UNKNOWN]
 - Current use: [primary residence / second home / active STR / vacant]
 - Seller's motivation: [relocating / downsizing / divorce / estate / investment exit / other]
 - Seller's target list price (if they have one): [INSERT or UNKNOWN]
-- Target timeline: [INSERT e.g. "needs to close in 90 days" or "flexible"]</span>
+- Target timeline: [INSERT or "flexible"]</span>
 
-Research and produce:
+<span class="gr">SECTION 1 — MARKET SNAPSHOT:</span> Median sale price, DOM, list-to-sale ratio, active inventory, mortgage rate environment
 
-<span class="gr">SECTION 1 — MARKET SNAPSHOT (Monroe County, current):</span>
-- Median sale price: current and year-over-year change
-- Median days on market and what it means for this seller's timeline
-- List-to-sale price ratio: are sellers getting asking price or discounting?
-- Active inventory: buyer's or seller's market signal?
-- Mortgage rate environment: current 30-year fixed, impact on buyer pool
+<span class="gr">SECTION 2 — SUBMARKET ANALYSIS:</span> Dominant buyer profile, days on market, price trend, submarket factors
 
-<span class="gr">SECTION 2 — SUBMARKET ANALYSIS:</span>
-For the specific area/township of the subject property:
-- What is the dominant buyer profile in this submarket? (STR investor / second home / primary residence)
-- Average days on market for comparable properties in this area
-- Recent price trend: appreciating, flat, or softening?
-- Any submarket-specific factors affecting value (new development, infrastructure, seasonal demand)
+<span class="gr">SECTION 3 — COMPARABLE SALES RESEARCH:</span> Active listings + sold comps within 6 months from Zillow, Realtor.com, Redfin
 
-<span class="gr">SECTION 3 — COMPARABLE SALES RESEARCH:</span>
-Search Zillow, Realtor.com, and Redfin for:
-- Active listings most similar to the subject property (same area, similar beds/baths/features)
-- Sold comps within the last 6 months (same general area, similar profile)
-- For each comp: address, list price, sold price, days on market, key features
-- Note: flag that MLS verification is required for definitive CMA pricing
+<span class="gr">SECTION 4 — STR POTENTIAL ANALYSIS:</span> Township STR zoning status, AirDNA data, how STR potential affects buyer pool and list price
 
-<span class="gr">SECTION 4 — STR POTENTIAL ANALYSIS (if applicable):</span>
-If the property is in an STR-eligible township:
-- Township STR zoning status: is it currently legal? What permits are required?
-- AirDNA data for this submarket: occupancy rate, ADR, annual revenue estimate
-- How STR potential affects buyer pool and list price positioning
-- Is HB 2303 compliance relevant? (pending statewide STR bill — not yet passed)
-If NOT in an STR-eligible township: note clearly and explain impact on investor buyer pool
+<span class="gr">SECTION 5 — PRICING INTELLIGENCE:</span> Suggested list price range, overpricing consequence, seasonal timing
 
-<span class="gr">SECTION 5 — PRICING INTELLIGENCE:</span>
-- Based on comps and market conditions: suggested list price range
-- Days on market sensitivity: what does overpricing by 5% do to this seller in this market?
-- Negotiation leverage: how many days on market before price reduction is typically needed?
-- Any seasonal timing considerations for listing (Pocono peak season = summer + ski season)
+<span class="gr">SECTION 6 — SELLER POSITIONING STRATEGY:</span> Primary buyer persona, top 3 marketing angles, home prep priorities
 
-<span class="gr">SECTION 6 — SELLER POSITIONING STRATEGY:</span>
-- Primary buyer persona for this property: who is most likely to buy it and why?
-- Top 3 marketing angles for this specific property
-- Home prep priorities: what improvements have the highest ROI in this submarket?
-- Photography and staging priorities for Pocono vacation homes
-- Recommended platforms beyond MLS: Zillow, Realtor.com, STR investor Facebook groups, BiggerPockets
-
-<span class="gr">SECTION 7 — ESTIMATED NET SHEET COMPONENTS:</span>
-At target list price — outline:
-- PA Realty Transfer Tax: 2% of sale price (1% state + 1% local)
-- Estimated commission (placeholder — do not specify rate)
-- Typical closing costs for Monroe County sellers
-- Note: exact net sheet requires MLS comps + mortgage payoff from seller
+<span class="gr">SECTION 7 — ESTIMATED NET SHEET COMPONENTS:</span> PA Realty Transfer Tax (2%), estimated closing costs, note: exact net sheet requires MLS comps
 
 Cite all sources. Flag anything requiring MLS verification.</div>
     </div>
   </div>
 
-  <!-- PROMPT 2: MONTHLY SELLER MARKET REPORT -->
   <div class="space-section">
-    <div class="ss-hdr ss-hdr-sel">
-      <div>
-        <div class="ss-label ss-label-sel">Prompt 02</div>
-        <div class="ss-title">Monthly Seller Market Report</div>
-      </div>
-      <span class="ss-badge badge-monthly">1st of Every Month</span>
-    </div>
+    <div class="ss-hdr ss-hdr-sel"><div><div class="ss-label ss-label-sel">Prompt 02</div><div class="ss-title">Monthly Seller Market Report</div></div><span class="ss-badge badge-monthly">1st of Every Month</span></div>
     <div class="ss-body">
       <div class="ss-purpose ss-purpose-sel">Run on the first of every month. Produces a current market report you can send to your seller database, past clients, and use for content. Positions you as the Pocono market expert.</div>
       <div class="prompt-label">Copy & Paste Into Space → Deep Research</div>
       <div class="prompt-block">Build a Pocono Mountains seller market report for <span class="ph">[INSERT MONTH AND YEAR]</span>.
 
-<span class="gr">SECTION 1 — MONROE COUNTY MARKET OVERVIEW:</span>
-- Median sale price: current month vs prior month vs year-over-year
-- Total closed sales: current month vs prior month vs year-over-year
-- Median days on market: trend direction
-- List-to-sale price ratio: are sellers winning or discounting?
-- Active inventory and months of supply: buyer's or seller's market?
-- New listings added this month vs prior month
+<span class="gr">SECTION 1 — MONROE COUNTY MARKET OVERVIEW:</span> Median sale price, closed sales, DOM, list-to-sale ratio, active inventory — all vs prior month and year-over-year
 
-<span class="gr">SECTION 2 — STR INVESTMENT MARKET:</span>
-Most recent AirDNA data available for Pocono Mountains:
-- Overall market score and direction
-- Average occupancy rate and year-over-year change
-- Average daily rate and year-over-year change
-- Annual revenue average and year-over-year change
-- Supply growth (new STR listings added) — is supply outpacing demand?
-- Submarket breakdown where available: Mt Pocono, Pocono Township, Barrett Township, Lake Harmony, Camelback area
+<span class="gr">SECTION 2 — STR INVESTMENT MARKET:</span> AirDNA overall market score, occupancy rate, ADR, annual revenue average, supply growth — all year-over-year. Submarket breakdown: Mt Pocono, Pocono Township, Barrett Township, Lake Harmony, Camelback area
 
-<span class="gr">SECTION 3 — REGULATORY UPDATE:</span>
-- HB 2303 status: any Senate committee movement this month?
-- Township STR ordinance changes: any updates in Barrett, Jackson, Paradise, Hamilton, Middle Smithfield, Pocono Township
-- Any new Monroe County zoning decisions affecting residential or STR property
+<span class="gr">SECTION 3 — REGULATORY UPDATE:</span> HB 2303 status, township STR ordinance changes, Monroe County zoning decisions
 
-<span class="gr">SECTION 4 — INTEREST RATE ENVIRONMENT:</span>
-- Current 30-year fixed mortgage rate and trend direction
-- Current VA loan rate vs conventional
-- Impact on buyer purchasing power at median Pocono price point
-- Any Fed meeting outcomes or rate change signals this month
+<span class="gr">SECTION 4 — INTEREST RATE ENVIRONMENT:</span> Current 30-year fixed rate, VA loan rate vs conventional, impact on buyer purchasing power
 
-<span class="gr">SECTION 5 — WHAT SELLERS NEED TO KNOW THIS MONTH:</span>
-- Is now a good time to list? What does the data say?
-- Pricing advice: where is the market rewarding sellers and where is it punishing overpricing?
-- Days on market warning: at what price point does a Pocono home stall right now?
-- Seasonal factor: where are we in the Pocono seasonal demand cycle?
+<span class="gr">SECTION 5 — WHAT SELLERS NEED TO KNOW THIS MONTH:</span> Is now a good time to list? Pricing advice. Days on market warning. Seasonal factor.
 
-<span class="gr">SECTION 6 — NOTABLE LISTINGS AND MARKET ACTIVITY:</span>
-- Any significant price reductions on high-profile Monroe County listings this month
-- Any fast-moving sales (under 14 days) — what do they have in common?
-- Any pocket of the market showing unusual strength or weakness
+<span class="gr">SECTION 6 — NOTABLE LISTINGS AND MARKET ACTIVITY:</span> Significant price reductions, fast-moving sales, pockets of strength or weakness
 
-<span class="sm">FORMAT: Clean, shareable report. Use headers. Include specific numbers. Cite sources.
-This report will be sent to past clients and used for content — write it for a seller audience, not an investor audience.</span></div>
+FORMAT: Clean, shareable report. Use headers. Include specific numbers. Cite sources. Write for a seller audience, not an investor audience.</div>
     </div>
   </div>
 
-  <!-- PROMPT 3: QUICK COMP PULL -->
   <div class="space-section">
-    <div class="ss-hdr ss-hdr-sel">
-      <div>
-        <div class="ss-label ss-label-sel">Prompt 03</div>
-        <div class="ss-title">Quick Comp Pull — Pricing Reality Check</div>
-      </div>
-      <span class="ss-badge badge-ondemand">On Demand</span>
-    </div>
+    <div class="ss-hdr ss-hdr-sel"><div><div class="ss-label ss-label-sel">Prompt 03</div><div class="ss-title">Quick Comp Pull — Pricing Reality Check</div></div><span class="ss-badge badge-ondemand">On Demand</span></div>
     <div class="ss-body">
-      <div class="ss-purpose ss-purpose-sel">Run when a seller has a price in mind and you need to reality-check it fast — before a call or same-day as the appointment. Quick, targeted, no fluff.</div>
+      <div class="ss-purpose ss-purpose-sel">Run when a seller has a price in mind and you need to reality-check it fast — before a call or same-day as the appointment.</div>
       <div class="prompt-label">Copy & Paste Into Space → Deep Research</div>
       <div class="prompt-block">Quick comp pull for a Pocono Mountains property in Monroe County.
 
@@ -606,115 +440,69 @@ This report will be sent to past clients and used for content — write it for a
 - General area: [INSERT e.g. "Pocono Lake area" or "Barrett Township near Camelback"]
 - Beds / baths: [INSERT]
 - Key features: [e.g. lake access, 4BR, game room, ski proximity]
-- Seller's target price: [INSERT]
-- Current market days on market in this area: [UNKNOWN — research this]</span>
+- Seller's target price: [INSERT]</span>
 
 Search Zillow, Realtor.com, and Redfin for:
-
-1. ACTIVE listings most similar to this property right now — what is the competition?
-2. SOLD comps in the last 90 days in the same general area — what are buyers actually paying?
+1. ACTIVE listings most similar to this property right now
+2. SOLD comps in the last 90 days
 3. PENDING listings — what is under contract right now?
-
-For each property found: address, beds/baths, list price, sold price (if sold), days on market, key features that are similar or different.
 
 <span class="gr">PRICING REALITY CHECK:</span>
 - Does the seller's target price align with current comps? Over / under / on market?
 - What is the realistic price range supported by the data?
 - If overpriced: by how much, and what is the likely days-on-market consequence?
-- What features of the subject property justify pricing above or below comps?
 
-Keep it fast and direct. This is a pre-call reality check, not a full CMA.
-Note: MLS verification required before presenting to seller. Flag any gaps in online data.</div>
+Keep it fast and direct. Note: MLS verification required before presenting to seller.</div>
     </div>
   </div>
 
-  <!-- PROMPT 4: STR INVESTOR SELLER -->
   <div class="space-section">
-    <div class="ss-hdr ss-hdr-sel">
-      <div>
-        <div class="ss-label ss-label-sel">Prompt 04</div>
-        <div class="ss-title">STR Investor Seller — Exit Strategy Analysis</div>
-      </div>
-      <span class="ss-badge badge-ondemand">On Demand</span>
-    </div>
+    <div class="ss-hdr ss-hdr-sel"><div><div class="ss-label ss-label-sel">Prompt 04</div><div class="ss-title">STR Investor Seller — Exit Strategy Analysis</div></div><span class="ss-badge badge-ondemand">On Demand</span></div>
     <div class="ss-body">
-      <div class="ss-purpose ss-purpose-sel">Run when a current STR operator wants to sell. This seller is different — they care about yield data, STR performance, and finding an investor buyer who understands the asset. Build their exit strategy.</div>
+      <div class="ss-purpose ss-purpose-sel">Run when a current STR operator wants to sell. These sellers speak a different language — yield math, not just comps. Build their exit strategy.</div>
       <div class="prompt-label">Copy & Paste Into Space → Deep Research</div>
       <div class="prompt-block">Build an exit strategy analysis for an STR operator selling in Monroe County, PA.
 
 <span class="ph">PROPERTY:
 - General location and township: [INSERT]
 - Property type and size: [INSERT]
-- Current STR performance (if seller shared): annual revenue, occupancy rate, ADR [INSERT or UNKNOWN]
+- Current STR performance: annual revenue, occupancy rate, ADR [INSERT or UNKNOWN]
 - Platform: [Airbnb / VRBO / both]
 - Years operating as STR: [INSERT]
 - Seller's reason for selling: [INSERT]
 - Target list price: [INSERT or UNKNOWN]</span>
 
-<span class="gr">SECTION 1 — SUBMARKET STR PERFORMANCE:</span>
-AirDNA data for this specific submarket:
-- Current occupancy rate, ADR, and annual revenue average
-- Year-over-year trend: growing or declining STR revenue?
-- Supply growth: how many new STRs entered this submarket in the past 12 months?
-- Market saturation signal: is this a good time for an investor to buy in?
+<span class="gr">SECTION 1 — SUBMARKET STR PERFORMANCE:</span> AirDNA data — occupancy, ADR, annual revenue, year-over-year trend, supply growth, market saturation signal
 
-<span class="gr">SECTION 2 — TOWNSHIP COMPLIANCE VERIFICATION:</span>
-- Is this property in a township that allows STRs?
-- What permits are currently required? Is the seller compliant?
-- HB 2303 implications: how would statewide registration affect this asset if passed?
-- Any pending township ordinance changes that could affect buyer confidence?
+<span class="gr">SECTION 2 — TOWNSHIP COMPLIANCE VERIFICATION:</span> STR permit status, HB 2303 implications, pending ordinance changes
 
-<span class="gr">SECTION 3 — INVESTOR BUYER POOL ANALYSIS:</span>
-- What type of investor buyer is most likely to purchase this asset?
-- What yield metrics will they demand? (cash-on-cash, cap rate, gross yield)
-- At the target list price, what does the yield look like for an investor buyer? (use AirDNA revenue estimate)
-- Is the asset priced to attract an investor buyer or priced for a primary/second-home buyer?
+<span class="gr">SECTION 3 — INVESTOR BUYER POOL ANALYSIS:</span> Most likely buyer type, yield metrics they'll demand, yield at target list price, investor vs primary/second-home pricing
 
-<span class="gr">SECTION 4 — COMP ANALYSIS — STR-POSITIONED:</span>
-Search for recently sold STR-positioned properties in this submarket:
-- Properties marketed with STR income or investor appeal
-- List price vs sold price vs days on market
-- What marketing language drove fast sales?
+<span class="gr">SECTION 4 — COMP ANALYSIS — STR-POSITIONED:</span> Recently sold STR-positioned properties — list vs sold price vs DOM
 
-<span class="gr">SECTION 5 — EXIT STRATEGY RECOMMENDATION:</span>
-- Recommended buyer target: STR investor / second home buyer / primary residence buyer — and why
-- Recommended list price range based on yield math + comps
-- Marketing strategy: where to reach STR investor buyers (BiggerPockets, STR Facebook groups, MLS investor keywords)
-- Timing recommendation: any seasonal or market timing factors?
-- Any prep work that would increase investor appeal (revenue documentation, STR permit visibility, platform review summary)
+<span class="gr">SECTION 5 — EXIT STRATEGY RECOMMENDATION:</span> Recommended buyer target and why, list price range based on yield math, marketing strategy, timing, prep work
 
-<span class="gr">SECTION 6 — RISK FLAGS:</span>
-- Any regulatory risk to disclose to buyer? (township STR restrictions, HB 2303 pending)
-- Any market saturation concern in this submarket?
-- Flood zone or NFIP considerations?
+<span class="gr">SECTION 6 — RISK FLAGS:</span> Regulatory risk, market saturation, flood zone/NFIP
 
 Cite all sources. Flag anything requiring MLS verification or attorney review.</div>
     </div>
   </div>
 
-  <!-- HOW TO USE -->
   <div class="space-section">
-    <div class="ss-hdr ss-hdr-sel">
-      <div>
-        <div class="ss-label ss-label-sel">Usage Guide</div>
-        <div class="ss-title">How to Use This Space</div>
-      </div>
-    </div>
+    <div class="ss-hdr ss-hdr-sel"><div><div class="ss-label ss-label-sel">Usage Guide</div><div class="ss-title">How to Use This Space</div></div></div>
     <div class="ss-body">
       <div class="how-to">
         <div class="how-title">Listing Appointment Workflow</div>
-        <div class="how-step"><div class="how-num how-num-sel">1</div><div class="how-text"><strong>48-72 hours before appointment</strong> — Run Prompt 01 (Prelisting Packet) with the property details. Use the output to build your presentation. Print or screenshot the market data sections to bring with you.</div></div>
+        <div class="how-step"><div class="how-num how-num-sel">1</div><div class="how-text"><strong>48-72 hours before appointment</strong> — Run Prompt 01 (Prelisting Packet) with the property details. Use the output to build your presentation.</div></div>
         <div class="how-step"><div class="how-num how-num-sel">2</div><div class="how-text"><strong>Same day if seller has a price</strong> — Run Prompt 03 (Quick Comp Pull) with their number. Walk in knowing whether it's realistic before they say it out loud.</div></div>
-        <div class="how-step"><div class="how-num how-num-sel">3</div><div class="how-text"><strong>If they're an STR operator selling</strong> — Run Prompt 04 (STR Investor Seller) instead of or in addition to Prompt 01. These sellers speak a different language — yield math, not just comps.</div></div>
-        <div class="how-step"><div class="how-num how-num-sel">4</div><div class="how-text"><strong>First of every month</strong> — Run Prompt 02 (Monthly Seller Market Report). Send it to your database. Post excerpts on LinkedIn and Google Business. Use it as the backbone of your Thursday Pocono Pulse Reel script.</div></div>
+        <div class="how-step"><div class="how-num how-num-sel">3</div><div class="how-text"><strong>If they're an STR operator selling</strong> — Run Prompt 04 (STR Investor Seller). These sellers speak a different language — yield math, not just comps.</div></div>
+        <div class="how-step"><div class="how-num how-num-sel">4</div><div class="how-text"><strong>First of every month</strong> — Run Prompt 02 (Monthly Seller Market Report). Send it to your database. Use it as the backbone of your Thursday Pocono Pulse Reel script.</div></div>
         <div class="how-step"><div class="how-num how-num-sel">5</div><div class="how-text"><strong>Always verify with MLS</strong> — Perplexity cannot access live MLS data. Use this research as the foundation, then pull exact comps from Flex MLS before presenting a formal CMA to the seller.</div></div>
       </div>
     </div>
   </div>
-
 </div>
 
-<!-- FOOTER -->
 <div class="footer">
   <p><strong>ROAST System</strong> · Alexa Sanchez · PA License #RS326383 · Smart Way America Realty</p>
   <p>Space 01: Veteran Real Estate Intelligence · Space 02: Pocono Prelisting & Seller Reports</p>
