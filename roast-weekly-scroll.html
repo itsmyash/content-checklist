@@ -1530,7 +1530,40 @@ Quirky, intelligently insulting, talking to a best friend. Cigar in hand. One ta
   <p>#LifeByAlexa on every post · Thursday Perplexity → Sunday Claude → Week done</p>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+// Supabase
+const SB_URL = 'https://gzqgeehcvmgstzenkyfnw.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6cWdlZWhjdm1nc3R6bmt5Zm53Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1OTIxMDgsImV4cCI6MjA4OTE2ODEwOH0.sw98v41oTub5p64cuP5Sqx574wNUd6kzOU1UxdoahWA';
+const SB_HDR = {'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY};
+
+let doneItems = {};
+
+async function loadDone() {
+  try {
+    const r = await fetch(`${SB_URL}/rest/v1/ops_checks?select=*`, {headers: SB_HDR});
+    if (r.ok) {
+      const rows = await r.json();
+      rows.forEach(row => { doneItems[row.check_id] = row.checked; });
+    }
+  } catch(e) {}
+  // Restore visual state
+  document.querySelectorAll('.content-card').forEach(card => {
+    const id = getCardId(card);
+    if (doneItems[id]) card.classList.add('done');
+  });
+}
+
+async function saveDone(id, checked) {
+  try {
+    await fetch(`${SB_URL}/rest/v1/ops_checks`, {
+      method: 'POST',
+      headers: {...SB_HDR, 'Prefer': 'resolution=merge-duplicates'},
+      body: JSON.stringify({check_id: id, checked: checked})
+    });
+  } catch(e) {}
+}
+
 // Date
 const now = new Date();
 const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
@@ -1551,11 +1584,6 @@ function filterDay(day, btn) {
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
-// Done toggle — persists in localStorage
-const DONE_KEY = 'roast_scroll_done_v1';
-let doneItems = {};
-try { doneItems = JSON.parse(localStorage.getItem(DONE_KEY) || '{}'); } catch(e) {}
-
 function getCardId(card) {
   const title = card.querySelector('.cc-title')?.textContent || '';
   const time = card.querySelector('.cc-time')?.textContent || '';
@@ -1565,31 +1593,19 @@ function getCardId(card) {
     hash = ((hash << 5) - hash) + str.charCodeAt(i);
     hash |= 0;
   }
-  return 'card_' + Math.abs(hash);
+  return 'scroll_' + Math.abs(hash);
 }
 
 function toggleDone(card) {
   card.classList.toggle('done');
   const id = getCardId(card);
-  doneItems[id] = card.classList.contains('done');
-  try { localStorage.setItem(DONE_KEY, JSON.stringify(doneItems)); } catch(e) {}
+  const checked = card.classList.contains('done');
+  doneItems[id] = checked;
+  saveDone(id, checked);
 }
 
-// Restore done states on load
-document.querySelectorAll('.content-card').forEach(card => {
-  const id = getCardId(card);
-  if (doneItems[id]) card.classList.add('done');
-});
-
-// Auto-filter to today's day on load
-const todayMap = ['sun','mon','tue','wed','thu','fri','sat'];
-const todayKey = todayMap[now.getDay()];
-const todayBtn = document.querySelector(`[data-day="${todayKey}"]`);
-if (todayBtn) {
-  // Don't auto-filter — let them see all on load, but highlight today's button
-  // Uncomment below to auto-jump to today:
-  // filterDay(todayKey, todayBtn);
-}
+// Init — load from Supabase on page load
+loadDone();
 </script>
 </body>
 </html>
