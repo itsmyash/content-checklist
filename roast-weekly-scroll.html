@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROAST // Weekly Scroll</title>
+<title>ROAST // Weekly Scroll — Jun 7–13</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root {
+:root{
   --cream:#F2EDE3;--navy:#1A1A2E;--burgundy:#6B1F3A;--gold:#C4973A;
   --warm-gray:#8A8278;--border:#E0D9CF;--text:#1A1A1A;--text-mid:#4A4540;--text-light:#8A8278;
   --accent:#4a8c0f;--blue:#1a7aad;--spanish:#C0392B;--life:#8E44AD;--veteran:#1A4A6B;
@@ -15,63 +15,64 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;}
 
-/* ── TOPBAR ── */
-.topbar{background:var(--navy);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;position:sticky;top:0;z-index:100;border-bottom:2px solid var(--burgundy);}
-.topbar-logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:var(--cream);letter-spacing:1px;}
-.topbar-logo em{color:var(--gold);font-style:italic;}
-.topbar-date{font-family:'DM Mono',monospace;font-size:11px;color:rgba(242,237,227,0.5);letter-spacing:1px;}
-.back-btn{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid rgba(196,151,58,0.4);padding:6px 14px;transition:all 0.15s;}
-.back-btn:hover{background:rgba(196,151,58,0.1);}
+.global-nav{background:#1A1A2E;padding:10px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;border-bottom:2px solid #6B1F3A;position:sticky;top:0;z-index:999;}
+.gn-logo{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:#C4973A;text-transform:uppercase;margin-right:6px;white-space:nowrap;}
+.gn-link{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:5px 10px;text-decoration:none;border-radius:2px;white-space:nowrap;transition:all 0.15s;border:1px solid transparent;color:#F2EDE3;}
+.gn-link:hover{border-color:rgba(196,151,58,0.4);background:rgba(196,151,58,0.08);}
+.gn-link.gn-active{background:#6B1F3A;border-color:#6B1F3A;}
+.gn-link-docs{color:#C4973A;}
+.gn-link-cannon{color:#d63a08;}
 
-/* ── DAY FILTER ── */
-.day-filter{background:var(--burgundy);padding:0 32px;display:flex;gap:0;overflow-x:auto;}
+.topbar{background:var(--navy);padding:16px 32px;position:sticky;top:48px;z-index:98;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:2px solid var(--burgundy);}
+.topbar-logo{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;color:var(--cream);letter-spacing:1px;}
+.topbar-logo em{color:var(--gold);font-style:italic;}
+.topbar-date{font-family:'DM Mono',monospace;font-size:10px;color:rgba(242,237,227,0.5);letter-spacing:1px;}
+
+.day-filter{background:var(--burgundy);padding:0 0;display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;}
 .day-filter::-webkit-scrollbar{display:none;}
-.day-btn{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(242,237,227,0.5);padding:13px 20px;background:none;border:none;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all 0.15s;}
+.day-btn{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(242,237,227,0.55);padding:12px 14px;background:none;border:none;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all 0.15s;flex-shrink:0;}
 .day-btn:hover{color:var(--cream);}
 .day-btn.active{color:var(--gold);border-bottom-color:var(--gold);}
 
-/* ── WEEK HEADER ── */
-.week-header{padding:32px 32px 0;}
-.week-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;}
-.week-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--text);}
-.week-sub{font-size:13px;color:var(--text-mid);margin-top:4px;line-height:1.5;}
-.week-meta{display:flex;gap:24px;margin-top:16px;flex-wrap:wrap;}
-.week-stat{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-light);}
+.week-header{padding:20px 16px 0;}
+.week-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;}
+.week-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--text);}
+.week-sub{font-size:12px;color:var(--text-mid);margin-top:4px;line-height:1.5;}
+.week-meta{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap;}
+.week-stat{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-light);}
 .week-stat strong{color:var(--text);}
 
-/* ── DAY SECTION ── */
-.day-section{padding:32px 32px 0;}
+.day-section{padding:16px 16px 0;}
 .day-section.hidden{display:none;}
-.day-header{background:var(--navy);padding:18px 24px;display:flex;align-items:center;gap:20px;margin-bottom:20px;position:relative;overflow:hidden;}
+
+.day-header{background:var(--navy);padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:14px;position:relative;overflow:hidden;}
 .day-header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(196,151,58,0.03) 40px,rgba(196,151,58,0.03) 41px);}
-.dh-inner{position:relative;z-index:1;display:flex;align-items:center;gap:20px;width:100%;}
-.dh-name{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:rgba(242,237,227,0.08);line-height:1;flex-shrink:0;}
-.dh-content{flex:1;}
-.dh-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
-.dh-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--cream);}
-.dh-sub{font-size:12px;color:rgba(242,237,227,0.45);margin-top:3px;}
-.dh-count{font-family:'DM Mono',monospace;font-size:11px;color:rgba(242,237,227,0.35);margin-left:auto;flex-shrink:0;}
+.dh-inner{position:relative;z-index:1;display:flex;align-items:center;gap:12px;width:100%;}
+.dh-name{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:rgba(242,237,227,0.08);line-height:1;flex-shrink:0;}
+.dh-content{flex:1;min-width:0;}
+.dh-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+.dh-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--cream);}
+.dh-sub{font-size:11px;color:rgba(242,237,227,0.45);margin-top:3px;}
 
-/* ── RECORDING ALERT ── */
-.recording-alert{background:var(--burgundy);padding:12px 20px;display:flex;align-items:center;gap:12px;margin-bottom:16px;}
-.ra-icon{font-size:18px;}
-.ra-text{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;color:var(--cream);text-transform:uppercase;}
-.ra-sub{font-size:12px;color:rgba(242,237,227,0.6);margin-top:2px;font-family:'DM Sans',sans-serif;text-transform:none;letter-spacing:0;}
+.recording-alert{background:var(--burgundy);padding:10px 14px;display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;border-radius:2px;}
+.ra-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+.ra-text{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--cream);text-transform:uppercase;}
+.ra-sub{font-size:11px;color:rgba(242,237,227,0.65);margin-top:3px;font-family:'DM Sans',sans-serif;text-transform:none;letter-spacing:0;line-height:1.5;}
 
-/* ── CONTENT CARD ── */
-.content-card{background:var(--card);border:1px solid var(--border);margin-bottom:16px;overflow:hidden;}
-.cc-header{padding:14px 20px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;border-bottom:1px solid var(--border);}
+.content-card{background:var(--card);border:1px solid var(--border);margin-bottom:12px;overflow:hidden;}
+.cc-header{padding:12px 14px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;border-bottom:1px solid var(--border);}
 .cc-header-navy{background:var(--navy);}
 .cc-header-burg{background:var(--burgundy);}
 .cc-header-green{background:#1A3A2A;}
 .cc-header-veteran{background:var(--veteran);}
 .cc-header-spanish{background:#7A1F1F;}
-.cc-left{flex:1;}
-.cc-time{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
-.cc-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--cream);}
-.cc-platform{font-size:11px;color:rgba(242,237,227,0.5);margin-top:3px;}
-.cc-badges{display:flex;flex-direction:column;gap:4px;align-items:flex-end;flex-shrink:0;}
-.badge{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;}
+.cc-header-fnr{background:#2A1A0A;}
+.cc-left{flex:1;min-width:0;}
+.cc-time{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+.cc-title{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--cream);line-height:1.3;}
+.cc-platform{font-size:10px;color:rgba(242,237,227,0.5);margin-top:2px;}
+.cc-badges{display:flex;flex-direction:column;gap:3px;align-items:flex-end;flex-shrink:0;}
+.badge{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;}
 .b-myash{background:var(--accent);color:#fff;}
 .b-realtor{background:var(--blue);color:#fff;}
 .b-fnr{background:var(--gold);color:var(--navy);}
@@ -83,1621 +84,2112 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 .b-goal-sales{background:#3a1a0a;color:#c4973a;}
 .b-goal-follow{background:#1a3a1a;color:#7ac47a;}
 
-.cc-body{padding:20px;}
+.cc-body{padding:14px;}
 
-/* ── CONTENT SECTIONS ── */
-.cs-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);}
+.cs-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);}
 .cs-label:first-child{margin-top:0;padding-top:0;border-top:none;}
-.cs-content{font-size:13px;color:var(--text-mid);line-height:1.75;}
+.cs-content{font-size:12px;color:var(--text-mid);line-height:1.75;}
 .cs-content strong{color:var(--text);}
 
-.script-block{background:#1E1E2E;padding:18px 20px;font-family:'DM Mono',monospace;font-size:12px;line-height:1.9;color:#E8E4DC;white-space:pre-wrap;word-break:break-word;margin-top:8px;}
+.script-block{background:#1E1E2E;padding:14px 16px;font-family:'DM Mono',monospace;font-size:11px;line-height:1.9;color:#E8E4DC;white-space:pre-wrap;word-break:break-word;margin-top:6px;-webkit-overflow-scrolling:touch;}
 .script-block .hook{color:var(--gold);font-weight:500;}
 .script-block .beat{color:#C4A882;}
 .script-block .cta{color:#7AC47A;}
 .script-block .es{color:#E08080;}
 .script-block .note{color:#5A7A5A;font-style:italic;}
 
-.caption-block{background:#F0EBE1;border-left:3px solid var(--gold);padding:14px 16px;margin-top:8px;font-size:13px;line-height:1.8;color:var(--text-mid);}
-.caption-block .hashtags{color:var(--blue);font-size:12px;margin-top:6px;}
+.caption-block{background:#F0EBE1;border-left:3px solid var(--gold);padding:12px 14px;margin-top:6px;font-size:12px;line-height:1.8;color:var(--text-mid);}
+.caption-block .hashtags{color:var(--blue);font-size:11px;margin-top:6px;word-break:break-word;}
 
-.image-block{background:#EBF5EE;border-left:3px solid var(--accent);padding:14px 16px;margin-top:8px;font-size:12px;line-height:1.7;color:var(--text-mid);}
-.image-block .img-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;}
+.image-block{background:#EBF5EE;border-left:3px solid var(--accent);padding:12px 14px;margin-top:6px;font-size:11px;line-height:1.7;color:var(--text-mid);}
+.image-block .img-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:5px;}
 
-.cover-block{background:#F5EDE8;border-left:3px solid var(--burgundy);padding:14px 16px;margin-top:8px;font-size:12px;line-height:1.7;color:var(--text-mid);}
-.cover-block .cv-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--burgundy);margin-bottom:6px;}
+.cover-block{background:#F5EDE8;border-left:3px solid var(--burgundy);padding:12px 14px;margin-top:6px;font-size:11px;line-height:1.7;color:var(--text-mid);}
+.cover-block .cv-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--burgundy);margin-bottom:5px;}
 
-/* ── QUICK REF PILLS ── */
-.quick-ref{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
-.qr-pill{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;padding:5px 12px;border-radius:2px;cursor:pointer;transition:all 0.15s;}
-.qr-pill-rec{background:#3A0A1A;color:var(--gold);border:1px solid var(--burgundy);}
-.qr-pill-rec:hover{background:var(--burgundy);}
-.qr-pill-post{background:#0A1A3A;color:#7AB4D4;border:1px solid #1a4a7a;}
-.qr-pill-post:hover{background:#1a3a6a;}
-.qr-pill-upload{background:#0A2A1A;color:#7AC47A;border:1px solid #1a4a2a;}
-.qr-pill-upload:hover{background:#1a3a2a;}
-
-/* ── DONE TOGGLE ── */
-.done-toggle{display:flex;align-items:center;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);cursor:pointer;}
+.done-toggle{display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);cursor:pointer;}
 .done-check{width:18px;height:18px;border:2px solid var(--border);border-radius:2px;display:flex;align-items:center;justify-content:center;transition:all 0.15s;flex-shrink:0;}
 .content-card.done .done-check{background:var(--accent);border-color:var(--accent);}
-.content-card.done .done-check::after{content:'✓';font-size:11px;color:#fff;font-weight:700;}
+.content-card.done .done-check::after{content:'✓';font-size:10px;color:#fff;font-weight:700;}
 .done-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text-light);text-transform:uppercase;}
-.content-card.done{opacity:0.5;}
+.content-card.done{opacity:0.45;}
 .content-card.done .cc-title{text-decoration:line-through;}
 
-/* ── DIVIDER ── */
-.section-divider{display:flex;align-items:center;gap:12px;padding:0 32px;margin:32px 0 0;}
+.section-divider{display:flex;align-items:center;gap:10px;margin:20px 0 0;}
 .sd-line{flex:1;height:1px;background:var(--border);}
 .sd-diamond{width:6px;height:6px;background:var(--burgundy);transform:rotate(45deg);flex-shrink:0;}
 
-/* ── FOOTER ── */
-.page-footer{background:var(--navy);padding:20px 32px;text-align:center;margin-top:40px;}
-.page-footer p{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(242,237,227,0.35);line-height:2;}
+.page-footer{background:var(--navy);padding:20px 16px;text-align:center;margin-top:32px;}
+.page-footer p{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(242,237,227,0.35);line-height:2;}
 .page-footer strong{color:var(--gold);}
 
-@media(max-width:768px){
-  .topbar{padding:12px 16px;}
-  .day-filter{padding:0 16px;}
-  .week-header,.day-section{padding:20px 16px 0;}
-  .dh-name{font-size:32px;}
-  .cc-body{padding:14px;}
-}
+.note-block{background:#F5F0E8;border-left:3px solid var(--warm-gray);padding:10px 14px;margin-top:6px;font-size:11px;line-height:1.7;color:var(--text-mid);font-style:italic;}
 </style>
 </head>
 <body>
-<style>
-.global-nav{background:#1A1A2E;padding:10px 24px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-bottom:2px solid #6B1F3A;position:sticky;top:0;z-index:999;}
-.gn-logo{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:#C4973A;text-transform:uppercase;margin-right:8px;white-space:nowrap;}
-.gn-link{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:6px 12px;text-decoration:none;border-radius:2px;white-space:nowrap;transition:all 0.15s;border:1px solid transparent;}
-.gn-link:hover{border-color:rgba(196,151,58,0.4);background:rgba(196,151,58,0.08);}
-.gn-link.gn-active{background:#6B1F3A;border-color:#6B1F3A;color:#F2EDE3 !important;}
-.gn-link-dash{color:#F2EDE3;}
-.gn-link-docs{color:#C4973A;}
-.gn-link-scroll{color:#7AB4D4;}
-.gn-link-perp{color:#7AB4D4;}
-.gn-link-cannon{color:#d63a08;}
-</style>
+
 <nav class="global-nav">
   <div class="gn-logo">ROAST //</div>
-  <a href="index.html" class="gn-link gn-link-dash">🏠 Dashboard</a>
-  <a href="ROAST-Complete-System.html" class="gn-link gn-link-docs">📋 System Docs</a>
-  <a href="roast-weekly-scroll.html" class="gn-link gn-link-scroll gn-active">📅 Weekly Scroll</a>
-  <a href="perplexity-spaces.html" class="gn-link gn-link-perp">🔍 Perplexity</a>
+  <a href="index.html" class="gn-link">🏠 Dashboard</a>
+  <a href="ROAST-Complete-System.html" class="gn-link gn-link-docs">📋 Docs</a>
+  <a href="roast-weekly-scroll.html" class="gn-link gn-active">📅 Scroll</a>
+  <a href="perplexity-spaces.html" class="gn-link">🔍 Perplexity</a>
   <a href="cannonball.html" class="gn-link gn-link-cannon">🎯 Cannonball</a>
 </nav>
 
-
-<!-- TOPBAR -->
 <div class="topbar">
   <div class="topbar-logo">ROAST <em>//</em> Weekly Scroll</div>
-  <div class="topbar-date" id="topbar-date">Week of June 2–8, 2026</div>
+  <div class="topbar-date" id="topbar-date">Jun 7–13, 2026</div>
   <div style="display:flex;gap:8px;flex-wrap:wrap;">
-  <a href="index.html" class="back-btn">← Dashboard</a>
-  <a href="ROAST-Complete-System.html" target="_blank" class="back-btn" style="color:rgba(242,237,227,0.6);">📋 System Docs</a>
-  <a href="perplexity-spaces.html" target="_blank" class="back-btn" style="color:rgba(242,237,227,0.6);">🔍 Perplexity</a>
-  <a href="cannonball.html" target="_blank" class="back-btn" style="color:rgba(242,237,227,0.6);">🎯 Cannonball</a>
+    <a href="index.html" class="back-btn">← Dashboard</a>
+    <a href="ROAST-Complete-System.html" target="_blank" class="back-btn" style="color:rgba(242,237,227,0.6);">📋 Docs</a>
+    <a href="perplexity-spaces.html" target="_blank" class="back-btn" style="color:rgba(242,237,227,0.6);">🔍 Perplexity</a>
+    <a href="cannonball.html" target="_blank" class="back-btn" style="color:rgba(242,237,227,0.6);">🎯 Cannonball</a>
   </div>
 </div>
 
-<!-- DAY FILTER -->
 <div class="day-filter">
-  <button class="day-btn active" data-day="all" onclick="filterDay('all',this)">All Days</button>
-  <button class="day-btn" data-day="sun" onclick="filterDay('sun',this)">🟢 Sunday — Record</button>
-  <button class="day-btn" data-day="mon" onclick="filterDay('mon',this)">Monday</button>
-  <button class="day-btn" data-day="tue" onclick="filterDay('tue',this)">🎥 Tuesday — Film</button>
-  <button class="day-btn" data-day="wed" onclick="filterDay('wed',this)">🟡 Wednesday — Record</button>
-  <button class="day-btn" data-day="thu" onclick="filterDay('thu',this)">🎥 Thursday — Film + Upload</button>
-  <button class="day-btn" data-day="fri" onclick="filterDay('fri',this)">Friday — Upload</button>
-  <button class="day-btn" data-day="sat" onclick="filterDay('sat',this)">Saturday</button>
+  <button class="day-btn active" onclick="filterDay('all',this)">All</button>
+  <button class="day-btn" onclick="filterDay('sun',this)">🟢 Sun</button>
+  <button class="day-btn" onclick="filterDay('mon',this)">Mon</button>
+  <button class="day-btn" onclick="filterDay('tue',this)">🎥 Tue</button>
+  <button class="day-btn" onclick="filterDay('wed',this)">🟡 Wed</button>
+  <button class="day-btn" onclick="filterDay('thu',this)">🎥 Thu</button>
+  <button class="day-btn" onclick="filterDay('fri',this)">Fri</button>
+  <button class="day-btn" onclick="filterDay('sat',this)">Sat</button>
+  <button class="day-btn" onclick="filterDay('stack',this)">✍️ Substack</button>
+  <button class="day-btn" onclick="filterDay('vet',this)">🪖 Veteran</button>
 </div>
 
-<!-- WEEK HEADER -->
 <div class="week-header">
-  <div class="week-label">ROAST Content System · Weekly Production Scroll</div>
-  <div class="week-title">This Week's Full Production Stack</div>
-  <div class="week-sub">Every script. Every caption. Every image direction. Every posting time. Open the day you need — record, post, upload, done.</div>
+  <div class="week-label">ROAST Content System · Week of June 7–13, 2026</div>
+  <div class="week-title">Full Production Stack — Every Piece</div>
+  <div class="week-sub">Funny. Quirky. Simple English. Bronx-cadenced. Every script. Every caption. Every image direction. Tap the day — record, post, upload, done.</div>
   <div class="week-meta">
-    <div class="week-stat"><strong>DR Content:</strong> 2x/week · Tue + Thu film · Wed + Fri upload</div>
-    <div class="week-stat"><strong>Veteran:</strong> 2x/week · Tue + Thu</div>
-    <div class="week-stat"><strong>Google Business:</strong> 4x/week · Mon/Wed/Thu/Sat</div>
-    <div class="week-stat"><strong>Nextdoor:</strong> 3x/week · Mon/Thu/Sat</div>
+    <div class="week-stat"><strong>Through-line:</strong> Sellers who price right win now</div>
+    <div class="week-stat"><strong>VA Rate:</strong> 5.92% vs 6.48% conventional</div>
+    <div class="week-stat"><strong>Monroe County:</strong> $364K median, +18% YOY</div>
   </div>
 </div>
 
-<!-- ════════════════ SUNDAY ════════════════ -->
+<!-- ═══════════════════════ SUNDAY ═══════════════════════ -->
 <div class="day-section" id="day-sun" data-day="sun">
-  <div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
-  <div class="day-header">
-    <div class="dh-inner">
-      <div class="dh-name">SUN</div>
-      <div class="dh-content">
-        <div class="dh-label">Day One · Sunday</div>
-        <div class="dh-title">Hub Video Record + Upload · Tonight's Smoke Shoot · Zillow Ep Film</div>
-        <div class="dh-sub">Record Hub EN → Spanish second take immediately after → Film Zillow ep → Shoot Tonight's Smoke carousel · ~45 min total</div>
-      </div>
-      <div class="dh-count" id="sun-count"></div>
+<div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
+<div class="day-header">
+  <div class="dh-inner">
+    <div class="dh-name">SUN</div>
+    <div class="dh-content">
+      <div class="dh-label">Day One · Sunday June 8</div>
+      <div class="dh-title">Hub Video Record + Upload · Coffee & Ash IG · Tonight's Smoke Shoot</div>
+      <div class="dh-sub">Record Hub EN → Spanish second take → Shoot Coffee & Ash → Shoot Tonight's Smoke carousel for Monday 7PM</div>
     </div>
   </div>
-
-  <div class="recording-alert">
-    <div class="ra-icon">🟢</div>
-    <div>
-      <div class="ra-text">Recording Block · Sunday</div>
-      <div class="ra-sub">Hub Video EN (8-12 min) → Hub Video ES (same setup, DR cadence) → Zillow series episode (one take, stand-up) → Tonight's Smoke carousel shoot for Monday 7PM post</div>
-    </div>
+</div>
+<div class="recording-alert">
+  <div class="ra-icon">🟢</div>
+  <div>
+    <div class="ra-text">Recording Block · Sunday</div>
+    <div class="ra-sub">Hub Video EN (4 min) → Hub Video ES immediately after (same setup, DR cadence) → Tonight's Smoke carousel shoot for Monday post. Upload both hub videos same day.</div>
   </div>
-
-  <!-- HUB VIDEO EN -->
-  <div class="content-card" data-day="sun">
-    <div class="cc-header cc-header-navy">
-      <div class="cc-left">
-        <div class="cc-time">12:00 PM · Upload same day</div>
-        <div class="cc-title">YouTube Hub Video — English</div>
-        <div class="cc-platform">YouTube @AlexaSanchezRealtor · Main Playlist · 8-12 min</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-realtor">@alexa.realtor</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Script Structure</div>
-      <div class="script-block"><span class="hook">HOOK (0:00–0:08)
-"STR revenue in the Poconos is up. Demand is flat. Those are NOT the same thing — and if you're underwriting your next cabin based on nightly rates alone, I'm about to save you from a very expensive lesson."
-
-OPEN (0:08–0:30)
-June 2026. The Pocono STR market looks healthy on the surface — revenue up, ADR up. But when you dig into the actual data, there's a story most investors aren't reading. Supply is growing faster than demand. And that changes everything about how you buy, negotiate, and operate here.
-
-SECTION 1 (0:30–3:00) — What the numbers actually say
-Market-wide Poconos: $59K median annual revenue, 45% occupancy, $342 ADR. Sounds great.
-Now look at supply — active listings up 14.7% year over year.
-Occupancy? Down 2.2% year over year.
-Revenue is holding because ADR is going up — not because more guests are booking.
-That's called a rate-driven market. And in a rate-driven market with growing supply, one bad pricing decision can tank your occupancy fast.
-
-SECTION 2 (3:00–6:00) — Submarket breakdown: who's winning and who's just pretending
-Mount Pocono: 45.8% occupancy, $71K average annual revenue — but supply grew 61.5%. Buy only if the property has a real moat. Hot tub, sauna, EV charger, walkability, review history.
-East Stroudsburg: solid occupancy at 44%, but supply up 122.9%. Read that again. 122%.
-Lake Harmony: $466 ADR — highest in the market — but only 33% occupancy. The math is brutal. High nightly rate means nothing if the calendar is empty.
-Pocono Township: pricing power is holding but competitive set is growing 47.7%. You need a property that wins on differentiation, not just location.
-
-SECTION 3 (6:00–9:00) — What most realtors won't tell you
-If a seller is showing you peak-season nightly rates without 12-24 months of actual payout statements, that's not a data point — that's a hope.
-Ask for the statements. Re-underwrite to conservative occupancy. And remember: a 10-point occupancy drop requires a 25% ADR increase just to break even. That is almost never achievable when your neighbors are also listing.
-The buyers who win in this market are the ones buying properties with true competitive moats — and negotiating sellers who are starting to feel the squeeze.
-
-CTA (9:00–end)
-"I pull this data every month so my clients don't have to guess. If you're buying or selling STR property in the Poconos — call me before you make a move. (570) 688-8147. PA License #RS326383 · Smart Way America Realty."
 </div>
 
-      <div class="cs-label">Caption + Description</div>
-      <div class="caption-block">
-        STR revenue is up in the Poconos. Demand is not. 🧵
+<!-- OUTPUT 4 — HUB VIDEO EN -->
+<div class="content-card" data-day="sun">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">Upload Sunday · @AlexaSanchezRealtor YouTube</div>
+      <div class="cc-title">Output 4 — YouTube Hub Video · English</div>
+      <div class="cc-platform">Main Playlist · 4 min · Lead gen</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">@alexa.realtor</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Full Script</div>
+    <div class="script-block"><span class="hook">HOOK (0:00–0:08)
+Pocono sellers — your window is open RIGHT NOW and nobody told you.</span>
 
-Before you buy that cabin — watch this.
+<span class="beat">OPEN (0:08–0:30)
+I'm Alexa Sanchez, PA licensed Realtor with Smart Way America Realty.
+Rates are in the mid-6s. They've been there. They're staying there.
+Here's what most agents won't say out loud:
+That's actually good news if you're a seller.</span>
 
-Supply grew 14.7% YoY. Occupancy dropped 2.2%. Revenue is holding on rates, not bookings. And in a growing-supply market, that math gets dangerous fast.
+<span class="beat">SECTION 1 — THE RATE TRAP (0:30–1:30)
+Everybody's waiting for rates to drop to the 5s.
+But here's the reality check:
+The May jobs report came in at 172,000 jobs.
+The Fed is NOT cutting rates anytime soon.
+So sellers waiting for cheaper money?
+They're just giving buyers more time to find your competition.</span>
 
-I break down every Pocono submarket — who's winning, who's inflating numbers, and what actually makes a property worth buying right now.
+<span class="beat">SECTION 2 — YOUR MARKET RIGHT NOW (1:30–2:30)
+Monroe County median sale price: $364,000.
+That's up 18% year over year. Eighteen percent.
+Days on market: 49 days — longer than the frenzy, but still moving.
+Inventory is at its highest since 2020 nationally.
+Translation: if you wait until fall, you're fighting more listings for the same buyers.</span>
+
+<span class="beat">SECTION 3 — THE SELLER PLAYBOOK (2:30–3:30)
+Here's what wins right now:
+Price it right the first time. Overpriced homes are getting ghosted.
+Three out of five homes nationally are selling below ask right now.
+Presentation matters more than it did in 2021.
+The Pocono Tourism Bureau just dropped a 2026 travel guide — STR demand is still strong.
+Second-home buyers are active. Vacation rental investors are active.
+Your buyer is out there. Price correctly and they will find you.</span>
+
+<span class="cta">CTA (3:30–4:00)
+If you're thinking about listing your Monroe County home this summer,
+call or text me — (570) 688-8147.
+I'm Alexa Sanchez with Smart Way America Realty.
+PA License #RS326383.
+Link in description to book a free seller strategy call.
+Don't wait. The window is open — not forever.</span></div>
+
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+Pocono sellers — rates aren't dropping to the 5s anytime soon and here's why that's your green light to list NOW. Monroe County prices are up 18% YOY and inventory is climbing. The early-summer listing window is open. Don't miss it.
 
 📞 (570) 688-8147 | Alexa@alexasanchez.net
-PA License #RS326383 · Smart Way America Realty<br><br><span class="hashtags">#PoconoRealEstate #STRInvesting #ShortTermRental #AirbnbInvesting #PoconoMountains #LifeByAlexa</span>
-      </div>
-
-      <div class="cs-label">Thumbnail Direction</div>
-      <div class="image-block">
-        <div class="img-label">Thumbnail</div>
-        Alexa facing camera, direct expression — not smiling, not yelling. Clean background or Pocono exterior.<br>
-        COVER TEXT: Bold chunky tilted font. Neon green for the stat. Red or white for the hook/confession.<br>
-        Bottom strip: "POCONO MOUNTAINS" in DM Mono caps.
-      </div>
-
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
+PA License #RS326383 · Smart Way America Realty
+<div class="hashtags">#PoconoRealEstate #MonroeCounty #SellYourHome #RealEstateTips #LifeByAlexa</div>
     </div>
-  </div>
 
-  <!-- HUB VIDEO ES -->
-  <div class="content-card" data-day="sun">
-    <div class="cc-header cc-header-spanish">
-      <div class="cc-left">
-        <div class="cc-time">12:30 PM · Upload same day</div>
-        <div class="cc-title">🇪🇸 Hub Video — Spanish (Dominican Spanish)</div>
-        <div class="cc-platform">YouTube @AlexaSanchezRealtor · En Español Playlist</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-spanish">En Español</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
+    <div class="cs-label">Thumbnail Direction</div>
+    <div class="image-block">
+      <div class="img-label">Thumbnail</div>
+      Cartoon Alexa pointing directly at camera. Bold text: "SELL NOW OR FIGHT THE CROWD" in chunky white font. Neon green stat badge: "+18% YOY" top right. Dark navy background with Pocono mountain silhouette.
     </div>
-    <div class="cc-body">
-      <div class="cs-label">Recording Notes</div>
-      <div class="cs-content">Same setup as English take. Same topic — Dominican cadence. Natural, not textbook. "mi amor," "óyeme bien," "tú estás" — talk to your people, not a classroom.<br><br>
-      Second take immediately after English — same energy, don't reset.</div>
 
-      <div class="cs-label">Caption (Spanish)</div>
-      <div class="caption-block">
-        [Spanish hook — pull from Output 5 this week]<br><br>
-        <span class="hashtags">#BienesRaices #InversionesEnPoconos #MercadoInmobiliario #RepublicaDominicana #LifeByAlexa</span>
-      </div>
-
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- BEFORE THE FIRST DRAW -->
-  <div class="content-card" data-day="sun">
-    <div class="cc-header cc-header-green">
-      <div class="cc-left">
-        <div class="cc-time">8:00 AM · Post Now</div>
-        <div class="cc-title">☕ Before the First Draw</div>
-        <div class="cc-platform">IG @fillerandroast</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-fnr">@fillerandroast</span>
-        <span class="badge b-goal-sales">Drive Sales</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Caption</div>
-      <div class="caption-block">
-        Sunday ritual. Coffee first. Then the leaf.<br>
-        Nell's Social. The Poconos.<br><br>
-        <span class="hashtags">#FillerAndRoast #CigarAndCoffee #NellsSocial #LifeByAlexa</span>
-      </div>
-      <div class="cs-label">Image Direction</div>
-      <div class="image-block">
-        <div class="img-label">Visual</div>
-        Overhead or side angle — coffee cup (Filler & Roast branded if possible) + unlit cigar resting nearby. Natural morning light. Linen surface or dark wood. No hands in frame unless intentional. Warm tones only.
-      </div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TONIGHT'S SMOKE SHOOT -->
-  <div class="content-card" data-day="sun">
-    <div class="cc-header cc-header-burg">
-      <div class="cc-left">
-        <div class="cc-time">Shoot Sunday · Posts Monday 7:00 PM</div>
-        <div class="cc-title">📸 Tonight's Smoke Carousel — Shoot Day</div>
-        <div class="cc-platform">IG @its.myash · Carousel · Posts Monday</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-myash">@its.myash</span>
-        <span class="badge b-goal-sales">Drive Sales</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Shoot Direction (Today)</div>
-      <div class="image-block">
-        <div class="img-label">Carousel — 4-6 slides</div>
-        Slide 1: The cigar unlit — hero shot, full wrapper detail visible. Clean background.<br>
-        Slide 2: First light or first draw — ember glow, smoke visible.<br>
-        Slide 3: Mid-smoke — ash formation, relaxed grip.<br>
-        Slide 4: Pairing if any — coffee, glass, book, whatever's on the table tonight.<br>
-        Slide 5 (optional): Setting — lounge, porch, wherever you are. Atmosphere.<br><br>
-        Warm tones. Moody. No filters that kill the tobacco color.
-      </div>
-      <div class="cs-label">Caption (Post Monday)</div>
-      <div class="caption-block">
-        [Cigar name]. [One line — what made tonight's smoke worth writing about.]<br>
-        Nell's Social vibes, wherever you are.<br><br>
-        <span class="hashtags">#CigarLife #PremiumCigars #CigarLounge #NellsSocial #OperatorLife #LifeByAlexa</span>
-      </div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ZILLOW SERIES FILM -->
-  <div class="content-card" data-day="sun">
-    <div class="cc-header cc-header-navy">
-      <div class="cc-left">
-        <div class="cc-time">Film Sunday · Upload Tuesday</div>
-        <div class="cc-title">🎬 Zillow Series — Episode Film</div>
-        <div class="cc-platform">TikTok @itsmyash + IG Reel @alexa.realtor · Posts Tuesday 9:00 AM</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-realtor">@alexa.realtor</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Format</div>
-      <div class="cs-content">Stand-up TikTok. One take. Fluffy/Gabriel Iglesias structure — 4 beats.<br>
-      <strong>Beat 1:</strong> Setup — "Here's what Zillow does" (neutral, relatable)<br>
-      <strong>Beat 2:</strong> The gap — "Here's what Zillow can't do" (specific, factual)<br>
-      <strong>Beat 3:</strong> The roast — one intelligently insulting line about relying on it<br>
-      <strong>Beat 4:</strong> The redirect — "Here's what you actually need to know"</div>
-
-      <div class="cs-label">Script (this week's episode)</div>
-      <div class="script-block"><span class="hook">HOOK (0:00–0:02): State the Zillow thing. Fast. No intro.</span>
-
-<span class="beat">BEAT 1 (0:02–0:08): What Zillow tells you. One sentence.</span>
-
-<span class="beat">BEAT 2 (0:08–0:20): What Zillow can't tell you. Specific. Monroe County example.</span>
-
-<span class="beat">BEAT 3 (0:20–0:28): The roast. Direct. Don't be mean — be right.</span>
-
-<span class="cta">BEAT 4 (0:28–0:35): "Call me. I actually know this market." (570) 688-8147
-PA License #RS326383 · Smart Way America Realty</span>
-
-<span class="note">// Pull full episode script from Output 4 / Claude Sunday session</span></div>
-
-      <div class="cs-label">Cover Text Direction</div>
-      <div class="cover-block">
-        <div class="cv-label">Cover</div>
-        Bold chunky tilted font. Text: "Things Realtors Do That Zillow Can't — Ep [#]"<br>
-        Neon green for the episode number. White for the series title. Face visible behind text.
-      </div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- LIFE.BYALEXA SUNDAY -->
-  <div class="content-card" data-day="sun">
-    <div class="cc-header" style="background:#2A0A4A;">
-      <div class="cc-left">
-        <div class="cc-time">11:00 AM · Post Now</div>
-        <div class="cc-title">@life.byalexa — Behind the Operator</div>
-        <div class="cc-platform">IG @life.byalexa · Personal voice · no RE pitch</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-life">@life.byalexa</span>
-        <span class="badge b-goal-follow">Grow Following</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Caption</div>
-      <div class="caption-block">
-        [BTS Q1 answer — what's happening behind the scenes of one of your businesses right now. 2–3 lines. Bronx voice. No pitch.]<br><br>
-        #LifeByAlexa
-      </div>
-      <div class="cs-label">Image Direction</div>
-      <div class="image-block">
-        <div class="img-label">Visual</div>
-        Whatever is actually happening. Recording setup. Open laptop. Coffee on a chaotic desk. Real. Not staged. #LifeByAlexa energy — operator life, not lifestyle brand.
-      </div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
     </div>
   </div>
 </div>
 
-<!-- ════════════════ MONDAY ════════════════ -->
-<div class="day-section" id="day-mon" data-day="mon">
-  <div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
-  <div class="day-header">
-    <div class="dh-inner">
-      <div class="dh-name">MON</div>
-      <div class="dh-content">
-        <div class="dh-label">Day Two · Monday</div>
-        <div class="dh-title">Substack · LinkedIn · Google Business · DR IG Post 1 · Nextdoor · Tonight's Smoke</div>
-        <div class="dh-sub">All posting — nothing to record today. Tonight's Smoke goes up at 7PM from Sunday's shoot.</div>
-      </div>
+<!-- OUTPUT 5 — HUB VIDEO ES -->
+<div class="content-card" data-day="sun">
+  <div class="cc-header cc-header-spanish">
+    <div class="cc-left">
+      <div class="cc-time">Upload Sunday · En Español Playlist</div>
+      <div class="cc-title">Output 5 — Hub Video · Spanish 🇩🇴</div>
+      <div class="cc-platform">@AlexaSanchezRealtor YouTube · Same setup, DR cadence</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-spanish">En Español</span>
+      <span class="badge b-goal-leads">RE Leads</span>
     </div>
   </div>
+  <div class="cc-body">
+    <div class="cs-label">Full Script (Dominican Spanish)</div>
+    <div class="script-block"><span class="hook">HOOK (0:00–0:08)
+Óyeme bien — si tú tienes una casa en los Poconos y estás esperando que las tasas bajen, te estás perdiendo tu momento.</span>
 
-  <div class="content-card" data-day="mon">
-    <div class="cc-header cc-header-navy">
-      <div class="cc-left">
-        <div class="cc-time">7:00 AM · Publish</div>
-        <div class="cc-title">✍️ Substack Article — Operator Life</div>
-        <div class="cc-platform">Substack · 600–900 words · personal story first</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-myash">Substack</span>
-        <span class="badge b-goal-follow">Grow Following</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Format</div>
-      <div class="cs-content">Open with the personal moment from Section A. 2–3 paragraphs max. Build to the operator insight. Voice: direct, no fluff, a little edgy, Bronx-cadenced. Never a market report. Never a press release.<br><br>
-      <strong>Title + Subtitle:</strong> Pull from Output 1 of Sunday Claude session.<br>
-      <strong>Full article:</strong> Pull from Output 1 — paste-ready.</div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
+<span class="beat">OPEN (0:08–0:30)
+Soy Alexa Sánchez, Realtor licenciada en Pennsylvania con Smart Way America Realty.
+Las tasas están en el rango de 6.4% y ahí se van a quedar por ahora.
+Y eso, mi amor, es buena noticia para ti como vendedor.</span>
 
-  <div class="content-card" data-day="mon">
-    <div class="cc-header cc-header-navy">
-      <div class="cc-left">
-        <div class="cc-time">7:00 PM · Post Now</div>
-        <div class="cc-title">🌙 Tonight's Smoke — Carousel</div>
-        <div class="cc-platform">IG @its.myash · 7:00 PM · shot Sunday</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-myash">@its.myash</span>
-        <span class="badge b-goal-sales">Drive Sales</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Post Checklist</div>
-      <div class="cs-content">✓ 4–6 slides from Sunday shoot<br>
-      ✓ Caption from Sunday's shoot notes<br>
-      ✓ Tag @nellssocial if at the lounge<br>
-      ✓ #CigarLife #PremiumCigars #NellsSocial #OperatorLife #LifeByAlexa</div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
+<span class="beat">SECCIÓN 1 (0:30–1:30)
+La gente está esperando tasas en los 5s. Pero en mayo salieron 172,000 empleos nuevos.
+La Reserva Federal no va a bajar las tasas pronto.
+Mientras tú esperas, otros vendedores están listando sus casas.
+Más competencia para ti. Así de sencillo.</span>
 
-  <div class="content-card" data-day="mon">
-    <div class="cc-header cc-header-navy">
-      <div class="cc-left">
-        <div class="cc-time">8:00 AM · Post Now</div>
-        <div class="cc-title">💼 LinkedIn — Market Signal</div>
-        <div class="cc-platform">LinkedIn @alexa.realtor · Post 1/3</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-realtor">@alexa.realtor</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Caption</div>
-      <div class="caption-block">
-        Pocono STR market — June 2026 signal for investors and agents:
+<span class="beat">SECCIÓN 2 (1:30–2:30)
+Monroe County tiene un precio mediano de $364,000 — subió 18% año tras año.
+Las casas están tardando unos 49 días en venderse.
+Y el inventario está en su nivel más alto desde 2020.
+Espera hasta el otoño y vas a pelear contra más casas por los mismos compradores.</span>
 
-Supply up 14.7% YoY. Occupancy down 2.2%. ADR up. Revenue holding — but on rate, not demand.
+<span class="beat">SECCIÓN 3 (2:30–3:30)
+¿Qué funciona ahora? Precio correcto desde el primer día.
+Las casas sobrevaloradas no se venden. Los compradores están más selectivos.
+Los compradores de segunda residencia y los inversores de alquiler vacacional siguen activos.
+Tu comprador está ahí. Ponle el precio correcto y te va a encontrar.</span>
 
-This is a rate-driven market. In a rate-driven market with growing supply, underwriting to nightly rate projections is the fastest way to get burned.
+<span class="cta">CTA (3:30–4:00)
+¿Estás pensando en vender tu casa en los Poconos este verano?
+Llámame o escríbeme: (570) 688-8147.
+Soy Alexa Sánchez con Smart Way America Realty.
+Licencia #RS326383 en Pennsylvania.
+El momento es ahora. No lo dejes pasar.</span></div>
 
-What I'm telling buyer clients right now: ask for 12-24 months of actual payout statements. Negotiate on occupancy sensitivity, not peak ADR. Prioritize properties with true competitive moats — hot tub, sauna, EV charger, review history, layout differentiation.
-
-What I'm telling seller clients: the window to exit at full investor premium is directly tied to your operational documentation. Clean books sell.
-
-PA License #RS326383 · Smart Way America Realty · (570) 688-8147<br><br><span class="hashtags">#PoconoRealEstate #STRInvesting #ShortTermRental #RealEstate #LifeByAlexa</span>
-      </div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="content-card" data-day="mon">
-    <div class="cc-header cc-header-green">
-      <div class="cc-left">
-        <div class="cc-time">9:00 AM · Post Now</div>
-        <div class="cc-title">📍 Google Business — Market Update Monday</div>
-        <div class="cc-platform">Google Business Profile · 150 words + photo · no hashtags</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-realtor">Google Biz</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Post Copy</div>
-      <div class="caption-block">
-        Pocono STR market update — June 2026.
-
-Median annual revenue: $59K. Occupancy: 45%. ADR: $342. Active listings up 14.7% year over year.
-
-What that means for buyers: supply is growing faster than deman83 · Smart Way America Realty
-      </div>
-      <div class="cs-label">Rules</div>
-      <div class="cs-content">No hashtags. No client names or addresses. Town + property type only. Always include license number and phone.</div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="content-card" data-day="mon">
-    <div class="cc-header cc-header-spanish">
-      <div class="cc-left">
-        <div class="cc-time">10:00 AM · Post Now — PRIORITY</div>
-        <div class="cc-title">🇩🇴 DR IG Post 1 — Educational (Spanish)</div>
-        <div class="cc-platform">IG @alexa.realtor · Carousel or Reel · 🔥 500 followers in 2 weeks</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-spanish">En Español</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Format</div>
-      <div class="cs-content">Educational angle — Law 171-07, CONFOTUR, DR buying process, VA benefits in DR, cap Cana vs Punta Cana. Real info. No fluff. Dominican cadence.<br><br>
-      Pull full caption + image direction from Output 16 (Spanish Posts) — Monday DR post.</div>
-      <div class="cs-label">Caption</div>
-      <div class="caption-block">
-        ¿Sabías que los extranjeros pueden comprar propiedad directamente en la República Dominicana — sin restricciones por nacionalidad? 🇩🇴
-
-Mucha gente cree que necesitas un socio dominicano o una estructura especial. No es así.
-
-Lo que sí necesitas: un abogado independiente, debida diligencia en título, y saber si la propiedad tiene CONFOTUR — que te da 0% de impuesto de transferencia y 15 años sin IPI.
-
-En junio de 2026 el DR registró más de 2.6 millones de pasajeros aéreos no residentes en el primer trimestre. La demanda no para. Las oportunidades tampoco.
-
-¿Tienes preguntas sobre cómo invertir en el DR? Escríbeme. 📩
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+Vendedores en los Poconos — las tasas no van a bajar a los 5s pronto y eso ES tu señal para listar AHORA. Monroe County subió 18% año tras año y el inventario está creciendo. La ventana de venta está abierta. No la dejes cerrar.
 
 📞 (570) 688-8147 | Alexa@alexasanchez.net
-PA License #RS326383 · Smart Way America Realty<br><br> <span class="hashtags">#BienesRaicesRD #InversionEnRD #RepublicaDominicana #MercadoInmobiliario #LifeByAlexa</span>
-      </div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
+Licencia PA #RS326383 · Smart Way America Realty
+<div class="hashtags">#BienesRaicesPoconos #VenderCasaPA #MercadoInmobiliario #PoconoMountains #LifeByAlexa</div>
     </div>
-  </div>
 
-  <div class="content-card" data-day="mon">
-    <div class="cc-header cc-header-green">
-      <div class="cc-left">
-        <div class="cc-time">9:00 AM · Post Now</div>
-        <div class="cc-title">🏘 Nextdoor — Neighborhood Intel</div>
-        <div class="cc-platform">Nextdoor · conversational, local · it's sending listings</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-realtor">Nextdoor</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Post Copy</div>
-      <div class="caption-block">
-        [Local insight — market condition, seasonal note, or neighborhood question. Conversational. Not a listing pitch. Pull from Output 15.]<br><br>
-        Happy to answer any questions about what's moving in the area — Alexa, (570) 688-8147
-      </div>
-      <div class="cs-label">Rules</div>
-      <div class="cs-content">No listing pitches. Be a neighbor first, realtor second. This is what's generating leads — don't kill it by selling too hard.</div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
     </div>
   </div>
 </div>
 
-<!-- ════════════════ TUESDAY ════════════════ -->
-<div class="day-section" id="day-tue" data-day="tue">
-  <div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
-  <div class="day-header">
-    <div class="dh-inner">
-      <div class="dh-name">TUE</div>
-      <div class="dh-content">
-        <div class="dh-label">Day Three · Tuesday</div>
-        <div class="dh-title">Zillow Ep Upload · DR Video #1 Film · Veteran Post #1 · Car Confession · Ashes & Escrows</div>
-        <div class="dh-sub">Film DR Video #1 EN+ES (15 min) · Veteran content #1 posts · Zillow ep uploads from Sunday · Car Confession records + posts</div>
-      </div>
+<!-- OUTPUT 14 — COFFEE & ASH SUNDAY -->
+<div class="content-card" data-day="sun">
+  <div class="cc-header cc-header-fnr">
+    <div class="cc-left">
+      <div class="cc-time">9:30 AM · Post Now · @its.myash Instagram</div>
+      <div class="cc-title">Output 14 — Coffee &amp; Ash Ritual · Sunday IG</div>
+      <div class="cc-platform">@its.myash Instagram · BTS lifestyle · Max 3 hashtags</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">@its.myash</span>
+      <span class="badge b-goal-follow">Grow Following</span>
     </div>
   </div>
-
-  <div class="recording-alert">
-    <div class="ra-icon">🎥</div>
-    <div>
-      <div class="ra-text">Film Block · Tuesday</div>
-      <div class="ra-sub">DR Video #1 EN (under 60 sec) → DR Video #1 ES immediately after (same setup, DR cadence) · ~15 min total · uploads Wednesday 10AM</div>
+  <div class="cc-body">
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+Sunday ritual. Coffee first. Cigar second. Chaos later.
+The only meeting I attend willingly before 10am. ☕🍃
+<div class="hashtags">#LifeByAlexa #NellsSocial #CigarAndCoffee</div>
     </div>
-  </div>
-
-  <div class="content-card" data-day="tue">
-    <div class="cc-header cc-header-navy">
-      <div class="cc-left">
-        <div class="cc-time">9:00 AM · Upload Now</div>
-        <div class="cc-title">🎬 Zillow Series — Episode Upload</div>
-        <div class="cc-platform">TikTok @itsmyash (no watermark) + IG Reel @alexa.realtor · filmed Sunday</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-realtor">@alexa.realtor</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
+    <div class="cs-label">Image Direction</div>
+    <div class="image-block">
+      <div class="img-label">Shoot Direction</div>
+      Overhead flat lay: Filler &amp; Roast coffee mug (logo visible) next to an unlit cigar on a dark wood tray. Natural Sunday morning light. Soft smoke wisp if possible. No clutter. Warm tones only.
     </div>
-    <div class="cc-body">
-      <div class="cs-label">Upload Checklist</div>
-      <div class="cs-content">✓ TikTok version: no watermark, upload natively to @itsmyash<br>
-      ✓ IG Reel: @alexa.realtor<br>
-      ✓ Cover text direction from Sunday's shoot notes<br>
-      ✓ Caption from Output 12 (Car Confession / Zillow series)</div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="content-card" data-day="tue">
-    <div class="cc-header cc-header-navy">
-      <div class="cc-left">
-        <div class="cc-time">3:00 PM · Record + Post Same Day</div>
-        <div class="cc-title">🚗 Car Confession — Real Estate EN</div>
-        <div class="cc-platform">IG @alexa.realtor + TikTok @itsmyash · 20 sec max · in-car</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-realtor">@alexa.realtor</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Script</div>
-      <div class="script-block"><span class="hook">0:00–0:03: The confession. Shock value. One sentence. Don't introduce yourself first.</span>
-
-<span class="beat">0:03–0:15: The fact. Direct. Monroe County specific if possible. No hedging.</span>
-
-<span class="cta">0:15–0:20: "I'm Alexa. (570) 688-8147. PA License #RS326383."</span>
-
-<span class="note">// Pull full script from Output 12 · Tuesday 3PM Car Confession EN</span></div>
-
-      <div class="cs-label">Caption</div>
-      <div class="caption-block">
-        [Confession hook — first line = the most shocking thing you said]<br><br>
-        <span class="hashtags">#PoconoRealEstate #RealEstateTips #CarConfessions #LifeByAlexa</span>
-      </div>
-      <div class="cs-label">Cover Text</div>
-      <div class="cover-block">
-        <div class="cv-label">Cover</div>
-        Bold chunky tilted font over face. Neon green for any stat. Red or white for confession/hook. In-car setting visible.
-      </div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="content-card" data-day="tue">
-    <div class="cc-header cc-header-spanish">
-      <div class="cc-left">
-        <div class="cc-time">3:30 PM · Record + Post Same Day</div>
-        <div class="cc-title">🇪🇸 Car Confession — Real Estate ES</div>
-        <div class="cc-platform">IG @alexa.realtor · Spanish · YouTube En Español playlist</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-spanish">En Español</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Script</div>
-      <div class="script-block"><span class="es">Same energy as English take. Dominican cadence. "óyeme" works here. Same stat, different delivery.
-Pull from Output 13 · Tuesday Spanish Car Confession.</span></div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="content-card" data-day="tue">
-    <div class="cc-header cc-header-veteran">
-      <div class="cc-left">
-        <div class="cc-time">12:00 PM · Post Now</div>
-        <div class="cc-title">🪖 Veteran Post #1 — PA Market / VA Loan</div>
-        <div class="cc-platform">IG + FB @alexa.realtor · Educational only · no personal narrative</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-veteran">Veteran</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Script / Caption</div>
-      <div class="script-block"><span class="note">Pull from Output 17 · PA Veteran Content · Tuesday post
-Topics rotate: VA funding fee · DVRETX · PHFA stacking · HB 1257 status · VA loan limits Monroe County</span></div>
-      <div class="cs-label">Rules</div>
-      <div class="cs-content">✓ Strictly educational — no personal veteran narrative<br>
-      ✓ Always include: PA License #RS326383 · Smart Way America Realty · (570) 688-8147<br>
-      ✓ Never claim VA endorsement · Never guarantee rates<br>
-      ✓ "Veteran-friendly" language only — not a FHA protected class</div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="content-card" data-day="tue">
-    <div class="cc-header cc-header-burg">
-      <div class="cc-left">
-        <div class="cc-time">Record + Upload · Same Day or Wed Morning</div>
-        <div class="cc-title">🔥 Ashes & Escrows — Record + Upload</div>
-        <div class="cc-platform">YouTube @AlexaSanchezRealtor · under 60 sec · one take</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-realtor">Ashes & Escrows</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Script</div>
-      <div class="script-block"><span class="hook">ROAST TARGET: [from Section A this week]</span>
-
-<span class="beat">Five roast targets cycle weekly:
-1. Lowball buyers
-2. Realtors who don't know the market
-3. Pocono skeptics
-4. Cigar beginners
-5. Tie-it-all-together anchor</span>
-
-<span class="note">// Pull full script from Output 6 · Ashes & Escrows episode
-Quirky, intelligently insulting, talking to a best friend. Cigar in hand. One take. Under 60 sec.</span></div>
-
-      <div class="cs-label">Thumbnail Direction</div>
-      <div class="image-block">
-        <div class="img-label">Thumbnail</div>
-        Alexa mid-sentence, cigar in hand, slight smirk. Dark background. Series title "ASHES & ESCROWS" in caps. Neon green episode number or roast target text overlay.
-      </div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="content-card" data-day="tue">
-    <div class="cc-header cc-header-green">
-      <div class="cc-left">
-        <div class="cc-time">11:00 AM · Post Now</div>
-        <div class="cc-title">🔥 Nell's Social — This Week's Smoke</div>
-        <div class="cc-platform">FB @fillerandroast tag · lounge energy</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-fnr">@fillerandroast</span>
-        <span class="badge b-goal-sales">Drive Sales</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Post Copy</div>
-      <div class="caption-block">
-        This week at Nell's Social — the lounge is open and the air is right. Come find your chair.<br>
-        Come smoke with us. The Poconos.
-      </div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
     </div>
   </div>
 </div>
 
-<!-- ════════════════ WEDNESDAY ════════════════ -->
-<div class="day-section" id="day-wed" data-day="wed">
-  <div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
-  <div class="day-header">
-    <div class="dh-inner">
-      <div class="dh-name">WED</div>
-      <div class="dh-content">
-        <div class="dh-label">Day Four · Wednesday</div>
-        <div class="dh-title">MAIN RECORD DAY · DR Upload #1 · DR IG Post 2 · Just Watch Me · Ashes Upload · Google Biz</div>
-        <div class="dh-sub">Record: Ashes & Escrows · Just Watch Me · Car Confessions · Cigar Video · Weekend Smoke Reel · ~90 min total</div>
-      </div>
+<!-- TONIGHT'S SMOKE SHOOT NOTE -->
+<div class="content-card" data-day="sun">
+  <div class="cc-header cc-header-burg">
+    <div class="cc-left">
+      <div class="cc-time">Shoot Sunday · Posts Monday 7:00 PM</div>
+      <div class="cc-title">Tonight's Smoke — Shoot Today · Post Monday</div>
+      <div class="cc-platform">IG @its.myash Carousel · Shoot now, post Monday 7PM</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">@its.myash</span>
+      <span class="badge b-goal-sales">Drive Sales</span>
     </div>
   </div>
-
-  <div class="recording-alert">
-    <div class="ra-icon">🟡</div>
-    <div>
-      <div class="ra-text">Primary Recording Block · Wednesday · ~90 min</div>
-      <div class="ra-sub">Ashes & Escrows (if not Tue) · Just Watch Me motorcycle ep · Car Confessions EN+ES · Cigar/Lounge Video · Weekend Smoke Reel · @its.myash Talking Head</div>
+  <div class="cc-body">
+    <div class="cs-label">Shoot Direction (Today)</div>
+    <div class="image-block">
+      <div class="img-label">Carousel — 4-6 Slides</div>
+      Slide 1: Cigar unlit — hero shot, full wrapper detail visible. Clean background.<br>
+      Slide 2: First light or first draw — ember glow, smoke visible.<br>
+      Slide 3: Mid-smoke — ash formation, relaxed grip.<br>
+      Slide 4: Pairing — Filler &amp; Roast coffee if available, or whatever's on the table.<br>
+      Slide 5 (optional): Setting — lounge, porch, wherever you are. Atmosphere.<br><br>
+      Warm tones. Moody. No filters that kill the tobacco color.
+    </div>
+    <div class="cs-label">Caption (Post Monday 7PM)</div>
+    <div class="caption-block">
+[Cigar name]. [One line — what made tonight's smoke worth writing about.]
+Nell's Social vibes, wherever you are.
+<div class="hashtags">#CigarLife #PremiumCigars #CigarLounge #NellsSocial #OperatorLife #LifeByAlexa</div>
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
     </div>
   </div>
+</div>
+</div>
 
-  <div class="content-card" data-day="wed">
-    <div class="cc-header cc-header-spanish">
-      <div class="cc-left">
-        <div class="cc-time">10:00 AM · Upload Now</div>
-        <div class="cc-title">🌴 DR Video #1 — Upload EN + ES</div>
-        <div class="cc-platform">YouTube @AlexaSanchezRealtor · Both playlists · filmed Tuesday</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-spanish">DR Video</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Upload Checklist</div>
-      <div class="cs-content">✓ English version → main playlist<br>
-      ✓ Spanish version → En Español playlist<br>
-      ✓ Both descriptions from Output 8<br>
-      ✓ Thumbnails from Output 8 image direction<br>
-      ✓ Tags: DR topic + PA License in description</div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="content-card" data-day="wed">
-    <div class="cc-header cc-header-spanish">
-      <div class="cc-left">
-        <div class="cc-time">11:00 AM · Post Now — PRIORITY</div>
-        <div class="cc-title">🇩🇴 DR IG Post 2 — Lifestyle / Community (Spanish)</div>
-        <div class="cc-platform">IG @alexa.realtor · native cut · not a YouTube clip</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-spanish">En Español</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Format</div>
-      <div class="cs-content">Lifestyle or community angle — DR neighborhoods, expat life, beach vs mountain, DR food/culture as backdrop to investment. Different angle than Monday's educational post. Same DR Spanish energy.<br><br>
-      Pull from Output 16 · Wednesday DR IG post.</div>
-      <div class="cs-label">Caption</div>
-      <div class="caption-block">
-        DR tourism in Q1 2026: 2.6 million non-resident air passengers. 900K+ in March alone. 🇩🇴
-
-FDI hit $1.5 billion — up 6.4% year over year. Breeze just announced Columbus to Punta Cana nonstops starting January 2027.
-
-More US cities getting direct flights = more buyer demand = more rental income for investors already there.
-
-The Americas Investment Forum lands in Santo Domingo July 1-3. 2,000+ institutional investors. Tourism is on the agenda.
-
-The window isn't closing. But it's not staying this quiet forever.
-
-DM me if you want to understand what CONFOTUR means for your investment.
-
-📞 (570) 688-8147 | PA License #RS326383 · Smart Way America Realty<br><br><span class="hashtags">#DominicanRepublic #InversionesEnRD #CapCana #RealEstateInvesting #LifeByAlexa</span>
-      </div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="content-card" data-day="wed">
-    <div class="cc-header cc-header-green">
-      <div class="cc-left">
-        <div class="cc-time">9:00 AM · Post Now</div>
-        <div class="cc-title">📍 Google Business — Listing Feature Wednesday</div>
-        <div class="cc-platform">Google Business Profile · Active / Just Listed / Just Sold rotation</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-realtor">Google Biz</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Rotation</div>
-      <div class="cs-content">Week A: Active listing → strongest STR/lifestyle angle<br>
-      Week B: Just Listed → "just hit the market" energy<br>
-      Week C: Just Sold → seller success story<br>
-      Week D (no listing): Recent sold comp → market intelligence angle<br><br>
-      Pull from Output 15 · Wednesday GBP Listing Feature or use GBP Template from ROAST-Complete-System.html</div>
-      <div class="cs-label">Rules</div>
-      <div class="cs-content">No hashtags. No client names. No full addresses — town + property type only.<br>
-      Always end: 📞 (570) 688-8147 | Alexa@alexasanchez.net | PA License #RS326383 · Smart Way America Realty</div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="content-card" data-day="wed">
-    <div class="cc-header cc-header-navy">
-      <div class="cc-left">
-        <div class="cc-time">11:00 AM · Post Story</div>
-        <div class="cc-title">🏡 Under Contract — IG Story</div>
-        <div class="cc-platform">IG Story @alexa.realtor</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-realtor">@alexa.realtor</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Story Direction</div>
-      <div class="cs-content">If active deal: photo of sign or property with "Under Contract 🔥" text overlay. Town name visible. No address. No client name.<br><br>
-      No active deal: market stat story — "X homes went under contract in Monroe County this week" with data from Output 15.</div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="content-card" data-day="wed">
-    <div class="cc-header cc-header-burg">
-      <div class="cc-left">
-        <div class="cc-time">Record Wednesday · Posts Thursday 9:00 AM</div>
-        <div class="cc-title">🏍 Just Watch Me — Motorcycle TikTok (Film)</div>
-        <div class="cc-platform">TikTok @itsmyash · talking points, NOT scripted</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-myash">@its.myash</span>
-        <span class="badge b-goal-follow">Grow Following</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Talking Points (this week)</div>
-      <div class="script-block"><span class="beat">TALKING POINTS:
-• This week I'm working on low-speed balance drills — circles and figure-8s in a parking lot
-• The Ninja 400 is not my bike but it's teaching me things my future cruiser will thank me for
-• Biggest lesson: slow speed is harder than fast speed. Nobody tells you that.
-• The thing about learning something new at this stage of life is you have zero ego left to protect — which is actually a superpower
-• HFW: just watch me figure it out
-
-Caption: Low speed is harder than fast speed. Nobody warned me. 🏍️ #JustWatchMe #MotorcycleLearner #LifeByAlexa</span></div>
-
-      <div class="cs-label">Caption</div>
-      <div class="caption-block">
-        [First line = the realest thing you said on camera. Pull from your actual talking points.]<br><br>
-        #JustWatchMe #MotoLife #LearningToRide #OperatorLife #LifeByAlexa
-      </div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="content-card" data-day="wed">
-    <div class="cc-header cc-header-burg">
-      <div class="cc-left">
-        <div class="cc-time">6:00 PM · Post Now</div>
-        <div class="cc-title">🚗 Car Confession — Cigars / Ash Life (@its.myash)</div>
-        <div class="cc-platform">IG @its.myash · filmed today · 20 sec</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-myash">@its.myash</span>
-        <span class="badge b-goal-follow">Grow Following</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Script</div>
-      <div class="script-block"><span class="note">// Cigar or operator life angle. Same Car Confession format — 20 sec, shock value, in-car.
-// Pull from Output 10 · @its.myash Talking Head or Car Confession</span></div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
+<!-- ═══════════════════════ MONDAY ═══════════════════════ -->
+<div class="day-section hidden" id="day-mon" data-day="mon">
+<div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
+<div class="day-header">
+  <div class="dh-inner">
+    <div class="dh-name">MON</div>
+    <div class="dh-content">
+      <div class="dh-label">Day Two · Monday June 9</div>
+      <div class="dh-title">Substack Publish · BTS TikTok Q1 · LinkedIn · GBP · FB · Tonight's Smoke Post</div>
+      <div class="dh-sub">All posting — nothing to record. Tonight's Smoke goes up at 7PM from Sunday's shoot.</div>
     </div>
   </div>
 </div>
 
-<!-- ════════════════ THURSDAY ════════════════ -->
-<div class="day-section" id="day-thu" data-day="thu">
-  <div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
-  <div class="day-header">
-    <div class="dh-inner">
-      <div class="dh-name">THU</div>
-      <div class="dh-content">
-        <div class="dh-label">Day Five · Thursday</div>
-        <div class="dh-title">Major Upload Day + Film DR #2 + Veteran #2 · Just Watch Me Posts</div>
-        <div class="dh-sub">Upload: Ashes & Escrows · Just Watch Me · YouTube Short · Cigar Video · Film: DR #2 + Veteran #2 · Post: Google Biz · Nextdoor · LinkedIn</div>
-      </div>
+<!-- OUTPUT 1 — SUBSTACK OPERATOR LIFE -->
+<div class="content-card" data-day="mon">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">7:00 AM · Publish · Substack @itsmyash</div>
+      <div class="cc-title">Output 1 — Substack · Operator Life Article</div>
+      <div class="cc-platform">The Lifestyle Market Letter · 600-900 words · Monday</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">Substack</span>
+      <span class="badge b-goal-follow">Grow Following</span>
     </div>
   </div>
-
-  <div class="recording-alert">
-    <div class="ra-icon">🎥</div>
-    <div>
-      <div class="ra-text">Film Block · Thursday</div>
-      <div class="ra-sub">DR Video #2 EN (under 60 sec) → DR Video #2 ES immediately after · Veteran Video #2 (10 min) · @its.myash Talking Head if not filmed Wed · ~45 min total</div>
+  <div class="cc-body">
+    <div class="cs-label">Title + Subtitle</div>
+    <div class="caption-block">
+      <strong>The Man Who Wanted Illegal Cigars (And What That Taught Me About Running a Business)</strong><br><br>
+      When your customers want something you literally cannot give them — and what you do next.
     </div>
-  </div>
+    <div class="cs-label">Full Article (paste-ready)</div>
+    <div class="script-block">He walked in confident. Like he already knew what he wanted.
 
-  <div class="content-card" data-day="thu">
-    <div class="cc-header cc-header-burg">
-      <div class="cc-left">
-        <div class="cc-time">12:00 PM · Upload Now</div>
-        <div class="cc-title">🎬 Ashes & Escrows — Upload</div>
-        <div class="cc-platform">YouTube @AlexaSanchezRealtor · recorded Tue or Wed</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-realtor">YouTube</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Upload Checklist</div>
-      <div class="cs-content">✓ Title from Output 6<br>✓ Description from Output 6<br>✓ Thumbnail from Output 6 direction<br>✓ Tags: Ashes & Escrows + topic + Pocono Mountains + PA License #RS326383</div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
+I welcomed him, pointed toward the humidor. He walked the perimeter with the energy of a man on a very specific mission.
 
-  <div class="content-card" data-day="thu">
-    <div class="cc-header cc-header-burg">
-      <div class="cc-left">
-        <div class="cc-time">9:00 AM · Upload Now</div>
-        <div class="cc-title">🏍 Just Watch Me — TikTok Upload</div>
-        <div class="cc-platform">TikTok @itsmyash · filmed Wednesday</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-myash">@its.myash</span>
-        <span class="badge b-goal-follow">Grow Following</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Upload Notes</div>
-      <div class="cs-content">✓ Native TikTok upload — no watermark<br>✓ Caption from Wednesday's filming notes<br>✓ #JustWatchMe #MotoLife #LearningToRide #OperatorLife #LifeByAlexa<br>✓ TikTok is stagnant — this series is the fix. Be consistent.</div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
+"Do you have real Cubans?" he asked.
 
-  <div class="content-card" data-day="thu">
-    <div class="cc-header cc-header-navy">
-      <div class="cc-left">
-        <div class="cc-time">12:00 PM · Upload Now</div>
-        <div class="cc-title">▶ YouTube Short + IG Reel — Upload</div>
-        <div class="cc-platform">YouTube Short + IG @alexa.realtor · filmed Wednesday</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-realtor">@alexa.realtor</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Script + Direction</div>
-      <div class="script-block"><span class="note">// Pull from Output 7 · YouTube Short + IG Reel
-// Under 60 sec · sharpest insight from hub video · punchy · no intro needed</span></div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
+I pointed to the Cohiba Blue Label. The Romeo and Julieta. Good cigars. Dominican made. Premium product.
 
-  <div class="content-card" data-day="thu">
-    <div class="cc-header cc-header-veteran">
-      <div class="cc-left">
-        <div class="cc-time">12:00 PM · Post Now</div>
-        <div class="cc-title">🪖 Veteran Post #2 — DR Market or VA Loan (Bilingual)</div>
-        <div class="cc-platform">IG + LinkedIn @alexa.realtor · educational · bilingual when DR angle</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-veteran">Veteran</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Script / Caption</div>
-      <div class="script-block"><span class="note">// Pull from Output 18 · DR Veteran Content
-// Topics rotate: Law 171-07 residency · CONFOTUR · VA benefits in DR · FMP healthcare · Scotiabank DR USD mortgages
-// Bilingual when DR angle — EN + ES versions</span></div>
-      <div class="cs-label">Rules</div>
-      <div class="cs-content">✓ Educational only — no personal veteran narrative<br>
-      ✓ PA License #RS326383 · Smart Way America Realty · (570) 688-8147 in all content<br>
-      ✓ "VA loan does NOT work in DR" — redirect to CONFOTUR + Scotiabank if asked</div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
+He shook his head. "No. Real Cubans."
 
-  <div class="content-card" data-day="thu">
-    <div class="cc-header cc-header-green">
-      <div class="cc-left">
-        <div class="cc-time">9:00 AM · Post Now</div>
-        <div class="cc-title">📍 Google Business — Local Insight + Veteran Thursday</div>
-        <div class="cc-platform">Google Business Profile · STR tip or zoning insight</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-realtor">Google Biz</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Post Copy</div>
-      <div class="caption-block">
-        DR-based veterans — the VA Foreign Medical Program changes in July 2026. 
+Here's where I had a choice. I could have smiled awkwardly and said "unfortunately not." I could have gotten defensive. I could have launched into a ten-minute explanation of American trade law.
 
-New claims system. Providers may need an FTIN + VA Form 10-489 for direct deposit. 
+I chose the third option. Not because it was the smartest, but because it was honest.
 
-If you're already there or planning your move — get ahead of it now. Visit va.gov/fmp.
+"Sir, Cuban cigars cannot be sold commercially in the United States. What you're asking for is not something I can legally provide."
 
-Your service-connected coverage travels with you. The paperwork should not be a surprise.
+He looked at me like I had five heads. Five heads, a briefcase, and a PhD in disappointment.
 
-📞 (570) 688-8147 | PA License #RS326383 · Smart Way America Realty<br><br><span class="hashtags">#VeteranRealEstate #DominicanRepublic #VABenefits #MilitaryRealEstate #LifeByAlexa</span>
-      </div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
+Apparently, he only smokes "real" Cubans. And he said it with the conviction of a man who has never read the Trading with the Enemy Act of 1917.
 
-  <div class="content-card" data-day="thu">
-    <div class="cc-header cc-header-green">
-      <div class="cc-left">
-        <div class="cc-time">10:00 AM · Post Now</div>
-        <div class="cc-title">🏘 Nextdoor — Community Roundup</div>
-        <div class="cc-platform">Nextdoor · community intel · not a listing pitch</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-realtor">Nextdoor</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Post Copy</div>
-      <div class="caption-block">
-        [Pull from Output 15 · Thursday Nextdoor Community Roundup]<br><br>
-        Alexa, (570) 688-8147 — questions about the market, happy to help.
-      </div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
+This is the operator life.
 
-  <div class="content-card" data-day="thu">
-    <div class="cc-header cc-header-burg">
-      <div class="cc-left">
-        <div class="cc-time">6:00 PM · Upload Now</div>
-        <div class="cc-title">🍂 Cigar/Lounge Video — Upload</div>
-        <div class="cc-platform">IG + TikTok @its.myash · filmed Wednesday</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-myash">@its.myash</span>
-        <span class="badge b-goal-sales">Drive Sales</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Script Reference</div>
-      <div class="script-block"><span class="note">Luxury is not the leather chair. It's not the aged rum on the shelf. It's not even the cigar — although the cigar matters a lot.
+Not every customer knows what's possible. Not every patron knows the rules. And not every person who walks through your door is ready to hear the answer to the question they're actually asking.
 
-Luxury is the air.
+Here's what I've learned after running Nell's Social:
 
-If you walk into a lounge and the retrohale tastes flat — if your clothes smell like a bonfire when you leave — if there's a visible haze at eye level by 8pm — that lounge failed before you even lit up.
+Your job is not to give people exactly what they want. Your job is to give them the best version of what's actually available — and make them glad they chose it.
 
-The PCA just surveyed operators across the country. You know what they said they needed the most help with? Ventilation systems.
+That man wanted an illegal Cuban. I cannot give him that. What I can give him is a world-class Dominican cigar from one of the finest tobacco-producing regions on the planet. Cohiba Blue Label is not a consolation prize. It's a premium product with a story, a flavor profile, and a legacy.
 
-Five-second lounge quality test: Can you taste your retrohale clearly? Can you see through the room? Do you leave smelling like you were there — or like you lived there?
+The real lesson isn't about cigars.
 
-The answer tells you everything about whether the operator respects the experience or just the Instagram.
+It's about managing expectations while holding your ground.
 
-I'm Ash. And Nell's Social has the air right. Come check for yourself.
-#LifeByAlexa
+I didn't apologize for not carrying something I legally cannot carry. I didn't pretend the rules don't exist to make a sale. And I didn't collapse under the weight of his disappointment.
 
-Caption: Most cigar lounges smell fine when you walk in. 🤔 Give it two hours. The real test is the retrohale. #CigarLife #CigarAuthority #NellsSocial #OperatorLife #LifeByAlexa</span></div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
+I explained. Calmly. With conviction.
+
+And then I suggested something excellent.
+
+That's the operator move. Not capitulation. Not defensiveness. Just clarity — and a redirect to something better.
+
+He bought the Cohiba Blue Label.
+
+He didn't look happy about it. But he bought it.
+
+And that, my friends, is a Tuesday at Nell's Social.
+
+There's no real free time in this life. I've stopped expecting it. Instead, I make time — and lately that looks like cleaning my house late at night with music on, riding my motorcycle on a Sunday morning, and sitting with a good cigar before the week picks back up.
+
+The operator life isn't for everyone. But for those of us who chose it, the chaos is the point.
+
+See you next week. — Alexa</div>
+
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
     </div>
   </div>
 </div>
 
-<!-- ════════════════ FRIDAY ════════════════ -->
-<div class="day-section" id="day-fri" data-day="fri">
-  <div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
-  <div class="day-header">
-    <div class="dh-inner">
-      <div class="dh-name">FRI</div>
-      <div class="dh-content">
-        <div class="dh-label">Day Six · Friday</div>
-        <div class="dh-title">DR Video #2 Upload · Coffee for the Leaf · Veteran LinkedIn · Weekend Smoke · DR IG Reel</div>
-        <div class="dh-sub">All uploads and posting — nothing to film today unless catch-up needed</div>
-      </div>
+<!-- OUTPUT 11 — BTS TIKTOK Q1 -->
+<div class="content-card" data-day="mon">
+  <div class="cc-header cc-header-burg">
+    <div class="cc-left">
+      <div class="cc-time">9:00 AM · Post · @itsmyash TikTok</div>
+      <div class="cc-title">Output 11 — BTS TikTok · Q1 Answer (Cuban Story)</div>
+      <div class="cc-platform">@itsmyash TikTok · Talking head at lounge · Max 3 hashtags</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">@its.myash</span>
+      <span class="badge b-goal-follow">Grow Following</span>
     </div>
   </div>
+  <div class="cc-body">
+    <div class="cs-label">Script</div>
+    <div class="script-block"><span class="hook">A man walked into the lounge asking for real Cuban cigars.
+I pointed him to Cohiba Blue Label. Romeo and Julieta.</span>
+<span class="beat">He said — and I quote — No, the REAL Cubans.
+Sir. Those are illegal to sell commercially in the United States.
+He looked at me like I had five heads.</span>
+<span class="cta">Apparently he only smokes "real" Cubans.
+Sir, I cannot commit federal import violations for your vibe.
+Welcome to America. Here's your Cohiba Blue Label. It's delicious. Sit down.</span></div>
 
-  <div class="content-card" data-day="fri">
-    <div class="cc-header cc-header-spanish">
-      <div class="cc-left">
-        <div class="cc-time">10:00 AM · Upload Now</div>
-        <div class="cc-title">🌴 DR Video #2 — Upload EN + ES</div>
-        <div class="cc-platform">YouTube @AlexaSanchezRealtor · Both playlists · filmed Thursday</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-spanish">DR Video</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+When a customer asks for illegal cigars and you have to explain American commerce law before 6pm. 😭
+<div class="hashtags">#LifeByAlexa #CigarLounge #NellsSocial</div>
     </div>
-    <div class="cc-body">
-      <div class="cs-label">Upload Checklist</div>
-      <div class="cs-content">✓ English version → main playlist<br>
-      ✓ Spanish version → En Español playlist<br>
-      ✓ Descriptions from Output 8 (Video #2 version)<br>
-      ✓ 2 DR videos live this week — double the output, same filming time</div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
+    <div class="cs-label">Video Direction</div>
+    <div class="image-block">
+      <div class="img-label">Shoot Notes</div>
+      Talking head at the lounge. Deadpan delivery. Quick cuts for comedic timing. Text overlay on key punchlines. Natural lounge lighting. One take is fine — the stumbles are part of it.
     </div>
-  </div>
-
-  <div class="content-card" data-day="fri">
-    <div class="cc-header cc-header-spanish">
-      <div class="cc-left">
-        <div class="cc-time">11:00 AM · Post Now</div>
-        <div class="cc-title">🇩🇴 DR IG Reel — Spanish (teaser from Video #2)</div>
-        <div class="cc-platform">IG @alexa.realtor · native cut · not just the YouTube clip</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-spanish">En Español</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Notes</div>
-      <div class="cs-content">Pull the sharpest 15–30 seconds from DR Video #2. Re-cut for IG — don't just repost the YouTube clip. Add text overlay with the key stat or hook. DR Spanish caption.</div>
-      <div class="cs-label">Caption</div>
-      <div class="caption-block">
-        Before the first draw — there's the first sip. ☕🍃
-
-This Friday: House Blend + a Maduro wrapper. 
-
-The coffee cuts through the earthiness. The Maduro brings it back. 
-It's a full conversation between two things that were both grown in the ground and took their time getting here.
-
-Filler & Roast. Exclusively at Nell's Social.
-
-#FillerAndRoast #CigarAndCoffee #SpecialtyCoffee #CoffeeAndCigars #NellsSocial #LifeByAlexa
-      </div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="content-card" data-day="fri">
-    <div class="cc-header cc-header-veteran">
-      <div class="cc-left">
-        <div class="cc-time">8:00 AM · Post Now</div>
-        <div class="cc-title">🪖 LinkedIn — Veteran Post</div>
-        <div class="cc-platform">LinkedIn @alexa.realtor · Post 3/3 · Educational · clean authority voice</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-veteran">Veteran</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Caption</div>
-      <div class="script-block"><span class="note">// Pull from Output 19 · Friday LinkedIn Veteran Post
-// Educational. Clean. Authority voice. No personal narrative.
-// Always include: PA License #RS326383 · Smart Way America Realty · (570) 688-8147</span></div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="content-card" data-day="fri">
-    <div class="cc-header cc-header-green">
-      <div class="cc-left">
-        <div class="cc-time">9:00 AM · Post Now</div>
-        <div class="cc-title">☕ Coffee for the Leaf</div>
-        <div class="cc-platform">IG + TikTok + YT Short @fillerandroast · different edits per platform</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-fnr">@fillerandroast</span>
-        <span class="badge b-goal-sales">Drive Sales</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">IG Caption</div>
-      <div class="caption-block">
-        PA veterans: the Property Tax/Rent Rebate deadline was extended to December 31, 2026.
-
-This applies to 2025 property taxes and rent. Income limit: $48,110. Maximum standard rebate: $1,000.
-
-Eligible households include seniors, disabled homeowners, and qualifying veterans on fixed income.
-
-If you or someone you work with fits this profile — don't assume the window passed. It didn't.
-
-Check eligibility at pa.gov or reach out directly. I build this into every veteran buyer and seller conversation.
-
-PA License #RS326383 · Smart Way America Realty · (570) 688-8147<br><br><span class="hashtags">#VeteranHomebuyer #PARealEstate #VALoan #VeteranRealEstate</span>
-      </div>
-      <div class="cs-label">Image Direction</div>
-      <div class="image-block">
-        <div class="img-label">Visual</div>
-        Coffee and cigar in the same frame. Moody. Warm light. No logos unless organic. Filler & Roast bag or cup if available. Pairing angle — the ritual, not the product.
-      </div>
-      <div class="cs-label">Pairings Reference</div>
-      <div class="cs-content">House Blend → Maduro pairing<br>
-      Butter Pecan → Connecticut pairing<br>
-      Amaretto → evening/lounge pairing</div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="content-card" data-day="fri">
-    <div class="cc-header cc-header-burg">
-      <div class="cc-left">
-        <div class="cc-time">6:00 PM · Post Now</div>
-        <div class="cc-title">🥃 Weekend Smoke — Reel</div>
-        <div class="cc-platform">IG @its.myash · filmed Wednesday</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-myash">@its.myash</span>
-        <span class="badge b-goal-sales">Drive Sales</span>
-      </div>
-    </div>
-    <div class="cc-body">
-      <div class="cs-label">Caption</div>
-      <div class="caption-block">
-        [Weekend smoke hook — pull from Output 14 · Friday Weekend Smoke Reel]<br><br>
-        #CigarLife #WeekendSmoke #NellsSocial #OperatorLife #LifeByAlexa
-      </div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
     </div>
   </div>
 </div>
 
-<!-- ════════════════ SATURDAY ════════════════ -->
-<div class="day-section" id="day-sat" data-day="sat">
-  <div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
-  <div class="day-header">
-    <div class="dh-inner">
-      <div class="dh-name">SAT</div>
-      <div class="dh-content">
-        <div class="dh-label">Day Seven · Saturday</div>
-        <div class="dh-title">Spanish IG · Google Business · Nextdoor · @its.myash Talking Head · @life.byalexa</div>
-        <div class="dh-sub">All posting. Week closes out. Nothing heavy — scheduled and done.</div>
-      </div>
+<!-- OUTPUT 15 — LINKEDIN MARKET SIGNAL -->
+<div class="content-card" data-day="mon">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">8:00 AM · Post · LinkedIn @alexa.realtor</div>
+      <div class="cc-title">Output 15 — LinkedIn Market Signal · Post 1/3</div>
+      <div class="cc-platform">LinkedIn · authority voice · data-led · license required</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">@alexa.realtor</span>
+      <span class="badge b-goal-leads">RE Leads</span>
     </div>
   </div>
+  <div class="cc-body">
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+Monroe County, PA — market snapshot for the week of June 7, 2026:
 
-  <div class="content-card" data-day="sat">
-    <div class="cc-header cc-header-spanish">
-      <div class="cc-left">
-        <div class="cc-time">10:00 AM · Post Now — PRIORITY</div>
-        <div class="cc-title">🇪🇸 Spanish IG Post — Real Estate (PA or DR)</div>
-        <div class="cc-platform">IG @alexa.realtor · Post 4/4</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-spanish">En Español</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
+Median sale price: $364,000 (+18% YOY)
+Days on market: ~49 days
+Rates: 30-yr fixed ~6.48–6.52%
+VA rate: ~5.75–5.92% (still 40–50 bps cheaper than conventional)
+
+The May jobs report added 172K jobs. Fed rate cuts? Not happening soon.
+
+What that means for sellers: rates are stable, not dropping. Buyers have adjusted to this reality. The competition is coming — active listings are at their highest since 2020. If you're thinking about listing in Monroe County this summer, the window is now, not later.
+
+Questions? Call or text (570) 688-8147.
+
+Alexa Sanchez | PA License #RS326383 | Smart Way America Realty
+<div class="hashtags">#PoconoRealEstate #MonroeCounty #RealEstateInvesting #LifeByAlexa</div>
     </div>
-    <div class="cc-body">
-      <div class="cs-label">Caption</div>
-      <div class="caption-block">
-        ¿Sabías que en Pensilvania extendieron el plazo para el reembolso de impuestos de propiedad hasta el 31 de diciembre? 🏠
-
-Si eres veterano, adulto mayor, o tienes ingresos fijos — puede haber hasta $1,000 esperándote.
-
-Y si estás pensando en comprar o vender en los Poconos este verano — el mercado está activo. Los números están de tu lado si sabes leerlos.
-
-Yo te los explico. 📞 (570) 688-8147
-PA License #RS326383 · Smart Way America Realty<br><br><span class="hashtags">#BienesRaices #PoconoMountains #InversionesEnPoconos #PARealEstate #LifeByAlexa</span>
-      </div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
     </div>
   </div>
+</div>
 
-  <div class="content-card" data-day="sat">
-    <div class="cc-header cc-header-green">
-      <div class="cc-left">
-        <div class="cc-time">10:00 AM · Post Now</div>
-        <div class="cc-title">📍 Google Business — Community/Lifestyle Saturday</div>
-        <div class="cc-platform">Google Business Profile · lifestyle angle · tie to real estate demand</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-realtor">Google Biz</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
+<!-- GBP MONDAY -->
+<div class="content-card" data-day="mon">
+  <div class="cc-header cc-header-green">
+    <div class="cc-left">
+      <div class="cc-time">9:00 AM · Post · Google Business Profile</div>
+      <div class="cc-title">Output 15 — GBP Market Update · Monday</div>
+      <div class="cc-platform">No hashtags · No client names · Phone + license required</div>
     </div>
-    <div class="cc-body">
-      <div class="cs-label">Post Copy</div>
-      <div class="caption-block">
-        June in the Poconos hits different. 🏔️
-
-Longer days. Lakes warming up. Trails open. The kind of weekend that makes you wonder why you're still renting somewhere else.
-
-The buyers who own here didn't stumble into it — they made a decision and moved on it. The ones who waited are still watching listing prices.
-
-Thinking about what your Pocono property is worth right now? Or what you can actually buy?
-
-Let's talk — no pressure, just numbers.
-
-📞 (570) 688-8147 | Free home valuation
-PA License #RS326383 · Smart Way America Realty<br><br>📞 (570) 688-8147 | Free home valuation — no pressure, just data<br>PA License #RS326383 · Smart Way America Realty
-      </div>
-      <div class="cs-label">Angles</div>
-      <div class="cs-content">Seasonal event · local business spotlight · "Living in the Poconos" hook · Memorial Day/Labor Day/Ski Season tie-ins · Always connect lifestyle to real estate demand in the last line.</div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">Google Biz</span>
+      <span class="badge b-goal-leads">RE Leads</span>
     </div>
   </div>
+  <div class="cc-body">
+    <div class="cs-label">Post Copy (paste-ready)</div>
+    <div class="caption-block">
+Monroe County Market Update — Week of June 7, 2026
 
-  <div class="content-card" data-day="sat">
-    <div class="cc-header cc-header-green">
-      <div class="cc-left">
-        <div class="cc-time">10:00 AM · Post Now</div>
-        <div class="cc-title">🏡 Nextdoor — Weekend Market Tip or STR Insight</div>
-        <div class="cc-platform">Nextdoor</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-realtor">Nextdoor</span>
-        <span class="badge b-goal-leads">RE Leads</span>
-      </div>
+Median sale price in Monroe County is holding strong at $364,000, up 18% year over year. Homes are averaging about 49 days on market. The 30-year fixed rate is near 6.48–6.52% this week.
+
+Inventory is rising nationally — sellers who list now have less competition than those who wait until fall.
+
+Thinking about selling your Monroe County home this summer? Let's talk strategy.
+
+📞 (570) 688-8147 | Alexa@alexasanchez.net
+PA License #RS326383 | Smart Way America Realty
     </div>
-    <div class="cc-body">
-      <div class="cs-label">Post Copy</div>
-      <div class="caption-block">
-        [Pull from Output 15 · Saturday Nextdoor · Weekend Market Tip]<br><br>
-        Questions? Alexa, (570) 688-8147
-      </div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
     </div>
   </div>
+</div>
 
-  <div class="content-card" data-day="sat">
-    <div class="cc-header cc-header-burg">
-      <div class="cc-left">
-        <div class="cc-time">12:00 PM · Upload Now</div>
-        <div class="cc-title">@its.myash Talking Head — Upload</div>
-        <div class="cc-platform">IG Reel @its.myash · filmed Thursday · Nell's Social energy</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-myash">@its.myash</span>
-        <span class="badge b-goal-sales">Drive Sales</span>
-      </div>
+<!-- FB PERSONAL MONDAY -->
+<div class="content-card" data-day="mon">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">10:00 AM · Post · Personal Facebook</div>
+      <div class="cc-title">Output 15 — Personal Facebook Real Estate Insight</div>
+      <div class="cc-platform">Personal Facebook · community voice · no hashtags</div>
     </div>
-    <div class="cc-body">
-      <div class="cs-label">Script Reference</div>
-      <div class="script-block"><span class="note">It's the weekend. The week had a lot of words in it.
-
-This doesn't.
-
-Find your chair. Find your lighter. Pick the one that takes a minute to think about.
-
-That's the whole plan.
-
-See you at Nell's. 🍂
-
-Caption: Weekend. Cigar. No agenda. That's it. That's the post. 🍂 #CigarLife #NellsSocial #WeekendVibes #LifeByAlexa</span></div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">Personal FB</span>
+      <span class="badge b-goal-leads">RE Leads</span>
     </div>
   </div>
+  <div class="cc-body">
+    <div class="cs-label">Post Copy (paste-ready)</div>
+    <div class="caption-block">
+Hey Pocono community — quick market check for my friends and neighbors here.
 
-  <div class="content-card" data-day="sat">
-    <div class="cc-header" style="background:#2A0A4A;">
-      <div class="cc-left">
-        <div class="cc-time">12:00 PM · Post Now</div>
-        <div class="cc-title">@life.byalexa — Weekend Operator Life</div>
-        <div class="cc-platform">IG @life.byalexa · personal · no RE pitch</div>
-      </div>
-      <div class="cc-badges">
-        <span class="badge b-life">@life.byalexa</span>
-        <span class="badge b-goal-follow">Grow Following</span>
-      </div>
+Monroe County homes are selling at a median of $364,000 right now — that's up 18% from last year. Rates are sitting in the mid-6s and are expected to stay there (sorry, the Fed isn't cutting anytime soon based on May's jobs numbers).
+
+If you've been thinking about selling — this summer window is real. Inventory is climbing. More homes = more competition for your listing. Earlier is better.
+
+I'm always happy to answer questions! Reach me at (570) 688-8147 or Alexa@alexasanchez.net.
+PA License #RS326383 | Smart Way America Realty
     </div>
-    <div class="cc-body">
-      <div class="cs-label">Caption</div>
-      <div class="caption-block">
-        [BTS Q3 answer or personal weekend moment. What nobody talks about. 2–3 lines. Bronx voice. Real.]<br><br>
-        #LifeByAlexa
-      </div>
-      <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
-        <div class="done-check"></div>
-        <div class="done-label">Mark Complete</div>
-      </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
     </div>
   </div>
+</div>
+
+<!-- TONIGHT'S SMOKE POST -->
+<div class="content-card" data-day="mon">
+  <div class="cc-header cc-header-burg">
+    <div class="cc-left">
+      <div class="cc-time">7:00 PM · Post · IG @its.myash</div>
+      <div class="cc-title">Tonight's Smoke Carousel · Post (shot Sunday)</div>
+      <div class="cc-platform">@its.myash Instagram · 4-6 slides from Sunday shoot</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">@its.myash</span>
+      <span class="badge b-goal-sales">Drive Sales</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Post Checklist</div>
+    <div class="cs-content">✓ 4–6 slides from Sunday shoot<br>✓ Caption from Sunday's shoot notes + cigar name filled in<br>✓ Tag @nellssocial if at the lounge<br>✓ #CigarLife #PremiumCigars #NellsSocial #OperatorLife #LifeByAlexa</div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════ TUESDAY ═══════════════════════ -->
+<div class="day-section hidden" id="day-tue" data-day="tue">
+<div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
+<div class="day-header">
+  <div class="dh-inner">
+    <div class="dh-name">TUE</div>
+    <div class="dh-content">
+      <div class="dh-label">Day Three · Tuesday June 10</div>
+      <div class="dh-title">Ashes &amp; Escrows Record · Car Confessions · DR Video Film · Veteran Post · Nextdoor</div>
+      <div class="dh-sub">Record: Ashes &amp; Escrows (60 sec) · Car Confession EN 3PM · Car Confession ES 3:30PM · Film DR Video EN+ES · Upload Ashes same day or Wed AM</div>
+    </div>
+  </div>
+</div>
+<div class="recording-alert">
+  <div class="ra-icon">🎥</div>
+  <div>
+    <div class="ra-text">Film Block · Tuesday</div>
+    <div class="ra-sub">Ashes &amp; Escrows (one take, under 60 sec, cigar in hand) → Car Confession EN → Car Confession ES → DR Video EN → DR Video ES · ~30 min total · Ashes uploads Tue or Wed AM · DR uploads Friday</div>
+  </div>
+</div>
+
+<!-- OUTPUT 6 — ASHES & ESCROWS -->
+<div class="content-card" data-day="tue">
+  <div class="cc-header cc-header-burg">
+    <div class="cc-left">
+      <div class="cc-time">Record Tue · Upload Tue or Wed AM · YouTube</div>
+      <div class="cc-title">Output 6 — Ashes &amp; Escrows · The Overpriced Pocono Seller</div>
+      <div class="cc-platform">@AlexaSanchezRealtor YouTube · under 60 sec · one take · cigar in hand</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">YouTube</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Script (under 60 seconds)</div>
+    <div class="script-block"><span class="hook">Let's talk about the Monroe County seller who listed at $50K over market because — and I quote — "my neighbor got that in 2021."</span>
+
+<span class="beat">Sweetie. 2021 called. It wants its bidding wars back.
+
+We are in 2026. Three out of five homes nationally are selling below ask. And your Zillow Zestimate is not a comparable sale. It's a vibe.
+
+Meanwhile, your house has been sitting 90 days. You've had zero offers. You're now blaming "the market."
+
+The market is fine. Your price is the problem.
+
+Overpriced listings in Monroe County right now are basically haunted houses — people drive by, get scared, and keep going.</span>
+
+<span class="cta">Price it right. Sell it fast. Or don't call me. Your choice.
+
+I'm Alexa Sanchez. Smart Way America Realty. PA License #RS326383.
+This is Ashes &amp; Escrows — where we roast bad decisions alongside good cigars.</span></div>
+
+    <div class="cs-label">YouTube Caption (paste-ready)</div>
+    <div class="caption-block">
+This week on Ashes &amp; Escrows: the Pocono seller who priced their house like it's still 2021 and refuses to believe the data. We roast them with love. 🔥
+<div class="hashtags">#AshesAndEscrows #PoconoRealEstate #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Thumbnail Direction</div>
+    <div class="image-block">
+      <div class="img-label">Thumbnail</div>
+      Cartoon Alexa with a "seriously?" face, holding a cigar, with a price tag dangling: "$50K OVER MARKET 😂". Bold red text: "ASHES &amp; ESCROWS" at top. Dark background. Chunky font.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTPUT 12 — CAR CONFESSION EN -->
+<div class="content-card" data-day="tue">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">3:00 PM · Record + Post · @alexa.realtor IG</div>
+      <div class="cc-title">Output 12 — Car Confession · English</div>
+      <div class="cc-platform">@alexa.realtor Instagram · 20 sec max · in-car · Post 1/4</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">@alexa.realtor</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Script (20 sec max)</div>
+    <div class="script-block"><span class="hook">Real talk from my car.
+Monroe County home prices are up 18% year over year.
+But sellers are still overpricing.</span>
+<span class="beat">Three out of five homes sell below ask right now.
+Your house isn't special. Your pricing strategy should be.</span>
+<span class="cta">Call me before you make that mistake.
+(570) 688-8147. PA License #RS326383. Smart Way America Realty.</span></div>
+
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+Your house IS the market. Price it like you know that. 📞 (570) 688-8147 | PA #RS326383 | Smart Way America Realty
+<div class="hashtags">#PoconoRealEstate #CarConfession #RealEstateTips #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Cover Text Direction</div>
+    <div class="cover-block">
+      <div class="cv-label">Cover Text</div>
+      Neon green overlay: "18% UP YOY" — chunky tilted font. White text below: "but sellers still overprice 😭". Red accent bar at bottom with license/contact info. Face visible behind text.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTPUT 13 — CAR CONFESSION ES -->
+<div class="content-card" data-day="tue">
+  <div class="cc-header cc-header-spanish">
+    <div class="cc-left">
+      <div class="cc-time">3:30 PM · Record + Post · @alexa.realtor YouTube En Español</div>
+      <div class="cc-title">Output 13 — Car Confession · Spanish 🇩🇴</div>
+      <div class="cc-platform">@alexa.realtor YouTube En Español Playlist · Dominican Spanish · 20 sec max</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-spanish">En Español</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Script (Dominican Spanish, 20 sec)</div>
+    <div class="script-block"><span class="hook">Óyeme bien desde mi carro.
+Los precios en Monroe County subieron 18% comparado con el año pasado.
+Pero los vendedores siguen poniendo precios absurdos.</span>
+<span class="beat">Tres de cinco casas se venden por debajo del precio pedido.
+Tu casa no es la excepción. Tu estrategia de precio sí puede serlo.</span>
+<span class="cta">Llámame antes de cometer ese error.
+(570) 688-8147. Licencia PA #RS326383. Smart Way America Realty.</span></div>
+
+    <div class="cs-label">Caption (paste-ready, Spanish)</div>
+    <div class="caption-block">
+Tu casa ES el mercado, mi amor. Ponle precio como si lo supieras. 📞 (570) 688-8147 | Licencia PA #RS326383 | Smart Way America Realty
+<div class="hashtags">#BienesRaices #MercadoInmobiliario #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Cover Text Direction</div>
+    <div class="cover-block">
+      <div class="cv-label">Cover Text</div>
+      Neon green: "18% MÁS" — same tilted font. White: "pero los vendedores exageran 😭". Contact info at bottom.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- DR VIDEO FILM NOTE -->
+<div class="content-card" data-day="tue">
+  <div class="cc-header cc-header-spanish">
+    <div class="cc-left">
+      <div class="cc-time">Film Tuesday · Upload Friday · YouTube Both Playlists</div>
+      <div class="cc-title">Output 8 — DR Video · Film Day (EN + ES)</div>
+      <div class="cc-platform">Topic: How to get a mortgage in the DR using American financing</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-spanish">DR Video</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">English Script (under 60 sec)</div>
+    <div class="script-block"><span class="hook">Here's something most American buyers don't know about getting a mortgage in the Dominican Republic.
+
+You can use American financing.</span>
+
+<span class="beat">Scotiabank DR currently offers USD mortgages to foreign buyers — rates around 7.25–8% fixed, up to 70% loan to value, up to $1.5M.
+
+You'll need 20–30% down, documented US income, and good credit history.
+
+No DR credit history required. Your American income qualifies.
+
+Now add this: CONFOTUR properties eliminate the 3% transfer tax and give you up to 15 years of property tax exemption.
+
+So you're financing in dollars, saving on taxes, and buying in one of the strongest tourism markets in the Caribbean.</span>
+
+<span class="cta">Link in description for the full breakdown.
+I'm Alexa Sanchez. PA License #RS326383. Smart Way America Realty. And yes — I do DR real estate too.</span></div>
+
+    <div class="cs-label">Spanish Script (Dominican Spanish, under 60 sec)</div>
+    <div class="script-block"><span class="hook">Óyeme — ¿sabías que puedes conseguir una hipoteca en dólares para comprar en la República Dominicana?</span>
+
+<span class="beat">Scotiabank DR ofrece hipotecas en dólares a compradores extranjeros — tasas alrededor del 7.25–8% fijo, hasta el 70% del valor de la propiedad.
+
+Necesitas entre 20–30% de entrada, ingresos documentados en EE.UU., y buen historial crediticio.
+
+No necesitas historial crediticio dominicano. Tus ingresos americanos califican.
+
+Y si compras en un proyecto CONFOTUR — cero impuesto de transferencia y hasta 15 años sin pagar el IPI.</span>
+
+<span class="cta">El link está en la descripción para los detalles completos.
+Soy Alexa Sánchez. Licencia PA #RS326383. Smart Way America Realty.</span></div>
+
+    <div class="cs-label">Image Direction (both versions)</div>
+    <div class="image-block">
+      <div class="img-label">Thumbnail</div>
+      Split screen: left — DR beachfront condo/Cap Cana aerial. Right — dollar bills or mortgage document graphic. Cartoon Alexa in corner. Text overlay: "AMERICAN FINANCING IN THE DR 🇩🇴💰" in chunky bold font.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete — Filmed, upload Friday</div>
+    </div>
+  </div>
+</div>
+
+<!-- NEXTDOOR TUESDAY -->
+<div class="content-card" data-day="tue">
+  <div class="cc-header cc-header-green">
+    <div class="cc-left">
+      <div class="cc-time">9:00 AM · Post · Nextdoor</div>
+      <div class="cc-title">Output 15 — Nextdoor Neighborly Post</div>
+      <div class="cc-platform">Nextdoor · warm community voice · no hashtags · no listing pitch</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">Nextdoor</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Post Copy (paste-ready)</div>
+    <div class="caption-block">
+Hi neighbors! Quick Pocono market update for our community.
+
+Monroe County homes are selling at a median of $364,000 — up 18% from last year. Homes are moving in about 49 days on average. Rates are stable in the mid-6s.
+
+If you've been curious about what your home is worth in today's market, I offer free seller consultations. No pressure, just data.
+
+📞 (570) 688-8147 | Alexa@alexasanchez.net
+Alexa Sanchez | PA License #RS326383 | Smart Way America Realty
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════ WEDNESDAY ═══════════════════════ -->
+<div class="day-section hidden" id="day-wed" data-day="wed">
+<div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
+<div class="day-header">
+  <div class="dh-inner">
+    <div class="dh-name">WED</div>
+    <div class="dh-content">
+      <div class="dh-label">Day Four · Wednesday June 11</div>
+      <div class="dh-title">Main Record Day · BTS TikTok Q2 · Cigar Video · Talking Head · GBP · Under Contract · BTS IG</div>
+      <div class="dh-sub">Record: Cigar/Lounge Video · Talking Head · Weekend Smoke Reel · ~60 min total</div>
+    </div>
+  </div>
+</div>
+<div class="recording-alert">
+  <div class="ra-icon">🟡</div>
+  <div>
+    <div class="ra-text">Primary Recording Block · Wednesday · ~60 min</div>
+    <div class="ra-sub">Cigar/Lounge Video (Knicks watch party, under 60 sec) → Talking Head (DR cigars myth) → Weekend Smoke Reel → BTS Q2 TikTok. All upload Thursday 6PM (cigar) or stay as-is for posting.</div>
+  </div>
+</div>
+
+<!-- BTS TIKTOK Q2 -->
+<div class="content-card" data-day="wed">
+  <div class="cc-header cc-header-burg">
+    <div class="cc-left">
+      <div class="cc-time">6:00 PM · Post · @itsmyash TikTok</div>
+      <div class="cc-title">Output 11 — BTS TikTok · Q2 Answer (Adjusting to Patrons)</div>
+      <div class="cc-platform">@itsmyash TikTok · operator life · max 3 hashtags</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">@its.myash</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Script</div>
+    <div class="script-block"><span class="beat">Can we talk about how taxing it is to run a cigar lounge?
+Not the business itself — the constant adjusting to what people think they want.
+Someone wants Cubans. Illegal. Can't do it.
+Someone wants their drink with no ice but also cold. Sir.
+Someone wants a quiet corner but also wants to be social.</span>
+<span class="cta">This is the operator life.
+You adjust. Every. Single. Day.
+And somehow you still love it. Somehow.</span></div>
+
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+Nobody told me "adjusting to patrons" was a full-time personality trait. 😭
+<div class="hashtags">#LifeByAlexa #OperatorLife #NellsSocial</div>
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTPUT 9 — CIGAR VIDEO -->
+<div class="content-card" data-day="wed">
+  <div class="cc-header cc-header-burg">
+    <div class="cc-left">
+      <div class="cc-time">Record Wed · Upload Thursday 6:00 PM · IG + TikTok @its.myash</div>
+      <div class="cc-title">Output 9 — Cigar/Lounge Video · Knicks Watch Party</div>
+      <div class="cc-platform">@its.myash Instagram + @itsmyash TikTok · under 60 sec · authority voice</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">@its.myash</span>
+      <span class="badge b-goal-sales">Drive Sales</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Script (under 60 sec)</div>
+    <div class="script-block"><span class="hook">The Knicks are hot.
+And Nell's Social is where you watch.</span>
+<span class="beat">This isn't your living room couch with lukewarm beer.
+This is a leather seat, a premium smoke, and a room full of people who actually care about the game.
+We are hosting watch parties all playoff run.
+You bring yourself. We bring the atmosphere.
+First draw by tip-off. That's a personal rule.</span>
+<span class="cta">Nell's Social. Pocono Mountains.
+Come through before the seats fill up. Because they will fill up.</span></div>
+
+    <div class="cs-label">IG Caption (paste-ready)</div>
+    <div class="caption-block">
+The Knicks are running. Nell's Social is watching. 🏀🍃 Watch parties live every game. Premium seating. Better cigars. Actual vibes. Don't watch from home.
+<div class="hashtags">#NellsSocial #KnicksNation #CigarLounge #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">TikTok Caption</div>
+    <div class="caption-block">
+POV: you chose the right lounge for the Knicks run 🏀🍃
+<div class="hashtags">#NellsSocial #CigarLife #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Video Direction</div>
+    <div class="image-block">
+      <div class="img-label">Shot Direction</div>
+      Wide shot of lounge interior with TV visible showing basketball. Warm amber lighting. Cigars on the table in foreground, crowd energy mid-game in background. Text overlay: "GAME NIGHT AT NELL'S SOCIAL" chunky font.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTPUT 10 — TALKING HEAD -->
+<div class="content-card" data-day="wed">
+  <div class="cc-header cc-header-burg">
+    <div class="cc-left">
+      <div class="cc-time">Record Wed · Post Wed · IG + TikTok @its.myash</div>
+      <div class="cc-title">Output 10 — Talking Head · Dominican Cigars Myth</div>
+      <div class="cc-platform">@its.myash Instagram + @itsmyash TikTok · 30–90 sec · one clear point</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">@its.myash</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Script (30–90 sec)</div>
+    <div class="script-block"><span class="hook">Let me tell you something about Dominican cigars that the internet keeps getting wrong.
+
+"Dominican cigars are mild. For beginners."
+
+That is a stereotype. Not a fact.</span>
+
+<span class="beat">A mild Dominican cigar exists because of blend decisions. Not because the island can't grow strong tobacco.
+
+Davidoff just brought back their Puro Dominicano line for 2026. Drew Estate launched the Undercrown El Tigre Dominicano.
+
+These are not beginner cigars. These are statement cigars.
+
+The Dominican Republic grows a full spectrum — from elegant and creamy to legitimately full-bodied and complex.
+
+Where the tobacco comes from is not the story.
+
+What the blender decided to do with it — that's the story.</span>
+
+<span class="cta">Learn the difference before you talk about it on the internet.
+That's all.</span></div>
+
+    <div class="cs-label">IG Caption (paste-ready)</div>
+    <div class="caption-block">
+"Dominican cigars are mild" — a rumor started by people who've smoked one brand and made it a whole personality. DR produces the full spectrum. Let me prove it. 🇩🇴🍃
+<div class="hashtags">#DominicanCigars #CigarAuthority #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">TikTok Caption</div>
+    <div class="caption-block">
+Stop calling DR cigars beginner cigars. The internet is wrong and I will explain. 🇩🇴
+<div class="hashtags">#CigarLife #DominicanCigars #LifeByAlexa</div>
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTPUT 14 — BTS IG WED -->
+<div class="content-card" data-day="wed">
+  <div class="cc-header cc-header-burg">
+    <div class="cc-left">
+      <div class="cc-time">2:00 PM · Post · @its.myash Instagram</div>
+      <div class="cc-title">Output 14 — BTS IG · Wednesday Operator Moment</div>
+      <div class="cc-platform">@its.myash Instagram · real moment · not posed · max 3 hashtags</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">@its.myash</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+Somewhere between "adjust to patrons" and "find peace" is where I live. The operator life is glamorous. And by glamorous I mean chaotic and I love it.
+<div class="hashtags">#LifeByAlexa #OperatorLife #BehindTheBrands</div>
+    </div>
+    <div class="cs-label">Image Direction</div>
+    <div class="image-block">
+      <div class="img-label">Shot Direction</div>
+      Casual shot of Alexa at the lounge bar or behind the humidor, mid-motion — arranging cigars, or looking at phone with a tired-but-smiling expression. Real moment, not posed.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- GBP WEDNESDAY -->
+<div class="content-card" data-day="wed">
+  <div class="cc-header cc-header-green">
+    <div class="cc-left">
+      <div class="cc-time">9:00 AM · Post · Google Business Profile</div>
+      <div class="cc-title">Output 15 — GBP Listing Feature · Wednesday</div>
+      <div class="cc-platform">No hashtags · Town + property type only · Full contact required</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">Google Biz</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Post Copy (paste-ready — customize with active listing)</div>
+    <div class="caption-block">
+Listing Feature — Monroe County, PA
+
+Well-maintained single-family home in the Pocono Mountains area. Priced competitively in today's market with strong local short-term rental demand making this a compelling vacation rental opportunity.
+
+Monroe County homes are moving at a median of $364,000 — up 18% year over year. If you've been curious about what your property is worth, let's connect.
+
+📞 (570) 688-8147 | Alexa@alexasanchez.net
+PA License #RS326383 | Smart Way America Realty
+    </div>
+    <div class="note-block">Replace with active listing detail before posting. Town + property type only — no full address, no client name.</div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- UNDER CONTRACT STORY -->
+<div class="content-card" data-day="wed">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">11:00 AM · Post Story · @alexa.realtor IG</div>
+      <div class="cc-title">Output 15 — Under Contract Story · IG Post 2/4</div>
+      <div class="cc-platform">@alexa.realtor Instagram Story · victory graphic</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">@alexa.realtor</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+UNDER CONTRACT 🎉
+Another one closed before summer. Correct pricing + strong presentation = results.
+Thinking about selling? Let's talk.
+📞 (570) 688-8147 | PA #RS326383 | Smart Way America Realty
+<div class="hashtags">#PoconoRealEstate #UnderContract #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Image Direction</div>
+    <div class="image-block">
+      <div class="img-label">Graphic</div>
+      Bold "UNDER CONTRACT" graphic with cartoon Alexa doing a victory pose. Property town + type in small text below. Brand colors: dark navy + neon green accent. No address, no client name.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════ THURSDAY ═══════════════════════ -->
+<div class="day-section hidden" id="day-thu" data-day="thu">
+<div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
+<div class="day-header">
+  <div class="dh-inner">
+    <div class="dh-name">THU</div>
+    <div class="dh-content">
+      <div class="dh-label">Day Five · Thursday June 12</div>
+      <div class="dh-title">Major Upload Day · YouTube Short · Ashes Upload · Veteran Reel · LinkedIn · GBP · Nextdoor · Substack</div>
+      <div class="dh-sub">Upload: YouTube Short + IG Reel · Ashes &amp; Escrows · Cigar Video. Post: Veteran Reel · LinkedIn Operator · GBP · Nextdoor. Publish: Thursday Substack.</div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTPUT 7 — YOUTUBE SHORT + IG REEL -->
+<div class="content-card" data-day="thu">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">Thursday Upload · YouTube Shorts + IG Reel @alexa.realtor</div>
+      <div class="cc-title">Output 7 — YouTube Short + IG Reel · Inventory Warning</div>
+      <div class="cc-platform">@AlexaSanchezRealtor YouTube Shorts + @alexa.realtor IG Reel · under 60 sec</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">@alexa.realtor</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Script (under 60 sec)</div>
+    <div class="script-block"><span class="hook">Monroe County sellers — here's the one stat that should make you list NOW.
+
+Active listings are at their highest since 2020.</span>
+
+<span class="beat">That means every week you wait, another house joins your competition.
+
+The buyers are there. VA rates are at 5.92%. Conventional is 6.48%.
+
+Monroe County median is $364,000, up 18% year over year.
+
+The window is open. Summer buyers want to close before school starts.
+
+Don't let your listing compete with fall inventory.</span>
+
+<span class="cta">Call me. (570) 688-8147. PA License #RS326383. Smart Way America Realty.</span></div>
+
+    <div class="cs-label">YouTube Shorts Caption</div>
+    <div class="caption-block">
+The #1 reason Pocono sellers should list NOW and not wait for fall. Rates are stable. Buyers are ready. Competition is coming. 📞 (570) 688-8147 | PA #RS326383 | Smart Way America Realty
+    </div>
+    <div class="cs-label">Cover Text Direction</div>
+    <div class="cover-block">
+      <div class="cv-label">Cover Text</div>
+      Neon green: "HIGHEST INVENTORY SINCE 2020" tilted. Red flash: "list NOW or compete with EVERYONE." Chunky font over Alexa's face.
+    </div>
+    <div class="cs-label">IG Reel Caption (paste-ready)</div>
+    <div class="caption-block">
+More listings = more competition for YOUR house. The math isn't complicated. List now while you have the edge. 📞 (570) 688-8147
+<div class="hashtags">#PoconoRealEstate #MonroeCounty #STRInvesting #RealEstateTips #LifeByAlexa</div>
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTPUT 2 — THURSDAY SUBSTACK -->
+<div class="content-card" data-day="thu">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">Publish Thursday · Substack @itsmyash</div>
+      <div class="cc-title">Output 2 — Substack · Experience Economy</div>
+      <div class="cc-platform">The Lifestyle Market Letter · Thursday · 500-800 words</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">Substack</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Title + Subtitle</div>
+    <div class="caption-block">
+      <strong>The Ritual Is the Product</strong><br><br>
+      Why the best cigar lounges in 2026 aren't selling cigars — they're selling a reason to slow down.
+    </div>
+    <div class="cs-label">Full Article (paste-ready)</div>
+    <div class="script-block">The modern cigar lounge has an identity problem.
+
+Half of them think they're selling tobacco. They're not. They're selling time.
+
+Specifically: permission to exist without an agenda for an hour or two.
+
+In 2026, that is rare. And rare things are worth money.
+
+Here's what the smartest lounge operators understand right now: the experience IS the product. The cigar is just the vehicle. The coffee — in our case, Filler and Roast — is the ritual anchor. The seating, the lighting, the music, the staff — these are not amenities. They are the reason people come back.
+
+Industry commentary right now points to a shift that's been happening quietly for a few years: the winning lounges are curating less, not more. Fewer brands. Clearer point of view. A tighter humidor that says "we thought about this" rather than "we carry everything."
+
+We follow that at Nell's Social. And it works.
+
+There's also the coffee question. A lot of people think coffee in a cigar lounge has to be dark, bitter, and generic — as if delicate flavors have no place next to smoke.
+
+Wrong.
+
+Specialty coffee trends in 2026 are pointing to ritual-first brewing: slow, intentional, high-theater moments that frame the coffee as part of the experience rather than a side item. That's exactly what Filler &amp; Roast is doing inside Nell's Social. A light-to-medium roast from a Dominican or Central American origin can complement a well-made cigar in ways that a burnt dark roast never could.
+
+The pairing isn't an afterthought. It's the whole point.
+
+Here's the truth about "experience economy" in 2026: people aren't just paying for the cigar. They're paying for the environment that makes the cigar better. For the cup of coffee that actually belongs on the same table. For the seat that says "stay a while." For the staff who know your name and your preferred vitola.
+
+The Knicks playoff run reminded me of this recently. We hosted watch parties at the lounge. And what I noticed — nobody came just to watch the game. They came because watching it at Nell's Social felt different. Better. More intentional.
+
+The game was the same on every TV in every bar in the Poconos. The ritual was ours.
+
+That's the product. Build accordingly.
+
+— Alexa</div>
+
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTPUT 17 — PA VETERAN REEL -->
+<div class="content-card" data-day="thu">
+  <div class="cc-header cc-header-veteran">
+    <div class="cc-left">
+      <div class="cc-time">9:00 AM · Post · @alexa.realtor IG Reel · Post 3/4</div>
+      <div class="cc-title">Output 17 — PA Veteran Reel · 3 Things Working for You</div>
+      <div class="cc-platform">@alexa.realtor Instagram Reel · Educational only · 30–60 sec · license required</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-veteran">Veteran</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Script (30–60 sec)</div>
+    <div class="script-block"><span class="hook">Pennsylvania veterans — here are three things working in your favor right now.</span>
+
+<span class="beat">Number one: VA loan rates are near 5.92% this week. Conventional is 6.48%. That's almost half a point cheaper. On a $350,000 home, that's real money every month.
+
+Number two: Pennsylvania HB 1257 passed the House 193 to 6. If it passes the Senate, all 100% disabled veterans — not just combat vets — could qualify for full property tax exemption. It's not law yet. But watch it.
+
+Number three: VA loans in Monroe County go up to $832,750 with full entitlement. No cap on the loan amount if your entitlement is intact.</span>
+
+<span class="cta">If you are a veteran and you're ready to buy in the Pocono area, call me before you walk into any lender.
+
+(570) 688-8147. Alexa Sanchez. PA License #RS326383. Smart Way America Realty. Educational information only.</span></div>
+
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+Pennsylvania veterans — VA rates are near 5.92% vs conventional at 6.48%, HB 1257 could expand property tax exemptions statewide, and Monroe County VA loan limits are $832,750. Know your advantages before you shop. 📞 (570) 688-8147 | PA #RS326383 | Smart Way America Realty
+<div class="hashtags">#VeteranHomebuyer #VALoan #VeteranRealEstate #PARealEstate #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Cover Text Direction</div>
+    <div class="cover-block">
+      <div class="cv-label">Cover Text</div>
+      Neon green: "VA RATE: 5.92%" bold at top. White: "vs conventional 6.48%" below. Red banner: "HB 1257 — WATCH THIS" at bottom. Chunky tilted font over face.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- LINKEDIN OPERATOR THURSDAY -->
+<div class="content-card" data-day="thu">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">8:00 AM · Post · LinkedIn @alexa.realtor</div>
+      <div class="cc-title">Output 15 — LinkedIn Operator Post · Post 2/3</div>
+      <div class="cc-platform">LinkedIn · personal + operator life · no real estate pitch</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">LinkedIn</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+There's no real free time when you run multiple brands.
+
+I own a cigar lounge. I sell real estate. I'm building a coffee brand and a boutique DR cigar line. I produce content seven days a week.
+
+Free time doesn't disappear — you just redefine it.
+
+Mine looks like: cleaning my house at 11pm, riding my motorcycle on a Sunday morning, and a good cigar before the week starts again.
+
+The operator life isn't glamorous 24/7. But it's mine. And I'd choose it every time.
+
+What does YOUR version of recharging look like?
+
+— Alexa Sanchez | Smart Way America Realty | Nell's Social | Filler &amp; Roast
+<div class="hashtags">#OperatorLife #Entrepreneurship #DominicanEntrepreneur #LifeByAlexa</div>
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- GBP THURSDAY -->
+<div class="content-card" data-day="thu">
+  <div class="cc-header cc-header-green">
+    <div class="cc-left">
+      <div class="cc-time">9:00 AM · Post · Google Business Profile</div>
+      <div class="cc-title">Output 15 — GBP Local Insight + Veteran Thursday</div>
+      <div class="cc-platform">No hashtags · Full contact required · Educational veteran info</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">Google Biz</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Post Copy (paste-ready)</div>
+    <div class="caption-block">
+Local Insight — Monroe County, PA
+
+Did you know VA loan rates are currently about 40–50 basis points lower than conventional 30-year fixed rates? This week, VA 30-year purchase rates are near 5.92% versus conventional near 6.48%.
+
+For veterans and eligible buyers looking at Monroe County and Pocono Mountain properties, this rate advantage combined with zero down payment can make a meaningful difference in monthly payment and long-term equity.
+
+If you're a veteran exploring homeownership in the Pocono area, I'm happy to walk through what the VA loan process looks like here.
+
+📞 (570) 688-8147 | Alexa@alexasanchez.net
+PA License #RS326383 | Smart Way America Realty
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- NEXTDOOR THURSDAY -->
+<div class="content-card" data-day="thu">
+  <div class="cc-header cc-header-green">
+    <div class="cc-left">
+      <div class="cc-time">10:00 AM · Post · Nextdoor</div>
+      <div class="cc-title">Output 15 — Nextdoor Community Roundup · Thursday</div>
+      <div class="cc-platform">Nextdoor · warm community voice · no hashtags</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">Nextdoor</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Post Copy (paste-ready)</div>
+    <div class="caption-block">
+Pocono community — a couple of things worth knowing this week:
+
+1. Monroe County home prices are up 18% year over year. If you're curious about your home's current value, now is a great time to find out.
+
+2. The Pocono Mountains Tourism Bureau just released their 2026 travel guide — which continues to highlight strong vacation demand in our region. Great news for anyone with a vacation rental or considering one.
+
+I'm always available for questions, no sales pressure. Just local market knowledge.
+
+📞 (570) 688-8147 | Alexa@alexasanchez.net
+PA License #RS326383 | Smart Way America Realty
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- CIGAR VIDEO UPLOAD NOTE -->
+<div class="content-card" data-day="thu">
+  <div class="cc-header cc-header-burg">
+    <div class="cc-left">
+      <div class="cc-time">6:00 PM · Upload · IG + TikTok @its.myash</div>
+      <div class="cc-title">Output 9 — Cigar/Lounge Video Upload · Knicks Watch Party</div>
+      <div class="cc-platform">Filmed Wednesday — upload today. See Wednesday tab for full script + captions.</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">@its.myash</span>
+      <span class="badge b-goal-sales">Drive Sales</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Upload Checklist</div>
+    <div class="cs-content">✓ IG: @its.myash — use IG caption from Wednesday tab<br>✓ TikTok: @itsmyash native upload, no watermark — use TikTok caption from Wednesday tab<br>✓ Both include: #NellsSocial #KnicksNation #CigarLounge #LifeByAlexa</div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════ FRIDAY ═══════════════════════ -->
+<div class="day-section hidden" id="day-fri" data-day="fri">
+<div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
+<div class="day-header">
+  <div class="dh-inner">
+    <div class="dh-name">FRI</div>
+    <div class="dh-content">
+      <div class="dh-label">Day Six · Friday June 13</div>
+      <div class="dh-title">DR Video Upload · Coffee for the Leaf · Veteran LinkedIn · Weekend Smoke · FB Spanish · Personal FB</div>
+      <div class="dh-sub">All uploads and posting — nothing to film today. DR Video EN + ES both upload today.</div>
+    </div>
+  </div>
+</div>
+
+<!-- DR VIDEO UPLOAD -->
+<div class="content-card" data-day="fri">
+  <div class="cc-header cc-header-spanish">
+    <div class="cc-left">
+      <div class="cc-time">Upload Friday · @AlexaSanchezRealtor YouTube Both Playlists</div>
+      <div class="cc-title">Output 8 — DR Video Upload · EN + ES</div>
+      <div class="cc-platform">English → main playlist · Spanish → En Español · filmed Tuesday</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-spanish">DR Video</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">English YouTube Caption (paste-ready)</div>
+    <div class="caption-block">
+You can buy real estate in the Dominican Republic using American financing — and most people don't know this. Scotiabank DR USD mortgages + CONFOTUR tax exemptions = one of the most compelling foreign investment setups in the Caribbean. Full breakdown in the video.
+
+📞 (570) 688-8147 | Alexa@alexasanchez.net | PA #RS326383 | Smart Way America Realty
+<div class="hashtags">#DominicanRepublic #RealEstateInvesting #STRInvesting #CapCana #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Spanish YouTube Caption (paste-ready)</div>
+    <div class="caption-block">
+¿Hipoteca en dólares para comprar en la República Dominicana? Sí, existe. Scotiabank DR + proyectos CONFOTUR = la combinación perfecta para el inversor americano. Los detalles en el video.
+
+📞 (570) 688-8147 | Licencia PA #RS326383 | Smart Way America Realty
+<div class="hashtags">#BienesRaicesRD #RepublicaDominicana #InversionEnRD #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Upload Checklist</div>
+    <div class="cs-content">✓ English → main playlist, English caption + hashtags<br>✓ Spanish → En Español playlist, Spanish caption<br>✓ Both use thumbnail: Split screen DR/dollar + cartoon Alexa + "AMERICAN FINANCING IN THE DR 🇩🇴💰"<br>✓ Both descriptions include PA License #RS326383 + (570) 688-8147</div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTPUT 19 — LINKEDIN VETERAN -->
+<div class="content-card" data-day="fri">
+  <div class="cc-header cc-header-veteran">
+    <div class="cc-left">
+      <div class="cc-time">8:00 AM · Post · LinkedIn @alexa.realtor · Post 3/3</div>
+      <div class="cc-title">Output 19 — LinkedIn Veteran Post · PA + DR Intel</div>
+      <div class="cc-platform">LinkedIn · Educational · Clean authority voice · No personal narrative</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-veteran">Veteran</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+Pennsylvania veterans — a few things worth knowing this week.
+
+VA LOAN RATES (week of June 7, 2026):
+→ 30-yr fixed VA purchase: ~5.92% (APR ~6.04%)
+→ 30-yr conventional: ~6.48%
+→ Difference: ~40-50 bps — on a $400K loan that's roughly $100+/month in savings
+
+HB 1257 — PA PROPERTY TAX UPDATE:
+→ Passed the PA House 193–6 on March 24, 2026
+→ If passed by Senate + voter approval: all 100% disabled veterans (including non-combat) could qualify for full real estate tax exemption
+→ Currently pending — not yet law. Worth tracking with DMVA.
+
+STACKING AVAILABLE:
+→ VA first mortgage (0% down) + PHFA HOMEstead ($10K closing cost assistance) + K-FIT (5% of purchase price, forgivable in 10 yrs) — all combinable for eligible Monroe County buyers
+
+Educational information only. Always verify rates and program details with your lender and PHFA directly.
+
+📞 (570) 688-8147 | Alexa@alexasanchez.net
+Alexa Sanchez | PA License #RS326383 | Smart Way America Realty
+<div class="hashtags">#VeteranHomebuyer #VALoan #PARealEstate #LifeByAlexa</div>
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- COFFEE FOR THE LEAF -->
+<div class="content-card" data-day="fri">
+  <div class="cc-header cc-header-fnr">
+    <div class="cc-left">
+      <div class="cc-time">9:00 AM · Post · @fillerandroast IG + FB Business</div>
+      <div class="cc-title">Output 15 — Filler &amp; Roast · Coffee for the Leaf</div>
+      <div class="cc-platform">@fillerandroast Instagram + FB Business · 1x/week only · Friday</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-fnr">@fillerandroast</span>
+      <span class="badge b-goal-sales">Drive Sales</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">IG Caption (paste-ready)</div>
+    <div class="caption-block">
+Your Friday ritual deserves better than whatever that office coffee situation is. ☕
+
+Coffee for the Leaf — because the cigar doesn't deserve to be paired with bad decisions.
+
+Filler &amp; Roast. Exclusively at Nell's Social, Pocono Mountains.
+
+What are you smoking this weekend? Drop it below. 🍃
+<div class="hashtags">#FillerAndRoast #CigarAndCoffee #CoffeeForTheLeaf #NellsSocial #CigarLife #ArtisanCoffee #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">FB Business Caption (paste-ready)</div>
+    <div class="caption-block">
+Start your Friday right. Filler &amp; Roast specialty coffee is brewed exclusively at Nell's Social cigar lounge in the Pocono Mountains. Coffee for the Leaf — crafted to complement your weekend smoke. Stop in and try it. We'll be here. ☕🍃
+    </div>
+    <div class="cs-label">Image Direction</div>
+    <div class="image-block">
+      <div class="img-label">Shot Direction</div>
+      Close-up of Filler &amp; Roast branded cup with steam rising. A premium cigar resting on the saucer's edge. Warm lounge lighting. Dark moody background. Logo clearly visible on cup.
+    </div>
+    <div class="cs-label">Pairings Reference</div>
+    <div class="note-block">House Blend → Maduro pairing · Butter Pecan → Connecticut pairing · Amaretto → evening/lounge pairing</div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- WEEKEND SMOKE REEL -->
+<div class="content-card" data-day="fri">
+  <div class="cc-header cc-header-burg">
+    <div class="cc-left">
+      <div class="cc-time">6:00 PM · Post · @its.myash Instagram</div>
+      <div class="cc-title">Output 14 — Weekend Smoke Reel · Friday</div>
+      <div class="cc-platform">@its.myash Instagram · lifestyle + vibe · max 4 hashtags</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">@its.myash</span>
+      <span class="badge b-goal-sales">Drive Sales</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Caption (paste-ready — fill in cigar + blend)</div>
+    <div class="caption-block">
+The weekend officially starts when the lighter clicks. 🔥🍃
+
+Tonight's smoke: [insert cigar]. Paired with [insert Filler &amp; Roast blend]. No agenda. No meetings. Just ash.
+
+Come find us at Nell's Social if you need a proper Friday.
+<div class="hashtags">#CigarLife #WeekendSmoke #NellsSocial #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Video Direction</div>
+    <div class="image-block">
+      <div class="img-label">Shot Direction</div>
+      Slow-mo reel of lighting a cigar. Smoke curling into lounge air. Ambient lounge background. Natural, real moment — not staged. Golden hour or warm lounge light. Music: low-key jazz or lo-fi beat.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTPUT 16 — PERSONAL FB SPANISH -->
+<div class="content-card" data-day="fri">
+  <div class="cc-header cc-header-spanish">
+    <div class="cc-left">
+      <div class="cc-time">7:00 PM · Post · Personal Facebook</div>
+      <div class="cc-title">Output 16 — Personal FB Spanish · Weekly</div>
+      <div class="cc-platform">Personal Facebook · Dominican Spanish · no hashtags on personal FB</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-spanish">En Español</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Caption (paste-ready, Dominican Spanish)</div>
+    <div class="caption-block">
+Tú sabes que los viernes son para celebrar, ¿verdad?
+
+Para los que me preguntan sobre comprar en la República Dominicana usando financiamiento americano — sí, es posible, mi amor. Y es más accesible de lo que crees.
+
+Scotiabank DR ofrece hipotecas en dólares para compradores extranjeros. Y si el proyecto tiene status CONFOTUR, te elimina el impuesto de transferencia del 3% y hasta 15 años sin pagar impuesto de propiedad.
+
+¿Quieres saber más? Escríbeme o llámame. Estoy aquí.
+
+📞 (570) 688-8147 | Licencia PA #RS326383 | Smart Way America Realty
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTPUT 20 — MISCONCEPTION CAR CONFESSION -->
+<div class="content-card" data-day="fri">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">Flexible · @alexa.realtor IG Reel · Rotating Thursday or Friday slot</div>
+      <div class="cc-title">Output 20 — Misconception Car Confession · "Waiting for 5% Rates"</div>
+      <div class="cc-platform">@alexa.realtor Instagram Reel · 20 sec · shock value</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">@alexa.realtor</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Script (20 sec max)</div>
+    <div class="script-block"><span class="hook">"I'm waiting for rates to drop before I list."
+
+Okay. Here's what's actually happening while you wait.</span>
+
+<span class="beat">The Fed just got a 172,000-job report. No cuts coming soon.
+
+Inventory is at its highest since 2020 and climbing.
+
+Every week you wait, another house joins your competition.
+
+The buyers who are out there right now have already adjusted to 6% rates.</span>
+
+<span class="cta">You're not waiting for better conditions. You're just giving your competition time to catch up.
+
+Call me. (570) 688-8147. PA License #RS326383. Smart Way America Realty.</span></div>
+
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+"I'm waiting for rates to drop." Meanwhile the Fed disagrees and your competition just listed. ⏱️ 📞 (570) 688-8147 | PA #RS326383 | Smart Way America Realty
+<div class="hashtags">#PoconoRealEstate #RealEstateTips #CarConfession #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Cover Text Direction</div>
+    <div class="cover-block">
+      <div class="cv-label">Cover Text</div>
+      Red: "WAITING FOR 5% RATES?" White: "the Fed says no." Neon green: "172,000 JOBS ADDED" stat flash. Chunky tilted font.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════ SATURDAY ═══════════════════════ -->
+<div class="day-section hidden" id="day-sat" data-day="sat">
+<div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
+<div class="day-header">
+  <div class="dh-inner">
+    <div class="dh-name">SAT</div>
+    <div class="dh-content">
+      <div class="dh-label">Day Seven · Saturday June 14</div>
+      <div class="dh-title">Spanish IG · GBP Community · Nextdoor Market Tip · Week Done</div>
+      <div class="dh-sub">All posting. Week closes out. Nothing to record. Scheduled and done.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SPANISH IG SAT -->
+<div class="content-card" data-day="sat">
+  <div class="cc-header cc-header-spanish">
+    <div class="cc-left">
+      <div class="cc-time">10:00 AM · Post · @alexa.realtor IG · Post 4/4</div>
+      <div class="cc-title">Output 15 + 16 — Spanish IG Post · Weekly</div>
+      <div class="cc-platform">@alexa.realtor Instagram · Dominican Spanish · seller message</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-spanish">En Español</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Caption (paste-ready, Dominican Spanish)</div>
+    <div class="caption-block">
+¿Sigues esperando que las tasas de interés bajen para vender tu casa?
+
+Óyeme bien — el precio mediano en Monroe County está en $364,000, subió 18% comparado con el año pasado. Los compradores están activos. El inventario está subiendo.
+
+Mientras esperas, llegan más casas al mercado. Más competencia para la tuya.
+
+El momento de listar es AHORA. Llámame y hablamos.
+
+📞 (570) 688-8147 | Alexa@alexasanchez.net
+Licencia PA #RS326383 | Smart Way America Realty
+<div class="hashtags">#BienesRaices #InversionesEnPoconos #MercadoInmobiliario #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Image Direction</div>
+    <div class="image-block">
+      <div class="img-label">Graphic</div>
+      Cartoon Alexa with a knowing look. Bold Spanish text overlay: "El momento es AHORA" in neon green. Pocono mountain backdrop or house exterior. Clean branded graphic.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- GBP SATURDAY -->
+<div class="content-card" data-day="sat">
+  <div class="cc-header cc-header-green">
+    <div class="cc-left">
+      <div class="cc-time">10:00 AM · Post · Google Business Profile</div>
+      <div class="cc-title">Output 15 — GBP Community/Lifestyle · Saturday</div>
+      <div class="cc-platform">No hashtags · lifestyle angle · tie to real estate demand · full contact required</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">Google Biz</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Post Copy (paste-ready)</div>
+    <div class="caption-block">
+Weekend in the Pocono Mountains — there's nowhere quite like it.
+
+The Pocono Mountains Tourism Bureau just released their 2026 travel guide, continuing to highlight this region as a top destination for visitors, second-home owners, and vacation rental investors.
+
+If you're visiting this weekend — welcome. If you're already a local — enjoy your mountains.
+
+And if you're thinking about making this your permanent or investment home — let's talk.
+
+📞 (570) 688-8147 | Alexa@alexasanchez.net
+PA License #RS326383 | Smart Way America Realty
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- NEXTDOOR SATURDAY -->
+<div class="content-card" data-day="sat">
+  <div class="cc-header cc-header-green">
+    <div class="cc-left">
+      <div class="cc-time">10:00 AM · Post · Nextdoor</div>
+      <div class="cc-title">Output 15 — Nextdoor Weekend Market Tip</div>
+      <div class="cc-platform">Nextdoor · warm community voice · no hashtags</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">Nextdoor</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Post Copy (paste-ready)</div>
+    <div class="caption-block">
+Happy weekend, neighbors!
+
+Quick tip for anyone watching the real estate market: inventory is rising nationally. That means more homes competing for the same buyer pool.
+
+In Monroe County, homes are selling around 49 days on average at a median of $364,000. Well-priced homes with good presentation still move. Overpriced homes sit.
+
+Curious what your home is worth today? I offer free, no-pressure consultations.
+
+📞 (570) 688-8147 | PA License #RS326383 | Smart Way America Realty
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════ SUBSTACK ═══════════════════════ -->
+<div class="day-section hidden" id="day-stack" data-day="stack">
+<div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
+<div class="day-header">
+  <div class="dh-inner">
+    <div class="dh-name">✍️</div>
+    <div class="dh-content">
+      <div class="dh-label">Output 3 · 21 Notes · Mon–Sun</div>
+      <div class="dh-title">Substack Notes — All 21 · Batch Sunday · Post 3/day</div>
+      <div class="dh-sub">Morning ~8AM · Midday ~12PM · Evening ~7PM · Mon through Sun</div>
+    </div>
+  </div>
+</div>
+
+<div class="content-card" data-day="stack">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">7:00 AM daily · Morning Notes</div>
+      <div class="cc-title">Output 3 — Morning Notes · 7 Total</div>
+      <div class="cc-platform">Substack Notes @itsmyash · batch and schedule Sunday</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">Substack</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="script-block"><span class="hook">MON: A man asked me for illegal Cubans last week. I explained federal trade law instead. This is my life.</span>
+
+<span class="beat">TUE: Monroe County homes are up 18% YOY and sellers are STILL overpricing. The data doesn't care about your feelings.</span>
+
+<span class="beat">WED: Dominican cigars are not beginner cigars. That is a stereotype, not a fact. The blend decides the strength, not the passport.</span>
+
+<span class="beat">THU: VA loan rates this week: ~5.92%. Conventional: ~6.48%. That gap is real money. Veterans — know your advantage.</span>
+
+<span class="beat">FRI: The ritual is the product. The cigar is just the vehicle. If your lounge forgets that, the cigar shop down the street will remind you.</span>
+
+<span class="beat">SAT: Filler &amp; Roast tip: a light-to-medium roast from a high-altitude origin pairs better with a nuanced cigar than any burnt dark roast ever will.</span>
+
+<span class="cta">SUN: Your free time is not gone. It just looks different now. Mine is a Sunday morning ride and a cigar before the week starts.</span></div>
+
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete — All 7 Morning Notes Scheduled</div>
+    </div>
+  </div>
+</div>
+
+<div class="content-card" data-day="stack">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">12:00 PM daily · Midday Notes</div>
+      <div class="cc-title">Output 3 — Midday Notes · 7 Total</div>
+      <div class="cc-platform">Substack Notes @itsmyash</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">Substack</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="script-block"><span class="beat">MON: Running multiple brands means you never fully clock out. The secret is learning to recharge inside the chaos.</span>
+
+<span class="beat">TUE: Three out of five homes nationally are selling below ask right now. Your listing price is not aspirational. It is a negotiation opener. Price it right.</span>
+
+<span class="beat">WED: 2026 cigar industry trend: "origin plus experience" is beating "price plus hype." Storytelling is the product.</span>
+
+<span class="beat">THU: Davidoff brought back the Puro Dominicano for 2026. Drew Estate launched the Undercrown El Tigre Dominicano. DR is having a moment in the premium segment.</span>
+
+<span class="beat">FRI: CONFOTUR status on a DR property = zero transfer tax + 15 years of property tax exemption. For a $250K condo that's $7,500–$11K saved at closing alone.</span>
+
+<span class="beat">SAT: The Knicks are hot. We're hosting watch parties at the lounge. First draw by tip-off. Personal rule.</span>
+
+<span class="cta">SUN: Monroe County median sale price: $364,000. Inventory rising. The summer listing window is open right now. Don't sleep on it.</span></div>
+
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete — All 7 Midday Notes Scheduled</div>
+    </div>
+  </div>
+</div>
+
+<div class="content-card" data-day="stack">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">7:00 PM daily · Evening Notes</div>
+      <div class="cc-title">Output 3 — Evening Notes · 7 Total</div>
+      <div class="cc-platform">Substack Notes @itsmyash</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">Substack</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="script-block"><span class="beat">MON: There is no free time. There is only time you chose to protect. Choose some tonight.</span>
+
+<span class="beat">TUE: The May jobs report added 172K jobs. The Fed is not cutting rates. Sellers waiting for the 5s are waiting for something that is not coming soon.</span>
+
+<span class="beat">WED: What makes a lounge great in 2026: fewer brands, clearer POV, strong beverage program, staff who know your name. That's it.</span>
+
+<span class="beat">THU: Pennsylvania HB 1257 passed the House 193–6. If it clears the Senate, veterans with 100% disability ratings could get full property tax exemption regardless of combat service. Watch this one.</span>
+
+<span class="beat">FRI: The weekend officially starts when the lighter clicks.</span>
+
+<span class="beat">SAT: Running a business is adjusting to people's needs 400 times a day and somehow still loving it.</span>
+
+<span class="cta">SUN: The DR is not a "cheap but risky" market. Foreigners have equal property rights. The legal framework has been stable for years. Stop sleeping on it.</span></div>
+
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete — All 7 Evening Notes Scheduled</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════ VETERAN ═══════════════════════ -->
+<div class="day-section hidden" id="day-vet" data-day="vet">
+<div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
+<div class="day-header">
+  <div class="dh-inner">
+    <div class="dh-name">🪖</div>
+    <div class="dh-content">
+      <div class="dh-label">Outputs 17 · 18 · 19</div>
+      <div class="dh-title">All Veteran Content · PA + DR · Full Scripts</div>
+      <div class="dh-sub">Educational only. No personal narrative. License on every piece.</div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTPUT 17 — PA VETERAN REEL (full) -->
+<div class="content-card" data-day="vet">
+  <div class="cc-header cc-header-veteran">
+    <div class="cc-left">
+      <div class="cc-time">Thursday 9:00 AM · @alexa.realtor IG Reel</div>
+      <div class="cc-title">Output 17 — PA Veteran Reel · 3 Things Working for You</div>
+      <div class="cc-platform">30–60 sec · Educational only · License required · Full script</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-veteran">PA Veteran</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Script (30–60 sec)</div>
+    <div class="script-block"><span class="hook">Pennsylvania veterans — here are three things working in your favor right now.</span>
+
+<span class="beat">Number one: VA loan rates are near 5.92% this week. Conventional is 6.48%. That's almost half a point cheaper. On a $350,000 home, that's real money every month.
+
+Number two: Pennsylvania HB 1257 passed the House 193 to 6. If it passes the Senate, all 100% disabled veterans — not just combat vets — could qualify for full property tax exemption. It's not law yet. But watch it.
+
+Number three: VA loans in Monroe County go up to $832,750 with full entitlement. No cap on the loan amount if your entitlement is intact.</span>
+
+<span class="cta">If you are a veteran and you're ready to buy in the Pocono area, call me before you walk into any lender.
+
+(570) 688-8147. Alexa Sanchez. PA License #RS326383. Smart Way America Realty. Educational information only.</span></div>
+
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+Pennsylvania veterans — VA rates are near 5.92% vs conventional at 6.48%, HB 1257 could expand property tax exemptions statewide, and Monroe County VA loan limits are $832,750. Know your advantages before you shop. 📞 (570) 688-8147 | PA #RS326383 | Smart Way America Realty
+<div class="hashtags">#VeteranHomebuyer #VALoan #VeteranRealEstate #PARealEstate #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Cover Text Direction</div>
+    <div class="cover-block">
+      <div class="cv-label">Cover Text</div>
+      Neon green: "VA RATE: 5.92%" bold at top. White: "vs conventional 6.48%" below. Red banner: "HB 1257 — WATCH THIS" at bottom. Chunky tilted font over face.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTPUT 18 — DR VETERAN REEL -->
+<div class="content-card" data-day="vet">
+  <div class="cc-header cc-header-veteran">
+    <div class="cc-left">
+      <div class="cc-time">Rotating · @alexa.realtor IG Reel</div>
+      <div class="cc-title">Output 18 — DR Veteran Reel · VA Disability + DR Residency</div>
+      <div class="cc-platform">@alexa.realtor Instagram Reel · 30–60 sec · Educational only</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-veteran">DR Veteran</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Script (30–60 sec)</div>
+    <div class="script-block"><span class="hook">Veterans — did you know your monthly VA disability compensation can qualify you for residency in the Dominican Republic?</span>
+
+<span class="beat">Under Law 171-07, the Pensionado track requires $1,500 per month in pension income from a foreign source. VA disability compensation qualifies.
+
+That means if you receive $1,500 or more per month in VA disability, you may be eligible to apply for legal DR residency.
+
+And if you're buying property there — CONFOTUR projects eliminate the 3% transfer tax and give you up to 15 years of property tax exemption.
+
+Timeline is roughly 3–5 months from document prep to temporary residency card. Total cost estimate: around $2,000–$3,000 in legal and government fees.</span>
+
+<span class="cta">This is educational information. Always work with a DR immigration attorney for your specific case.
+
+I'm Alexa Sanchez. PA License #RS326383. Smart Way America Realty. I help veterans explore both PA and DR real estate opportunities.</span></div>
+
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+Your VA disability compensation might qualify you for Dominican Republic residency under Law 171-07. $1,500/month pensionado track. CONFOTUR tax benefits on top. Veterans — the DR is worth looking at. 📞 (570) 688-8147 | PA #RS326383 | Smart Way America Realty
+<div class="hashtags">#VeteranRealEstate #DominicanRepublic #VALoan #MilitaryRealEstate #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Cover Text Direction</div>
+    <div class="cover-block">
+      <div class="cv-label">Cover Text</div>
+      DR flag colors (red + blue). White text: "YOUR VA CHECK QUALIFIES FOR DR RESIDENCY?" Neon green: "$1,500/MO PENSIONADO TRACK." Bold, tilted font.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTPUT 19 — LINKEDIN VETERAN (full) -->
+<div class="content-card" data-day="vet">
+  <div class="cc-header cc-header-veteran">
+    <div class="cc-left">
+      <div class="cc-time">Friday 8:00 AM · LinkedIn @alexa.realtor · Post 3/3</div>
+      <div class="cc-title">Output 19 — LinkedIn Veteran Post · PA + DR Intel</div>
+      <div class="cc-platform">LinkedIn · Educational · Clean authority voice · No personal narrative</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-veteran">Veteran</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+Pennsylvania veterans — a few things worth knowing this week.
+
+VA LOAN RATES (week of June 7, 2026):
+→ 30-yr fixed VA purchase: ~5.92% (APR ~6.04%)
+→ 30-yr conventional: ~6.48%
+→ Difference: ~40-50 bps — on a $400K loan that's roughly $100+/month in savings
+
+HB 1257 — PA PROPERTY TAX UPDATE:
+→ Passed the PA House 193–6 on March 24, 2026
+→ If passed by Senate + voter approval: all 100% disabled veterans (including non-combat) could qualify for full real estate tax exemption
+→ Currently pending — not yet law. Worth tracking with DMVA.
+
+STACKING AVAILABLE IN MONROE COUNTY:
+→ VA first mortgage (0% down)
+→ + PHFA HOMEstead ($10K closing cost assistance, 0% interest, forgivable over 5 yrs)
+→ + K-FIT (5% of purchase price, forgivable over 10 yrs)
+→ All three combinable for eligible buyers
+
+DVRETX current rule: requires service connected to war/armed conflict. HB 1257 would change that to all 100% ratings.
+
+Educational information only. Always verify with your lender and PHFA directly.
+
+📞 (570) 688-8147 | Alexa@alexasanchez.net
+Alexa Sanchez | PA License #RS326383 | Smart Way America Realty
+<div class="hashtags">#VeteranHomebuyer #VALoan #PARealEstate #LifeByAlexa</div>
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div>
+      <div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
 </div>
 
 <!-- FOOTER -->
 <div class="page-footer">
-  <p><strong>ROAST</strong> · @itsmyash · @alexa.realtor · @fillerandroast · @life.byalexa</p>
+  <p><strong>ROAST</strong> · Week of June 7–13, 2026</p>
+  <p>@itsmyash · @alexa.realtor · @fillerandroast · @AlexaSanchezRealtor</p>
   <p>Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147</p>
   <p>#LifeByAlexa on every post · Thursday Perplexity → Sunday Claude → Week done</p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-// Supabase
-const SB_URL = 'https://gzqgeehcvmgstzenkyfnw.supabase.co';
-const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6cWdlZWhjdm1nc3R6bmt5Zm53Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1OTIxMDgsImV4cCI6MjA4OTE2ODEwOH0.sw98v41oTub5p64cuP5Sqx574wNUd6kzOU1UxdoahWA';
-const SB_HDR = {'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY};
+// Live date
+const _now=new Date();
+const _days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const _months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const _el=document.getElementById('topbar-date');
+if(_el)_el.textContent=`${_days[_now.getDay()]} ${_months[_now.getMonth()]} ${_now.getDate()}, ${_now.getFullYear()} · Jun 7–13, 2026`;
 
-let doneItems = {};
+// Piece counters
+['sun','mon','tue','wed','thu','fri','sat'].forEach(day=>{
+  const el=document.getElementById(`${day}-count`);
+  if(el){const n=document.querySelectorAll(`.content-card[data-day="${day}"]`).length;el.textContent=`${n} pieces`;}
+});
 
-async function loadDone() {
-  try {
-    const r = await fetch(`${SB_URL}/rest/v1/ops_checks?select=*`, {headers: SB_HDR});
-    if (r.ok) {
-      const rows = await r.json();
-      rows.forEach(row => { doneItems[row.check_id] = row.checked; });
-    }
-  } catch(e) {}
-  // Restore visual state
-  document.querySelectorAll('.content-card').forEach(card => {
-    const id = getCardId(card);
-    if (doneItems[id]) card.classList.add('done');
+const SB_URL='https://gzqgeehcvmgstzenkyfnw.supabase.co';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6cWdlZWhjdm1nc3R6bmt5Zm53Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1OTIxMDgsImV4cCI6MjA4OTE2ODEwOH0.sw98v41oTub5p64cuP5Sqx574wNUd6kzOU1UxdoahWA';
+const SB_HDR={'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY};
+let doneItems={};
+
+async function loadDone(){
+  try{
+    const r=await fetch(`${SB_URL}/rest/v1/ops_checks?select=*`,{headers:SB_HDR});
+    if(r.ok){const rows=await r.json();rows.forEach(row=>{doneItems[row.check_id]=row.checked;});}
+  }catch(e){}
+  document.querySelectorAll('.content-card').forEach(card=>{
+    const id=getCardId(card);
+    if(doneItems[id])card.classList.add('done');
   });
 }
 
-async function saveDone(id, checked) {
-  try {
-    await fetch(`${SB_URL}/rest/v1/ops_checks`, {
-      method: 'POST',
-      headers: {...SB_HDR, 'Prefer': 'resolution=merge-duplicates'},
-      body: JSON.stringify({check_id: id, checked: checked})
+async function saveDone(id,checked){
+  try{
+    await fetch(`${SB_URL}/rest/v1/ops_checks`,{
+      method:'POST',
+      headers:{...SB_HDR,'Prefer':'resolution=merge-duplicates'},
+      body:JSON.stringify({check_id:id,checked:checked})
     });
-  } catch(e) {}
+  }catch(e){}
 }
 
-// Date
-const now = new Date();
-const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-document.getElementById('topbar-date').textContent = `${days[now.getDay()]} ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
-
-// Day filter
-function filterDay(day, btn) {
-  document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
+function filterDay(day,btn){
+  document.querySelectorAll('.day-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  document.querySelectorAll('.day-section').forEach(s => {
-    if (day === 'all' || s.dataset.day === day) {
-      s.classList.remove('hidden');
-    } else {
-      s.classList.add('hidden');
-    }
+  document.querySelectorAll('.day-section').forEach(s=>{
+    if(day==='all'||s.dataset.day===day){s.classList.remove('hidden');}
+    else{s.classList.add('hidden');}
   });
-  window.scrollTo({top: 0, behavior: 'smooth'});
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
-function getCardId(card) {
-  const title = card.querySelector('.cc-title')?.textContent || '';
-  const time = card.querySelector('.cc-time')?.textContent || '';
-  const str = title + time;
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    hash = ((hash << 5) - hash) + str.charCodeAt(i);
-    hash |= 0;
-  }
-  return 'scroll_' + Math.abs(hash);
+function getCardId(card){
+  const title=card.querySelector('.cc-title')?.textContent||'';
+  const time=card.querySelector('.cc-time')?.textContent||'';
+  const str='jun7_'+title+time;
+  let hash=0;
+  for(let i=0;i<str.length;i++){hash=((hash<<5)-hash)+str.charCodeAt(i);hash|=0;}
+  return 'scroll_'+Math.abs(hash);
 }
 
-function toggleDone(card) {
+function toggleDone(card){
   card.classList.toggle('done');
-  const id = getCardId(card);
-  const checked = card.classList.contains('done');
-  doneItems[id] = checked;
-  saveDone(id, checked);
+  const id=getCardId(card);
+  const checked=card.classList.contains('done');
+  doneItems[id]=checked;
+  saveDone(id,checked);
 }
 
-// Init — load from Supabase on page load
 loadDone();
 </script>
 </body>
