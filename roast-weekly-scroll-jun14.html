@@ -1,0 +1,2334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROAST // Weekly Scroll — Jun 14–20, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F2EDE3;--navy:#1A1A2E;--burgundy:#6B1F3A;--gold:#C4973A;
+  --warm-gray:#8A8278;--border:#E0D9CF;--text:#1A1A1A;--text-mid:#4A4540;--text-light:#8A8278;
+  --accent:#4a8c0f;--blue:#1a7aad;--spanish:#C0392B;--life:#8E44AD;--veteran:#1A4A6B;
+  --bg:#EDEAE3;--card:#F8F4EE;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;}
+
+.global-nav{background:#1A1A2E;padding:10px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;border-bottom:2px solid #6B1F3A;position:sticky;top:0;z-index:999;}
+.gn-logo{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:#C4973A;text-transform:uppercase;margin-right:6px;white-space:nowrap;}
+.gn-link{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:5px 10px;text-decoration:none;border-radius:2px;white-space:nowrap;transition:all 0.15s;border:1px solid transparent;color:#F2EDE3;}
+.gn-link:hover{border-color:rgba(196,151,58,0.4);background:rgba(196,151,58,0.08);}
+.gn-link.gn-active{background:#6B1F3A;border-color:#6B1F3A;}
+.gn-link-docs{color:#C4973A;}
+.gn-link-cannon{color:#d63a08;}
+
+.topbar{background:var(--navy);padding:16px 32px;position:sticky;top:48px;z-index:98;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:2px solid var(--burgundy);}
+.topbar-logo{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;color:var(--cream);letter-spacing:1px;}
+.topbar-logo em{color:var(--gold);font-style:italic;}
+.topbar-date{font-family:'DM Mono',monospace;font-size:10px;color:rgba(242,237,227,0.5);letter-spacing:1px;}
+.back-btn{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:rgba(242,237,227,0.6);text-decoration:none;padding:4px 8px;border:1px solid rgba(242,237,227,0.2);border-radius:2px;}
+
+.day-filter{background:var(--burgundy);padding:0 0;display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.day-filter::-webkit-scrollbar{display:none;}
+.day-btn{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(242,237,227,0.55);padding:12px 14px;background:none;border:none;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all 0.15s;flex-shrink:0;}
+.day-btn:hover{color:var(--cream);}
+.day-btn.active{color:var(--gold);border-bottom-color:var(--gold);}
+
+.week-header{padding:20px 16px 0;}
+.week-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;}
+.week-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--text);}
+.week-sub{font-size:12px;color:var(--text-mid);margin-top:4px;line-height:1.5;}
+.week-meta{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap;}
+.week-stat{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-light);}
+.week-stat strong{color:var(--text);}
+
+.day-section{padding:16px 16px 0;}
+.day-section.hidden{display:none;}
+
+.day-header{background:var(--navy);padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:14px;position:relative;overflow:hidden;}
+.day-header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(196,151,58,0.03) 40px,rgba(196,151,58,0.03) 41px);}
+.dh-inner{position:relative;z-index:1;display:flex;align-items:center;gap:12px;width:100%;}
+.dh-name{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:rgba(242,237,227,0.08);line-height:1;flex-shrink:0;}
+.dh-content{flex:1;min-width:0;}
+.dh-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+.dh-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--cream);}
+.dh-sub{font-size:11px;color:rgba(242,237,227,0.45);margin-top:3px;}
+
+.recording-alert{background:var(--burgundy);padding:10px 14px;display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;border-radius:2px;}
+.ra-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+.ra-text{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--cream);text-transform:uppercase;}
+.ra-sub{font-size:11px;color:rgba(242,237,227,0.65);margin-top:3px;font-family:'DM Sans',sans-serif;text-transform:none;letter-spacing:0;line-height:1.5;}
+
+.content-card{background:var(--card);border:1px solid var(--border);margin-bottom:12px;overflow:hidden;}
+.cc-header{padding:12px 14px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;border-bottom:1px solid var(--border);}
+.cc-header-navy{background:var(--navy);}
+.cc-header-burg{background:var(--burgundy);}
+.cc-header-green{background:#1A3A2A;}
+.cc-header-veteran{background:var(--veteran);}
+.cc-header-spanish{background:#7A1F1F;}
+.cc-header-fnr{background:#2A1A0A;}
+.cc-header-ride{background:#1A2A1A;}
+.cc-left{flex:1;min-width:0;}
+.cc-time{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+.cc-title{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--cream);line-height:1.3;}
+.cc-platform{font-size:10px;color:rgba(242,237,227,0.5);margin-top:2px;}
+.cc-badges{display:flex;flex-direction:column;gap:3px;align-items:flex-end;flex-shrink:0;}
+.badge{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;}
+.b-myash{background:var(--accent);color:#fff;}
+.b-realtor{background:var(--blue);color:#fff;}
+.b-fnr{background:var(--gold);color:var(--navy);}
+.b-spanish{background:var(--spanish);color:#fff;}
+.b-life{background:var(--life);color:#fff;}
+.b-veteran{background:var(--veteran);color:#fff;}
+.b-system{background:#333;color:#aaa;}
+.b-ride{background:#2A4A2A;color:#7AC47A;}
+.b-goal-leads{background:#1a3a6a;color:#7ab4d4;}
+.b-goal-sales{background:#3a1a0a;color:#c4973a;}
+.b-goal-follow{background:#1a3a1a;color:#7ac47a;}
+
+.cc-body{padding:14px;}
+
+.cs-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);}
+.cs-label:first-child{margin-top:0;padding-top:0;border-top:none;}
+.cs-content{font-size:12px;color:var(--text-mid);line-height:1.75;}
+.cs-content strong{color:var(--text);}
+
+.script-block{background:#1E1E2E;padding:14px 16px;font-family:'DM Mono',monospace;font-size:11px;line-height:1.9;color:#E8E4DC;white-space:pre-wrap;word-break:break-word;margin-top:6px;-webkit-overflow-scrolling:touch;}
+.script-block .hook{color:var(--gold);font-weight:500;}
+.script-block .beat{color:#C4A882;}
+.script-block .cta{color:#7AC47A;}
+.script-block .es{color:#E08080;}
+.script-block .note{color:#5A7A5A;font-style:italic;}
+
+.caption-block{background:#F0EBE1;border-left:3px solid var(--gold);padding:12px 14px;margin-top:6px;font-size:12px;line-height:1.8;color:var(--text-mid);}
+.caption-block .hashtags{color:var(--blue);font-size:11px;margin-top:6px;word-break:break-word;}
+
+.image-block{background:#EBF5EE;border-left:3px solid var(--accent);padding:12px 14px;margin-top:6px;font-size:11px;line-height:1.7;color:var(--text-mid);}
+.image-block .img-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:5px;}
+
+.cover-block{background:#F5EDE8;border-left:3px solid var(--burgundy);padding:12px 14px;margin-top:6px;font-size:11px;line-height:1.7;color:var(--text-mid);}
+.cover-block .cv-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--burgundy);margin-bottom:5px;}
+
+.talking-block{background:#E8F0F5;border-left:3px solid var(--blue);padding:12px 14px;margin-top:6px;font-size:11px;line-height:1.7;color:var(--text-mid);}
+.talking-block .tp-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:5px;}
+
+.done-toggle{display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);cursor:pointer;}
+.done-check{width:18px;height:18px;border:2px solid var(--border);border-radius:2px;display:flex;align-items:center;justify-content:center;transition:all 0.15s;flex-shrink:0;}
+.content-card.done .done-check{background:var(--accent);border-color:var(--accent);}
+.content-card.done .done-check::after{content:'✓';font-size:10px;color:#fff;font-weight:700;}
+.done-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text-light);text-transform:uppercase;}
+.content-card.done{opacity:0.45;}
+.content-card.done .cc-title{text-decoration:line-through;}
+
+.section-divider{display:flex;align-items:center;gap:10px;margin:20px 0 0;}
+.sd-line{flex:1;height:1px;background:var(--border);}
+.sd-diamond{width:6px;height:6px;background:var(--burgundy);transform:rotate(45deg);flex-shrink:0;}
+
+.page-footer{background:var(--navy);padding:20px 16px;text-align:center;margin-top:32px;}
+.page-footer p{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(242,237,227,0.35);line-height:2;}
+.page-footer strong{color:var(--gold);}
+
+.note-block{background:#F5F0E8;border-left:3px solid var(--warm-gray);padding:10px 14px;margin-top:6px;font-size:11px;line-height:1.7;color:var(--text-mid);font-style:italic;}
+
+.flag-block{background:#1A2A1A;border-left:3px solid #7AC47A;padding:10px 14px;margin-top:6px;font-size:11px;line-height:1.7;color:#B0D4B0;font-family:'DM Mono',monospace;font-size:10px;}
+.flag-block .fl-label{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#7AC47A;margin-bottom:4px;}
+</style>
+</head>
+<body>
+
+<nav class="global-nav">
+  <div class="gn-logo">ROAST //</div>
+  <a href="index.html" class="gn-link">🏠 Dashboard</a>
+  <a href="ROAST-Complete-System.html" class="gn-link gn-link-docs">📋 Docs</a>
+  <a href="roast-weekly-scroll.html" class="gn-link gn-active">📅 Scroll</a>
+  <a href="perplexity-spaces.html" class="gn-link">🔍 Perplexity</a>
+  <a href="cannonball.html" class="gn-link gn-link-cannon">🎯 Cannonball</a>
+</nav>
+
+<div class="topbar">
+  <div class="topbar-logo">ROAST <em>//</em> Weekly Scroll</div>
+  <div class="topbar-date" id="topbar-date">Jun 14–20, 2026</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+    <a href="index.html" class="back-btn">← Dashboard</a>
+    <a href="ROAST-Complete-System.html" target="_blank" class="back-btn" style="color:rgba(242,237,227,0.6);">📋 Docs</a>
+    <a href="perplexity-spaces.html" target="_blank" class="back-btn" style="color:rgba(242,237,227,0.6);">🔍 Perplexity</a>
+    <a href="cannonball.html" target="_blank" class="back-btn" style="color:rgba(242,237,227,0.6);">🎯 Cannonball</a>
+  </div>
+</div>
+
+<div class="day-filter">
+  <button class="day-btn active" onclick="filterDay('all',this)">All</button>
+  <button class="day-btn" onclick="filterDay('sun',this)">🟢 Sun</button>
+  <button class="day-btn" onclick="filterDay('mon',this)">Mon</button>
+  <button class="day-btn" onclick="filterDay('tue',this)">🎥 Tue</button>
+  <button class="day-btn" onclick="filterDay('wed',this)">🟡 Wed</button>
+  <button class="day-btn" onclick="filterDay('thu',this)">🎥 Thu</button>
+  <button class="day-btn" onclick="filterDay('fri',this)">Fri</button>
+  <button class="day-btn" onclick="filterDay('sat',this)">Sat</button>
+  <button class="day-btn" onclick="filterDay('stack',this)">✍️ Substack</button>
+  <button class="day-btn" onclick="filterDay('vet',this)">🪖 Veteran</button>
+  <button class="day-btn" onclick="filterDay('ride',this)">🏍️ Ride</button>
+</div>
+
+<div class="week-header">
+  <div class="week-label">ROAST Content System · Week of June 14–20, 2026</div>
+  <div class="week-title">Full Production Stack — Every Piece</div>
+  <div class="week-sub">Through-line: Accessibility, reality checks, and the work nobody sees. Dorothy gets her name. Sellers hear the truth. The industry has work to do.</div>
+  <div class="week-meta">
+    <div class="week-stat"><strong>Personal moment:</strong> Blind buyer closing + digital accessibility gap</div>
+    <div class="week-stat"><strong>Dorothy:</strong> Ninja 400 named, ruby fairings + gold lights incoming</div>
+    <div class="week-stat"><strong>Listing:</strong> 3509 High Hill Rd, Effort PA — $429,900</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SUNDAY ═══════════════════════ -->
+<div class="day-section" id="day-sun" data-day="sun">
+<div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
+<div class="day-header">
+  <div class="dh-inner">
+    <div class="dh-name">SUN</div>
+    <div class="dh-content">
+      <div class="dh-label">Day One · Sunday June 14</div>
+      <div class="dh-title">Hub Video Record + Upload · Coffee & Ash IG · Tonight's Smoke Shoot</div>
+      <div class="dh-sub">Record Hub EN → Hub ES → Coffee & Ash shoot → Tonight's Smoke carousel for Monday 7PM</div>
+    </div>
+  </div>
+</div>
+<div class="recording-alert">
+  <div class="ra-icon">🟢</div>
+  <div>
+    <div class="ra-text">Recording Block · Sunday</div>
+    <div class="ra-sub">Hub Video EN (4 min) → Hub Video ES immediately after (same setup, DR cadence) → Coffee & Ash shoot → Tonight's Smoke carousel. Upload both hub videos same day.</div>
+  </div>
+</div>
+
+<!-- HUB VIDEO EN -->
+<div class="content-card" data-day="sun">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">Upload Sunday · @AlexaSanchezRealtor YouTube</div>
+      <div class="cc-title">Output 4 — YouTube Hub Video · English</div>
+      <div class="cc-platform">Main Playlist · ~4 min · Lead gen</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">@alexa.realtor</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Full Script</div>
+    <div class="script-block"><span class="hook">HOOK (0:00–0:08)
+I closed a deal last week that changed how I think about every transaction I'll ever do again.</span>
+
+<span class="beat">OPEN (0:08–0:30)
+I'm Alexa Sanchez, PA licensed Realtor with Smart Way America Realty, specializing in Monroe County and the Pocono Mountains. This week: accessibility in real estate — and the seller pricing conversation that went sideways for all the wrong reasons.</span>
+
+<span class="beat">SECTION 1 — THE CLOSING (0:30–1:30)
+Last week I closed a condo in a 55-plus community for a visually impaired buyer.
+
+Standard transaction on paper. Not standard in execution.
+
+Digital closing platforms are built for sighted users. Hyperlinks. Embedded PDFs. E-signature portals that require clicking through fields in a specific sequence.
+
+For most buyers: ten minutes.
+For my client: three hours. Per document.
+
+Screen readers and hyperlinks don't play well together. The fastest closing process in the industry's history is functionally inaccessible to a meaningful portion of buyers.
+
+I have a child with Down syndrome. I've volunteered with Special Olympics for years. I thought I understood accessibility.
+I realized I don't understand all of it. Different populations, different gaps.
+
+The lesson: ask your clients what they need before assuming your process works for them.</span>
+
+<span class="beat">SECTION 2 — MARKET PULSE (1:30–2:30)
+Quick market update for Monroe County.
+
+30-year fixed rate: mid-6s — 6.35 to 6.52% this week. VA rate: 40 to 50 basis points below conventional. Meaningful savings.
+
+Monroe County median: holding around $364,000. Days on market: 49 to 74 days depending on source. Inventory rising nationally — buyers have options. That changes the pricing conversation for sellers.</span>
+
+<span class="beat">SECTION 3 — THE SELLER WHO WANTS 2021 PRICES (2:30–3:30)
+Which brings me to this week's seller conversation.
+
+She called me to potentially list her home. I walked the property, pulled the comps, gave my recommended price.
+
+I was $50,000 under what she wanted.
+
+The highest comparable sale in that area was $30,000 under her number — and that house was updated.
+
+Hers: original 2004 kitchen. Original bathrooms. No stainless appliances. No granite or marble. Original carpet wall to wall. Zero hardwood where buyers look first.
+
+Beautiful house. Well cared for. Frozen in 2004.
+
+I told her exactly that. Top dollar requires top condition. This property does not have that right now.
+
+The market is not the problem. The expectation is the problem.</span>
+
+<span class="cta">CTA (3:30–4:00)
+Whether you're buying, selling, or investing in the Pocono Mountains — call me. I'll give you the truth before you make an expensive mistake.
+
+(570) 688-8147 · Alexa@alexasanchez.net
+PA License #RS326383 · Smart Way America Realty
+
+Link in description to schedule your free strategy call.</span></div>
+
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+I closed a condo for a visually impaired buyer last week — and the mortgage industry's digital pipeline nearly stopped us. Plus: the seller who wanted $50K over market because the house is "lovely." Truth-first real estate in Monroe County, PA.
+
+📞 (570) 688-8147 | Alexa@alexasanchez.net
+PA License #RS326383 · Smart Way America Realty
+<div class="hashtags">#PoconoRealEstate #MonroeCounty #RealEstateTips #AccessibleRealEstate #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Thumbnail Direction</div>
+    <div class="image-block">
+      <div class="img-label">Thumbnail</div>
+      Cartoon Alexa with direct, serious expression. Split image: left — document with accessibility/cursor icon overlay. Right — house with big red "$50K OVER" price tag crossed out. Bold white text: "TRUTH ABOUT THIS MARKET." Dark navy background.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- HUB VIDEO ES -->
+<div class="content-card" data-day="sun">
+  <div class="cc-header cc-header-spanish">
+    <div class="cc-left">
+      <div class="cc-time">Upload Sunday · En Español Playlist</div>
+      <div class="cc-title">Output 5 — Hub Video · Spanish 🇩🇴</div>
+      <div class="cc-platform">@AlexaSanchezRealtor YouTube · Same setup, DR cadence</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-spanish">En Español</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Full Script (Dominican Spanish)</div>
+    <div class="script-block"><span class="hook">HOOK (0:00–0:08)
+La semana pasada cerré una transacción que me cambió la forma en que veo todo lo que hago como Realtor.</span>
+
+<span class="beat">OPEN (0:08–0:30)
+Soy Alexa Sánchez, Realtor licenciada en Pennsylvania con Smart Way America Realty, especializada en Monroe County y las montañas Pocono. Hoy: accesibilidad en bienes raíces — y una vendedora con un precio que no cuadra con la realidad.</span>
+
+<span class="beat">SECCIÓN 1 (0:30–1:30)
+La semana pasada cerré un condominio en una comunidad 55-plus para un comprador con discapacidad visual.
+
+El problema: los portales digitales de cierre están diseñados para personas que pueden ver. Hyperlinks. PDFs con firma electrónica. Formularios que requieren hacer clic en una secuencia específica.
+
+Para la mayoría de los compradores — diez minutos.
+Para mi cliente — tres horas. Por documento.
+
+Los lectores de pantalla y los hyperlinks no funcionan bien juntos. El proceso de cierre más rápido de la industria es prácticamente inaccesible para una parte significativa de los compradores.
+
+Tengo un hijo con síndrome de Down. He sido voluntaria con las Olimpiadas Especiales por años. Pensé que entendía la accesibilidad.
+Esta semana aprendí que solo entiendo una parte de ella. Diferentes poblaciones, diferentes brechas.
+
+La lección: pregúntale a tu cliente lo que necesita antes de asumir que tu proceso funciona para él.</span>
+
+<span class="beat">SECCIÓN 2 (1:30–2:30)
+Pulso del mercado esta semana.
+
+Tasa a 30 años fija: rango del 6.35 al 6.52%. Tasa VA: unos 40 a 50 puntos base por debajo de la convencional — ahorro real.
+
+Monroe County: precio mediano sostenido alrededor de $364,000. Los días en el mercado rondan 49 a 74 días. El inventario está subiendo. Eso cambia la conversación de precio para los vendedores.</span>
+
+<span class="beat">SECCIÓN 3 (2:30–3:30)
+Me llaman para potencialmente listar una casa. Hago el análisis de comparables, doy mi precio recomendado.
+
+Fui $50,000 por debajo de lo que ella quería.
+
+La venta más alta en el área — $30,000 por debajo de su meta — y esa casa estaba actualizada.
+
+La de ella: cocina y baños originales del 2004. Sin electrodomésticos de acero inoxidable. Sin granito. Alfombra original en todos los cuartos. Cero pisos de madera donde importa.
+
+Casa preciosa. Bien cuidada. Congelada en el tiempo.
+
+Se lo dije directamente. El precio tope requiere condición tope. Aquí mismo no aplica.</span>
+
+<span class="cta">CTA (3:30–4:00)
+Si estás pensando en comprar, vender o invertir en los Poconos — llámame. Te digo la verdad antes de que cometas un error costoso.
+
+(570) 688-8147 · Alexa@alexasanchez.net
+Licencia PA #RS326383 · Smart Way America Realty</span></div>
+
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+Cerré una transacción para un comprador con discapacidad visual y la industria hipotecaria no estaba lista para servirle. Más: la vendedora que quiere $50K sobre el mercado porque la casa "está bonita." La verdad del mercado en Monroe County.
+
+📞 (570) 688-8147 | Licencia PA #RS326383 | Smart Way America Realty
+<div class="hashtags">#BienesRaicesPoconos #MonroeCounty #MercadoInmobiliario #AccesibilidadRealEstate #LifeByAlexa</div>
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- COFFEE & ASH SUNDAY -->
+<div class="content-card" data-day="sun">
+  <div class="cc-header cc-header-fnr">
+    <div class="cc-left">
+      <div class="cc-time">9:30 AM · Post · @its.myash Instagram</div>
+      <div class="cc-title">Output 14 — Coffee & Ash Ritual · Sunday IG</div>
+      <div class="cc-platform">@its.myash Instagram · BTS lifestyle · Max 3 hashtags</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">@its.myash</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+Sunday ritual. Filler & Roast in hand. Cigar on deck. Brain still processing last week. Recharging before the next one. ☕🍃
+<div class="hashtags">#LifeByAlexa #NellsSocial #CigarAndCoffee</div>
+    </div>
+    <div class="cs-label">Image Direction</div>
+    <div class="image-block">
+      <div class="img-label">Shoot Direction</div>
+      Overhead flat lay: Filler & Roast mug (logo visible) next to unlit cigar on dark wood tray. Natural Sunday morning light. Soft smoke wisp if possible. Minimal. Warm tones.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- TONIGHT'S SMOKE SHOOT NOTE -->
+<div class="content-card" data-day="sun">
+  <div class="cc-header cc-header-burg">
+    <div class="cc-left">
+      <div class="cc-time">Shoot Sunday · Posts Monday 7:00 PM</div>
+      <div class="cc-title">Tonight's Smoke — Shoot Today · Post Monday</div>
+      <div class="cc-platform">IG @its.myash Carousel · 4–6 slides · shoot now, post Monday 7PM</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">@its.myash</span>
+      <span class="badge b-goal-sales">Drive Sales</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Shoot Direction (Today)</div>
+    <div class="image-block">
+      <div class="img-label">Carousel — 4–6 Slides</div>
+      Slide 1: Cigar unlit — hero shot, full wrapper detail. Clean background.<br>
+      Slide 2: First light or first draw — ember glow, smoke visible.<br>
+      Slide 3: Mid-smoke — ash formation, relaxed grip.<br>
+      Slide 4: Pairing — Filler & Roast coffee if available.<br>
+      Slide 5 (optional): Setting — lounge, porch, wherever you are.<br><br>
+      Warm tones. Moody. No filters that kill tobacco color.
+    </div>
+    <div class="cs-label">Caption Template (Post Monday 7PM)</div>
+    <div class="caption-block">
+[Cigar name]. [One line — what made tonight's smoke worth writing about.]
+Nell's Social vibes, wherever you are.
+<div class="hashtags">#CigarLife #PremiumCigars #CigarLounge #NellsSocial #OperatorLife #LifeByAlexa</div>
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete — Shoot today, post Mon 7PM</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════ MONDAY ═══════════════════════ -->
+<div class="day-section hidden" id="day-mon" data-day="mon">
+<div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
+<div class="day-header">
+  <div class="dh-inner">
+    <div class="dh-name">MON</div>
+    <div class="dh-content">
+      <div class="dh-label">Day Two · Monday June 15</div>
+      <div class="dh-title">Substack Publish · BTS TikTok Q1 · LinkedIn · GBP · FB · Tonight's Smoke Post</div>
+      <div class="dh-sub">All posting — nothing to record. Tonight's Smoke goes up at 7PM from Sunday's shoot.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SUBSTACK OPERATOR -->
+<div class="content-card" data-day="mon">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">7:00 AM · Publish · Substack @itsmyash</div>
+      <div class="cc-title">Output 1 — Substack · Operator Life · "The Closing That Changed How I Show Up"</div>
+      <div class="cc-platform">The Lifestyle Market Letter · 600–900 words · Monday</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">Substack</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Title + Subtitle</div>
+    <div class="caption-block">
+      <strong>The Closing That Changed How I Show Up</strong><br><br>
+      I've worked with buyers in every situation. Last week I realized I hadn't worked with all of them.
+    </div>
+    <div class="cs-label">Full Article (paste-ready)</div>
+    <div class="script-block">Last week I closed a condo in a 55-plus community. Small deal on paper. But this one stuck with me.
+
+My buyer is visually impaired. Functionally blind. And what I assumed would be a standard closing process turned into a three-week education I did not expect.
+
+Here's what I mean: the mortgage process in 2026 is almost entirely digital. Hyperlinks. PDFs that require e-signatures. Portals that load forms on click. For most buyers, it's ten minutes of clicking. For my client, it was three hours per document. Screen readers don't parse embedded hyperlinks the way sighted users experience them. Tabbing through fields in a digital form is not intuitive when the form wasn't built for anyone other than a sighted person.
+
+The industry built the fastest closing pipeline in history. And it's completely inaccessible to a meaningful portion of the population.
+
+I sat with that for a few days.
+
+I have a child with Down syndrome. I've spent years volunteering with Special Olympics. I thought that gave me some fluency in accessibility conversations. And then I realized I had never once advocated for a visually impaired person navigating a real estate transaction. Different experience. Different gaps. I assumed my awareness translated. It didn't.
+
+Here's what I did: I printed documents. I walked him through every signature on the phone, reading field by field. I coordinated directly with the lender to get accessible formats where possible. I added two hours to every step I would normally knock out in twenty minutes. And we closed.
+
+But here's what I should have done sooner: asked, at the first consultation, what accommodations would make this process easier. Not waited until we hit a wall.
+
+That's the operator lesson this week. Not just in real estate — in everything we build.
+
+We build systems for the average user. The average client. The path of least friction for the majority. And in doing that, we accidentally wall off the people for whom friction is the default.
+
+If you run a lounge, when's the last time you thought about whether your menu is accessible to someone who's blind? If you sell real estate, when's the last time you asked a buyer what they need before assuming your process works for them?
+
+The best operators don't just close deals. They close the gap between who the system was built for and who's actually standing in front of them.
+
+I have a lot to learn here. This closing reminded me of that. And I'm grateful my buyer trusted me to figure it out alongside him.
+
+Be direct. Ask what people need. Then build accordingly.
+
+— Alexa</div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- BTS TIKTOK Q1 -->
+<div class="content-card" data-day="mon">
+  <div class="cc-header cc-header-burg">
+    <div class="cc-left">
+      <div class="cc-time">9:00 AM · Post · @itsmyash TikTok</div>
+      <div class="cc-title">Output 11 — BTS TikTok · Q1 Answer (Jazz Jam Night)</div>
+      <div class="cc-platform">@itsmyash TikTok · talking head at lounge · Max 3 hashtags</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">@its.myash</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Script</div>
+    <div class="script-block"><span class="hook">Friday Jazz Night at Nell's Social turned into something I did not plan.</span>
+<span class="beat">The musicians started. The guests started listening. Then — somewhere around the second set — the whole room shifted.
+
+People started singing along. Someone got pulled up to take a vocal riff.
+The audience became the band.
+
+For about 45 minutes, Nell's Social stopped being a lounge with entertainment and became a place where the entertainment was everyone in the room.</span>
+<span class="cta">I can't manufacture that. I can only build a room with enough soul that when it happens — the space can hold it.
+
+That's the whole job.</span></div>
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+Friday jazz night turned into a jam session and the audience took over. This is why I do what I do. 🎵🍃
+<div class="hashtags">#LifeByAlexa #NellsSocial #OperatorLife</div>
+    </div>
+    <div class="cs-label">Video Direction</div>
+    <div class="image-block">
+      <div class="img-label">Shoot Notes</div>
+      Talking head at the lounge. Warm lighting. Casual energy — like you're telling a story to a friend. Reference the Jazz Night footage or ambient lounge shots if available as B-roll.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- LINKEDIN MARKET SIGNAL MON -->
+<div class="content-card" data-day="mon">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">8:00 AM · Post · LinkedIn @alexa.realtor</div>
+      <div class="cc-title">Output 15 — LinkedIn Market Signal · Post 1/3</div>
+      <div class="cc-platform">LinkedIn · data-led · authority voice · license required</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">@alexa.realtor</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+Monroe County, PA — market snapshot · Week of June 14, 2026
+
+Rates: 30-yr fixed ~6.35–6.52% | VA: ~40–50 bps below conventional
+Monroe County median: ~$364,000 | DOM: 49–74 days | Inventory: rising nationally
+
+Big signal this week: sellers who price correctly are moving. Sellers pricing for 2021 are sitting. Inventory is climbing — the competitive window for well-priced listings is now, not fall.
+
+Also tracking this week: digital mortgage closing platforms are not accessible to visually impaired buyers. I just navigated this with a client. Standard process: 10 minutes. For my buyer: 3 hours per document. The industry has work to do.
+
+Questions about the Monroe County market? (570) 688-8147
+
+Alexa Sanchez | PA License #RS326383 | Smart Way America Realty
+<div class="hashtags">#PoconoRealEstate #MonroeCounty #RealEstateInvesting #LifeByAlexa</div>
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- GBP MONDAY -->
+<div class="content-card" data-day="mon">
+  <div class="cc-header cc-header-green">
+    <div class="cc-left">
+      <div class="cc-time">9:00 AM · Post · Google Business Profile</div>
+      <div class="cc-title">Output 15 — GBP Market Update · Monday</div>
+      <div class="cc-platform">No hashtags · No client names · Phone + license required</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">Google Biz</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Post Copy (paste-ready)</div>
+    <div class="caption-block">
+Monroe County Market Update — Week of June 14, 2026
+
+The Pocono Mountains real estate market remains active this summer. VA loan rates are running approximately 40–50 basis points below conventional 30-year fixed rates. Monroe County median prices are holding strong, and well-priced, well-presented homes are still moving.
+
+Inventory is rising nationally — sellers who list now have a window before fall competition increases.
+
+Thinking about selling your Monroe County home this summer? Let's talk strategy.
+
+📞 (570) 688-8147 | Alexa@alexasanchez.net
+PA License #RS326383 | Smart Way America Realty
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- PERSONAL FB MONDAY -->
+<div class="content-card" data-day="mon">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">10:00 AM · Post · Personal Facebook</div>
+      <div class="cc-title">Output 15 — Personal Facebook Real Estate Insight</div>
+      <div class="cc-platform">Personal Facebook · community voice · warm tone</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">Personal FB</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Post Copy (paste-ready)</div>
+    <div class="caption-block">
+Hey Pocono friends and neighbors — quick market update for this week.
+
+Monroe County home prices are holding strong, and VA loan rates are running almost half a point below conventional right now. If you have a veteran in your family looking to buy, they should know about that.
+
+Something else on my mind: I just closed a condo for a buyer who is visually impaired, and I learned how difficult our digital mortgage process is to navigate without sight. I'm going to be a more thoughtful Realtor because of it.
+
+If you're thinking about buying or selling in the Poconos — I'm always happy to answer questions.
+
+📞 (570) 688-8147 | Alexa@alexasanchez.net
+PA License #RS326383 | Smart Way America Realty
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- TONIGHT'S SMOKE POST MON -->
+<div class="content-card" data-day="mon">
+  <div class="cc-header cc-header-burg">
+    <div class="cc-left">
+      <div class="cc-time">7:00 PM · Post · IG @its.myash</div>
+      <div class="cc-title">Tonight's Smoke Carousel · Post (shot Sunday)</div>
+      <div class="cc-platform">@its.myash Instagram · 4–6 slides from Sunday shoot</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">@its.myash</span>
+      <span class="badge b-goal-sales">Drive Sales</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Post Checklist</div>
+    <div class="cs-content">✓ 4–6 slides from Sunday shoot<br>✓ Fill in cigar name + one-line observation in caption template<br>✓ Tag @nellssocial if at the lounge<br>✓ Hashtags: #CigarLife #PremiumCigars #NellsSocial #OperatorLife #LifeByAlexa</div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════ TUESDAY ═══════════════════════ -->
+<div class="day-section hidden" id="day-tue" data-day="tue">
+<div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
+<div class="day-header">
+  <div class="dh-inner">
+    <div class="dh-name">TUE</div>
+    <div class="dh-content">
+      <div class="dh-label">Day Three · Tuesday June 16</div>
+      <div class="dh-title">Ashes & Escrows · Car Confessions · DR Video Film · Ride With Me Ep 1 · Nextdoor</div>
+      <div class="dh-sub">Record: Ashes & Escrows · Car Confession EN 3PM · Car Confession ES 3:30PM · DR Video EN+ES · Ride With Me Ep 1 film + post same day</div>
+    </div>
+  </div>
+</div>
+<div class="recording-alert">
+  <div class="ra-icon">🎥</div>
+  <div>
+    <div class="ra-text">Film Block · Tuesday</div>
+    <div class="ra-sub">Ashes & Escrows (one take, under 60 sec, cigar in hand) → Car Confession EN → Car Confession ES → DR Video EN → DR Video ES → Ride With Me Ep 1 (film + post same day) · ~45 min total</div>
+  </div>
+</div>
+
+<!-- ASHES & ESCROWS -->
+<div class="content-card" data-day="tue">
+  <div class="cc-header cc-header-burg">
+    <div class="cc-left">
+      <div class="cc-time">Record Tue · Upload Tue or Wed AM · YouTube</div>
+      <div class="cc-title">Output 6 — Ashes & Escrows · The 2004 Kitchen</div>
+      <div class="cc-platform">@AlexaSanchezRealtor YouTube · under 60 sec · one take · cigar in hand</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">YouTube</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Script (under 60 seconds)</div>
+    <div class="script-block"><span class="hook">Let me tell you about the Monroe County seller I met this week.
+
+Beautiful house. Original to 2004. Every surface, every fixture, every carpet — still 2004.</span>
+
+<span class="beat">No granite. No stainless steel. No hardwood where hardwood actually matters to a buyer in 2026.
+
+I walked the property, pulled the comps, gave her my number.
+
+She said — and this is a direct quote — "That's $50,000 below what I need."
+
+Ma'am. The highest comparable sale in your neighborhood was $30,000 under YOUR number. And that house had a renovated kitchen.
+
+Yours has a countertop that's been there since George W. Bush's first term.
+
+I respect this home. It is clean. It is loved. It is absolutely frozen in 2004 and the market is not going back there with it.
+
+Top dollar requires top condition.
+Not top hope.</span>
+
+<span class="cta">Price it right. Sell it fast. Or don't call me. Your choice.
+
+I'm Alexa Sanchez. Smart Way America Realty. PA License #RS326383.
+This is Ashes & Escrows — where we roast bad pricing decisions alongside good cigars.</span></div>
+    <div class="cs-label">YouTube Caption (paste-ready)</div>
+    <div class="caption-block">
+This week on Ashes & Escrows: the Monroe County seller who wants 2024 prices for a 2004 kitchen. We roast it. With love. 🔥 | PA #RS326383 | Smart Way America Realty
+<div class="hashtags">#AshesAndEscrows #PoconoRealEstate #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Thumbnail Direction</div>
+    <div class="image-block">
+      <div class="img-label">Thumbnail</div>
+      Cartoon Alexa holding cigar, looking at a vintage calendar reading "2004." Price tag dangling off a countertop: "$50K OVER MARKET 😂." Bold red "ASHES & ESCROWS" at top. Dark background with burgundy accent.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- CAR CONFESSION EN -->
+<div class="content-card" data-day="tue">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">3:00 PM · Record + Post · @alexa.realtor IG</div>
+      <div class="cc-title">Output 12 — Car Confession · English · Accessibility</div>
+      <div class="cc-platform">@alexa.realtor Instagram · 20 sec max · in-car · Post 1/4</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">@alexa.realtor</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Script (20 sec max)</div>
+    <div class="script-block"><span class="hook">Real talk from my car.
+
+I just closed a condo for a visually impaired buyer.
+What normally takes ten minutes took three hours. Per document.</span>
+<span class="beat">The mortgage industry built the fastest digital closing process in history.
+It doesn't work for everyone.</span>
+<span class="cta">That's not a complaint. That's a call to do better.
+
+(570) 688-8147. PA License #RS326383. Smart Way America Realty.</span></div>
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+We talk about closing fast. We don't talk about who the "fast" doesn't work for. I'm talking about it now. 📞 (570) 688-8147 | PA #RS326383 | Smart Way America Realty
+<div class="hashtags">#PoconoRealEstate #CarConfession #AccessibleRealEstate #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Cover Text Direction</div>
+    <div class="cover-block">
+      <div class="cv-label">Cover Text</div>
+      Bold white: "10 MINUTES vs 3 HOURS." Neon green: "PER DOCUMENT." Red bar at bottom: "THE INDUSTRY MISSED THIS." Chunky tilted font over face.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- CAR CONFESSION ES -->
+<div class="content-card" data-day="tue">
+  <div class="cc-header cc-header-spanish">
+    <div class="cc-left">
+      <div class="cc-time">3:30 PM · Record + Post · @alexa.realtor YouTube En Español</div>
+      <div class="cc-title">Output 13 — Car Confession · Spanish 🇩🇴</div>
+      <div class="cc-platform">@alexa.realtor YouTube En Español Playlist · Dominican Spanish · 20 sec max</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-spanish">En Español</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Script (Dominican Spanish, 20 sec)</div>
+    <div class="script-block"><span class="hook">Te digo algo desde mi carro.
+
+Acabo de cerrar un condominio para un comprador con discapacidad visual.
+Lo que normalmente toma diez minutos tomó tres horas. Por documento.</span>
+<span class="beat">La industria hipotecaria construyó el proceso de cierre digital más rápido de la historia.
+Y no funciona para todos.</span>
+<span class="cta">Eso no es una queja. Es un llamado a hacerlo mejor.
+
+(570) 688-8147. Licencia PA #RS326383. Smart Way America Realty.</span></div>
+    <div class="cs-label">Caption (paste-ready, Spanish)</div>
+    <div class="caption-block">
+Hablan de cerrar rápido. No hablan de para quién "rápido" no funciona. Yo sí lo estoy hablando. 📞 (570) 688-8147 | Licencia PA #RS326383 | Smart Way America Realty
+<div class="hashtags">#BienesRaices #AccesibilidadRealEstate #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Cover Text Direction</div>
+    <div class="cover-block">
+      <div class="cv-label">Cover Text</div>
+      Bold white: "10 MINUTOS vs 3 HORAS." Neon green: "POR DOCUMENTO." Same chunky tilted font. Contact bar at bottom.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- RIDE WITH ME EP 1 -->
+<div class="content-card" data-day="tue" data-day-extra="ride">
+  <div class="cc-header cc-header-ride">
+    <div class="cc-left">
+      <div class="cc-time">Film + Post Tuesday · @its.myash IG + @itsmyash TikTok</div>
+      <div class="cc-title">🏍️ Ride With Me · Episode 1 — Dorothy Gets Her Name</div>
+      <div class="cc-platform">@its.myash IG + @itsmyash TikTok · 100% · NOT flagged for @alexa.realtor this week</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-ride">Ride With Me</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+She has a name now. Dorothy. 🌪️
+
+Named her after The Wizard of Oz. She's getting ruby fairings — red on top, gold on the tires — so it looks like she's riding the yellow brick road.
+
+This week we worked on something that sounds small and is everything: hugging the bike with your knees. Not gripping. Not fighting. Just being with the bike.
+
+Turns out that's a pretty good metaphor for most things worth doing.
+
+Road hasn't started yet. But Dorothy and I are getting ready for it.
+<div class="hashtags">#RideWithMe #LifeByAlexa #MotorcycleLife #OperatorLife #NellsSocial</div>
+    </div>
+    <div class="cs-label">Talking Points Framework (never scripted)</div>
+    <div class="talking-block">
+      <div class="tp-label">Talking Points — Speak naturally. Start mid-thought.</div>
+      → Introduce Dorothy by name. Say it like it means something.<br>
+      → The Wizard of Oz reference — ruby fairings, yellow brick road light kit, red on top + gold on tires.<br>
+      → Knee-hug practice this week. What it felt like when it clicked vs. when it didn't.<br>
+      → Land on: the road is coming. Dorothy and I are almost ready.<br>
+      → No CTA on @its.myash version.
+    </div>
+    <div class="flag-block">
+      <div class="fl-label">@alexa.realtor Flag</div>
+      NOT flagged this week — no Pocono scenic route, no relocation angle. @its.myash + @itsmyash only. 100% of ride content, no exceptions.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete — Film + post same day</div>
+    </div>
+  </div>
+</div>
+
+<!-- DR VIDEO FILM NOTE -->
+<div class="content-card" data-day="tue">
+  <div class="cc-header cc-header-spanish">
+    <div class="cc-left">
+      <div class="cc-time">Film Tuesday · Upload Friday · YouTube Both Playlists</div>
+      <div class="cc-title">Output 8 — DR Video · Film Day (EN + ES) · CONFOTUR Math</div>
+      <div class="cc-platform">Topic: CONFOTUR numbers + verification — what buyers actually save</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-spanish">DR Video</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">English Script (under 60 sec)</div>
+    <div class="script-block"><span class="hook">Here are the CONFOTUR numbers that most U.S. buyers don't run before they wire money to the Dominican Republic.</span>
+
+<span class="beat">On a non-CONFOTUR property: you pay 3% transfer tax at closing. That's $7,500 on a $250,000 condo. Gone. Day one.
+
+On a CONFOTUR-approved project: that transfer tax is zero. On the first transfer.
+
+And the annual IPI property tax — 1% of assessed value — is also zero. For 10 to 15 years depending on the project's decree.
+
+On a $250,000 purchase, that's up to $2,500 a year you're not paying. For up to 15 years.
+
+But CONFOTUR status is not automatic. You need to verify the approval instrument is final — not pending. Your unit must sit inside the approved project. And the contract must spell out the exemptions explicitly.
+
+I'll link a full verification checklist in the description.</span>
+
+<span class="cta">I'm Alexa Sanchez. PA License #RS326383. Smart Way America Realty. And yes — I do DR real estate too.</span></div>
+
+    <div class="cs-label">Spanish Script (Dominican Spanish, under 60 sec)</div>
+    <div class="script-block"><span class="hook">Estos son los números de CONFOTUR que la mayoría de los compradores americanos no calculan antes de transferir su dinero a la República Dominicana.</span>
+
+<span class="beat">En una propiedad sin CONFOTUR: pagas un 3% de impuesto de transferencia al cierre. En un condominio de $250,000, eso son $7,500. Día uno. Fuera.
+
+En un proyecto aprobado por CONFOTUR: ese impuesto de transferencia es cero. En la primera transferencia.
+
+Y el IPI — el impuesto anual de propiedad del 1% — también es cero. Por 10 a 15 años, según el decreto del proyecto.
+
+En una compra de $250,000, eso son hasta $2,500 al año que no pagas. Por hasta 15 años.
+
+Pero el estatus CONFOTUR no es automático. Tienes que verificar que la aprobación sea final — no pendiente. Tu unidad tiene que estar dentro del proyecto aprobado. Y el contrato tiene que especificar las exenciones.
+
+El link al checklist completo está en la descripción.</span>
+
+<span class="cta">Soy Alexa Sánchez. Licencia PA #RS326383. Smart Way America Realty.</span></div>
+
+    <div class="cs-label">Thumbnail Direction</div>
+    <div class="image-block">
+      <div class="img-label">Thumbnail</div>
+      Clean split screen. Left: Bold "$7,500 SAVED AT CLOSING." Right: "0% IPI · 10–15 YRS." Cartoon Alexa center, confident pose. DR flag color accent bar. Dark background.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete — Filmed, upload Friday</div>
+    </div>
+  </div>
+</div>
+
+<!-- NEXTDOOR TUE -->
+<div class="content-card" data-day="tue">
+  <div class="cc-header cc-header-green">
+    <div class="cc-left">
+      <div class="cc-time">9:00 AM · Post · Nextdoor</div>
+      <div class="cc-title">Output 15 — Nextdoor Neighborly Post</div>
+      <div class="cc-platform">Nextdoor · warm community voice · no hashtags</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">Nextdoor</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Post Copy (paste-ready)</div>
+    <div class="caption-block">
+Hi neighbors! Quick update from the Pocono market this week.
+
+Monroe County median prices are holding strong and VA loan rates are favorable — a good window for both buyers and sellers. The market hasn't stalled; it's just more balanced than 2021.
+
+Something also on my mind: I just helped a visually impaired buyer close a condo in our area and realized how many barriers exist in the standard mortgage and closing process for buyers who navigate the world differently. I'm committed to doing better.
+
+Happy to answer market questions — no pressure, no pitch.
+
+📞 (570) 688-8147 | PA License #RS326383 | Smart Way America Realty
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════ WEDNESDAY ═══════════════════════ -->
+<div class="day-section hidden" id="day-wed" data-day="wed">
+<div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
+<div class="day-header">
+  <div class="dh-inner">
+    <div class="dh-name">WED</div>
+    <div class="dh-content">
+      <div class="dh-label">Day Four · Wednesday June 17</div>
+      <div class="dh-title">Main Record Day · BTS TikTok Q2 · Cigar Video (Rosario) · Talking Head · GBP Listing · BTS IG</div>
+      <div class="dh-sub">Record: Cigar Video (Rosario) · Talking Head (7am-midnight day) · YouTube Short. Upload Cigar Video Thursday 6PM.</div>
+    </div>
+  </div>
+</div>
+<div class="recording-alert">
+  <div class="ra-icon">🟡</div>
+  <div>
+    <div class="ra-text">Primary Recording Block · Wednesday · ~60 min</div>
+    <div class="ra-sub">Rosario Cigars lounge video (under 60 sec) → Talking Head (operator life / 7am-midnight) → YouTube Short (accessibility angle from hub) → BTS Q2 TikTok. Cigar video uploads Thursday 6PM. YouTube Short uploads Thursday 12PM.</div>
+  </div>
+</div>
+
+<!-- BTS TIKTOK Q2 -->
+<div class="content-card" data-day="wed">
+  <div class="cc-header cc-header-burg">
+    <div class="cc-left">
+      <div class="cc-time">6:00 PM · Post · @itsmyash TikTok</div>
+      <div class="cc-title">Output 11 — BTS TikTok · Q2 Answer (7am to Midnight)</div>
+      <div class="cc-platform">@itsmyash TikTok · operator life · max 3 hashtags</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">@its.myash</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Script</div>
+    <div class="script-block"><span class="beat">Can we talk about the operator day that nobody posts about?
+
+Three real estate clients. First showing at 7am.
+Then straight to the lounge. Past midnight.
+
+I did not sit down. I did not eat.
+I ran on whatever combination of coffee and conviction keeps this whole thing moving.</span>
+<span class="cta">And I would do it again tomorrow.
+
+The glamour comes later. Right now is the foundation.
+Foundation days are how you get to the glamorous ones.</span></div>
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+7am to past midnight. Three clients. The lounge. No food. This is the non-glamorous version they don't put on the highlight reel. 😅
+<div class="hashtags">#LifeByAlexa #OperatorLife #BehindTheBrands</div>
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- CIGAR VIDEO - ROSARIO -->
+<div class="content-card" data-day="wed">
+  <div class="cc-header cc-header-burg">
+    <div class="cc-left">
+      <div class="cc-time">Record Wed · Upload Thursday 6:00 PM · IG + TikTok @its.myash</div>
+      <div class="cc-title">Output 9 — Cigar/Lounge Video · Rosario Cigars from the Bronx</div>
+      <div class="cc-platform">@its.myash Instagram + @itsmyash TikTok · under 60 sec · authority voice</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">@its.myash</span>
+      <span class="badge b-goal-sales">Drive Sales</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Script (under 60 sec)</div>
+    <div class="script-block"><span class="hook">Rosario Cigars. Bronx-made. Dominican DNA. And they're going fast at Nell's Social.</span>
+
+<span class="beat">Here's the deal: Rosario is a small family-run operation out of the Bronx. Hand-rolled Dominican cigars. Fresh. Approachable price points. And a flavor line that runs from traditional to straight-up dessert.
+
+Coffee espresso. Milk cream. Vanilla cognac. Piña colada. Chocolate Jack Daniel's.
+
+If you're newer to cigars or you just want something you can smoke through a whole conversation without getting knocked sideways — Rosario is your answer.
+
+The non-flavored blends — classic Dominican, smooth, medium-mild, cedar, toast — are for when you want a real cigar without a four-hour commitment to concentration.
+
+Pair the coffee espresso with a cappuccino.
+That's not a suggestion. That's a command.</span>
+
+<span class="cta">Bronx-rolled. Dominican-smooth. Flavored just right.
+
+Come find them at Nell's Social. They won't last.</span></div>
+
+    <div class="cs-label">IG Caption (paste-ready)</div>
+    <div class="caption-block">
+Rosario Cigars from the Bronx are in the humidor at Nell's Social. Family-run. Dominican-made. Flavored blends that slap without slapping too hard. The coffee espresso + cappuccino pairing is not optional. Come try one. 🍃☕
+<div class="hashtags">#CigarLife #NellsSocial #DominicanCigars #LifeByAlexa #BronxMade</div>
+    </div>
+    <div class="cs-label">TikTok Caption</div>
+    <div class="caption-block">
+Bronx-rolled Dominican cigars are at Nell's Social and the flavor line will surprise you 🇩🇴🍃
+<div class="hashtags">#CigarLife #NellsSocial #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Image Direction</div>
+    <div class="image-block">
+      <div class="img-label">Shot Direction</div>
+      At Nell's Social humidor. Rosario cigars displayed prominently with band visible. Warm amber lounge lighting. A cappuccino visible in the background. Text overlay: "ROSARIO CIGARS — NOW AT NELL'S SOCIAL" in chunky font.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete — Film Wed, upload Thu 6PM</div>
+    </div>
+  </div>
+</div>
+
+<!-- TALKING HEAD -->
+<div class="content-card" data-day="wed">
+  <div class="cc-header cc-header-burg">
+    <div class="cc-left">
+      <div class="cc-time">Record Wed · Post Wed · IG + TikTok @its.myash</div>
+      <div class="cc-title">Output 10 — Talking Head · The 7am to Midnight Day</div>
+      <div class="cc-platform">@its.myash Instagram + @itsmyash TikTok · 30–90 sec · one clear point</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">@its.myash</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Script (30–90 sec)</div>
+    <div class="script-block"><span class="hook">Nobody talks about what it actually costs to run multiple businesses simultaneously.
+
+Not financially. Emotionally.</span>
+
+<span class="beat">Last week I had three real estate clients. Morning showings at 7am. Then straight to the lounge. Past midnight.
+
+I forgot to eat. I ran on fumes. I did not sit down between 7am and 12:30am.
+
+And I would do it again tomorrow.
+
+Here's the thing nobody tells you about building something: the glamour is not now. The glamour is later.
+
+What's happening right now is the unsexy foundation work that the Instagram version of entrepreneurship doesn't show.
+
+The sleepless nights where your brain won't stop running marketing strategies at 2am. The micro-steps that need to exist before the big picture can become real.
+
+I think about my business in 3-month windows, 6-month windows, and 12-month windows simultaneously. That doesn't make the midnight shift shorter. But it makes it mean something.</span>
+
+<span class="cta">The rewards will outshine the hard work.
+I'm not there yet. But I'm not turning around either.
+
+Just Watch Me.</span></div>
+
+    <div class="cs-label">IG Caption (paste-ready)</div>
+    <div class="caption-block">
+7am showings. Three clients. Then the lounge until past midnight. I forgot to eat. I ran on fumes. I'd do it again. The glamour comes later. Right now is the foundation. #JustWatchMe 🔥
+<div class="hashtags">#OperatorLife #BehindTheBrands #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">TikTok Caption</div>
+    <div class="caption-block">
+What running multiple businesses actually looks like (nobody shows you this part) 😮‍💨
+<div class="hashtags">#OperatorLife #LifeByAlexa #JustWatchMe</div>
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- BTS IG WED -->
+<div class="content-card" data-day="wed">
+  <div class="cc-header cc-header-burg">
+    <div class="cc-left">
+      <div class="cc-time">2:00 PM · Post · @its.myash Instagram</div>
+      <div class="cc-title">Output 14 — BTS IG · Wednesday Operator Moment</div>
+      <div class="cc-platform">@its.myash Instagram · real moment · not posed · max 3 hashtags</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">@its.myash</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+The part of the operator life nobody warns you about: your brain doesn't clock out. It just keeps running. Marketing strategies at 2am. Cross-brand ideas in the shower. Micro-steps toward the macro plan at 7am before your first client. This is what growth looks like before it looks like anything. 🔥
+<div class="hashtags">#LifeByAlexa #OperatorLife #BehindTheBrands</div>
+    </div>
+    <div class="cs-label">Image Direction</div>
+    <div class="image-block">
+      <div class="img-label">Shot Direction</div>
+      Alexa at the lounge or desk, mid-thought — looking slightly off-camera with a serious but not unhappy expression. Real moment. Not posed. Warm lounge or natural office light.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- GBP WED - LISTING FEATURE -->
+<div class="content-card" data-day="wed">
+  <div class="cc-header cc-header-green">
+    <div class="cc-left">
+      <div class="cc-time">9:00 AM · Post · Google Business Profile</div>
+      <div class="cc-title">Output 15 — GBP Listing Feature · 3509 High Hill Rd, Effort PA</div>
+      <div class="cc-platform">No hashtags · Town + property type only · Full contact required</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">Google Biz</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Post Copy (paste-ready)</div>
+    <div class="caption-block">
+📍 Active Listing — 3-Bed / 3-Bath Single-Family Home · Effort, PA
+
+Well-maintained 3-bedroom, 3-bath home with over 2,300 square feet on approximately 1 acre in Monroe County. Priced at $429,900 — inside the buyer search range below $450,000 where summer activity is strongest.
+
+Three full bathrooms and flexible living spaces make this a strong option for Monroe County owner-occupants and second-home buyers in the Pocono area.
+
+Thinking about selling in Monroe County? Let's talk about what your home is worth right now.
+
+📞 (570) 688-8147 | Alexa@alexasanchez.net
+PA License #RS326383 · Smart Way America Realty
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- UNDER CONTRACT STORY WED -->
+<div class="content-card" data-day="wed">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">11:00 AM · Post Story · @alexa.realtor IG</div>
+      <div class="cc-title">Output 15 — Under Contract Story IG · Post 2/4</div>
+      <div class="cc-platform">@alexa.realtor Instagram · victory graphic · no address, no client name</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">@alexa.realtor</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+UNDER CONTRACT 🎉
+Another condo closed before summer ends. Accessibility challenges and all — we got it done.
+Thinking about selling? Let's talk.
+📞 (570) 688-8147 | PA #RS326383 | Smart Way America Realty
+<div class="hashtags">#PoconoRealEstate #UnderContract #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Image Direction</div>
+    <div class="image-block">
+      <div class="img-label">Graphic</div>
+      Bold "UNDER CONTRACT" graphic. Cartoon Alexa victory pose. Property type + area (no address/name). Navy + neon green brand colors.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════ THURSDAY ═══════════════════════ -->
+<div class="day-section hidden" id="day-thu" data-day="thu">
+<div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
+<div class="day-header">
+  <div class="dh-inner">
+    <div class="dh-name">THU</div>
+    <div class="dh-content">
+      <div class="dh-label">Day Five · Thursday June 19</div>
+      <div class="dh-title">YouTube Short Upload · Veteran Reel · Substack Publish · LinkedIn · GBP · Nextdoor · Cigar Video Upload</div>
+      <div class="dh-sub">Upload: YouTube Short (12PM) · Cigar Video (6PM). Post: Veteran Reel · LinkedIn Operator · GBP · Nextdoor. Publish: Thursday Substack.</div>
+    </div>
+  </div>
+</div>
+
+<!-- YOUTUBE SHORT + IG REEL -->
+<div class="content-card" data-day="thu">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">12:00 PM Upload · YouTube Shorts + @alexa.realtor IG Reel</div>
+      <div class="cc-title">Output 7 — YouTube Short + IG Reel · Accessibility Gap</div>
+      <div class="cc-platform">@AlexaSanchezRealtor YouTube Shorts + @alexa.realtor IG Reel · under 60 sec</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">@alexa.realtor</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Script (under 60 sec)</div>
+    <div class="script-block"><span class="hook">Here is what the mortgage industry built and forgot to test.
+
+Digital closing portals. Hyperlinks. E-signature flows. Fields that require clicking in a specific order.</span>
+
+<span class="beat">For most buyers: ten minutes.
+For a visually impaired buyer: three hours. Per document.
+
+I just closed a condo for a buyer who is visually impaired. Screen readers don't parse embedded hyperlinks the way sighted users experience them. The "easy button" everyone brags about doesn't work for everyone.
+
+As a Realtor, my job is to serve the person in front of me — not the person the system was designed for.
+
+Know who your client is. Ask what they need. Then figure it out.</span>
+
+<span class="cta">(570) 688-8147. PA License #RS326383. Smart Way America Realty. I'm Alexa Sanchez.</span></div>
+
+    <div class="cs-label">YouTube Shorts Caption</div>
+    <div class="caption-block">
+The mortgage industry built the fastest closing process in history. It's not accessible to everyone. What I learned closing a condo for a visually impaired buyer. | PA #RS326383 | Smart Way America Realty
+    </div>
+    <div class="cs-label">Cover Text Direction</div>
+    <div class="cover-block">
+      <div class="cv-label">Cover Text</div>
+      Bold white: "DIGITAL CLOSINGS AREN'T ACCESSIBLE." Neon green stat: "10 MIN vs 3 HRS." Red accent: "THE INDUSTRY MISSED THIS." Chunky tilted font over face.
+    </div>
+    <div class="cs-label">IG Reel Caption (paste-ready)</div>
+    <div class="caption-block">
+The mortgage industry built a beautiful digital pipeline. It doesn't work for everyone. I just learned that — and I'm a better Realtor for it. 📞 (570) 688-8147 | PA #RS326383 | Smart Way America Realty
+<div class="hashtags">#PoconoRealEstate #AccessibleRealEstate #RealEstateTips #LifeByAlexa #MonroeCounty</div>
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- SUBSTACK THU -->
+<div class="content-card" data-day="thu">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">7:00 AM · Publish · Substack @itsmyash</div>
+      <div class="cc-title">Output 2 — Substack · Experience Economy · "The Night Jazz Turned Into a Jam"</div>
+      <div class="cc-platform">The Lifestyle Market Letter · Thursday · 500–800 words</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">Substack</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Title + Subtitle</div>
+    <div class="caption-block">
+      <strong>The Night Jazz Turned Into a Jam</strong><br><br>
+      What a Friday night at Nell's Social taught me about why the best experiences can't be programmed.
+    </div>
+    <div class="cs-label">Full Article (paste-ready)</div>
+    <div class="script-block">We planned Jazz Night.
+
+We did not plan for the audience to become the band.
+
+Friday at Nell's Social, what started as a curated live jazz performance turned into something I didn't expect: full audience participation, guests singing along, a musician pulling someone out of their seat to take a solo. The lounge became something different for about forty-five minutes. It became a place where nobody was a spectator.
+
+I've been thinking about that all week.
+
+The experience economy gets talked about like it's something you architect. You build the right lighting, you pick the right music, you train your staff on the pairing menu, you curate the humidor. And all of that matters — I believe in all of it.
+
+But what happened Friday wasn't architecture. It was permission.
+
+The room gave guests permission to participate. The musician gave the audience permission to stop being passive. And the people in that room — who showed up expecting to watch — took the permission and ran with it.
+
+The cigars were the same cigars. The space was the same space. The music started the same way. But at some point the invisible wall between performer and audience dissolved, and the evening became collaborative.
+
+I can't program that. I can only create conditions where it's possible.
+
+This is what I think the smartest hospitality operators understand in 2026: the experience is not a product you manufacture. It's an environment you curate with enough openness that something real can happen inside it.
+
+A cigar lounge that's too curated becomes a showroom. Too controlled becomes a museum. The best ones feel like they belong to the people in them — even when you built the whole thing.
+
+That Friday jam session made me think about how we run every aspect of Nell's Social. We have structure. We have a humidor that's edited, not overwhelming. We have Filler & Roast behind the bar because the coffee belongs there, not as an afterthought. We have lighting that says "stay a while."
+
+But none of that would have produced Friday night. Friday night came from the space having just enough soul that when someone leaned in, the room leaned back.
+
+That's the product. Not the room. The permission inside the room.
+
+Build spaces that allow for Friday nights. The Friday nights will take care of themselves.
+
+— Alexa</div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- PA VETERAN REEL -->
+<div class="content-card" data-day="thu">
+  <div class="cc-header cc-header-veteran">
+    <div class="cc-left">
+      <div class="cc-time">9:00 AM · Post · @alexa.realtor IG Reel · Post 3/4</div>
+      <div class="cc-title">Output 17 — PA Veteran Reel · VA Rate + HB 1257 + PHFA Stack</div>
+      <div class="cc-platform">@alexa.realtor Instagram Reel · 30–60 sec · Educational only · license required</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-veteran">Veteran</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Script (30–60 sec)</div>
+    <div class="script-block"><span class="hook">Pennsylvania veterans — three things working in your favor right now.</span>
+
+<span class="beat">Number one: VA loan rates are running approximately 40 to 50 basis points below conventional right now. On a $400,000 home, that's over $100 a month in savings. Every month. For 30 years.
+
+Number two: HB 1257 passed the Pennsylvania House 193 to 6 in March 2026. If it makes it through the Senate, veterans with 100% disability ratings — regardless of whether the disability is combat-connected — could qualify for full property tax exemption. Not law yet. Watch it.
+
+Number three: you can stack VA with PHFA assistance in Monroe County. VA first mortgage plus HOMEstead — up to $10,000 in closing cost help — plus K-FIT at 5% of purchase price forgivable over 10 years. All combinable for eligible buyers.</span>
+
+<span class="cta">This is educational information only. Verify everything with your lender and PHFA directly.
+
+I'm Alexa Sanchez. PA License #RS326383. Smart Way America Realty. (570) 688-8147.</span></div>
+
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+PA veterans: VA rates ~40–50 bps below conventional, HB 1257 moving through the legislature, and PHFA stacking available in Monroe County. Know your advantages before you shop. 📞 (570) 688-8147 | PA #RS326383 | Smart Way America Realty
+<div class="hashtags">#VeteranHomebuyer #VALoan #VeteranRealEstate #PARealEstate #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Cover Text Direction</div>
+    <div class="cover-block">
+      <div class="cv-label">Cover Text</div>
+      Neon green: "VA RATE: 40–50 BPS BELOW CONVENTIONAL." White: "HB 1257 — WATCH THIS." Red banner: "STACK VA + PHFA IN MONROE COUNTY." Chunky tilted font over face.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- LINKEDIN OPERATOR THU -->
+<div class="content-card" data-day="thu">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">8:00 AM · Post · LinkedIn @alexa.realtor · Post 2/3</div>
+      <div class="cc-title">Output 15 — LinkedIn Operator Post · Accessibility + Operator Life</div>
+      <div class="cc-platform">LinkedIn · personal + operator · no real estate pitch</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">LinkedIn</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+This week taught me something I didn't expect.
+
+I closed a condo for a visually impaired buyer. Standard transaction — except nothing about the digital closing process was designed for someone using a screen reader.
+
+What takes most buyers 10 minutes took my client 3 hours. Per document. Hyperlinks embedded in mortgage portals don't translate well through screen readers. E-signature sequences built for clicking aren't intuitive when you can't see the fields.
+
+I have a child with Down syndrome. I've volunteered with Special Olympics for years. I thought I understood accessibility. I realized I understand one corner of it.
+
+Different populations, different gaps. The lesson isn't "I should have known." The lesson is: ask first. Don't assume your process serves everyone.
+
+For operators, Realtors, business owners: who is your process leaving behind? That's worth sitting with.
+
+— Alexa Sanchez | Smart Way America Realty | PA License #RS326383
+<div class="hashtags">#OperatorLife #Entrepreneurship #AccessibilityMatters #LifeByAlexa</div>
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- GBP THU -->
+<div class="content-card" data-day="thu">
+  <div class="cc-header cc-header-green">
+    <div class="cc-left">
+      <div class="cc-time">9:00 AM · Post · Google Business Profile</div>
+      <div class="cc-title">Output 15 — GBP Local Insight + Veteran Thursday</div>
+      <div class="cc-platform">No hashtags · Full contact required · Educational veteran info</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">Google Biz</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Post Copy (paste-ready)</div>
+    <div class="caption-block">
+Veteran Homebuyer Insight — Monroe County, PA
+
+Pennsylvania veterans purchasing in Monroe County have access to some of the most favorable financing terms available right now. VA loan rates are running approximately 40–50 basis points below conventional 30-year fixed rates — on a $400,000 purchase, that's meaningful monthly savings with no PMI requirement.
+
+Pennsylvania HB 1257 recently passed the House 193–6 and, if enacted, would expand full property tax exemption eligibility to all 100% disabled veterans in the Commonwealth.
+
+Veterans exploring Monroe County and the Pocono Mountains — happy to walk you through your options.
+
+📞 (570) 688-8147 | Alexa@alexasanchez.net
+PA License #RS326383 | Smart Way America Realty
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- NEXTDOOR THU -->
+<div class="content-card" data-day="thu">
+  <div class="cc-header cc-header-green">
+    <div class="cc-left">
+      <div class="cc-time">10:00 AM · Post · Nextdoor</div>
+      <div class="cc-title">Output 15 — Nextdoor Community Roundup · Thursday</div>
+      <div class="cc-platform">Nextdoor · warm community voice · no hashtags</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">Nextdoor</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Post Copy (paste-ready)</div>
+    <div class="caption-block">
+Pocono community — a couple of things worth knowing this week:
+
+1. Monroe County home prices are holding strong and inventory is rising. Sellers who price correctly now have a window before fall competition increases.
+
+2. If you know a veteran in the area looking to buy — VA loan rates are running about half a point below conventional right now. Meaningful savings worth knowing about.
+
+I'm always available for questions — no sales pressure, just local market knowledge.
+
+📞 (570) 688-8147 | PA License #RS326383 | Smart Way America Realty
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- CIGAR VIDEO UPLOAD NOTE -->
+<div class="content-card" data-day="thu">
+  <div class="cc-header cc-header-burg">
+    <div class="cc-left">
+      <div class="cc-time">6:00 PM · Upload · IG + TikTok @its.myash</div>
+      <div class="cc-title">Output 9 — Cigar Video Upload · Rosario Cigars (filmed Wednesday)</div>
+      <div class="cc-platform">Filmed Wednesday — upload today. See Wednesday tab for full script + captions.</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">@its.myash</span>
+      <span class="badge b-goal-sales">Drive Sales</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Upload Checklist</div>
+    <div class="cs-content">✓ IG @its.myash — use IG caption from Wednesday tab<br>✓ TikTok @itsmyash native upload, no watermark — use TikTok caption from Wednesday tab<br>✓ Both include: #CigarLife #NellsSocial #DominicanCigars #LifeByAlexa</div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════ FRIDAY ═══════════════════════ -->
+<div class="day-section hidden" id="day-fri" data-day="fri">
+<div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
+<div class="day-header">
+  <div class="dh-inner">
+    <div class="dh-name">FRI</div>
+    <div class="dh-content">
+      <div class="dh-label">Day Six · Friday June 20</div>
+      <div class="dh-title">DR Video Upload · Coffee for the Leaf · Veteran LinkedIn · Weekend Smoke · FB Spanish</div>
+      <div class="dh-sub">All uploads and posting — nothing to film. DR Video EN + ES both upload today.</div>
+    </div>
+  </div>
+</div>
+
+<!-- DR VIDEO UPLOAD -->
+<div class="content-card" data-day="fri">
+  <div class="cc-header cc-header-spanish">
+    <div class="cc-left">
+      <div class="cc-time">Upload Friday · @AlexaSanchezRealtor YouTube Both Playlists</div>
+      <div class="cc-title">Output 8 — DR Video Upload · CONFOTUR Math EN + ES</div>
+      <div class="cc-platform">English → main playlist · Spanish → En Español · filmed Tuesday</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-spanish">DR Video</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">English YouTube Caption (paste-ready)</div>
+    <div class="caption-block">
+CONFOTUR math: $7,500 transfer tax savings at closing + up to $2,500/year in property tax exemption for 10–15 years on a $250K purchase. But the status must be verified — not just marketed. Full 7-step checklist in the description.
+
+📞 (570) 688-8147 | Alexa@alexasanchez.net | PA #RS326383 | Smart Way America Realty
+<div class="hashtags">#DominicanRepublic #RealEstateInvesting #STRInvesting #CapCana #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Spanish YouTube Caption (paste-ready)</div>
+    <div class="caption-block">
+El ahorro CONFOTUR: $7,500 en impuesto de transferencia al cierre + hasta $2,500/año en exención de IPI por 10–15 años. Pero hay que verificar el estatus — no solo creerle al desarrollador. Checklist de 7 pasos en la descripción.
+
+📞 (570) 688-8147 | Licencia PA #RS326383 | Smart Way America Realty
+<div class="hashtags">#BienesRaicesRD #RepublicaDominicana #InversionEnRD #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Upload Checklist</div>
+    <div class="cs-content">✓ English → main playlist, EN caption + hashtags<br>✓ Spanish → En Español playlist, ES caption<br>✓ Both: thumbnail with CONFOTUR math split screen + cartoon Alexa<br>✓ Both descriptions: PA License #RS326383 + (570) 688-8147<br>✓ Add 7-Step CONFOTUR Verification checklist as description link or pinned comment</div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- LINKEDIN VETERAN FRI -->
+<div class="content-card" data-day="fri">
+  <div class="cc-header cc-header-veteran">
+    <div class="cc-left">
+      <div class="cc-time">8:00 AM · Post · LinkedIn @alexa.realtor · Post 3/3</div>
+      <div class="cc-title">Output 19 — LinkedIn Veteran Post · PA + DR Intel Brief</div>
+      <div class="cc-platform">LinkedIn · Educational · Clean authority voice · No personal narrative</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-veteran">Veteran</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+Pennsylvania + DR veterans — week of June 14, 2026 intelligence brief.
+
+PENNSYLVANIA — VA LOAN ADVANTAGE:
+→ VA 30-yr purchase: ~40–50 bps below conventional right now
+→ On $400K: $100+/month payment savings + no PMI
+→ Monroe County VA loan limit with full entitlement: $832,750
+
+HB 1257 — PROPERTY TAX UPDATE:
+→ Passed PA House 193–6, March 2026
+→ Proposed amendment: full real estate tax exemption for ALL 100% disabled veterans (not just combat-connected)
+→ Still requires Senate passage in two sessions + voter referendum — not yet law
+→ Track with PA DMVA
+
+PHFA STACKING IN MONROE COUNTY:
+→ VA 0% down + HOMEstead ($10K closing cost assistance) + K-FIT (5% of purchase price, forgivable over 10 yrs)
+→ All combinable for eligible Monroe County buyers
+→ Min. 660 credit score for K-FIT | Income limits per county AMI
+
+DOMINICAN REPUBLIC — LAW 171-07:
+→ Pensionado track: $1,500/mo from foreign pension source — VA disability qualifies
+→ Processing: ~45 business days at DGM after consular visa approval
+→ CONFOTUR on approved projects: 0% transfer tax + 0% IPI for 10–15 yrs
+
+Educational information only. Always verify with your lender, PHFA, and DR immigration counsel.
+
+📞 (570) 688-8147 | Alexa@alexasanchez.net
+Alexa Sanchez | PA License #RS326383 | Smart Way America Realty
+<div class="hashtags">#VeteranHomebuyer #VALoan #PARealEstate #MilitaryRealEstate</div>
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- COFFEE FOR THE LEAF -->
+<div class="content-card" data-day="fri">
+  <div class="cc-header cc-header-fnr">
+    <div class="cc-left">
+      <div class="cc-time">9:00 AM · Post · @fillerandroast IG + FB Business</div>
+      <div class="cc-title">Output 15 — Filler & Roast · Coffee for the Leaf</div>
+      <div class="cc-platform">@fillerandroast Instagram + FB Business · 1x/week only · Friday</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-fnr">@fillerandroast</span>
+      <span class="badge b-goal-sales">Drive Sales</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">IG Caption (paste-ready)</div>
+    <div class="caption-block">
+Before the first draw, there's the first sip. ☕
+
+This Friday: House Blend with a Maduro. Butter Pecan with a Connecticut. Amaretto if you're staying until close.
+
+Filler & Roast. Exclusively at Nell's Social, Pocono Mountains.
+
+What are you smoking this weekend?
+<div class="hashtags">#FillerAndRoast #CigarAndCoffee #CoffeeForTheLeaf #NellsSocial #CigarLife #ArtisanCoffee #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">FB Business Caption (paste-ready)</div>
+    <div class="caption-block">
+It's Friday at Nell's Social. Filler & Roast specialty coffee is ready. The humidor is open. Pair them. Stay a while. ☕🍃
+    </div>
+    <div class="cs-label">Image Direction</div>
+    <div class="image-block">
+      <div class="img-label">Shot Direction</div>
+      Close-up of Filler & Roast branded cup with steam rising. Premium cigar resting on the saucer. Warm lounge lighting. Dark moody background. Logo clearly visible on cup.
+    </div>
+    <div class="note-block">Pairing reference: House Blend → Maduro · Butter Pecan → Connecticut · Amaretto → evening/lounge</div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- WEEKEND SMOKE REEL FRI -->
+<div class="content-card" data-day="fri">
+  <div class="cc-header cc-header-burg">
+    <div class="cc-left">
+      <div class="cc-time">6:00 PM · Post · @its.myash Instagram</div>
+      <div class="cc-title">Output 14 — Weekend Smoke Reel · Friday</div>
+      <div class="cc-platform">@its.myash Instagram · lifestyle + vibe · max 4 hashtags</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">@its.myash</span>
+      <span class="badge b-goal-sales">Drive Sales</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Caption (paste-ready — fill in cigar + blend)</div>
+    <div class="caption-block">
+The weekend starts when the lighter clicks. 🔥🍃
+
+Tonight's smoke: [Rosario or current feature cigar]. Paired with [Filler & Roast blend]. Dorothy's parked outside. No agenda. No meetings.
+
+Come find me at Nell's Social if you need a proper Friday.
+<div class="hashtags">#CigarLife #WeekendSmoke #NellsSocial #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Video Direction</div>
+    <div class="image-block">
+      <div class="img-label">Shot Direction</div>
+      Slow-mo reel lighting a cigar. Smoke curling into warm lounge air. Rosario band visible if using Rosario. Ambient golden lounge light. Real moment — not staged. Music: low-key jazz or lo-fi beat.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- PERSONAL FB SPANISH FRI -->
+<div class="content-card" data-day="fri">
+  <div class="cc-header cc-header-spanish">
+    <div class="cc-left">
+      <div class="cc-time">7:00 PM · Post · Personal Facebook</div>
+      <div class="cc-title">Output 16 — Personal FB Spanish · Weekly</div>
+      <div class="cc-platform">Personal Facebook · Dominican Spanish · no hashtags on personal FB</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-spanish">En Español</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Caption (paste-ready, Dominican Spanish)</div>
+    <div class="caption-block">
+Hola a todos. Esta semana cerré una transacción que me dejó pensando mucho.
+
+Mi comprador tiene discapacidad visual. Y el proceso digital de hipoteca — que para la mayoría de la gente toma diez minutos — le tomó tres horas. Por documento.
+
+La industria tiene que hacerlo mejor. Yo tengo que hacerlo mejor. Y lo estoy aprendiendo.
+
+Si conoces a alguien que necesita asistencia comprando o vendiendo en los Poconos y piensas que puede enfrentar barreras en el proceso — mándame un mensaje. Estoy aquí para figurearlo juntos.
+
+📞 (570) 688-8147 | Licencia PA #RS326383 | Smart Way America Realty
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTPUT 20 - MISCONCEPTION -->
+<div class="content-card" data-day="fri">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">Flexible slot · @alexa.realtor IG · rotate Thu or Fri</div>
+      <div class="cc-title">Output 20 — Misconception Car Confession · "Maintained ≠ Updated"</div>
+      <div class="cc-platform">@alexa.realtor Instagram · 20 sec · shock value</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">@alexa.realtor</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Misconception + Truth</div>
+    <div class="note-block">
+      Misconception: "We took care of it — that means it's worth top dollar."<br>
+      Truth: A well-maintained house is not the same as an updated house. One means you took care of what you had. The other means you made it worth more. The market pays for what it sees, not what it was.
+    </div>
+    <div class="cs-label">Script (20 sec max)</div>
+    <div class="script-block"><span class="hook">I need to say this clearly.
+
+A well-maintained house is not the same as an updated house.</span>
+<span class="beat">One means you took care of what you had.
+The other means you made it worth more.
+
+Your original 2004 kitchen is clean. It is loved.
+It is not $50,000 over market.
+
+The buyer doesn't pay for effort.
+They pay for result.</span>
+<span class="cta">(570) 688-8147. PA License #RS326383. Smart Way America Realty.</span></div>
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+"But we took care of it." Yes. That means it's not deteriorated. It doesn't mean it's renovated. The market pays for what it sees. 📞 (570) 688-8147 | PA #RS326383 | Smart Way America Realty
+<div class="hashtags">#PoconoRealEstate #CarConfession #RealEstateTips #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Cover Text Direction</div>
+    <div class="cover-block">
+      <div class="cv-label">Cover Text</div>
+      White: "WELL-MAINTAINED ≠ UPDATED." Neon green: "THE MARKET PAYS FOR WHAT IT SEES." Red bar: "2004 IS 2004." Chunky tilted font.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════ SATURDAY ═══════════════════════ -->
+<div class="day-section hidden" id="day-sat" data-day="sat">
+<div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
+<div class="day-header">
+  <div class="dh-inner">
+    <div class="dh-name">SAT</div>
+    <div class="dh-content">
+      <div class="dh-label">Day Seven · Saturday June 21</div>
+      <div class="dh-title">Spanish IG · GBP Community · Nextdoor · Ride With Me Ep 2 · Week Done</div>
+      <div class="dh-sub">All posting + Ride With Me Episode 2 (film + post same day). Week closes out.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SPANISH IG SAT -->
+<div class="content-card" data-day="sat">
+  <div class="cc-header cc-header-spanish">
+    <div class="cc-left">
+      <div class="cc-time">10:00 AM · Post · @alexa.realtor IG · Post 4/4</div>
+      <div class="cc-title">Output 15 + 16 — Spanish IG Post · Weekly</div>
+      <div class="cc-platform">@alexa.realtor Instagram · Dominican Spanish · seller message</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-spanish">En Español</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Caption (paste-ready, Dominican Spanish)</div>
+    <div class="caption-block">
+¿Sabes lo que vale tu casa en Monroe County ahora mismo?
+
+Mi amor, el mercado está activo. Los precios se mantienen fuertes. Los compradores de verano están buscando. Y el inventario está subiendo — eso significa más competencia para los vendedores que esperan hasta el otoño.
+
+La ventana de listado de este verano es real. No la dejes cerrar.
+
+Llámame y conversamos sin compromiso.
+
+📞 (570) 688-8147 | Alexa@alexasanchez.net
+Licencia PA #RS326383 | Smart Way America Realty
+<div class="hashtags">#BienesRaices #InversionesEnPoconos #MercadoInmobiliario #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Image Direction</div>
+    <div class="image-block">
+      <div class="img-label">Graphic</div>
+      Cartoon Alexa confident pose. Pocono mountain backdrop. Neon green text: "¿Sabes lo que vale tu casa?" Clean branded graphic. Brand colors.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- GBP SATURDAY -->
+<div class="content-card" data-day="sat">
+  <div class="cc-header cc-header-green">
+    <div class="cc-left">
+      <div class="cc-time">10:00 AM · Post · Google Business Profile</div>
+      <div class="cc-title">Output 15 — GBP Community/Lifestyle · Saturday</div>
+      <div class="cc-platform">No hashtags · lifestyle angle · tie to RE demand · full contact required</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">Google Biz</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Post Copy (paste-ready)</div>
+    <div class="caption-block">
+Weekend in the Pocono Mountains is something else.
+
+Whether you're here for the lakes, the trails, the vacation rental opportunity, or just the pace — this region continues to attract buyers and visitors in a way most markets in the Northeast can't match.
+
+For property owners, continued strong visitor demand in Monroe County is a signal worth paying attention to.
+
+Curious about what your Pocono property is worth? Happy to talk.
+
+📞 (570) 688-8147 | Alexa@alexasanchez.net
+PA License #RS326383 | Smart Way America Realty
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- NEXTDOOR SAT -->
+<div class="content-card" data-day="sat">
+  <div class="cc-header cc-header-green">
+    <div class="cc-left">
+      <div class="cc-time">10:00 AM · Post · Nextdoor</div>
+      <div class="cc-title">Output 15 — Nextdoor Weekend Market Tip</div>
+      <div class="cc-platform">Nextdoor · warm community voice · no hashtags</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-realtor">Nextdoor</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Post Copy (paste-ready)</div>
+    <div class="caption-block">
+Happy weekend, neighbors!
+
+Quick tip for anyone watching the real estate market: inventory is rising. Sellers who price correctly and present well are still moving homes. Overpriced homes — especially those that haven't been updated — are sitting.
+
+If you've been curious what your home is worth in today's market, I offer free, no-pressure consultations.
+
+📞 (570) 688-8147 | PA License #RS326383 | Smart Way America Realty
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- RIDE WITH ME EP 2 -->
+<div class="content-card" data-day="sat" data-day-extra="ride">
+  <div class="cc-header cc-header-ride">
+    <div class="cc-left">
+      <div class="cc-time">Film + Post Saturday · @its.myash IG + @itsmyash TikTok</div>
+      <div class="cc-title">🏍️ Ride With Me · Episode 2 — Dorothy Weaves</div>
+      <div class="cc-platform">@its.myash IG + @itsmyash TikTok · 100% · NOT flagged for @alexa.realtor this week</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-ride">Ride With Me</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+Dorothy and I are in weave practice mode this week. 🌪️
+
+Slow. Deliberate. Cones. Over and over until the hesitation goes away.
+
+Nobody talks about how much of learning to ride is learning to trust something moving under you that you don't fully control yet.
+
+That's the work. And I'm here for it.
+<div class="hashtags">#RideWithMe #LifeByAlexa #MotorcycleLife #OperatorLife #NellsSocial</div>
+    </div>
+    <div class="cs-label">Talking Points Framework (never scripted)</div>
+    <div class="talking-block">
+      <div class="tp-label">Talking Points — Start mid-ride or mid-practice. No intro.</div>
+      → This week was weave practice. Low speed, tight turns, repetition.<br>
+      → What it feels like when you're over-thinking it vs. when you let the bike do its thing.<br>
+      → The connection: learning to ride = learning to build anything — repeat the uncomfortable part until it becomes natural.<br>
+      → Land on: Dorothy and I are getting ready. Pocono roads are waiting.<br>
+      → No CTA on @its.myash version.
+    </div>
+    <div class="flag-block">
+      <div class="fl-label">@alexa.realtor Flag</div>
+      NOT flagged this week — no Pocono scenic route qualifier. @its.myash + @itsmyash only. 100% of ride content posts here without exception.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete — Film + post same day</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════ SUBSTACK ═══════════════════════ -->
+<div class="day-section hidden" id="day-stack" data-day="stack">
+<div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
+<div class="day-header">
+  <div class="dh-inner">
+    <div class="dh-name">✍️</div>
+    <div class="dh-content">
+      <div class="dh-label">Output 3 · 21 Notes · Mon–Sun</div>
+      <div class="dh-title">Substack Notes — All 21 · Batch Sunday · Post 3/day</div>
+      <div class="dh-sub">Morning 7AM · Midday 12PM · Evening 7PM · Monday through Sunday</div>
+    </div>
+  </div>
+</div>
+
+<div class="content-card" data-day="stack">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">7:00 AM daily · Morning Notes</div>
+      <div class="cc-title">Output 3 — Morning Notes · 7 Total</div>
+      <div class="cc-platform">Substack Notes @itsmyash · batch and schedule Sunday</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">Substack</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="script-block"><span class="hook">MON: I closed a condo for a visually impaired buyer last week. What should have taken ten minutes took three hours per document. The mortgage industry built a beautiful digital pipeline — and forgot to make it accessible.</span>
+
+<span class="beat">TUE: If you're waiting for Monroe County home prices to drop before you list — the market disagrees. Prices are holding, summer buyers are active, and inventory is climbing.</span>
+
+<span class="beat">WED: Jazz Night at Nell's Social turned into a jam session. Audience started singing. A stranger took a solo. That's not something I planned. That's something the room made possible.</span>
+
+<span class="beat">THU: The Dominican Republic isn't a risky foreign market. It's the most visited Caribbean destination in the world with a stable legal framework for foreign property ownership. Stop sleeping on it.</span>
+
+<span class="beat">FRI: CONFOTUR tax benefits aren't a loophole. They're a government-designed incentive to attract tourism investment. Zero transfer tax plus 15 years of IPI exemption on an approved project. Math, not magic.</span>
+
+<span class="beat">SAT: Her name is Dorothy. She's a Kawasaki Ninja 400. She's getting ruby fairings and a gold light kit so it looks like she's riding the yellow brick road. We're going places.</span>
+
+<span class="cta">SUN: 7am showings, three clients, then the lounge until past midnight. I forgot to eat. I ran on fumes. One day the rewards will outshine all the hard work. I'm betting on that day.</span></div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete — All 7 Morning Notes Scheduled</div>
+    </div>
+  </div>
+</div>
+
+<div class="content-card" data-day="stack">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">12:00 PM daily · Midday Notes</div>
+      <div class="cc-title">Output 3 — Midday Notes · 7 Total</div>
+      <div class="cc-platform">Substack Notes @itsmyash</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">Substack</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="script-block"><span class="beat">MON: Accessibility in real estate isn't a niche issue. It's a gap hiding in plain sight. I didn't know what I didn't know until I was three hours into a form with a buyer who navigates the world differently.</span>
+
+<span class="beat">TUE: A well-maintained house is not the same as an updated house. One means you took care of what you had. The other means you made it worth more. The market pays for result, not effort.</span>
+
+<span class="beat">WED: What I love about the jazz night moment: nobody planned it. The space just had enough warmth that people stopped being an audience and started being participants. Build rooms like that.</span>
+
+<span class="beat">THU: Rosario Cigars out of the Bronx — Dominican-made, family-run, flavored blends from milk cream to chocolate Jack Daniel's. Showing strong at Nell's Social. Bronx-to-DR pipeline alive and well.</span>
+
+<span class="beat">FRI: Dorothy and I are working on knee pressure this week. Hugging the bike. Staying grounded. It sounds like motorcycle basics. It's also just good life advice.</span>
+
+<span class="beat">SAT: CONFOTUR math on a $250K condo: $7,500 saved at closing + up to $2,500/year in IPI exemption for 10–15 years. That's a real number. Not a brochure promise — if the status is verified and final.</span>
+
+<span class="cta">SUN: The best businesses I've built started by asking: what does THIS person actually need right now? Not what I assumed. Not the industry standard. What does the person in front of me need.</span></div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete — All 7 Midday Notes Scheduled</div>
+    </div>
+  </div>
+</div>
+
+<div class="content-card" data-day="stack">
+  <div class="cc-header cc-header-navy">
+    <div class="cc-left">
+      <div class="cc-time">7:00 PM daily · Evening Notes</div>
+      <div class="cc-title">Output 3 — Evening Notes · 7 Total</div>
+      <div class="cc-platform">Substack Notes @itsmyash</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-myash">Substack</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="script-block"><span class="beat">MON: I have a child with Down syndrome. I've volunteered with Special Olympics for years. I still didn't know how to serve a blind buyer properly on day one. Awareness is not the same as competency. Humbling.</span>
+
+<span class="beat">TUE: Rates are in the mid-6s. They've been there. They're staying there. The buyers who adjusted to this reality are out there shopping right now. Are your sellers adjusted?</span>
+
+<span class="beat">WED: Running a lounge means adjusting to what people think they want, what they actually need, and what the room will allow. All three are different things. All three are your job.</span>
+
+<span class="beat">THU: PA HB 1257 passed the House 193–6. If it clears the Senate, veterans with 100% disability ratings — not just combat vets — could qualify for full property tax exemption in Pennsylvania. Watch this one.</span>
+
+<span class="beat">FRI: Friday night officially starts when the lighter clicks. Don't let anyone tell you otherwise. 🔥</span>
+
+<span class="beat">SAT: The operator life: 7am showings, 3 clients, then the lounge until midnight. You forget to eat. You run on fumes. And somewhere in between you remember why you chose this. That's the whole thing.</span>
+
+<span class="cta">SUN: One day the rewards will outshine all the hard work. I'm not there yet. But I'm not turning around either. #JustWatchMe</span></div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete — All 7 Evening Notes Scheduled</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════ VETERAN ═══════════════════════ -->
+<div class="day-section hidden" id="day-vet" data-day="vet">
+<div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
+<div class="day-header">
+  <div class="dh-inner">
+    <div class="dh-name">🪖</div>
+    <div class="dh-content">
+      <div class="dh-label">Outputs 17 · 18 · 19</div>
+      <div class="dh-title">All Veteran Content · PA + DR · Full Scripts</div>
+      <div class="dh-sub">Educational only. No personal narrative. License on every piece.</div>
+    </div>
+  </div>
+</div>
+
+<div class="content-card" data-day="vet">
+  <div class="cc-header cc-header-veteran">
+    <div class="cc-left">
+      <div class="cc-time">Thursday 9:00 AM · @alexa.realtor IG Reel</div>
+      <div class="cc-title">Output 17 — PA Veteran Reel · VA Rate + HB 1257 + PHFA Stack</div>
+      <div class="cc-platform">30–60 sec · Educational only · Full script</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-veteran">PA Veteran</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Script (see Thursday tab for full version)</div>
+    <div class="note-block">Full script, caption, and cover text direction in Thursday tab under "Output 17 — PA Veteran Reel."</div>
+    <div class="cs-label">PA YouTube Long-Form Script (3–5 min) — also this week</div>
+    <div class="script-block"><span class="hook">HOOK (0:00–0:10)
+Pennsylvania veterans — I'm going to walk you through every program available to you right now and how they stack together. Rates, programs, and a legislative update that could change property taxes for every 100% disabled vet in the Commonwealth.</span>
+
+<span class="beat">OPEN (0:10–0:40)
+I'm Alexa Sanchez, licensed PA Realtor with Smart Way America Realty. I specialize in Monroe County and the Pocono Mountains, and veteran real estate is one of my focus areas. Everything here is educational. Verify all rates and program details with your lender and PHFA directly.</span>
+
+<span class="beat">SECTION 1 — VA RATES RIGHT NOW (0:40–1:30)
+VA 30-year fixed purchase rates are currently running approximately 40 to 50 basis points below conventional 30-year rates.
+
+On a $400,000 purchase, that's over $100 a month in payment savings — and with no PMI requirement on VA loans, the full advantage is even larger.
+
+Monroe County VA conforming loan limit with full entitlement: $832,750. No cap on loan amount if your entitlement is intact.</span>
+
+<span class="beat">SECTION 2 — HB 1257 LEGISLATIVE UPDATE (1:30–2:30)
+Pennsylvania House Bill 1257 — the Probst Plan — passed the House in March 2026 by 193 to 6.
+
+This is a proposed constitutional amendment to expand the Disabled Veterans' Real Estate Tax Exemption to ALL 100% disabled veterans — not just those with service-connected disabilities tied to combat or war-era service.
+
+It still must pass the Senate in two consecutive sessions and go to a voter referendum. Not law yet. But if it passes, every 100% disabled vet in Pennsylvania could qualify for full county, municipal, and school property tax exemption on their primary residence.
+
+Track this with the PA Department of Military and Veterans Affairs — DMVA.</span>
+
+<span class="beat">SECTION 3 — STACKING: VA + PHFA (2:30–3:30)
+In Monroe County, eligible veterans can stack three programs simultaneously.
+
+One: VA first mortgage. Zero down payment.
+Two: PHFA HOMEstead — forgivable second mortgage up to $10,000 for closing costs, 0% interest, forgivable over 5 years of owner-occupancy.
+Three: PHFA K-FIT — 5% of the lesser of purchase price or appraised value as a forgivable second, forgiven at 10% per year over 10 years. On a $250,000 purchase, that's $12,500 in assistance.
+
+Key requirements: minimum 660 credit score for K-FIT, income limits based on Monroe County area median income, property must be owner-occupied. No VA endorsement implied — this is a PHFA program independently available to qualified VA borrowers.</span>
+
+<span class="beat">SECTION 4 — DVRETX CURRENT STATUS (3:30–4:15)
+The current Disabled Veterans' Real Estate Tax Exemption requires the disability to be service-connected to war or armed conflict AND requires passing a financial need test.
+
+As of January 2025, the income threshold is $114,637 annually — veterans at or below that income are presumed to meet the financial need requirement. Veterans above that threshold can still qualify by demonstrating monthly expenses exceed monthly income.
+
+Applications go through your county Board of Assessment and the PA Department of Military and Veterans Affairs.</span>
+
+<span class="cta">CTA (4:15–5:00)
+If you're a veteran exploring buying in Monroe County or the Pocono Mountains — call me before you walk into any lender's office. Understanding your stacking options before that conversation gives you a completely different position.
+
+(570) 688-8147. Alexa@alexasanchez.net. PA License #RS326383. Smart Way America Realty. Educational information only.</span></div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<div class="content-card" data-day="vet">
+  <div class="cc-header cc-header-veteran">
+    <div class="cc-left">
+      <div class="cc-time">Rotating · @alexa.realtor IG Reel</div>
+      <div class="cc-title">Output 18 — DR Veteran Reel · VA Disability + DR Residency</div>
+      <div class="cc-platform">@alexa.realtor Instagram Reel · 30–60 sec · Educational only</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-veteran">DR Veteran</span>
+      <span class="badge b-goal-leads">RE Leads</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Script (30–60 sec)</div>
+    <div class="script-block"><span class="hook">Veterans — your VA disability compensation may qualify you for legal residency in the Dominican Republic.</span>
+
+<span class="beat">Under Law 171-07, the Pensionado residency track requires $1,500 per month in pension income from a foreign source. VA disability compensation qualifies.
+
+If you receive $1,500 or more monthly in VA disability, you may be eligible to apply for Pensionado residency in the DR. Add $250 per month per dependent if applicable.
+
+Processing timeline: roughly 45 business days at DGM after consular visa approval. All-in cost estimate for a single applicant: mid-four figures in U.S. dollars covering government fees, document prep, apostilles, and legal fees.
+
+And if you purchase property in a CONFOTUR-approved project while establishing residency — zero transfer tax and up to 15 years of property tax exemption on top of that.</span>
+
+<span class="cta">This is educational information only. Always work with a DR immigration attorney for your specific case.
+
+I'm Alexa Sanchez. PA License #RS326383. Smart Way America Realty. I help veterans explore both PA and DR real estate opportunities.</span></div>
+
+    <div class="cs-label">Caption (paste-ready)</div>
+    <div class="caption-block">
+Your VA disability compensation might qualify you for Dominican Republic Pensionado residency under Law 171-07. $1,500/month threshold. CONFOTUR tax benefits on top. Educational info only — always consult a DR immigration attorney. 📞 (570) 688-8147 | PA #RS326383 | Smart Way America Realty
+<div class="hashtags">#VeteranRealEstate #DominicanRepublic #VABenefits #MilitaryRealEstate #LifeByAlexa</div>
+    </div>
+    <div class="cs-label">Cover Text Direction</div>
+    <div class="cover-block">
+      <div class="cv-label">Cover Text</div>
+      DR flag colors as accent. White: "VA DISABILITY QUALIFIES FOR DR RESIDENCY?" Neon green: "$1,500/MO PENSIONADO TRACK." Bold tilted font.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════ RIDE ═══════════════════════ -->
+<div class="day-section hidden" id="day-ride" data-day="ride">
+<div class="section-divider"><div class="sd-line"></div><div class="sd-diamond"></div><div class="sd-line"></div></div>
+<div class="day-header">
+  <div class="dh-inner">
+    <div class="dh-name">🏍️</div>
+    <div class="dh-content">
+      <div class="dh-label">Ride With Me · Tue + Sat · June 14–20</div>
+      <div class="dh-title">Dorothy Gets Her Name · Weave Practice Week</div>
+      <div class="dh-sub">100% @its.myash + @itsmyash. NOT flagged for @alexa.realtor this week. Same video, no watermark for TikTok.</div>
+    </div>
+  </div>
+</div>
+
+<div class="content-card" data-day="ride">
+  <div class="cc-header cc-header-ride">
+    <div class="cc-left">
+      <div class="cc-time">Tuesday · @its.myash IG + @itsmyash TikTok</div>
+      <div class="cc-title">🏍️ Episode 1 — Dorothy Gets Her Name</div>
+      <div class="cc-platform">Film + post same day Tuesday. 100% @its.myash + @itsmyash. No @alexa.realtor this week.</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-ride">Ride With Me</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Caption</div>
+    <div class="caption-block">
+She has a name now. Dorothy. 🌪️
+
+Named her after The Wizard of Oz. She's getting ruby fairings — red on top, gold on the tires — so it looks like she's riding the yellow brick road.
+
+This week we worked on something that sounds small and is everything: hugging the bike with your knees. Not gripping. Not fighting. Just being with the bike.
+
+Turns out that's a pretty good metaphor for most things worth doing.
+
+Road hasn't started yet. But Dorothy and I are getting ready for it.
+<div class="hashtags">#RideWithMe #LifeByAlexa #MotorcycleLife #OperatorLife #NellsSocial</div>
+    </div>
+    <div class="cs-label">Talking Points (never scripted — speak naturally to camera)</div>
+    <div class="talking-block">
+      <div class="tp-label">Talking Points</div>
+      → Introduce Dorothy by name. Say it like it matters.<br>
+      → Wizard of Oz reference — ruby fairings, red on top, gold on tires, yellow brick road.<br>
+      → Knee-hug practice: what it felt like when it clicked vs. when it didn't.<br>
+      → Land on: the road is coming. Dorothy and I are almost ready.<br>
+      → No CTA on @its.myash.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+
+<div class="content-card" data-day="ride">
+  <div class="cc-header cc-header-ride">
+    <div class="cc-left">
+      <div class="cc-time">Saturday · @its.myash IG + @itsmyash TikTok</div>
+      <div class="cc-title">🏍️ Episode 2 — Weave Practice</div>
+      <div class="cc-platform">Film + post same day Saturday. No @alexa.realtor flag this week.</div>
+    </div>
+    <div class="cc-badges">
+      <span class="badge b-ride">Ride With Me</span>
+      <span class="badge b-goal-follow">Grow Following</span>
+    </div>
+  </div>
+  <div class="cc-body">
+    <div class="cs-label">Caption</div>
+    <div class="caption-block">
+Dorothy and I are in weave practice mode this week. 🌪️
+
+Slow. Deliberate. Cones. Over and over until the hesitation goes away.
+
+Nobody talks about how much of learning to ride is learning to trust something moving under you that you don't fully control yet.
+
+That's the work. And I'm here for it.
+<div class="hashtags">#RideWithMe #LifeByAlexa #MotorcycleLife #OperatorLife #NellsSocial</div>
+    </div>
+    <div class="cs-label">Talking Points (never scripted — start mid-practice or mid-thought)</div>
+    <div class="talking-block">
+      <div class="tp-label">Talking Points</div>
+      → Weave practice. Low speed, tight turns, repetition.<br>
+      → Over-thinking it vs. letting the bike do its thing — what the difference feels like.<br>
+      → Connection: learning to ride = learning to build anything; repeat the uncomfortable until natural.<br>
+      → Land on: Dorothy and I are getting ready. Pocono roads are waiting.<br>
+      → No CTA on @its.myash.
+    </div>
+    <div class="done-toggle" onclick="toggleDone(this.closest('.content-card'))">
+      <div class="done-check"></div><div class="done-label">Mark Complete</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="page-footer">
+  <p><strong>ROAST</strong> · Week of June 14–20, 2026</p>
+  <p>@itsmyash · @alexa.realtor · @fillerandroast · @AlexaSanchezRealtor</p>
+  <p>Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147</p>
+  <p>Dorothy is named. The road is coming. #LifeByAlexa on every post.</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const _now=new Date();
+const _days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const _months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const _el=document.getElementById('topbar-date');
+if(_el)_el.textContent=`${_days[_now.getDay()]} ${_months[_now.getMonth()]} ${_now.getDate()}, ${_now.getFullYear()} · Jun 14–20, 2026`;
+
+const SB_URL='https://gzqgeehcvmgstzenkyfnw.supabase.co';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6cWdlZWhjdm1nc3R6bmt5Zm53Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1OTIxMDgsImV4cCI6MjA4OTE2ODEwOH0.sw98v41oTub5p64cuP5Sqx574wNUd6kzOU1UxdoahWA';
+const SB_HDR={'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY};
+let doneItems={};
+
+async function loadDone(){
+  try{
+    const r=await fetch(`${SB_URL}/rest/v1/ops_checks?select=*`,{headers:SB_HDR});
+    if(r.ok){const rows=await r.json();rows.forEach(row=>{doneItems[row.check_id]=row.checked;});}
+  }catch(e){}
+  document.querySelectorAll('.content-card').forEach(card=>{
+    const id=getCardId(card);
+    if(doneItems[id])card.classList.add('done');
+  });
+}
+
+async function saveDone(id,checked){
+  try{
+    await fetch(`${SB_URL}/rest/v1/ops_checks`,{
+      method:'POST',
+      headers:{...SB_HDR,'Prefer':'resolution=merge-duplicates'},
+      body:JSON.stringify({check_id:id,checked:checked})
+    });
+  }catch(e){}
+}
+
+function filterDay(day,btn){
+  document.querySelectorAll('.day-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.day-section').forEach(s=>{
+    if(day==='all'||s.dataset.day===day){s.classList.remove('hidden');}
+    else{s.classList.add('hidden');}
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function getCardId(card){
+  const title=card.querySelector('.cc-title')?.textContent||'';
+  const time=card.querySelector('.cc-time')?.textContent||'';
+  const str='jun14_'+title+time;
+  let hash=0;
+  for(let i=0;i<str.length;i++){hash=((hash<<5)-hash)+str.charCodeAt(i);hash|=0;}
+  return 'scroll_'+Math.abs(hash);
+}
+
+function toggleDone(card){
+  card.classList.toggle('done');
+  const id=getCardId(card);
+  const checked=card.classList.contains('done');
+  doneItems[id]=checked;
+  saveDone(id,checked);
+}
+
+loadDone();
+</script>
+</body>
+</html>
