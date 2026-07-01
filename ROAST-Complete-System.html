@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROAST — Complete Weekly Operating System v4</title>
+<title>ROAST — Complete Weekly Operating System v5</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --cream:#F2EDE3;--navy:#1A1A2E;--burgundy:#6B1F3A;--gold:#C4973A;
     --warm-gray:#8A8278;--light-border:#E0D9CF;--text-dark:#1A1A1A;
     --text-mid:#4A4540;--green:#2D5A3D;--code-bg:#1E1E2E;--code-text:#E8E4DC;
-    --spanish:#C0392B;--life:#8E44AD;--veteran:#1A4A6B;
+    --spanish:#C0392B;--life:#8E44AD;--veteran:#1A4A6B;--aeo:#0F5C4A;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   body{background:#EDEAE3;font-family:'DM Sans',sans-serif;color:var(--text-dark);padding:0 16px 32px;}
@@ -40,6 +40,10 @@
   .gold-box-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
   .gold-box-text{font-size:13px;color:var(--text-mid);line-height:1.65;}
   .gold-box-text strong{color:var(--text-dark);}
+  .aeo-box{background:var(--navy);border:1px solid var(--aeo);border-left:4px solid var(--aeo);padding:20px 24px;margin-bottom:20px;}
+  .aeo-box-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#3FCBA5;margin-bottom:10px;}
+  .aeo-box-text{font-size:13px;color:rgba(242,237,227,0.85);line-height:1.75;}
+  .aeo-box-text strong{color:var(--cream);}
   .pause-box{background:var(--cream);border:1px solid var(--light-border);border-left:4px solid var(--warm-gray);padding:18px 22px;margin-bottom:20px;}
   .pause-box-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--warm-gray);margin-bottom:8px;}
   .pause-box-text{font-size:13px;color:var(--text-mid);line-height:1.65;}
@@ -81,15 +85,14 @@
   .b-veteran{background:var(--veteran);color:var(--cream);}
   .b-live{background:var(--gold);color:var(--navy);font-weight:700;}
   .b-ride{background:#4a8c0f;color:#fff;}
-  .b-paused{background:#4A4540;color:rgba(242,237,227,0.55);border:1px solid rgba(242,237,227,0.12);}
+  .b-aeo{background:var(--aeo);color:#fff;}
+  .b-cut{background:#8a3a3a;color:#fff;}
   .pc-purpose{padding:11px 22px;background:#F8F4EE;border-bottom:1px solid var(--light-border);font-size:12px;color:var(--text-mid);line-height:1.6;font-style:italic;}
   .pc-purpose-vet{background:#EBF2F8;}
   .pc-purpose-gbp{background:#EBF5EE;}
-  .pc-purpose-paused{background:#F2EFEB;color:var(--warm-gray);}
   .pc-purpose-ride{background:#F0F5EA;}
   .pc-prompt-label{padding:9px 22px 4px;background:#F0EBE1;border-bottom:1px solid var(--light-border);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--warm-gray);}
   .pc-prompt{background:var(--code-bg);padding:20px 22px;font-family:'DM Mono',monospace;font-size:11px;line-height:1.8;color:var(--code-text);white-space:pre-wrap;word-break:break-word;}
-  .live-post{background:#0D1117;padding:20px 22px;font-family:'DM Mono',monospace;font-size:12px;line-height:2;color:#E8E4DC;white-space:pre-wrap;word-break:break-word;border-top:2px solid var(--gold);}
   .ph{color:var(--gold);}
   .cm{color:#5A7A5A;font-style:italic;}
   .hl{color:#C4A882;font-weight:500;}
@@ -97,6 +100,7 @@
   .vt{color:#7AB4D4;font-weight:500;}
   .rd{color:#7AC47A;font-weight:500;}
   .ridecolor{color:#9ACD6A;font-weight:500;}
+  .aeocolor{color:#3FCBA5;font-weight:500;}
   .sun-section{background:var(--cream);border:1px solid var(--light-border);margin-bottom:14px;overflow:hidden;}
   .ssh-header{background:#2A0A1A;padding:12px 22px;}
   .ssh-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
@@ -107,11 +111,9 @@
   .og-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;background:#F8F4EE;border:1px solid var(--light-border);}
   .og-item-vet{background:#EBF2F8;border-color:#B8D0E4;}
   .og-item-ride{background:#EFF5E8;border-color:#A8CC80;}
-  .og-item-paused{background:#F2EFEB;border:1px solid #D8D0C8;opacity:0.65;}
   .og-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--burgundy);flex-shrink:0;font-weight:500;margin-top:1px;}
   .og-num-vet{color:var(--veteran);}
   .og-num-ride{color:#4a8c0f;}
-  .og-num-paused{color:var(--warm-gray);}
   .og-text{font-size:12px;color:var(--text-mid);line-height:1.5;}
   .og-text strong{color:var(--text-dark);font-size:12px;display:block;margin-bottom:1px;}
   .section-divider{display:flex;align-items:center;gap:12px;margin:20px 0;}
@@ -122,24 +124,28 @@
   .flow-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--burgundy);margin-bottom:14px;}
   .flow-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
   .flow-node{background:var(--navy);color:var(--cream);font-family:'DM Mono',monospace;font-size:10px;padding:6px 12px;white-space:nowrap;}
-  .flow-node-paused{background:#4A4540;color:rgba(242,237,227,0.4);font-family:'DM Mono',monospace;font-size:10px;padding:6px 12px;white-space:nowrap;text-decoration:line-through;}
   .flow-arrow{color:var(--gold);font-size:16px;font-weight:bold;}
   .flow-sub{font-size:11px;color:var(--text-mid);line-height:1.5;margin-top:6px;padding-left:4px;}
-  .flow-sub-paused{font-size:11px;color:var(--warm-gray);line-height:1.5;margin-top:4px;padding-left:4px;font-style:italic;}
-  .gbp-schedule{background:#1A3A2A;display:flex;margin-bottom:20px;}
-  .gbp-day{flex:1;padding:14px 16px;border-right:1px solid rgba(255,255,255,0.1);}
+  .gbp-schedule{background:#1A3A2A;display:flex;margin-bottom:20px;flex-wrap:wrap;}
+  .gbp-day{flex:1;padding:14px 16px;border-right:1px solid rgba(255,255,255,0.1);min-width:110px;}
   .gbp-day:last-child{border-right:none;}
   .gbp-day.gbp-new{background:rgba(196,151,58,0.15);}
   .gbp-day-name{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(242,237,227,0.5);margin-bottom:4px;}
   .gbp-day.gbp-new .gbp-day-name{color:var(--gold);}
   .gbp-day-action{font-size:11px;font-weight:600;color:var(--cream);line-height:1.4;}
+  .platform-table{width:100%;border-collapse:collapse;margin-bottom:8px;}
+  .platform-table th{background:var(--navy);color:var(--cream);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:10px 12px;text-align:left;}
+  .platform-table td{padding:9px 12px;font-size:12px;color:var(--text-mid);border-bottom:1px solid var(--light-border);background:#F8F4EE;}
+  .platform-table tr:last-child td{border-bottom:none;}
+  .platform-table td.pt-count{font-family:'DM Mono',monospace;font-weight:600;color:var(--burgundy);}
   .footer{background:var(--navy);padding:20px 28px;text-align:center;margin-top:8px;}
   .footer p{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(242,237,227,0.4);line-height:1.9;}
   .footer strong{color:var(--gold);}
+  .cut-badge{background:#8a3a3a;color:#fff;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;padding:2px 6px;text-transform:uppercase;font-weight:700;margin-left:8px;vertical-align:middle;}
   .new-badge{background:var(--gold);color:var(--navy);font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;padding:2px 6px;text-transform:uppercase;font-weight:700;margin-left:8px;vertical-align:middle;}
   .vet-badge{background:var(--veteran);color:#fff;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;padding:2px 6px;text-transform:uppercase;font-weight:700;margin-left:8px;vertical-align:middle;}
   .ride-badge{background:#4a8c0f;color:#fff;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;padding:2px 6px;text-transform:uppercase;font-weight:700;margin-left:8px;vertical-align:middle;}
-  .paused-badge{background:#4A4540;color:rgba(242,237,227,0.55);font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;padding:2px 6px;text-transform:uppercase;font-weight:700;margin-left:8px;vertical-align:middle;border:1px solid rgba(242,237,227,0.12);}
+  .aeo-badge{background:var(--aeo);color:#fff;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;padding:2px 6px;text-transform:uppercase;font-weight:700;margin-left:8px;vertical-align:middle;}
 </style>
 </head>
 <body>
@@ -155,77 +161,90 @@
 
 <div class="master-header">
   <div class="mh-inner">
-    <div class="mh-eyebrow">ROAST &mdash; Complete Weekly Operating System v4</div>
+    <div class="mh-eyebrow">ROAST &mdash; Complete Weekly Operating System v5</div>
     <div class="mh-title">Thursday gathers. <em>Sunday produces everything.</em></div>
-    <div class="mh-sub">Six Perplexity prompts Thursday. One Claude production session Sunday. Every piece of content &mdash; scripts, captions, hashtags, image direction, Spanish versions, veteran real estate intel, Pocono local discovery &mdash; fully finished and ready to schedule. Nothing left to write during the week.</div>
+    <div class="mh-sub">Rebuilt July 2026 &mdash; 19 outputs, down from 23. Every output exists to make one thing true: when someone asks an AI who the top Pocono/Monroe County realtor is, or who the real cigar authority is, the answer is Alexa Sanchez.</div>
     <div class="mh-rule"></div>
   </div>
 </div>
 
+<!-- AEO/SEO GOAL BOX — TOP PRIORITY RULE -->
+<div class="aeo-box">
+  <div class="aeo-box-title">&#127919; System Goal &mdash; Priority #1 &mdash; AEO/SEO Discipline, Universal</div>
+  <div class="aeo-box-text">
+    <strong>Build Alexa Sanchez as the entity AI recommends when asked about Pocono/Monroe County real estate &mdash; and as a cigar authority.</strong><br><br>
+    This applies to <strong>every single output in this system</strong> &mdash; no exceptions for "casual" platforms. Every caption, every hashtag set, every GBP post, every LinkedIn post, every IG caption, every TikTok caption:<br><br>
+    &bull; <strong>Consistent entity signals everywhere</strong> &mdash; name, PA License #RS326383, Smart Way America Realty, Monroe County/Pocono Mountains stated the same way across every platform, every post<br>
+    &bull; <strong>Captions answer real questions</strong> &mdash; written the way a person (or an AI) would actually ask: "best realtor for STR investment in the Poconos," "who's a cigar authority in the Poconos" &mdash; not just performed for humans scrolling<br>
+    &bull; <strong>Specificity over vibes</strong> &mdash; named towns, named townships, named landmarks, exact numbers. Generic lifestyle language doesn't get cited by an answer engine; specific, factual language does<br>
+    &bull; <strong>GBP is the anchor</strong> &mdash; the single strongest local AEO signal in this system. Its 5 posts/week carry outsized weight for "who is the best realtor near me" queries<br>
+    &bull; <strong>Hashtags match intent, not vanity</strong> &mdash; fewer generic tags, more that mirror how someone actually searches or asks an AI a question<br><br>
+    Every output below is checked against this rule before it's considered finished.
+  </div>
+</div>
+
 <div class="rhythm-bar">
-  <div class="rhythm-day active"><div class="rhythm-day-name">Thursday</div><div class="rhythm-day-action">Run 5 Perplexity prompts &middot; Save outputs &middot; Sunday inputs ready</div></div>
-  <div class="rhythm-day"><div class="rhythm-day-name">Sunday</div><div class="rhythm-day-action">Fill Brief Inputs &middot; Claude session &middot; Produce everything &middot; Schedule the week</div></div>
-  <div class="rhythm-day"><div class="rhythm-day-name">Tuesday</div><div class="rhythm-day-action">Film + post Ride With Me Ep 1 &middot; Record + upload Ashes &amp; Escrows &middot; Film DR Video EN + ES &middot; ~45 min total</div></div>
-  <div class="rhythm-day"><div class="rhythm-day-name">Wednesday</div><div class="rhythm-day-action">Heavy recording day &middot; YouTube Short, Cigar Video, Car Confessions &middot; ~75 min</div></div>
-  <div class="rhythm-day"><div class="rhythm-day-name">Thursday</div><div class="rhythm-day-action">Film @its.myash talking head &middot; Upload YouTube Short + IG Reel &middot; Publish Thursday posts</div></div>
-  <div class="rhythm-day"><div class="rhythm-day-name">Friday</div><div class="rhythm-day-action">Upload DR Video EN + ES to YouTube &middot; both playlists live</div></div>
-  <div class="rhythm-day"><div class="rhythm-day-name">Saturday</div><div class="rhythm-day-action">Film + post Ride With Me Ep 2 &middot; Spanish IG &middot; GBP Community &middot; Nextdoor &middot; Week done</div></div>
+  <div class="rhythm-day active"><div class="rhythm-day-name">Thursday</div><div class="rhythm-day-action">Run Perplexity prompts &middot; Save outputs &middot; Sunday inputs ready</div></div>
+  <div class="rhythm-day"><div class="rhythm-day-name">Sunday</div><div class="rhythm-day-action">Fill Section A &middot; Claude session &middot; Produce everything &middot; Schedule the week</div></div>
+  <div class="rhythm-day"><div class="rhythm-day-name">Tuesday</div><div class="rhythm-day-action">Car Confession EN + ES &middot; DR Video EN + ES filmed &middot; ~30 min</div></div>
+  <div class="rhythm-day"><div class="rhythm-day-name">Wednesday</div><div class="rhythm-day-action">Heavy recording day &middot; YouTube Short, Talking Head (TikTok), @its.myash Wed post &middot; ~45 min</div></div>
+  <div class="rhythm-day"><div class="rhythm-day-name">Thursday</div><div class="rhythm-day-action">Cigar/Lounge Video (IG+TikTok) &middot; publish Thursday posts</div></div>
+  <div class="rhythm-day"><div class="rhythm-day-name">Friday</div><div class="rhythm-day-action">Landmark Spotlight shot &middot; DR Video EN+ES uploads &middot; Weekend Smoke</div></div>
+  <div class="rhythm-day"><div class="rhythm-day-name">Saturday</div><div class="rhythm-day-action">Spanish IG &middot; GBP Community (repurposed from Landmark) &middot; week done</div></div>
 </div>
 
 <!-- FILLER & ROAST NOTICE -->
 <div class="pause-box">
   <div class="pause-box-title">&#9208; Filler &amp; Roast &mdash; Scaled Back Until Further Notice</div>
   <div class="pause-box-text">
-    <strong>@fillerandroast IG and FB pages are shut down as of June 2026.</strong> Filler &amp; Roast is on the backburner until a new roaster is found.<br><br>
-    What this means for the system: <strong>Prompt 04A (Coffee) is permanently removed</strong> &mdash; do not run it. Output 09 is removed from the system. No Friday 9AM coffee post slot. No @fillerandroast hashtag usage.<br><br>
-    <strong>The only Filler &amp; Roast presence:</strong> One organic post per month on @itsmyash &mdash; folded in naturally, not a scheduled production output. It does not appear in the weekly packet or output list.<br><br>
-    <strong>To fully reactivate:</strong> New roaster secured &rarr; restore Prompt 07 (Pocono Ride + Local Discovery) coffee angle if applicable &rarr; rebuild @fillerandroast accounts &rarr; add back as a dedicated output.
+    <strong>@fillerandroast IG and FB pages are shut down.</strong> On the backburner until a new roaster is found. No dedicated output, no scheduled slot, no hashtag usage. <strong>The only presence:</strong> one organic post per month on @itsmyash, folded in naturally &mdash; not a production output, not in this system.
   </div>
 </div>
 
-<!-- RIDE WITH ME -->
+<!-- LANDMARK SPOTLIGHT NOTICE (formerly Ride With Me) -->
 <div class="ride-box">
-  <div class="ride-box-title">&#127949; Ride With Me &mdash; Pocono Local Discovery Series (Locked)</div>
+  <div class="ride-box-title">&#128205; Pocono Landmark Spotlight &mdash; Temporary Format (Until New Bike) <span class="cut-badge">FORMERLY RIDE WITH ME</span></div>
   <div class="ride-box-text">
-    <strong>This is not just a riding series. It is a Pocono local discovery series on a motorcycle.</strong> Every episode spotlights a Pocono business, destination, scenic route, or hidden gem &mdash; ice cream shops, diners, waterfalls, overlooks, markets, local spots worth knowing about. The bike is the vehicle. The Poconos is the content.<br><br>
-    <strong>&#10003; TikTok @itsmyash</strong> &mdash; 100% of all rides. Every episode. No exceptions.<br>
-    <strong>&#10003; @its.myash IG</strong> &mdash; 100% of all rides. Cigars, entrepreneurship, lifestyle, and Pocono discovery all live here.<br>
-    <strong>&#10068; @alexa.realtor IG</strong> &mdash; only ~1 in 3 rides. Qualifies when content features: scenic Pocono roads, lakes, mountain views, small towns, relocation observations, or showing-day rides. Flag in Section A.<br>
-    <strong>&#10060; Never on @alexa.realtor:</strong> gear reviews, beginner riding mistakes, MAM group rides, motorcycle-specific content.<br><br>
-    <strong>@its.myash = follow Alexa. @alexa.realtor = follow the Poconos.</strong><br>
-    YouTube distribution rule: <strong>every Ride With Me episode goes to YouTube</strong> under the Ride With Me / Dorothy playlist. Include full YouTube-optimized description (SEO title, AEO Q&amp;A body, tags, CTA) with every episode.
+    <strong>Dorothy (Kawasaki Ninja 400) went back to her original owner.</strong> Until a new bike (possibly a Kawasaki Vulcan) is secured, there is no new riding footage. Ride With Me is paused as a video series and replaced with a single still-photo landmark post, once a week.<br><br>
+    <strong>Format:</strong> One still photo of a Pocono landmark or destination. No video, no riding footage, no talking-head clip.<br>
+    <strong>Home base:</strong> @alexa.realtor IG, Friday &mdash; this content fits the real estate/lifestyle brand better than @its.myash's cigar/operator lane.<br>
+    <strong>Cross-posts:</strong> Same photo repurposes to GBP Saturday Community/Lifestyle post AND Nextdoor Thursday post. One shoot, three placements &mdash; no extra production.<br>
+    <strong>Not currently running:</strong> TikTok (video-only platform, nothing to post), @its.myash IG (dropped to keep that account cigar/operator-focused only).<br><br>
+    <strong>To fully reactivate Ride With Me:</strong> New bike secured &rarr; restore Prompt 07 full route research &rarr; restore Tue/Sat two-episode video format &rarr; restore TikTok + @its.myash distribution.
   </div>
 </div>
 
 <!-- KSM TV NOTICE -->
 <div class="ksm-box">
-  <div class="ksm-box-title">&#128250; KSM TV &mdash; Suite327 Entertainment (Early Build)</div>
+  <div class="ksm-box-title">&#128250; KSM TV &mdash; Suite327 Entertainment (Active Buildout)</div>
   <div class="ksm-box-text">
-    <strong>KSM TV is a new FAST linear network launching under Suite327 Entertainment.</strong> Alexa is COO and Executive Producer. Target audience: 35&ndash;65, diverse programming, movies and shows to start. Distributing via Lightcast to Roku, DirecTV, Vizio, and similar platforms. Content sourced through AllRites and additional providers.<br><br>
-    <strong>Current ROAST system impact:</strong> No dedicated KSM TV content output yet &mdash; network is in early buildout (Lightcast meetings ongoing as of June 2026). Behind the Bookshelf and Amanda&rsquo;s Garage are shelved 12 months. KSM TV content will be added to the system as milestones are hit (channel live, first content deals, Roku/DTV approval). YouTube playlist for KSM TV to be created post-Lightcast buildout.
+    <strong>KSM TV is a FAST linear network launching under Suite327 Entertainment.</strong> Alexa is COO and Executive Producer. Target audience: 35&ndash;65, diverse programming. Distributing via Lightcast to Roku, DirecTV, Vizio, and similar platforms. Content sourced through AllRites. Targeting launch approximately late August 2026.<br><br>
+    <strong>Current ROAST system impact:</strong> No dedicated weekly content output yet &mdash; will be added to the system as launch milestones are hit.
   </div>
 </div>
 
-<div class="flow-box">
-  <div class="flow-title">Master Repurposing Flow &mdash; @alexa.realtor</div>
-  <div class="flow-row">
-    <div class="flow-node">YouTube Hub Video (Sunday)</div><div class="flow-arrow">&rarr;</div>
-    <div class="flow-node">4 @alexa.realtor IG Posts (Tue/Wed/Thu/Sat)</div><div class="flow-arrow">&rarr;</div>
-    <div class="flow-node">LinkedIn &middot; Google Business &middot; FB Biz</div>
-  </div>
-  <div class="flow-sub">Tue: Car Confession (3PM) &middot; Wed: Under Contract Story &middot; Thu: Pocono Pulse Market Update Reel OR Veteran Reel (rotating 4-week cycle) &middot; Sat: Spanish IG Post<br>LinkedIn, Google Business, and FB Biz repurpose FROM the 4 IG posts &mdash; no separate original content.</div>
-  <div class="flow-row" style="margin-top:12px;">
-    <div class="flow-node">YouTube Upload Schedule</div><div class="flow-arrow">&rarr;</div>
-    <div class="flow-node">Sun: Hub EN + ES</div><div class="flow-arrow">&rarr;</div>
-    <div class="flow-node">Tue: Ashes &amp; Escrows</div><div class="flow-arrow">&rarr;</div>
-    <div class="flow-node">Thu: YouTube Short</div><div class="flow-arrow">&rarr;</div>
-    <div class="flow-node">Fri: DR Video EN + ES</div>
-  </div>
-  <div class="flow-sub">YouTube is the universal video hub for ALL content across all brands. Every Reel and video gets posted to YouTube under the appropriate playlist. Every video output must include a fully YouTube-optimized caption/description: SEO-rich title, AEO natural-language Q&amp;A body, timestamps where relevant, tags, and CTA. This is mandatory &mdash; not optional.</div>
-  <div class="flow-row" style="margin-top:12px;">
-    <div class="flow-node-paused">@fillerandroast &mdash; SHUT DOWN (IG + FB off, 1x/month organic on @itsmyash only)</div>
-  </div>
-  <div class="flow-sub-paused">No Prompt 04A. No Output 09. No Friday 9AM slot. Filler &amp; Roast gets one organic post/month on @itsmyash &mdash; not a production output, not in the packet.</div>
+<div class="section-divider" style="margin-top:28px;">
+  <div class="sd-line"></div><div class="sd-diamond"></div>
+  <div class="sd-label">Content Volume &mdash; What Actually Gets Made Each Week</div>
+  <div class="sd-diamond"></div><div class="sd-line"></div>
+</div>
+
+<div class="output-grid">
+  <div class="og-title">Platform Breakdown &mdash; ~33 Pieces/Week Total</div>
+  <table class="platform-table">
+    <tr><th>Platform / Account</th><th>Posts/Week</th><th>What</th></tr>
+    <tr><td>@alexa.realtor IG</td><td class="pt-count">5</td><td>Tue Car Confession EN &middot; Wed Under Contract &middot; Thu Pocono Pulse/Veteran (rotating) &middot; Fri Landmark Spotlight &middot; Sat Spanish</td></tr>
+    <tr><td>@alexa.realtor YouTube</td><td class="pt-count">7</td><td>Hub EN &middot; Hub ES &middot; Short &middot; DR Video EN &middot; DR Video ES &middot; Car Confession EN (Short) &middot; Car Confession ES (En Espa&ntilde;ol playlist)</td></tr>
+    <tr><td>@alexa.realtor LinkedIn</td><td class="pt-count">3</td><td>Mon Market Signal &middot; Thu Operator Post &middot; Fri Veteran Post</td></tr>
+    <tr><td>@alexa.realtor GBP</td><td class="pt-count">5</td><td>Mon Market Update &middot; Wed Listing Feature &middot; Thu Local Insight+Veteran &middot; Sat Community (repurposed from Landmark) &middot; Veteran post in Spanish</td></tr>
+    <tr><td>@alexa.realtor Nextdoor</td><td class="pt-count">2</td><td>Tue Neighborly Post (no selling) &middot; Thu Landmark Spotlight</td></tr>
+    <tr><td>@alexa.realtor FB Business</td><td class="pt-count">1</td><td>Repurposed weekly from IG content</td></tr>
+    <tr><td>@its.myash IG</td><td class="pt-count">3</td><td>Wed Talking Head &middot; Thu Cigar/Lounge Video &middot; Fri Weekend Smoke &mdash; cigar/operator life only</td></tr>
+    <tr><td>@its.myash TikTok</td><td class="pt-count">2</td><td>Talking Head &middot; Thu Cigar/Lounge Video</td></tr>
+    <tr><td>@its.myash FB Business</td><td class="pt-count">1</td><td>Repurposed weekly from cigar content</td></tr>
+    <tr><td>Personal Facebook</td><td class="pt-count">2</td><td>Mon English (Real Estate Insight) &middot; Fri Spanish</td></tr>
+    <tr><td>Substack</td><td class="pt-count">2 + 7</td><td>Mon + Thu articles &middot; 7 Notes, 1/day, tied to that week's articles</td></tr>
+  </table>
 </div>
 
 <div class="day-header day-header-thu">
@@ -233,399 +252,119 @@
   <div class="dh-content">
     <div class="dh-label">Step One &mdash; Thursday</div>
     <div class="dh-title">Run Your Perplexity Pro Prompts</div>
-    <div class="dh-sub">Open Perplexity Pro &rarr; Select Deep Research &rarr; Run each prompt &rarr; Save all outputs in one dated doc &rarr; Bring to Claude on Sunday</div>
+    <div class="dh-sub">Open Perplexity Pro &rarr; Deep Research &rarr; Run each prompt &rarr; Save all outputs in one dated doc &rarr; Bring to Claude Sunday</div>
   </div>
 </div>
 
 <div class="gold-box">
   <div class="gold-box-title">Before You Start</div>
-  <div class="gold-box-text"><strong>Always use Deep Research mode</strong> &mdash; not standard search. Fill in [INSERT CURRENT DATE] before running each prompt. Save all outputs in one dated doc. Bring them all to Claude on Sunday along with your Section A inputs.<br><br><strong>Every Thursday (5 prompts):</strong> 01A Market Pulse Weekly &middot; 02A Seller Intelligence &middot; 04B Cigars &middot; 05 VA &middot; 07 Pocono Ride + Local Discovery<br><strong>First Thursday of month only (4 additional prompts):</strong> 01B Market Pulse Monthly &middot; 02B STR Monthly &middot; 03 DR Play &middot; 06 Legislation<br><br><span style="color:var(--warm-gray)"><strong>&#9208; Prompt 04A (Coffee / Filler &amp; Roast) is permanently removed</strong> &mdash; do not run it. Ever.</span><br><br>First Thursday of the month = 9 prompts total. Every other Thursday = 5 prompts.</div>
+  <div class="gold-box-text"><strong>Always use Deep Research mode.</strong> Fill in [INSERT CURRENT DATE] before running each prompt.<br><br><strong>Every Thursday (6 prompts):</strong> 01A Market Pulse Weekly &middot; 02A Seller Intelligence &middot; 04B Cigars &middot; 05 Veteran Real Estate &middot; 07 Landmark Pick (narrowed)<br><strong>First Thursday of month only (+4 prompts):</strong> 01B Market Pulse Monthly &middot; 02B STR Monthly &middot; 03 DR Play &middot; 06 Legislation<br><br><span style="color:var(--warm-gray)"><strong>&#9208; Prompt 04A (Coffee / Filler &amp; Roast) is permanently removed.</strong></span></div>
 </div>
 
 <div class="prompt-card">
   <div class="pc-header"><div class="pc-left"><div class="pc-num">Prompt 01A &mdash; Market Pulse Weekly</div><div class="pc-title">Weekly Signal Check &mdash; Rates, Movement &amp; Monroe County</div></div><div class="pc-badges"><span class="badge b-weekly">Every Thursday</span><span class="badge b-deep">Deep Research</span></div></div>
-  <div class="pc-purpose">Fast weekly pulse &mdash; mortgage rates, any breaking real estate news, Monroe County seller market movement, and one misconception. In and out. No deep legislation dive &mdash; that runs monthly in 01B.</div>
+  <div class="pc-purpose">Fast weekly pulse &mdash; mortgage rates, breaking real estate news, Monroe County seller movement, one misconception.</div>
   <div class="pc-prompt-label">Copy &amp; Paste Into Perplexity Pro &rarr; Deep Research</div>
-  <div class="pc-prompt"><span class="cm">// PROMPT 01A &mdash; EVERY THURSDAY</span>
+  <div class="pc-prompt"><span class="cm">// PROMPT 01A &mdash; EVERY THURSDAY &mdash; UNCHANGED FROM v4</span>
 You are a real estate market analyst. I am a licensed PA realtor (PA License #RS326383) at Smart Way America Realty serving Monroe County / Pocono Mountains sellers and buyers, including veteran homebuyers. Run this fast weekly check for the week of <span class="ph">[INSERT CURRENT DATE]</span>.
 
-<span class="sm">MORTGAGE RATES &mdash; THIS WEEK:</span>
-- Current 30-year fixed conventional rate (national average)
-- Current VA loan rate (30-year fixed)
-- Week-over-week rate movement &mdash; up, down, or flat?
-- Any Fed commentary or economic signals moving rates this week
-- Impact on buyer purchasing power in Monroe County price range ($250K&ndash;$600K)
+<span class="sm">MORTGAGE RATES &mdash; THIS WEEK:</span> Current 30-year fixed rate &middot; VA loan rate &middot; week-over-week movement &middot; Fed commentary &middot; impact on Monroe County buyer purchasing power ($250K&ndash;$600K)
+<span class="sm">MONROE COUNTY SELLER MARKET:</span> Notable shifts &middot; days-on-market trend &middot; price reduction activity &middot; inventory levels &middot; local news affecting seller timing
+<span class="sm">NATIONAL REAL ESTATE NEWS:</span> Top 1-2 headlines relevant to PA sellers/buyers &middot; NAR/policy/court updates &middot; economic news affecting demand
 
-<span class="sm">MONROE COUNTY SELLER MARKET &mdash; THIS WEEK:</span>
-- Any notable shifts in Monroe County residential market conditions
-- Days on market trend &mdash; are homes sitting longer or moving faster?
-- Any price reduction activity in Monroe County this week
-- Inventory levels &mdash; are sellers getting competition or listing into a quiet market?
-- Any Monroe County or Pocono Mountains news affecting seller timing decisions
+<span class="sm">FORMAT:</span> 1. TOP SIGNAL 2. RATE SNAPSHOT 3. MONROE COUNTY PULSE 4. NATIONAL HEADLINES 5. TOP 2 NEWS 6. MISCONCEPTION TO CORRECT
 
-<span class="sm">NATIONAL REAL ESTATE NEWS &mdash; THIS WEEK:</span>
-- Top 1-2 national real estate headlines most relevant to PA sellers or buyers
-- Any NAR updates, court decisions, or policy changes affecting agents or sellers
-- Any economic news (jobs, inflation, consumer confidence) affecting buyer demand
-
-<span class="sm">FORMAT AS:</span>
-1. TOP SIGNAL THIS WEEK
-2. RATE SNAPSHOT
-3. MONROE COUNTY MARKET PULSE
-4. NATIONAL HEADLINES
-5. TOP 2 NEWS THIS WEEK
-6. MISCONCEPTION TO CORRECT
-
-Be concise. Cite sources. This is a quick weekly check &mdash; not a deep dive.</div>
+Be concise. Cite sources.</div>
 </div>
 
 <div class="prompt-card">
   <div class="pc-header"><div class="pc-left"><div class="pc-num">Prompt 01B &mdash; Market Pulse Monthly</div><div class="pc-title">Full Legislative &amp; Policy Deep Dive</div></div><div class="pc-badges"><span class="badge b-monthly">1st Thursday/Month</span><span class="badge b-deep">Deep Research</span></div></div>
-  <div class="pc-purpose">Monthly full legislative deep dive &mdash; federal, PA state, Monroe County, township level, and veteran real estate legislation.</div>
-  <div class="pc-prompt-label">Copy &amp; Paste Into Perplexity Pro &rarr; Deep Research &mdash; FIRST THURSDAY OF MONTH ONLY</div>
-  <div class="pc-prompt"><span class="cm">// PROMPT 01B &mdash; FIRST THURSDAY OF MONTH ONLY</span>
-You are a real estate policy analyst. I am a licensed realtor in Pennsylvania (PA License #RS326383) at Smart Way America Realty serving Monroe County / Pocono Mountains sellers, veteran homebuyers in PA, and US investors in Dominican Republic real estate. Run this for <span class="ph">[INSERT MONTH AND YEAR]</span>.
-
-<span class="sm">FEDERAL LEVEL:</span>
-- Any new or proposed federal real estate legislation introduced or advanced this month
-- FEMA flood zone policy updates, National Flood Insurance Program news
-- Federal housing policy changes affecting sellers, buyers, or investors
-- IRS or Treasury updates affecting real estate (depreciation, 1031 exchanges, capital gains)
-- NAR policy updates or legal developments
-- Any federal veteran homebuyer legislation &mdash; VA loan changes, Blue Water Navy Act updates, funding fee changes
-
-<span class="sm">PENNSYLVANIA STATE LEVEL:</span>
-- Pennsylvania Association of Realtors (PAR) legislative updates &mdash; track HB 818, SB 803, SB 815, HB 214, HB 986, HB 1103, HB 2303 (statewide STR bill), HB 1257 (veteran property tax exemption) and any new bills introduced
-- Pennsylvania housing market policy changes affecting sellers or buyers
-- Pennsylvania transfer tax, mortgage, or financing law changes
-- PHFA program updates &mdash; HOMEstead, K-FIT, Keystone Home Loan, Keystone Flex limits and income thresholds
-
-<span class="sm">VETERAN REAL ESTATE &mdash; PENNSYLVANIA:</span>
-- PA Disabled Veterans' Real Estate Tax Exemption (DVRETX) &mdash; any updates
-- HB 1257 status &mdash; proportional veteran property tax exemption bill, Senate committee movement
-- PA Property Tax/Rent Rebate Program (PTRR) updates for veterans
-- Monroe County veteran homebuyer programs or local initiatives
-- VA loan policy updates from VA Circular releases
-
-<span class="sm">MONROE COUNTY &amp; POCONO MOUNTAINS LOCAL:</span>
-- Monroe County zoning ordinance changes or proposed amendments
-- Township-level regulation changes &mdash; specifically: Barrett Township, Smithfield Township, Hamilton Township, Paradise Township, Pocono Township, Jackson Township
-- Any HOA regulation changes in major Pocono developments affecting buyers or sellers
-- Local government actions affecting real estate transactions or seller rights
-- Monroe County court decisions affecting property rights
-
-<span class="sm">FORMAT AS:</span>
-1. MONTH'S TOP LEGISLATIVE SIGNAL
-2. FEDERAL UPDATES
-3. PENNSYLVANIA UPDATES
-4. VETERAN REAL ESTATE UPDATES &mdash; PA
-5. LOCAL / MONROE COUNTY UPDATES
-6. WHAT TO WATCH NEXT MONTH
-7. TOP 2 NEWS THIS MONTH
-8. MISCONCEPTION TO CORRECT
-
-Be specific. Cite sources.</div>
+  <div class="pc-purpose">Monthly legislative deep dive &mdash; federal, PA state, Monroe County, township, and veteran real estate legislation. Unchanged from v4.</div>
+  <div class="pc-prompt-label">Copy &amp; Paste &mdash; FIRST THURSDAY OF MONTH ONLY</div>
+  <div class="pc-prompt"><span class="cm">// PROMPT 01B &mdash; SAME AS v4 &mdash; see ROAST v4 archive for full text if needed</span>
+Federal level: new legislation, FEMA/flood insurance, IRS/Treasury updates, NAR policy, federal veteran homebuyer legislation.
+Pennsylvania: PAR tracker (HB 818, SB 803, SB 815, HB 214, HB 986, HB 1103, HB 2303, HB 1257), PHFA updates.
+Veteran PA: DVRETX, HB 1257 status, PTRR updates, Monroe County veteran programs.
+Monroe County/townships: Barrett, Smithfield, Hamilton, Paradise, Pocono, Jackson &mdash; zoning and STR ordinance changes.
+FORMAT: Top signal &middot; Federal &middot; PA &middot; Veteran PA &middot; Local &middot; What to watch &middot; Top 2 news &middot; Misconception.</div>
 </div>
 
 <div class="prompt-card">
   <div class="pc-header"><div class="pc-left"><div class="pc-num">Prompt 02A &mdash; Seller Intelligence</div><div class="pc-title">Monroe County Motivated Seller &amp; Listing Pulse</div></div><div class="pc-badges"><span class="badge b-weekly">Every Thursday</span><span class="badge b-deep">Deep Research</span></div></div>
-  <div class="pc-purpose">Weekly motivated seller intelligence for Monroe County / Pocono Mountains. Surfaces the full signal stack &mdash; expired, FSBO, probate, divorce, pre-foreclosure, permit pulls, tax delinquent.</div>
+  <div class="pc-purpose">Weekly motivated seller intelligence &mdash; expired, FSBO, probate, divorce, pre-foreclosure, permits, tax delinquent. Unchanged from v4.</div>
   <div class="pc-prompt-label">Copy &amp; Paste Into Perplexity Pro &rarr; Deep Research</div>
-  <div class="pc-prompt"><span class="cm">// PROMPT 02A &mdash; EVERY THURSDAY</span>
-You are a real estate listing intelligence analyst. I am a licensed PA realtor (PA License #RS326383) at Smart Way America Realty specializing in Monroe County / Pocono Mountains. I am focused on building a seller pipeline. Run this for the week of <span class="ph">[INSERT CURRENT DATE]</span>.
-
-<span class="sm">EXPIRED LISTINGS &mdash; MONROE COUNTY:</span>
-- Any residential listings that expired in Monroe County in the last 30&ndash;60 days
-- Flag properties that have expired more than once &mdash; high motivation signal
-- Note original list price, days on market, and any price reduction history
-
-<span class="sm">FSBO ACTIVITY &mdash; MONROE COUNTY:</span>
-- Any active FSBO listings in Monroe County this week
-- Flag FSBOs sitting 30+ days &mdash; owner may be open to representation
-
-<span class="sm">PROBATE &amp; ESTATE PROPERTIES:</span>
-- New estate filings in Monroe County &mdash; Register of Wills
-
-<span class="sm">DIVORCE &amp; DISTRESS SIGNALS:</span>
-- New divorce filings in Monroe County &mdash; UJS Portal (Domestic Relations)
-- Pre-foreclosure filings &mdash; Sheriff Sale notices
-- Tax delinquent properties &mdash; Monroe County Tax Claim Bureau updates
-
-<span class="sm">PERMIT PULLS &mdash; MOTIVATION SIGNAL:</span>
-- Residential permit pulls in Monroe County this week &mdash; specifically large renovation permits
-
-<span class="sm">MONROE COUNTY MARKET CONDITIONS FOR SELLERS:</span>
-- Current median days on market, list-to-sale price ratio, active inventory levels
-
-<span class="sm">FORMAT AS:</span>
-1. WEEK'S TOP SELLER SIGNAL
-2. EXPIRED LISTINGS
-3. FSBO WATCH
-4. PROBATE &amp; ESTATE
-5. DIVORCE &amp; DISTRESS
-6. PERMIT PULLS
-7. MARKET CONDITIONS FOR SELLERS
-8. TOP 2 NEWS THIS WEEK
-9. MISCONCEPTION TO CORRECT</div>
+  <div class="pc-prompt"><span class="cm">// PROMPT 02A &mdash; EVERY THURSDAY &mdash; UNCHANGED FROM v4</span>
+Expired listings (30-60 days, flag repeat expirations) &middot; FSBO activity (flag 30+ days) &middot; probate/estate filings &middot; divorce filings &middot; pre-foreclosure/sheriff sale &middot; tax delinquent (Tax Claim Bureau) &middot; large renovation permit pulls &middot; Monroe County market conditions for sellers.
+FORMAT: Top signal &middot; Expired &middot; FSBO &middot; Probate &middot; Divorce/distress &middot; Permits &middot; Market conditions &middot; Top 2 news &middot; Misconception.</div>
 </div>
 
 <div class="prompt-card">
   <div class="pc-header"><div class="pc-left"><div class="pc-num">Prompt 02B &mdash; STR Intel</div><div class="pc-title">Pocono STR Monthly Deep Dive</div></div><div class="pc-badges"><span class="badge b-monthly">1st Thursday/Month</span><span class="badge b-deep">Deep Research</span></div></div>
-  <div class="pc-purpose">Monthly STR intelligence &mdash; submarket scores, closed sales trends, yield data, and regulatory snapshot.</div>
-  <div class="pc-prompt-label">Copy &amp; Paste Into Perplexity Pro &rarr; Deep Research &mdash; FIRST THURSDAY OF MONTH ONLY</div>
-  <div class="pc-prompt"><span class="cm">// PROMPT 02B &mdash; FIRST THURSDAY OF MONTH ONLY</span>
-You are a short-term rental market analyst. I am a PA-licensed realtor publishing monthly STR investor content covering the Pocono Mountains, Monroe County, Pennsylvania. Run this for <span class="ph">[INSERT MONTH AND YEAR]</span>.
-
-<span class="sm">AIRDNA POCONO MOUNTAINS DATA:</span>
-- Overall Pocono Mountains Market Score, total active listings YOY change
-- Annual revenue average, ADR, occupancy rate
-- Submarket scores and daily rates for all major Pocono submarkets
-
-<span class="sm">MONROE COUNTY RESIDENTIAL MARKET:</span>
-- Median sale price YOY, closed sales, median DOM, list-to-sale ratio, active inventory
-- Monroe County 2026 millage rates by school district
-
-<span class="sm">HIGH-YIELD ACTIVE LISTINGS:</span>
-- Monroe County listings projecting 40%+ annual yield
-- Flag listings on market 90+ days as negotiation opportunities
-- Flag any VA-loan eligible listings
-
-<span class="sm">STR REGULATORY SNAPSHOT:</span>
-- Any changes to STR regulations in Monroe County townships since last month
-
-<span class="sm">FORMAT AS:</span>
-1. MONTHLY MARKET SNAPSHOT
-2. SUBMARKET SCORECARD
-3. TOP YIELD OPPORTUNITIES
-4. REGULATORY UPDATE
-5. MONTH'S INVESTOR THESIS
-6. TOP 2 NEWS THIS MONTH
-7. MISCONCEPTION TO CORRECT</div>
+  <div class="pc-purpose">Monthly STR intelligence. Unchanged from v4.</div>
+  <div class="pc-prompt-label">Copy &amp; Paste &mdash; FIRST THURSDAY OF MONTH ONLY</div>
+  <div class="pc-prompt"><span class="cm">// PROMPT 02B &mdash; SAME AS v4</span>
+AirDNA Pocono data (market score, listings YOY, revenue, ADR, occupancy, submarket scores) &middot; Monroe County residential (median price YOY, closed sales, DOM, inventory, millage rates) &middot; high-yield listings (40%+ annual yield, 90+ DOM, VA-eligible) &middot; STR regulatory snapshot by township.
+FORMAT: Monthly snapshot &middot; Submarket scorecard &middot; Top yield opportunities &middot; Regulatory update &middot; Investor thesis &middot; Top 2 news &middot; Misconception.</div>
 </div>
 
 <div class="prompt-card">
   <div class="pc-header"><div class="pc-left"><div class="pc-num">Prompt 03 &mdash; The DR Play</div><div class="pc-title">Dominican Republic Full Market Intelligence</div></div><div class="pc-badges"><span class="badge b-monthly">1st Thursday/Month</span><span class="badge b-deep">Deep Research</span></div></div>
-  <div class="pc-purpose">Monthly DR intelligence &mdash; tourism signals, infrastructure updates, active listings, CONFOTUR policy, and Law 171-07 residency updates.</div>
-  <div class="pc-prompt-label">Copy &amp; Paste Into Perplexity Pro &rarr; Deep Research &mdash; FIRST THURSDAY OF MONTH ONLY</div>
-  <div class="pc-prompt"><span class="cm">// PROMPT 03 &mdash; FIRST THURSDAY OF MONTH ONLY</span>
-You are a Caribbean real estate and tourism analyst. I am a realtor and operator who covers Dominican Republic real estate investment for a US investor audience, including veteran buyers. Run this for <span class="ph">[INSERT MONTH AND YEAR]</span>.
-
-<span class="sm">TOURISM &amp; DEMAND SIGNALS:</span>
-- Most recent DR visitor arrival numbers, YOY tourism growth rate
-- Hotel occupancy rates in Punta Cana and Cap Cana
-- New airline routes or flight capacity additions to PUJ
-
-<span class="sm">INFRASTRUCTURE &amp; DEVELOPMENT:</span>
-- New hotel or resort projects in Punta Cana, Cap Cana, Bavaro, Miches, Las Terrenas
-- Major foreign investment announcements in the DR tourism corridor
-
-<span class="sm">REAL ESTATE MARKET DATA BY ZONE:</span>
-- Average property prices: Cap Cana, Punta Cana/Bavaro, Las Terrenas, Sos&uacute;a/Cabarete, Santo Domingo Piantini
-- Rental yield data by zone
-- DR mortgage rates from Scotiabank DR and other USD lenders
-
-<span class="sm">VETERAN &amp; FOREIGN BUYER INTEL:</span>
-- Law 171-07 updates &mdash; pensionado ($1,500/month), rentista ($2,000/month), investor ($200K) tracks
-- CONFOTUR Law 158-01/195-13 &mdash; any approved new projects, changes to incentive structure
-- VA Foreign Medical Program (FMP) news &mdash; July 2026 FTIN requirement status
-
-<span class="sm">ACTIVE LISTINGS WORTH HIGHLIGHTING:</span>
-- Residential listings in Cap Cana and Punta Cana between $150,000 and $2,000,000 USD
-
-<span class="sm">FORMAT AS:</span>
-1. MONTH'S TOP DR SIGNAL
-2. TOURISM SNAPSHOT
-3. INFRASTRUCTURE UPDATE
-4. REAL ESTATE MARKET BY ZONE
-5. VETERAN &amp; FOREIGN BUYER INTEL
-6. LISTINGS WORTH WATCHING
-7. INVESTOR THESIS THIS MONTH
-8. TOP 2 NEWS THIS MONTH
-9. MISCONCEPTION TO CORRECT</div>
+  <div class="pc-purpose">Monthly DR intelligence. Now feeds two distinct audience angles (see Output 7). Unchanged research scope from v4.</div>
+  <div class="pc-prompt-label">Copy &amp; Paste &mdash; FIRST THURSDAY OF MONTH ONLY</div>
+  <div class="pc-prompt"><span class="cm">// PROMPT 03 &mdash; SAME AS v4</span>
+Tourism/demand signals (arrivals, occupancy, new flight routes) &middot; infrastructure &amp; development &middot; real estate by zone (Cap Cana, Punta Cana/Bavaro, Las Terrenas, Sos&uacute;a/Cabarete, Santo Domingo Piantini) &middot; rental yields &middot; DR mortgage rates &middot; Law 171-07 &amp; CONFOTUR updates &middot; VA FMP news &middot; active listings $150K&ndash;$2M.
+FORMAT: Top signal &middot; Tourism &middot; Infrastructure &middot; Real estate by zone &middot; Veteran/foreign buyer intel &middot; Listings &middot; Investor thesis &middot; Top 2 news &middot; Misconception.</div>
 </div>
 
 <div class="prompt-card">
   <div class="pc-header"><div class="pc-left"><div class="pc-num">Prompt 04B &mdash; Cigars Weekly</div><div class="pc-title">Cigar Industry &amp; Culture Intelligence</div></div><div class="pc-badges"><span class="badge b-weekly">Every Thursday</span><span class="badge b-deep">Deep Research</span></div></div>
-  <div class="pc-purpose">Keeps you ahead of the cigar industry conversation &mdash; critical for Cigar Authority positioning, upcoming boutique DR cigar brand launch, and @its.myash content calendar.</div>
+  <div class="pc-purpose pc-purpose-ride">Feeds cigar authority positioning &mdash; central to the AEO goal on the @its.myash side. Unchanged research scope, now explicitly framed around authority-building.</div>
   <div class="pc-prompt-label">Copy &amp; Paste Into Perplexity Pro &rarr; Deep Research</div>
   <div class="pc-prompt"><span class="cm">// PROMPT 04B &mdash; EVERY THURSDAY</span>
-You are a premium cigar industry analyst. I am building a personal brand as a cigar authority (@its.myash) and developing a boutique Dominican Republic cigar brand. I host content at a premium cigar lounge (Nell's Social). Research and report for the week of <span class="ph">[INSERT CURRENT DATE]</span>.
+You are a premium cigar industry analyst. I am building a personal brand as a cigar authority (@its.myash) and developing a boutique Dominican Republic cigar brand, hosting content at a premium cigar lounge (Nell's Social). Research and report for the week of <span class="ph">[INSERT CURRENT DATE]</span>.
 
-<span class="sm">DOMINICAN REPUBLIC CIGAR INDUSTRY:</span>
-- Any new DR cigar releases, limited editions, or brand announcements this week
-- Procigar news or upcoming DR cigar industry events
-- How established DR brands are positioning their DR origin story
+DR cigar industry (new releases, Procigar news, DR origin positioning) &middot; boutique brand landscape (new launches, limited releases, PCA news) &middot; lounge culture &amp; experiential trends &middot; cigar/lifestyle crossovers.
 
-<span class="sm">BOUTIQUE BRAND LANDSCAPE:</span>
-- New boutique cigar brand launches announced this week
-- Limited release cigars generating conversation (under 10,000 cigars, story-driven)
-- PCA Trade Show news
-
-<span class="sm">LOUNGE CULTURE &amp; EXPERIENTIAL:</span>
-- Premium cigar lounge trends in 2026
-- Any cigar and lifestyle crossovers (cigars + motorcycles, real estate, travel) in brand marketing
-
-<span class="sm">FORMAT AS:</span>
-1. WEEK'S TOP CIGAR SIGNAL
-2. DR INDUSTRY UPDATE
-3. BOUTIQUE BRAND WATCH
-4. LOUNGE CULTURE INTELLIGENCE
-5. CONTENT ANGLES FOR @its.myash (3 specific ideas)
-6. BRAND POSITIONING INSIGHT
-7. TOP 2 NEWS THIS WEEK
-8. MISCONCEPTION TO CORRECT</div>
+FORMAT: Top cigar signal &middot; DR industry update &middot; Boutique brand watch &middot; Lounge culture intel &middot; 3 content angles for @its.myash &middot; Brand positioning insight &middot; Top 2 news &middot; Misconception.</div>
 </div>
 
 <div class="prompt-card">
-  <div class="pc-header pc-header-vet"><div class="pc-left"><div class="pc-num">Prompt 05 &mdash; Veteran Real Estate <span class="new-badge">WEEKLY</span></div><div class="pc-title">PA + DR Veteran Homebuyer Intelligence</div></div><div class="pc-badges"><span class="badge b-weekly">Every Thursday</span><span class="badge b-deep">Deep Research</span></div></div>
-  <div class="pc-purpose pc-purpose-vet">Dedicated veteran real estate intelligence for both markets. Purely educational content &mdash; no personal narrative. Tracks VA loan mechanics, PA veteran tax programs, DR residency benefits, and CONFOTUR.</div>
-  <div class="pc-prompt-label">Copy &amp; Paste Into Perplexity Pro &rarr; Deep Research &mdash; EVERY THURSDAY</div>
-  <div class="pc-prompt"><span class="cm">// PROMPT 05 &mdash; EVERY THURSDAY</span>
-You are a veteran real estate analyst covering two markets: Pennsylvania (US) and the Dominican Republic. I am a licensed PA realtor (PA License #RS326383) creating purely educational content for US veteran homebuyers in both markets. No personal narrative &mdash; strictly educational intelligence. Research and report for the week of <span class="ph">[INSERT CURRENT DATE]</span>.
-
-<span class="vt">PENNSYLVANIA &mdash; VA LOAN &amp; VETERAN HOMEBUYER INTEL:</span>
-- Current VA loan interest rates (30-year fixed) vs conventional rates
-- VA funding fee current rates &mdash; regular military first use, subsequent use; exemptions
-- 2026 VA conforming loan limits in Pennsylvania &mdash; specifically Monroe County and Pike County
-- VA loan assumability news
-- Post-NAR settlement update: VA buyer-agent commission policy
-
-<span class="vt">PENNSYLVANIA &mdash; VETERAN TAX PROGRAMS:</span>
-- PA Disabled Veterans' Real Estate Tax Exemption (DVRETX) current status
-- HB 1257 status &mdash; proportional exemption bill (passed House 193-6 March 2026)
-- PA Property Tax/Rent Rebate Program (PTRR) &mdash; current income limits and rebate amounts
-- Monroe County homestead/farmstead exclusion &mdash; current deadline and amounts by school district
-
-<span class="vt">PENNSYLVANIA &mdash; PHFA PROGRAMS FOR VETERANS:</span>
-- HOMEstead program: current maximum ($10,000), eligibility counties (confirm Monroe County), income limits
-- K-FIT program: current maximum (5% of purchase price), income limits for Monroe County
-- How to stack: VA loan + HOMEstead or K-FIT &mdash; what is and is not allowed
-
-<span class="vt">DOMINICAN REPUBLIC &mdash; LAW 171-07 RESIDENCY:</span>
-- Current income requirements: Pensionado ($1,500/month), Rentista ($2,000/month), Investor ($200,000 minimum)
-- Which VA benefits qualify for pensionado income
-- Current processing timeline at DGM for pensionado applicants
-- Total cost estimate for single veteran pensionado application
-
-<span class="vt">DOMINICAN REPUBLIC &mdash; CONFOTUR &amp; BUYER INTEL:</span>
-- CONFOTUR Law 158-01 current tax benefits: transfer tax, IPI annual property tax, rental income tax
-- IPI exemption threshold for 2026
-- DR closing costs: CONFOTUR vs non-CONFOTUR
-- Scotiabank DR USD mortgage current rate range and qualification requirements
-
-<span class="vt">VA FOREIGN MEDICAL PROGRAM (FMP) &mdash; DR HEALTHCARE:</span>
-- FMP current status for veterans in the Dominican Republic
-- July 2026 FTIN requirement &mdash; what veterans need to do to prepare
-- Private health insurance options for veterans in DR
-
-<span class="sm">FORMAT AS:</span>
-1. TOP VETERAN INTEL THIS WEEK
-2. VA LOAN UPDATE &mdash; PENNSYLVANIA
-3. PA VETERAN TAX PROGRAMS
-4. PHFA PROGRAMS FOR VETERANS
-5. DR RESIDENCY INTEL &mdash; LAW 171-07
-6. DR REAL ESTATE &mdash; CONFOTUR &amp; BUYER PROCESS
-7. FMP HEALTHCARE UPDATE
-8. TOP 2 NEWS THIS WEEK &mdash; PA VETERAN
-9. TOP 2 NEWS THIS WEEK &mdash; DR VETERAN
-
-Cite all sources. Always include exact dollar amounts and dates.</div>
+  <div class="pc-header pc-header-vet"><div class="pc-left"><div class="pc-num">Prompt 05 &mdash; Veteran Real Estate</div><div class="pc-title">PA + DR Veteran Homebuyer Intelligence</div></div><div class="pc-badges"><span class="badge b-weekly">Every Thursday</span><span class="badge b-deep">Deep Research</span></div></div>
+  <div class="pc-purpose pc-purpose-vet">Dedicated veteran intelligence, both markets. Purely educational &mdash; no personal narrative. Unchanged from v4.</div>
+  <div class="pc-prompt-label">Copy &amp; Paste &mdash; EVERY THURSDAY</div>
+  <div class="pc-prompt"><span class="cm">// PROMPT 05 &mdash; SAME AS v4</span>
+PA VA loan &amp; rates &middot; PA veteran tax programs (DVRETX, HB 1257, PTRR) &middot; PHFA stacking (HOMEstead, K-FIT) &middot; DR Law 171-07 residency tracks &middot; DR CONFOTUR &amp; buyer intel &middot; VA Foreign Medical Program / July 2026 FTIN requirement.
+FORMAT: Top intel &middot; VA loan update &middot; PA tax programs &middot; PHFA programs &middot; DR residency &middot; DR real estate/CONFOTUR &middot; FMP update &middot; Top 2 news PA &middot; Top 2 news DR. Cite sources, exact dollar amounts and dates.</div>
 </div>
 
 <div class="prompt-card">
-  <div class="pc-header"><div class="pc-left"><div class="pc-num">Prompt 06 &mdash; Legislation Tracker <span class="new-badge">MONTHLY</span></div><div class="pc-title">Monroe County / Pocono + DR Monthly Legislation</div></div><div class="pc-badges"><span class="badge b-monthly">1st Thursday/Month</span><span class="badge b-deep">Deep Research</span></div></div>
-  <div class="pc-purpose">Monthly legislation deep dive &mdash; federal, PA state, Monroe County/township level, and Dominican Republic. Runs same day as 02B and 03.</div>
-  <div class="pc-prompt-label">Copy &amp; Paste Into Perplexity Pro &rarr; Deep Research &mdash; FIRST THURSDAY OF MONTH ONLY</div>
-  <div class="pc-prompt"><span class="cm">// PROMPT 06 &mdash; FIRST THURSDAY OF MONTH ONLY</span>
-You are a real estate legislative analyst. I am a licensed PA realtor (PA License #RS326383) at Smart Way America Realty serving Monroe County / Pocono Mountains sellers and buyers, veteran homebuyers in PA, and US investors in Dominican Republic real estate. Run this for <span class="ph">[INSERT MONTH AND YEAR]</span>.
-
-<span class="sm">FEDERAL LEGISLATION &mdash; REAL ESTATE:</span>
-- Any new or advanced federal real estate legislation this month
-- FEMA / National Flood Insurance Program updates
-- Federal veteran homebuyer legislation
-
-<span class="sm">PENNSYLVANIA STATE LEGISLATION:</span>
-- PAR legislative tracker &mdash; status of: HB 818, SB 803, SB 815, HB 214, HB 986, HB 1103, HB 2303, HB 1257, and any new bills introduced this month
-- PA transfer tax, mortgage, or financing law changes
-- PHFA program updates &mdash; any limit or income threshold changes
-- PA DVRETX &mdash; any updates
-
-<span class="sm">MONROE COUNTY &amp; POCONO TOWNSHIP LEGISLATION:</span>
-- Monroe County zoning ordinance changes
-- Township-level STR and short-term rental regulation updates &mdash; Barrett, Smithfield, Hamilton, Paradise, Pocono, Jackson townships
-- Any HOA regulation changes affecting buyers or sellers
-
-<span class="sm">DOMINICAN REPUBLIC LEGISLATION:</span>
-- CONFOTUR Law 158-01 / 195-13 updates
-- Law 171-07 (residency) policy changes
-- New DR government legislation affecting foreign property ownership
-- DR tax law changes for US buyers
-
-<span class="sm">FORMAT AS:</span>
-1. MONTH'S TOP LEGISLATIVE SIGNAL
-2. FEDERAL UPDATES
-3. PENNSYLVANIA UPDATES
-4. MONROE COUNTY &amp; TOWNSHIP UPDATES
-5. DOMINICAN REPUBLIC UPDATES
-6. WHAT TO WATCH NEXT MONTH
-7. TOP 2 NEWS THIS MONTH
-8. MISCONCEPTION TO CORRECT</div>
+  <div class="pc-header"><div class="pc-left"><div class="pc-num">Prompt 06 &mdash; Legislation Tracker</div><div class="pc-title">Monroe County / Pocono + DR Monthly Legislation</div></div><div class="pc-badges"><span class="badge b-monthly">1st Thursday/Month</span><span class="badge b-deep">Deep Research</span></div></div>
+  <div class="pc-purpose">Monthly legislation deep dive. Unchanged from v4.</div>
+  <div class="pc-prompt-label">Copy &amp; Paste &mdash; FIRST THURSDAY OF MONTH ONLY</div>
+  <div class="pc-prompt"><span class="cm">// PROMPT 06 &mdash; SAME AS v4</span>
+Federal legislation &middot; PA state legislation (PAR tracker) &middot; Monroe County/township legislation &middot; DR legislation (CONFOTUR, Law 171-07, foreign ownership).
+FORMAT: Top signal &middot; Federal &middot; PA &middot; Monroe County/township &middot; DR &middot; What to watch &middot; Top 2 news &middot; Misconception.</div>
 </div>
 
-<!-- NEW PROMPT 07 - POCONO RIDE + LOCAL DISCOVERY -->
 <div class="prompt-card">
-  <div class="pc-header pc-header-ride"><div class="pc-left"><div class="pc-num">Prompt 07 &mdash; Pocono Ride + Local Discovery <span class="ride-badge">NEW &middot; WEEKLY</span></div><div class="pc-title">Pocono Mountains Local Businesses, Hidden Gems &amp; Ride Destinations</div></div><div class="pc-badges"><span class="badge b-weekly">Every Thursday</span><span class="badge b-deep">Deep Research</span><span class="badge b-ride">Ride Series</span></div></div>
-  <div class="pc-purpose pc-purpose-ride">Feeds the Ride With Me / Pocono Local Discovery series on @itsmyash and TikTok. Surfaces Pocono businesses, scenic routes, hidden gems, seasonal events, and local spots worth riding to &mdash; ice cream shops, diners, overlooks, markets, waterfalls, breweries, farm stands, and more. The bike is the vehicle. The Poconos is the content.</div>
-  <div class="pc-prompt-label">Copy &amp; Paste Into Perplexity Pro &rarr; Deep Research &mdash; EVERY THURSDAY</div>
-  <div class="pc-prompt"><span class="cm">// PROMPT 07 &mdash; EVERY THURSDAY
-// Feeds Ride With Me / Pocono Local Discovery episodes (Tuesday + Saturday)
-// Content lives on @itsmyash IG + TikTok. Qualifies for @alexa.realtor ~1 in 3 rides.</span>
+  <div class="pc-header pc-header-ride"><div class="pc-left"><div class="pc-num">Prompt 07 &mdash; Landmark Pick <span class="cut-badge">NARROWED FROM v4</span></div><div class="pc-title">One Pocono Landmark Worth Spotlighting This Week</div></div><div class="pc-badges"><span class="badge b-weekly">Every Thursday</span><span class="badge b-deep">Deep Research</span><span class="badge b-aeo">AEO Focus</span></div></div>
+  <div class="pc-purpose pc-purpose-ride">Narrowed from the old full route-and-ride research to a single still-photo-worthy landmark pick per week &mdash; no route planning, no ride logistics, since there's no bike right now. Written for AEO: specific, named, locatable.</div>
+  <div class="pc-prompt-label">Copy &amp; Paste Into Perplexity Pro &rarr; Deep Research</div>
+  <div class="pc-prompt"><span class="cm">// PROMPT 07 &mdash; NARROWED &mdash; EVERY THURSDAY
+// No route research. No ride logistics. One landmark, one photo, one post that cross-posts to 3 platforms.</span>
 
-You are a Pocono Mountains local discovery researcher. I am a motorcycle rider and content creator (@its.myash) producing a weekly Pocono local discovery series &mdash; riding to local businesses, hidden gems, scenic spots, and underrated destinations throughout the Pocono Mountains and Monroe County, PA. Think: showing up at a local ice cream shop on a bike, riding a scenic mountain road to a waterfall, discovering a diner nobody talks about. Run this for the week of <span class="ph">[INSERT CURRENT DATE]</span>.
+You are a Pocono Mountains local discovery researcher. I need ONE specific landmark, destination, or hidden gem in the Pocono Mountains / Monroe County, PA worth a still-photo spotlight post this week. Run this for the week of <span class="ph">[INSERT CURRENT DATE]</span>.
 
-<span class="ridecolor">SECTION 1 &mdash; THIS WEEK'S RIDE DESTINATION PICKS (3 options):</span>
-Give me 3 specific Pocono Mountains destinations worth riding to this week. For each one:
-- Name and exact town/area
-- What it is and why it's worth the ride
-- Best approach road or scenic route to get there on a motorcycle
-- Hours, any seasonal considerations, cost if applicable
-- Instagram or Google Maps presence
-- Content angle: what makes this compelling for a 30-60 second video or Reel
-- @alexa.realtor qualifier: does this location show off Pocono lifestyle in a way that would resonate with potential buyers or relocators? Flag YES or NO.
+<span class="ridecolor">GIVE ME:</span>
+- Exact name and town/area
+- What it is and why it's worth spotlighting right now (season, event, view, story)
+- One specific, factual detail an AI or search engine could cite (founded year, elevation, acreage, hours, address)
+- Google Maps / Instagram presence
+- One line connecting it to Pocono lifestyle/relocation appeal (feeds the @alexa.realtor caption)
 
-<span class="ridecolor">SECTION 2 &mdash; LOCAL BUSINESS SPOTLIGHT (2 options):</span>
-Surface 2 locally-owned Pocono businesses that would make great ride destinations and content. For each:
-- Business name, location, type (food, market, experience, attraction)
-- What makes it a local gem vs a tourist trap
-- Best time to visit
-- Social media presence (tag for content)
-- Story angle: is there a founder story, a unique product, a view, a vibe worth featuring?
+<span class="ridecolor">FORMAT:</span> Landmark name &middot; Location &middot; Why now &middot; Citable fact &middot; Lifestyle tie-in line
 
-<span class="ridecolor">SECTION 3 &mdash; SCENIC ROUTES &amp; ROADS THIS WEEK:</span>
-- 1-2 Pocono Mountain roads or routes that are exceptional for riding right now (consider season, foliage, weather patterns)
-- What you'll see: specific landmarks, water, elevation, towns passed through
-- Approximate mileage and ride time
-- Any road conditions or closures worth noting this time of year
-
-<span class="ridecolor">SECTION 4 &mdash; POCONO EVENTS &amp; HAPPENINGS THIS WEEK:</span>
-- Any local markets, festivals, pop-ups, outdoor events, or seasonal activities happening this week in Monroe County or surrounding Pocono area
-- Flag anything that would be a compelling ride destination + video moment
-
-<span class="ridecolor">SECTION 5 &mdash; CONTENT ANGLES FOR RIDE WITH ME (3 specific ideas):</span>
-Based on everything above, give me 3 specific Reel/TikTok content angles for this week's Tuesday and Saturday episodes:
-- Hook line (first 2 seconds &mdash; no questions, direct statement)
-- What to film
-- Caption direction
-- Hashtag suggestions from: #RideWithMe #LifeByAlexa #PoconoMountains #PoconoLiving #MonroeCounty #MotorcycleLife #OperatorLife
-
-<span class="ridecolor">FORMAT AS:</span>
-1. THIS WEEK'S RIDE DESTINATION PICKS
-2. LOCAL BUSINESS SPOTLIGHT
-3. SCENIC ROUTES &amp; ROADS
-4. POCONO EVENTS &amp; HAPPENINGS
-5. CONTENT ANGLES FOR RIDE WITH ME
-
-Cite sources. Include Google Maps links where available. Prioritize locally-owned over chains. Prioritize authentic over tourist-facing.</div>
+Cite sources. Prioritize specificity over broad description &mdash; this needs to be citable, not just pretty.</div>
 </div>
 
 <div class="section-divider" style="margin-top:28px;">
@@ -639,110 +378,107 @@ Cite sources. Include Google Maps links where available. Prioritize locally-owne
   <div class="dh-content">
     <div class="dh-label">Step Two &mdash; Sunday</div>
     <div class="dh-title">Run Your Claude Production Session</div>
-    <div class="dh-sub">Fill in Section A &rarr; Copy Sections A + B + C into Claude &rarr; Review all outputs &rarr; Schedule everything &middot; Nothing left to write during the week</div>
+    <div class="dh-sub">Fill Section A &rarr; Copy Sections A + B + C into Claude &rarr; Review &rarr; Schedule everything</div>
   </div>
 </div>
 
 <div class="gold-box">
   <div class="gold-box-title">What Sunday Produces</div>
-  <div class="gold-box-text">Every piece of content Claude produces includes: <strong>full caption &middot; hashtags &middot; image/visual direction &middot; script &middot; Spanish version where applicable &middot; posting time &middot; platform &middot; YouTube-optimized description.</strong> Nothing left to write during the week. The final output of every Sunday session is a <strong>downloadable PDF &mdash; the Weekly Production Packet</strong> &mdash; organized day by day, Sunday through Saturday, with every script, article, caption, image direction, and posting time printed in full. Open it Monday morning and work top to bottom.<br><br><strong>&#9208; Filler &amp; Roast is shut down.</strong> Output 09 is permanently removed. The Friday 9AM coffee slot does not exist. No F&amp;R content in the system &mdash; one organic mention per month on @itsmyash only, handled outside the system.</div>
+  <div class="gold-box-text">Every piece includes: <strong>full caption &middot; hashtags &middot; image/visual direction &middot; script &middot; Spanish version where applicable &middot; posting time &middot; platform &middot; YouTube-optimized description where video &middot; AEO/SEO discipline applied throughout.</strong> Final output is a downloadable <strong>Weekly Production Packet PDF</strong> (Output 19) &mdash; day by day, Sunday through Saturday, every script and caption paste-ready.</div>
 </div>
 
 <div class="output-grid">
-  <div class="og-title">Full Output List &mdash; Every Sunday Session</div>
+  <div class="og-title">Full Output List &mdash; 19 Outputs, Every Sunday Session</div>
   <div class="og-items">
     <div class="og-item"><span class="og-num">01</span><div class="og-text"><strong>Monday Substack Article</strong>Operator Life &mdash; personal story first (600-900 words)</div></div>
-    <div class="og-item"><span class="og-num">02</span><div class="og-text"><strong>Thursday Substack Article</strong>Experience Economy &mdash; ritual and lifestyle (500-800 words)</div></div>
-    <div class="og-item"><span class="og-num">03</span><div class="og-text"><strong>21 Substack Notes</strong>3/day Mon&ndash;Sun: Morning + Midday + Evening</div></div>
-    <div class="og-item"><span class="og-num">04</span><div class="og-text"><strong>YouTube Hub Video (English)</strong>Full script, thumbnail, description, tags &middot; uploads Sunday &middot; YouTube SEO + AEO description mandatory</div></div>
-    <div class="og-item"><span class="og-num">05</span><div class="og-text"><strong>YouTube Hub Video (Spanish)</strong>Dominican Spanish second take &middot; uploads Sunday &middot; En Espa&ntilde;ol playlist &middot; YouTube SEO description mandatory</div></div>
-    <div class="og-item"><span class="og-num">06</span><div class="og-text"><strong>Ashes &amp; Escrows Episode</strong>Full script, thumbnail, YouTube description &middot; record Tuesday &middot; upload same day or Wednesday morning</div></div>
-    <div class="og-item"><span class="og-num">07</span><div class="og-text"><strong>YouTube Short Script</strong>Under 60 sec &middot; sharpest hub insight &middot; recorded Wed &middot; uploads Thursday &middot; YouTube description mandatory</div></div>
-    <div class="og-item"><span class="og-num">08</span><div class="og-text"><strong>DR Video (English + Spanish)</strong>Under 60 sec &middot; one DR topic &middot; both versions &middot; recorded Tuesday &middot; uploads Friday &middot; YouTube description mandatory</div></div>
-    <div class="og-item og-item-ride"><span class="og-num og-num-ride">09</span><div class="og-text"><strong>Ride With Me &mdash; Tue + Sat Episodes</strong>Pocono local discovery &middot; talking points (not scripts) &middot; captions &middot; YouTube description mandatory for each episode</div></div>
-    <div class="og-item"><span class="og-num">10</span><div class="og-text"><strong>@its.myash Talking Head Script</strong>30-90 sec &middot; cigar OR operator life &middot; Wednesday IG &middot; YouTube description mandatory</div></div>
-    <div class="og-item"><span class="og-num">11</span><div class="og-text"><strong>BTS TikTok Scripts (2)</strong>Mon @itsmyash Q1 &middot; Wed @itsmyash Q2 &middot; 30-60 sec each</div></div>
-    <div class="og-item"><span class="og-num">12</span><div class="og-text"><strong>Car Confession &mdash; English (1)</strong>Tue @alexa.realtor &middot; real estate &middot; 20 sec &middot; #LifeByAlexa</div></div>
-    <div class="og-item"><span class="og-num">13</span><div class="og-text"><strong>Car Confession &mdash; Spanish (1)</strong>@alexa.realtor &middot; YouTube En Espa&ntilde;ol &middot; same session second take</div></div>
-    <div class="og-item"><span class="og-num">14</span><div class="og-text"><strong>@its.myash BTS IG Posts (3)</strong>Sun Coffee &amp; Ash &middot; Wed Talking Head &middot; Fri Weekend Smoke &middot; #LifeByAlexa on all</div></div>
-    <div class="og-item"><span class="og-num">15</span><div class="og-text"><strong>All Captions + Hashtags + Image Direction</strong>Every post &middot; every platform &middot; ready to schedule &middot; includes Ride With Me Tue + Sat talking points + Pocono spot details from Prompt 07</div></div>
-    <div class="og-item"><span class="og-num">16</span><div class="og-text"><strong>Spanish Posts &mdash; All Platforms</strong>IG &middot; FB Biz (bi-weekly) &middot; LinkedIn (bi-weekly) &middot; GBP (bi-weekly) &middot; Personal FB (weekly)</div></div>
-    <div class="og-item og-item-vet"><span class="og-num og-num-vet">17</span><div class="og-text"><strong>Veteran Content &mdash; PA (1-2 pieces)</strong>IG Reel script + caption &middot; from Prompt 05 &middot; rotates Thu slot 4-week cycle &middot; YouTube description mandatory</div></div>
-    <div class="og-item og-item-vet"><span class="og-num og-num-vet">18</span><div class="og-text"><strong>Veteran Content &mdash; DR (1 piece)</strong>Law 171-07 or CONFOTUR explainer &middot; IG Reel or YouTube &middot; from Prompt 05 &middot; YouTube description mandatory</div></div>
-    <div class="og-item"><span class="og-num">19</span><div class="og-text"><strong>Friday LinkedIn &mdash; Veteran Post</strong>Educational &middot; PA or DR &middot; from Prompt 05 top 2 news &middot; post 3/3</div></div>
-    <div class="og-item"><span class="og-num">20</span><div class="og-text"><strong>Misconception Content Piece</strong>Claude picks sharpest misconception from all prompts &middot; produces 1 piece &middot; YouTube description if video format</div></div>
-    <div class="og-item"><span class="og-num">21</span><div class="og-text"><strong>ZCM Tags + Monetization Goals + Weekly Schedule Table</strong>Every piece mapped &middot; chronological order &middot; scheduling reference</div></div>
-    <div class="og-item"><span class="og-num">22</span><div class="og-text"><strong>Monthly Content Queue</strong>First Thursday of month only &middot; 4-week content angle queue per monthly prompt (01B, 02B, 03, 06 only) &middot; Weeks 2&ndash;4 ready to pull</div></div>
-    <div class="og-item"><span class="og-num">23</span><div class="og-text"><strong>Weekly Production Packet PDF</strong>Every Sunday &middot; day-by-day execution bible &middot; full scripts, articles, captions, hashtags, image direction, YouTube descriptions &middot; filename: Weekly-Production-Packet-[dates].pdf</div></div>
+    <div class="og-item"><span class="og-num">02</span><div class="og-text"><strong>Thursday Substack Article</strong>Experience Economy (500-1200 words)</div></div>
+    <div class="og-item"><span class="og-num">03</span><div class="og-text"><strong>7 Substack Notes</strong>1/day &mdash; extends that week's two articles, not standalone stories</div></div>
+    <div class="og-item"><span class="og-num">04</span><div class="og-text"><strong>YouTube Hub Video (English)</strong>Full script + AEO/SEO description &middot; uploads Sunday</div></div>
+    <div class="og-item"><span class="og-num">05</span><div class="og-text"><strong>YouTube Hub Video (Spanish)</strong>Shorter, reframed for Latino audience &mdash; not a translation</div></div>
+    <div class="og-item"><span class="og-num">06</span><div class="og-text"><strong>YouTube Short + IG Reel</strong>Sharpest hub insight &middot; uploads Thursday</div></div>
+    <div class="og-item"><span class="og-num">07</span><div class="og-text"><strong>DR Video (EN + ES)</strong>EN = foreign buyer/relocator angle &middot; ES = Latino audience angle &middot; uploads Friday</div></div>
+    <div class="og-item og-item-ride"><span class="og-num og-num-ride">08</span><div class="og-text"><strong>Pocono Landmark Spotlight</strong>Still photo, 1x/week &middot; @alexa.realtor IG Fri &rarr; cross-posts to GBP Sat + Nextdoor Thu</div></div>
+    <div class="og-item"><span class="og-num">09</span><div class="og-text"><strong>@its.myash Talking Head</strong>TikTok only &mdash; cigar or operator life, one point, no intro</div></div>
+    <div class="og-item"><span class="og-num">10</span><div class="og-text"><strong>Car Confession &mdash; English</strong>Tue 3PM @alexa.realtor IG + YouTube Shorts w/ full AEO/SEO description</div></div>
+    <div class="og-item"><span class="og-num">11</span><div class="og-text"><strong>Car Confession &mdash; Spanish</strong>@alexa.realtor YouTube En Espa&ntilde;ol playlist</div></div>
+    <div class="og-item"><span class="og-num">12</span><div class="og-text"><strong>@its.myash IG Posts (3)</strong>Wed Talking Head &middot; Thu Cigar/Lounge Video &middot; Fri Weekend Smoke &mdash; cigar/operator only</div></div>
+    <div class="og-item"><span class="og-num">13</span><div class="og-text"><strong>All-Platform Caption Catch-All</strong>LinkedIn, GBP, Nextdoor, FB Biz (RE + Cigars), Personal FB EN/ES &mdash; everything not produced above</div></div>
+    <div class="og-item og-item-vet"><span class="og-num og-num-vet">14</span><div class="og-text"><strong>Veteran Content &mdash; PA</strong>IG Reel + optional long-form YouTube &middot; + GBP post in Spanish</div></div>
+    <div class="og-item og-item-vet"><span class="og-num og-num-vet">15</span><div class="og-text"><strong>Veteran Content &mdash; DR</strong>IG Reel &mdash; Law 171-07 or CONFOTUR explainer</div></div>
+    <div class="og-item"><span class="og-num">16</span><div class="og-text"><strong>Friday LinkedIn Veteran Post</strong>Educational, authority voice</div></div>
+    <div class="og-item"><span class="og-num">17</span><div class="og-text"><strong>Misconception Content Piece</strong>Sharpest misconception of the week &mdash; Car Confession or IG Reel</div></div>
+    <div class="og-item"><span class="og-num">18</span><div class="og-text"><strong>Monthly Content Queue</strong>First Thursday of month only &mdash; 4-week queue per monthly prompt run</div></div>
+    <div class="og-item"><span class="og-num">19</span><div class="og-text"><strong>Weekly Production Packet PDF</strong>Final output every Sunday &mdash; full day-by-day execution bible</div></div>
+  </div>
+</div>
+
+<div class="output-grid" style="background:#F2EFEB;">
+  <div class="og-title" style="color:#8a3a3a;">Cut From v4 &mdash; No Longer Produced</div>
+  <div class="og-items">
+    <div class="og-item"><span class="og-num" style="color:#8a3a3a;">&times;</span><div class="og-text"><strong>Ashes &amp; Escrows</strong>Full weekly episode &mdash; separate recording/edit session</div></div>
+    <div class="og-item"><span class="og-num" style="color:#8a3a3a;">&times;</span><div class="og-text"><strong>BTS TikTok Scripts (2)</strong>Monday + Wednesday behind-the-scenes clips</div></div>
+    <div class="og-item"><span class="og-num" style="color:#8a3a3a;">&times;</span><div class="og-text"><strong>Spanish Posts, All Platforms (standalone)</strong>Folded into Outputs 5, 7, 11, 14 instead</div></div>
+    <div class="og-item"><span class="og-num" style="color:#8a3a3a;">&times;</span><div class="og-text"><strong>ZCM Tags + Monetization Table</strong>Admin tracking table, dropped</div></div>
+    <div class="og-item"><span class="og-num" style="color:#8a3a3a;">&times;</span><div class="og-text"><strong>Ride With Me &mdash; 2x/week video episodes</strong>Downgraded to Output 08, 1x/week stills</div></div>
+    <div class="og-item"><span class="og-num" style="color:#8a3a3a;">&times;</span><div class="og-text"><strong>Sunday Coffee &amp; Ash Ritual IG</strong>Dropped from @its.myash rotation</div></div>
+    <div class="og-item"><span class="og-num" style="color:#8a3a3a;">&times;</span><div class="og-text"><strong>Monday Tonight's Smoke Carousel</strong>Dropped when @its.myash IG cut to 3x/week</div></div>
+    <div class="og-item"><span class="og-num" style="color:#8a3a3a;">&times;</span><div class="og-text"><strong>Nextdoor Weekend Market Tip</strong>Sales-framed post cut when Nextdoor moved to neighborly-only</div></div>
   </div>
 </div>
 
 <div class="sun-section">
-  <div class="ssh-header"><div class="ssh-label">Section A &mdash; Fill This In Every Sunday</div><div class="ssh-title">Your Intelligence Inputs + Personal Moment + BTS Questions</div></div>
+  <div class="ssh-header"><div class="ssh-label">Section A &mdash; Fill This In Every Sunday</div><div class="ssh-title">Your Intelligence Inputs + Personal Moment</div></div>
   <div class="pc-prompt-label">Copy From Here &darr;</div>
   <div class="pc-prompt"><span class="cm">// SECTION A &mdash; FILL IN EVERY SUNDAY BEFORE ANYTHING ELSE</span>
 
 <span class="hl">TODAY'S DATE:</span> <span class="ph">[INSERT DATE]</span>
 
 <span class="hl">THIS WEEK'S PERSONAL MOMENT:</span>
-<span class="ph">[2-4 sentences. One real thing that happened this week across any of your brands or life.]</span>
+<span class="ph">[2-4 sentences. Feeds Monday's Substack article and the week's Notes.]</span>
 
-<span class="hl">BTS Q1 (Behind the Scenes &mdash; @its.myash):</span>
-<span class="ph">[What's something happening behind the scenes of one of your businesses right now?]</span>
+<span class="hl">THIS WEEK'S RITUAL/LIFESTYLE THREAD:</span>
+<span class="ph">[Feeds Thursday's Substack article and the back half of the week's Notes.]</span>
 
-<span class="hl">BTS Q2 (Random Day Reality &mdash; @its.myash):</span>
-<span class="ph">[What does a random day this week actually look like? Walk me through it.]</span>
+<span class="hl">THIS WEEK'S TALKING HEAD TOPIC (@its.myash, TikTok only):</span>
+<span class="ph">[One cigar or operator-life point, made clearly.]</span>
 
-<span class="hl">BTS Q3 (What Nobody Talks About &mdash; @its.myash):</span>
-<span class="ph">[What's one thing about running multiple businesses simultaneously that nobody talks about?]</span>
-
-<span class="rd">RIDE WITH ME &mdash; TUESDAY EPISODE (@its.myash IG + TikTok always &middot; @alexa.realtor only if Pocono lifestyle angle qualifies):</span>
-<span class="ph">[Where did you ride? What Pocono business, spot, or destination did you visit?
-One real moment from this ride &mdash; what you noticed, tasted, discovered, or thought about.
-2-4 sentences. Feeds Tuesday caption and talking points.
-FLAG HERE if the route/destination qualifies for @alexa.realtor: scenic Pocono roads / lakes / small towns / relocation feel / showing-day ride.]</span>
-
-<span class="rd">RIDE WITH ME &mdash; SATURDAY EPISODE (@its.myash IG + TikTok always &middot; @alexa.realtor only if Pocono lifestyle angle qualifies):</span>
-<span class="ph">[Same format. Second destination or a different moment from a different ride.
-FLAG HERE if the route qualifies for @alexa.realtor Pocono lifestyle angle.]</span>
+<span class="ridecolor">THIS WEEK'S LANDMARK SPOTLIGHT:</span>
+<span class="ph">[Pull from Perplexity Output 07, or write your own if you already know the spot. One photo direction &mdash; what's in frame, what angle.]</span>
 
 <span class="hl">THIS WEEK'S DR VIDEO TOPIC:</span>
-<span class="ph">[One specific DR real estate or lifestyle topic.]</span>
+<span class="ph">[One specific DR topic. Note: EN version = foreign buyer/relocator angle, ES version = Latino audience angle &mdash; these will differ, not mirror each other.]</span>
 
 <span class="hl">THIS WEEK'S CIGAR/LOUNGE VIDEO TOPIC:</span>
-<span class="ph">[One specific cigar or Nell's Social topic.]</span>
-
-<span class="hl">THIS WEEK'S ASHES &amp; ESCROWS TOPIC:</span>
-<span class="ph">[One roast target/angle for Tuesday's episode.]</span>
+<span class="ph">[One specific cigar or Nell's Social topic &mdash; @its.myash IG + TikTok, Thursday.]</span>
 
 <span class="hl">--- PERPLEXITY OUTPUT 01A: MARKET PULSE WEEKLY ---</span>
-<span class="ph">[Paste Prompt 01A output here &mdash; every Thursday &mdash; or write SKIP]</span>
+<span class="ph">[Paste or write SKIP]</span>
 
 <span class="hl">--- PERPLEXITY OUTPUT 01B: MARKET PULSE MONTHLY ---</span>
-<span class="ph">[Paste Prompt 01B output here if first Thursday of month &mdash; or write SKIP]</span>
+<span class="ph">[Paste if first Thursday of month, or write SKIP]</span>
 
 <span class="hl">--- PERPLEXITY OUTPUT 02A: SELLER INTELLIGENCE WEEKLY ---</span>
-<span class="ph">[Paste Prompt 02A output here &mdash; every Thursday &mdash; or write SKIP]</span>
+<span class="ph">[Paste or write SKIP]</span>
 
 <span class="hl">--- PERPLEXITY OUTPUT 02B: STR MONTHLY DEEP DIVE ---</span>
-<span class="ph">[Paste Prompt 02B output here if first Thursday of month &mdash; or write SKIP]</span>
+<span class="ph">[Paste if first Thursday of month, or write SKIP]</span>
 
 <span class="hl">--- PERPLEXITY OUTPUT 03: THE DR PLAY ---</span>
-<span class="ph">[Paste Prompt 03 output here if first Thursday of month &mdash; or write SKIP]</span>
+<span class="ph">[Paste if first Thursday of month, or write SKIP]</span>
 
-<span class="cm">// PROMPT 04A (COFFEE / FILLER &amp; ROAST) IS PERMANENTLY REMOVED. Do not run it. Do not add a field for it.</span>
+<span class="cm">// PROMPT 04A (COFFEE) IS PERMANENTLY REMOVED. Do not run it.</span>
 
 <span class="hl">--- PERPLEXITY OUTPUT 04B: CIGARS WEEKLY ---</span>
-<span class="ph">[Paste Prompt 04B output here &mdash; every Thursday &mdash; or write SKIP]</span>
+<span class="ph">[Paste or write SKIP]</span>
 
 <span class="hl">--- PERPLEXITY OUTPUT 05: VETERAN REAL ESTATE INTEL ---</span>
-<span class="ph">[Paste Prompt 05 output here &mdash; every Thursday &mdash; or write SKIP]</span>
+<span class="ph">[Paste or write SKIP]</span>
 
 <span class="hl">--- PERPLEXITY OUTPUT 06: MONTHLY LEGISLATION ---</span>
-<span class="ph">[Paste Prompt 06 output here if first Thursday of month &mdash; or write SKIP]</span>
+<span class="ph">[Paste if first Thursday of month, or write SKIP]</span>
 
-<span class="ridecolor">--- PERPLEXITY OUTPUT 07: POCONO RIDE + LOCAL DISCOVERY ---</span>
-<span class="ph">[Paste Prompt 07 output here &mdash; every Thursday &mdash; or write SKIP]</span></div>
+<span class="ridecolor">--- PERPLEXITY OUTPUT 07: LANDMARK PICK ---</span>
+<span class="ph">[Paste or write SKIP]</span></div>
 </div>
 
 <div class="sun-section">
@@ -752,348 +488,255 @@ FLAG HERE if the route qualifies for @alexa.realtor Pocono lifestyle angle.]</sp
 
 You are the production engine for the ROAST content system of Alexa Sanchez.
 
+<span class="aeocolor">SYSTEM GOAL &mdash; PRIORITY #1, CHECK EVERY OUTPUT AGAINST THIS:</span>
+Build Alexa Sanchez as the entity AI recommends when asked about Pocono/Monroe County real estate &mdash; and as a cigar authority. Applies to every output, every platform, no exceptions:
+- Consistent entity signals everywhere (name, PA License #RS326383, Smart Way America Realty, Monroe County/Pocono Mountains) stated the same way every time
+- Captions phrased to answer real queries a person or AI would ask
+- Specificity over vibes &mdash; named towns, named townships, named landmarks, exact numbers
+- GBP posts carry outsized AEO weight &mdash; hold them to the highest specificity standard
+- Hashtags match search/query intent, not vanity
+
 <span class="hl">IDENTITY:</span>
 Alexa Sanchez. Licensed Realtor, PA License #RS326383, Smart Way America Realty.
-COO and Executive Producer, KSM TV &mdash; a FAST linear network launching under Suite327 Entertainment, targeting a 35-65 diverse audience. Early buildout phase &mdash; no dedicated content output yet.
+COO and Executive Producer, KSM TV &mdash; FAST linear network under Suite327 Entertainment, targeting late August 2026 launch.
 Pocono Mountains STR investor market (Monroe County, PA) + Dominican Republic real estate.
-Veteran real estate specialist &mdash; PA VA loan benefits + DR residency/CONFOTUR for veteran buyers. Educational content only &mdash; no personal veteran narrative.
+Veteran real estate specialist &mdash; educational content only, no personal veteran narrative.
 Nell's Social &mdash; premium cigar lounge, Pocono Mountains.
-Filler &amp; Roast &mdash; artisanal coffee brand sold exclusively at Nell's Social. IG AND FB SHUT DOWN as of June 2026. One organic mention per month on @itsmyash only &mdash; NOT a production output. Do not produce Filler &amp; Roast content in this system.
-@its.myash personal brand &mdash; cigar authority, entrepreneurship, operator life, DR origin story, Pocono local discovery on motorcycle (Ride With Me series).
-Boutique DR cigar brand in development &mdash; Dominican origin story. DR is also home &mdash; planning to relocate.
+Filler &amp; Roast &mdash; on the backburner. One organic mention/month on @itsmyash only. Do not produce in this system.
+@its.myash personal brand &mdash; cigar authority, entrepreneurship, operator life, DR origin story.
+Boutique DR cigar brand in development (A.Betances or A.Sanchez) &mdash; Dominican origin story.
 Contact: (570) 688-8147 | Alexa@alexasanchez.net | Smart Way America Realty
 
 <span class="hl">BRANDS &amp; ACCOUNTS:</span>
-@alexa.realtor &mdash; real estate lead-gen (IG &middot; TikTok &middot; YouTube &middot; LinkedIn &middot; FB Business &middot; Google Business &middot; Nextdoor)
-@its.myash &mdash; cigars, lifestyle, entrepreneurship, DR origin story, operator life, BTS, Pocono local discovery / Ride With Me (IG &middot; TikTok @itsmyash &middot; YouTube)
-@fillerandroast &mdash; SHUT DOWN. IG and FB accounts are off. One organic mention/month on @itsmyash &mdash; not a production output. Never produce scheduled @fillerandroast content.
-@life.byalexa &mdash; DORMANT. Never activated. All personal/lifestyle content lives on @itsmyash.
-Personal Facebook &mdash; Spanish post weekly, personal community voice
-YouTube Channel &mdash; @AlexaSanchezRealtor &middot; Universal video hub for ALL content across all brands &middot; English content in main playlists &middot; Spanish in "En Espa&ntilde;ol" playlist &middot; Ride With Me / Dorothy playlist &middot; Every Reel and video goes to YouTube
-#LifeByAlexa &mdash; brand tag on every post across all accounts and platforms
+@alexa.realtor &mdash; real estate lead-gen (IG &middot; YouTube &middot; LinkedIn &middot; FB Business &middot; GBP &middot; Nextdoor)
+@its.myash &mdash; cigars, lifestyle, entrepreneurship, operator life (IG &middot; TikTok @itsmyash &middot; YouTube &middot; FB Business)
+@fillerandroast &mdash; SHUT DOWN. Never produce scheduled content.
+@life.byalexa &mdash; DORMANT. All personal/lifestyle content lives on @itsmyash.
+Personal Facebook &mdash; Monday English + Friday Spanish
+YouTube Channel &mdash; @AlexaSanchezRealtor &middot; universal video hub for all brands &middot; En Espa&ntilde;ol playlist for Spanish content
+#LifeByAlexa &mdash; brand tag on every post
 
 <span class="hl">YOUTUBE IS THE UNIVERSAL VIDEO HUB &mdash; MANDATORY RULE:</span>
-Every Reel and every video across ALL brands gets posted to YouTube under the appropriate playlist.
-Every single video output in this system MUST include a fully YouTube-optimized caption/description:
-- SEO-rich keyword title
-- AEO-friendly natural-language Q&amp;A body (write how people actually search and ask questions)
-- Timestamps where relevant
-- Tags (minimum 8 relevant tags)
-- CTA
-This is not optional. It applies to every video output: Hub Video EN/ES, Ashes &amp; Escrows, YouTube Short, DR Video, Ride With Me episodes, Talking Head, Veteran Reels, Misconception pieces. Every one.
-
-<span class="hl">TIKTOK ACCOUNTS &mdash; ONE PRIMARY ACCOUNT:</span>
-@itsmyash &mdash; primary TikTok account, feeds all brands. All TikTok content routes through @itsmyash.
+Every video output must include a fully AEO/SEO-optimized YouTube description: SEO-rich keyword title &middot; AEO natural-language Q&amp;A body &middot; timestamps where relevant &middot; minimum 8 tags &middot; CTA. Applies to: Hub Video EN/ES, YouTube Short, DR Video EN/ES, Car Confession EN (as Short). Cigar/Lounge Video does NOT go to YouTube &mdash; IG + TikTok only.
 
 <span class="hl">CONFIRMED POSTING SCHEDULES:</span>
 
-@alexa.realtor IG &mdash; 4 posts/week &mdash; Tuesday &middot; Wednesday &middot; Thursday &middot; Saturday
-- Tuesday: Car Confession 3:00 PM (real estate EN) + Spanish Car Confession 3:30 PM
+@alexa.realtor IG &mdash; 5 posts/week
+- Tuesday 3:00 PM: Car Confession EN (also posts to YouTube Shorts same day)
 - Wednesday: Under Contract Story or Reel
-- Thursday: Pocono Pulse Market Update Reel OR Veteran Reel (rotating 4-week cycle)
+- Thursday: Pocono Pulse Market Update OR Veteran Reel (rotating 4-week cycle)
+- Friday: Pocono Landmark Spotlight (still photo)
 - Saturday: Spanish IG Post
-- Saturday (conditional): Ride With Me Pocono lifestyle episode if Section A flags it (~1 in 3 rides)
-- Tuesday (conditional): Ride With Me Pocono lifestyle episode if Section A flags it (~1 in 3 rides)
 
-@its.myash IG &mdash; 5 posts/week &mdash; Monday &middot; Tuesday &middot; Wednesday &middot; Friday &middot; Saturday
-- Monday 7:00 PM: Tonight's Smoke Carousel
-- Tuesday: Ride With Me Episode 1 &mdash; Pocono local discovery (every ride, always)
-- Wednesday: Car Confession Operator/Cigars OR Talking Head
+@alexa.realtor YouTube &mdash; 7 uploads/week
+- Sunday: Hub Video EN + Hub Video ES
+- Tuesday: Car Confession EN (Shorts) + Car Confession ES (En Espa&ntilde;ol playlist)
+- Thursday: YouTube Short
+- Friday: DR Video EN + DR Video ES
+
+@alexa.realtor LinkedIn &mdash; 3 posts/week: Monday Market Signal &middot; Thursday Operator Post &middot; Friday Veteran Post
+
+@alexa.realtor GBP &mdash; 5 posts/week: Monday Market Update &middot; Wednesday Listing Feature &middot; Thursday Local Insight + Veteran (+ Spanish veteran post) &middot; Saturday Community/Lifestyle (repurposed directly from Friday's Landmark Spotlight)
+
+@alexa.realtor Nextdoor &mdash; 2 posts/week: Tuesday Neighborly Post &middot; Thursday Landmark Spotlight repost. NO SELLING LANGUAGE &mdash; realtor status hinted via signature only, never pitched.
+
+@alexa.realtor FB Business &mdash; 1 post/week, repurposed from IG content.
+
+@its.myash IG &mdash; 3 posts/week, cigar/operator life ONLY
+- Wednesday: Talking Head (repurposed caption from TikTok script)
+- Thursday: Cigar/Lounge Video
 - Friday 6:00 PM: Weekend Smoke Reel
-- Saturday: Ride With Me Episode 2 &mdash; Pocono local discovery (every ride, always)
 
-@its.myash TikTok &mdash; 6 posts/week via @itsmyash
-- Monday: BTS operator moment (Q1 answer)
-- Tuesday: Ride With Me Episode 1 (same video as @its.myash IG &middot; every ride &middot; no exceptions)
-- Wednesday: Car Confession or talking head clip
-- Thursday: Cigar/Lounge Education Video upload
-- Friday: Weekend Smoke or DR Cigar Culture (Spanish)
-- Saturday: Ride With Me Episode 2 (same video as @its.myash IG &middot; every ride &middot; no exceptions)
+@its.myash TikTok &mdash; 2 posts/week via @itsmyash
+- Talking Head Script (primary platform for this piece)
+- Thursday: Cigar/Lounge Video (same video as IG)
 
-@fillerandroast &mdash; SHUT DOWN. No posts. No content. Not in this system.
+@its.myash FB Business &mdash; 1 post/week, repurposed from cigar content.
 
-<span class="hl">RIDE WITH ME &mdash; DISTRIBUTION + CONTENT RULES (LOCKED):</span>
-This is the Pocono Local Discovery series. Every episode visits a Pocono business, destination, scenic route, or hidden gem.
-Content: ice cream shops, diners, waterfalls, overlooks, breweries, markets, farm stands, lake views, scenic mountain roads &mdash; experienced on a motorcycle.
-The bike is the vehicle. The Poconos is the content.
+Personal Facebook &mdash; 2 posts/week: Monday English (Real Estate Insight) &middot; Friday Spanish.
 
-TikTok @itsmyash: 100% of all ride content. Every episode. No exceptions.
-@its.myash IG: 100% of all ride content. Every episode. No exceptions.
-@alexa.realtor IG: ONLY when Section A flags a Pocono lifestyle angle.
-NEVER on @alexa.realtor: gear reviews, beginner riding mistakes, MAM group rides, motorcycle-specific content.
-YouTube: Every episode goes to YouTube &mdash; Ride With Me / Dorothy playlist. YouTube-optimized description mandatory.
+@fillerandroast &mdash; SHUT DOWN. No posts. Not in this system.
 
-SCRIPT RULES: Talking points only &mdash; never scripted. Start mid-ride or mid-thought. Lead with the destination or discovery, not with riding. Land with one line tying the spot to something bigger (the Pocono life, why people move here, the operator mindset). #LifeByAlexa every post.
+<span class="ridecolor">POCONO LANDMARK SPOTLIGHT &mdash; DISTRIBUTION RULE (LOCKED, TEMPORARY UNTIL NEW BIKE):</span>
+One still photo per week. No video, no riding footage.
+Production: Friday, @alexa.realtor IG.
+Cross-posts (same photo, no reshoot): GBP Saturday Community/Lifestyle &middot; Nextdoor Thursday.
+NOT currently running: TikTok, @its.myash IG (both dropped &mdash; video platform has nothing to post; @its.myash stays cigar/operator only).
+Caption direction: specific, named, AEO-friendly &mdash; one citable fact, one line tying it to Pocono lifestyle/relocation appeal.
 
-LinkedIn &mdash; 3 posts/week
-- Monday: Market Signal &middot; Thursday: Operator Post &middot; Friday: Veteran Post
+<span class="hl">GOOGLE BUSINESS PROFILE RULES:</span>
+No hashtags. No client names or addresses &mdash; town + property type only.
+Always include: (570) 688-8147 &middot; Alexa@alexasanchez.net &middot; PA License #RS326383 &middot; Smart Way America Realty per 49 Pa. Code &sect;35.305.
+GBP carries the highest AEO weight in this system &mdash; hold every GBP post to maximum specificity.
 
-<span class="hl">GOOGLE BUSINESS PROFILE &mdash; 4 POSTS/WEEK:</span>
-- Monday 9:00 AM: Market Update
-- Wednesday 9:00 AM: Listing Feature (rotate Active / Just Listed / Just Sold each week)
-- Thursday 9:00 AM: Local Insight + Veteran-specific post
-- Saturday 10:00 AM: Community/Lifestyle Post
-
-GBP rules: No hashtags. No client names or addresses &mdash; town + property type only. Always include (570) 688-8147 &middot; Alexa@alexasanchez.net &middot; PA License #RS326383 &middot; Smart Way America Realty per 49 Pa. Code &sect;35.305.
+<span class="hl">NEXTDOOR RULES:</span>
+Purely neighborly. No sales pitches, no CTAs to contact for buying/selling. Realtor identity present only via name/signature &mdash; never argued for.
 
 <span class="hl">VETERAN CONTENT RULES:</span>
-Veteran real estate content is strictly educational &mdash; no personal narrative.
-PA veteran content: VA home loan benefits, PA DVRETX, PHFA stacking, HB 1257, Monroe County millage rates, VA funding fee exemptions.
-DR veteran content: Law 171-07 residency, CONFOTUR tax exemptions, VA benefits that transfer, FMP healthcare, Scotiabank DR USD mortgages.
-Always include: PA License #RS326383, Smart Way America Realty name + phone number per 49 Pa. Code &sect;35.305.
-Veterans are not a protected FHA class &mdash; use "veteran-friendly" language only. Never claim VA endorsement. Never guarantee rates.
+Strictly educational &mdash; no personal narrative. PA: VA loan benefits, DVRETX, PHFA stacking, HB 1257, Monroe County millage rates. DR: Law 171-07, CONFOTUR, VA benefits, FMP healthcare, Scotiabank DR mortgages.
+Always include PA License #RS326383, Smart Way America Realty, phone number per 49 Pa. Code &sect;35.305.
+Never claim VA endorsement. Never guarantee rates. "Veteran-friendly" language only.
 
 <span class="hl">SPANISH CONTENT RULES:</span>
-All Spanish content is Dominican Spanish &mdash; natural, conversational DR cadence.
-"mi amor," "&oacute;yeme bien," "t&uacute; est&aacute;s" &mdash; natural DR cadence, not textbook Spanish.
+Not translations &mdash; distinct, audience-specific content.
+Hub Video ES: shorter than EN, reframed for the Latino audience &mdash; different structure, not a mirrored script.
+DR Video ES: Latino-audience angle. DR Video EN: foreign buyer/relocator angle. These differ in substance, not just language.
+Dominican Spanish cadence throughout &mdash; "mi amor," "&oacute;yeme bien," "t&uacute; est&aacute;s."
 
 <span class="hl">CAPTION &amp; HASHTAG RULES &mdash; EVERY POST:</span>
-CAPTION: Edgy, punchy, Bronx-cadenced voice. Short. Direct. No performing.
-HASHTAGS: Curated per platform. IG: 5-8. TikTok: 3-5. LinkedIn: 3-4. No hashtags on FB personal or Google Business.
-IMAGE/VISUAL DIRECTION: Specific &mdash; not "lifestyle photo" but detailed shot direction.
-POSTING TIME: Exact time. PLATFORM + ACCOUNT: Exactly which account and platform.
+Voice: edgy, punchy, Bronx-cadenced, direct. No performing.
+Hashtags match search/query intent per the AEO rule above &mdash; not generic vanity tags. IG: 5-8. TikTok: 3-5. LinkedIn: 3-4. No hashtags on GBP, Nextdoor, or FB personal.
+Image/visual direction: specific, never generic "lifestyle photo" language.
 
 <span class="hl">VIDEO SCRIPT RULES:</span>
-Strong hook in first 2 seconds. Direct statements. No fluff. No questions.
-Short punchy lines. Bold, factual, edgy. List-style beats. Executive cover energy.
-Car Confessions: 20 seconds max. Shock value. Direct. How Alexa actually talks.
-Cover text: neon green for stats, red or white for confessions/hooks. Chunky tilted font over face.
-
-<span class="hl">ASHES &amp; ESCROWS RULES:</span>
-Quirky, intelligently insulting, talking to best friend. One-take confessional. Under 60 seconds.
-Five roast targets: lowball buyers, realtors who don't know the market, Pocono skeptics, cigar beginners, tie-it-all-together anchor.
-RECORDING: Tuesday. Same-day upload or Wednesday morning at the latest.
+Strong hook, first 2 seconds. Direct statements, no questions, no fluff. Short punchy lines. Executive cover energy.
+Car Confessions: 20 seconds max, shock value, direct.
+Cover text: neon green for stats, red/white for confessions/hooks. Chunky tilted font over face.
 
 <span class="hl">SUBSTACK RULES:</span>
-Monday = Operator Life: personal story first, business lesson second.
-Thursday = Experience Economy: ritual, lifestyle, cigars, operator aesthetic.
-Never a market report. Never a press release.
-21 Notes/week: 3/day (Morning + Midday + Evening). Mon&ndash;Sun.
+Monday = Operator Life (600-900 words): personal story first, business lesson second.
+Thursday = Experience Economy (500-1200 words): ritual, lifestyle, cigars, operator aesthetic. Never a market report.
+7 Notes/week, 1/day: extend that week's two articles &mdash; sharper lines, follow-up thoughts, not standalone stories. Front half of week (Mon-Wed/Thu) draws from Monday's article; back half (Thu-Sun) draws from Thursday's article.
 
 <span class="hl">YOUTUBE UPLOAD SCHEDULE:</span>
-Sunday: Hub Video EN + Hub Video ES
-Tuesday: Ashes &amp; Escrows + Ride With Me Ep 1
-Thursday: YouTube Short + IG Reel
-Friday: DR Video EN + DR Video ES
-Saturday: Ride With Me Ep 2
+Sunday: Hub EN + Hub ES &middot; Tuesday: Car Confession EN (Short) + ES (En Espa&ntilde;ol) &middot; Thursday: Short &middot; Friday: DR Video EN + ES
 
 <span class="hl">MONTHLY CONTENT QUEUE RULE:</span>
-On the first Thursday of each month, four additional Perplexity prompts run: 01B, 02B, 03, 06.
-Prompt 04A (Coffee) is permanently removed &mdash; do NOT include. Ever.
-When any of these appear in Section A (not SKIP), Claude must produce Output 22 &mdash; a standalone 4-week content queue for each monthly prompt that was run.
-Weeks 2&ndash;4 of each queue are content angles only &mdash; specific enough to film or write without additional research.
-On all other Sundays (weeks 2, 3, 4 of the month), Claude pulls the relevant week's angle from the queue and produces full scripts in the normal output flow.
+First Thursday of month, four additional prompts run: 01B, 02B, 03, 06. When any appear in Section A (not SKIP), produce Output 18 &mdash; a standalone 4-week content queue for each. Weeks 2&ndash;4 are content angles only, specific enough to produce without additional research. Prompt 04A never included, ever.
 
 <span class="hl">WEEKLY PRODUCTION PACKET RULE:</span>
-Output 23 runs every Sunday &mdash; always the final output of the session, after all other outputs are complete.
-Claude produces a downloadable PDF file named: Weekly-Production-Packet-[MonthAbbrev][StartDate]-[MonthAbbrev][EndDate].pdf
-The PDF contains every piece of content for the week printed in full &mdash; organized day by day, Sunday through Saturday.
-Nothing is abbreviated. Nothing is summarized. Scripts are complete. Articles are complete. Captions are paste-ready.
-Every video output includes its full YouTube-optimized description in the packet.
-Output 09 (Filler &amp; Roast) no longer exists &mdash; do not reference it. Do not mark it SKIP. It is gone.
-Friday 9:00 AM post slot does not exist &mdash; do not reference it.
+Output 19 runs every Sunday, always last. Filename: Weekly-Production-Packet-[MonthAbbrev][StartDate]-[MonthAbbrev][EndDate].pdf. Nothing abbreviated or summarized. Every video output includes its full YouTube description in the packet.
 
-<span class="hl">HASHTAG BANKS:</span>
-@alexa.realtor real estate EN: #PoconoRealEstate #PoconoMountains #MonroeCounty #STRInvesting #ShortTermRental #AirbnbInvesting #PARealEstate #InvestorMindset #RealEstateTips #LifeByAlexa
-@alexa.realtor veteran: #VeteranHomebuyer #VALoan #VeteranRealEstate #MilitaryRealEstate #PARealEstate #LifeByAlexa
-@alexa.realtor Spanish: #BienesRaices #InversionesEnPoconos #MercadoInmobiliario #RepublicaDominicana #InversionesEnRD #LifeByAlexa
-@its.myash cigars: #CigarLife #CigarAuthority #PremiumCigars #CigarLounge #NellsSocial #DominicanCigars #OperatorLife #LifeByAlexa
-@its.myash BTS/operator: #OperatorLife #BehindTheBrands #DominicanEntrepreneur #LifeByAlexa
-@its.myash Ride With Me (every ride &middot; Tue + Sat): #RideWithMe #LifeByAlexa #MotorcycleLife #PoconoMountains #PoconoLocal #OperatorLife
-@alexa.realtor Ride With Me (Pocono lifestyle only &middot; ~1 in 3 rides): #PoconoMountains #MonroeCounty #RideWithMe #PoconoLiving #LifeByAlexa
-NEVER use on @alexa.realtor ride posts: #MotoLife #LearningToRide #BikerLife #GearReview #MotorcycleCommunity
-
-<span class="hl">ZCM TAGS &mdash; apply to every piece:</span>
-Environment: Social Feed | Video Platform | Community | AI Visibility
-Monetization goal: Grow followers | Drive sales | Generate leads</div>
+<span class="hl">HASHTAG BANKS &mdash; AEO-ALIGNED:</span>
+@alexa.realtor real estate EN: #PoconoRealEstate #PoconoMountains #MonroeCounty #STRInvesting #PARealEstate #LifeByAlexa
+@alexa.realtor veteran: #VeteranHomebuyer #VALoan #VeteranRealEstate #PARealEstate #LifeByAlexa
+@alexa.realtor Spanish: #BienesRaices #InversionesEnPoconos #RepublicaDominicana #LifeByAlexa
+@its.myash cigars: #CigarLife #CigarAuthority #PremiumCigars #NellsSocial #DominicanCigars #LifeByAlexa
+@its.myash operator: #OperatorLife #DominicanEntrepreneur #LifeByAlexa
+Landmark Spotlight: #PoconoMountains #MonroeCounty #PoconoLiving #LifeByAlexa + landmark-specific tag</div>
 </div>
 
 <div class="sun-section">
-  <div class="ssh-header"><div class="ssh-label">Section C &mdash; Never Change This</div><div class="ssh-title">The 23 Outputs &mdash; Full Production Instructions</div></div>
+  <div class="ssh-header"><div class="ssh-label">Section C &mdash; Never Change This</div><div class="ssh-title">The 19 Outputs &mdash; Full Production Instructions</div></div>
   <div class="pc-prompt-label">Fixed &mdash; Copy Exactly As Written</div>
   <div class="pc-prompt"><span class="cm">// SECTION C &mdash; PRODUCTION INSTRUCTIONS. NEVER EDIT THIS SECTION.
-// Produce all 23 outputs in order. Every output includes caption, hashtags, image direction, posting time, platform.
-// EVERY VIDEO OUTPUT MUST INCLUDE A FULLY YOUTUBE-OPTIMIZED DESCRIPTION: SEO title, AEO Q&amp;A body, timestamps, tags, CTA. MANDATORY.
-// Output 09 is now RIDE WITH ME. Filler &amp; Roast Output 09 no longer exists. Do not reference it.
-// No Friday 9AM slot. It does not exist. Do not reference it.</span>
+// Produce all 19 outputs in order. Every output checked against the AEO/SEO Priority #1 rule in Section B before it's finished.</span>
 
 Using Section A inputs plus the fixed context in Section B, produce all of the following:
 
 <span class="hl">OUTPUT 1 &mdash; MONDAY SUBSTACK ARTICLE (Operator Life)</span>
-Title + subtitle + full article 600-900 words. Open with personal moment from Section A. Build to operator insight. Voice: direct, no fluff, a little edgy, Bronx-cadenced.
+Title + subtitle + full article, 600-900 words. Open with Section A personal moment. Direct, edgy, Bronx-cadenced voice.
 
 <span class="hl">OUTPUT 2 &mdash; THURSDAY SUBSTACK ARTICLE (Experience Economy)</span>
-Title + subtitle + full article 500-800 words. Topic: ritual, lifestyle, cigars, or operator aesthetic.
+Title + subtitle + full article, 500-1200 words. Ritual, lifestyle, cigars, or operator aesthetic.
 
-<span class="hl">OUTPUT 3 &mdash; 21 SUBSTACK NOTES</span>
-Label: Morning Notes (7) | Midday Notes (7) | Evening Notes (7). Schedule: 3/day Monday&ndash;Sunday.
+<span class="hl">OUTPUT 3 &mdash; 7 SUBSTACK NOTES</span>
+1/day, Monday&ndash;Sunday. Notes 1-3/4 pull sharper lines and follow-up thoughts from Monday's article. Notes 4/5-7 pull from Thursday's article. Not standalone personal stories &mdash; genuine extensions of that week's two pieces.
 
 <span class="hl">OUTPUT 4 &mdash; YOUTUBE HUB VIDEO (ENGLISH)</span>
-Full script. Hook (0:00-0:08), open (0:08-0:30), 3 body sections with timestamps, CTA.
-+ YOUTUBE-OPTIMIZED DESCRIPTION: SEO keyword title &middot; AEO natural-language Q&amp;A body &middot; timestamps &middot; minimum 8 tags &middot; CTA
-+ CAPTION &middot; HASHTAGS (5 YouTube-specific) &middot; THUMBNAIL DIRECTION
-NOTE: Recorded and uploaded Sunday.
+Full script: hook (0:00-0:08), open (0:08-0:30), 3 body sections with timestamps, CTA.
++ AEO/SEO YOUTUBE DESCRIPTION: keyword title &middot; natural-language Q&amp;A body &middot; timestamps &middot; 8+ tags &middot; CTA
++ CAPTION &middot; 5 YouTube hashtags &middot; THUMBNAIL DIRECTION
+Recorded and uploaded Sunday.
 
-<span class="hl">OUTPUT 5 &mdash; YOUTUBE HUB VIDEO (SPANISH &mdash; Dominican Spanish)</span>
-Full script in Dominican Spanish &mdash; same content, natural DR cadence.
-+ YOUTUBE-OPTIMIZED DESCRIPTION (Spanish): SEO title &middot; AEO body in Spanish &middot; tags &middot; CTA
-+ CAPTION for YouTube En Espa&ntilde;ol playlist &middot; HASHTAGS (5 Spanish YouTube)
-NOTE: Recorded Sunday immediately after English take. Uploaded Sunday.
+<span class="hl">OUTPUT 5 &mdash; YOUTUBE HUB VIDEO (SPANISH &mdash; LATINO AUDIENCE)</span>
+NOT a translation of Output 4. Shorter runtime. Reframed structure and angle for what actually resonates with the Latino audience &mdash; DR ties, community language, culturally relevant framing.
++ AEO/SEO YOUTUBE DESCRIPTION (Spanish) &middot; CAPTION for En Espa&ntilde;ol playlist &middot; 5 Spanish hashtags
+Recorded Sunday, uploaded Sunday.
 
-<span class="hl">OUTPUT 6 &mdash; ASHES &amp; ESCROWS EPISODE</span>
-Full script. Under 60 seconds. Roast target from Section A.
-+ YOUTUBE-OPTIMIZED DESCRIPTION: SEO title &middot; AEO Q&amp;A body &middot; tags &middot; CTA
-+ CAPTION for YouTube &middot; THUMBNAIL DIRECTION
-NOTE: Recorded Tuesday. Upload same day or Wednesday morning.
+<span class="hl">OUTPUT 6 &mdash; YOUTUBE SHORT + IG REEL</span>
+Under 60 seconds, sharpest insight from the hub video.
++ AEO/SEO YOUTUBE SHORTS DESCRIPTION &middot; COVER TEXT DIRECTION &middot; IG REEL CAPTION (5-6 hashtags)
+Recorded Wednesday, uploaded Thursday.
 
-<span class="hl">OUTPUT 7 &mdash; YOUTUBE SHORT + IG REEL</span>
-Full script under 60 seconds from hub video's sharpest insight.
-+ YOUTUBE SHORTS DESCRIPTION: SEO title &middot; AEO body &middot; tags &middot; CTA
-+ COVER TEXT DIRECTION &middot; IG REEL CAPTION (5-6 hashtags)
-NOTE: Recorded Wednesday. Upload Thursday.
+<span class="hl">OUTPUT 7 &mdash; DR VIDEO (ENGLISH + SPANISH)</span>
+Topic from Section A. ENGLISH SCRIPT: under 60 sec, angled for the FOREIGN BUYER/RELOCATOR audience &mdash; what a US buyer considering the move needs to know. SPANISH SCRIPT: Dominican Spanish, angled for the LATINO AUDIENCE &mdash; different substance, not a mirror.
++ ENGLISH AEO/SEO YOUTUBE DESCRIPTION &middot; SPANISH AEO/SEO YOUTUBE DESCRIPTION
++ ENGLISH CAPTION &middot; SPANISH CAPTION &middot; IMAGE DIRECTION &middot; hashtags for both
+Recorded Tuesday. Both versions upload Friday.
 
-<span class="hl">OUTPUT 8 &mdash; DR VIDEO (ENGLISH + SPANISH)</span>
-Topic from Section A. ENGLISH SCRIPT: Under 60 sec. SPANISH SCRIPT: Dominican Spanish.
-+ ENGLISH YOUTUBE DESCRIPTION: SEO title &middot; AEO Q&amp;A body &middot; tags &middot; CTA
-+ SPANISH YOUTUBE DESCRIPTION: SEO title (ES) &middot; AEO body (ES) &middot; tags &middot; CTA
-+ ENGLISH CAPTION &middot; SPANISH CAPTION &middot; IMAGE DIRECTION &middot; HASHTAGS (English + Spanish sets)
-NOTE: Recorded Tuesday. Both versions upload Friday.
+<span class="ridecolor">OUTPUT 8 &mdash; POCONO LANDMARK SPOTLIGHT</span>
+Source: Section A landmark input + Perplexity Output 07. Still photo only &mdash; no video.
+PHOTO DIRECTION: exact shot &mdash; what's in frame, angle, time of day.
+@alexa.realtor IG CAPTION (Friday): specific, AEO-aligned &mdash; named landmark, one citable fact, one line tying it to Pocono lifestyle/relocation appeal. 5-8 hashtags.
+GBP CAPTION (Saturday, repurposed from the IG caption): no hashtags, full contact/license block, trimmed to GBP length.
+NEXTDOOR CAPTION (Thursday, repurposed): purely neighborly framing, no selling language, no CTA to contact for real estate.
 
-<span class="ridecolor">OUTPUT 9 &mdash; RIDE WITH ME &mdash; POCONO LOCAL DISCOVERY (Tuesday Ep 1 + Saturday Ep 2)</span>
-Source: Section A ride inputs + Perplexity Output 07.
-This is the Pocono local discovery series. Lead with the destination or spot &mdash; not the riding.
+<span class="hl">OUTPUT 9 &mdash; @its.myash TALKING HEAD SCRIPT (TikTok only)</span>
+30-90 seconds. Cigar industry or operator life, one point made clearly, no intro.
+SCRIPT &middot; TIKTOK CAPTION &middot; hashtags (max 3-5, always #LifeByAlexa)
+This script's caption also becomes the source for Output 12's Wednesday @its.myash IG post.
 
-For EACH episode (Tuesday + Saturday) produce:
-DESTINATION/SPOT: Name it. What is it. Why it's worth the ride.
-TALKING POINTS (not a script &mdash; prompts only): 3-5 punchy talking points to hit on camera. Start mid-discovery, not mid-ride. One real observation. Land with one line about the Pocono life, the operator mindset, or why people move here.
-YOUTUBE DESCRIPTION: SEO keyword title (Pocono local + business name + ride angle) &middot; AEO body (natural language: "Where should I ride in the Poconos?" "Best places to visit in the Pocono Mountains") &middot; timestamps &middot; tags (include: #PoconoMountains #RideWithMe #PoconoLocal #LifeByAlexa + spot-specific) &middot; CTA
-@its.myash IG CAPTION: Punchy, Bronx-cadenced, discovery energy. Max 5-8 hashtags.
-TIKTOK CAPTION: Short, punchy. Max 3-5 hashtags.
-FLAG: Does this episode qualify for @alexa.realtor? (Y/N per Section A) &mdash; if YES, produce separate @alexa.realtor caption tying last line to Monroe County lifestyle / why people move here.
+<span class="hl">OUTPUT 10 &mdash; CAR CONFESSION &mdash; ENGLISH</span>
+20 seconds max. Shock value, direct, edgy.
+SCRIPT &middot; IG CAPTION &middot; COVER TEXT DIRECTION &middot; hashtags
++ AEO/SEO YOUTUBE SHORTS DESCRIPTION: keyword title &middot; AEO Q&amp;A body &middot; tags &middot; CTA
+Tuesday 3:00 PM @alexa.realtor IG + same-day YouTube Shorts upload.
 
-<span class="hl">OUTPUT 10 &mdash; @its.myash TALKING HEAD SCRIPT</span>
-30-90 seconds. Mix of cigar industry + operator life. One point, made clearly. No intro.
-+ YOUTUBE DESCRIPTION: SEO title &middot; AEO body &middot; tags &middot; CTA
-+ IG CAPTION &middot; TIKTOK CAPTION &middot; HASHTAGS
+<span class="hl">OUTPUT 11 &mdash; CAR CONFESSION &mdash; SPANISH</span>
+Dominican Spanish, 20 seconds max.
+SCRIPT &middot; SPANISH CAPTION &middot; hashtags &middot; COVER TEXT DIRECTION
+@alexa.realtor YouTube En Espa&ntilde;ol playlist.
 
-<span class="hl">OUTPUT 11 &mdash; BTS TIKTOK SCRIPTS (2 total)</span>
-- Monday 9:00 AM @itsmyash: Q1 answer
-- Wednesday 6:00 PM @itsmyash: Q2 answer
-For each: SCRIPT &middot; CAPTION &middot; HASHTAGS (max 3 &middot; always #LifeByAlexa) &middot; POSTING TIME &middot; ACCOUNT
+<span class="hl">OUTPUT 12 &mdash; @its.myash IG POSTS (3)</span>
+Cigar/operator life only.
+- Wednesday: Talking Head IG caption (repurposed from Output 9 script)
+- Thursday: Cigar/Lounge Video &mdash; SCRIPT &middot; CAPTION &middot; hashtags. IG + TikTok only, no YouTube.
+- Friday 6:00 PM: Weekend Smoke Reel &mdash; SCRIPT &middot; CAPTION &middot; hashtags
+Max 3-5 hashtags each, always #LifeByAlexa.
 
-<span class="hl">OUTPUT 12 &mdash; CAR CONFESSION &mdash; ENGLISH (1)</span>
-20 seconds max. Shock value. Direct and edgy.
-SCRIPT &middot; CAPTION (IG) &middot; HASHTAGS &middot; COVER TEXT DIRECTION &middot; POSTING TIME &middot; ACCOUNT
-- Tuesday 3:00 PM @alexa.realtor IG
-
-<span class="hl">OUTPUT 13 &mdash; CAR CONFESSION &mdash; SPANISH (1)</span>
-Dominican Spanish. 20 seconds max.
-SCRIPT &middot; CAPTION (Spanish) &middot; HASHTAGS &middot; COVER TEXT DIRECTION
-- @alexa.realtor YouTube En Espa&ntilde;ol playlist
-
-<span class="hl">OUTPUT 14 &mdash; @its.myash BTS IG POSTS (3)</span>
-- Sunday 9:30 AM: Coffee &amp; Ash Ritual IG
-- Wednesday 2:00 PM: Talking Head
-- Friday 6:00 PM: Weekend Smoke Reel
-For each: CAPTION &middot; IMAGE/VIDEO DIRECTION &middot; POSTING TIME &middot; Max 3 hashtags &middot; Always #LifeByAlexa
-
-<span class="hl">OUTPUT 15 &mdash; ALL PLATFORM CAPTIONS + HASHTAGS + IMAGE DIRECTION</span>
-For every scheduled post NOT covered above. Produce:
-CAPTION &middot; HASHTAGS &middot; IMAGE DIRECTION &middot; POSTING TIME &middot; PLATFORM + ACCOUNT
+<span class="hl">OUTPUT 13 &mdash; ALL-PLATFORM CAPTION CATCH-ALL</span>
+For every scheduled post not covered above. CAPTION &middot; hashtags where applicable &middot; image direction &middot; posting time &middot; platform + account.
 
 Produce for:
-- Sunday: @AlexaSanchezRealtor Hub Video EN + ES upload direction
-- Monday 8:00 AM: @alexa.realtor LinkedIn Market Signal (post 1/3)
-- Monday 9:00 AM: @alexa.realtor Google Business Market Update
-- Monday 10:00 AM: @alexa.realtor Real Estate Insight FB Personal
-- Tuesday 9:00 AM: @alexa.realtor Neighborly Post Nextdoor
-- Tuesday: Ashes &amp; Escrows YouTube upload direction
-- Tuesday: @its.myash + @itsmyash Ride With Me Episode 1 &mdash; from Output 9 (already produced above)
-- Wednesday 9:00 AM: @alexa.realtor Google Business Listing Feature
-- Wednesday 11:00 AM: @alexa.realtor Under Contract Story IG (post 2/4)
-- Thursday 8:00 AM: @alexa.realtor LinkedIn Operator Post (post 2/3)
-- Thursday 9:00 AM: @alexa.realtor Pocono Pulse OR Veteran Reel IG (post 3/4)
-- Thursday 9:00 AM: @alexa.realtor Google Business Local Insight + Veteran Post
-- Thursday 10:00 AM: @alexa.realtor Community Roundup Nextdoor
-- Thursday 12:00 PM: YouTube Short upload direction
-- Thursday 6:00 PM: @its.myash Cigar/Lounge Video IG
-- Friday 8:00 AM: @alexa.realtor LinkedIn Veteran Post (post 3/3)
-- Friday 6:00 PM: DR Video EN + ES YouTube upload direction
-- Friday 7:00 PM: Personal FB Spanish Post
-- Saturday 10:00 AM: @alexa.realtor Spanish IG Post (post 4/4)
-- Saturday 10:00 AM: @alexa.realtor Google Business Community/Lifestyle Post
-- Saturday 10:00 AM: @alexa.realtor Weekend Market Tip Nextdoor
-- Saturday: @its.myash + @itsmyash Ride With Me Episode 2 &mdash; from Output 9 (already produced above)
+- Monday 8:00 AM: @alexa.realtor LinkedIn Market Signal (1/3)
+- Monday 9:00 AM: @alexa.realtor GBP Market Update
+- Monday 10:00 AM: Personal FB English (Real Estate Insight)
+- Tuesday 9:00 AM: @alexa.realtor Nextdoor Neighborly Post (no selling language)
+- Wednesday 9:00 AM: @alexa.realtor GBP Listing Feature
+- Wednesday 11:00 AM: @alexa.realtor Under Contract Story IG
+- Wednesday: @its.myash FB Business (repurposed from cigar content)
+- Thursday 8:00 AM: @alexa.realtor LinkedIn Operator Post (2/3)
+- Thursday 9:00 AM: @alexa.realtor Pocono Pulse OR Veteran Reel IG (rotating)
+- Thursday 9:00 AM: @alexa.realtor GBP Local Insight + Veteran Post
+- Thursday: @alexa.realtor Nextdoor &mdash; Landmark Spotlight repost (from Output 8)
+- Thursday: @alexa.realtor FB Business (repurposed from IG content)
+- Friday 8:00 AM: @alexa.realtor LinkedIn Veteran Post (3/3)
+- Friday 7:00 PM: Personal FB Spanish
+- Saturday 10:00 AM: @alexa.realtor Spanish IG Post
+- Saturday 10:00 AM: @alexa.realtor GBP Community/Lifestyle (repurposed from Output 8 Landmark Spotlight)
 
-<span class="hl">OUTPUT 16 &mdash; SPANISH POSTS &mdash; ALL PLATFORMS</span>
-Dominican Spanish. Natural DR cadence. For each: CAPTION &middot; HASHTAGS &middot; IMAGE DIRECTION &middot; POSTING TIME.
-WEEKLY: @alexa.realtor IG Spanish (Sat 10AM) &middot; Personal Facebook Spanish (Fri 7PM)
-BIWEEKLY: @alexa.realtor FB Business Spanish (Sat 12PM) &middot; LinkedIn Spanish (Mon 2PM) &middot; GBP Spanish (Mon 9:30AM)
-Mark clearly: WEEKLY or BIWEEKLY for each item.
+<span class="hl">OUTPUT 14 &mdash; VETERAN CONTENT &mdash; PENNSYLVANIA</span>
+Source: Perplexity Output 5. Educational only. Must include PA License #RS326383 + Smart Way America Realty + phone per 49 Pa. Code &sect;35.305.
+PIECE 1 &mdash; IG REEL SCRIPT (30-60 sec, @alexa.realtor): SCRIPT &middot; AEO/SEO YOUTUBE DESCRIPTION &middot; CAPTION &middot; COVER TEXT &middot; hashtags &middot; posting time
+PIECE 2 &mdash; LONG-FORM YOUTUBE (3-7 min): only if strong topic, otherwise SKIP
+PIECE 3 &mdash; GBP POST IN SPANISH: same veteran topic, GBP-length, no hashtags, full license/contact block
 
-<span class="hl">OUTPUT 17 &mdash; VETERAN CONTENT &mdash; PENNSYLVANIA (1-2 pieces)</span>
-Source: Perplexity Output 5. Educational only. Must include PA License #RS326383 + Smart Way America Realty + (570) 688-8147 per 49 Pa. Code &sect;35.305.
-PIECE 1 &mdash; IG REEL SCRIPT (30-60 sec, @alexa.realtor): SCRIPT &middot; YOUTUBE DESCRIPTION &middot; CAPTION &middot; COVER TEXT DIRECTION &middot; HASHTAGS &middot; POSTING TIME
-PIECE 2 &mdash; YOUTUBE VIDEO SCRIPT (3-7 min): Produce only if strong long-form topic. Otherwise SKIP.
+<span class="hl">OUTPUT 15 &mdash; VETERAN CONTENT &mdash; DOMINICAN REPUBLIC</span>
+Source: Perplexity Output 5. Educational only. PIECE &mdash; IG REEL SCRIPT (30-60 sec, @alexa.realtor): SCRIPT &middot; AEO/SEO YOUTUBE DESCRIPTION &middot; CAPTION &middot; COVER TEXT &middot; hashtags &middot; posting time
 
-<span class="hl">OUTPUT 18 &mdash; VETERAN CONTENT &mdash; DOMINICAN REPUBLIC (1 piece)</span>
-Source: Perplexity Output 5. Educational only. Must include PA License #RS326383 + Smart Way America Realty.
-PIECE &mdash; IG REEL SCRIPT (30-60 sec, @alexa.realtor): SCRIPT &middot; YOUTUBE DESCRIPTION &middot; CAPTION &middot; COVER TEXT DIRECTION &middot; HASHTAGS &middot; POSTING TIME
+<span class="hl">OUTPUT 16 &mdash; FRIDAY LINKEDIN VETERAN POST</span>
+Educational, authority voice, no personal narrative. CAPTION &middot; hashtags (3-4) &middot; Friday 8:00 AM. Must include PA License #RS326383, Smart Way America Realty, phone.
 
-<span class="hl">OUTPUT 19 &mdash; FRIDAY LINKEDIN VETERAN POST</span>
-Educational. Clean. Authority voice. No personal narrative.
-CAPTION (LinkedIn) &middot; HASHTAGS (3-4) &middot; POSTING TIME: Friday 8:00 AM
-Must include: PA License #RS326383 &middot; Smart Way America Realty &middot; (570) 688-8147
+<span class="hl">OUTPUT 17 &mdash; MISCONCEPTION CONTENT PIECE</span>
+Review misconceptions from all this week's Perplexity outputs. Pick the sharpest.
+Produce ONE piece: CAR CONFESSION (20 sec) OR IG REEL SCRIPT (30-60 sec).
+CHOSEN MISCONCEPTION &middot; THE TRUTH &middot; FORMAT + WHY &middot; SCRIPT &middot; AEO/SEO YOUTUBE DESCRIPTION if video &middot; CAPTION &middot; COVER TEXT &middot; hashtags &middot; platform/account &middot; posting time
 
-<span class="hl">OUTPUT 20 &mdash; MISCONCEPTION CONTENT PIECE</span>
-Review all misconceptions from this week's Perplexity outputs. Pick the SINGLE sharpest.
-Produce ONE piece: CAR CONFESSION (20 sec) OR IG REEL SCRIPT (30-60 sec) OR ASHES &amp; ESCROWS ANGLE.
-For the chosen piece: CHOSEN MISCONCEPTION &middot; THE TRUTH &middot; FORMAT CHOSEN + WHY &middot; SCRIPT &middot; YOUTUBE DESCRIPTION (if video) &middot; CAPTION &middot; COVER TEXT &middot; HASHTAGS &middot; PLATFORM + ACCOUNT &middot; POSTING TIME
+<span class="hl">OUTPUT 18 &mdash; MONTHLY CONTENT QUEUE (first Thursday of month only)</span>
+If 01B, 02B, 03, or 06 were run this week, produce a standalone 4-week queue for each.
+FORMAT: PROMPT name &middot; Week 1 (this week, already covered) &middot; Weeks 2-4 (specific angle: platform + format + hook + 1-line caption direction). If a monthly prompt was SKIP, no queue for it. Never a 04A queue.
 
-<span class="hl">OUTPUT 21 &mdash; ZCM TAGS + MONETIZATION GOALS + WEEKLY SCHEDULE TABLE</span>
-Clean table: CONTENT PIECE | ACCOUNT | PLATFORM | POST DATE/TIME | ZCM ENVIRONMENT | MONETIZATION GOAL
-Chronological order. Include YouTube upload column with day for each upload.
-
-<span class="hl">OUTPUT 22 &mdash; MONTHLY CONTENT QUEUE (produce only on first Thursday of month)</span>
-If any of the following monthly prompts were run this week &mdash; 01B, 02B, 03, 06 &mdash; produce a standalone 4-week content queue for each one.
-NOTE: Prompt 04A (Coffee / Filler &amp; Roast) is permanently removed. Never produce a 04A queue. Ever.
-
-QUEUE FORMAT FOR EACH MONTHLY PROMPT:
-PROMPT: [name]
-WEEK 1 (this week &mdash; already covered in outputs above): [topic used]
-WEEK 2: [specific content angle &mdash; platform + format + hook + 1-line caption direction]
-WEEK 3: [specific content angle &mdash; platform + format + hook + 1-line caption direction]
-WEEK 4: [specific content angle &mdash; platform + format + hook + 1-line caption direction]
-
-NOTE: If a monthly prompt was not run this week (SKIP), do not produce a queue for it.
-
-<span class="hl">OUTPUT 23 &mdash; WEEKLY PRODUCTION PACKET PDF</span>
-Produce every Sunday. Always the final output of the session.
-
-FILENAME: Weekly-Production-Packet-[MonthAbbrev][StartDate]-[MonthAbbrev][EndDate].pdf
-
-STRUCTURE &mdash; Day by day, Sunday through Saturday. For every piece of content that day, print in full:
-PIECE &middot; ACCOUNT &middot; PLATFORM &middot; POST TIME &middot; MONETIZATION GOAL &middot; SCRIPT/ARTICLE/COPY &middot; CAPTION &middot; HASHTAGS &middot; IMAGE/VIDEO DIRECTION &middot; YOUTUBE DESCRIPTION (for all video outputs)
-
-FORMATTING RULES:
-- Each day is a clearly separated bold header section
-- Scripts printed in full &mdash; never truncated, never summarized
-- Substack articles printed in full including title + subtitle
-- Captions printed exactly as they should be posted &mdash; line breaks, emojis, everything
-- Image direction is specific &mdash; never generic placeholder language
-- YouTube descriptions printed in full for every video output &mdash; SEO title, AEO body, timestamps, tags, CTA
-- No Filler &amp; Roast outputs. No Friday 9AM slot. Neither exists.
-- If a piece does not apply this week mark clearly: [SKIP THIS WEEK &mdash; reason]
-
-PRODUCE THIS AS A DOWNLOADABLE PDF FILE.
+<span class="hl">OUTPUT 19 &mdash; WEEKLY PRODUCTION PACKET PDF</span>
+Final output, every Sunday. FILENAME: Weekly-Production-Packet-[MonthAbbrev][StartDate]-[MonthAbbrev][EndDate].pdf
+Day-by-day, Sunday through Saturday. For every piece: PIECE &middot; ACCOUNT &middot; PLATFORM &middot; POST TIME &middot; SCRIPT/ARTICLE/COPY &middot; CAPTION &middot; hashtags &middot; image/video direction &middot; YouTube description where applicable.
+Nothing truncated or summarized. If a piece doesn't apply this week, mark clearly: [SKIP THIS WEEK &mdash; reason].
+PRODUCE AS A DOWNLOADABLE PDF.
 
 <span class="cm">// END OF PROMPT
-// Copy Sections A + B + C into Claude every Sunday.
-// Fill in Section A with your inputs. Never change B or C.
-// Output 09 = Ride With Me (Pocono Local Discovery). Filler &amp; Roast is gone from this system.
-// Output 22 only runs on first Thursday of month weeks. Queue for 01B, 02B, 03, 06 only. Never 04A.
-// Output 23 runs every Sunday &mdash; always the final output.
-// Every video output = mandatory YouTube-optimized description. No exceptions.</span></div>
+// Copy Sections A + B + C into Claude every Sunday. Fill Section A. Never change B or C.
+// Every output is checked against the AEO/SEO Priority #1 rule before it's considered finished.
+// Output 19 runs every Sunday, always last.</span></div>
 </div>
 
 <div class="section-divider" style="margin-top:28px;">
@@ -1106,8 +749,8 @@ PRODUCE THIS AS A DOWNLOADABLE PDF FILE.
   <div class="dh-day">GBP</div>
   <div class="dh-content">
     <div class="dh-label">@alexa.realtor &mdash; Google Business Profile</div>
-    <div class="dh-title">4 Posts/Week &mdash; Templates + Live Post</div>
-    <div class="dh-sub">Monday: Market Update &middot; Wednesday: Listing Feature &middot; Thursday: Local Insight + Veteran Post &middot; Saturday: Community/Lifestyle</div>
+    <div class="dh-title">5 Posts/Week &mdash; Your Strongest AEO Signal</div>
+    <div class="dh-sub">Monday: Market Update &middot; Wednesday: Listing Feature &middot; Thursday: Local Insight + Veteran (+ Spanish veteran post) &middot; Saturday: Community/Lifestyle (from Landmark Spotlight)</div>
   </div>
 </div>
 
@@ -1115,7 +758,8 @@ PRODUCE THIS AS A DOWNLOADABLE PDF FILE.
   <div class="gbp-day"><div class="gbp-day-name">Monday</div><div class="gbp-day-action">Market Update &middot; 9:00 AM</div></div>
   <div class="gbp-day gbp-new"><div class="gbp-day-name">Wednesday</div><div class="gbp-day-action">Listing Feature &middot; 9:00 AM</div></div>
   <div class="gbp-day"><div class="gbp-day-name">Thursday</div><div class="gbp-day-action">Local Insight + Veteran &middot; 9:00 AM</div></div>
-  <div class="gbp-day gbp-new"><div class="gbp-day-name">Saturday</div><div class="gbp-day-action">Community/Lifestyle &middot; 10:00 AM</div></div>
+  <div class="gbp-day"><div class="gbp-day-name">Thursday</div><div class="gbp-day-action">Veteran Post &mdash; Spanish</div></div>
+  <div class="gbp-day gbp-new"><div class="gbp-day-name">Saturday</div><div class="gbp-day-action">Community/Lifestyle &middot; 10:00 AM &middot; from Landmark Spotlight</div></div>
 </div>
 
 <div class="gold-box">
@@ -1123,63 +767,19 @@ PRODUCE THIS AS A DOWNLOADABLE PDF FILE.
   <div class="gold-box-text">
     <strong>No hashtags on GBP posts.</strong> No client names or addresses &mdash; town + property type only.<br>
     Always include: <strong>(570) 688-8147 &middot; Alexa@alexasanchez.net &middot; PA License #RS326383 &middot; Smart Way America Realty</strong> per 49 Pa. Code &sect;35.305.<br><br>
-    <strong>Wednesday Listing Feature:</strong> Rotate Active / Just Listed / Just Sold each week. No active listing &rarr; use a recent sold comp framed as market intelligence.<br>
-    <strong>Saturday Community/Lifestyle:</strong> Tie every lifestyle post back to real estate demand. Repurpose from @alexa.realtor IG Saturday post &mdash; trim to GBP length, add CTA.<br>
-    <strong>Ride With Me Pocono spots</strong> qualify as Saturday Community/Lifestyle content when the destination highlights Pocono lifestyle &mdash; restaurants, scenic areas, local businesses.
+    <strong>GBP is the highest-weight AEO signal in this system.</strong> Every post here should be specific enough to answer a real local search query.<br><br>
+    <strong>Wednesday Listing Feature:</strong> Rotate Active / Just Listed / Just Sold. No active listing &rarr; recent sold comp as market intelligence.<br>
+    <strong>Saturday Community/Lifestyle:</strong> Repurposed directly from Friday's Landmark Spotlight caption &mdash; no new production, just trimmed and de-hashtagged for GBP.
   </div>
 </div>
 
-<div class="prompt-card">
-  <div class="pc-header pc-header-gbp"><div class="pc-left"><div class="pc-num">GBP Template &mdash; Wednesday &middot; Every Week</div><div class="pc-title">Listing Feature Post</div></div><div class="pc-badges"><span class="badge b-weekly">Every Wednesday &middot; 9:00 AM</span></div></div>
-  <div class="pc-purpose pc-purpose-gbp">Goal: drive search visibility + seller trust + buyer inquiries. Rotate Active / Just Listed / Just Sold. No listing &rarr; recent sold comp + what it means for the market.</div>
-  <div class="pc-prompt-label">Fill In &amp; Post &mdash; Wednesday 9:00 AM</div>
-  <div class="pc-prompt"><span class="hl">HEADLINE:</span> <span class="ph">&#128205; [Hook framing the property] &mdash; [Town], PA</span>
-
-<span class="hl">BODY (3&ndash;4 lines max):</span>
-<span class="ph">[Beds] bed / [Baths] bath in [Town]. [Strongest feature]. [Who this property is perfect for].
-Priced at $[X].
-Thinking about selling in [area]? Let's talk about what your home is worth right now.</span>
-
-<span class="hl">CTA:</span>
-<span class="ph">&#128222; (570) 688-8147 | Alexa@alexasanchez.net
-PA License #RS326383 &middot; Smart Way America Realty</span>
-
-<span class="hl">ROTATION GUIDE:</span>
-<span class="cm">// Week A: Active listing &mdash; STR or lifestyle angle
-// Week B: Just Listed &mdash; "just hit the market" energy
-// Week C: Just Sold &mdash; seller success story
-// Week D (no listing): Recent sold comp &mdash; market intelligence angle</span></div>
-</div>
-
-<div class="prompt-card">
-  <div class="pc-header pc-header-gbp"><div class="pc-left"><div class="pc-num">GBP Template &mdash; Saturday &middot; Every Week</div><div class="pc-title">Community / Lifestyle Post</div></div><div class="pc-badges"><span class="badge b-weekly">Every Saturday &middot; 10:00 AM</span></div></div>
-  <div class="pc-purpose pc-purpose-gbp">Goal: local SEO + brand warmth + seller/buyer familiarity. Always tie back to real estate demand. Repurpose from @alexa.realtor IG Saturday post. Ride With Me Pocono spot discoveries qualify here when the destination is lifestyle/community relevant.</div>
-  <div class="pc-prompt-label">Fill In &amp; Post &mdash; Saturday 10:00 AM</div>
-  <div class="pc-prompt"><span class="hl">HEADLINE:</span>
-<span class="ph">&#127956; This is why people move to the Poconos and never leave.
-OR: Rode past [local spot] this week and now I get it.
-OR: [Local business / destination] &mdash; and yes, you can own nearby.
-OR: [Local insight] + what it means for property values in [area].</span>
-
-<span class="hl">BODY (3&ndash;4 lines max):</span>
-<span class="ph">[1&ndash;2 lines on community angle].
-[1 line connecting lifestyle to real estate value or demand].
-Whether you're planting roots or building a portfolio, [Town] keeps showing up.
-Curious what homes are selling for here right now? I've got the numbers.</span>
-
-<span class="hl">CTA:</span>
-<span class="ph">&#128222; (570) 688-8147 | Free home valuation &mdash; no pressure, just data
-PA License #RS326383 &middot; Smart Way America Realty</span></div>
-</div>
-
 <div class="footer">
-  <p><strong>ROAST v4</strong> &middot; @itsmyash &middot; @alexa.realtor &middot; Alexa Sanchez &middot; PA License #RS326383 &middot; Smart Way America Realty</p>
-  <p>Every Thursday: 5 prompts (01A &middot; 02A &middot; 04B &middot; 05 &middot; 07) &middot; First Thursday/month: +4 prompts (01B &middot; 02B &middot; 03 &middot; 06) &middot; 04A Coffee PERMANENTLY REMOVED</p>
-  <p>&#127949; Ride With Me = Pocono Local Discovery Series &middot; Tue Ep1 + Sat Ep2 &middot; @its.myash IG + TikTok every ride &middot; @alexa.realtor only if Pocono lifestyle qualifies (~1 in 3)</p>
-  <p>&#128250; KSM TV / Suite327 Entertainment &mdash; FAST network in buildout &middot; COO + EP: Alexa Sanchez &middot; No dedicated output yet &middot; Coming when milestones hit</p>
-  <p>YouTube = universal video hub &middot; Every video gets YouTube-optimized description &middot; SEO + AEO mandatory on all video outputs</p>
-  <p>&#9208; @fillerandroast IG + FB shut down &middot; 1x/month organic on @itsmyash only &middot; Not a production output &middot; @life.byalexa dormant &middot; All personal content = @itsmyash</p>
-  <p>GBP: Mon Market Update &middot; Wed Listing Feature &middot; Thu Local Insight + Veteran &middot; Sat Community/Lifestyle &middot; #LifeByAlexa on every post</p>
+  <p><strong>ROAST v5</strong> &middot; @itsmyash &middot; @alexa.realtor &middot; Alexa Sanchez &middot; PA License #RS326383 &middot; Smart Way America Realty</p>
+  <p>19 outputs, down from 23 &middot; ~33 pieces of content/week across all platforms</p>
+  <p>&#127919; System Goal: AI recommends Alexa Sanchez for Pocono/Monroe County real estate AND cigar authority &mdash; AEO/SEO discipline applies to every output</p>
+  <p>&#128205; Pocono Landmark Spotlight = temporary Ride With Me replacement &middot; 1 photo/week &middot; @alexa.realtor IG Fri &rarr; GBP Sat &rarr; Nextdoor Thu</p>
+  <p>&#128250; KSM TV / Suite327 Entertainment &mdash; targeting late August 2026 launch &middot; COO + EP: Alexa Sanchez</p>
+  <p>Every Thursday: 6 prompts (01A &middot; 02A &middot; 04B &middot; 05 &middot; 07) &middot; First Thursday/month: +4 (01B &middot; 02B &middot; 03 &middot; 06) &middot; 04A permanently removed</p>
   <p>(570) 688-8147 &middot; Alexa@alexasanchez.net</p>
 </div>
 
