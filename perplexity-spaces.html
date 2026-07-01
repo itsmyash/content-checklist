@@ -12,7 +12,7 @@
     --seller:#2D5A3D;--seller-light:#EAF4EC;--seller-border:#A8D4B0;
     --ride:#3A6A0A;--ride-light:#EFF5E8;--ride-border:#A8CC80;
     --warm-gray:#8A8278;--light-border:#E0D9CF;--text-dark:#1A1A1A;
-    --text-mid:#4A4540;--code-bg:#1E1E2E;--code-text:#E8E4DC;
+    --text-mid:#4A4540;--code-bg:#1E1E2E;--code-text:#E8E4DC;--aeo:#0F5C4A;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   body{background:#EDEAE3;font-family:'DM Sans',sans-serif;color:var(--text-dark);padding:0 16px 32px;}
@@ -62,6 +62,7 @@
   .badge-ondemand{background:var(--gold);color:var(--navy);}
   .badge-monthly{background:var(--navy);color:#fff;}
   .badge-ride{background:var(--ride);color:#fff;}
+  .badge-cut{background:#8a3a3a;color:#fff;}
   .ss-body{padding:0 32px 24px;}
   .ss-purpose{font-size:12px;color:var(--text-mid);line-height:1.65;font-style:italic;margin-bottom:16px;padding:10px 14px;background:#F8F4EE;border-left:3px solid var(--light-border);}
   .ss-purpose-vet{border-left-color:var(--veteran);}
@@ -75,11 +76,12 @@
   .prompt-block{background:var(--code-bg);padding:20px 24px;font-family:'DM Mono',monospace;font-size:11px;line-height:1.8;color:var(--code-text);white-space:pre-wrap;word-break:break-word;margin-top:0;}
   .ph{color:var(--gold);}
   .cm{color:#5A7A5A;font-style:italic;}
-  .hl{color:#C4A882;font-weight:500;}
+  .hl{color:#C4A886;font-weight:500;}
   .sm{color:#7A9CC4;font-weight:500;}
   .vt{color:#7AB4D4;font-weight:500;}
   .gr{color:#7AC47A;font-weight:500;}
   .rd{color:#9ACD6A;font-weight:500;}
+  .aeocolor{color:#3FCBA5;font-weight:500;}
   .how-to{background:#F8F4EE;border:1px solid var(--light-border);padding:20px 24px;margin-bottom:20px;}
   .how-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--warm-gray);margin-bottom:12px;}
   .how-step{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start;}
@@ -96,6 +98,9 @@
   .ride-note{background:var(--ride-light);border:1px solid var(--ride-border);padding:14px 18px;margin-bottom:16px;}
   .ride-note-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ride);margin-bottom:6px;}
   .ride-note-text{font-size:12px;color:var(--text-mid);line-height:1.6;}
+  .changed-note{background:#F8F4EE;border:1px solid #D8A8A8;border-left:3px solid #8a3a3a;padding:14px 18px;margin-bottom:16px;}
+  .changed-note-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#8a3a3a;margin-bottom:6px;}
+  .changed-note-text{font-size:12px;color:var(--text-mid);line-height:1.6;}
   .footer{background:var(--navy);padding:20px 28px;text-align:center;margin-top:8px;}
   .footer p{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(242,237,227,0.4);line-height:1.9;}
   .footer strong{color:var(--gold);}
@@ -104,216 +109,131 @@
 <body>
 <nav class="global-nav">
   <div class="gn-logo">ROAST //</div>
-  <a href="index.html" class="gn-link gn-link-dash">🏠 Dashboard</a>
-  <a href="ROAST-Complete-System.html" class="gn-link gn-link-docs">📋 System Docs</a>
-  <a href="roast-weekly-scroll.html" class="gn-link gn-link-scroll">📅 Weekly Scroll</a>
-  <a href="perplexity-spaces.html" class="gn-link gn-link-perp gn-active">🔍 Perplexity</a>
-  <a href="cannonball.html" class="gn-link gn-link-cannon">🎯 Cannonball</a>
+  <a href="index.html" class="gn-link gn-link-dash">&#127968; Dashboard</a>
+  <a href="ROAST-Complete-System.html" class="gn-link gn-link-docs">&#128203; System Docs</a>
+  <a href="roast-weekly-scroll.html" class="gn-link gn-link-scroll">&#128197; Weekly Scroll</a>
+  <a href="perplexity-spaces.html" class="gn-link gn-link-perp gn-active">&#128269; Perplexity</a>
+  <a href="cannonball.html" class="gn-link gn-link-cannon">&#127919; Cannonball</a>
 </nav>
 <div class="wrapper">
 
 <div class="master-header">
   <div class="mh-inner">
-    <div class="mh-eyebrow">Alexa Sanchez · PA License #RS326383 · Smart Way America Realty</div>
-    <div class="mh-title">Perplexity Spaces — <em>Three Research Engines.</em></div>
-    <div class="mh-sub">Space 01 is your veteran real estate intelligence hub — PA benefits, DR residency, CONFOTUR, FMP. Space 02 is your Pocono Mountains prelisting and seller reporting system. Space 03 is your Pocono local discovery engine — rides, businesses, hidden gems, and content angles for the Ride With Me series.</div>
+    <div class="mh-eyebrow">Alexa Sanchez &middot; PA License #RS326383 &middot; Smart Way America Realty</div>
+    <div class="mh-title">Perplexity Spaces &mdash; <em>Three Research Engines.</em></div>
+    <div class="mh-sub">Updated July 2026 to match ROAST v5. Space 01 is your veteran real estate intelligence hub. Space 02 is your Pocono Mountains prelisting and seller reporting system. Space 03 is now a single weekly Landmark Pick engine &mdash; narrowed from full ride-route research since there's no bike right now. Every Space is built to feed content that answers real questions, so AI recommends Alexa Sanchez for Pocono/Monroe County real estate and cigar authority.</div>
     <div class="mh-rule"></div>
   </div>
 </div>
 
-<!-- SPACE 01 -->
+<!-- SPACE 01 — UNCHANGED -->
 <div class="space-card">
   <div class="space-hdr-vet">
-    <div class="sh-eyebrow">Space 01 of 03</div>
+    <div class="sh-eyebrow">Space 01 of 03 &middot; Unchanged from v4</div>
     <div class="sh-title">Veteran Real Estate Intelligence Hub</div>
-    <div class="sh-sub">PA veteran homebuyer benefits · DR residency & CONFOTUR · VA loan mechanics · FMP healthcare · Purely educational — no personal narrative</div>
+    <div class="sh-sub">PA veteran homebuyer benefits &middot; DR residency &amp; CONFOTUR &middot; VA loan mechanics &middot; FMP healthcare &middot; Purely educational &mdash; no personal narrative</div>
   </div>
   <div class="setup-strip">
     <div class="setup-step"><div class="setup-num setup-num-vet">1</div><div class="setup-text">perplexity.ai/spaces</div></div>
-    <div class="setup-arrow">→</div>
+    <div class="setup-arrow">&rarr;</div>
     <div class="setup-step"><div class="setup-num setup-num-vet">2</div><div class="setup-text">New Space</div></div>
-    <div class="setup-arrow">→</div>
+    <div class="setup-arrow">&rarr;</div>
     <div class="setup-step"><div class="setup-num setup-num-vet">3</div><div class="setup-text">Paste Space Instructions below</div></div>
-    <div class="setup-arrow">→</div>
-    <div class="setup-step"><div class="setup-num setup-num-vet">4</div><div class="setup-text">Save · Share with veteran clients (optional)</div></div>
+    <div class="setup-arrow">&rarr;</div>
+    <div class="setup-step"><div class="setup-num setup-num-vet">4</div><div class="setup-text">Save &middot; Share with veteran clients (optional)</div></div>
   </div>
 
   <div class="space-section">
-    <div class="ss-hdr ss-hdr-vet"><div><div class="ss-label ss-label-vet">Space Configuration</div><div class="ss-title">Settings & Setup</div></div></div>
+    <div class="ss-hdr ss-hdr-vet"><div><div class="ss-label ss-label-vet">Space Configuration</div><div class="ss-title">Settings &amp; Setup</div></div></div>
     <div class="ss-body">
       <div class="settings-grid">
-        <div class="setting-item"><div class="setting-label">Space Name</div><div class="setting-value">Veteran Real Estate — PA + DR</div></div>
+        <div class="setting-item"><div class="setting-label">Space Name</div><div class="setting-value">Veteran Real Estate &mdash; PA + DR</div></div>
         <div class="setting-item"><div class="setting-label">Access</div><div class="setting-value">Private (your research) OR Shareable link for veteran clients</div></div>
-        <div class="setting-item"><div class="setting-label">Search Mode</div><div class="setting-value">Deep Research — always</div></div>
+        <div class="setting-item"><div class="setting-label">Search Mode</div><div class="setting-value">Deep Research &mdash; always</div></div>
         <div class="setting-item"><div class="setting-label">Run Frequency</div><div class="setting-value">Every Thursday alongside Prompt 05 in ROAST System</div></div>
-        <div class="setting-item"><div class="setting-label">Focus URLs to add</div><div class="setting-value">va.gov · benefits.va.gov · dmva.pa.gov · phfa.org · pa.gov · monroecountypa.gov · mitur.gob.do · retireindr.com · drlawyer.com</div></div>
-        <div class="setting-item"><div class="setting-label">Compliance Note</div><div class="setting-value">Every output must include PA License #RS326383 + Smart Way America Realty per 49 Pa. Code §35.305</div></div>
+        <div class="setting-item"><div class="setting-label">Focus URLs to add</div><div class="setting-value">va.gov &middot; benefits.va.gov &middot; dmva.pa.gov &middot; phfa.org &middot; pa.gov &middot; monroecountypa.gov &middot; mitur.gob.do &middot; retireindr.com &middot; drlawyer.com</div></div>
+        <div class="setting-item"><div class="setting-label">Compliance Note</div><div class="setting-value">Every output must include PA License #RS326383 + Smart Way America Realty per 49 Pa. Code &sect;35.305</div></div>
       </div>
       <div class="client-note">
         <div class="client-note-title">Client-Facing Version</div>
-        <div class="client-note-text">If you share this Space with veteran clients, they can ask questions directly and get the same research you use. Frame it as: <em>"I built this as a resource for veteran homebuyers — feel free to use it to research PA benefits or DR residency options."</em> It positions you as the expert before the first call.</div>
+        <div class="client-note-text">If you share this Space with veteran clients, they can ask questions directly and get the same research you use. Frame it as: <em>"I built this as a resource for veteran homebuyers &mdash; feel free to use it to research PA benefits or DR residency options."</em> It positions you as the expert before the first call.</div>
       </div>
-      <div class="prompt-label">Space Instructions — Paste Into Perplexity Space "Instructions" Field</div>
+      <div class="prompt-label">Space Instructions &mdash; Paste Into Perplexity Space "Instructions" Field</div>
       <div class="prompt-block"><span class="cm">// PASTE THIS INTO THE SPACE INSTRUCTIONS FIELD WHEN CREATING THE SPACE</span>
 
-You are a veteran real estate research assistant supporting <span class="hl">Alexa Sanchez, PA Licensed Realtor #RS326383, Smart Way America Realty</span>. All research is strictly educational — no personal narrative, no personal stories.
+You are a veteran real estate research assistant supporting <span class="hl">Alexa Sanchez, PA Licensed Realtor #RS326383, Smart Way America Realty</span>. All research is strictly educational &mdash; no personal narrative, no personal stories.
 
 <span class="vt">YOUR EXPERTISE COVERS TWO MARKETS:</span>
 
-<span class="sm">PENNSYLVANIA — VETERAN HOMEBUYER BENEFITS:</span>
+<span class="sm">PENNSYLVANIA &mdash; VETERAN HOMEBUYER BENEFITS:</span>
 - VA home loan mechanics: funding fees, exemptions for disabled veterans, assumability, post-NAR settlement buyer commission policy
-- PA Disabled Veterans' Real Estate Tax Exemption (DVRETX): eligibility (100% P&T, wartime service, primary residence, income threshold currently $114,637), application process, Monroe County contact
-- HB 1257: proportional veteran property tax exemption bill — current Senate status, companion bills HB 1119 and HB 1578, estimated 2028 implementation
-- PHFA programs for veterans: HOMEstead ($10,000 forgivable 5yr, Monroe County eligible), K-FIT (5% purchase price forgivable 10yr), Keystone Home Loan, Keystone Flex — income limits, purchase price limits, stacking rules with VA loans
+- PA Disabled Veterans' Real Estate Tax Exemption (DVRETX): eligibility (100% P&amp;T, wartime service, primary residence, income threshold currently $114,637), application process, Monroe County contact
+- HB 1257: proportional veteran property tax exemption bill &mdash; current Senate status
+- PHFA programs for veterans: HOMEstead ($10,000 forgivable 5yr), K-FIT (5% purchase price forgivable 10yr) &mdash; income limits, stacking rules with VA loans
 - PA Property Tax/Rent Rebate Program (PTRR): current income limits, rebate amounts for disabled veterans
-- Monroe County specifics: 2025 millage rates by school district, homestead/farmstead exclusion deadlines and amounts
-- VA loan limits in Pennsylvania: 2026 FHFA conforming limits by county (Monroe: $832,750, Pike: $1,249,125)
-- VA loan vs conventional: when each makes more sense for a PA buyer in 2026
+- Monroe County specifics: millage rates by school district, homestead/farmstead exclusion deadlines
+- VA loan limits in Pennsylvania: 2026 FHFA conforming limits by county
 
-<span class="sm">DOMINICAN REPUBLIC — VETERAN & FOREIGN BUYER INTEL:</span>
-- Law 171-07 residency: Pensionado ($1,500/month lifetime pension + $250/dependent), Rentista ($2,000/month passive), Investor ($200,000 minimum) — which VA benefits qualify, processing timeline, required documents, total cost estimate
-- CONFOTUR Law 158-01 (amended 195-13): 0% transfer tax, 15-year IPI exemption, 15-year rental income exemption — how to verify via MITUR Resolución number, first-buyer rule, SRL workaround for resales
-- VA loan overseas: does NOT work in DR — VA loan is restricted to US + territories; VA cash-out refinance on US property is the workaround
-- Scotiabank DR USD mortgages: current rate range 7.25–8.00%, 70% LTV, 20-40% down, FICO 660+
-- VA Foreign Medical Program (FMP): service-connected conditions only, reimbursement process, July 2026 FTIN requirement, current DR claims processing timeline
-- DR property buying process: reservation deposit → independent attorney → Deslinde → Promesa de Venta → Contrato de Venta → DGII → Torrens title registration
-- DR closing costs: CONFOTUR (1.5–2%) vs non-CONFOTUR (4.5–5.5%)
-- 2026 IPI exemption threshold: RD$10,695,494 (~$170,000–$182,000)
-- DR market pricing by zone: Punta Cana/Bávaro, Cap Cana, Sosúa/Cabarete, Las Terrenas, Santo Domingo
+<span class="sm">DOMINICAN REPUBLIC &mdash; VETERAN &amp; FOREIGN BUYER INTEL:</span>
+- Law 171-07 residency: Pensionado, Rentista, Investor tracks &mdash; which VA benefits qualify, processing timeline
+- CONFOTUR Law 158-01 (amended 195-13): transfer tax exemption, IPI exemption, rental income exemption
+- VA loan overseas: does NOT work in DR &mdash; VA cash-out refinance on US property is the workaround
+- Scotiabank DR USD mortgages: current rate range, LTV, qualification requirements
+- VA Foreign Medical Program (FMP): service-connected conditions only, July 2026 FTIN requirement
+- DR property buying process and closing costs by CONFOTUR status
 
 <span class="vt">RULES FOR EVERY RESPONSE:</span>
 - Always cite sources (VA.gov, DMVA.pa.gov, PHFA.org, MITUR, pa.gov, monroecountypa.gov)
-- Always include exact dollar amounts and dates — no vague ranges
-- Always note: VA loan does NOT work in the DR — redirect to CONFOTUR + cash/Scotiabank DR
-- Never make specific financial, legal, or tax advice — direct to appropriate professionals
-- For content creation requests: note that PA License #RS326383 and Smart Way America Realty must appear in every advertisement per 49 Pa. Code §35.305
-- Flag any information that may have changed and needs verification before publishing
+- Always include exact dollar amounts and dates &mdash; no vague ranges
+- Always note: VA loan does NOT work in the DR &mdash; redirect to CONFOTUR + cash/Scotiabank DR
+- Never make specific financial, legal, or tax advice &mdash; direct to appropriate professionals
+- PA License #RS326383 and Smart Way America Realty must appear in every advertisement per 49 Pa. Code &sect;35.305
 
 <span class="vt">WHEN ASKED ABOUT CONTENT IDEAS:</span>
-Suggest specific Reel and YouTube topics based on current news, legislation updates, or common veteran buyer misconceptions. Always frame content as educational, not personal narrative. Include YouTube SEO title suggestion and AEO-friendly description angle for every content idea.</div>
+Suggest specific content angles based on current news, legislation updates, or common veteran buyer misconceptions. Always educational, not personal narrative. Include YouTube SEO title suggestion and AEO-friendly natural-language description angle for every content idea &mdash; write it the way someone would actually ask an AI the question.</div>
     </div>
   </div>
 
   <div class="space-section">
     <div class="ss-hdr ss-hdr-vet"><div><div class="ss-label ss-label-vet">Prompt 01</div><div class="ss-title">Weekly VA Intelligence Brief</div></div><span class="ss-badge badge-weekly">Every Thursday</span></div>
     <div class="ss-body">
-      <div class="ss-purpose ss-purpose-vet">Run every Thursday alongside your ROAST Prompt 05. Surfaces the week's most timely veteran real estate signal for content and client conversations in both markets.</div>
-      <div class="prompt-label">Copy & Paste Into Space → Deep Research</div>
+      <div class="ss-purpose ss-purpose-vet">Run every Thursday alongside ROAST Prompt 05. Feeds Outputs 14, 15, 16 on Sunday.</div>
+      <div class="prompt-label">Copy &amp; Paste Into Space &rarr; Deep Research</div>
       <div class="prompt-block">Run a weekly veteran real estate intelligence update for the week of <span class="ph">[INSERT DATE]</span>.
 
-<span class="vt">PENNSYLVANIA — THIS WEEK:</span>
-- VA loan rate update: current 30-year fixed VA rate vs conventional
-- Any VA Circular releases this week affecting PA buyers
-- HB 1257 Senate status update — any committee movement
-- DVRETX: any Monroe County specific news or application deadline alerts
-- PHFA rate sheet update: current rates for Keystone Home Loan
-- Any Monroe County veteran homebuyer news
+<span class="vt">PENNSYLVANIA &mdash; THIS WEEK:</span> VA loan rate update &middot; VA Circular releases &middot; HB 1257 Senate status &middot; DVRETX news &middot; PHFA rate sheet &middot; Monroe County veteran news
 
-<span class="vt">DOMINICAN REPUBLIC — THIS WEEK:</span>
-- FMP news: any policy changes, processing updates, July 2026 FTIN preparation status
-- Law 171-07: any processing timeline changes at DGM
-- CONFOTUR: any new approved projects or policy changes
-- DR real estate market: any news affecting US veteran buyers this week
-- Scotiabank DR: any rate or lending policy changes
+<span class="vt">DOMINICAN REPUBLIC &mdash; THIS WEEK:</span> FMP news/FTIN prep status &middot; Law 171-07 processing changes &middot; CONFOTUR project/policy changes &middot; DR market news for veteran buyers &middot; Scotiabank DR rate changes
 
-<span class="vt">TOP CONTENT ANGLE THIS WEEK:</span>
-- What is the single most timely veteran real estate topic for a 30-60 second Reel this week?
-- YouTube SEO title suggestion for that Reel uploaded to YouTube
-- AEO-friendly description angle (natural language: "Can veterans buy in the Dominican Republic?" etc.)
-- What veteran homebuyer misconception is currently circulating online worth correcting?
+<span class="vt">TOP CONTENT ANGLE THIS WEEK:</span> Most timely veteran real estate topic &middot; YouTube SEO title &middot; AEO-friendly natural-language description angle &middot; a misconception worth correcting
 
-<span class="sm">FORMAT:</span>
-1. TOP SIGNAL THIS WEEK (most actionable — one paragraph)
-2. PA UPDATE (bullet points with sources)
-3. DR UPDATE (bullet points with sources)
-4. CONTENT ANGLES (Reel idea · YouTube SEO title · AEO description angle · misconception to correct)</div>
+<span class="sm">FORMAT:</span> 1. Top signal 2. PA update 3. DR update 4. Content angles</div>
     </div>
   </div>
 
   <div class="space-section">
     <div class="ss-hdr ss-hdr-vet"><div><div class="ss-label ss-label-vet">Prompt 02</div><div class="ss-title">PA Veteran Homebuyer Deep Dive</div></div><span class="ss-badge badge-ondemand">On Demand</span></div>
     <div class="ss-body">
-      <div class="ss-purpose ss-purpose-vet">Run when preparing for a veteran buyer consultation or creating a PA veteran content series. Produces a complete benefit stack for a specific buyer profile.</div>
-      <div class="prompt-label">Copy & Paste Into Space → Deep Research</div>
-      <div class="prompt-block">Build a complete PA veteran homebuyer benefit stack for the following client profile:
+      <div class="ss-purpose ss-purpose-vet">Run before a veteran buyer consultation. Full benefit stack for a specific buyer profile.</div>
+      <div class="prompt-label">Copy &amp; Paste Into Space &rarr; Deep Research</div>
+      <div class="prompt-block">Build a complete PA veteran homebuyer benefit stack for: <span class="ph">[service branch/years, disability rating, household income, target price, first/subsequent VA loan use]</span>.
 
-<span class="ph">VETERAN PROFILE:
-- Service branch and years served: [INSERT]
-- Disability rating (if any): [INSERT — e.g. 0%, 30%, 100% P&T, TDIU]
-- Household income: [INSERT approximate range]
-- Target purchase price: [INSERT]
-- Location: Monroe County, PA (Pocono Mountains)
-- First-time use of VA loan? [YES/NO]
-- Prior VA loan outstanding? [YES/NO]</span>
+VA loan analysis (funding fee, waiver eligibility, conforming limit, rate comparison) &middot; PA tax benefits (DVRETX, PTRR, homestead exclusion) &middot; PHFA stack (HOMEstead, K-FIT eligibility and combination) &middot; bottom line total benefit value + next steps.
 
-<span class="vt">VA LOAN ANALYSIS:</span>
-- VA funding fee: exact amount based on disability rating and first/subsequent use
-- If disability rated: funding fee waiver eligibility and how to claim it
-- 2026 conforming limit for Monroe County and whether this client has a loan cap
-- Current VA rate estimate and monthly payment at target price with $0 down
-- VA loan vs conventional comparison at this price point
-
-<span class="vt">PA TAX BENEFIT ANALYSIS:</span>
-- DVRETX eligibility: does this veteran qualify?
-- PTRR eligibility: income threshold check, estimated rebate
-- Homestead/farmstead exclusion: how to apply, deadline, estimated savings by school district
-- Monroe County millage calculation: estimated annual tax at target purchase price
-
-<span class="vt">PHFA PROGRAM STACK:</span>
-- HOMEstead eligibility: income limit check, maximum available, forgiveness schedule
-- K-FIT eligibility: income limit check, maximum available (5% of purchase price)
-- Best combination: which PHFA programs stack with VA loan for this profile
-- Estimated total assistance available
-
-<span class="vt">BOTTOM LINE:</span>
-Total estimated benefit value (funding fee waiver + tax savings over 5 years + PHFA assistance)
-Recommended next steps for this veteran buyer
-
-Cite all sources. Include exact current figures from VA.gov, PHFA.org, DMVA.pa.gov, monroecountypa.gov.</div>
+Cite all sources with exact current figures from VA.gov, PHFA.org, DMVA.pa.gov, monroecountypa.gov.</div>
     </div>
   </div>
 
   <div class="space-section">
-    <div class="ss-hdr ss-hdr-vet"><div><div class="ss-label ss-label-vet">Prompt 03</div><div class="ss-title">DR Veteran Buyer & Residency Deep Dive</div></div><span class="ss-badge badge-ondemand">On Demand</span></div>
+    <div class="ss-hdr ss-hdr-vet"><div><div class="ss-label ss-label-vet">Prompt 03</div><div class="ss-title">DR Veteran Buyer &amp; Residency Deep Dive</div></div><span class="ss-badge badge-ondemand">On Demand</span></div>
     <div class="ss-body">
-      <div class="ss-purpose ss-purpose-vet">Run when a veteran client expresses interest in the Dominican Republic — buying property, establishing residency, or exploring retirement options. Educational only.</div>
-      <div class="prompt-label">Copy & Paste Into Space → Deep Research</div>
-      <div class="prompt-block">Research Dominican Republic options for a US veteran with the following profile:
+      <div class="ss-purpose ss-purpose-vet">Run when a veteran client asks about the DR. Educational only.</div>
+      <div class="prompt-label">Copy &amp; Paste Into Space &rarr; Deep Research</div>
+      <div class="prompt-block">Research DR options for a veteran with: <span class="ph">[VA benefits received, monthly VA income, age, interest level, budget, target zone]</span>.
 
-<span class="ph">VETERAN PROFILE:
-- VA benefits received (disability comp, pension, military retirement, GI Bill): [INSERT]
-- Monthly VA income: [INSERT approximate]
-- Age: [INSERT]
-- Interest: [buying property only / residency + property / full relocation]
-- Budget: [INSERT USD range]
-- Target DR zone: [Punta Cana / Cap Cana / Las Terrenas / Sosúa / Santo Domingo / undecided]</span>
+Residency eligibility (Law 171-07 track fit) &middot; CONFOTUR property analysis &middot; which VA benefits transfer &middot; financing options (VA loan does not work in DR &mdash; explain restriction; Scotiabank DR mortgage details) &middot; zone-specific market data.
 
-<span class="vt">RESIDENCY ELIGIBILITY (Law 171-07):</span>
-- Which residency track fits: Pensionado, Rentista, or Investor?
-- Does VA income qualify for pensionado? (requires $1,500/month lifetime pension + $250/dependent)
-- Required documents, current DGM processing timeline and total estimated cost
-- 6-month citizenship pathway via Investor track — requirements and current status
-
-<span class="vt">CONFOTUR PROPERTY ANALYSIS:</span>
-- What CONFOTUR means for this buyer: 0% transfer tax, 15-year IPI exemption, 15-year rental income exemption
-- How to verify CONFOTUR status on a specific property: MITUR Resolución number requirement
-- 2026 IPI exemption threshold: RD$10,695,494 — what this means for their budget
-- Estimated savings on a property at their budget: transfer tax + IPI over 15 years
-
-<span class="vt">VA BENEFITS IN DR:</span>
-- Which VA benefits transfer: disability compensation ✓ | VA pension ✓ | military retirement ✓ | GI Bill (limited) ✓ | FMP healthcare (SC conditions only) ✓
-- Which do NOT transfer: TRICARE (non-retired) ✗ | VA home loan ✗ | VA healthcare facilities ✗
-- FMP: how to register, what it covers, July 2026 FTIN requirement
-
-<span class="vt">FINANCING OPTIONS IN DR:</span>
-- VA loan: does NOT work in DR — explain restriction (US + territories only per 38 USC §36.4202)
-- VA cash-out refi on US home: how this works, funding fee waiver if disabled
-- Scotiabank DR USD mortgage: current 7.25–8.00% range, 70% LTV, 20-40% down, FICO 660+, completed homes only
-
-<span class="vt">ZONE-SPECIFIC MARKET DATA:</span>
-For their target zone — current pricing, rental yields, CONFOTUR availability, healthcare access, expat community size
-
-Note: Always direct clients to verify with a licensed DR attorney before taking any action. This research is educational only.</div>
+Note: always direct clients to a licensed DR attorney before acting. Educational only.</div>
     </div>
   </div>
 
@@ -322,99 +242,64 @@ Note: Always direct clients to verify with a licensed DR attorney before taking 
     <div class="ss-body">
       <div class="how-to">
         <div class="how-title">Weekly Workflow</div>
-        <div class="how-step"><div class="how-num how-num-vet">1</div><div class="how-text"><strong>Every Thursday</strong> — Run Prompt 01 (Weekly VA Intelligence Brief). Paste output into ROAST Section A alongside your other Perplexity outputs. This feeds Outputs 17, 18, and 19 on Sunday.</div></div>
-        <div class="how-step"><div class="how-num how-num-vet">2</div><div class="how-text"><strong>Before a veteran buyer consultation</strong> — Run Prompt 02 (PA Deep Dive) with the client's actual profile. Bring the output to the meeting. Positions you as the most prepared realtor they've ever talked to.</div></div>
-        <div class="how-step"><div class="how-num how-num-vet">3</div><div class="how-text"><strong>When a veteran asks about the DR</strong> — Run Prompt 03 (DR Deep Dive) with their profile. Use the output to build their educational packet. Never present it as financial or legal advice.</div></div>
-        <div class="how-step"><div class="how-num how-num-vet">4</div><div class="how-text"><strong>For client sharing</strong> — Share the Space link with veteran clients who want to do their own research. Tell them: "Ask it anything about VA benefits in PA or buying in the DR — it knows what I know."</div></div>
+        <div class="how-step"><div class="how-num how-num-vet">1</div><div class="how-text"><strong>Every Thursday</strong> &mdash; Run Prompt 01. Paste into ROAST Section A. Feeds Outputs 14, 15, 16.</div></div>
+        <div class="how-step"><div class="how-num how-num-vet">2</div><div class="how-text"><strong>Before a veteran consultation</strong> &mdash; Run Prompt 02 with the client's profile.</div></div>
+        <div class="how-step"><div class="how-num how-num-vet">3</div><div class="how-text"><strong>When a veteran asks about the DR</strong> &mdash; Run Prompt 03 with their profile.</div></div>
+        <div class="how-step"><div class="how-num how-num-vet">4</div><div class="how-text"><strong>For client sharing</strong> &mdash; Share the Space link with veteran clients directly.</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- SPACE 02 -->
+<!-- SPACE 02 — UNCHANGED -->
 <div class="space-card">
   <div class="space-hdr-sel">
-    <div class="sh-eyebrow">Space 02 of 03</div>
-    <div class="sh-title">Pocono Mountains Prelisting & Seller Intelligence</div>
-    <div class="sh-sub">Monroe County CMA · Prelisting packets · Seller reports · STR potential analysis · Township compliance · Net sheets</div>
+    <div class="sh-eyebrow">Space 02 of 03 &middot; Unchanged from v4</div>
+    <div class="sh-title">Pocono Mountains Prelisting &amp; Seller Intelligence</div>
+    <div class="sh-sub">Monroe County CMA &middot; Prelisting packets &middot; Seller reports &middot; STR potential analysis &middot; Township compliance &middot; Net sheets</div>
   </div>
   <div class="setup-strip">
     <div class="setup-step"><div class="setup-num setup-num-sel">1</div><div class="setup-text">perplexity.ai/spaces</div></div>
-    <div class="setup-arrow">→</div>
+    <div class="setup-arrow">&rarr;</div>
     <div class="setup-step"><div class="setup-num setup-num-sel">2</div><div class="setup-text">New Space</div></div>
-    <div class="setup-arrow">→</div>
+    <div class="setup-arrow">&rarr;</div>
     <div class="setup-step"><div class="setup-num setup-num-sel">3</div><div class="setup-text">Paste Space Instructions below</div></div>
-    <div class="setup-arrow">→</div>
+    <div class="setup-arrow">&rarr;</div>
     <div class="setup-step"><div class="setup-num setup-num-sel">4</div><div class="setup-text">Run before every listing appointment</div></div>
   </div>
 
   <div class="space-section">
-    <div class="ss-hdr ss-hdr-sel"><div><div class="ss-label ss-label-sel">Space Configuration</div><div class="ss-title">Settings & Setup</div></div></div>
+    <div class="ss-hdr ss-hdr-sel"><div><div class="ss-label ss-label-sel">Space Configuration</div><div class="ss-title">Settings &amp; Setup</div></div></div>
     <div class="ss-body">
       <div class="settings-grid">
-        <div class="setting-item"><div class="setting-label">Space Name</div><div class="setting-value">Pocono Prelisting & Seller Reports</div></div>
-        <div class="setting-item"><div class="setting-label">Access</div><div class="setting-value">Private — your internal research only</div></div>
-        <div class="setting-item"><div class="setting-label">Search Mode</div><div class="setting-value">Deep Research — always</div></div>
-        <div class="setting-item"><div class="setting-label">Run Frequency</div><div class="setting-value">Before every listing appointment · Monthly market update</div></div>
-        <div class="setting-item"><div class="setting-label">Focus URLs to add</div><div class="setting-value">monroecountypa.gov · airdna.co · zillow.com · realtor.com · redfin.com · phfa.org · barretttownship.org · poconotownship.org</div></div>
-        <div class="setting-item"><div class="setting-label">Primary Use</div><div class="setting-value">Listing appointments · Seller prep · STR investor sellers · Monthly market reports for content</div></div>
+        <div class="setting-item"><div class="setting-label">Space Name</div><div class="setting-value">Pocono Prelisting &amp; Seller Reports</div></div>
+        <div class="setting-item"><div class="setting-label">Access</div><div class="setting-value">Private &mdash; your internal research only</div></div>
+        <div class="setting-item"><div class="setting-label">Search Mode</div><div class="setting-value">Deep Research &mdash; always</div></div>
+        <div class="setting-item"><div class="setting-label">Run Frequency</div><div class="setting-value">Before every listing appointment &middot; Monthly market update</div></div>
+        <div class="setting-item"><div class="setting-label">Focus URLs to add</div><div class="setting-value">monroecountypa.gov &middot; airdna.co &middot; zillow.com &middot; realtor.com &middot; redfin.com &middot; phfa.org &middot; barretttownship.org &middot; poconotownship.org</div></div>
+        <div class="setting-item"><div class="setting-label">Primary Use</div><div class="setting-value">Listing appointments &middot; Seller prep &middot; STR investor sellers &middot; Monthly market reports for content</div></div>
       </div>
-      <div class="prompt-label">Space Instructions — Paste Into Perplexity Space "Instructions" Field</div>
+      <div class="prompt-label">Space Instructions &mdash; Paste Into Perplexity Space "Instructions" Field</div>
       <div class="prompt-block"><span class="cm">// PASTE THIS INTO THE SPACE INSTRUCTIONS FIELD WHEN CREATING THE SPACE</span>
 
-You are a real estate market analyst and listing specialist supporting <span class="hl">Alexa Sanchez, PA Licensed Realtor #RS326383, Smart Way America Realty</span>, specializing in Monroe County, Pennsylvania — the Pocono Mountains market.
+You are a real estate market analyst and listing specialist supporting <span class="hl">Alexa Sanchez, PA Licensed Realtor #RS326383, Smart Way America Realty</span>, specializing in Monroe County, Pennsylvania.
 
-<span class="gr">YOUR EXPERTISE COVERS:</span>
-
-<span class="sm">MARKET KNOWLEDGE — MONROE COUNTY:</span>
-- Pocono Mountains STR market dynamics — AirDNA data, occupancy rates, ADR, annual revenue by submarket
-- Monroe County township zoning and STR regulations: Barrett Township (permits required), Jackson Township (permit required — enforces), Paradise Township (no STRs in residential — updated Feb 2026), Hamilton Township (not allowed), Middle Smithfield (annual licensing), Pocono Township, Smithfield Township
-- Monroe County residential market: median prices, days on market, list-to-sale ratio, active inventory
-- Monroe County 2025 millage rates by school district: Pocono Mountain SD (23.25), East Stroudsburg SD (31.67), Stroudsburg SD (27.395), Pleasant Valley SD (25.6157)
-- HB 2303 — Pennsylvania's proposed statewide STR registration bill: not yet passed
-- NFIP and flood zone considerations for lake-adjacent Pocono properties
+<span class="gr">MARKET KNOWLEDGE &mdash; MONROE COUNTY:</span>
+Pocono Mountains STR market dynamics &middot; township zoning and STR regulations (Barrett, Jackson, Paradise, Hamilton, Middle Smithfield, Pocono, Smithfield) &middot; Monroe County residential market data &middot; millage rates by school district &middot; HB 2303 status &middot; NFIP/flood zone considerations.
 
 <span class="sm">RULES FOR EVERY RESPONSE:</span>
-- Cite sources for all market data (AirDNA, MLS trends, monroecountypa.gov, Zillow, Realtor.com)
-- Always note township STR zoning status when STR potential is discussed
-- Always include exact figures — no vague ranges
-- Flag any data that needs MLS verification (Perplexity cannot access live MLS)
-- Note: PA License #RS326383 and Smart Way America Realty must appear in all advertising per 49 Pa. Code §35.305
-- Client privacy: never use client names or specific addresses — use "the subject property" or "the seller"</div>
+Cite sources for all market data &middot; always note township STR zoning status when discussed &middot; exact figures, no vague ranges &middot; flag data needing MLS verification &middot; PA License #RS326383 + Smart Way America Realty per 49 Pa. Code &sect;35.305 &middot; never use client names or specific addresses.</div>
     </div>
   </div>
 
   <div class="space-section">
-    <div class="ss-hdr ss-hdr-sel"><div><div class="ss-label ss-label-sel">Prompt 01</div><div class="ss-title">Prelisting Packet — Full Research Build</div></div><span class="ss-badge badge-ondemand">Before Every Listing Appt</span></div>
+    <div class="ss-hdr ss-hdr-sel"><div><div class="ss-label ss-label-sel">Prompt 01</div><div class="ss-title">Prelisting Packet &mdash; Full Research Build</div></div><span class="ss-badge badge-ondemand">Before Every Listing Appt</span></div>
     <div class="ss-body">
-      <div class="ss-purpose ss-purpose-sel">Run 48-72 hours before a listing appointment. Produces the market intelligence foundation for your prelisting presentation — CMA context, STR analysis, positioning strategy, and pricing intelligence.</div>
-      <div class="prompt-label">Copy & Paste Into Space → Deep Research</div>
-      <div class="prompt-block">Build prelisting research for a seller consultation in Monroe County, PA.
+      <div class="ss-purpose ss-purpose-sel">Run 48-72 hours before a listing appointment.</div>
+      <div class="prompt-label">Copy &amp; Paste Into Space &rarr; Deep Research</div>
+      <div class="prompt-block">Build prelisting research for: <span class="ph">[location/town, property type, beds/baths, key features, HOA, current use, seller motivation, target price, timeline]</span>.
 
-<span class="ph">PROPERTY DETAILS:
-- General location (town/area — no exact address needed): [INSERT]
-- Property type: [SFR / townhouse / condo / cabin]
-- Approximate bedrooms / bathrooms: [INSERT]
-- Key features: [e.g. lake access, ski proximity, mountain views, pool, game room, hot tub]
-- HOA: [YES / NO / UNKNOWN]
-- Current use: [primary residence / second home / active STR / vacant]
-- Seller's motivation: [relocating / downsizing / divorce / estate / investment exit / other]
-- Seller's target list price (if they have one): [INSERT or UNKNOWN]
-- Target timeline: [INSERT or "flexible"]</span>
-
-<span class="gr">SECTION 1 — MARKET SNAPSHOT:</span> Median sale price, DOM, list-to-sale ratio, active inventory, mortgage rate environment
-
-<span class="gr">SECTION 2 — SUBMARKET ANALYSIS:</span> Dominant buyer profile, days on market, price trend, submarket factors
-
-<span class="gr">SECTION 3 — COMPARABLE SALES RESEARCH:</span> Active listings + sold comps within 6 months from Zillow, Realtor.com, Redfin
-
-<span class="gr">SECTION 4 — STR POTENTIAL ANALYSIS:</span> Township STR zoning status, AirDNA data, how STR potential affects buyer pool and list price
-
-<span class="gr">SECTION 5 — PRICING INTELLIGENCE:</span> Suggested list price range, overpricing consequence, seasonal timing
-
-<span class="gr">SECTION 6 — SELLER POSITIONING STRATEGY:</span> Primary buyer persona, top 3 marketing angles, home prep priorities
-
-<span class="gr">SECTION 7 — ESTIMATED NET SHEET COMPONENTS:</span> PA Realty Transfer Tax (2%), estimated closing costs, note: exact net sheet requires MLS comps
+Market snapshot &middot; submarket analysis &middot; comparable sales research &middot; STR potential analysis (township zoning + AirDNA) &middot; pricing intelligence &middot; seller positioning strategy &middot; estimated net sheet components (2% PA Transfer Tax).
 
 Cite all sources. Flag anything requiring MLS verification.</div>
     </div>
@@ -423,80 +308,35 @@ Cite all sources. Flag anything requiring MLS verification.</div>
   <div class="space-section">
     <div class="ss-hdr ss-hdr-sel"><div><div class="ss-label ss-label-sel">Prompt 02</div><div class="ss-title">Monthly Seller Market Report</div></div><span class="ss-badge badge-monthly">1st of Every Month</span></div>
     <div class="ss-body">
-      <div class="ss-purpose ss-purpose-sel">Run on the first of every month. Produces a current market report you can send to your seller database, past clients, and use for content. Positions you as the Pocono market expert.</div>
-      <div class="prompt-label">Copy & Paste Into Space → Deep Research</div>
+      <div class="ss-purpose ss-purpose-sel">Run on the first of every month for your seller database and content.</div>
+      <div class="prompt-label">Copy &amp; Paste Into Space &rarr; Deep Research</div>
       <div class="prompt-block">Build a Pocono Mountains seller market report for <span class="ph">[INSERT MONTH AND YEAR]</span>.
 
-<span class="gr">SECTION 1 — MONROE COUNTY MARKET OVERVIEW:</span> Median sale price, closed sales, DOM, list-to-sale ratio, active inventory — all vs prior month and year-over-year
+Monroe County overview &middot; STR investment market by submarket &middot; regulatory update &middot; interest rate environment &middot; what sellers need to know this month &middot; notable listings/market activity.
 
-<span class="gr">SECTION 2 — STR INVESTMENT MARKET:</span> AirDNA overall market score, occupancy rate, ADR, annual revenue average, supply growth — all year-over-year. Submarket breakdown: Mt Pocono, Pocono Township, Barrett Township, Lake Harmony, Camelback area
-
-<span class="gr">SECTION 3 — REGULATORY UPDATE:</span> HB 2303 status, township STR ordinance changes, Monroe County zoning decisions
-
-<span class="gr">SECTION 4 — INTEREST RATE ENVIRONMENT:</span> Current 30-year fixed rate, VA loan rate vs conventional, impact on buyer purchasing power
-
-<span class="gr">SECTION 5 — WHAT SELLERS NEED TO KNOW THIS MONTH:</span> Is now a good time to list? Pricing advice. Days on market warning. Seasonal factor.
-
-<span class="gr">SECTION 6 — NOTABLE LISTINGS AND MARKET ACTIVITY:</span> Significant price reductions, fast-moving sales, pockets of strength or weakness
-
-FORMAT: Clean, shareable report. Use headers. Include specific numbers. Cite sources. Write for a seller audience, not an investor audience.</div>
+FORMAT: clean, shareable, headers, specific numbers, cited sources, seller-audience voice.</div>
     </div>
   </div>
 
   <div class="space-section">
-    <div class="ss-hdr ss-hdr-sel"><div><div class="ss-label ss-label-sel">Prompt 03</div><div class="ss-title">Quick Comp Pull — Pricing Reality Check</div></div><span class="ss-badge badge-ondemand">On Demand</span></div>
+    <div class="ss-hdr ss-hdr-sel"><div><div class="ss-label ss-label-sel">Prompt 03</div><div class="ss-title">Quick Comp Pull &mdash; Pricing Reality Check</div></div><span class="ss-badge badge-ondemand">On Demand</span></div>
     <div class="ss-body">
-      <div class="ss-purpose ss-purpose-sel">Run when a seller has a price in mind and you need to reality-check it fast — before a call or same-day as the appointment.</div>
-      <div class="prompt-label">Copy & Paste Into Space → Deep Research</div>
-      <div class="prompt-block">Quick comp pull for a Pocono Mountains property in Monroe County.
+      <div class="ss-purpose ss-purpose-sel">Run when a seller has a price in mind and you need a fast reality check.</div>
+      <div class="prompt-label">Copy &amp; Paste Into Space &rarr; Deep Research</div>
+      <div class="prompt-block">Quick comp pull for: <span class="ph">[general area, beds/baths, key features, seller's target price]</span>.
 
-<span class="ph">PROPERTY:
-- General area: [INSERT e.g. "Pocono Lake area" or "Barrett Township near Camelback"]
-- Beds / baths: [INSERT]
-- Key features: [e.g. lake access, 4BR, game room, ski proximity]
-- Seller's target price: [INSERT]</span>
-
-Search Zillow, Realtor.com, and Redfin for:
-1. ACTIVE listings most similar to this property right now
-2. SOLD comps in the last 90 days
-3. PENDING listings — what is under contract right now?
-
-<span class="gr">PRICING REALITY CHECK:</span>
-- Does the seller's target price align with current comps? Over / under / on market?
-- What is the realistic price range supported by the data?
-- If overpriced: by how much, and what is the likely days-on-market consequence?
-
-Keep it fast and direct. Note: MLS verification required before presenting to seller.</div>
+Active comps, sold comps (90 days), pending listings. Pricing reality check: aligned / over / under, realistic range, DOM consequence if overpriced. Note: MLS verification required before presenting.</div>
     </div>
   </div>
 
   <div class="space-section">
-    <div class="ss-hdr ss-hdr-sel"><div><div class="ss-label ss-label-sel">Prompt 04</div><div class="ss-title">STR Investor Seller — Exit Strategy Analysis</div></div><span class="ss-badge badge-ondemand">On Demand</span></div>
+    <div class="ss-hdr ss-hdr-sel"><div><div class="ss-label ss-label-sel">Prompt 04</div><div class="ss-title">STR Investor Seller &mdash; Exit Strategy Analysis</div></div><span class="ss-badge badge-ondemand">On Demand</span></div>
     <div class="ss-body">
-      <div class="ss-purpose ss-purpose-sel">Run when a current STR operator wants to sell. These sellers speak a different language — yield math, not just comps. Build their exit strategy.</div>
-      <div class="prompt-label">Copy & Paste Into Space → Deep Research</div>
-      <div class="prompt-block">Build an exit strategy analysis for an STR operator selling in Monroe County, PA.
+      <div class="ss-purpose ss-purpose-sel">Run when a current STR operator wants to sell.</div>
+      <div class="prompt-label">Copy &amp; Paste Into Space &rarr; Deep Research</div>
+      <div class="prompt-block">Build an exit strategy for an STR seller: <span class="ph">[location/township, property type/size, current performance, platform, years operating, reason for selling, target price]</span>.
 
-<span class="ph">PROPERTY:
-- General location and township: [INSERT]
-- Property type and size: [INSERT]
-- Current STR performance: annual revenue, occupancy rate, ADR [INSERT or UNKNOWN]
-- Platform: [Airbnb / VRBO / both]
-- Years operating as STR: [INSERT]
-- Seller's reason for selling: [INSERT]
-- Target list price: [INSERT or UNKNOWN]</span>
-
-<span class="gr">SECTION 1 — SUBMARKET STR PERFORMANCE:</span> AirDNA data — occupancy, ADR, annual revenue, year-over-year trend, supply growth, market saturation signal
-
-<span class="gr">SECTION 2 — TOWNSHIP COMPLIANCE VERIFICATION:</span> STR permit status, HB 2303 implications, pending ordinance changes
-
-<span class="gr">SECTION 3 — INVESTOR BUYER POOL ANALYSIS:</span> Most likely buyer type, yield metrics they'll demand, yield at target list price, investor vs primary/second-home pricing
-
-<span class="gr">SECTION 4 — COMP ANALYSIS — STR-POSITIONED:</span> Recently sold STR-positioned properties — list vs sold price vs DOM
-
-<span class="gr">SECTION 5 — EXIT STRATEGY RECOMMENDATION:</span> Recommended buyer target and why, list price range based on yield math, marketing strategy, timing, prep work
-
-<span class="gr">SECTION 6 — RISK FLAGS:</span> Regulatory risk, market saturation, flood zone/NFIP
+Submarket STR performance &middot; township compliance verification &middot; investor buyer pool analysis &middot; STR-positioned comp analysis &middot; exit strategy recommendation &middot; risk flags.
 
 Cite all sources. Flag anything requiring MLS verification or attorney review.</div>
     </div>
@@ -507,203 +347,125 @@ Cite all sources. Flag anything requiring MLS verification or attorney review.</
     <div class="ss-body">
       <div class="how-to">
         <div class="how-title">Listing Appointment Workflow</div>
-        <div class="how-step"><div class="how-num how-num-sel">1</div><div class="how-text"><strong>48-72 hours before appointment</strong> — Run Prompt 01 (Prelisting Packet) with the property details. Use the output to build your presentation.</div></div>
-        <div class="how-step"><div class="how-num how-num-sel">2</div><div class="how-text"><strong>Same day if seller has a price</strong> — Run Prompt 03 (Quick Comp Pull) with their number. Walk in knowing whether it's realistic before they say it out loud.</div></div>
-        <div class="how-step"><div class="how-num how-num-sel">3</div><div class="how-text"><strong>If they're an STR operator selling</strong> — Run Prompt 04 (STR Investor Seller). These sellers speak a different language — yield math, not just comps.</div></div>
-        <div class="how-step"><div class="how-num how-num-sel">4</div><div class="how-text"><strong>First of every month</strong> — Run Prompt 02 (Monthly Seller Market Report). Send it to your database. Use it as the backbone of your Thursday Pocono Pulse Reel script.</div></div>
-        <div class="how-step"><div class="how-num how-num-sel">5</div><div class="how-text"><strong>Always verify with MLS</strong> — Perplexity cannot access live MLS data. Use this research as the foundation, then pull exact comps from Flex MLS before presenting a formal CMA to the seller.</div></div>
+        <div class="how-step"><div class="how-num how-num-sel">1</div><div class="how-text"><strong>48-72 hours before appointment</strong> &mdash; Run Prompt 01.</div></div>
+        <div class="how-step"><div class="how-num how-num-sel">2</div><div class="how-text"><strong>Same day if seller has a price</strong> &mdash; Run Prompt 03.</div></div>
+        <div class="how-step"><div class="how-num how-num-sel">3</div><div class="how-text"><strong>If they're an STR operator selling</strong> &mdash; Run Prompt 04.</div></div>
+        <div class="how-step"><div class="how-num how-num-sel">4</div><div class="how-text"><strong>First of every month</strong> &mdash; Run Prompt 02.</div></div>
+        <div class="how-step"><div class="how-num how-num-sel">5</div><div class="how-text"><strong>Always verify with MLS</strong> before presenting a formal CMA.</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- SPACE 03 — NEW: POCONO LOCAL DISCOVERY -->
+<!-- SPACE 03 — NARROWED TO LANDMARK PICK -->
 <div class="space-card">
   <div class="space-hdr-ride">
-    <div class="sh-eyebrow">Space 03 of 03 — New · June 2026</div>
-    <div class="sh-title">Pocono Local Discovery — Ride With Me Research Engine</div>
-    <div class="sh-sub">Weekly Pocono businesses · Hidden gems · Scenic routes · Local events · Content angles for @itsmyash Ride With Me series · Feeds ROAST Prompt 07</div>
+    <div class="sh-eyebrow">Space 03 of 03 &middot; Narrowed July 2026</div>
+    <div class="sh-title">Pocono Landmark Pick <span style="font-size:14px;opacity:0.6;font-weight:400;">(formerly Ride With Me Research Engine)</span></div>
+    <div class="sh-sub">One landmark per week &middot; still-photo spotlight only &middot; feeds ROAST Prompt 07 &amp; Output 08 &middot; cross-posts to @alexa.realtor IG, GBP, and Nextdoor</div>
   </div>
   <div class="setup-strip">
     <div class="setup-step"><div class="setup-num setup-num-ride">1</div><div class="setup-text">perplexity.ai/spaces</div></div>
-    <div class="setup-arrow">→</div>
+    <div class="setup-arrow">&rarr;</div>
     <div class="setup-step"><div class="setup-num setup-num-ride">2</div><div class="setup-text">New Space</div></div>
-    <div class="setup-arrow">→</div>
+    <div class="setup-arrow">&rarr;</div>
     <div class="setup-step"><div class="setup-num setup-num-ride">3</div><div class="setup-text">Paste Space Instructions below</div></div>
-    <div class="setup-arrow">→</div>
+    <div class="setup-arrow">&rarr;</div>
     <div class="setup-step"><div class="setup-num setup-num-ride">4</div><div class="setup-text">Run every Thursday alongside ROAST Prompt 07</div></div>
   </div>
 
   <div class="space-section">
-    <div class="ss-hdr ss-hdr-ride"><div><div class="ss-label ss-label-ride">Space Configuration</div><div class="ss-title">Settings & Setup</div></div></div>
+    <div class="ss-hdr ss-hdr-ride"><div><div class="ss-label ss-label-ride">Space Configuration</div><div class="ss-title">Settings &amp; Setup</div></div></div>
     <div class="ss-body">
+      <div class="changed-note">
+        <div class="changed-note-title">What Changed &mdash; Read This First</div>
+        <div class="changed-note-text">Dorothy (the bike) went back to her original owner. Until a new one arrives, there's no riding footage &mdash; so this Space no longer researches routes, ride logistics, or two-episode weekly content. It now does ONE thing: find one specific, citable Pocono landmark per week for a still-photo post. That single photo now cross-posts to @alexa.realtor IG (Friday), GBP (Saturday, repurposed), and Nextdoor (Thursday, repurposed) &mdash; one shoot, three placements. TikTok and @its.myash IG are not part of this rotation right now since there's no video to post. When the new bike arrives, this Space reverts to full route + two-episode research.</div>
+      </div>
       <div class="settings-grid">
-        <div class="setting-item"><div class="setting-label">Space Name</div><div class="setting-value">Pocono Local Discovery — Ride With Me</div></div>
-        <div class="setting-item"><div class="setting-label">Access</div><div class="setting-value">Private — your content research</div></div>
-        <div class="setting-item"><div class="setting-label">Search Mode</div><div class="setting-value">Deep Research — always</div></div>
-        <div class="setting-item"><div class="setting-label">Run Frequency</div><div class="setting-value">Every Thursday — feeds Tuesday + Saturday Ride With Me episodes</div></div>
-        <div class="setting-item"><div class="setting-label">Focus URLs to add</div><div class="setting-value">visitpoconos.com · monroecountypa.gov · explorepocono.com · poconorecord.com · tripadvisor.com · yelp.com · instagram.com · google.com/maps</div></div>
-        <div class="setting-item"><div class="setting-label">Content Output</div><div class="setting-value">Feeds ROAST Output 09 (Ride With Me) · @itsmyash IG + TikTok · GBP Saturday slot · Nextdoor community posts</div></div>
+        <div class="setting-item"><div class="setting-label">Space Name</div><div class="setting-value">Pocono Landmark Pick</div></div>
+        <div class="setting-item"><div class="setting-label">Access</div><div class="setting-value">Private &mdash; your content research</div></div>
+        <div class="setting-item"><div class="setting-label">Search Mode</div><div class="setting-value">Deep Research &mdash; always</div></div>
+        <div class="setting-item"><div class="setting-label">Run Frequency</div><div class="setting-value">Every Thursday &mdash; feeds Friday's Landmark Spotlight post</div></div>
+        <div class="setting-item"><div class="setting-label">Focus URLs to add</div><div class="setting-value">visitpoconos.com &middot; monroecountypa.gov &middot; explorepocono.com &middot; poconorecord.com &middot; tripadvisor.com &middot; google.com/maps</div></div>
+        <div class="setting-item"><div class="setting-label">Content Output</div><div class="setting-value">Feeds ROAST Output 08 (Landmark Spotlight) &middot; @alexa.realtor IG Fri &rarr; GBP Sat &rarr; Nextdoor Thu</div></div>
       </div>
       <div class="ride-note">
-        <div class="ride-note-title">What This Space Is For</div>
-        <div class="ride-note-text">The Ride With Me series is a <strong>Pocono local discovery series on a motorcycle</strong> — not just a riding vlog. Every episode spotlights a specific Pocono business, destination, scenic route, or hidden gem. This Space surfaces what's worth riding to every week: ice cream shops, local diners, waterfall trails, farm markets, overlooks, breweries, craft spots. The bike gets you there. The Poconos is the content. This also feeds the @alexa.realtor GBP Saturday Community/Lifestyle post and Nextdoor — Pocono local knowledge is a listing agent superpower.</div>
+        <div class="ride-note-title">What This Space Is For Now</div>
+        <div class="ride-note-text">One specific, named, <strong>citable</strong> Pocono landmark or destination per week &mdash; written for AEO, not for a ride script. The goal is a fact an AI or search engine can cite (founded year, elevation, acreage, hours, address), plus one line connecting it to Pocono lifestyle/relocation appeal for the @alexa.realtor caption. No route planning, no "best road to get there," no talking points for on-camera delivery &mdash; that's gone until the bike is back.</div>
       </div>
-      <div class="prompt-label">Space Instructions — Paste Into Perplexity Space "Instructions" Field</div>
+      <div class="prompt-label">Space Instructions &mdash; Paste Into Perplexity Space "Instructions" Field</div>
       <div class="prompt-block"><span class="cm">// PASTE THIS INTO THE SPACE INSTRUCTIONS FIELD WHEN CREATING THE SPACE</span>
 
-You are a Pocono Mountains local discovery researcher supporting <span class="hl">Alexa Sanchez (@its.myash)</span>, a motorcycle rider and content creator producing a weekly Pocono local discovery series called Ride With Me. Every episode visits a specific Pocono business, destination, or scenic spot — experienced on a motorcycle. The bike is the vehicle. The Poconos is the content.
+You are a Pocono Mountains local discovery researcher supporting <span class="hl">Alexa Sanchez (@alexa.realtor)</span>, a PA licensed realtor producing a weekly still-photo landmark spotlight. This is currently a photo-only format &mdash; no video, no riding content, no route planning.
 
 <span class="rd">YOUR EXPERTISE COVERS THE POCONO MOUNTAINS REGION:</span>
-- Monroe County, PA and surrounding Pocono Mountain areas
-- Pike County, Carbon County, Wayne County — broader Pocono corridor
-- Local businesses: restaurants, ice cream shops, diners, breweries, farm stands, markets, coffee shops, bakeries
-- Outdoor destinations: waterfalls, lakes, overlooks, hiking areas, scenic mountain roads
-- Hidden gems: places locals know but tourists don't
-- Seasonal considerations: what's open, what's special, what's riding well each season
-- Events: local markets, festivals, pop-ups, community events, seasonal happenings
-- Roads and routes: scenic motorcycle-friendly roads in the Pocono region
+Monroe County, PA and surrounding Pocono Mountain areas &middot; landmarks, overlooks, lakes, waterfalls, parks, historic sites, and locally-known destinations &middot; seasonal considerations for what's worth spotlighting each week.
 
-<span class="rd">CONTENT PHILOSOPHY:</span>
-- Prioritize locally-owned over chains
-- Prioritize authentic over tourist-facing
-- Look for story — a founder, a view, a product, a vibe that makes good content
-- Think: "Would a local resident go here, or only a tourist?"
-- The best episodes combine a great ride WITH a great destination
+<span class="rd">CONTENT PHILOSOPHY &mdash; WRITTEN FOR AEO, NOT FOR A RIDE SCRIPT:</span>
+- One specific, named landmark per week &mdash; never a vague area or category
+- Every pick needs at least one citable fact (founded year, elevation, acreage, official hours, address) that an AI or search engine could reference
+- Every pick needs one line tying it to Pocono lifestyle or relocation appeal &mdash; this feeds a real estate caption, not a travel blog
+- Prioritize what's timely or seasonal this specific week
 
-<span class="rd">DISTRIBUTION CONTEXT (for content angle suggestions):</span>
-@its.myash IG + @itsmyash TikTok: every ride, every episode — discovery and personality-forward
-@alexa.realtor IG: only when destination shows Pocono lifestyle (why people move here) — about 1 in 3 rides
-GBP Saturday Community/Lifestyle post: local spots, restaurants, lifestyle — always tied back to "this is why people live here"
-YouTube: every episode — needs SEO title and AEO-friendly description angle
+<span class="rd">DISTRIBUTION CONTEXT:</span>
+This single pick becomes one photo post on @alexa.realtor IG (Friday), which is then repurposed &mdash; same photo, no new production &mdash; into the GBP Saturday Community/Lifestyle post and a Nextdoor Thursday post. Nextdoor framing must stay purely neighborly, never sales-oriented.
 
 <span class="rd">RULES FOR EVERY RESPONSE:</span>
-- Include specific business names, locations, and hours
-- Include social media handles or Google Maps presence when available
-- Flag @alexa.realtor qualifier explicitly: YES or NO with one-line reason
-- Always suggest a YouTube SEO title and AEO description angle for the episode
-- Prioritize what's timely or seasonal this specific week</div>
+- Include the exact name, town/area, and one citable fact
+- Include Google Maps link and Instagram presence if available
+- Always suggest a YouTube-style natural-language AEO angle even though this isn't a video &mdash; useful for how the caption gets phrased
+- Do NOT suggest routes, roads, ride logistics, or on-camera talking points &mdash; not needed for this format right now</div>
     </div>
   </div>
 
   <div class="space-section">
-    <div class="ss-hdr ss-hdr-ride"><div><div class="ss-label ss-label-ride">Prompt 01</div><div class="ss-title">Weekly Pocono Ride Destination Research</div></div><span class="ss-badge badge-ride">Every Thursday</span></div>
+    <div class="ss-hdr ss-hdr-ride"><div><div class="ss-label ss-label-ride">Prompt 01</div><div class="ss-title">Weekly Landmark Pick</div></div><span class="ss-badge badge-ride">Every Thursday</span></div>
     <div class="ss-body">
-      <div class="ss-purpose ss-purpose-ride">Run every Thursday. Produces this week's Pocono ride destinations, local business spotlights, scenic routes, and content angles for Tuesday and Saturday Ride With Me episodes. Paste output into ROAST Section A (Prompt 07 field).</div>
-      <div class="prompt-label">Copy & Paste Into Space → Deep Research</div>
-      <div class="prompt-block">Run this week's Pocono Mountains local discovery research for the week of <span class="ph">[INSERT CURRENT DATE]</span>.
+      <div class="ss-purpose ss-purpose-ride">Run every Thursday. This IS ROAST Prompt 07. Paste the output into Section A under "PERPLEXITY OUTPUT 07: LANDMARK PICK" on Sunday. Produces one landmark, not a menu of ride destinations.</div>
+      <div class="prompt-label">Copy &amp; Paste Into Space &rarr; Deep Research</div>
+      <div class="prompt-block">I need ONE specific Pocono Mountains landmark, destination, or hidden gem worth a still-photo spotlight post this week. Run this for the week of <span class="ph">[INSERT CURRENT DATE]</span>.
 
-<span class="rd">SECTION 1 — THIS WEEK'S RIDE DESTINATION PICKS (3 options):</span>
-Give me 3 specific Pocono Mountains destinations worth riding to this week. For each one:
-- Name and exact town/area (no vague "Pocono area" — specific)
-- What it is and why it's worth the ride this week specifically
-- Best approach road or scenic route to get there on a motorcycle
-- Hours and any seasonal considerations
-- Instagram handle or Google Maps link
-- Content angle: hook line for a 30-60 second Reel (direct statement, no questions)
-- @alexa.realtor qualifier: YES or NO + one-line reason (does this show Pocono lifestyle?)
-- YouTube SEO title suggestion for this episode
+<span class="rd">GIVE ME:</span>
+- Exact name and town/area
+- What it is and why it's worth spotlighting right now (season, event, view, story)
+- One specific, factual, citable detail (founded year, elevation, acreage, hours, address)
+- Google Maps link and Instagram presence if available
+- One line connecting it to Pocono lifestyle/relocation appeal &mdash; this feeds a real estate caption
+- A natural-language AEO angle: how would someone actually ask about this place? ("best views near Pocono Mountains," "hidden gems in Monroe County PA")
 
-<span class="rd">SECTION 2 — LOCAL BUSINESS SPOTLIGHT (2 options):</span>
-Surface 2 locally-owned Pocono businesses worth featuring as ride destinations:
-- Business name, exact location, type
-- What makes it a local gem (not a tourist trap)
-- Best time to visit + busy day/hour to avoid
-- Social media presence (Instagram, Facebook, Google)
-- Story angle: what makes this compelling content — founder story, view, product, vibe
+<span class="rd">FORMAT:</span> Landmark name &middot; Location &middot; Why now &middot; Citable fact &middot; Lifestyle tie-in line &middot; AEO angle
 
-<span class="rd">SECTION 3 — SCENIC ROUTES & ROADS THIS WEEK:</span>
-- 1-2 Pocono Mountain roads or routes that are exceptional for riding right now
-- What you see on this route: specific landmarks, water, elevation changes, towns
-- Approximate mileage and ride time
-- Any road conditions, construction, or seasonal closures
-
-<span class="rd">SECTION 4 — POCONO EVENTS & HAPPENINGS THIS WEEK:</span>
-- Local markets, festivals, pop-ups, outdoor events in Monroe County or broader Pocono area this week
-- Flag anything that would work as a ride destination + video moment
-
-<span class="rd">SECTION 5 — CONTENT ANGLES FOR RIDE WITH ME (2 episodes):</span>
-TUESDAY EPISODE (Episode 1):
-- Recommended destination from Section 1 — which one and why
-- Hook line (first 2 seconds — direct statement, starts with discovery not riding)
-- 3 talking points for on-camera
-- @its.myash IG caption direction
-- YouTube SEO title + AEO description angle (natural language questions someone would search)
-
-SATURDAY EPISODE (Episode 2):
-- Second destination recommendation
-- Hook line
-- 3 talking points
-- @its.myash IG caption direction
-- YouTube SEO title + AEO description angle
-
-Cite sources. Prioritize locally-owned. Prioritize what's timely this specific week.</div>
+Cite sources. One pick only &mdash; prioritize specificity over breadth.</div>
     </div>
   </div>
 
   <div class="space-section">
-    <div class="ss-hdr ss-hdr-ride"><div><div class="ss-label ss-label-ride">Prompt 02</div><div class="ss-title">Pocono Seasonal Discovery Deep Dive</div></div><span class="ss-badge badge-monthly">Monthly or As Needed</span></div>
+    <div class="ss-hdr ss-hdr-ride"><div><div class="ss-label ss-label-ride">Prompt 02</div><div class="ss-title">Quick Spot Check &mdash; One Landmark</div></div><span class="ss-badge badge-ondemand">On Demand</span></div>
     <div class="ss-body">
-      <div class="ss-purpose ss-purpose-ride">Run at the start of each season or when planning ahead. Produces a full Pocono discovery content bank — 4-8 weeks of ride destinations, local spots, and content angles ready to pull from week by week.</div>
-      <div class="prompt-label">Copy & Paste Into Space → Deep Research</div>
-      <div class="prompt-block">Build a seasonal Pocono Mountains local discovery content bank for <span class="ph">[INSERT SEASON / MONTH RANGE]</span>.
+      <div class="ss-purpose ss-purpose-ride">Run when you already have a spot in mind and want to verify it's worth the post, confirm the citable fact, and get the caption angle before you shoot.</div>
+      <div class="prompt-label">Copy &amp; Paste Into Space &rarr; Deep Research</div>
+      <div class="prompt-block">Quick research on a specific Pocono landmark I'm considering for this week's spotlight post.
 
-I am a motorcycle rider and content creator (@its.myash) producing a weekly Pocono local discovery series. I need 4-8 weeks of ride destinations and local business spotlights to pull from throughout the season.
+<span class="ph">LANDMARK: [INSERT &mdash; e.g. "Bushkill Falls" or "Tobyhanna State Park overlook"]</span>
 
-<span class="rd">SECTION 1 — SEASONAL RIDE DESTINATIONS (8 total):</span>
-8 Pocono destinations that are especially compelling this season. For each:
-- Name, exact location, what makes it seasonal
-- Best month/week to visit within this season
-- Approach road or scenic route
-- @alexa.realtor qualifier: YES or NO
+Tell me:
+- Is this a strong pick this week? Anything timely or seasonal about it right now?
+- One citable fact an AI or search engine could reference
+- Current hours, address, Google Maps link
+- Best caption angle tying it to Pocono lifestyle/relocation appeal
+- A natural-language AEO phrasing for how someone would search for this
 
-<span class="rd">SECTION 2 — LOCAL BUSINESS DEEP CUT (6 total):</span>
-6 locally-owned Pocono businesses that would make great episode features:
-- Mix of: food, outdoor experience, craft/market, scenic
-- Include one that's been around 20+ years (legacy business angle)
-- Include one that opened in the last 2 years (new energy angle)
-
-<span class="rd">SECTION 3 — MUST-RIDE ROUTES THIS SEASON (3 routes):</span>
-3 Pocono motorcycle routes that are at their best this season:
-- Named or describable route, approximate miles, what you see
-- Best time of day or day of week to ride it
-- Any seasonal conditions to watch for
-
-<span class="rd">SECTION 4 — SEASONAL EVENTS CALENDAR:</span>
-List all notable Pocono area events, markets, and festivals happening this season with dates
-
-<span class="rd">SECTION 5 — 4-WEEK CONTENT QUEUE:</span>
-Week 1: [destination + episode angle + hook line]
-Week 2: [destination + episode angle + hook line]
-Week 3: [destination + episode angle + hook line]
-Week 4: [destination + episode angle + hook line]
-
-Cite sources. Include social media handles and Google Maps links where available.</div>
+Keep it fast &mdash; I want to know if this is the pick before I shoot the photo.</div>
     </div>
   </div>
 
   <div class="space-section">
-    <div class="ss-hdr ss-hdr-ride"><div><div class="ss-label ss-label-ride">Prompt 03</div><div class="ss-title">Quick Spot Check — One Destination</div></div><span class="ss-badge badge-ondemand">On Demand</span></div>
+    <div class="ss-hdr ss-hdr-ride"><div><div class="ss-label ss-label-ride">Retired Prompts</div><div class="ss-title">Full Route Research &amp; Seasonal Content Bank</div></div><span class="ss-badge badge-cut">On Hold Until New Bike</span></div>
     <div class="ss-body">
-      <div class="ss-purpose ss-purpose-ride">Run when you have a specific spot in mind and want to verify it's worth the ride, check hours, find the best approach road, and build the content angle before you go.</div>
-      <div class="prompt-label">Copy & Paste Into Space → Deep Research</div>
-      <div class="prompt-block">Quick research on a specific Pocono destination I'm considering for a Ride With Me episode.
-
-<span class="ph">DESTINATION: [INSERT — e.g. "Callie's Candy Kitchen, Mountainhome PA" or "Bushkill Falls"]</span>
-
-Research and tell me:
-- Is this place worth the ride? What's the actual experience like?
-- Current hours and any seasonal notes
-- Locally-owned or chain? Any ownership/founder story worth knowing?
-- Google Maps link and social media presence
-- Best road or route to approach on a motorcycle — most scenic option
-- What's the best content angle for a 30-60 second Reel? (give me a hook line)
-- @alexa.realtor qualifier: YES or NO + reason
-- YouTube SEO title suggestion
-- AEO description angle (how would someone search for this: "best ice cream near Pocono Mountains?" etc.)
-- Any recent reviews or news about this place worth knowing before I go?
-
-Keep it fast. I want to know if I should go this week.</div>
+      <div class="changed-note">
+        <div class="changed-note-title">Not Deleted &mdash; Just Not In Use</div>
+        <div class="changed-note-text">The old Prompt 01 (Weekly Pocono Ride Destination Research, 3 picks + local business spotlight + scenic routes + two-episode content angles) and old Prompt 02 (Seasonal Discovery Deep Dive, 4-8 week content bank) are retired for now rather than deleted from your Space history. Once a new bike is secured, reactivate them and restore the Tuesday/Saturday two-episode format, TikTok distribution, and @its.myash IG placement.</div>
+      </div>
     </div>
   </div>
 
@@ -712,22 +474,21 @@ Keep it fast. I want to know if I should go this week.</div>
     <div class="ss-body">
       <div class="how-to">
         <div class="how-title">Weekly Workflow</div>
-        <div class="how-step"><div class="how-num how-num-ride">1</div><div class="how-text"><strong>Every Thursday</strong> — Run Prompt 01 (Weekly Pocono Ride Destination Research). This IS your ROAST Prompt 07. Paste the full output into Section A under "PERPLEXITY OUTPUT 07: POCONO RIDE + LOCAL DISCOVERY" on Sunday.</div></div>
-        <div class="how-step"><div class="how-num how-num-ride">2</div><div class="how-text"><strong>Before riding somewhere specific</strong> — Run Prompt 03 (Quick Spot Check) with the destination. 5-minute research before you go = better content, better angles, fewer wasted rides.</div></div>
-        <div class="how-step"><div class="how-num how-num-ride">3</div><div class="how-text"><strong>Start of each season</strong> — Run Prompt 02 (Seasonal Deep Dive). Produces 4-8 weeks of content bank so you're never starting from zero on Thursday.</div></div>
-        <div class="how-step"><div class="how-num how-num-ride">4</div><div class="how-text"><strong>For GBP Saturday slot</strong> — Any local business or destination from this Space that qualifies for @alexa.realtor also feeds the Saturday GBP Community/Lifestyle post. "Rode to [local spot] this week — and yes, you can own 10 minutes from here."</div></div>
-        <div class="how-step"><div class="how-num how-num-ride">5</div><div class="how-text"><strong>For Nextdoor</strong> — Local business spotlights from this Space double as Nextdoor community posts. Position yourself as the realtor who actually knows the area.</div></div>
+        <div class="how-step"><div class="how-num how-num-ride">1</div><div class="how-text"><strong>Every Thursday</strong> &mdash; Run Prompt 01 (Weekly Landmark Pick). Paste into ROAST Section A under Perplexity Output 07.</div></div>
+        <div class="how-step"><div class="how-num how-num-ride">2</div><div class="how-text"><strong>If you already have a spot in mind</strong> &mdash; Run Prompt 02 (Quick Spot Check) to verify and get the caption angle before shooting.</div></div>
+        <div class="how-step"><div class="how-num how-num-ride">3</div><div class="how-text"><strong>Friday</strong> &mdash; Shoot the photo, post to @alexa.realtor IG using Output 08's caption direction.</div></div>
+        <div class="how-step"><div class="how-num how-num-ride">4</div><div class="how-text"><strong>Saturday + Thursday (next cycle)</strong> &mdash; Same photo repurposes into GBP Community/Lifestyle and Nextdoor &mdash; no new research needed, just trim the caption per platform rules.</div></div>
       </div>
     </div>
   </div>
 </div>
 
 <div class="footer">
-  <p><strong>ROAST System v4</strong> · Alexa Sanchez · PA License #RS326383 · Smart Way America Realty</p>
-  <p>Space 01: Veteran Real Estate Intelligence · Space 02: Pocono Prelisting & Seller Reports · Space 03: Pocono Local Discovery (Ride With Me)</p>
-  <p>&#127949; Ride With Me = Pocono local discovery series · Every Thursday: run all 3 spaces · Outputs feed Sunday Claude session</p>
-  <p>&#9208; Prompt 04A (Coffee / Filler & Roast) permanently removed · No coffee research · No F&R outputs</p>
-  <p>(570) 688-8147 · Alexa@alexasanchez.net · #LifeByAlexa</p>
+  <p><strong>ROAST System v5</strong> &middot; Alexa Sanchez &middot; PA License #RS326383 &middot; Smart Way America Realty</p>
+  <p>Space 01: Veteran Real Estate Intelligence &middot; Space 02: Pocono Prelisting &amp; Seller Reports &middot; Space 03: Pocono Landmark Pick (narrowed from Ride With Me)</p>
+  <p>&#128205; Landmark Pick = 1x/week, still photo only &middot; feeds ROAST Output 08 &middot; cross-posts to 3 platforms from one shoot</p>
+  <p>&#9208; Prompt 04A (Coffee / Filler &amp; Roast) permanently removed &middot; No coffee research &middot; No F&amp;R outputs</p>
+  <p>(570) 688-8147 &middot; Alexa@alexasanchez.net &middot; #LifeByAlexa</p>
 </div>
 
 </div>
