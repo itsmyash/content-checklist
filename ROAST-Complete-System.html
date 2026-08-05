@@ -11,7 +11,7 @@
     --warm-gray:#8A8278;--light-border:#E0D9CF;--text-dark:#1A1A1A;
     --text-mid:#4A4540;--green:#2D5A3D;--code-bg:#1E1E2E;--code-text:#E8E4DC;
     --spanish:#C0392B;--life:#8E44AD;--veteran:#1A4A6B;--aeo:#0F5C4A;--gallery:#2A6B7A;
-    --ledger:#2A4A6B;--dr:#B8791F;--pillar:#4A6B2A;
+    --ledger:#2A4A6B;--dr:#B8791F;--pillar:#4A6B2A;--pir:#4C4A8F;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   body{background:#EDEAE3;font-family:'DM Sans',sans-serif;color:var(--text-dark);padding:0 16px 32px;}
@@ -57,6 +57,10 @@
   .ride-box-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#4a8c0f;margin-bottom:8px;}
   .ride-box-text{font-size:13px;color:var(--text-mid);line-height:1.65;}
   .ride-box-text strong{color:var(--text-dark);}
+  .pir-box{background:var(--cream);border:1px solid var(--light-border);border-left:4px solid var(--pir);padding:18px 22px;margin-bottom:20px;}
+  .pir-box-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--pir);margin-bottom:8px;}
+  .pir-box-text{font-size:13px;color:var(--text-mid);line-height:1.65;}
+  .pir-box-text strong{color:var(--text-dark);}
   .ksm-box{background:var(--cream);border:1px solid var(--light-border);border-left:4px solid var(--burgundy);padding:18px 22px;margin-bottom:20px;}
   .ksm-box-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--burgundy);margin-bottom:8px;}
   .ksm-box-text{font-size:13px;color:var(--text-mid);line-height:1.65;}
@@ -106,6 +110,7 @@
   .b-gallery{background:var(--gallery);color:#fff;}
   .b-ledger{background:#2A4A6B;color:#fff;}
   .b-dr{background:var(--dr);color:#fff;}
+  .b-pir{background:var(--pir);color:#fff;}
   .b-paused{background:#5A5450;color:#fff;}
   .pc-purpose{padding:11px 22px;background:#F8F4EE;border-bottom:1px solid var(--light-border);font-size:12px;color:var(--text-mid);line-height:1.6;font-style:italic;}
   .pc-purpose-vet{background:#EBF2F8;}
@@ -127,6 +132,7 @@
   .gallerycolor{color:#5FBFCF;font-weight:500;}
   .ledgercolor{color:#7AB4D4;font-weight:500;}
   .drcolor{color:#E0A94F;font-weight:500;}
+  .pircolor{color:#9C9AD8;font-weight:500;}
   .sun-section{background:var(--cream);border:1px solid var(--light-border);margin-bottom:14px;overflow:hidden;}
   .ssh-header{background:#2A0A1A;padding:12px 22px;}
   .ssh-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
@@ -140,6 +146,7 @@
   .og-item-gallery{background:#EAF3F4;border-color:#A8CCD4;}
   .og-item-ledger{background:#EAF0F8;border-color:#A8C0D8;}
   .og-item-dr{background:#F8F1E6;border-color:#D8C098;}
+  .og-item-pir{background:#EDECF5;border-color:#B6B4D8;}
   .og-item-paused{background:#F0EEEB;border-color:#CCC4B8;opacity:0.7;}
   .og-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--burgundy);flex-shrink:0;font-weight:500;margin-top:1px;}
   .og-num-vet{color:var(--veteran);}
@@ -147,6 +154,7 @@
   .og-num-gallery{color:var(--gallery);}
   .og-num-ledger{color:var(--ledger);}
   .og-num-dr{color:var(--dr);}
+  .og-num-pir{color:var(--pir);}
   .og-num-paused{color:var(--warm-gray);}
   .og-text{font-size:12px;color:var(--text-mid);line-height:1.5;}
   .og-text strong{color:var(--text-dark);font-size:12px;display:block;margin-bottom:1px;}
@@ -232,7 +240,7 @@
 
 <div class="rhythm-bar">
   <div class="rhythm-day active"><div class="rhythm-day-name">Thursday</div><div class="rhythm-day-action">Run Perplexity prompts &middot; Save outputs &middot; Sunday inputs ready</div></div>
-  <div class="rhythm-day"><div class="rhythm-day-name">Sunday</div><div class="rhythm-day-action">Fill Section A &middot; Claude session &middot; Write the Ledger &middot; Produce everything &middot; Schedule the week</div></div>
+  <div class="rhythm-day"><div class="rhythm-day-name">Sunday</div><div class="rhythm-day-action">Fill Section A &middot; Claude session &middot; Write the Ledger &middot; PIR check &middot; Produce everything &middot; Schedule the week</div></div>
   <div class="rhythm-day"><div class="rhythm-day-name">Tuesday</div><div class="rhythm-day-action">Car Confession EN filmed &middot; DR English video filmed (IG + longer YouTube cut) &middot; ~30 min</div></div>
   <div class="rhythm-day"><div class="rhythm-day-name">Wednesday</div><div class="rhythm-day-action">Pocono al D&iacute;a filmed &middot; Talking Head (TikTok), @its.myash Wed post &middot; ~45 min</div></div>
   <div class="rhythm-day"><div class="rhythm-day-name">Thursday</div><div class="rhythm-day-action">Veteran (PA) filmed for IG + YouTube &middot; Cigar/Lounge Video (IG+TikTok) &middot; publish Thursday posts</div></div>
@@ -286,12 +294,31 @@
   </div>
 </div>
 
+<!-- PROPERTY INTELLIGENCE REPORT NOTICE -->
+<div class="pir-box">
+  <div class="pir-box-title">&#127909; The Property Intelligence Report (PIR) &mdash; Weekly CHECK, Not a Quota <span class="new-badge">NEW v6</span></div>
+  <div class="pir-box-text">
+    <strong>An evergreen, voice-forward video property under @alexa.realtor (YouTube playlist + IG lane). Its job: inbound lead-gen for the real estate team that scales WITHOUT Alexa's hours as KSM grows &mdash; and positioning her as the go-to Pocono Realtor.</strong> Faceless-adjacent, not faceless: templated cards + Alexa's voice. Her identity is the moat.<br><br>
+    <strong>Paired with Ride With Me &mdash; two pillars of one authority brand, never merged:</strong> PIR = the HEAD (informational, "the decisions people are afraid to get wrong," runs without her, producible today). Ride With Me = the HEART (lifestyle, needs her face, resumes when the camera/bike lands). They cross-reference each other; both are pilots that can graduate to KSM shows later.<br><br>
+    <strong>Two segment types under one umbrella:</strong><br>
+    &bull; <strong>Pocono DATA / consumer-protection</strong> &mdash; township STR rules, foreclosures, HOA / tax / policy. Fed by Thursday research (02A &middot; 02B &middot; 06 &middot; 01B).<br>
+    &bull; <strong>DR / cross-border evergreen</strong> &mdash; the monthly 03M DR deep-dive cut as ONE narrated evergreen episode.<br><br>
+    <strong>Source = the RESEARCH layer, never the Ledger.</strong> PIR does NOT re-report the Ledger &mdash; the Ledger stays written-only on the blog. PIR and the Ledger are siblings that both draw from Thursday research; they never feed each other. (This protects the no-duplication spine.)<br><br>
+    <strong>THE CHECK &mdash; this is the whole mechanic:</strong> every Sunday, one question &mdash; <em>did this week's Thursday research surface a discrete PIR item, OR is the monthly 03M cut due?</em><br>
+    &bull; <strong>YES</strong> &rarr; produce ONE templated episode &rarr; post to the PIR playlist (@alexa.realtor).<br>
+    &bull; <strong>NO</strong> &rarr; log "none this week," move on. No filler, ever.<br><br>
+    <strong>CTA logic:</strong> PA/Pocono episodes carry the Smart Way America block (fine now). DR episodes carry the Urban Group block &mdash; <strong>GATED until the brokerage switch (Tu Casa RD &rarr; Urban Group) closes.</strong> Episode 01 launches CTA-free to set the informational identity.<br><br>
+    <strong>Prereqs to SCALE (not to start):</strong> the reusable episode template (build once, every episode is assembly) + the Pillar page (every PIR CTA points at the Pillar).<br><br>
+    <strong>NOT a numbered output. NOT counted in the 16. NOT a weekly production quota.</strong> It is a distribution destination fed by research you already do &mdash; a 30-second Sunday check that produces an episode only when there's a real one to produce.
+  </div>
+</div>
+
 <!-- KSM TV NOTICE -->
 <div class="ksm-box">
   <div class="ksm-box-title">&#128250; KSM TV &mdash; Suite327 Entertainment (Active Buildout)</div>
   <div class="ksm-box-text">
     <strong>KSM TV is a FAST linear network launching under Suite327 Entertainment.</strong> Alexa is COO and Executive Producer. Target audience: 35&ndash;65, diverse programming. Distributing via Lightcast to Roku, DirecTV, Vizio, and similar. Content sourced through AllRites. App development begins August 1, 2026; full launch targeted Q1 2027.<br><br>
-    <strong>Current ROAST system impact:</strong> No dedicated weekly content output yet. KSM becomes the anchor of alexasanchez.com (see operator-life notice) and gets folded into the system as launch milestones hit.
+    <strong>Current ROAST system impact:</strong> No dedicated weekly content output yet. KSM becomes the anchor of alexasanchez.com (see operator-life notice) and gets folded into the system as launch milestones hit. PIR and Ride With Me are both pilots that can graduate into KSM shows once the network has a content pipeline.
   </div>
 </div>
 
@@ -305,7 +332,7 @@
     &bull; <strong>Landmark / Ride With Me cards</strong> &mdash; real photo of the actual location. Never watercolor/AI-stylized &mdash; discovery depends on visitors recognizing the real place.<br>
     &bull; <strong>Lifestyle / editorial cards</strong> &mdash; watercolor illustration only, using the standing recurring-woman prompt (see Section B). The only lane that uses illustration.<br><br>
     <strong>Cadence:</strong> 1 Lifestyle watercolor card/week + 1 Landmark card/week, standing. Listing card whenever new active inventory comes in (conditional).<br><br>
-    <strong>CTA resolution &mdash; UPDATED v6:</strong> Lifestyle cards carry a "Full guide coming soon" placeholder CTA. <strong>That guide is the Pillar &mdash; <em>Living in the Pocono Mountains &amp; Lehigh Valley</em> &mdash; which does not exist yet and must be built from scratch.</strong> Every placeholder CTA currently in gallery-card-tracker.md points at the Pillar. Building and publishing the Pillar is what lets you swap those placeholders for real links. Track each in gallery-card-tracker.md with CTA status (Placeholder vs. Linked).
+    <strong>CTA resolution &mdash; UPDATED v6:</strong> Lifestyle cards carry a "Full guide coming soon" placeholder CTA. <strong>That guide is the Pillar &mdash; <em>Living in the Pocono Mountains &amp; Lehigh Valley</em> &mdash; which does not exist yet and must be built from scratch.</strong> Every placeholder CTA currently in gallery-card-tracker.md points at the Pillar. Building and publishing the Pillar is what lets you swap those placeholders for real links. Track each in gallery-card-tracker.md with CTA status (Placeholder vs. Linked). <strong>Note:</strong> the Pillar is also the destination for every Property Intelligence Report CTA &mdash; one more reason it's the flagged next build.
   </div>
 </div>
 
@@ -318,7 +345,7 @@
 <div class="gold-box">
   <div class="gold-box-title">Read This Before The Table &mdash; Volume Goes DOWN in v6</div>
   <div class="gold-box-text">
-    The Ledger adds one written piece. But <strong>Substack's 9 weekly pieces (2 articles + 7 Notes) are gone</strong>, and <strong>DR Spanish + DR Veteran leave 3 weeks out of every 4</strong> (now monthly). Net result: a normal week is <strong>lighter</strong> than v5. Only the <strong>first week of the month</strong> is heavy &mdash; that's when the monthly DR lane and the monthly research prompts stack. This is concentration, not overproduction.
+    The Ledger adds one written piece. But <strong>Substack's 9 weekly pieces (2 articles + 7 Notes) are gone</strong>, and <strong>DR Spanish + DR Veteran leave 3 weeks out of every 4</strong> (now monthly). Net result: a normal week is <strong>lighter</strong> than v5. Only the <strong>first week of the month</strong> is heavy &mdash; that's when the monthly DR lane and the monthly research prompts stack. This is concentration, not overproduction. <strong>The Property Intelligence Report does NOT add fixed weekly volume</strong> &mdash; it's a check that produces an episode only when research surfaces one.
   </div>
 </div>
 
@@ -338,6 +365,7 @@
     <tr><td>@its.myash FB Business</td><td class="pt-count">1</td><td>Repurposed weekly from cigar content</td></tr>
     <tr><td>Personal Facebook</td><td class="pt-count">2</td><td>Mon English (from Ledger) &middot; Fri Spanish</td></tr>
     <tr><td>alexa.realtor Website Gallery</td><td class="pt-count">2+</td><td>1 Lifestyle watercolor + 1 Landmark card, standing &middot; + Listing card when new inventory</td></tr>
+    <tr><td style="color:var(--pir);">@alexa.realtor PIR playlist</td><td class="pt-count" style="color:var(--pir);">check</td><td style="color:var(--pir);">The Property Intelligence Report &mdash; templated episode ONLY when the Sunday check = yes (Pocono data item, or the monthly DR cut). Conditional, not produced on empty weeks.</td></tr>
     <tr><td style="color:var(--warm-gray);">Substack</td><td class="pt-count" style="color:var(--warm-gray);">0</td><td style="color:var(--warm-gray);">CLOSED &mdash; removed from system</td></tr>
     <tr><td style="color:var(--warm-gray);">alexasanchez.com</td><td class="pt-count" style="color:var(--warm-gray);">paused</td><td style="color:var(--warm-gray);">Operator life &mdash; resumes ~1 month at 1 piece/week when site is built</td></tr>
   </table>
@@ -348,6 +376,7 @@
   <div class="og-items">
     <div class="og-item og-item-dr"><span class="og-num og-num-dr">+</span><div class="og-text"><strong>DR Spanish Video</strong>Latino-audience DR angle &middot; monthly &middot; @alexa.realtor IG + YouTube</div></div>
     <div class="og-item og-item-dr"><span class="og-num og-num-dr">+</span><div class="og-text"><strong>DR Veteran Content</strong>Law 171-07 / CONFOTUR / FMP for veterans &middot; monthly &middot; IG Reel</div></div>
+    <div class="og-item og-item-pir"><span class="og-num og-num-pir">+</span><div class="og-text"><strong>PIR DR Cross-Border Cut (if check = yes)</strong>The 03M deep-dive cut as one narrated evergreen episode &middot; PIR playlist &middot; DR CTA gated until Urban Group switch closes</div></div>
     <div class="og-item"><span class="og-num">+</span><div class="og-text"><strong>Monthly Content Queue</strong>4-week queue per monthly prompt run (01B, 02B, 03, 06)</div></div>
     <div class="og-item"><span class="og-num">+</span><div class="og-text"><strong>Legislative/STR/DR deep-dive material</strong>Feeds the month's authority content</div></div>
   </div>
@@ -364,7 +393,7 @@
 
 <div class="gold-box">
   <div class="gold-box-title">Before You Start</div>
-  <div class="gold-box-text"><strong>Always use Deep Research mode.</strong> Fill in [INSERT CURRENT DATE] before running each prompt.<br><br><strong>Every Thursday (6 prompts):</strong> 01A Market Pulse Weekly &middot; 02A Seller Intelligence &middot; 03W DR Weekly Pulse &middot; 04B Cigars &middot; 05 Veteran PA &middot; 07 Landmark Pick<br><strong>First Thursday of month only (+4 prompts):</strong> 01B Market Pulse Monthly &middot; 02B STR Monthly &middot; 03M DR Full Deep-Dive &middot; 06 Legislation<br><br><span style="color:var(--warm-gray)"><strong>&#9208; Prompt 04A (Coffee / Filler &amp; Roast) is permanently removed.</strong></span><br><br><span class="ledgercolor"><strong>NEW in v6:</strong></span> DR research now splits. <strong>03W (weekly, light)</strong> feeds the DR English IG franchise every week. <strong>03M (monthly, full)</strong> feeds DR Spanish + DR Veteran + DR market data on the first Thursday.</div>
+  <div class="gold-box-text"><strong>Always use Deep Research mode.</strong> Fill in [INSERT CURRENT DATE] before running each prompt.<br><br><strong>Every Thursday (6 prompts):</strong> 01A Market Pulse Weekly &middot; 02A Seller Intelligence &middot; 03W DR Weekly Pulse &middot; 04B Cigars &middot; 05 Veteran PA &middot; 07 Landmark Pick<br><strong>First Thursday of month only (+4 prompts):</strong> 01B Market Pulse Monthly &middot; 02B STR Monthly &middot; 03M DR Full Deep-Dive &middot; 06 Legislation<br><br><span style="color:var(--warm-gray)"><strong>&#9208; Prompt 04A (Coffee / Filler &amp; Roast) is permanently removed.</strong></span><br><br><span class="ledgercolor"><strong>NEW in v6:</strong></span> DR research now splits. <strong>03W (weekly, light)</strong> feeds the DR English IG franchise every week. <strong>03M (monthly, full)</strong> feeds DR Spanish + DR Veteran + DR market data on the first Thursday.<br><br><span class="pircolor"><strong>PIR note:</strong></span> the same Thursday research feeds the Property Intelligence Report check &mdash; 02A/02B/06/01B surface Pocono data items; 03M is the monthly DR cross-border cut. No extra prompts; PIR reads the research you already run.</div>
 </div>
 
 <div class="prompt-card">
@@ -442,7 +471,7 @@ Cite sources. One angle only — specificity over breadth.</div>
 
 <div class="prompt-card">
   <div class="pc-header pc-header-dr"><div class="pc-left"><div class="pc-num">Prompt 03M &mdash; DR Full Deep-Dive</div><div class="pc-title">Dominican Republic Full Market Intelligence (Monthly)</div></div><div class="pc-badges"><span class="badge b-monthly">1st Thursday/Month</span><span class="badge b-deep">Deep Research</span><span class="badge b-dr">&rarr; DR ES + VET</span></div></div>
-  <div class="pc-purpose pc-purpose-dr">The full monthly DR intelligence (formerly Prompt 03). Now feeds the MONTHLY DR lane specifically: DR Spanish video (Latino-audience angle) and DR Veteran content. Also backfills 03W's angle bank for the weeks ahead.</div>
+  <div class="pc-purpose pc-purpose-dr">The full monthly DR intelligence (formerly Prompt 03). Now feeds the MONTHLY DR lane specifically: DR Spanish video (Latino-audience angle) and DR Veteran content. Also backfills 03W's angle bank for the weeks ahead. <span class="pircolor">Also the source for the PIR DR cross-border cut when that month's PIR check = yes.</span></div>
   <div class="pc-prompt-label">Copy &amp; Paste &mdash; FIRST THURSDAY OF MONTH ONLY</div>
   <div class="pc-prompt"><span class="cm">// PROMPT 03M — FIRST THURSDAY — FEEDS DR SPANISH + DR VETERAN (monthly lane)</span>
 Tourism/demand signals (arrivals, occupancy, new flight routes) &middot; infrastructure &amp; development &middot; real estate by zone (Cap Cana, Punta Cana/Bavaro, Las Terrenas, Sosua/Cabarete, SD Piantini) &middot; rental yields &middot; DR mortgage rates &middot; Law 171-07 &amp; CONFOTUR updates &middot; VA FMP news &middot; active listings $150K–$2M.
@@ -516,7 +545,7 @@ Cite sources. Specificity over broad description.</div>
 
 <div class="gold-box">
   <div class="gold-box-title">What Sunday Produces &mdash; The Ledger Comes First</div>
-  <div class="gold-box-text"><strong>The Pocono Ledger is written FIRST every Sunday.</strong> It is the market source of truth &mdash; the Hub Video, GBP Market Update, LinkedIn Market Signal, IG carousel, Personal FB English, and Pocono al D&iacute;a all derive from it. Write it once; adapt it outward. Every piece includes: <strong>full caption &middot; hashtags &middot; image/visual direction &middot; script &middot; posting time &middot; platform &middot; YouTube description where video &middot; AEO/SEO discipline throughout.</strong> Final output is a downloadable <strong>Weekly Production Packet PDF</strong> (Output 16).</div>
+  <div class="gold-box-text"><strong>The Pocono Ledger is written FIRST every Sunday.</strong> It is the market source of truth &mdash; the Hub Video, GBP Market Update, LinkedIn Market Signal, IG carousel, Personal FB English, and Pocono al D&iacute;a all derive from it. Write it once; adapt it outward. Every piece includes: <strong>full caption &middot; hashtags &middot; image/visual direction &middot; script &middot; posting time &middot; platform &middot; YouTube description where video &middot; AEO/SEO discipline throughout.</strong> Final output is a downloadable <strong>Weekly Production Packet PDF</strong> (Output 16). <span class="pircolor">Run the PIR weekly check as part of the session &mdash; it's a check, not a guaranteed output.</span></div>
 </div>
 
 <div class="output-grid">
@@ -541,6 +570,13 @@ Cite sources. Specificity over broad description.</div>
   </div>
 </div>
 
+<div class="output-grid" style="background:#EDECF5;border-color:#B6B4D8;">
+  <div class="og-title" style="color:var(--pir);">&#127909; Standing CHECK (not a numbered output) &mdash; The Property Intelligence Report</div>
+  <div class="og-items">
+    <div class="og-item og-item-pir"><span class="og-num og-num-pir">?</span><div class="og-text"><strong>PIR WEEKLY CHECK</strong>Every Sunday: did Thursday research surface a discrete PIR item (township STR / foreclosure / HOA / tax / policy) OR is the 03M DR cut due? YES &rarr; one templated episode to the PIR playlist. NO &rarr; log none, no filler. Conditional, like the Pillar &mdash; never a forced weekly quota.</div></div>
+  </div>
+</div>
+
 <div class="output-grid" style="background:#F2EFEB;">
   <div class="og-title" style="color:#8a3a3a;">Removed / Changed From v5</div>
   <div class="og-items">
@@ -549,6 +585,7 @@ Cite sources. Specificity over broad description.</div>
     <div class="og-item og-item-paused"><span class="og-num og-num-paused">&#8644;</span><div class="og-text"><strong>Veteran (was combined PA+DR weekly)</strong>Split: PA weekly (Output 6), DR Veteran now MONTHLY (Output 14)</div></div>
     <div class="og-item og-item-paused"><span class="og-num og-num-paused">&#8644;</span><div class="og-text"><strong>Weekly Spanish Highlight</strong>Renamed + re-roled as Pocono al D&iacute;a (Output 7) &mdash; the Spanish market read</div></div>
     <div class="og-item og-item-paused"><span class="og-num og-num-paused">&#43;</span><div class="og-text"><strong>The Pocono Ledger + Pillar</strong>NEW. Ledger weekly (Output 1). Pillar built from scratch, published/updated as needed, not weekly</div></div>
+    <div class="og-item og-item-paused"><span class="og-num og-num-paused">&#43;</span><div class="og-text"><strong>The Property Intelligence Report</strong>NEW. Weekly CHECK (not a numbered output). Templated episode only when research surfaces one</div></div>
     <div class="og-item og-item-paused"><span class="og-num og-num-paused">&times;</span><div class="og-text"><strong>Hub Video ES standalone</strong>Folded into Pocono al D&iacute;a &mdash; no separate Spanish hub</div></div>
   </div>
 </div>
@@ -581,6 +618,11 @@ Cite sources. Specificity over broad description.</div>
 <span class="gallerycolor">THIS WEEK'S GALLERY CARDS:</span>
 <span class="ph">[Lifestyle card pose/scene (appended to the standing watercolor prompt) + topic/blurb angle. Landmark card topic. Note whether a Listing card is needed — write SKIP if no new active inventory.]</span>
 
+<span class="pircolor">PROPERTY INTELLIGENCE REPORT — WEEKLY CHECK (produce ONLY if YES):</span>
+<span class="ph">[Ask ONE question: did this week's Thursday research (02A seller / 02B STR / 06 legislation / 01B monthly) surface a discrete PIR-worthy item — a township STR change, a foreclosure or consumer-protection explainer, an HOA / tax / policy item — OR is it first week of month, making the 03M DR deep-dive cut due?
+  IF YES: name the ONE episode topic + segment type (Pocono data OR DR cross-border) + CTA block (PA = Smart Way America now; DR = Urban Group, GATED until the brokerage switch closes — until then produce CTA-free or hold).
+  IF NO: write "NONE THIS WEEK." No filler, no manufactured episode.]</span>
+
 <span class="drcolor">FIRST WEEK OF MONTH ONLY — MONTHLY DR LANE:</span>
 <span class="ph">[If first week of month: DR Spanish video topic (Latino-audience angle, from 03M) + DR Veteran topic (from 05 DR half / 03M). Otherwise write SKIP — DR Spanish and DR Veteran do not run this week.]</span>
 
@@ -599,7 +641,7 @@ Cite sources. Specificity over broad description.</div>
 <span class="drcolor">--- PERPLEXITY 03W: DR WEEKLY PULSE (→ DR ENGLISH) ---</span>
 <span class="ph">[Paste]</span>
 
-<span class="drcolor">--- PERPLEXITY 03M: DR FULL DEEP-DIVE (→ DR SPANISH + VET) ---</span>
+<span class="drcolor">--- PERPLEXITY 03M: DR FULL DEEP-DIVE (→ DR SPANISH + VET + PIR DR CUT) ---</span>
 <span class="ph">[Paste if first Thursday of month, else SKIP]</span>
 
 <span class="cm">// PROMPT 04A (COFFEE) IS PERMANENTLY REMOVED.</span>
@@ -634,6 +676,7 @@ A topic lives in exactly ONE home; everything else links to it, never re-reports
 - Operator life → alexasanchez.com (PAUSED ~1 month — do not produce written operator articles until the site is built; the operator voice still runs via Talking Head, LinkedIn operator post, Weekend Smoke).
 - DR-for-Americans → weekly IG video franchise (Output 4). No written home.
 THE LEDGER IS THE PARENT: write it first, then the Hub Video, GBP Market Update, LinkedIn Market Signal, IG market carousel, Personal FB EN, and Pocono al Día are ADAPTATIONS of it — never independently conceived market pieces.
+PIR EXCEPTION TO NOTE: The Property Intelligence Report draws from the RESEARCH layer (Thursday deep-dives), NOT from the Ledger. It never re-reports the Ledger — Ledger stays written-only. PIR and the Ledger are siblings off the same research, never parent-and-derivative.
 
 <span class="hl">IDENTITY:</span>
 Alexa Sanchez. Licensed Realtor, PA License #RS326383, Smart Way America Realty.
@@ -647,7 +690,7 @@ Boutique DR cigar brand in development (A.Betances or A.Sanchez).
 Contact: (570) 688-8147 | Alexa@alexasanchez.net | Smart Way America Realty
 
 <span class="hl">BRANDS, ACCOUNTS & SITES:</span>
-alexa.realtor — real estate site. Holds THE POCONO LEDGER (weekly market blog) + THE PILLAR (evergreen guide) + listings + gallery. Social: IG · YouTube · LinkedIn · FB Business · GBP · Nextdoor.
+alexa.realtor — real estate site. Holds THE POCONO LEDGER (weekly market blog) + THE PILLAR (evergreen guide) + listings + gallery. Social: IG · YouTube · LinkedIn · FB Business · GBP · Nextdoor. Home of the Property Intelligence Report playlist + IG lane.
 alexasanchez.com — operator/KSM personal site (Squarespace, being built ~1 month). Will hold operator-life writing. PAUSED until live.
 @its.myash — cigars, lifestyle, operator life (IG · TikTok @itsmyash · YouTube · FB Business).
 @fillerandroast — content dark. Product still sold at lounge. Not in this system.
@@ -658,19 +701,27 @@ YouTube Channel — @AlexaSanchezRealtor · universal video hub for all brands.
 #LifeByAlexa — brand tag on every post.
 
 <span class="hl">YOUTUBE IS THE UNIVERSAL VIDEO HUB — MANDATORY:</span>
-Every video output includes a fully AEO/SEO-optimized YouTube description: keyword title · natural-language Q&A body · timestamps · min 8 tags · CTA. Applies to: Hub Video, Car Confession EN, DR English (longer cut), Pocono al Día, Veteran PA, Landmark, and (monthly) DR Spanish. Cigar/Lounge Video does NOT go to YouTube — IG + TikTok only.
+Every video output includes a fully AEO/SEO-optimized YouTube description: keyword title · natural-language Q&A body · timestamps · min 8 tags · CTA. Applies to: Hub Video, Car Confession EN, DR English (longer cut), Pocono al Día, Veteran PA, Landmark, (monthly) DR Spanish, and any Property Intelligence Report episode. Cigar/Lounge Video does NOT go to YouTube — IG + TikTok only.
 
 <span class="ledgercolor">THE POCONO LEDGER — PRODUCTION RULE (Output 1):</span>
-Written FIRST every Sunday, from Perplexity 01A (+ 02A seller section, + monthly deep-dives when present). alexa.realtor blog. Dated weekly. Editorial/financial-publication tone — clean, specific, not a sales pitch. Repeatable section spine, locked: TITLE (dated, specific) · EXECUTIVE SUMMARY · THE WEEK'S NUMBERS (rate snapshot + Monroe County figures) · WHAT CHANGED THIS WEEK · NEIGHBORHOOD/TOWNSHIP SPOTLIGHT · OPERATOR OBSERVATION (Alexa's read) · WHAT BUYERS SHOULD DO · WHAT SELLERS SHOULD DO · SOURCES. Every issue links UP to the Pillar ("new to the area, start here") and the Pillar points DOWN to the current Ledger. Build the template so ONE strong article satisfies it weekly — do not inflate sections. A Ledger that ships every Friday beats a beautiful one that slips.
+Written FIRST every Sunday, from Perplexity 01A (+ 02A seller section, + monthly deep-dives when present). alexa.realtor blog. Dated weekly. Editorial/financial-publication tone — clean, specific, not a sales pitch. Repeatable section spine, locked: TITLE (dated, specific) · EXECUTIVE SUMMARY · THE WEEK'S NUMBERS (rate snapshot + Monroe County figures) · WHAT CHANGED THIS WEEK · NEIGHBORHOOD/TOWNSHIP SPOTLIGHT · OPERATOR OBSERVATION (Alexa's read) · WHAT BUYERS SHOULD DO · WHAT SELLERS SHOULD DO · SOURCES. Every issue links UP to the Pillar ("new to the area, start here") and the Pillar points DOWN to the current Ledger. Build the template so ONE strong article satisfies it weekly — do not inflate sections. A Ledger that ships every Friday beats a beautiful one that slips. The Ledger is WRITTEN-ONLY — it does not spawn a video; PIR draws from research, not from the Ledger.
 
 <span class="pillarcolor">THE PILLAR — "Living in the Pocono Mountains & Lehigh Valley: The Complete 2026 Guide":</span>
-Evergreen. BUILT FROM SCRATCH — never existed. alexa.realtor blog. NOT a weekly output — build once, update occasionally. This is the resolution target for every "Full guide coming soon" gallery-card CTA in gallery-card-tracker.md. When produced/updated, note it in the Packet; otherwise it is not part of the weekly cycle. Comprehensive: towns, townships, cost of living, schools, commute, STR landscape, veteran angle, relocation from NY/NJ. Ledger issues cite it; it cites the current Ledger.
+Evergreen. BUILT FROM SCRATCH — never existed. alexa.realtor blog. NOT a weekly output — build once, update occasionally. This is the resolution target for every "Full guide coming soon" gallery-card CTA in gallery-card-tracker.md AND the destination for every Property Intelligence Report CTA. When produced/updated, note it in the Packet; otherwise it is not part of the weekly cycle. Comprehensive: towns, townships, cost of living, schools, commute, STR landscape, veteran angle, relocation from NY/NJ. Ledger issues cite it; it cites the current Ledger.
 
 <span class="drcolor">DR ENGLISH FRANCHISE — PRODUCTION RULE (Output 4):</span>
 WEEKLY. Highest-traction IG lane. Franchise identity: "Understanding Dominican Transactions as an American." From Perplexity 03W. TWO builds, same topic — NOT one script posted twice:
 - IG Reel: tight, hook-first, native scroll cut.
 - YouTube upload: LONGER script, deeper on the mechanics (transaction steps, the law, the numbers). Full AEO/SEO description.
 NO written parent. NO cross-platform derivatives — does NOT spawn a GBP post, LinkedIn post, or carousel. It feeds YouTube and stops there. Stays lean: one strong weekly video, two depths.
+
+<span class="pircolor">THE PROPERTY INTELLIGENCE REPORT — PRODUCTION RULE (weekly CHECK, NOT a numbered output):</span>
+Evergreen video property under @alexa.realtor (YouTube playlist "The Property Intelligence Report" + IG lane). Job: inbound lead-gen that scales WITHOUT Alexa's hours as KSM grows + go-to-Realtor positioning. Voice-forward, templated cards — NOT cinematic-faceless; Alexa's identity is the moat. Paired with Ride With Me (PIR = informational/head; RWM = lifestyle/heart) — cross-reference, never merge; both are pilots that can graduate to KSM shows.
+SOURCE = the research layer (Thursday 02A/02B/06/01B for Pocono data + monthly 03M for the DR cross-border cut), NEVER the Ledger. PIR does not re-report the Ledger.
+TWO SEGMENT TYPES: (1) Pocono data/consumer-protection (township STR, foreclosures, HOA/tax/policy); (2) DR cross-border evergreen (the 03M cut as one narrated episode).
+THE CHECK: every Sunday ask — did research surface a discrete PIR item, or is the 03M cut due? YES → produce ONE templated episode → PIR playlist. NO → log none, no filler. NEVER manufacture an episode to fill the slot (that violates the no-engagement-only rule).
+EVERY EPISODE: hook = a STATEMENT of the fear (no questions) · reusable card template (build once, assemble after) · mandatory AEO/SEO YouTube description. CTA: PA episodes = Smart Way America block (now); DR episodes = Urban Group block (GATED until the brokerage switch closes); Episode 01 = CTA-free to set informational identity. Every CTA ultimately points at the Pillar.
+NOT one of the 16 outputs. Conditional, like the Pillar and the monthly DR lane.
 
 <span class="hl">CONFIRMED POSTING SCHEDULES:</span>
 
@@ -687,6 +738,7 @@ NO written parent. NO cross-platform derivatives — does NOT spawn a GBP post, 
 @alexa.realtor YouTube — 7 uploads/week
 - Sunday: Hub Video (from Ledger) · Tuesday: Car Confession EN · Wednesday: Pocono al Día · Thursday: Veteran (PA) · Friday: Landmark · Friday: DR English (longer cut)
 - First week of month: + DR Spanish (monthly)
+- + Property Intelligence Report episode WHEN the weekly check = yes (conditional, not counted in the 7)
 
 @alexa.realtor LinkedIn — 3/week: Mon Market Signal (from Ledger) · Thu Operator Post · Fri Veteran Post
 
@@ -706,10 +758,12 @@ alexa.realtor Website Gallery — 2+ cards/week (see Gallery Card rule).
 
 MONTHLY (first week of month): DR Spanish video + DR Veteran content (Output 14).
 
+CONDITIONAL (weekly check): Property Intelligence Report episode — only when research surfaces a PIR item or the 03M cut is due.
+
 PAUSED: operator-life written articles (alexasanchez.com, ~1 month). CLOSED: Substack.
 
 <span class="ridecolor">POCONO LANDMARK SPOTLIGHT — DISTRIBUTION (LOCKED, holding Ride With Me's slot until camera):</span>
-One still photo per week. Friday @alexa.realtor IG + YouTube. Cross-posts (same photo, no reshoot): GBP Saturday · Nextdoor Thursday. NOT running: TikTok, @its.myash IG. Reactivation trigger = camera purchase (~2 weeks out, not bought). When it fires, this is a SWITCH not a rebuild — Landmark steps back, Ride With Me steps into the same slot, TikTok + @its.myash restored. Dorothy stays ~4 more weeks → ~2 weeks of Dorothy footage after camera → Dorothy→new-bike handoff is its own mini-series → ongoing on new bike. Winter → body cam.
+One still photo per week. Friday @alexa.realtor IG + YouTube. Cross-posts (same photo, no reshoot): GBP Saturday · Nextdoor Thursday. NOT running: TikTok, @its.myash IG. Reactivation trigger = camera purchase (~2 weeks out, not bought). When it fires, this is a SWITCH not a rebuild — Landmark steps back, Ride With Me steps into the same slot, TikTok + @its.myash restored. Dorothy stays ~4 more weeks → ~2 weeks of Dorothy footage after camera → Dorothy→new-bike handoff is its own mini-series → ongoing on new bike. Winter → body cam. NOTE: Ride With Me is PAIRED with the Property Intelligence Report — two pillars of one authority brand (RWM = lifestyle/heart; PIR = informational/head), cross-referencing, never merged.
 
 <span class="gallerycolor">WEBSITE GALLERY CARD RULE (LOCKED):</span>
 Three visual lanes — NEVER mixed:
@@ -735,17 +789,19 @@ Weekly Spanish market read. On a market week = the Ledger's top signal told fres
 
 <span class="hl">CAPTION & HASHTAG RULES:</span> Voice edgy, punchy, Bronx-cadenced, direct. Hashtags match intent. IG 5-8 · TikTok 3-5 · LinkedIn 3-4. No hashtags on GBP, Nextdoor, FB personal.
 
-<span class="hl">VIDEO SCRIPT RULES:</span> Strong hook first 2 seconds. Direct statements, no questions, no fluff. Short punchy lines. Executive cover energy. Car Confessions 20 sec max. Cover text: neon green for stats, red/white for confessions/hooks, chunky tilted font over face.
+<span class="hl">VIDEO SCRIPT RULES:</span> Strong hook first 2 seconds. Direct statements, no questions, no fluff. Short punchy lines. Executive cover energy. Car Confessions 20 sec max. Cover text: neon green for stats, red/white for confessions/hooks, chunky tilted font over face. (PIR is faceless-adjacent — same hook discipline, cards instead of face, hook is a STATEMENT of the fear.)
 
 <span class="hl">MONTHLY LANE RULE:</span> First week of month, run 01B/02B/03M/06. Produce Output 14 (DR Spanish + DR Veteran) and Output 15 (4-week queue per monthly prompt). Weeks 2-4 of the queue are angles only. 04A never included.
 
-<span class="hl">WEEKLY PRODUCTION PACKET RULE (Output 16):</span> Every Sunday, always last. Filename: Weekly-Production-Packet-[MonAbbrev][StartDate]-[MonAbbrev][EndDate].pdf. Nothing summarized. Every video includes its full YouTube description. The Ledger appears in full. Note Pillar status (built/updated this week or not part of cycle).
+<span class="hl">WEEKLY PRODUCTION PACKET RULE (Output 16):</span> Every Sunday, always last. Filename: Weekly-Production-Packet-[MonAbbrev][StartDate]-[MonAbbrev][EndDate].pdf. Nothing summarized. Every video includes its full YouTube description. The Ledger appears in full. Note Pillar status (built/updated this week or not part of cycle). Note PIR status (episode produced this week + playlist/CTA, or "none this week").
 
 <span class="hl">HASHTAG BANKS — AEO-ALIGNED:</span>
 @alexa.realtor RE EN: #PoconoRealEstate #PoconoMountains #MonroeCounty #STRInvesting #PARealEstate #LifeByAlexa
 @alexa.realtor veteran: #VeteranHomebuyer #VALoan #VeteranRealEstate #PARealEstate #LifeByAlexa
 Pocono al Día / Spanish: #BienesRaices #InversionesEnPoconos #MonroeCounty #LifeByAlexa
 DR English: #DominicanRepublicRealEstate #PuntaCana #CapCana #DRInvestment #InternationalRealEstate #LifeByAlexa
+PIR (Pocono data): #PoconoRealEstate #STRInvesting #MonroeCounty #PropertyIntelligence #LifeByAlexa
+PIR (DR cross-border): #DominicanRepublicRealEstate #CrossBorderRealEstate #DRInvestment #PropertyIntelligence #LifeByAlexa
 @its.myash cigars: #CigarLife #CigarAuthority #PremiumCigars #NellsSocial #DominicanCigars #LifeByAlexa
 @its.myash operator: #OperatorLife #DominicanEntrepreneur #LifeByAlexa
 Landmark: #PoconoMountains #MonroeCounty #PoconoLiving #LifeByAlexa + landmark-specific tag</div>
@@ -755,12 +811,13 @@ Landmark: #PoconoMountains #MonroeCounty #PoconoLiving #LifeByAlexa + landmark-s
   <div class="ssh-header"><div class="ssh-label">Section C &mdash; Never Change This</div><div class="ssh-title">The 16 Outputs &mdash; Full Production Instructions</div></div>
   <div class="pc-prompt-label">Fixed &mdash; Copy Exactly As Written</div>
   <div class="pc-prompt"><span class="cm">// SECTION C — PRODUCTION INSTRUCTIONS. NEVER EDIT.
-// Produce outputs in order. Output 1 (the Ledger) is written FIRST. Every output checked against the AEO Priority #1 rule and the no-duplication rule before it's finished.</span>
+// Produce outputs in order. Output 1 (the Ledger) is written FIRST. Every output checked against the AEO Priority #1 rule and the no-duplication rule before it's finished.
+// The PIR WEEKLY CHECK is conditional and runs between Output 15 and Output 16 — it is NOT a numbered output.</span>
 
 Using Section A inputs plus Section B context, produce:
 
 <span class="ledgercolor">OUTPUT 1 — THE POCONO LEDGER (written FIRST)</span>
-Source: Perplexity 01A + 02A seller section (+ monthly deep-dives when present). The week's market source of truth for alexa.realtor blog. Use the locked section spine: dated specific TITLE · EXECUTIVE SUMMARY · THE WEEK'S NUMBERS · WHAT CHANGED THIS WEEK · NEIGHBORHOOD/TOWNSHIP SPOTLIGHT · OPERATOR OBSERVATION · WHAT BUYERS SHOULD DO · WHAT SELLERS SHOULD DO · SOURCES. Link up to the Pillar. Editorial/financial tone. One strong article — do not inflate. Include: SEO title, meta description, slug, and internal link to the Pillar.
+Source: Perplexity 01A + 02A seller section (+ monthly deep-dives when present). The week's market source of truth for alexa.realtor blog. Use the locked section spine: dated specific TITLE · EXECUTIVE SUMMARY · THE WEEK'S NUMBERS · WHAT CHANGED THIS WEEK · NEIGHBORHOOD/TOWNSHIP SPOTLIGHT · OPERATOR OBSERVATION · WHAT BUYERS SHOULD DO · WHAT SELLERS SHOULD DO · SOURCES. Link up to the Pillar. Editorial/financial tone. One strong article — do not inflate. Include: SEO title, meta description, slug, and internal link to the Pillar. WRITTEN-ONLY — does not spawn a video.
 
 <span class="ledgercolor">OUTPUT 2 — LEDGER DERIVATIVES PACK</span>
 ALL derived from Output 1 — same market story, reshaped per platform. Do NOT re-report or re-conceive:
@@ -830,11 +887,15 @@ DR VETERAN: educational. Law 171-07 / CONFOTUR / FMP for veterans. IG Reel — S
 <span class="hl">OUTPUT 15 — MONTHLY CONTENT QUEUE (first Thursday of month only)</span>
 If 01B/02B/03M/06 ran, produce a 4-week queue for each. Week 1 = this week (covered). Weeks 2-4 = angle only (platform + format + hook + 1-line caption direction). No 04A queue ever.
 
+<span class="pircolor">PIR — WEEKLY CHECK (conditional — NOT a numbered output; run before Output 16)</span>
+Run the check from Section A. IF a PIR item surfaced (or the 03M cut is due): produce ONE templated episode for the Property Intelligence Report playlist (@alexa.realtor) — hook as a STATEMENT of the fear (no questions) · card-based reusable template · full AEO/SEO YOUTUBE DESCRIPTION · title · tags. CTA per the rule: PA episode = Smart Way America block; DR episode = Urban Group block (GATED — until the switch closes, produce CTA-free or hold); Episode 01 = CTA-free. Note the segment type (Pocono data / DR cross-border). Every CTA points at the Pillar. IF no item surfaced: output "[PIR — NONE THIS WEEK]" and move on. NEVER manufacture filler to fill the slot.
+
 <span class="hl">OUTPUT 16 — WEEKLY PRODUCTION PACKET PDF</span>
-Final output, every Sunday, last. FILENAME: Weekly-Production-Packet-[MonAbbrev][StartDate]-[MonAbbrev][EndDate].pdf. Day-by-day Sunday→Saturday. The Ledger appears IN FULL. Every video includes its full YouTube description. Gallery Cards as their own section. Note Pillar status. Nothing truncated. Mark any skip: [SKIP THIS WEEK — reason]. PRODUCE AS DOWNLOADABLE PDF.
+Final output, every Sunday, last. FILENAME: Weekly-Production-Packet-[MonAbbrev][StartDate]-[MonAbbrev][EndDate].pdf. Day-by-day Sunday→Saturday. The Ledger appears IN FULL. Every video includes its full YouTube description. Gallery Cards as their own section. Note Pillar status. Note PIR status (episode produced + playlist/CTA, or "none this week"). Nothing truncated. Mark any skip: [SKIP THIS WEEK — reason]. PRODUCE AS DOWNLOADABLE PDF.
 
 <span class="cm">// END. Copy Sections A + B + C into Claude every Sunday. Fill Section A. Never change B or C.
 // Write the Ledger (Output 1) FIRST. Everything market derives from it. No duplication.
+// Run the PIR weekly check before Output 16 — produce an episode only if the answer is yes.
 // Output 16 runs every Sunday, always last.</span></div>
 </div>
 
@@ -844,6 +905,7 @@ Final output, every Sunday, last. FILENAME: Weekly-Production-Packet-[MonAbbrev]
   <p>&#128209; Ledger + Pillar on alexa.realtor &middot; Operator life &rarr; alexasanchez.com (paused ~1mo) &middot; Substack closed</p>
   <p>&#127465;&#127476; DR English = weekly IG franchise + longer YouTube cut &middot; DR Spanish + DR Veteran = monthly</p>
   <p>&#128205; Landmark Spotlight holds Ride With Me's slot until camera &middot; reactivation is a switch, not a rebuild</p>
+  <p>&#127909; The Property Intelligence Report = weekly CHECK not a quota &middot; templated episode only when research surfaces one &middot; @alexa.realtor playlist &middot; paired with Ride With Me</p>
   <p>Every Thursday: 6 prompts (01A &middot; 02A &middot; 03W &middot; 04B &middot; 05 &middot; 07) &middot; First Thursday/month: +4 (01B &middot; 02B &middot; 03M &middot; 06) &middot; 04A permanently removed</p>
   <p>(570) 688-8147 &middot; Alexa@alexasanchez.net</p>
 </div>
