@@ -5,204 +5,486 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ROAST v6 — Weekly Scroll · Aug 30–Sep 5, 2026</title>
 <style>
-  :root{
-    --bg:#0f1511; --panel:#161d18; --panel2:#1c2620; --ink:#eaf2ec; --mut:#8ba393;
-    --grn:#22c55e; --grn2:#14532d; --line:#26332b; --dr:#38bdf8; --cig:#d9a441; --vet:#f97362;
-  }
+  :root{--bg:#0f1511;--panel:#161d18;--panel2:#1c2620;--ink:#eaf2ec;--mut:#8ba393;
+    --grn:#22c55e;--grn2:#14532d;--line:#26332b;--dr:#38bdf8;--cig:#d9a441;--vet:#f97362;}
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
   body{margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink);}
-  header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,#0f1511 70%,rgba(15,21,17,0));padding:16px 18px 22px;}
+  header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,#0f1511 72%,rgba(15,21,17,0));padding:14px 18px 20px;}
   h1{margin:0;font-size:19px;letter-spacing:-.3px;}
   .wk{color:var(--mut);font-size:12px;margin-top:2px;}
   .bar{height:10px;background:var(--panel2);border-radius:6px;overflow:hidden;margin-top:12px;border:1px solid var(--line);}
   .fill{height:100%;width:0;background:linear-gradient(90deg,var(--grn2),var(--grn));transition:width .35s ease;}
-  .pct{font-size:12px;color:var(--mut);margin-top:6px;display:flex;justify-content:space-between;align-items:center;}
-  .wrap{max-width:760px;margin:0 auto;padding:0 14px 60px;}
-  .day{margin:18px 0 0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel);}
-  .dhead{display:flex;justify-content:space-between;align-items:center;padding:13px 15px;cursor:pointer;background:var(--panel2);}
+  .pct{font-size:12px;color:var(--mut);margin-top:6px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
+  .wrap{max-width:820px;margin:0 auto;padding:0 12px 60px;}
+  .day{margin:16px 0 0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel);}
+  .dhead{display:flex;justify-content:space-between;align-items:center;padding:12px 15px;cursor:pointer;background:var(--panel2);}
   .dhead h2{margin:0;font-size:14px;} .dhead .dsub{color:var(--mut);font-size:11px;margin-top:2px;}
-  .dcount{font-size:11px;color:var(--mut);background:#0f1511;border:1px solid var(--line);padding:2px 9px;border-radius:20px;}
-  .dbody{padding:6px 12px 12px;display:block;}
+  .dcount{font-size:11px;color:var(--mut);background:#0f1511;border:1px solid var(--line);padding:2px 9px;border-radius:20px;white-space:nowrap;}
   .dbody.collapsed{display:none;}
-  .task{display:flex;gap:11px;align-items:flex-start;padding:11px 8px;border-bottom:1px solid var(--line);}
+  .task{border-bottom:1px solid var(--line);}
   .task:last-child{border-bottom:none;}
+  .trow{display:flex;gap:11px;align-items:flex-start;padding:11px 12px;}
   .cb{flex:0 0 22px;height:22px;margin-top:1px;border:2px solid #3a4a40;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s;background:#0f1511;}
   .cb.on{background:var(--grn);border-color:var(--grn);}
   .cb.on::after{content:"✓";color:#06210f;font-weight:800;font-size:14px;}
-  .tt{flex:1;min-width:0;}
-  .tt .ttitle{font-size:13.5px;line-height:1.35;}
+  .tt{flex:1;min-width:0;cursor:pointer;}
+  .ttitle{font-size:13.5px;line-height:1.35;}
   .task.done .ttitle{text-decoration:line-through;color:var(--mut);}
-  .tmeta{margin-top:4px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+  .tmeta{margin-top:5px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
   .pill{font-size:10px;padding:2px 8px;border-radius:20px;border:1px solid var(--line);color:var(--mut);white-space:nowrap;}
   .pill.time{color:#cfe8d8;border-color:#2f4a3a;}
-  .pill.re{color:#bfe9c9;border-color:#2f6b45;} .pill.dr{color:var(--dr);border-color:#1e4a63;}
-  .pill.cig{color:var(--cig);border-color:#5c4718;} .pill.vet{color:var(--vet);border-color:#6b2f28;}
-  .pill.op{color:#e9d5ff;border-color:#4b2d63;} .pill.pir{color:#fda4af;border-color:#6b2f39;}
-  footer{max-width:760px;margin:0 auto;padding:24px 16px;color:var(--mut);font-size:11px;text-align:center;}
-  .btn{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px 13px;font-size:12px;cursor:pointer;font-family:inherit;}
+  .pill.re{color:#bfe9c9;border-color:#2f6b45;}.pill.dr{color:var(--dr);border-color:#1e4a63;}
+  .pill.cig{color:var(--cig);border-color:#5c4718;}.pill.vet{color:var(--vet);border-color:#6b2f28;}
+  .pill.op{color:#e9d5ff;border-color:#4b2d63;}.pill.pir{color:#fda4af;border-color:#6b2f39;}
+  .chev{flex:0 0 auto;color:var(--mut);font-size:12px;margin-top:2px;transition:transform .2s;}
+  .task.open .chev{transform:rotate(90deg);}
+  .content{padding:2px 12px 14px 45px;display:none;}
+  .task.open .content{display:block;}
+  .blk{background:var(--panel2);border:1px solid var(--line);border-radius:9px;margin:8px 0;overflow:hidden;}
+  .blk .bh{display:flex;justify-content:space-between;align-items:center;padding:7px 11px;border-bottom:1px solid var(--line);background:#0f1511;}
+  .blk .lbl{font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:var(--mut);font-weight:600;}
+  .blk.script .lbl{color:#bfe9c9;}.blk.caption .lbl{color:#cfe8d8;}.blk.tags .lbl{color:#7dd3fc;}
+  .blk.cover .lbl{color:#fca5a5;}.blk.yt .lbl{color:#fda4af;}.blk.photo .lbl{color:#d9a441;}
+  .blk.prompt .lbl{color:#c4b5fd;}.blk.meta2 .lbl{color:#8ba393;}
+  .cpy{font-size:10px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:3px 9px;cursor:pointer;font-family:inherit;}
+  .cpy:active{transform:scale(.95);} .cpy.done{color:var(--grn);border-color:#2f6b45;}
+  .body{padding:10px 12px;font-size:12.5px;line-height:1.55;white-space:pre-wrap;color:#dbe8de;}
+  footer{max-width:820px;margin:0 auto;padding:22px 16px;color:var(--mut);font-size:11px;text-align:center;}
+  .btn{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-family:inherit;}
   .btn:active{transform:scale(.97);}
   .sync{font-size:10px;padding:3px 9px;border-radius:20px;border:1px solid var(--line);}
-  .sync.ok{color:var(--grn);border-color:#2f6b45;} .sync.local{color:var(--cig);border-color:#5c4718;}
-  .note{background:#1a130f;border:1px solid #5c4718;color:#e8cfa0;font-size:11px;padding:9px 12px;border-radius:10px;margin-top:14px;}
-  .legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+  .sync.ok{color:var(--grn);border-color:#2f6b45;}.sync.local{color:var(--cig);border-color:#5c4718;}
+  .note{background:#1a130f;border:1px solid #5c4718;color:#e8cfa0;font-size:11px;padding:9px 12px;border-radius:10px;margin-top:14px;text-align:left;}
+  .legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px;}
+  code{background:#0f1511;padding:1px 5px;border-radius:4px;border:1px solid var(--line);font-size:11px;}
 </style>
 </head>
 <body>
 <header>
   <div class="wrap" style="padding:0 4px;">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;">
-      <div>
-        <h1>ROAST v6 — Weekly Scroll</h1>
-        <div class="wk">Sun Aug 30 → Sat Sep 5, 2026 · market week · non-monthly</div>
-      </div>
+      <div><h1>ROAST v6 — Weekly Scroll</h1>
+        <div class="wk">Sun Aug 30 → Sat Sep 5, 2026 · tap a task to open its script/caption</div></div>
       <span id="syncBadge" class="sync local">● local</span>
     </div>
     <div class="bar"><div id="fill" class="fill"></div></div>
     <div class="pct"><span id="pctText">0 / 0 done</span>
-      <span><button class="btn" id="collapseAll">collapse all</button>
-      <button class="btn" id="resetBtn">reset week</button></span>
-    </div>
+      <span><button class="btn" id="collapseAll">collapse days</button>
+      <button class="btn" id="resetBtn">reset week</button></span></div>
     <div class="legend">
       <span class="pill re">RE</span><span class="pill dr">DR</span><span class="pill cig">cigar</span>
-      <span class="pill vet">veteran</span><span class="pill op">operator</span><span class="pill pir">PIR</span>
-    </div>
+      <span class="pill vet">veteran</span><span class="pill op">operator</span><span class="pill pir">PIR</span></div>
   </div>
 </header>
-
 <div class="wrap" id="app"></div>
-
 <footer>
   Ledger is the parent — every market piece derives from it · PIR draws from research, not the Ledger · #LifeByAlexa on every post<br>
-  Identity locked: Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147
-  <div class="note" id="cfgNote"><b>Supabase sync:</b> paste your project's publishable/anon key into <code>SUPABASE_KEY</code> at the top of the script to enable cross-device sync (project <code>gzqgeehcvmgstzenkyfnw</code>, table <code>ops_checks</code>, week key <code>2026-08-30</code>). Until then it saves locally in this browser — fully functional, just not synced.</div>
+  Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net
+  <div class="note" id="cfgNote"><b>Supabase sync:</b> paste your publishable/anon key into <code>SUPABASE_KEY</code> at the top of the script to sync checks across devices (project <code>gzqgeehcvmgstzenkyfnw</code>, table <code>ops_checks</code>, week key <code>2026-08-30</code>). Until then it saves locally in this browser — fully functional, just not synced.</div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 /* ---- CONFIG ---- */
-const SUPABASE_URL = "https://gzqgeehcvmgstzenkyfnw.supabase.co";
-const SUPABASE_KEY = ""; // <-- paste anon/publishable key to enable sync
-const WEEK_KEY = "2026-08-30";
-const TABLE = "ops_checks";
+const SUPABASE_URL="https://gzqgeehcvmgstzenkyfnw.supabase.co";
+const SUPABASE_KEY=""; // <-- paste anon/publishable key to enable sync
+const WEEK_KEY="2026-08-30"; const TABLE="ops_checks";
 
-/* ---- WEEK DATA (week-prefixed ids to prevent collision) ---- */
-const DAYS = [
- {day:"Sunday", date:"Aug 30", sub:"Write the Ledger first — everything derives from it", tasks:[
-   {id:"led", t:"THE POCONO LEDGER — write & publish (parent, written-only)", tag:"re", time:"blog"},
-   {id:"hub", t:"Hub Video EN — record & upload (the spoken Ledger)", tag:"re", time:"YouTube"},
- ]},
- {day:"Monday", date:"Aug 31", sub:"Ledger derivatives go out", tasks:[
-   {id:"li-mkt", t:"LinkedIn Market Signal (from Ledger)", tag:"re", time:"8:00 AM"},
-   {id:"gbp-mkt", t:"GBP Market Update (from Ledger) — no hashtags, full block", tag:"re", time:"9:00 AM"},
-   {id:"fb-en", t:"Personal FB English (Ledger takeaway, plain voice)", tag:"re", time:"10:00 AM"},
-   {id:"gbp-ins", t:"GBP Local Insight — sheriff-sale calendar angle", tag:"re", time:"11:00 AM"},
-   {id:"ig-caro", t:"IG Market Carousel — build 8 slides + caption", tag:"re", time:"—"},
- ]},
- {day:"Tuesday", date:"Sep 1", sub:"Confession day", tasks:[
-   {id:"nd-neigh", t:"Nextdoor Neighborly post (no selling)", tag:"re", time:"9:00 AM"},
-   {id:"carconf", t:"Car Confession EN (20s) — IG + YT Shorts", tag:"re", time:"3:00 PM"},
- ]},
- {day:"Wednesday", date:"Sep 2", sub:"Spanish market read + cigar voice", tasks:[
-   {id:"aldia", t:"Pocono al Día — record (Spanish, <3 min) — IG + YT", tag:"re", time:"—"},
-   {id:"th-tt", t:"Talking Head — TikTok (lounge vs restaurants)", tag:"cig", time:"—"},
-   {id:"th-ig", t:"@its.myash IG Talking Head (from TikTok)", tag:"cig", time:"—"},
-   {id:"myash-fb", t:"@its.myash FB Business (from cigar content)", tag:"cig", time:"—"},
- ]},
- {day:"Thursday", date:"Sep 3", sub:"Veteran + operator + cigar + PIR", tasks:[
-   {id:"vet-op", t:"LinkedIn Operator Post (operator voice)", tag:"op", time:"8:00 AM"},
-   {id:"vet-ig", t:"Veteran PA — IG Reel (VA + PHFA K-FIT stacking)", tag:"vet", time:"—"},
-   {id:"vet-yt", t:"Veteran PA — YouTube upload (standing)", tag:"vet", time:"—"},
-   {id:"vet-gbp", t:"Veteran GBP posts — EN + ES (no hashtags, full block)", tag:"vet", time:"—"},
-   {id:"cig-vid", t:"Cigar/Lounge Video — IG + TikTok (Dominican ≠ mild)", tag:"cig", time:"—"},
-   {id:"nd-land", t:"Nextdoor Landmark repost (Kettle Creek)", tag:"re", time:"—"},
-   {id:"ax-fb", t:"@alexa.realtor FB Business (from IG)", tag:"re", time:"—"},
-   {id:"pir", t:"PIR Ep. 03 — sheriff-sale / pre-foreclosure (conditional = YES)", tag:"pir", time:"playlist"},
- ]},
- {day:"Friday", date:"Sep 4", sub:"Landmark, DR, weekend voice", tasks:[
-   {id:"li-vet", t:"LinkedIn Veteran Post (question-framed)", tag:"vet", time:"8:00 AM"},
-   {id:"land", t:"Landmark Spotlight — Kettle Creek photo — IG + YT", tag:"re", time:"—"},
-   {id:"dr-ig", t:"DR English — IG Reel (CONFOTUR: eligible ≠ definitive)", tag:"dr", time:"—"},
-   {id:"dr-yt", t:"DR English — YouTube longer cut (7 documents)", tag:"dr", time:"—"},
-   {id:"smoke", t:"Weekend Smoke — @its.myash", tag:"cig", time:"6:00 PM"},
-   {id:"fb-es", t:"Personal FB Spanish", tag:"re", time:"7:00 PM"},
- ]},
- {day:"Saturday", date:"Sep 5", sub:"Spanish + community", tasks:[
-   {id:"ig-es", t:"@alexa.realtor Spanish IG post (from Ledger/al Día)", tag:"re", time:"10:00 AM"},
-   {id:"gbp-comm", t:"GBP Community/Lifestyle (from Landmark) — no hashtags", tag:"re", time:"10:00 AM"},
- ]},
- {day:"Ongoing / Assets", date:"this week", sub:"Gallery cards & catch-alls", tasks:[
-   {id:"gc-life", t:"Gallery: Lifestyle card — watercolor (deck/pond scene)", tag:"re", time:"—"},
-   {id:"gc-land", t:"Gallery: Landmark card — Kettle Creek real photo", tag:"re", time:"—"},
-   {id:"misc", t:"Misconception Reel — 'Airbnb illegal before first guest'", tag:"re", time:"—"},
- ]},
+/* ---- WEEK DATA (b = content blocks: {k:type, l:label, body}) ---- */
+const DAYS=[
+{day:"Sunday",date:"Aug 30",sub:"Write the Ledger first — everything derives from it",tasks:[
+ {id:"led",t:"THE POCONO LEDGER — write & publish (parent, written-only)",tag:"re",time:"blog",b:[
+   {k:"meta2",l:"SEO / slug",body:`Title: Pocono Real Estate Update (Aug 30, 2026): More Inventory Isn't a Discount — Monroe County Turns Selective
+Meta: Monroe County has more listings than a year ago, but higher prices and faster sales. What rising inventory really means for Pocono buyers and sellers this week.
+Slug: /pocono-ledger/2026-08-30-more-inventory-not-a-discount
+Link up to the Pillar: "New to the area? Start with the Pillar → Living in the Pocono Mountains & Lehigh Valley: The Complete 2026 Guide."`},
+   {k:"script",l:"Full article",body:`MORE INVENTORY ISN'T A DISCOUNT: MONROE COUNTY TURNS SELECTIVE
+The Pocono Ledger · Weekly Market Check · Week of August 30, 2026
+
+EXECUTIVE SUMMARY
+The "Poconos are still hot" headline is doing sellers a disservice. Monroe County buyers now have roughly 4% more homes to choose from than a year ago — but they're also paying higher prices and moving faster on the right homes. In June, the median list price hit $375,000 while the median sold price landed at $335,000. That ~$40,000 gap isn't a discount waiting to happen; it's a scoreboard showing which listings were priced for the market that exists and which were priced for 2022. Rates are essentially flat in the mid-6% range, so no rate-cut cavalry is coming to rescue an overpriced listing. The market didn't get cheaper. It got selective.
+
+THE WEEK'S NUMBERS
+• 30-yr fixed (Freddie Mac wkly avg): 6.66% (+0.01 pt w/w; ~6.56% a year ago)
+• 30-yr VA (daily lender avg): ~6.18% rate / 6.34% APR — zero-down remains the qualified-veteran edge
+• Monroe median list (June): $375,000 (+5.69% YoY); median sold: $335,000 (+13.29% YoY)
+• Active listings: 1,949 (~+4% YoY); median days on market: 51 (12% faster); sale-to-list ~98%
+• Submarket spread: Tobyhanna ~$299K · East Stroudsburg $399,450 · Stroudsburg $488,250 · Pocono Pines $499,900. Stroudsburg 31 days vs Effort 44 days.
+(Payment math is P&I only; add taxes, insurance, HOA, fees.)
+
+WHAT CHANGED THIS WEEK
+• Rates ticked up, not down — Freddie Mac to 6.66% (wk ending Aug 27). Mid-6% keeps move-up buyers payment-sensitive.
+• National demand softened at the contract stage — July pending sales -2.3% MoM, -2.2% YoY (lowest since Jan 2026); existing sales -1.7% to 4.06M pace.
+• Price cuts are now normal — ~20% of US listings had a reduction in July; national median list -2.4% YoY, inventory ~11.6% below the 2017–19 norm.
+• Commission-settlement framework firmer — Aug 19 the Eighth Circuit upheld the NAR settlement. Buyer agreements before touring, buyer-broker comp off the MLS, everything negotiable.
+
+NEIGHBORHOOD / TOWNSHIP SPOTLIGHT — STROUDSBURG vs EFFORT
+Stroudsburg carried a June median list around $488,250 and still moved in 31 days. Effort, at a lower price point, sat at 44 days. Higher price did not mean slower — proximity to services, walkable borough life, and commuter access pulled correctly-priced Stroudsburg homes through faster. Your days-on-market is set by pricing against current competition and location utility, not by what a neighbor got two summers ago.
+
+OPERATOR OBSERVATION
+What I'm telling sellers this week, and it's not always welcome: the quiet opportunity forming now is the mispriced-complexity home — the one anchored to a 2021–22 valuation but sitting on real, durable utility. Year-round livability, honest rental optionality, manageable HOA and insurance exposure, a location near Stroudsburg/East Stroudsburg services or a clean commuter route. That's the buy. What's getting punished is the seasonal, rule-dependent STR that only pencils on aggressive occupancy. "Cheap Poconos" isn't the play. Buying mispriced complexity — after you actually underwrite it — is.
+
+WHAT BUYERS SHOULD DO
+• Get fully underwritten, not just prequalified.
+• Use the extra inventory as leverage — target homes past the 51–54-day mark, price cuts, or a fixable condition/HOA/septic/STR objection.
+• Veterans: compare VA vs conventional on total cash-to-close, not the assumption VA always wins.
+• Underwrite any second home/STR on documented occupancy and real ADR minus costs — never a peak-weekend screenshot.
+
+WHAT SELLERS SHOULD DO
+• Price for the buyer who exists now — the ~$40K list-to-sold spread is the whole argument.
+• Don't wait for a Fed cut to fix overpricing. The Fed's on hold and a cut wouldn't auto-drop mortgage rates.
+• Weigh a rate buydown / closing-cost credit / inspection-readiness package vs a visible price cut.
+• Market the use case, not a generic "Pocono vacation home."
+• Settle your buyer-agent-comp position with your listing agent before launch.
+
+SOURCES
+Monroe figures via ForeverHomesAndLand June report; rates via Freddie Mac (GlobeNewswire) & Mortgage News Daily; VA via VALoans; national demand via NAR; price-cut/inventory via Realtor.com; Zillow value via Zillow; settlement ruling via Reuters. Educational, not financial advice.`}]},
+ {id:"hub",t:"Hub Video EN — record & upload (the spoken Ledger)",tag:"re",time:"YouTube",b:[
+   {k:"script",l:"Script",body:`[0:00–0:08 HOOK] More inventory in the Poconos does not mean cheaper Poconos. If you're waiting for a discount that isn't coming, this is the update you need.
+
+[0:08–0:20 OPEN] I'm Alexa Sanchez, licensed Realtor with Smart Way America Realty. This is the Pocono Ledger for the week of August 30th. Monroe County has about 4% more listings than a year ago — and that's got people convinced prices are falling. They're not. Let me show you what the numbers actually say.
+
+[0:20–0:55 THE NUMBERS] June median list: $375,000, up almost 6% YoY. Median sold: $335,000, up over 13%. Homes moving in 51 days — 12% faster — closing around 98% of asking. Rates basically flat at 6.66%. More homes, higher prices, faster sales, all at once. That's not a buyer's market. That's a selective market.
+
+[0:55–1:30 THE $40K GAP] The number that matters most: the $40,000 spread between median list and median sold. That gap is a scoreboard — homes priced for today vs homes priced for 2022. Stroudsburg, higher priced, still sold in 31 days. Effort, cheaper, sat 44. Price isn't what sets your days on market. Correct pricing and location are.
+
+[1:30–2:05 WHAT TO DO] Buyers — get fully underwritten, and use the extra inventory as leverage on stale or reduced listings. Sellers — price for the buyer who exists today. Don't wait for a Fed cut; the Fed's on hold and a cut wouldn't drop mortgage rates anyway. Market the use of the home, not just the house.
+
+[2:05–2:20 CTA] The full written Ledger is on my site with every number and source. New here? Start with my complete Pocono guide — link in the description. Alexa Sanchez, Smart Way America Realty. See you next week.`},
+   {k:"yt",l:"YouTube description",body:`Title: Pocono Real Estate Update Aug 30 2026: Why More Inventory Doesn't Mean Cheaper Homes | Monroe County Market
+
+Monroe County, PA has roughly 4% more active listings than a year ago — but prices are higher and homes are selling faster. Licensed Realtor Alexa Sanchez breaks down what rising inventory actually means for Pocono Mountains buyers and sellers.
+
+Is the Pocono housing market cooling in 2026? Not the way people think — inventory is up, but June's median sold price rose over 13% YoY and homes moved in about 51 days. The market is more selective, not cheaper.
+What is the $40,000 gap? June's median list ($375,000) sat ~$40,000 above the median sold ($335,000) — overpriced listings get left behind while correctly-priced homes command ~98% of asking.
+Are mortgage rates falling? No. The 30-year fixed is ~flat at 6.66%, and the Fed — which doesn't set mortgage rates directly — is on hold.
+
+0:00 More inventory ≠ cheaper Poconos
+0:20 The week's numbers
+0:55 The $40,000 list-to-sold gap
+1:30 What buyers and sellers should do
+2:05 Where to get the full Ledger
+
+Alexa Sanchez · Licensed PA Realtor · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net
+
+Tags: Pocono real estate, Monroe County PA housing market, Pocono Mountains homes for sale, Stroudsburg real estate, East Stroudsburg homes, Pocono housing market 2026, is the Pocono market cooling, Pennsylvania real estate update, mortgage rates 2026, STR investing Poconos, Pocono Ledger, Alexa Sanchez Realtor`},
+   {k:"caption",l:"Caption",body:`More homes on the market doesn't mean cheaper homes. Monroe County has ~4% more inventory than last year — and higher prices AND faster sales. This week's Ledger breaks down the $40K gap separating priced-right from wishful. Full breakdown on YouTube + the blog.`},
+   {k:"tags",l:"Hashtags",body:`#PoconoRealEstate #PoconoMountains #MonroeCounty #STRInvesting #LifeByAlexa`},
+   {k:"photo",l:"Thumbnail",body:`Split frame. Left: stack of SOLD signs, neon-green overlay "$375K LIST." Right: same street, red overlay "$335K SOLD." Center chunky tilted text: "NOT CHEAPER." Alexa's face lower-right, confident.`}]}
+]},
+{day:"Monday",date:"Aug 31",sub:"Ledger derivatives go out",tasks:[
+ {id:"li-mkt",t:"LinkedIn Market Signal (from Ledger)",tag:"re",time:"8:00 AM",b:[
+   {k:"caption",l:"Post",body:`The Pocono headline this week is "inventory is up." The operator read is more useful: inventory is up ~4% YoY in Monroe County, and yet June's median sold price rose over 13% and homes still cleared in ~51 days near 98% of ask.
+
+That's not a cooling market. It's a selective one. The $40,000 spread between median list ($375K) and median sold ($335K) is doing the sorting — separating homes priced for today from homes priced for 2022. Stroudsburg sold faster than a cheaper township because location and correct pricing, not sticker price, set days-on-market.
+
+The quiet opportunity: mispriced complexity — the four-season home with real utility whose seller is still anchored to a peak comp. The risk: the seasonal STR that only works on aggressive occupancy. Underwrite accordingly.
+
+Full Ledger on the blog.
+Alexa Sanchez · Licensed PA Realtor #RS326383 · Smart Way America Realty`},
+   {k:"tags",l:"Hashtags",body:`#PoconoRealEstate #MonroeCounty #RealEstateInvesting #LifeByAlexa`}]},
+ {id:"gbp-mkt",t:"GBP Market Update (from Ledger) — no hashtags",tag:"re",time:"9:00 AM",b:[
+   {k:"caption",l:"GBP post",body:`Monroe County Market Update — Week of Aug 30, 2026. More choice is not the same as lower prices. Active listings are up ~4% YoY (roughly 1,949 homes), but June's median list price reached $375,000 and the median sold price $335,000 — up 13% from a year ago — with homes closing near 98% of asking in about 51 days. The ~$40,000 gap between list and sold prices is the real story: correctly-priced homes still move; aspirationally-priced ones sit. Mortgage rates are roughly flat in the mid-6% range. Sellers, price against today's competition. Buyers, target stale or reduced listings and get fully underwritten first.
+
+Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net`}]},
+ {id:"fb-en",t:"Personal FB English (Ledger takeaway, plain voice)",tag:"re",time:"10:00 AM",b:[
+   {k:"caption",l:"Post",body:`Quick real-talk on the Pocono market this week: there are more homes for sale than last year, so everybody assumes prices are dropping. They're not. Prices are actually up, and the good homes are selling in about seven weeks near full asking. What changed is that buyers finally have enough choices to walk away from a house that's priced like it's still 2022. If you're selling, price it for who's actually shopping today. If you're buying, you've got room to negotiate on the listings that have been sitting. Happy to talk through your specific situation anytime.`}]},
+ {id:"gbp-ins",t:"GBP Local Insight — sheriff-sale calendar angle",tag:"re",time:"11:00 AM",b:[
+   {k:"caption",l:"GBP post",body:`Monroe County distress-channel note: The county Sheriff now conducts real-estate sales online through Bid4Assets, with sales scheduled for September 24 and October 29, 2026. For homeowners, the meaningful window is before a scheduled sale, when options are widest; for buyers, these sales require careful due diligence on title, access, septic, and condition. Understanding the local foreclosure calendar is part of navigating this market with clear eyes.
+
+Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net`}]},
+ {id:"ig-caro",t:"IG Market Carousel — build 8 slides + caption",tag:"re",time:"—",b:[
+   {k:"photo",l:"Slide directions",body:`1 (cover): "MORE INVENTORY ≠ CHEAPER POCONOS." Small: Week of Aug 30, 2026.
+2: Big stat "+4% listings YoY" over a Monroe County map outline.
+3: Two numbers: "$375K median LIST" / "$335K median SOLD" — arrow labeled "$40K gap."
+4: "51 days on market — 12% FASTER. 98% of asking." Speed lines.
+5: Town duel: "Stroudsburg 31 days vs Effort 44 days." Price isn't what sets DOM.
+6: "Rates: 6.66%, basically flat. No rate-cut rescue coming."
+7: Split: BUYERS → get underwritten, target stale listings. SELLERS → price for today.
+8 (CTA): "Full Ledger + sources on the blog. New here? Start with the guide." + contact block.`},
+   {k:"caption",l:"Caption",body:`Swipe for the truth the "Poconos are still hot" crowd skips → more homes, higher prices, faster sales, all at once. That's a selective market, not a cheap one. The $40K gap between list and sold is doing the sorting. Full Ledger on the blog.`},
+   {k:"tags",l:"Hashtags",body:`#PoconoRealEstate #PoconoMountains #MonroeCounty #STRInvesting #PARealEstate #LifeByAlexa`}]}
+]},
+{day:"Tuesday",date:"Sep 1",sub:"Confession day",tasks:[
+ {id:"nd-neigh",t:"Nextdoor Neighborly post (no selling)",tag:"re",time:"9:00 AM",b:[
+   {k:"caption",l:"Post",body:`Little market myth I keep hearing around town: "there are more houses for sale, so prices must be dropping." Around Monroe County that's actually not what's happening — prices are up from last year and the well-kept, fairly-priced homes are still moving quickly. The homes that sit are the ones priced like it's a few years ago. Not selling anything here, just figured neighbors thinking about a move might like the honest read. Happy to answer questions.
+— Alexa Sanchez`}]},
+ {id:"carconf",t:"Car Confession EN (20s) — IG + YT Shorts",tag:"re",time:"3:00 PM",b:[
+   {k:"script",l:"Script (20s)",body:`Confession: I lose deals because I won't lie to sellers. Somebody's got a house priced forty grand over what it'll actually sell for, and they want me to say "the Poconos are hot, it'll fly." It won't. More homes on the market this year means buyers can finally say no. And they will — to your house. Price it for today or watch it sit. That's the whole game right now.`},
+   {k:"cover",l:"Cover text",body:`"I LOSE DEALS BECAUSE I WON'T LIE" (red/white, chunky tilted, over face)`},
+   {k:"caption",l:"IG caption",body:`The uncomfortable version of this week's market. More inventory = buyers can finally walk. Price for today. Full Ledger on the blog.`},
+   {k:"tags",l:"Hashtags",body:`#PoconoRealEstate #MonroeCounty #PoconoMountains #RealTalk #LifeByAlexa`},
+   {k:"yt",l:"YT Shorts description",body:`Title: Why I Lose Real Estate Deals in the Poconos (Honest Realtor Confession) #shorts
+Monroe County has more inventory in 2026, which means buyers can finally walk away from overpriced homes. Here's the honest reason I won't tell a seller their over-market listing will "fly." Price for the buyer who exists today.
+Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147.
+Tags: Pocono real estate, honest realtor, Monroe County market, home pricing, overpriced listings, Pocono Mountains, real estate confession, Pennsylvania realtor, seller advice, LifeByAlexa`}]}
+]},
+{day:"Wednesday",date:"Sep 2",sub:"Spanish market read + cigar voice",tasks:[
+ {id:"aldia",t:"Pocono al Día — record (Spanish, <3 min) — IG + YT",tag:"re",time:"—",b:[
+   {k:"script",l:"Guion (ES)",body:`[GANCHO 0:00–0:05] Óyeme bien: que haya más casas en venta en los Poconos no quiere decir que estén más baratas. Al contrario.
+
+[0:05–0:45] Mira, mi amor, todo el mundo anda diciendo que el mercado se enfrió porque hay más inventario. En el condado de Monroe hay como un 4% más de casas que el año pasado, eso es verdad. Pero agárrate: el precio de venta subió más del 13% y las casas se están vendiendo en unos 51 días, casi al 98% de lo que piden. Más casas, precios más altos, y ventas más rápidas — todo a la vez. Eso no es un mercado barato. Es un mercado que ahora escoge.
+
+[0:45–1:40] El número que tú tienes que entender son esos casi cuarenta mil dólares de diferencia entre lo que la gente pide — $375,000 — y lo que de verdad se vende — $335,000. Esa diferencia te dice quién puso precio para hoy y quién puso precio pensando que todavía estamos en el 2022. Y no cuentes con que la Reserva Federal te va a salvar bajando las tasas — están quietas en 6.66%, y aunque bajaran, eso no baja automáticamente la hipoteca.
+
+[1:40–2:20] Entonces, si vas a vender: pon el precio para el comprador que existe hoy, no para el sueño del vecino. Y si vas a comprar: tú tienes poder ahora. Busca las casas que llevan tiempo sentadas o que ya bajaron de precio, y llégate con tu preaprobación completa, no una cartica cualquiera.
+
+[2:20–2:35 CIERRE] El análisis completo con todos los números está en mi blog. Soy Alexa Sanchez, Smart Way America Realty. Nos vemos la próxima.`},
+   {k:"yt",l:"Descripción YouTube (ES)",body:`Título: Mercado de Bienes Raíces en los Poconos (30 de agosto 2026): Más Inventario NO Significa Casas Más Baratas | Condado de Monroe
+¿Está bajando el mercado en los Poconos? Hay más casas en venta en el condado de Monroe, pero los precios subieron y las casas se venden más rápido. Alexa Sanchez, agente con licencia, te explica en español qué significa el aumento de inventario para compradores y vendedores esta semana. Educativo; no es asesoría financiera. Alexa Sanchez · Licencia PA #RS326383 · Smart Way America Realty · (570) 688-8147.
+Tags: bienes raices Poconos, mercado inmobiliario Monroe County, casas en venta Poconos, bienes raices Pensilvania en espanol, inversiones en Poconos, Alexa Sanchez, mercado de vivienda 2026`},
+   {k:"caption",l:"IG caption",body:`Más casas en venta no es lo mismo que casas más baratas, mi amor. El mercado de Monroe no se enfrió — se puso selectivo. Te explico los números. Análisis completo en el blog.`},
+   {k:"cover",l:"Cover text",body:`"MÁS CASAS ≠ MÁS BARATO" (verde neón, letra inclinada)`},
+   {k:"tags",l:"Hashtags",body:`#BienesRaices #InversionesEnPoconos #MonroeCounty #LifeByAlexa`}]},
+ {id:"th-tt",t:"Talking Head — TikTok (lounge vs restaurants)",tag:"cig",time:"—",b:[
+   {k:"script",l:"Script",body:`The cigar lounge doesn't compete with other cigar lounges anymore. It competes with restaurants. Think about it — when somebody's got two hours and a little money to spend on a night out, your lounge is up against a good steakhouse and a cocktail bar, not the humidor down the street. So the ones winning right now aren't winning on the biggest humidor. They're winning on food credibility, an actual drink program, design you want to sit in, and events worth showing up for. A cigar's not the product anymore. The evening is the product. That's exactly how I'm building Nell's Social — you don't come for a stick, you come for the two hours.`},
+   {k:"caption",l:"TikTok caption",body:`Your lounge isn't competing with the humidor down the street. It's competing with the steakhouse. The evening is the product. (Building Nell's Social on exactly this.)`},
+   {k:"tags",l:"Hashtags",body:`#CigarLife #CigarAuthority #NellsSocial #OperatorLife #LifeByAlexa`}]},
+ {id:"th-ig",t:"@its.myash IG Talking Head (from TikTok)",tag:"cig",time:"—",b:[
+   {k:"caption",l:"Caption",body:`The cigar lounge doesn't compete with other lounges anymore — it competes with restaurants. Nobody's choosing your humidor over the humidor down the street; they're choosing you over a steakhouse and a cocktail bar. So win on the evening, not the inventory. Food, drink, design, events. That's the Nell's Social blueprint. (Full take on TikTok.)`},
+   {k:"tags",l:"Hashtags",body:`#CigarLife #CigarAuthority #NellsSocial #OperatorLife #LifeByAlexa`}]},
+ {id:"myash-fb",t:"@its.myash FB Business (from cigar content)",tag:"cig",time:"—",b:[
+   {k:"caption",l:"Post",body:`Hot take from the lounge side of my world: cigar lounges don't compete with other lounges anymore — they compete with restaurants. When someone's got two hours and a night out to spend, you're up against a steakhouse, not the humidor down the road. The evening is the product now. It's exactly how we're building Nell's Social in Bartonsville — you come for the two hours, not just the stick.`}]}
+]},
+{day:"Thursday",date:"Sep 3",sub:"Veteran + operator + cigar + PIR",tasks:[
+ {id:"vet-op",t:"LinkedIn Operator Post (operator voice)",tag:"op",time:"8:00 AM",b:[
+   {k:"caption",l:"Post",body:`People ask why a Realtor also runs a cigar lounge and produces a TV network. Same reason, every time: I don't sell products, I build rooms people want to be in — physical and otherwise.
+
+The lounge taught me something that shows up everywhere else in my operating. Nell's Social doesn't win on the biggest humidor. It wins on the evening — the food, the pour, the design, the reason to show up. The cigar is the excuse; the two hours are the product.
+
+Real estate is the same. Nobody remembers the square footage. They remember whether you told them the truth about the $40,000 gap between what a house is listed for and what it'll actually sell for. The transaction is the excuse; trust is the product.
+
+Different rooms. Same job: be the reason someone comes back.`},
+   {k:"tags",l:"Hashtags",body:`#OperatorLife #DominicanEntrepreneur #LifeByAlexa`}]},
+ {id:"vet-ig",t:"Veteran PA — IG Reel (VA + PHFA K-FIT stacking)",tag:"vet",time:"—",b:[
+   {k:"script",l:"Script (30–60s)",body:`[HOOK 0:00–0:04] Pennsylvania veterans: your zero-down VA loan might stack with 5% in forgivable down-payment help. Most people don't know it's even allowed.
+
+[0:04–0:35] A VA purchase loan already needs no down payment. But closing costs and cash reserves are real. PHFA's K-FIT program can add assistance worth 5% of the lesser of purchase price or appraised value — and it's forgiven 10% a year over 10 years. On a $350,000 purchase with a $345,000 appraisal, that 5% is calculated on $345,000 — about $17,250 — subject to program and lender approval.
+
+[0:35–0:55] The catch: PHFA assistance is not automatically compatible with every VA lender or loan structure. You need written confirmation from a PHFA participating lender that your exact VA first mortgage and the K-FIT second can be paired. "Forgivable" also doesn't mean the lien vanishes — sell or refinance early and part of it may be repayable.
+
+[0:55–1:00 CTA] Educational only — confirm your file with a PHFA participating lender. Questions, I'm here.`},
+   {k:"cover",l:"Cover text",body:`"VA LOAN + 5% FORGIVABLE HELP" (neon green stat, chunky tilted)`},
+   {k:"caption",l:"Caption",body:`PA veteran buyers — a zero-down VA loan may stack with PHFA K-FIT (5%, forgiven over 10 years) to cover closing costs and reserves. It's product- and lender-specific, so get written confirmation your exact VA loan and the assistance second can be paired. Educational only, never a rate guarantee.`},
+   {k:"tags",l:"Hashtags",body:`#VeteranHomebuyer #VALoan #VeteranRealEstate #PARealEstate #LifeByAlexa`}]},
+ {id:"vet-yt",t:"Veteran PA — YouTube upload (standing)",tag:"vet",time:"—",b:[
+   {k:"yt",l:"Title + script + description",body:`Title: Can PA Veterans Stack a VA Loan With PHFA K-FIT Down Payment Assistance? (2026 Explainer)
+
+Script (deeper): A VA-backed purchase loan requires no down payment, no monthly mortgage insurance, and a valid Certificate of Eligibility with owner-occupancy intent. But zero-down doesn't mean zero-cash: closing costs, the funding fee (waived for veterans receiving VA compensation for a service-connected disability), and reserves still matter. That's where Pennsylvania's PHFA programs can help. K-FIT offers 5% of the lesser of purchase price or appraised value, forgiven 10% per year over 10 years, with a 660 minimum credit score and a post-closing liquid-asset limit generally around $50,000. Keystone Advantage and ACCESS are alternatives with different terms. The non-negotiable step: PHFA assistance is not automatically compatible with every VA product, property type, or lender — so get written confirmation from a PHFA participating lender that your specific VA first mortgage and chosen assistance second lien may be stacked before you rely on it in a preapproval or Agreement of Sale.
+
+0:00 Zero-down isn't zero-cash · 0:40 What K-FIT actually is · 1:30 The 5% calculation example · 2:15 Why stacking needs written lender confirmation · 3:00 Disclaimer + next step
+
+Educational only; not lending, tax, or VA-benefits advice. Never a guarantee of rates or approval. No VA endorsement implied. Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net
+Tags: VA loan, PHFA K-FIT, veteran homebuyer Pennsylvania, down payment assistance PA, VA loan stacking, PHFA participating lender, veteran real estate, Pocono veteran buyer, zero down VA loan, Pennsylvania first time buyer`}]},
+ {id:"vet-gbp",t:"Veteran GBP posts — EN + ES (no hashtags)",tag:"vet",time:"—",b:[
+   {k:"caption",l:"GBP English",body:`Veteran homebuyer note: A zero-down VA purchase loan may be paired with Pennsylvania's PHFA K-FIT assistance — 5% of the lesser of purchase price or appraised value, forgiven 10% per year over 10 years — to help cover closing costs and reserves. Compatibility is product- and lender-specific; get written confirmation from a PHFA participating lender before relying on it. Educational only; no rate or approval guarantee, no VA endorsement.
+
+Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net`},
+   {k:"caption",l:"GBP Español",body:`Para veteranos compradores: un préstamo VA de cero enganche puede combinarse con la asistencia K-FIT de PHFA en Pensilvania — 5% del menor entre el precio de compra o el valor de tasación, condonado 10% por año durante 10 años — para ayudar con costos de cierre y reservas. La compatibilidad depende del producto y del prestamista; obtenga confirmación por escrito de un prestamista participante de PHFA antes de contar con ella. Solo educativo; sin garantía de tasas ni aprobación, sin aval de VA.
+
+Alexa Sanchez · Licencia PA #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net`}]},
+ {id:"cig-vid",t:"Cigar/Lounge Video — IG + TikTok (Dominican ≠ mild)",tag:"cig",time:"—",b:[
+   {k:"script",l:"Script",body:`Everybody says "Dominican cigars are mild." That's lazy. Dominican isn't a flavor — it's an ecosystem. Cibao soil, Santiago factories, aging, blending. The country makes everything from a smooth Connecticut morning cigar to a broadleaf maduro that'll put you on the floor. So when we build a cigar night at Nell's, we don't sell "mild" or "strong." We sell the story: where the tobacco's from, whose hands rolled it, and what to pour next to it. Fifteen minutes, one guided ritual — welcome pour, origin, the light, one pairing, one thing you'll remember. That's the difference between a smoke and an experience.`},
+   {k:"caption",l:"Caption",body:`"Dominican cigars are all mild" is the most wrong thing people confidently say. The DR isn't a flavor profile — it's the most complete cigar ecosystem on earth. Come find out at Nell's. Thursday nights hit different.`},
+   {k:"tags",l:"Hashtags",body:`#DominicanCigars #CigarAuthority #NellsSocial #CigarLife #LifeByAlexa`}]},
+ {id:"nd-land",t:"Nextdoor Landmark repost (Kettle Creek)",tag:"re",time:"—",b:[
+   {k:"caption",l:"Post (neighborly, no selling)",body:`If you haven't walked the trails at Kettle Creek yet, late August is the time. The observation deck over the pond is a quiet little reward, and the whole 166-acre sanctuary is open dawn to dusk year-round. One of those spots that reminds you why we live up here. What's your favorite trail this time of year?
+— Alexa Sanchez`}]},
+ {id:"ax-fb",t:"@alexa.realtor FB Business (from IG)",tag:"re",time:"—",b:[
+   {k:"caption",l:"Post",body:`This week's Pocono market truth: more homes for sale doesn't mean cheaper homes. Monroe County has ~4% more inventory than last year, but prices are up and the right homes still sell in about 51 days near full asking. The $40K gap between median list and median sold price is separating priced-right from wishful thinking. Full Ledger on the blog.`}]},
+ {id:"pir",t:"PIR Ep. 03 — sheriff-sale / pre-foreclosure (conditional = YES)",tag:"pir",time:"playlist",b:[
+   {k:"cover",l:"Hook (statement of fear)",body:`"By the time your house hits the Monroe County sheriff's online auction, months of your best options are already gone."`},
+   {k:"script",l:"VO script (card-timed)",body:`[0:00–0:04] By the time your house shows up on the Monroe County sheriff's auction, months of your best options are already gone.
+[0:04–0:12] Here's the part people miss. The sheriff sale is the END of the process. Monroe County runs those sales online now, through Bid4Assets — the next ones are September 24th and October 29th. That date on the calendar started as a court filing months before.
+[0:12–0:22] The window that matters is BEFORE the auction. A foreclosure filing is a court case, not a locked door. Reinstatement, a program, a clean sale before the gavel drops — those live inside that window. After the auction, they mostly don't.
+[0:22–0:30] And the real danger isn't one problem. It's stacked ones. A filing, plus back taxes, plus a vacant house, plus a listing that already failed. Any one is fixable early. All four, late, move fast.
+[0:30–0:42] So — open the certified mail; your deadlines are in it. Call a HUD-approved counselor or a foreclosure attorney about your legal options — that's their lane, not mine. If selling is even a maybe, get a Realtor in early, because a controlled sale almost always beats an auction. And put those two dates on your calendar.
+[0:42–0:48] A foreclosure filing is a starting gun, not a verdict. The people who lose the most are the ones who wait for the auction to believe it's real.
+[0:48–0:55] If you own in Monroe County and you want a straight read on where you stand — start with the guide, then call.`},
+   {k:"photo",l:"Card contents (8)",body:`1 Title: PIR · Ep. 03 — "The Sheriff Sale Isn't the Start of Your Problem"
+2 The Fear: "By the time your house hits the auction, months of your best options are already gone."
+3 Timeline: Monroe sheriff sales run online via Bid4Assets. Next: Sept 24 & Oct 29, 2026. A sale date is the last step of a court process that began months earlier.
+4 The Window: Pre-sale = where reinstatement, loss-mitigation, and a controlled sale live. After the gavel, options narrow sharply.
+5 Overlap Signal: Danger = stacked distress — filing + delinquent taxes + vacancy/half-reno + a failed listing.
+6 What To Do: Open certified mail (deadlines) · call HUD counselor or PA foreclosure attorney · bring a Realtor in early · check calendar vs sale dates.
+7 The Truth: "A foreclosure filing is a starting gun, not a verdict."
+8 CTA: Smart Way America block → Pillar (guide).`},
+   {k:"yt",l:"YouTube description",body:`Title: Facing Foreclosure in Monroe County, PA? The Sheriff Sale Timeline Explained | Property Intelligence Report Ep. 03
+If you own a home in Monroe County or the Pocono Mountains and you're worried about foreclosure, understand the timeline. A sheriff sale is the final step of a court process that begins months earlier — and the window before the auction is where a homeowner's real options exist. Monroe County conducts real-estate sales online through Bid4Assets, with sales scheduled for September 24 and October 29, 2026. This episode covers what a foreclosure filing actually means, why the pre-sale window matters, the stacked-distress warning sign, and the protective steps to take in order. For legal options, contact a HUD-approved housing counselor or a Pennsylvania foreclosure attorney; if selling is on the table, a local Realtor can often net more through a controlled sale than an auction. Educational information, not legal, tax, or financial advice.
+0:00 The one thing people miss · 0:04 The sheriff-sale timeline · 0:12 The pre-sale window · 0:22 The stacked-distress warning · 0:30 What to do, in order · 0:42 The truth · 0:48 Where to start
+Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net
+Tags: Monroe County foreclosure, Pocono foreclosure help, sheriff sale Monroe County PA, Bid4Assets Monroe County, Pennsylvania foreclosure timeline, pre-foreclosure options PA, facing foreclosure Poconos, Stroudsburg real estate, East Stroudsburg foreclosure, Monroe County sheriff sale 2026, Pocono Mountains real estate, Property Intelligence Report`},
+   {k:"tags",l:"IG hashtags",body:`#PoconoRealEstate #STRInvesting #MonroeCounty #PropertyIntelligence #LifeByAlexa
+(flag: consider swapping #STRInvesting → #ForeclosureHelp on consumer-protection episodes)`}]}
+]},
+{day:"Friday",date:"Sep 4",sub:"Landmark, DR, weekend voice",tasks:[
+ {id:"li-vet",t:"LinkedIn Veteran Post (question-framed)",tag:"vet",time:"8:00 AM",b:[
+   {k:"caption",l:"Post",body:`"Can I use my VA loan AND get down-payment help in Pennsylvania?" It's one of the most common questions I hear from veteran buyers — and the answer is often yes, with a critical condition.
+
+A VA purchase loan already requires no down payment. But zero-down isn't zero-cash: closing costs and reserves are real. Pennsylvania's PHFA K-FIT program can add 5% of the lesser of purchase price or appraised value, forgiven 10% per year over 10 years. On a $350,000 purchase with a $345,000 appraisal, that 5% is figured on $345,000 — roughly $17,250 — subject to program and lender approval.
+
+The condition that trips people up: PHFA assistance is NOT automatically compatible with every VA lender or loan structure. Before you write it into a preapproval or an Agreement of Sale, get written confirmation from a PHFA participating lender that your exact VA first mortgage and the assistance second lien can be paired.
+
+Educational only — not lending or VA-benefits advice, and never a rate guarantee. No VA endorsement implied.
+Alexa Sanchez · Licensed PA Realtor #RS326383 · Smart Way America Realty · (570) 688-8147`},
+   {k:"tags",l:"Hashtags",body:`#VeteranHomebuyer #VALoan #PARealEstate #LifeByAlexa`}]},
+ {id:"land",t:"Landmark Spotlight — Kettle Creek — IG + YT",tag:"re",time:"—",b:[
+   {k:"photo",l:"Photo direction",body:`Frame: The observation deck looking out over one of the two ponds, last hour before dusk (late-August low golden light). Get the pond reflection with the mature canopy mirrored on still water; include a corner of the weathered deck rail as foreground for depth. Angle: Low, from deck level — water fills lower third, treeline + sky the top two-thirds. Time: Golden hour, no midday glare. No people in frame — conservation stillness is the mood.`},
+   {k:"caption",l:"IG caption",body:`Kettle Creek Environmental Education Center & Wildlife Sanctuary — 166 acres of mature forest, old field, and two ponds tucked between Bartonsville and Stroudsburg, with an observation deck that makes late August look like this. The trails are open year-round, dawn to dusk. This is the part of Pocono life people underestimate: not the marquee waterfalls, but the quiet, daily nature access three minutes from town. That's what makes living here feel different from vacationing here.
+#PoconoMountains #MonroeCounty #PoconoLiving #LifeByAlexa #KettleCreek`},
+   {k:"yt",l:"YouTube post",body:`Title: Kettle Creek Wildlife Sanctuary, Stroudsburg PA — 166 Acres of Quiet Pocono Nature
+A late-summer look at Kettle Creek Environmental Education Center & Wildlife Sanctuary near Bartonsville/Stroudsburg: 166 acres of mature deciduous forest, evergreen stands, an old field, and two ponds, with a public observation deck and trails open year-round dawn to dusk. The everyday outdoor access that defines living in the Pocono Mountains. Alexa Sanchez · Smart Way America Realty · PA License #RS326383.
+Tags: Kettle Creek, Stroudsburg PA, Pocono Mountains, Monroe County nature, wildlife sanctuary, Pocono living, things to do Poconos, Pennsylvania hiking`}]},
+ {id:"dr-ig",t:"DR English — IG Reel (CONFOTUR: eligible ≠ definitive)",tag:"dr",time:"—",b:[
+   {k:"script",l:"Script (<60s)",body:`[HOOK 0:00–0:04] "CONFOTUR eligible" is not a tax benefit. It's a brochure word. Here's what actually protects you.
+
+[0:04–0:30] If you're an American buying in Punta Cana or Cap Cana, someone's going to tell you the project is "CONFOTUR" — meaning no 3% transfer tax, no annual property tax for years. Maybe. But "eligible," "in process," and "provisional" are not the same as definitive. Provisional can still fall through. You don't want to find out after you've wired a deposit.
+
+[0:30–0:52] So before any money moves, your Dominican attorney gets you the definitive CONFOTUR resolution — with the exact project, phase, and unit named — and confirms your specific purchase qualifies. Not the master development. Your unit.
+
+[0:52–0:58 CTA] Full breakdown — the seven documents — on my YouTube. Save this before your next DR call.`},
+   {k:"cover",l:"Cover text",body:`"'CONFOTUR ELIGIBLE' ISN'T A TAX BREAK" (neon green, chunky tilted)`},
+   {k:"caption",l:"Caption",body:`Understanding Dominican transactions as an American: the CONFOTUR trap. "Eligible" ≠ "definitive." Make your lawyer prove your exact unit qualifies before you wire anything. Deeper cut on YouTube.`},
+   {k:"tags",l:"Hashtags",body:`#DominicanRepublicRealEstate #PuntaCana #CapCana #DRInvestment #InternationalRealEstate #LifeByAlexa`}]},
+ {id:"dr-yt",t:"DR English — YouTube longer cut (7 documents)",tag:"dr",time:"—",b:[
+   {k:"script",l:"Script (deeper)",body:`[0:00–0:10 HOOK] Every American buying in the Dominican Republic hears the word "CONFOTUR." Most treat a brochure logo like a guaranteed tax break. That mistake can cost you the 3% transfer tax you thought you'd never pay.
+
+[0:10–0:45 WHAT IT IS] CONFOTUR is a project-specific incentive under Dominican Law 158-01. When a tourism project qualifies, buyers can be exempt from the 3% property-transfer tax at registration and the annual 1% IPI wealth tax — commonly for up to 15 years. Key word: project-specific. It attaches to the approved development, not to every condo in the country.
+
+[0:45–1:30 PROVISIONAL VS DEFINITIVE] A project moves through stages: application, provisional classification, then definitive. Provisional is not definitive. A sales team can truthfully say "we're CONFOTUR" while the project is still provisional — and provisional is not the same guarantee. The Dominican tourism ministry runs an official portal that separates provisional from definitive and shows project status. That portal — not the brochure — is your source of truth.
+
+[1:30–2:30 THE SEVEN DOCUMENTS] Before you wire a reservation deposit, your independent Dominican attorney should have: one, the CONFOTUR resolution with the legal project name and resolution number; two, proof of definitive classification; three, the government portal search result confirming status; four, the exact unit schedule showing your unit is inside the classified development — a later tower or phase may not be; five, a developer letter that your purchase is the qualifying first transfer; six, construction-completion evidence, because the benefit clock may start there, not at your closing; and seven, an independent attorney's written opinion — not a broker brochure.
+
+[2:30–3:10 CONTRACT PROTECTION] Then it goes in the Contrato de Venta: full project name, resolution number and date, the specific unit, phase and building, whether you're buying directly from the approved developer, and — critically — who pays the 3% transfer tax if the exemption is denied, plus your remedy if the CONFOTUR claim turns out inaccurate.
+
+[3:10–3:25 CTA] A CONFOTUR promise belongs in your legal file, not just the sales deck. If you're evaluating a DR project and want to understand the transaction before you commit, that's exactly what I help American buyers do. Details below.`},
+   {k:"yt",l:"YouTube description",body:`Title: CONFOTUR in the Dominican Republic Explained: 7 Documents to Get Before You Wire a Deposit (American Buyer's Guide)
+Buying real estate in Punta Cana or Cap Cana as an American? "CONFOTUR eligible" is one of the most misunderstood phrases in Dominican real estate. This video explains what CONFOTUR actually is, the difference between provisional and definitive classification, and the exact documents your Dominican attorney should have before any money moves.
+What is CONFOTUR? A project-specific tax incentive under Dominican Law 158-01 that can exempt qualifying buyers from the 3% transfer tax and annual 1% IPI tax for up to 15 years.
+Does "CONFOTUR eligible" guarantee the tax break? No — "eligible," "in process," and "provisional" are not the same as definitive. Verify status on the official tourism-ministry portal, not the brochure.
+What should be in my purchase contract? The project name, resolution number, your specific unit and phase, whether you're buying from the approved developer, and who pays the 3% tax if the exemption is denied.
+0:00 The CONFOTUR mistake · 0:10 What CONFOTUR is · 0:45 Provisional vs definitive · 1:30 The 7 documents · 2:30 Contract protection · 3:10 How I help American buyers
+Educational only — not legal or tax advice. Use an independent Dominican attorney. Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net
+Tags: CONFOTUR, Dominican Republic real estate, Punta Cana real estate, Cap Cana investment, buying property Dominican Republic, DR real estate for Americans, Law 158-01, Dominican property tax, international real estate, transfer tax Dominican Republic, CONFOTUR explained`}]},
+ {id:"smoke",t:"Weekend Smoke — @its.myash",tag:"cig",time:"6:00 PM",b:[
+   {k:"script",l:"Script",body:`Weekend smoke. It's Friday, the week's done, and here's my move: something with a little age on it, a cup of real Dominican coffee instead of the usual bourbon, and forty-five minutes where the phone stays face-down. That's it. That's the whole ritual. People overcomplicate this. A good cigar isn't a flex — it's a pause button. Whatever you light this weekend, actually sit with it.`},
+   {k:"caption",l:"Caption",body:`Weekend smoke → something aged, a Dominican coffee instead of the pour, phone face-down for 45. A cigar's a pause button, not a flex. What are you lighting this weekend?`},
+   {k:"tags",l:"Hashtags",body:`#WeekendSmoke #CigarLife #NellsSocial #DominicanCigars #LifeByAlexa`}]},
+ {id:"fb-es",t:"Personal FB Spanish",tag:"re",time:"7:00 PM",b:[
+   {k:"caption",l:"Post",body:`Realísimo esta semana, mi gente: en los Poconos hay más casas en venta, y todo el mundo cree que eso significa que están más baratas. No. Los precios subieron y las buenas casas se venden rápido, casi a lo que piden. Las que se quedan sentadas son las que pusieron precio de hace tres años. Si vas a vender, pon precio para hoy. Si vas a comprar, tienes con qué negociar en las que llevan tiempo. Cualquier duda, aquí estoy.`}]}
+]},
+{day:"Saturday",date:"Sep 5",sub:"Spanish + community",tasks:[
+ {id:"ig-es",t:"@alexa.realtor Spanish IG post (from Ledger/al Día)",tag:"re",time:"10:00 AM",b:[
+   {k:"caption",l:"Post",body:`Más inventario no es un descuento. El condado de Monroe tiene más casas que el año pasado, pero con precios más altos y ventas más rápidas. El mercado no se abarató — se puso selectivo. Pon precio para el comprador de hoy. Análisis completo en el blog.`},
+   {k:"tags",l:"Hashtags",body:`#BienesRaices #InversionesEnPoconos #MonroeCounty #LifeByAlexa`}]},
+ {id:"gbp-comm",t:"GBP Community/Lifestyle (from Landmark) — no hashtags",tag:"re",time:"10:00 AM",b:[
+   {k:"caption",l:"GBP post",body:`Weekend in Monroe County: Kettle Creek Environmental Education Center & Wildlife Sanctuary near Bartonsville and Stroudsburg offers 166 acres of forest, ponds, and an observation deck, with trails open dawn to dusk year-round. The kind of everyday outdoor access that makes the Stroudsburg area a place to live, not just visit.
+
+Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net`}]}
+]},
+{day:"Ongoing / Assets",date:"this week",sub:"Gallery cards & the Misconception reel",tasks:[
+ {id:"gc-life",t:"Gallery: Lifestyle card — watercolor (deck/pond scene)",tag:"re",time:"—",b:[
+   {k:"prompt",l:"Watercolor prompt",body:`soft realistic Watercolor illustration of a Latina woman with medium skin tone, voluminous curly dark brown hair, gold watch, gold jewelry. Warm earthy tones — cream, tan, soft brown, muted greens. Soft natural lighting. Soft smooth watercolor washes, clean paper texture, fluid brushstrokes, delicate linework, luminous and airy. Editorial lifestyle illustration style. no text, no logos. — THIS WEEK'S SCENE: standing on a wooden observation deck at the edge of a still pond in a wooded sanctuary at golden hour, one hand resting on the deck rail, looking out over the water toward a mature treeline, relaxed and at home in the landscape.`},
+   {k:"caption",l:"Headline + body EN",body:`Headline: Living Here vs. Visiting Here
+
+Body EN: The thing nobody puts in a listing photo: the ordinary Tuesday walk. Places like Kettle Creek Sanctuary — 166 acres of forest and ponds, open dawn to dusk — are three minutes from town, not a two-hour vacation drive. That daily access is what separates living in the Pocono Mountains from vacationing here. It's also what holds value when the market gets selective: homes near real, everyday nature and services keep their pull. That's the Monroe County most buyers underestimate until they're standing in it.`},
+   {k:"caption",l:"Body ES + CTA",body:`Body ES: Vivir en los Poconos no es lo mismo que visitarlos: la naturaleza diaria, a minutos de casa, es lo que hace la diferencia. Eso es lo que mantiene el valor cuando el mercado se pone selectivo.
+
+CTA: Full guide coming soon → (points at the Pillar; swap for live link once published)`},
+   {k:"meta2",l:"Alt-text + tracker log",body:`Alt-text: Watercolor illustration of a Latina woman with curly dark brown hair standing on a wooden deck overlooking a still pond and forest at golden hour.
+Tracker: 2026-08-30 | Lifestyle | "Living Here vs. Visiting Here" | watercolor (deck/pond) | CTA=placeholder(Pillar) | status: PENDING PILLAR`}]},
+ {id:"gc-land",t:"Gallery: Landmark card — Kettle Creek real photo",tag:"re",time:"—",b:[
+   {k:"photo",l:"Photo direction + caption",body:`Photo: Real photo of Kettle Creek Sanctuary observation deck over the pond, golden hour (same shoot as Landmark Spotlight). No illustration.
+Caption: Kettle Creek Environmental Education Center & Wildlife Sanctuary — 166 acres, two ponds, trails open dawn to dusk. Bartonsville / Stroudsburg, Monroe County.`},
+   {k:"meta2",l:"Alt-text + tracker log",body:`Alt-text: Photograph of the observation deck and pond at Kettle Creek Wildlife Sanctuary near Stroudsburg, PA, at golden hour.
+Tracker: 2026-08-30 | Landmark | Kettle Creek Sanctuary | real photo (deck/pond) | no CTA | status: LIVE-READY`}]},
+ {id:"misc",t:"Misconception Reel — 'Airbnb illegal before first guest'",tag:"re",time:"—",b:[
+   {k:"meta2",l:"Chosen / truth / format",body:`Chosen misconception: "A big Pocono house with amenities automatically makes a great STR." (Source: 02A.)
+The truth: Whether the STR model even exists is decided by township zoning, permits, inspections, occupancy limits, HOA rules, and septic capacity — not house size or a peak-weekend screenshot. A municipal green light alone isn't enough; HOA + township both must permit the use.
+Format: IG Reel (30–60s) — four concrete "check this" items need more room than a 20s confession. Platform: @alexa.realtor IG + YouTube. Kept distinct from Tuesday's Car Confession (market angle).`},
+   {k:"script",l:"Script",body:`[HOOK 0:00–0:04] Your Poconos Airbnb might be illegal before your first guest ever checks in. Here's how people find out too late.
+
+[0:04–0:35] Big house, hot tub, sleeps twelve, gorgeous revenue screenshot from the seller. Looks like a slam-dunk STR. But the house doesn't decide whether you can rent it — four other things do. One: your township's zoning for that district. Two: whether a permit even exists, transfers, and survives inspection. Three: your HOA, which can ban rentals under 30 days no matter what the township says. Four: septic capacity, which caps real occupancy regardless of how many beds you cram in.
+
+[0:35–0:55] Monroe County has no countywide STR license. It's fragmented township by township. So a green light in one municipality means nothing in the next, and a municipal yes still doesn't beat an HOA no. The revenue screenshot is the LAST thing you should trust.
+
+[0:55–1:00 CTA] Underwrite the rules before the returns. That's the whole game up here.`},
+   {k:"cover",l:"Cover text",body:`"ILLEGAL BEFORE YOUR FIRST GUEST" (red/white, chunky tilted)`},
+   {k:"yt",l:"YouTube description",body:`Title: Is Your Pocono Airbnb Even Legal? 4 Things to Check Before You Buy an STR in Monroe County
+A big house with amenities doesn't automatically make a legal short-term rental in the Pocono Mountains. Before you trust a seller's revenue screenshot, check township zoning, permit status and transferability, HOA short-term-rental rules, and septic occupancy capacity. Monroe County has no countywide STR license — regulation is township-by-township, and a municipal approval doesn't override an HOA ban. Educational only. Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147.
+Tags: Pocono Airbnb, short term rental Monroe County, STR investing Poconos, Pocono STR rules, is my Airbnb legal, township zoning STR, HOA rental rules, Pocono Mountains investment property`},
+   {k:"caption",l:"Caption",body:`The house doesn't decide if you can Airbnb it — the township, the permit, the HOA, and the septic do. Monroe County has no countywide STR license, so "legal" is a township-by-township question. Underwrite the rules before the returns.`},
+   {k:"tags",l:"Hashtags",body:`#STRInvesting #PoconoRealEstate #MonroeCounty #ShortTermRental #LifeByAlexa`}]}
+]}
 ];
 
-/* ---- STATE ---- */
-let state = {}; let sb = null; let synced = false;
-const K = id => WEEK_KEY + ":" + id;
-const allIds = DAYS.flatMap(d => d.tasks.map(t => K(t.id)));
-
-/* ---- PERSISTENCE ---- */
-function loadLocal(){ try{ return JSON.parse(localStorage.getItem("roast:"+WEEK_KEY)||"{}"); }catch(e){ return {}; } }
-function saveLocal(){ try{ localStorage.setItem("roast:"+WEEK_KEY, JSON.stringify(state)); }catch(e){} }
-
+/* ---- STATE / SYNC ---- */
+let state={}; let sb=null; let synced=false;
+const K=id=>WEEK_KEY+":"+id;
+const allIds=DAYS.flatMap(d=>d.tasks.map(t=>K(t.id)));
+function loadLocal(){try{return JSON.parse(localStorage.getItem("roast:"+WEEK_KEY)||"{}");}catch(e){return{};}}
+function saveLocal(){try{localStorage.setItem("roast:"+WEEK_KEY,JSON.stringify(state));}catch(e){}}
 async function initSync(){
-  if(!SUPABASE_KEY || !window.supabase){ badge(false); state = loadLocal(); render(); return; }
+  if(!SUPABASE_KEY||!window.supabase){badge(false);state=loadLocal();render();return;}
   try{
-    sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-    const { data, error } = await sb.from(TABLE).select("key,done").in("key", allIds);
-    if(error) throw error;
-    const remote = {}; (data||[]).forEach(r => { remote[r.key.split(":").slice(1).join(":")] = r.done; });
-    state = Object.assign(loadLocal(), remote); synced = true; badge(true);
-  }catch(e){ synced = false; badge(false); state = loadLocal(); }
+    sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+    const{data,error}=await sb.from(TABLE).select("key,done").in("key",allIds);
+    if(error)throw error;
+    const remote={};(data||[]).forEach(r=>{remote[r.key.split(":").slice(1).join(":")]=r.done;});
+    state=Object.assign(loadLocal(),remote);synced=true;badge(true);
+  }catch(e){synced=false;badge(false);state=loadLocal();}
   render();
 }
-async function pushOne(id, val){
-  saveLocal();
-  if(sb && synced){
-    try{ await sb.from(TABLE).upsert({ key:K(id), done:val, week:WEEK_KEY }, { onConflict:"key" }); }
-    catch(e){ badge(false); synced=false; }
-  }
-}
-function badge(ok){
-  const b=document.getElementById("syncBadge");
-  b.className="sync "+(ok?"ok":"local"); b.textContent = ok?"● synced":"● local";
-}
+async function pushOne(id,val){saveLocal();
+  if(sb&&synced){try{await sb.from(TABLE).upsert({key:K(id),done:val,week:WEEK_KEY},{onConflict:"key"});}catch(e){badge(false);synced=false;}}}
+function badge(ok){const b=document.getElementById("syncBadge");b.className="sync "+(ok?"ok":"local");b.textContent=ok?"● synced":"● local";}
 
 /* ---- RENDER ---- */
+const openTasks=new Set();
 function render(){
-  const app=document.getElementById("app"); app.innerHTML="";
+  const app=document.getElementById("app");app.innerHTML="";
   DAYS.forEach((d,di)=>{
-    const done = d.tasks.filter(t=>state[t.id]).length;
-    const day=document.createElement("div"); day.className="day";
-    day.innerHTML =
-      `<div class="dhead" data-di="${di}">
-         <div><h2>${d.day} <span style="color:var(--mut);font-weight:400;">· ${d.date}</span></h2>
-         <div class="dsub">${d.sub}</div></div>
-         <span class="dcount">${done}/${d.tasks.length}</span>
-       </div><div class="dbody" id="body-${di}"></div>`;
+    const done=d.tasks.filter(t=>state[t.id]).length;
+    const day=document.createElement("div");day.className="day";
+    day.innerHTML=`<div class="dhead" data-di="${di}">
+      <div><h2>${d.day} <span style="color:var(--mut);font-weight:400;">· ${d.date}</span></h2>
+      <div class="dsub">${d.sub}</div></div>
+      <span class="dcount">${done}/${d.tasks.length}</span></div>
+      <div class="dbody" id="body-${di}"></div>`;
     const body=day.querySelector(".dbody");
     d.tasks.forEach(t=>{
-      const on=!!state[t.id];
-      const row=document.createElement("div"); row.className="task"+(on?" done":"");
-      row.innerHTML =
-        `<div class="cb ${on?'on':''}" data-id="${t.id}"></div>
-         <div class="tt"><div class="ttitle">${t.t}</div>
-         <div class="tmeta"><span class="pill ${t.tag}">${t.tag}</span>
-         <span class="pill time">${t.time}</span></div></div>`;
-      body.appendChild(row);
+      const on=!!state[t.id],op=openTasks.has(t.id);
+      const task=document.createElement("div");
+      task.className="task"+(on?" done":"")+(op?" open":"");
+      let blocks="";
+      (t.b||[]).forEach((bl,bi)=>{
+        blocks+=`<div class="blk ${bl.k}"><div class="bh"><span class="lbl">${bl.l}</span>
+          <button class="cpy" data-t="${t.id}" data-b="${bi}">copy</button></div>
+          <div class="body" id="bd-${t.id}-${bi}"></div></div>`;
+      });
+      task.innerHTML=`<div class="trow">
+        <div class="cb ${on?'on':''}" data-id="${t.id}"></div>
+        <div class="tt" data-open="${t.id}"><div class="ttitle">${t.t}</div>
+        <div class="tmeta"><span class="pill ${t.tag}">${t.tag}</span>
+        <span class="pill time">${t.time}</span>
+        <span class="pill">${(t.b||[]).length} block${(t.b||[]).length===1?'':'s'}</span></div></div>
+        <div class="chev" data-open="${t.id}">▸</div></div>
+        <div class="content">${blocks}</div>`;
+      body.appendChild(task);
+      (t.b||[]).forEach((bl,bi)=>{const el=task.querySelector("#bd-"+t.id+"-"+bi);if(el)el.textContent=bl.body;});
     });
     app.appendChild(day);
   });
-  bind(); progress();
+  bind();progress();
 }
 function bind(){
-  document.querySelectorAll(".cb").forEach(cb=>{
-    cb.onclick=()=>{ const id=cb.dataset.id; state[id]=!state[id]; pushOne(id, state[id]); render(); };
-  });
-  document.querySelectorAll(".dhead").forEach(h=>{
-    h.onclick=(e)=>{ if(e.target.classList.contains("cb"))return;
-      document.getElementById("body-"+h.dataset.di).classList.toggle("collapsed"); };
+  document.querySelectorAll(".cb").forEach(cb=>cb.onclick=e=>{e.stopPropagation();const id=cb.dataset.id;state[id]=!state[id];pushOne(id,state[id]);render();});
+  document.querySelectorAll("[data-open]").forEach(el=>el.onclick=e=>{e.stopPropagation();const id=el.dataset.open;openTasks.has(id)?openTasks.delete(id):openTasks.add(id);render();});
+  document.querySelectorAll(".dhead").forEach(h=>h.onclick=e=>{if(e.target.closest(".cb")||e.target.closest("[data-open]"))return;document.getElementById("body-"+h.dataset.di).classList.toggle("collapsed");});
+  document.querySelectorAll(".cpy").forEach(btn=>btn.onclick=e=>{e.stopPropagation();
+    const t=btn.dataset.t,bi=+btn.dataset.b;const task=DAYS.flatMap(d=>d.tasks).find(x=>x.id===t);
+    const text=task.b[bi].body;
+    navigator.clipboard.writeText(text).then(()=>{btn.textContent="copied ✓";btn.classList.add("done");setTimeout(()=>{btn.textContent="copy";btn.classList.remove("done");},1200);}).catch(()=>{btn.textContent="⌘C";});
   });
 }
 function progress(){
@@ -213,13 +495,11 @@ function progress(){
 }
 document.getElementById("resetBtn").onclick=async()=>{
   if(!confirm("Reset all checks for this week?"))return;
-  state={}; saveLocal();
-  if(sb&&synced){ try{ await sb.from(TABLE).delete().in("key", allIds); }catch(e){} }
+  state={};saveLocal();
+  if(sb&&synced){try{await sb.from(TABLE).delete().in("key",allIds);}catch(e){}}
   render();
 };
-document.getElementById("collapseAll").onclick=()=>{
-  document.querySelectorAll(".dbody").forEach(b=>b.classList.add("collapsed"));
-};
+document.getElementById("collapseAll").onclick=()=>document.querySelectorAll(".dbody").forEach(b=>b.classList.add("collapsed"));
 initSync();
 </script>
 </body>
