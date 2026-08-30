@@ -1,371 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ROAST Weekly Scroll · Aug 23–29, 2026</title>
-<meta name="theme-color" content="#12130F">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Archivo+Black&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROAST v6 — Weekly Scroll · Aug 30–Sep 5, 2026</title>
 <style>
-:root{
-  --ink:#12130F;
-  --paper:#F7F6F1;
-  --card:#FFFFFF;
-  --line:#DDDCD4;
-  --muted:#6E6E64;
-  --brass:#B98436;       /* accent — gold/warm earth, from the lounge + watercolor palette */
-  --brass-deep:#8A5F1F;
-  --alarm:#B03A2E;       /* flags */
-  --radius:4px;
-}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{
-  background:var(--paper);
-  color:var(--ink);
-  font-family:'Archivo',system-ui,-apple-system,sans-serif;
-  font-size:15px;line-height:1.5;
-  -webkit-font-smoothing:antialiased;
-  padding-bottom:80px;
-}
-button{font-family:inherit;cursor:pointer}
-:focus-visible{outline:3px solid var(--brass-deep);outline-offset:2px}
-
-/* ---------- HEADER ---------- */
-header{background:var(--ink);color:var(--paper);padding:18px 16px 14px}
-.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--brass);margin:0 0 6px}
-h1{font-family:'Archivo Black',sans-serif;font-size:26px;line-height:.98;
-  letter-spacing:-.02em;margin:0;text-transform:uppercase}
-h1 span{display:block;color:var(--brass)}
-.meta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#9C9C90;margin-top:8px}
-
-/* progress spine */
-.progress-wrap{margin-top:14px}
-.progress-track{height:6px;background:#2A2C24;border-radius:99px;overflow:hidden}
-.progress-fill{height:100%;width:0;background:var(--brass);transition:width .35s ease}
-.progress-label{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;
-  font-size:10.5px;color:#9C9C90;margin-top:6px;letter-spacing:.06em}
-.progress-label b{color:var(--brass);font-weight:500}
-
-/* ---------- DAY TABS ---------- */
-nav{position:sticky;top:0;z-index:20;background:var(--ink);
-  border-bottom:1px solid #2A2C24;overflow-x:auto;-webkit-overflow-scrolling:touch;
-  scrollbar-width:none}
-nav::-webkit-scrollbar{display:none}
-.tabs{display:flex;gap:0;padding:0 8px;min-width:max-content}
-.tab{background:none;border:0;padding:11px 12px 10px;color:#8A8A7E;
-  font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  border-bottom:3px solid transparent;white-space:nowrap;display:flex;align-items:center;gap:6px}
-.tab[aria-selected="true"]{color:var(--paper);border-bottom-color:var(--brass)}
-.tab .count{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;
-  background:#2A2C24;color:#9C9C90;padding:1px 5px;border-radius:99px}
-.tab[aria-selected="true"] .count{background:var(--brass);color:#FFF}
-.tab.all-done .count{background:var(--brass-deep);color:#FFF}
-
-/* ---------- DAY BODY ---------- */
-main{padding:16px 12px 0;max-width:760px;margin:0 auto}
-.day-head{display:flex;align-items:baseline;gap:10px;margin:4px 2px 14px}
-.day-head h2{font-family:'Archivo Black',sans-serif;font-size:19px;margin:0;
-  text-transform:uppercase;letter-spacing:-.01em}
-.day-head .date{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted)}
-
-/* ---------- CARD ---------- */
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-  margin-bottom:10px;overflow:hidden;position:relative}
-.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--line)}
-.card[data-done="1"]{opacity:.5}
-.card[data-done="1"]::before{background:var(--brass-deep)}
-.card[data-flagged="1"]::before{background:var(--alarm)}
-
-.card-top{display:flex;gap:11px;padding:12px 13px 12px 15px;align-items:flex-start}
-.check{flex:0 0 auto;width:26px;height:26px;border:2px solid var(--ink);border-radius:var(--radius);
-  background:transparent;display:flex;align-items:center;justify-content:center;padding:0;
-  transition:background .12s ease}
-.check svg{width:15px;height:15px;stroke:var(--ink);stroke-width:3.2;fill:none;
-  stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity .12s ease}
-.card[data-done="1"] .check{background:var(--brass);border-color:var(--brass-deep)}
-.card[data-done="1"] .check svg{opacity:1;stroke:#FFF}
-.card[data-done="1"] .card-title{text-decoration:line-through;text-decoration-thickness:2px}
-
-.card-main{flex:1;min-width:0}
-.card-time{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;
-  color:var(--muted);text-transform:uppercase}
-.card-title{font-size:15.5px;font-weight:700;line-height:1.25;margin:2px 0 5px;letter-spacing:-.01em}
-.chips{display:flex;flex-wrap:wrap;gap:5px}
-.chip{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.04em;
-  padding:2px 6px;border:1px solid var(--line);border-radius:99px;color:var(--muted)}
-.chip.acct{border-color:var(--ink);color:var(--ink);font-weight:500}
-.chip.kind-gbp{background:var(--brass);border-color:var(--brass);color:#FFF;font-weight:500}
-
-.note,.flag{font-size:12.5px;line-height:1.4;padding:7px 13px 7px 15px;border-top:1px dashed var(--line)}
-.note{color:var(--muted)}
-.flag{background:#FDEDEB;color:#8E1C13;font-weight:600}
-.flag::before{content:"\2691 ";}
-
-/* ---------- BLOCKS ---------- */
-.toggle-blocks{width:100%;background:#F2F1EB;border:0;border-top:1px solid var(--line);
-  padding:9px 13px;text-align:left;font-size:12px;font-weight:700;letter-spacing:.06em;
-  text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
-.toggle-blocks .arrow{transition:transform .2s ease;font-size:10px}
-.card[data-open="1"] .toggle-blocks .arrow{transform:rotate(180deg)}
-.blocks{display:none;padding:0 13px 13px 15px}
-.card[data-open="1"] .blocks{display:block}
-.block{margin-top:11px}
-.block-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:5px}
-.block-label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--muted)}
-.copy-btn{background:var(--ink);color:var(--paper);border:0;border-radius:var(--radius);
-  padding:4px 10px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
-  flex:0 0 auto}
-.copy-btn.copied{background:var(--brass);color:#FFF}
-pre{margin:0;background:#FAFAF6;border:1px solid var(--line);border-left:2px solid var(--ink);
-  border-radius:var(--radius);padding:10px 11px;font-family:'IBM Plex Mono',monospace;
-  font-size:12px;line-height:1.55;white-space:pre-wrap;word-wrap:break-word;
-  max-height:260px;overflow-y:auto}
-
-/* ---------- FOOTER / STATUS ---------- */
-.sync{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:#9C9C90;
-  font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;
-  padding:9px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px;z-index:30}
-.sync .dot{display:inline-block;width:7px;height:7px;border-radius:99px;background:var(--muted);
-  margin-right:6px;vertical-align:middle}
-.sync.ok .dot{background:var(--brass)}
-.sync.warn{color:#F4C542}
-.sync.warn .dot{background:#F4C542}
-.sync button{background:none;border:1px solid #3A3C33;color:#9C9C90;border-radius:var(--radius);
-  padding:4px 9px;font-family:inherit;font-size:10px;letter-spacing:.06em;text-transform:uppercase}
-
-.empty{text-align:center;color:var(--muted);padding:38px 20px;font-size:13.5px}
-
-@media (min-width:700px){
-  h1{font-size:34px}
-  body{font-size:15.5px}
-  .card-title{font-size:16.5px}
-}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+  :root{
+    --bg:#0f1511; --panel:#161d18; --panel2:#1c2620; --ink:#eaf2ec; --mut:#8ba393;
+    --grn:#22c55e; --grn2:#14532d; --line:#26332b; --dr:#38bdf8; --cig:#d9a441; --vet:#f97362;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink);}
+  header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,#0f1511 70%,rgba(15,21,17,0));padding:16px 18px 22px;}
+  h1{margin:0;font-size:19px;letter-spacing:-.3px;}
+  .wk{color:var(--mut);font-size:12px;margin-top:2px;}
+  .bar{height:10px;background:var(--panel2);border-radius:6px;overflow:hidden;margin-top:12px;border:1px solid var(--line);}
+  .fill{height:100%;width:0;background:linear-gradient(90deg,var(--grn2),var(--grn));transition:width .35s ease;}
+  .pct{font-size:12px;color:var(--mut);margin-top:6px;display:flex;justify-content:space-between;align-items:center;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 14px 60px;}
+  .day{margin:18px 0 0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel);}
+  .dhead{display:flex;justify-content:space-between;align-items:center;padding:13px 15px;cursor:pointer;background:var(--panel2);}
+  .dhead h2{margin:0;font-size:14px;} .dhead .dsub{color:var(--mut);font-size:11px;margin-top:2px;}
+  .dcount{font-size:11px;color:var(--mut);background:#0f1511;border:1px solid var(--line);padding:2px 9px;border-radius:20px;}
+  .dbody{padding:6px 12px 12px;display:block;}
+  .dbody.collapsed{display:none;}
+  .task{display:flex;gap:11px;align-items:flex-start;padding:11px 8px;border-bottom:1px solid var(--line);}
+  .task:last-child{border-bottom:none;}
+  .cb{flex:0 0 22px;height:22px;margin-top:1px;border:2px solid #3a4a40;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s;background:#0f1511;}
+  .cb.on{background:var(--grn);border-color:var(--grn);}
+  .cb.on::after{content:"✓";color:#06210f;font-weight:800;font-size:14px;}
+  .tt{flex:1;min-width:0;}
+  .tt .ttitle{font-size:13.5px;line-height:1.35;}
+  .task.done .ttitle{text-decoration:line-through;color:var(--mut);}
+  .tmeta{margin-top:4px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+  .pill{font-size:10px;padding:2px 8px;border-radius:20px;border:1px solid var(--line);color:var(--mut);white-space:nowrap;}
+  .pill.time{color:#cfe8d8;border-color:#2f4a3a;}
+  .pill.re{color:#bfe9c9;border-color:#2f6b45;} .pill.dr{color:var(--dr);border-color:#1e4a63;}
+  .pill.cig{color:var(--cig);border-color:#5c4718;} .pill.vet{color:var(--vet);border-color:#6b2f28;}
+  .pill.op{color:#e9d5ff;border-color:#4b2d63;} .pill.pir{color:#fda4af;border-color:#6b2f39;}
+  footer{max-width:760px;margin:0 auto;padding:24px 16px;color:var(--mut);font-size:11px;text-align:center;}
+  .btn{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px 13px;font-size:12px;cursor:pointer;font-family:inherit;}
+  .btn:active{transform:scale(.97);}
+  .sync{font-size:10px;padding:3px 9px;border-radius:20px;border:1px solid var(--line);}
+  .sync.ok{color:var(--grn);border-color:#2f6b45;} .sync.local{color:var(--cig);border-color:#5c4718;}
+  .note{background:#1a130f;border:1px solid #5c4718;color:#e8cfa0;font-size:11px;padding:9px 12px;border-radius:10px;margin-top:14px;}
+  .legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
 </style>
 </head>
 <body>
-
 <header>
-  <p class="eyebrow">ROAST v6 · Weekly Scroll</p>
-  <h1>Week of<span id="weekLabel"></span></h1>
-  <p class="meta">Alexa Sanchez · PA License #RS326383 · Smart Way America Realty</p>
-  <div class="progress-wrap">
-    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
-    <div class="progress-label"><span id="progressText">0 of 0 posted</span><b id="progressPct">0%</b></div>
+  <div class="wrap" style="padding:0 4px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;">
+      <div>
+        <h1>ROAST v6 — Weekly Scroll</h1>
+        <div class="wk">Sun Aug 30 → Sat Sep 5, 2026 · market week · non-monthly</div>
+      </div>
+      <span id="syncBadge" class="sync local">● local</span>
+    </div>
+    <div class="bar"><div id="fill" class="fill"></div></div>
+    <div class="pct"><span id="pctText">0 / 0 done</span>
+      <span><button class="btn" id="collapseAll">collapse all</button>
+      <button class="btn" id="resetBtn">reset week</button></span>
+    </div>
+    <div class="legend">
+      <span class="pill re">RE</span><span class="pill dr">DR</span><span class="pill cig">cigar</span>
+      <span class="pill vet">veteran</span><span class="pill op">operator</span><span class="pill pir">PIR</span>
+    </div>
   </div>
 </header>
 
-<nav><div class="tabs" id="tabs" role="tablist"></div></nav>
+<div class="wrap" id="app"></div>
 
-<main id="main"></main>
+<footer>
+  Ledger is the parent — every market piece derives from it · PIR draws from research, not the Ledger · #LifeByAlexa on every post<br>
+  Identity locked: Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147
+  <div class="note" id="cfgNote"><b>Supabase sync:</b> paste your project's publishable/anon key into <code>SUPABASE_KEY</code> at the top of the script to enable cross-device sync (project <code>gzqgeehcvmgstzenkyfnw</code>, table <code>ops_checks</code>, week key <code>2026-08-30</code>). Until then it saves locally in this browser — fully functional, just not synced.</div>
+</footer>
 
-<div class="sync" id="sync">
-  <span><span class="dot"></span><span id="syncText">Connecting…</span></span>
-  <button id="resetBtn">Reset week</button>
-</div>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
-/* ============================================================
-   SUPABASE CONFIG — unchanged from prior weeks.
-   Table: ops_checks (key text pk, done bool, updated_at timestamptz)
-   Keys are prefixed per week so weeks never collide:
-     2026-08-23:mon-gbp1
-   ============================================================ */
+/* ---- CONFIG ---- */
 const SUPABASE_URL = "https://gzqgeehcvmgstzenkyfnw.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6cWdlZWhjdm1nc3R6bmt5Zm53Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1OTIxMDgsImV4cCI6MjA4OTE2ODEwOH0.sw98v41oTub5p64cuP5Sqx574wNUd6kzOU1UxdoahWA";
+const SUPABASE_KEY = ""; // <-- paste anon/publishable key to enable sync
+const WEEK_KEY = "2026-08-30";
+const TABLE = "ops_checks";
 
+/* ---- WEEK DATA (week-prefixed ids to prevent collision) ---- */
+const DAYS = [
+ {day:"Sunday", date:"Aug 30", sub:"Write the Ledger first — everything derives from it", tasks:[
+   {id:"led", t:"THE POCONO LEDGER — write & publish (parent, written-only)", tag:"re", time:"blog"},
+   {id:"hub", t:"Hub Video EN — record & upload (the spoken Ledger)", tag:"re", time:"YouTube"},
+ ]},
+ {day:"Monday", date:"Aug 31", sub:"Ledger derivatives go out", tasks:[
+   {id:"li-mkt", t:"LinkedIn Market Signal (from Ledger)", tag:"re", time:"8:00 AM"},
+   {id:"gbp-mkt", t:"GBP Market Update (from Ledger) — no hashtags, full block", tag:"re", time:"9:00 AM"},
+   {id:"fb-en", t:"Personal FB English (Ledger takeaway, plain voice)", tag:"re", time:"10:00 AM"},
+   {id:"gbp-ins", t:"GBP Local Insight — sheriff-sale calendar angle", tag:"re", time:"11:00 AM"},
+   {id:"ig-caro", t:"IG Market Carousel — build 8 slides + caption", tag:"re", time:"—"},
+ ]},
+ {day:"Tuesday", date:"Sep 1", sub:"Confession day", tasks:[
+   {id:"nd-neigh", t:"Nextdoor Neighborly post (no selling)", tag:"re", time:"9:00 AM"},
+   {id:"carconf", t:"Car Confession EN (20s) — IG + YT Shorts", tag:"re", time:"3:00 PM"},
+ ]},
+ {day:"Wednesday", date:"Sep 2", sub:"Spanish market read + cigar voice", tasks:[
+   {id:"aldia", t:"Pocono al Día — record (Spanish, <3 min) — IG + YT", tag:"re", time:"—"},
+   {id:"th-tt", t:"Talking Head — TikTok (lounge vs restaurants)", tag:"cig", time:"—"},
+   {id:"th-ig", t:"@its.myash IG Talking Head (from TikTok)", tag:"cig", time:"—"},
+   {id:"myash-fb", t:"@its.myash FB Business (from cigar content)", tag:"cig", time:"—"},
+ ]},
+ {day:"Thursday", date:"Sep 3", sub:"Veteran + operator + cigar + PIR", tasks:[
+   {id:"vet-op", t:"LinkedIn Operator Post (operator voice)", tag:"op", time:"8:00 AM"},
+   {id:"vet-ig", t:"Veteran PA — IG Reel (VA + PHFA K-FIT stacking)", tag:"vet", time:"—"},
+   {id:"vet-yt", t:"Veteran PA — YouTube upload (standing)", tag:"vet", time:"—"},
+   {id:"vet-gbp", t:"Veteran GBP posts — EN + ES (no hashtags, full block)", tag:"vet", time:"—"},
+   {id:"cig-vid", t:"Cigar/Lounge Video — IG + TikTok (Dominican ≠ mild)", tag:"cig", time:"—"},
+   {id:"nd-land", t:"Nextdoor Landmark repost (Kettle Creek)", tag:"re", time:"—"},
+   {id:"ax-fb", t:"@alexa.realtor FB Business (from IG)", tag:"re", time:"—"},
+   {id:"pir", t:"PIR Ep. 03 — sheriff-sale / pre-foreclosure (conditional = YES)", tag:"pir", time:"playlist"},
+ ]},
+ {day:"Friday", date:"Sep 4", sub:"Landmark, DR, weekend voice", tasks:[
+   {id:"li-vet", t:"LinkedIn Veteran Post (question-framed)", tag:"vet", time:"8:00 AM"},
+   {id:"land", t:"Landmark Spotlight — Kettle Creek photo — IG + YT", tag:"re", time:"—"},
+   {id:"dr-ig", t:"DR English — IG Reel (CONFOTUR: eligible ≠ definitive)", tag:"dr", time:"—"},
+   {id:"dr-yt", t:"DR English — YouTube longer cut (7 documents)", tag:"dr", time:"—"},
+   {id:"smoke", t:"Weekend Smoke — @its.myash", tag:"cig", time:"6:00 PM"},
+   {id:"fb-es", t:"Personal FB Spanish", tag:"re", time:"7:00 PM"},
+ ]},
+ {day:"Saturday", date:"Sep 5", sub:"Spanish + community", tasks:[
+   {id:"ig-es", t:"@alexa.realtor Spanish IG post (from Ledger/al Día)", tag:"re", time:"10:00 AM"},
+   {id:"gbp-comm", t:"GBP Community/Lifestyle (from Landmark) — no hashtags", tag:"re", time:"10:00 AM"},
+ ]},
+ {day:"Ongoing / Assets", date:"this week", sub:"Gallery cards & catch-alls", tasks:[
+   {id:"gc-life", t:"Gallery: Lifestyle card — watercolor (deck/pond scene)", tag:"re", time:"—"},
+   {id:"gc-land", t:"Gallery: Landmark card — Kettle Creek real photo", tag:"re", time:"—"},
+   {id:"misc", t:"Misconception Reel — 'Airbnb illegal before first guest'", tag:"re", time:"—"},
+ ]},
+];
 
-const DATA = {"week": "Aug 23–29, 2026", "weekHash": "2026-08-23", "items": [{"id": "sun-ledger", "day": "sun", "time": "Written first", "title": "The Pocono Ledger (blog)", "account": "@alexa.realtor", "platform": "alexa.realtor blog", "kind": "article", "blocks": [{"label": "SEO title", "text": "Pocono Real Estate Market Update: Monroe County Balanced but Firm (Week of Aug 23, 2026) | Pocono Ledger"}, {"label": "Meta description", "text": "Monroe County stays a balanced, selective market as 30-year rates ease to 6.65%. June data: $375K median list, 51 days on market, ~98% sale-to-list. What buyers and sellers should do now."}, {"label": "Slug + internal link", "text": "Slug: /blog/pocono-ledger-monroe-county-market-update-aug-23-2026\n\nLink UP to the Pillar: 'New to the area? Start with our complete 2026 guide to living in the Pocono Mountains & Lehigh Valley.' (placeholder until Pillar confirmed live)"}, {"label": "Article (full)", "text": "THE POCONO LEDGER — BALANCED, NOT SOFT: MONROE COUNTY, WEEK OF AUGUST 23, 2026\n\nNew to the Pocono Mountains? Start with our complete 2026 guide to living here. (Pillar link — pending publication)\n\nEXECUTIVE SUMMARY\nMortgage rates eased for a second straight week, but the move was marginal and it does not change the shape of the Monroe County market. The county remains balanced and selective, not soft: buyers have more to choose from, yet correctly priced, move-in-ready homes are still trading quickly and close to ask. Statewide sales cooled seasonally in July, and the post-settlement commission model was reaffirmed at the federal appellate level. The takeaway this week is discipline on both sides — buyers underwriting for purchasing power rather than waiting on the Fed, sellers pricing to live competition rather than spring memory.\n\nTHE WEEK'S NUMBERS\nRate snapshot. 30-year fixed: 6.65%, down 2 basis points week over week from 6.67% — a second consecutive weekly decline. 30-year VA: lender surveys place VA pricing in the low-6% range; one national survey showed 6.167%, with pricing varying materially by credit, fees, and points. The Fed held its policy rate at 3.50%–3.75% in July; next FOMC decision is September 15–16. Mortgage pricing tracks bond-market expectations more than the overnight rate.\n\nPayment math at 6.65% (P&I only): about $1,605/mo per $250,000 borrowed; $3,210/mo per $500,000; $3,852/mo per $600,000 — before taxes, insurance, HOA, and mortgage insurance. The 2-bp drop moves the payment about $3/mo per $250,000. Not a reason to wait — a reason to shop lenders and structure credits or points.\n\nMonroe County pulse (June, latest complete): 1,949 active listings (+~4% YoY); 51 median days on market (12% faster YoY); median list $375,000 (+5.69%); median sold $335,000 (+13.29%); average sale-to-list ~98%.\n\nWHAT CHANGED THIS WEEK\nRates fell a second week, 6.67% to 6.65% — real, but small. Pennsylvania's July home sales fell about 10% month over month (roughly 13,000 in June to 11,700 in July) and were down nearly 4% year over year — seasonality pulling urgency out of the statewide market. The Eighth Circuit upheld approval of the major NAR/HomeServices seller-commission settlement, keeping the current model in place: negotiable compensation and written buyer agreements before touring.\n\nNEIGHBORHOOD / TOWNSHIP SPOTLIGHT\nThe headline numbers hide how much submarket matters. June median list prices ranged from about $299,000 in Tobyhanna to $499,900 in Pocono Pines, with Stroudsburg marketing materially faster than several nearby areas. A 'Monroe County price' is a fiction — the parcel's municipality and school district set the real story. One live land-use factor: proposed data-center development. Roughly 24 projects have at least preliminary activity in the region, and a majority of Monroe County municipalities have adopted restrictions on where such facilities can be built. If that touches a listing's neighborhood, address it precisely and early.\n\nOPERATOR OBSERVATION\n'Balanced' is getting mistaken for 'cheap,' and it isn't. Under roughly $400,000, clean, financeable, year-round homes are still the most competitive segment in the county — those don't sit. What sits is aspirational pricing on a home that missed its micro-market. Nationally, 27.1% of listings took a price cut in July; that's the market telling you what happens when you test a number instead of setting one. Exposure without activity past the 51-day median isn't a market problem — it's a price, condition, access, or photography problem, and it's fixable.\n\nWHAT BUYERS SHOULD DO\n- Get fully underwritten, not just pre-qualified. Small rate moves don't substitute for purchasing-power discipline.\n- Veterans: compare VA quotes on APR, lender fees, points, and funding-fee treatment — not the note rate alone.\n- Use the larger choice set to negotiate inspection items, closing costs, and rate buydowns, especially on listings sitting beyond local norms.\n- Don't mistake balanced for bargain — turnkey homes in strong submarkets still attract competition.\n\nWHAT SELLERS SHOULD DO\n- Price to the active competition, not a spring high or a neighbor's anecdote. Exposure without activity should trigger a prompt price/condition review.\n- Lead with condition, accurate disclosures, strong photography, and a clear positioning story — especially for STR-capable, lake, amenity-community, and commuter homes.\n- Consider a targeted concession or rate buydown before a larger price cut; it can improve affordability more visibly for qualified buyers.\n- If data centers, zoning, HOA rules, or STR regulations touch the property, get ahead of them in the disclosure conversation.\n\nSOURCES\nMonroe County figures: Forever Homes & Land (June). Rates & Fed: Freddie Mac / Fortune / Forbes. PA July sales: PR Newswire. Settlement: MLex / NAR. Data-center activity: Spotlight PA / Pocono Record. Alexa Sanchez, Licensed PA Realtor #RS326383, Smart Way America Realty. Educational only; rates not guaranteed."}], "note": "Source of truth. Everything market-side derives from this — no re-reporting. This week = 'balanced, not soft' (2nd straight rate dip, but marginal). Pillar NOT part of this week's cycle.", "flag": null}, {"id": "sun-hub", "day": "sun", "time": "Record + upload", "title": "Hub Video EN — the spoken Ledger", "account": "@alexa.realtor", "platform": "YouTube", "kind": "video", "blocks": [{"label": "Script", "text": "HOOK (0:00–0:08)\nRates dropped again this week. Your Monroe County buying power? Basically didn't move. Let me show you why — and what actually matters right now.\n\nOPEN (0:08–0:25)\nI'm Alexa Sanchez, Smart Way America Realty. This is the Pocono Ledger for the week of August 23rd. Three things: what rates really did, what the county numbers say, and the one mistake sellers keep making.\n\nSECTION 1 — RATES (0:25–1:10)\n30-year fixed is 6.65%, down two basis points. Two. On 250 grand borrowed, that's about three dollars a month. The Fed held in July, next call is September 15th and 16th, and mortgage rates move on the bond market, not the Fed's overnight rate. Stop waiting for a reset that isn't coming. Get fully underwritten and shop your lender.\n\nSECTION 2 — THE COUNTY (1:10–2:05)\nJune data: 1,949 active listings, up about 4% year over year. Median days on market, 51 — 12% faster. Median list, $375,000. Median sold, $335,000, up 13%. Sale-to-list near 98%. Balanced, not soft. And it's submarket-specific — Tobyhanna's around $299K median list, Pocono Pines is $499,900. There's no one 'Monroe County price.'\n\nSECTION 3 — THE SELLER MISTAKE (2:05–2:55)\nNationally, 27% of listings took a price cut in July. Testing a high number doesn't get you more — it gets you 51-plus days and a cut. Price to the live competition. Exposure with no activity isn't the market. It's price, condition, access, or photos. All fixable.\n\nCTA (2:55–3:10)\nFull breakdown's on the blog — the Pocono Ledger, weekly. New to the area? Start with my complete Pocono guide, link below. Alexa Sanchez, Smart Way America Realty, 570-688-8147."}, {"label": "YouTube title", "text": "Pocono Real Estate Update: Monroe County Market, Rates & Seller Mistakes (Aug 2026)"}, {"label": "YouTube description", "text": "Rates eased to 6.65% this week — but does that change anything for Monroe County buyers? Realtor Alexa Sanchez breaks down the Pocono Mountains market for the week of August 23, 2026.\n\nWhat's the Monroe County market like right now? Balanced and selective. June's latest complete data: 1,949 active listings (+~4% YoY), 51 median days on market (12% faster), $375,000 median list, $335,000 median sold (+13.29%), ~98% sale-to-list.\nShould I wait for the Fed to cut rates? Not necessarily — the Fed held at 3.50%–3.75% in July, and mortgage rates track bond-market expectations, not the overnight rate.\nWhy isn't my Pocono home selling? In a balanced market, overpricing gets penalized fast — exposure with no activity past ~51 days is usually price, condition, access, or photography.\n\n0:00 Rates 0:25 What rates really did 1:10 Monroe County numbers 2:05 The seller mistake 2:55 What to do next\n\nAlexa Sanchez, PA License #RS326383 | Smart Way America Realty | (570) 688-8147 | Alexa@alexasanchez.net"}, {"label": "Tags", "text": "pocono real estate, monroe county pa homes, pocono mountains market update, pennsylvania mortgage rates 2026, pocono homes for sale, str investing poconos, stroudsburg real estate, tobyhanna, pocono pines, alexa sanchez realtor, smart way america realty, selling a home monroe county"}, {"label": "Caption + hashtags", "text": "Rates dropped. Your buying power didn't. This week's Pocono Ledger in under 4 minutes. 👇\n\n#PoconoRealEstate #PoconoMountains #MonroeCounty #STRInvesting #LifeByAlexa"}, {"label": "Thumbnail direction", "text": "Cartoon headshot, left third. Right two-thirds dark. Chunky slightly tilted text.\nRED/WHITE: 6.65% — SO WHAT?\nNEON GREEN corner tag: BALANCED, NOT SOFT\nNo stock house photo. No graph."}], "note": null, "flag": null}, {"id": "sun-pir", "day": "sun", "time": "Record + upload", "title": "PIR Ep. 02 — Sept 14 Upset Tax Sale (Pocono data)", "account": "@alexa.realtor", "platform": "YouTube playlist + IG lane", "kind": "video", "blocks": [{"label": "Reusable card template (reuse Ep.01 spine)", "text": "Card 1 — Title + 'The Property Intelligence Report' lockup\nCard 2 — The Fear (hook): a STATEMENT of the fear (no question)\nCard 3 — What it is: the verifiable rule, cited\nCard 4 — The buyer trap\nCard 5 — The owner trap\nCard 6 — The bigger picture\nCard 7 — CTA: PA episode = Smart Way America block. Points at the Pillar."}, {"label": "Episode 02 script (voice over cards)", "text": "Card 2 (fear): There's a tax sale in Monroe County on September 14th, and some of the people who own those homes still don't know they're on the list.\n\nCard 3 (what it is): Pennsylvania's Upset Tax Sale is the first time a property can be auctioned for unpaid taxes — after two years of delinquency. Monroe County's is September 14, 2026, 9 a.m., at the Sherman Theater in Stroudsburg. This is confirmed with the county Tax Claim Bureau.\n\nCard 4 (buyer trap): If you're bidding, this is buyer-beware. Upset Sale properties sell subject to existing liens and mortgages. The tax debt gets cleared — the mortgage may not. No title search, no refund, no warranty. People lose money assuming 'cheap' means 'clean.'\n\nCard 5 (owner trap): If it's your home on that list, you have options before the gavel drops — payment agreements and redemption paths with deadlines that move fast. The worst move is silence. The bureau also closes online card payments September 1st through the 21st, so timing matters.\n\nCard 6 (bigger picture): This sits inside a busy fall distressed calendar — sheriff's sales run online through Bid4Assets on September 24th and October 29th too. Investor or worried owner, the move is the same: get the facts before the date, not after.\n\nCard 7 (CTA — PA / Smart Way America): If you're weighing a distressed-property purchase or you're an owner trying to get ahead of a sale, talk to a professional first. Alexa Sanchez, Smart Way America Realty, 570-688-8147. Full Pocono guide → the Pillar."}, {"label": "YouTube description", "text": "Title: Monroe County Tax Sale September 14, 2026: What Buyers and Owners Must Know | Property Intelligence Report Ep. 02\n\nMonroe County, PA holds its 2026 Upset Tax Sale on September 14 — and it carries real risk on both sides. This Property Intelligence Report breaks down what buyers and delinquent owners need to know before the date.\n\nQ: When is the Monroe County 2026 tax sale? September 14, 2026, 9:00 a.m., Sherman Theater, 524 Main Street, Stroudsburg.\nQ: Are tax sale properties a good deal? Buyer-beware — Upset Sale properties sell subject to existing liens and mortgages, no title search, no refund. Do full lien/title diligence first.\nQ: What if my home is on the list? Owners may have payment-agreement and redemption options with fast deadlines — act before the sale, don't wait.\nQ: What other distressed sales are coming? Sheriff's sales run online via Bid4Assets, with dates including September 24 and October 29, 2026.\n\n0:00 The Sept 14 sale 0:20 What an Upset Sale is 0:45 The buyer trap 1:20 If it's your home 1:55 The bigger fall calendar 2:25 Get help before the date\n\nEducational only — not legal or tax advice. Verify details with the Monroe County Tax Claim Bureau. Alexa Sanchez, REALTOR, PA License #RS326383, Smart Way America Realty. (570) 688-8147.\n\nTags: monroe county tax sale 2026, pa upset tax sale, pennsylvania tax sale properties, sheriff sale poconos, distressed property investing, bid4assets, pocono real estate, tax delinquent property pa, property intelligence report, alexa sanchez"}, {"label": "IG lane caption", "text": "There's a tax sale in Monroe County on September 14th — and both buyers AND owners can get burned if they don't know the rules. Buyers: it's buyer-beware, liens and mortgages can survive. Owners on the list: you have options, but the clock is real. Full breakdown on YouTube. Educational only. Property Intelligence Report, Ep. 02.\n\n#PoconoRealEstate #STRInvesting #MonroeCounty #PropertyIntelligence #LifeByAlexa"}], "note": "PIR WEEKLY CHECK = YES. Segment: Pocono data / consumer-protection. Source: 02A research layer, NOT the Ledger. Ep. 02 → PA Smart Way America CTA (Ep. 01 ran CTA-free). Reuses the Ep.01 card template. NOT counted in the 16. ✅ Sept 14 date VERIFIED with the Monroe County Tax Claim Bureau (Sherman Theater, 9 a.m.; registration ran Aug 10–21; online CC payments closed 9/1–9/21). Cleared to publish.", "flag": null}, {"id": "mon-li", "day": "mon", "time": "8:00 AM", "title": "LinkedIn Market Signal", "account": "@alexa.realtor", "platform": "LinkedIn", "kind": "post", "blocks": [{"label": "Post", "text": "Two things happened in the Pocono market this week, and only one of them matters.\n\nThe 30-year fixed dropped to 6.65%. On $250K borrowed, that's about $3/month. That's the headline everyone will chase.\n\nThe signal underneath it: Monroe County's June data shows 1,949 active listings, 51 median days on market, and ~98% sale-to-list. That's a balanced market — more inventory, but firm pricing on homes that are actually ready. In a market like this, discipline beats timing. Buyers should underwrite for purchasing power, not wait on the Fed. Sellers should price to live competition — 27% of U.S. listings took a cut in July for ignoring exactly that.\n\nBalanced is not soft. It rewards the prepared on both sides.\n\nFull breakdown in this week's Pocono Ledger.\n\n#PoconoRealEstate #MonroeCounty #RealEstateMarket #PARealEstate"}], "note": "Derived from the Ledger — operator read, not a new market piece.", "flag": null}, {"id": "mon-gbp1", "day": "mon", "time": "9:00 AM", "title": "GBP Market Update", "account": "@alexa.realtor", "platform": "Google Business Profile", "kind": "gbp", "blocks": [{"label": "Post (no hashtags)", "text": "Monroe County Market Update — Week of August 23, 2026\n\nMonroe County stays a balanced, selective market this week. The 30-year fixed eased to 6.65%. June's latest complete data shows about 1,949 active listings (up roughly 4% year over year), a $375,000 median list price, a $335,000 median sold price, a 51-day median time on market, and roughly 98% sale-to-list — more choice for buyers, but well-priced, move-in-ready Pocono Mountains homes are still moving quickly.\n\nBuying or selling a single-family home, townhome, or short-term-rental property in the Pocono Mountains? I can run a hyperlocal analysis for your specific town — Stroudsburg, East Stroudsburg, Tobyhanna, Pocono Pines, and surrounding communities are all pricing differently.\n\nAlexa Sanchez · Local Pocono Mountains Realtor · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net"}], "note": "No hashtags. No addresses. No client names. Highest AEO weight.", "flag": null}, {"id": "mon-fb", "day": "mon", "time": "10:00 AM", "title": "Personal FB — English", "account": "Personal", "platform": "Facebook", "kind": "post", "blocks": [{"label": "Post", "text": "Real talk on the Pocono market this week: rates ticked down to 6.65%, and honestly? It barely moves your payment. What actually matters is we're in a balanced market — more homes to choose from, but the good ones priced right are still selling fast and near ask. If you're buying, get fully underwritten before you fall in love with a house. If you're selling, price to what's actually competing with you today. Testing a high number just costs you weeks. Questions? You know where to find me. — Alexa, Smart Way America Realty, 570-688-8147."}], "note": null, "flag": null}, {"id": "mon-gbp2", "day": "mon", "time": "11:00 AM", "title": "GBP Local Insight — distressed/tax pipeline", "account": "@alexa.realtor", "platform": "Google Business Profile", "kind": "gbp", "blocks": [{"label": "Post (no hashtags)", "text": "Considering a Tax or Sheriff Sale in Monroe County? Know the Rules First\n\nMonroe County's distressed-property calendar is active this fall. The Tax Claim Bureau's annual Upset Sale is set for September 14, 2026 at the Sherman Theater in Stroudsburg, and sheriff's real-estate sales run online via Bid4Assets. These sales carry real title, lien, and condition risk — properties sell subject to existing liens and mortgages, buyer beware, with no title search or refund. If you're weighing a distressed purchase in the Pocono Mountains, do the lien and title diligence first, or talk to a professional before you bid.\n\nAlexa Sanchez · REALTOR · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net"}], "note": "Second GBP angle, distinct from the Market Update. Pairs with this week's PIR episode topic. Sept 14 date verified with the county.", "flag": null}, {"id": "mon-carousel", "day": "mon", "time": "Market rollout", "title": "IG Market Carousel", "account": "@alexa.realtor", "platform": "Instagram", "kind": "post", "blocks": [{"label": "Slides", "text": "Slide 1 (cover): 'RATES DROPPED. YOUR BUYING POWER DIDN'T.' — red/white chunky tilted. Sub: Pocono Ledger · Aug 23.\nSlide 2: neon-green '6.65%' / 'down 2 bps = ~$3/mo per $250K borrowed'\nSlide 3: 'Monroe County, June:' 1,949 active · 51 days on market · ~98% sale-to-list\nSlide 4: '$375K median list · $335K median sold (+13%)' — strip: 'Balanced ≠ soft'\nSlide 5: 'There's no Monroe County price.' Tobyhanna ~$299K → Pocono Pines $499,900\nSlide 6: '27% of U.S. listings took a price cut in July.' red underline on 27%\nSlide 7 (CTA): 'Full read: the Pocono Ledger. New here? Start with my Pocono guide. — Alexa, Smart Way America Realty · (570) 688-8147'"}, {"label": "Caption", "text": "Balanced is not soft, mi gente. More listings doesn't mean sellers are giving homes away — and it doesn't mean buyers should wait on the Fed. Rates dipped to 6.65%. That's about three dollars a month on $250K. Meanwhile the right home, priced right, is still gone in under 51 days. Full Ledger — link in bio. 📊\n\n#PoconoRealEstate #PoconoMountains #MonroeCounty #STRInvesting #PARealEstate #LifeByAlexa"}], "note": null, "flag": null}, {"id": "tue-cc", "day": "tue", "time": "3:00 PM", "title": "Car Confession EN — waiting on the Fed", "account": "@alexa.realtor", "platform": "IG + YouTube Shorts", "kind": "video", "blocks": [{"label": "Script (20 sec)", "text": "Everybody's waiting for the Fed to cut so rates drop. Cool. Rates dropped this week — two basis points. You know what that saved you? Three dollars a month. Three. Meanwhile the house you wanted just went pending. Stop waiting for a discount that isn't coming and go get underwritten. That's it. That's the confession.\n\n[Flat delivery. Hard cut on 'confession.']"}, {"label": "IG caption", "text": "Two basis points. Three dollars a month. That's your 'wait for rates' reward while somebody else buys the house. 🚫 Get underwritten, then shop. Monroe County / Poconos. (570) 688-8147.\n\n#PoconoRealEstate #MonroeCounty #PoconoMountains #PARealEstate #LifeByAlexa"}, {"label": "Cover text", "text": "RED/WHITE: WAITING ON THE FED? IT COST YOU."}, {"label": "YT Shorts description", "text": "Title: Waiting for the Fed to Cut Rates? Here's What It Actually Costs You #shorts\n\nRates dropped this week — but only 2 basis points, about $3/month on $250K borrowed. Realtor Alexa Sanchez on why waiting for the Fed can cost Pocono buyers the home they wanted. Get fully underwritten first. Alexa Sanchez, PA License #RS326383, Smart Way America Realty. (570) 688-8147.\n\nTags: pocono real estate, mortgage rates 2026, should i wait to buy a house, monroe county pa, first time home buyer, pocono mountains, va loan, alexa sanchez realtor"}], "note": "Source: 01A rate/timing angle. Distinct from the Misconception piece (DR 'signed ≠ owned').", "flag": null}, {"id": "tue-misc", "day": "tue", "time": "Post (flex slot)", "title": "Misconception Reel — DR 'signed ≠ owned'", "account": "@alexa.realtor", "platform": "IG + YouTube Short", "kind": "video", "blocks": [{"label": "Chosen misconception + truth", "text": "MISCONCEPTION: 'My signed contract means I own the property' (DR buyers).\nTRUTH: A signed, notarized contract is essential but not ownership. In the DR, ownership transfers only after the DGII 3% transfer-tax step and registration produce a Certificate of Title in the buyer's name — and there's a hard six-month DGII clock.\nFORMAT: IG Reel over Car Confession — the sequence (clock, tax, title) needs a beat more room than 20 seconds to land accurately. Sharpest misconception in this week's research (03W)."}, {"label": "Script (30–60 sec)", "text": "You signed the contract, you got the keys, you think you own a house in the Dominican Republic. You don't. Not yet.\n\nA signed, notarized contract is real — but it's not the finish line. Ownership only transfers when two things happen. One: your attorney clears the 3% transfer tax with DGII, and you've got a six-month clock to do it before surcharges hit. Two: the Certificate of Title gets registered in your name. Until that title is issued, you're holding keys, not ownership. And if the land's under a Constancia Anotada, you may need a deslinde before it's even cleanly titled.\n\nKeys prove possession. The Certificate of Title proves ownership. Don't call it closed until the title's in your name."}, {"label": "Cover text", "text": "RED/WHITE: SIGNED ≠ OWNED\nNEON GREEN: 3% + 6-MONTH CLOCK"}, {"label": "YouTube Short description", "text": "Title: Signed a Contract in the Dominican Republic? You Don't Own It Yet #shorts\n\nThe costliest myth for American buyers in the DR: a signed contract is not ownership. You still need the DGII 3% transfer tax (6-month clock) and a registered Certificate of Title in your name. Educational only. Alexa Sanchez, PA License #RS326383, Smart Way America Realty.\n\nTags: dominican republic real estate, buying property dominican republic, dgii transfer tax, certificate of title, constancia anotada, punta cana, cap cana, international real estate"}, {"label": "Caption", "text": "The most expensive assumption Americans make buying in the DR: 'my contract means I own it.' It doesn't — not until the transfer tax clears DGII and the Certificate of Title is registered in your name. And you've got a 6-month clock. Save this. 🇩🇴\n\n#DominicanRepublicRealEstate #PuntaCana #DRInvestment #InternationalRealEstate #LifeByAlexa"}], "note": "Output 12. Source: 03W misconception. Flex slot — placed Tue to balance load; move to Wed/Sat if Tue feels heavy. Rides alongside the DR English franchise but cut/captioned standalone.", "flag": null}, {"id": "tue-nd", "day": "tue", "time": "9:00 AM", "title": "Nextdoor — Neighborly Post", "account": "@alexa.realtor", "platform": "Nextdoor", "kind": "post", "blocks": [{"label": "Post", "text": "Neighbor note for anyone keeping an eye on the local market: mortgage rates eased slightly this week, and Monroe County is sitting in a pretty balanced spot — more homes on the market than we've seen in a while, but the well-kept ones are still moving. If you've been curious what your street looks like right now, happy to answer questions with no pitch attached. — Alexa Sanchez, Smart Way America Realty"}], "note": "No selling language. No CTA. Identity via signature only.", "flag": null}, {"id": "wed-aldia", "day": "wed", "time": "Record + post", "title": "Pocono al Día — market (Spanish)", "account": "@alexa.realtor", "platform": "IG + YouTube", "kind": "video", "blocks": [{"label": "Guión (cadencia dominicana · <3 min · un tema)", "text": "Óyeme bien: el mercado en los Poconos está equilibrado, pero equilibrado no quiere decir barato. No te confundas.\n\nMi amor, esta semana las tasas bajaron un poquito — al 6.65%. Suena bonito, pero en $250,000 prestados eso son como tres dólares al mes. Tres. No es eso lo que cambia tu compra.\n\nLo que importa son los números del condado. En junio: 1,949 casas activas — hay más para escoger. El precio mediano de lista, $375,000. El precio mediano de venta, $335,000. Y las casas bien preparadas se venden en unos 51 días, cerca del 98% del precio pedido.\n\n¿Qué te dice eso? Que tú como comprador tienes más opciones — úsalas para negociar. Y tú como vendedor, no pongas un precio de fantasía. En julio, el 27% de las casas en el país tuvieron que bajar el precio. Si tu casa lleva semanas sin actividad, no es el mercado — es el precio, la condición, o las fotos.\n\nAsí que tú estás en un mercado que premia al que está preparado — de los dos lados. Cualquier pregunta, llámame. Cinco-siete-cero, seis-ocho-ocho, ocho-uno-cuatro-siete. Alexa Sanchez, Smart Way America Realty."}, {"label": "YouTube title (ES)", "text": "Mercado de Bienes Raíces en los Poconos: Equilibrado No Significa Barato (Agosto 2026) | Pocono al Día"}, {"label": "YouTube description (ES)", "text": "¿Cómo está el mercado de bienes raíces en Monroe County esta semana? Equilibrado, no barato. Alexa Sanchez explica las tasas, los precios medianos y qué deben hacer compradores y vendedores.\n\nP: ¿Está barato el mercado en los Poconos? No. Está equilibrado: hay más inventario, pero las casas bien preparadas se venden rápido y cerca del precio pedido (~98% sale-to-list, 51 días medianos).\nP: ¿Debo esperar a que bajen las tasas? Bajaron solo al 6.65% — unos $3/mes en $250K prestados. Esperar puede costarte la casa que querías.\n\nPreguntas sobre tu pueblo específico? Llama al (570) 688-8147. Alexa Sanchez, Licencia PA #RS326383, Smart Way America Realty.\n\nTags: bienes raices poconos, condado de monroe, comprar casa en pennsylvania, mercado inmobiliario 2026, casas en los poconos, agente hispana bienes raices, stroudsburg, tasas hipotecarias 2026, alexa sanchez, vender casa monroe county"}, {"label": "IG / YouTube caption (ES)", "text": "Equilibrado no quiere decir barato, mi gente. Las tasas bajaron al 6.65% — como tres dólares al mes en $250K. Lo que importa: hay más casas para escoger, pero las buenas se venden rápido. Compradores, negocien. Vendedores, no salgan con precio de fantasía. 📲 (570) 688-8147.\n\n#BienesRaices #InversionesEnPoconos #MonroeCounty #LifeByAlexa"}, {"label": "Cover text", "text": "RED/WHITE: EQUILIBRADO ≠ BARATO  //  NEON GREEN: 6.65%"}], "note": "Under 3 min · one topic · written fresh in Spanish — NOT a translation. Market week = Ledger top signal (balanced, not soft) told fresh.", "flag": null}, {"id": "wed-tt", "day": "wed", "time": "Record + post", "title": "Talking Head — 'made in DR' vs 'Dominican puro'", "account": "@its.myash", "platform": "TikTok", "kind": "video", "blocks": [{"label": "Script", "text": "'Made in the DR' and 'Dominican puro' are not the same thing, and the industry's counting on you not knowing that. Here's the difference.\n\nA cigar can be assembled in a Dominican factory with an Ecuadorian wrapper, a Dominican binder, and Nicaraguan filler — that's made in the DR. A Dominican puro means every leaf, wrapper to filler, is Dominican tobacco. Both can be excellent.\n\nBut when a brand leans on 'Dominican' as the whole pitch and stays vague on the leaf? That's marketing, not heritage. Ask the real questions: who made it, where, and whose tobacco is actually inside. That's the difference between a story and a sticker."}, {"label": "TikTok caption", "text": "'Made in the DR' ≠ 'Dominican puro.' Know the leaf before you buy the band. Which one's actually in your rotation? 🇩🇴\n\n#CigarAuthority #DominicanCigars #CigarLife #LifeByAlexa"}, {"label": "Visual", "text": "Shot at Nell's Social, warm interior light. Seated, cigar or coffee in hand, one take. Caption seeds Wednesday's @its.myash IG post."}], "note": null, "flag": null}, {"id": "wed-ig", "day": "wed", "time": "Post", "title": "Talking Head — IG post", "account": "@its.myash", "platform": "Instagram", "kind": "post", "blocks": [{"label": "IG caption", "text": "'Made in the DR' is not 'Dominican puro' — and the difference is everything. One's about where it was rolled. The other's about whose soil grew every leaf. Both can be beautiful. But if a brand's whole story is the word 'Dominican' and nothing about the actual tobacco? That's a sticker, not heritage. Ask: who, where, whose leaf. 🇩🇴 What's in your rotation right now?\n\n#CigarLife #DominicanCigars #CigarAuthority #PremiumCigars #LifeByAlexa"}], "note": "Same video as TikTok.", "flag": null}, {"id": "wed-fb", "day": "wed", "time": "Post", "title": "FB Business — cigar repurpose", "account": "@its.myash", "platform": "Facebook Business", "kind": "post", "blocks": [{"label": "Post", "text": "Quick one for the cigar folks: 'made in the Dominican Republic' and 'Dominican puro' are not the same thing. One tells you where it was rolled; the other tells you whose tobacco is actually inside. Both can be excellent — but if a brand's whole pitch is just the word 'Dominican,' ask who made it, where, and whose leaf. That's the difference between heritage and a marketing sticker. More cigar talk over on @its.myash, and come sit with us at Nell's Social in Bartonsville."}], "note": null, "flag": null}, {"id": "wed-gbp-listing", "day": "wed", "time": "Post", "title": "GBP Listing Feature — 1108 Colt Lane", "account": "@alexa.realtor", "platform": "Google Business Profile", "kind": "gbp", "blocks": [{"label": "Post template (no hashtags, fill specs)", "text": "New Listing — [Town/Township], Monroe County\n\n[Beds]BD / [Baths]BA in [Town], offered at $[Price]. [Feature 1], [Feature 2], [Feature 3]. [STR / second-home / primary-residence angle, e.g. verified township STR status, amenity access, commuter appeal]. Showings by appointment.\n\nAlexa Sanchez · Local Pocono Mountains Realtor · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net"}], "note": "GBP rules: town + property type only, no full street address in the public post, no client names. Packet marked the Listing lane SKIP this week — carried forward as PENDING so 1108 stays on radar.", "flag": "PENDING — 1108 Colt Lane still needs town/township, price, beds/baths, sqft, lot, 3–4 features, MLS/share link, photo. Do not post until filled. Skip the Wednesday Listing slot if no specs."}, {"id": "thu-vet", "day": "thu", "time": "11:00 AM", "title": "Veteran Reel (PA) — funding-fee exemption", "account": "@alexa.realtor", "platform": "Instagram", "kind": "video", "blocks": [{"label": "Script (30–60 sec)", "text": "Most veterans think you need a 100% disability rating to skip the VA funding fee. That's wrong — and it's costing people money.\n\nThe VA funding fee is a one-time charge, and yes it can usually be financed. First use with under 5% down runs 2.15% in 2026. But the exemption isn't just for a 100% rating. It applies if you're receiving VA service-connected disability compensation — at any rating. It applies if you'd be eligible for compensation but you're taking retirement or active-duty pay instead. It applies to eligible DIC surviving spouses, certain pre-discharge claim recipients, and eligible active-duty Purple Heart recipients. And if a disability award is made retroactive to before your closing, you may be owed a refund of the fee you paid.\n\nDon't assume you owe the funding fee. Confirm your exemption status before you close. Educational only — verify with the VA and your lender."}, {"label": "IG caption", "text": "Who's actually exempt from the VA funding fee in 2026? It's not just 100%-rated veterans. VA service-connected disability compensation (any rating), eligible-but-taking-retirement/active-duty pay, eligible DIC surviving spouses, certain pre-discharge claim recipients, and eligible active-duty Purple Heart recipients may qualify. Retroactive award before closing? You may be owed a refund. Confirm before you close. Educational only. 🇺🇸\nAlexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147.\n\n#VeteranHomebuyer #VALoan #VeteranRealEstate #PARealEstate #LifeByAlexa"}, {"label": "Cover text", "text": "RED/WHITE: YOU DON'T NEED 100%\nNEON GREEN: VA FUNDING FEE"}, {"label": "YouTube description", "text": "Title: VA Funding Fee 2026: Who Is Exempt in Pennsylvania? (It's Not Just 100% Rated)\n\nMany Pennsylvania veterans assume only a 100% disability rating qualifies for a VA funding-fee exemption. That's not accurate. Educational overview from Realtor Alexa Sanchez.\n\nQ: Who is exempt from the VA funding fee in 2026? Borrowers receiving VA service-connected disability compensation, those eligible but receiving retirement/active-duty pay instead, eligible DIC surviving spouses, certain pre-discharge claim recipients, and eligible active-duty Purple Heart recipients.\nQ: How much is the VA funding fee in 2026? First use <5% down 2.15%; subsequent use <5% down 3.30%; 5%+ down 1.50%; 10%+ down 1.25%; IRRRL 0.50%. Generally financeable.\nQ: Can I get a refund? A retroactive disability award effective before closing may support one. Verify with the VA and your lender.\n\n0:00 The myth 0:20 What the fee is 0:45 Who's exempt 1:30 2026 fee schedule 2:15 Refund timing 2:45 Verify before you close\n\nEducational only — not lending or legal advice; no VA endorsement; rates not guaranteed. Alexa Sanchez, PA License #RS326383, Smart Way America Realty. (570) 688-8147.\n\nTags: va funding fee 2026, va loan exemption, veteran homebuyer pennsylvania, va disability compensation, purple heart va loan, dic surviving spouse, veteran real estate, monroe county veterans, pocono va loan"}], "note": "Educational only — no personal narrative, no VA endorsement, no rate guarantee. License/contact in caption.", "flag": null}, {"id": "thu-yt", "day": "thu", "time": "11:00 AM", "title": "Veteran Upload (PA) — YouTube", "account": "@alexa.realtor", "platform": "YouTube", "kind": "video", "blocks": [{"label": "Script (adapted, longer)", "text": "Same beats as the Reel, then add the full 2026 funding-fee schedule: first use <5% down 2.15%; subsequent use <5% down 3.30%; 5%+ down 1.50%; 10%+ down 1.25%; IRRRL 0.50%. Note the fee can generally be financed. Add a plain caution: never claim VA endorsement, never guarantee rates, always verify exemption status with the VA and a licensed lender before closing. Close on 'educational only — I connect you with a VA-experienced lender.'"}, {"label": "YouTube title", "text": "VA Funding Fee 2026: Who Is Exempt in Pennsylvania? (It's Not Just 100% Rated)"}, {"label": "YouTube description", "text": "Who qualifies for a VA funding-fee exemption in 2026, and how much is the fee if you're not exempt? Educational breakdown for Pennsylvania veteran homebuyers.\n\n0:00 The myth · 0:20 What the fee is · 0:45 Who's exempt · 1:30 2026 fee schedule · 2:15 Refund timing · 2:45 Verify before you close\n\nEducational only; not affiliated with or endorsed by the VA. Rates and eligibility not guaranteed. Alexa Sanchez · REALTOR · PA License #RS326383 · Smart Way America Realty · (570) 688-8147.\n\nTags: va funding fee 2026, va loan exemption pennsylvania, veteran home buyer pa, va disability compensation, purple heart va loan, dic surviving spouse, monroe county veterans, pocono va loan, veteran real estate"}], "note": null, "flag": null}, {"id": "thu-gbp-en", "day": "thu", "time": "9:00 AM", "title": "GBP Veteran Post — English", "account": "@alexa.realtor", "platform": "Google Business Profile", "kind": "gbp", "blocks": [{"label": "Post (no hashtags)", "text": "Veterans: You May Be Exempt From the VA Funding Fee — Even Without a 100% Rating\n\nA common myth: you do not need a 100% disability rating to be exempt from the VA funding fee. In 2026, the exemption can apply to veterans receiving VA service-connected disability compensation (at any rating), those eligible for it but taking retirement or active-duty pay instead, eligible DIC surviving spouses, certain pre-discharge claim recipients, and eligible active-duty Purple Heart recipients. A retroactive award effective before closing may support a refund. Confirm your status with the VA and your lender before closing. Educational information only, not a rate quote or a VA endorsement.\n\nAlexa Sanchez · REALTOR · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net"}], "note": null, "flag": null}, {"id": "thu-gbp-es", "day": "thu", "time": "9:00 AM", "title": "GBP Veteran Post — Spanish", "account": "@alexa.realtor", "platform": "Google Business Profile", "kind": "gbp", "blocks": [{"label": "Post (no hashtags)", "text": "Veteranos: Podrían Estar Exentos del 'Funding Fee' del Préstamo VA — Sin Necesidad del 100%\n\nUn mito común: no necesitas una calificación de discapacidad del 100% para estar exento del funding fee del préstamo VA. En 2026, la exención puede aplicar a veteranos que reciben compensación por discapacidad relacionada al servicio (a cualquier nivel), a quienes califican pero reciben pago de retiro o servicio activo, a cónyuges sobrevivientes DIC elegibles, a ciertos casos con reclamo previo a la baja, y a receptores del Corazón Púrpura en servicio activo elegibles. Un fallo retroactivo antes del cierre puede apoyar un reembolso. Verifica tu situación con el VA y tu prestamista antes del cierre. Solo información educativa, no una cotización de tasa ni un respaldo del VA.\n\nAlexa Sanchez · REALTOR · Licencia PA #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net"}], "note": null, "flag": null}, {"id": "thu-li", "day": "thu", "time": "8:00 AM", "title": "LinkedIn Operator Post — scarcity vs story", "account": "@alexa.realtor", "platform": "LinkedIn", "kind": "post", "blocks": [{"label": "Post", "text": "Everyone in media is chasing 'limited.' Scarcity as a strategy. I've been watching the premium cigar world run the exact same playbook — 4,000-box drops, countdowns, allocation lists — and it's teaching me something about building KSM TV.\n\nScarcity gets you a spike. Story gets you a franchise.\n\nThe brands that last don't lead with 'limited.' They lead with why this maker, this moment, this point of view — and then they're actually disciplined about supply. Same logic applies to building a FAST network, a lounge, or a personal brand. Don't manufacture urgency you can't back. Build something people recognize before they see the label, then let scarcity be the consequence of quality — not the pitch.\n\nBuilding three brands taught me: the label gets attention. The point of view keeps it.\n\n— Alexa Sanchez, COO & Executive Producer, KSM TV\n\n#OperatorLife #DominicanEntrepreneur #LifeByAlexa"}], "note": "Operator voice lives here while alexasanchez.com is paused.", "flag": null}, {"id": "thu-nd", "day": "thu", "time": "Repost", "title": "Nextdoor — Landmark repost", "account": "@alexa.realtor", "platform": "Nextdoor", "kind": "post", "blocks": [{"label": "Post", "text": "Neighbor spotlight: Big Creek Bar-B-Q in Lehighton is a solid local stop for slow-smoked barbecue and outdoor picnic-table dining — brisket, ribs, pulled pork, and Southern sides. A nice one to keep in mind when you want a casual meal close to home. — Alexa Sanchez, Smart Way America Realty"}], "note": "No selling language. Same landmark as Friday's Spotlight.", "flag": null}, {"id": "thu-fb", "day": "thu", "time": "Repost", "title": "FB Business — veteran repurpose", "account": "@alexa.realtor", "platform": "Facebook Business", "kind": "post", "blocks": [{"label": "Post", "text": "Veterans — quick myth-buster: you do not need a 100% disability rating to be exempt from the VA funding fee. If you receive VA service-connected disability compensation (any rating), qualify but take retirement/active-duty pay, are an eligible DIC surviving spouse, a certain pre-discharge claim recipient, or an eligible active-duty Purple Heart recipient, you may qualify — and a retroactive award before closing may mean a refund. Confirm before you close. Educational only. (570) 688-8147 · Alexa Sanchez, PA License #RS326383, Smart Way America Realty."}], "note": "Repurposed from Thursday's Veteran Reel.", "flag": null}, {"id": "thu-cigar", "day": "thu", "time": "Post", "title": "Cigar/Lounge Video — the cultural room", "account": "@its.myash", "platform": "IG + TikTok", "kind": "video", "blocks": [{"label": "Script", "text": "The cigar lounge is turning back into a cultural room, and that's the whole play at Nell's Social. Not a sports bar with a humidor bolted on. Neo-soul, jazz, and one intentional smoke.\n\nHere's the format we're building: one featured record. One cigar chosen to match the mood. One drink pairing. One real conversation. That's it. Reservation-first, small ticket, and the leaf gets explained — wrapper, soil, curing, the blend decision — like it matters. Because it does.\n\nThe rest of the world is chasing 'limited.' We're chasing intentional."}, {"label": "Caption (IG + TikTok)", "text": "Nell's Social isn't a sports bar with a humidor. One record. One cigar. One pairing. One conversation. The lounge is a cultural room again — and we're building the ritual. Reservation-first nights coming. 🎷🇩🇴 Bartonsville, 25 Route 611.\n\n#NellsSocial #CigarLife #CigarAuthority #LifeByAlexa"}, {"label": "Visual", "text": "Two-shot lounge B-roll over voiceover, warm lamp light, neo-soul/jazz feel. IG + TikTok only — does NOT go to YouTube."}], "note": "IG + TikTok only — does NOT go to YouTube.", "flag": null}, {"id": "fri-landmark", "day": "fri", "time": "Post", "title": "Landmark Spotlight — Big Creek Bar-B-Q", "account": "@alexa.realtor", "platform": "Instagram", "kind": "post", "blocks": [{"label": "Photo direction", "text": "Big Creek Bar-B-Q, Lehighton / Mahoning Township, Carbon County. Center the frame on the smoker or a loaded picnic-table plate — brisket, ribs, pulled pork, Southern sides. Late-afternoon golden hour at an outdoor picnic table for warm, lived-in summer light. Slight overhead 3/4 on the plate, or a straight-on hero of the smoker with steam. Landscape for GBP/YouTube; vertical crop of the same frame for IG. Real photo only — never illustrated."}, {"label": "IG caption", "text": "Where do you find real wood-smoked barbecue near the Pocono Mountains? Big Creek Bar-B-Q in Lehighton — slow-smoked brisket, ribs, pulled pork, and Southern-style sides at 712 Blakeslee Boulevard Drive East, Mahoning Township. Outdoor picnic tables, takeout, and exactly the kind of low-key local stop that makes weekend life out here feel lived-in. You don't need a special occasion — you need a Saturday and an appetite. 🍖\n\n#PoconoMountains #MonroeCounty #PoconoLiving #BigCreekBBQ #LifeByAlexa"}], "note": "Landmark holds Ride With Me's Friday slot (no camera yet). Cross-posts: GBP Saturday + Nextdoor Thursday — same photo, no reshoot. Do NOT tag an IG account for Big Creek — official handle unverified in research; confirm before tagging.", "flag": null}, {"id": "fri-yt-landmark", "day": "fri", "time": "Post", "title": "Landmark — YouTube post/Short", "account": "@alexa.realtor", "platform": "YouTube", "kind": "post", "blocks": [{"label": "Community post copy", "text": "Wood-smoked BBQ near the Poconos — Big Creek Bar-B-Q, Lehighton. Brisket, ribs, pulled pork, and Southern sides at 712 Blakeslee Blvd Dr E, Mahoning Township. A casual local stop worth the drive. — Alexa Sanchez, PA License #RS326383, Smart Way America Realty, (570) 688-8147"}, {"label": "If uploaded as a Short — title", "text": "Big Creek Bar-B-Q, Lehighton PA — Wood-Smoked BBQ Near the Pocono Mountains #shorts"}, {"label": "If uploaded as a Short — description", "text": "Big Creek Bar-B-Q in Lehighton (Mahoning Township, Carbon County) serves slow-smoked brisket, ribs, pulled pork, and Southern sides at 712 Blakeslee Boulevard Drive East — outdoor picnic tables and takeout, a casual Pocono-area stop.\n\n0:00 The plate · 0:10 Why it's worth the drive\n\nAlexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147\n\nTags: big creek bbq lehighton, pocono mountains, things to do poconos, pocono food, carbon county pa, pocono living, alexa sanchez realtor"}], "note": null, "flag": null}, {"id": "fri-dren-reel", "day": "fri", "time": "Post", "title": "DR English — IG Reel (signed ≠ owned)", "account": "@alexa.realtor", "platform": "Instagram", "kind": "video", "blocks": [{"label": "Script (under 60 sec)", "text": "Americans buying in the Dominican Republic — your closing is NOT done when you sign the contract.\n\nYou wire the money, you sign the contrato de venta, you get the keys. You think you're finished. You're not. Three things are still open. One: there's a six-month DGII clock from the transfer act. Miss it and you're paying surcharges and interest. Two: a 3% transfer tax — on a $300,000 property, that's nine grand, paid on the higher of contract value or DGII's value. Three, and this is the big one: the Certificate of Title has to get issued in YOUR name through the registry. Until that happens, you don't own it — you're just holding the keys.\n\nIn the DR, keys prove possession. The registered Certificate of Title proves ownership. Know the difference before you wire a dollar."}, {"label": "Caption", "text": "The DR closing trap nobody warns Americans about: signing the contract is not the finish line. You've got a 6-month DGII clock, a 3% transfer tax, and one document that actually proves you own it — the Certificate of Title in your name. Keys = possession. Title = ownership. Save this before you buy. 🇩🇴\n\n#DominicanRepublicRealEstate #PuntaCana #CapCana #DRInvestment #InternationalRealEstate #LifeByAlexa"}, {"label": "Cover text", "text": "RED/WHITE: SIGNED ≠ OWNED\nNEON GREEN: 3% + 6-MONTH CLOCK"}], "note": "Franchise: no written parent, no other derivatives. Feeds YouTube and stops.", "flag": "Legal mechanics are stable but figures/law can move — confirm current DGII 3% transfer-tax and title-registration mechanics before recording. Keep it to the mechanic, not a live rate promise."}, {"id": "fri-dren-yt", "day": "fri", "time": "Post", "title": "DR English — YouTube (longer cut)", "account": "@alexa.realtor", "platform": "YouTube", "kind": "video", "blocks": [{"label": "Script (longer, deeper mechanics)", "text": "OPEN: You wire funds, you sign the contrato de venta, you get the keys — and you think you're done. You're not. Let me walk you through exactly what still has to happen, because this is where American buyers get burned.\n\nSTEP 1 — VERIFY TITLE STATUS: Before anything, confirm what backs the property. Is there a Certificate of Title, or is it a Constancia Anotada? If it's a Constancia Anotada, you may need a completed deslinde — the process that individualizes the parcel and produces a clean Certificate of Title. Don't treat land as cleanly titled until that's confirmed.\n\nSTEP 2 — THE TRANSFER ACT: Execute the proper notarized transfer act. Essential — but it's the start of the registration process, not the end.\n\nSTEP 3 — DGII AND THE 3% TAX: Your attorney files with DGII. The transfer tax is 3% under Article 7 of Law 173-07, on the higher of the property value or the value declared in the sale act, plus a small receipt charge. On a $300,000 property, budget around $9,000 for that tax alone — and if DGII's value is higher than your contract, they use the higher number.\n\nSTEP 4 — THE SIX-MONTH DEADLINE: DGII expects the transfer completed within six months of the transfer act. Blow past it and surcharges and interest apply. Treat six months as a hard transaction-management deadline.\n\nSTEP 5 — REGISTRATION AND THE TITLE: File through the real-estate registration system under Law 108-05. Do not call the deal closed until you have confirmation the Certificate of Title has been issued in your name.\n\nCLOSE: In the DR, keys prove possession. The registered Certificate of Title proves ownership. If your attorney can't show you a clear path to that title, you're not buying a property yet — you're buying a promise."}, {"label": "YouTube title", "text": "The Dominican Republic Closing Trap: Why Your Signed Contract Is Not Yet Ownership"}, {"label": "YouTube description", "text": "Buying property in the Dominican Republic as an American? Signing the contract is not the finish line. Alexa Sanchez explains the DGII transfer tax, the 6-month deadline, and the one document that actually proves ownership.\n\nQ: Does signing a contract mean I own DR property? No. You still need the DGII transfer-tax step and registration so the Certificate of Title is issued in your name.\nQ: How much is the DR transfer tax? 3% under Article 7 of Law 173-07, on the higher of property value or declared sale value — about $9,000 on a $300,000 purchase, plus a small receipt charge.\nQ: How long do I have? DGII expects completion within six months of the transfer act; after that, surcharges and interest apply.\nQ: Constancia Anotada vs Certificate of Title? A Constancia Anotada may require a completed deslinde to individualize the parcel before you have a clean Certificate of Title.\n\n0:00 The trap 0:40 Verify title status 1:30 The transfer act 2:10 DGII & the 3% tax 3:05 The 6-month clock 3:50 Registration & your title\n\nEducational only — not legal or tax advice. Work with a licensed Dominican attorney. Alexa Sanchez, PA License #RS326383, Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net\n\nTags: dominican republic real estate, buying property in dominican republic, punta cana real estate, cap cana, dgii transfer tax, certificate of title dominican republic, constancia anotada, deslinde, international real estate, dr closing costs"}], "note": null, "flag": null}, {"id": "fri-li", "day": "fri", "time": "8:00 AM", "title": "LinkedIn Veteran Post — loan-limit question", "account": "@alexa.realtor", "platform": "LinkedIn", "kind": "post", "blocks": [{"label": "Post", "text": "\"Do VA loan limits still apply to me in Pennsylvania?\"\n\nIt's one of the most common questions I get from veteran buyers — and the answer surprises most people.\n\nIf you have full VA entitlement, there is no VA loan limit. The county 'limits' you see online don't cap what you can borrow with full entitlement — they affect the VA guaranty math only for borrowers using remaining or partial entitlement (for example, if you already have an active VA loan). For those borrowers, Pennsylvania's 2026 one-unit baseline is $832,750 in every county except Pike, where it's $1,209,750.\n\nSo before you assume a price ceiling: confirm whether you're working with full or remaining entitlement. It changes the whole conversation.\n\nEducational only — not lending advice, not a determination of your eligibility, and no VA endorsement implied. Verify with the VA and a VA-experienced lender.\n\nAlexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147\n\n#VeteranHomebuyer #VALoan #VeteranRealEstate #PARealEstate"}], "note": "Core point phrased as a real veteran-buyer question, per Output 11 rule. Kept DISTINCT from Thursday's funding-fee angle (loan-limit/entitlement instead).", "flag": null}, {"id": "fri-smoke", "day": "fri", "time": "6:00 PM", "title": "Weekend Smoke Reel", "account": "@its.myash", "platform": "Instagram", "kind": "video", "blocks": [{"label": "Script (~30 sec)", "text": "Weekend smoke, real talk. Everybody's hyping the next limited drop — Camacho's 2026 edition, 4,000 boxes worldwide, September 3rd. And look, I'll try it. But scarcity doesn't make a cigar good. Story plus discipline does.\n\nThis weekend I'm not chasing a box count. I'm reaching for something I actually love, sitting down, and letting it burn slow. That's the flex. Light one good. Talk to somebody real. That's the whole weekend."}, {"label": "Caption", "text": "Weekend smoke. Everybody's chasing the 4,000-box drop — I'm chasing a slow burn and a good conversation. Scarcity doesn't make it good. Story and discipline do. What's in your hand this weekend? 🇩🇴\n\n#CigarLife #WeekendSmoke #PremiumCigars #LifeByAlexa"}, {"label": "Cover text", "text": "NEON GREEN: SCARCITY ≠ GOOD (chunky, tilted)"}], "note": null, "flag": null}, {"id": "fri-fb", "day": "fri", "time": "7:00 PM", "title": "Personal FB — Spanish", "account": "Personal", "platform": "Facebook", "kind": "post", "blocks": [{"label": "Post", "text": "Historia corta de viernes: esta semana alguien me preguntó si debía esperar a que bajaran las tasas para comprar. Le dije lo mismo que les digo a todos — mi amor, las tasas bajaron esta semana y fueron como tres dólares al mes. Mientras esperas el descuento perfecto, otra persona compra la casa. No se trata de adivinar el mercado, se trata de estar preparado. Eso lo aprendí construyendo negocios, no solo vendiendo casas. Buen fin de semana a todos. 🇩🇴 — Alexa"}], "note": "Fresh Spanish — not a translation. Personal story tied to the business, not a market report.", "flag": null}, {"id": "sat-gbp", "day": "sat", "time": "10:00 AM", "title": "GBP Community/Lifestyle — Big Creek BBQ", "account": "@alexa.realtor", "platform": "Google Business Profile", "kind": "gbp", "blocks": [{"label": "Post (no hashtags)", "text": "Local Flavor Worth Knowing: Big Creek Bar-B-Q, Lehighton\n\nOne of the good casual food stops near the Pocono Mountains is Big Creek Bar-B-Q in Lehighton — wood-smoked brisket, ribs, pulled pork, and Southern-style sides at 712 Blakeslee Boulevard Drive East, Mahoning Township, with outdoor picnic-table seating and takeout. Small independent spots like this are part of what makes life around the Poconos feel like home. As a local Pocono Mountains Realtor serving Monroe County, this is the lived-in lifestyle I help buyers and sellers move into.\n\nAlexa Sanchez · REALTOR · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net"}, {"label": "Photo", "text": "Same Big Creek Bar-B-Q photo as Friday's Landmark — plain real photo, no overlay card."}], "note": null, "flag": null}, {"id": "sat-ig", "day": "sat", "time": "10:00 AM", "title": "Spanish IG Post — market", "account": "@alexa.realtor", "platform": "Instagram", "kind": "post", "blocks": [{"label": "Caption", "text": "Resumen del mercado, Poconos — semana del 23 de agosto: equilibrado, no barato. Tasas al 6.65%. En Monroe County, precio mediano de lista $375,000 y las casas bien preparadas se venden en unos 51 días, cerca del 98% del precio. Compradores: tienen opciones, úsenlas para negociar. Vendedores: precio realista o pierden semanas. Preguntas? Llámenme. (570) 688-8147.\n\n#BienesRaices #InversionesEnPoconos #MonroeCounty #PoconoMountains #LifeByAlexa"}], "note": "Fresh Spanish market post from the Ledger/Pocono al Día.", "flag": null}, {"id": "gal-lifestyle", "day": "gallery", "time": "Standing", "title": "Lifestyle Card — watercolor", "account": "Website", "platform": "Local Life & Global Vibes", "kind": "gallery", "blocks": [{"label": "Watercolor prompt", "text": "soft realistic Watercolor illustration of a Latina woman with medium skin tone, voluminous curly dark brown hair, gold watch, gold jewelry. Warm earthy tones — cream, tan, soft brown, muted greens. Soft natural lighting. Soft smooth watercolor washes, clean paper texture, fluid brushstrokes, delicate linework, luminous and airy. Editorial lifestyle illustration style. no text, no logos. Scene this week: seated at an outdoor café table on a late-summer afternoon in a small Pocono town, warm coffee in hand, a soft blur of tree-lined main-street storefronts behind her, relaxed and at home in the mountains."}, {"label": "Headline (overlay)", "text": "BALANCED DOESN'T MEAN BARGAIN — PREPARED WINS"}, {"label": "Body — English", "text": "The Pocono market this week is balanced, not soft. There's more to choose from, but the right home priced right still moves fast — near 98% of asking, in about 51 days. That's not a market that rewards waiting. It rewards being ready: underwritten if you're buying, priced to today's competition if you're selling. Living out here means knowing the difference between a slow market and a disciplined one. This is a disciplined one."}, {"label": "Body — Spanish", "text": "Equilibrado no quiere decir barato. En los Poconos, la casa correcta al precio correcto todavía se vende rápido — el que está preparado gana."}, {"label": "CTA", "text": "'Living in the Pocono Mountains & Lehigh Valley: The Complete 2026 Guide' → the Pillar. Placeholder ('Full guide coming soon') until the Pillar is confirmed live. If the Pillar published, swap to the live URL and flip the tracker line to LINKED."}, {"label": "Alt text", "text": "Watercolor illustration of a Latina woman with curly dark brown hair and gold jewelry seated at an outdoor café table on a late-summer afternoon in a small Pocono town, coffee in hand."}, {"label": "Tracker line", "text": "2026-08-29 | Lifestyle | 'Balanced Doesn't Mean Bargain' | café/main-street scene | CTA: placeholder (Pillar pending) | watercolor | EN+ES"}], "note": "Watercolor lane only — never for listings/testimonials/bio.", "flag": "Confirm Pillar live status. If live → swap CTA to real URL + mark tracker LINKED. If still staged → keep placeholder."}, {"id": "gal-landmark", "day": "gallery", "time": "Standing", "title": "Landmark Card — Big Creek BBQ (real photo)", "account": "Website", "platform": "Local Life & Global Vibes", "kind": "gallery", "blocks": [{"label": "Photo direction", "text": "Big Creek Bar-B-Q, Lehighton — real photo of the smoker or a loaded picnic-table plate (brisket, ribs, pulled pork), golden-hour outdoor light. Different frame from Friday's Landmark so gallery visitors get something new. Real photo only, never illustrated. Canva manual crop, 4:5."}, {"label": "Short caption", "text": "Big Creek Bar-B-Q, Lehighton — wood-smoked brisket, ribs, and pulled pork at an outdoor picnic table. The kind of local stop that makes weekend life in the Poconos feel lived-in."}, {"label": "Alt text", "text": "Real photograph of a plate of wood-smoked barbecue on an outdoor picnic table at Big Creek Bar-B-Q in Lehighton, Pennsylvania, at golden hour."}, {"label": "Tracker line", "text": "2026-08-29 | Landmark | Big Creek Bar-B-Q (Lehighton) | real photo | CTA: n/a"}], "note": null, "flag": null}, {"id": "gal-listing", "day": "gallery", "time": "Conditional", "title": "Listing Card — 1108 Colt Lane", "account": "Website", "platform": "Local Life & Global Vibes", "kind": "gallery", "blocks": [{"label": "Blurb template (fill specs)", "text": "[Beds]BD / [Baths]BA in [Town/Township], Monroe County. [Feature 1], [Feature 2], [Feature 3]. Offered at $[Price]. [STR / second-home / primary angle]."}, {"label": "ES line", "text": "[Beds] habitaciones / [Baths] baños en [Town], Monroe County. $[Price]."}, {"label": "CBC / offer line", "text": "Cooperating broker compensation per listing agreement; contact for details."}, {"label": "Alt text", "text": "Real photo of the home at 1108 Colt Lane, [Town], PA."}, {"label": "Tracker line", "text": "2026-08-29 | Listing | 1108 Colt Lane [Town] | real photo | PENDING SPECS"}], "note": "Packet marked the Listing lane SKIP this week (no confirmed inventory). Carried forward as PENDING so 1108 stays on radar.", "flag": "PENDING — need town/township, price, beds/baths, sqft, lot, 3–4 features, MLS/share link, photo. Template ready to fill. If no specs, the listing lane skips this week."}]};
+/* ---- STATE ---- */
+let state = {}; let sb = null; let synced = false;
+const K = id => WEEK_KEY + ":" + id;
+const allIds = DAYS.flatMap(d => d.tasks.map(t => K(t.id)));
 
-const DAYS = [{"id": "sun", "label": "Sun", "full": "Sunday", "date": "August 23"}, {"id": "mon", "label": "Mon", "full": "Monday", "date": "August 24"}, {"id": "tue", "label": "Tue", "full": "Tuesday", "date": "August 25"}, {"id": "wed", "label": "Wed", "full": "Wednesday", "date": "August 26"}, {"id": "thu", "label": "Thu", "full": "Thursday", "date": "August 27"}, {"id": "fri", "label": "Fri", "full": "Friday", "date": "August 28"}, {"id": "sat", "label": "Sat", "full": "Saturday", "date": "August 29"}, {"id": "gallery", "label": "Gallery", "full": "Website Gallery Cards", "date": "Any time this week"}];
-
-const state = {};           // itemId -> bool
-let sb = null;
-let persist = false;
-
-const $ = s => document.querySelector(s);
-const key = id => DATA.weekHash + ":" + id;
-const esc = s => String(s).replace(/[&<>"']/g, c =>
-  ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-
-/* ---------- SYNC ---------- */
-function setSync(cls, text){
-  const el = $("#sync");
-  el.className = "sync " + cls;
-  $("#syncText").textContent = text;
-}
+/* ---- PERSISTENCE ---- */
+function loadLocal(){ try{ return JSON.parse(localStorage.getItem("roast:"+WEEK_KEY)||"{}"); }catch(e){ return {}; } }
+function saveLocal(){ try{ localStorage.setItem("roast:"+WEEK_KEY, JSON.stringify(state)); }catch(e){} }
 
 async function initSync(){
-  if(!SUPABASE_URL || !SUPABASE_ANON_KEY){
-    setSync("warn", "Not synced — add Supabase keys to save across devices");
-    return;
-  }
+  if(!SUPABASE_KEY || !window.supabase){ badge(false); state = loadLocal(); render(); return; }
   try{
-    sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    const {data, error} = await sb.from("ops_checks")
-      .select("key,done").like("key", DATA.weekHash + ":%");
+    sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    const { data, error } = await sb.from(TABLE).select("key,done").in("key", allIds);
     if(error) throw error;
-    (data || []).forEach(r => { state[r.key.split(":").slice(1).join(":")] = !!r.done; });
-    persist = true;
-    setSync("ok", "Synced · " + DATA.weekHash);
-    render();
-  }catch(err){
-    console.error(err);
-    setSync("warn", "Sync failed — checks won't save. Check keys and RLS policy.");
-  }
-}
-
-async function save(id, done){
-  if(!persist) return;
-  try{
-    const {error} = await sb.from("ops_checks")
-      .upsert({key:key(id), done, updated_at:new Date().toISOString()}, {onConflict:"key"});
-    if(error) throw error;
-    setSync("ok", "Saved " + new Date().toLocaleTimeString([], {hour:"numeric", minute:"2-digit"}));
-  }catch(err){
-    console.error(err);
-    setSync("warn", "Didn't save — check connection");
-  }
-}
-
-/* ---------- RENDER ---------- */
-let activeDay = DAYS[new Date().getDay()] ? DAYS[new Date().getDay()].id : "sun";
-if(!DAYS.some(d => d.id === activeDay)) activeDay = "sun";
-
-function itemsFor(day){ return DATA.items.filter(i => i.day === day); }
-function doneCount(day){ return itemsFor(day).filter(i => state[i.id]).length; }
-
-function renderTabs(){
-  $("#tabs").innerHTML = DAYS.map(d => {
-    const list = itemsFor(d.id), done = doneCount(d.id);
-    const all = list.length > 0 && done === list.length;
-    return `<button class="tab${all ? " all-done" : ""}" role="tab" data-day="${d.id}"
-      aria-selected="${d.id === activeDay}">${d.label}
-      <span class="count">${done}/${list.length}</span></button>`;
-  }).join("");
-}
-
-function renderProgress(){
-  const total = DATA.items.length;
-  const done = DATA.items.filter(i => state[i.id]).length;
-  const pct = total ? Math.round(done / total * 100) : 0;
-  $("#progressFill").style.width = pct + "%";
-  $("#progressText").textContent = done + " of " + total + " posted";
-  $("#progressPct").textContent = pct + "%";
-}
-
-function cardHTML(it){
-  const done = state[it.id] ? "1" : "0";
-  const blocks = it.blocks.map((b, i) => `
-    <div class="block">
-      <div class="block-head">
-        <span class="block-label">${esc(b.label)}</span>
-        <button class="copy-btn" data-copy="${it.id}|${i}">Copy</button>
-      </div>
-      <pre id="blk-${it.id}-${i}">${esc(b.text)}</pre>
-    </div>`).join("");
-  return `
-  <article class="card" data-id="${it.id}" data-done="${done}" data-open="0"
-           data-flagged="${it.flag ? 1 : 0}">
-    <div class="card-top">
-      <button class="check" data-check="${it.id}" aria-pressed="${done === "1"}"
-        aria-label="Mark ${esc(it.title)} posted">
-        <svg viewBox="0 0 24 24"><polyline points="4 12.5 9.5 18 20 6.5"/></svg>
-      </button>
-      <div class="card-main">
-        <div class="card-time">${esc(it.time)}</div>
-        <h3 class="card-title">${esc(it.title)}</h3>
-        <div class="chips">
-          <span class="chip acct">${esc(it.account)}</span>
-          <span class="chip${it.kind === "gbp" ? " kind-gbp" : ""}">${esc(it.platform)}</span>
-        </div>
-      </div>
-    </div>
-    ${it.flag ? `<div class="flag">${esc(it.flag)}</div>` : ""}
-    ${it.note ? `<div class="note">${esc(it.note)}</div>` : ""}
-    <button class="toggle-blocks" data-toggle="${it.id}">
-      <span>${it.blocks.length} copy block${it.blocks.length > 1 ? "s" : ""}</span>
-      <span class="arrow">▼</span>
-    </button>
-    <div class="blocks">${blocks}</div>
-  </article>`;
-}
-
-function renderDay(){
-  const d = DAYS.find(x => x.id === activeDay);
-  const list = itemsFor(activeDay);
-  $("#main").innerHTML = `
-    <div class="day-head">
-      <h2>${esc(d.full)}</h2><span class="date">${esc(d.date)}</span>
-    </div>
-    ${list.length ? list.map(cardHTML).join("")
-      : `<p class="empty">Nothing scheduled. Enjoy it.</p>`}`;
-}
-
-function render(){ renderTabs(); renderDay(); renderProgress(); }
-
-/* ---------- EVENTS ---------- */
-document.addEventListener("click", async e => {
-  const tab = e.target.closest("[data-day]");
-  if(tab){ activeDay = tab.dataset.day; render(); window.scrollTo({top:0}); return; }
-
-  const chk = e.target.closest("[data-check]");
-  if(chk){
-    const id = chk.dataset.check;
-    state[id] = !state[id];
-    const card = chk.closest(".card");
-    card.dataset.done = state[id] ? "1" : "0";
-    chk.setAttribute("aria-pressed", state[id]);
-    renderTabs(); renderProgress();
-    save(id, state[id]);
-    return;
-  }
-
-  const tog = e.target.closest("[data-toggle]");
-  if(tog){
-    const card = tog.closest(".card");
-    card.dataset.open = card.dataset.open === "1" ? "0" : "1";
-    return;
-  }
-
-  const cp = e.target.closest("[data-copy]");
-  if(cp){
-    const [id, i] = cp.dataset.copy.split("|");
-    const text = document.getElementById("blk-" + id + "-" + i).textContent;
-    try{
-      await navigator.clipboard.writeText(text);
-    }catch(_){
-      const ta = document.createElement("textarea");
-      ta.value = text; document.body.appendChild(ta); ta.select();
-      document.execCommand("copy"); ta.remove();
-    }
-    cp.textContent = "Copied"; cp.classList.add("copied");
-    setTimeout(() => { cp.textContent = "Copy"; cp.classList.remove("copied"); }, 1400);
-  }
-});
-
-$("#resetBtn").addEventListener("click", async () => {
-  if(!confirm("Clear every check for " + DATA.week + "? This can't be undone.")) return;
-  const ids = DATA.items.map(i => i.id);
-  ids.forEach(id => state[id] = false);
+    const remote = {}; (data||[]).forEach(r => { remote[r.key.split(":").slice(1).join(":")] = r.done; });
+    state = Object.assign(loadLocal(), remote); synced = true; badge(true);
+  }catch(e){ synced = false; badge(false); state = loadLocal(); }
   render();
-  if(persist){
-    try{
-      await sb.from("ops_checks").delete().like("key", DATA.weekHash + ":%");
-      setSync("ok", "Week cleared");
-    }catch(err){ console.error(err); setSync("warn", "Reset didn't save"); }
+}
+async function pushOne(id, val){
+  saveLocal();
+  if(sb && synced){
+    try{ await sb.from(TABLE).upsert({ key:K(id), done:val, week:WEEK_KEY }, { onConflict:"key" }); }
+    catch(e){ badge(false); synced=false; }
   }
-});
+}
+function badge(ok){
+  const b=document.getElementById("syncBadge");
+  b.className="sync "+(ok?"ok":"local"); b.textContent = ok?"● synced":"● local";
+}
 
-/* ---------- BOOT ---------- */
-$("#weekLabel").textContent = DATA.week;
-render();
+/* ---- RENDER ---- */
+function render(){
+  const app=document.getElementById("app"); app.innerHTML="";
+  DAYS.forEach((d,di)=>{
+    const done = d.tasks.filter(t=>state[t.id]).length;
+    const day=document.createElement("div"); day.className="day";
+    day.innerHTML =
+      `<div class="dhead" data-di="${di}">
+         <div><h2>${d.day} <span style="color:var(--mut);font-weight:400;">· ${d.date}</span></h2>
+         <div class="dsub">${d.sub}</div></div>
+         <span class="dcount">${done}/${d.tasks.length}</span>
+       </div><div class="dbody" id="body-${di}"></div>`;
+    const body=day.querySelector(".dbody");
+    d.tasks.forEach(t=>{
+      const on=!!state[t.id];
+      const row=document.createElement("div"); row.className="task"+(on?" done":"");
+      row.innerHTML =
+        `<div class="cb ${on?'on':''}" data-id="${t.id}"></div>
+         <div class="tt"><div class="ttitle">${t.t}</div>
+         <div class="tmeta"><span class="pill ${t.tag}">${t.tag}</span>
+         <span class="pill time">${t.time}</span></div></div>`;
+      body.appendChild(row);
+    });
+    app.appendChild(day);
+  });
+  bind(); progress();
+}
+function bind(){
+  document.querySelectorAll(".cb").forEach(cb=>{
+    cb.onclick=()=>{ const id=cb.dataset.id; state[id]=!state[id]; pushOne(id, state[id]); render(); };
+  });
+  document.querySelectorAll(".dhead").forEach(h=>{
+    h.onclick=(e)=>{ if(e.target.classList.contains("cb"))return;
+      document.getElementById("body-"+h.dataset.di).classList.toggle("collapsed"); };
+  });
+}
+function progress(){
+  const total=DAYS.flatMap(d=>d.tasks).length;
+  const done=DAYS.flatMap(d=>d.tasks).filter(t=>state[t.id]).length;
+  document.getElementById("fill").style.width=(total?done/total*100:0)+"%";
+  document.getElementById("pctText").textContent=`${done} / ${total} done`;
+}
+document.getElementById("resetBtn").onclick=async()=>{
+  if(!confirm("Reset all checks for this week?"))return;
+  state={}; saveLocal();
+  if(sb&&synced){ try{ await sb.from(TABLE).delete().in("key", allIds); }catch(e){} }
+  render();
+};
+document.getElementById("collapseAll").onclick=()=>{
+  document.querySelectorAll(".dbody").forEach(b=>b.classList.add("collapsed"));
+};
 initSync();
 </script>
 </body>
