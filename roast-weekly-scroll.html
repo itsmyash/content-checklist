@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROAST v6 — Weekly Scroll · Aug 30–Sep 5, 2026</title>
+<title>ROAST v6 — Weekly Scroll · Sep 6–12, 2026</title>
 <style>
   :root{--bg:#0f1511;--panel:#161d18;--panel2:#1c2620;--ink:#eaf2ec;--mut:#8ba393;
     --grn:#22c55e;--grn2:#14532d;--line:#26332b;--dr:#38bdf8;--cig:#d9a441;--vet:#f97362;}
@@ -64,7 +64,7 @@
   <div class="wrap" style="padding:0 4px;">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;">
       <div><h1>ROAST v6 — Weekly Scroll</h1>
-        <div class="wk">Sun Aug 30 → Sat Sep 5, 2026 · tap a task to open its script/caption</div></div>
+        <div class="wk">Sun Sep 6 → Sat Sep 12, 2026 · tap a task to open its script/caption</div></div>
       <span id="syncBadge" class="sync local">● local</span>
     </div>
     <div class="bar"><div id="fill" class="fill"></div></div>
@@ -79,8 +79,9 @@
 <div class="wrap" id="app"></div>
 <footer>
   Ledger is the parent — every market piece derives from it · PIR draws from research, not the Ledger · #LifeByAlexa on every post<br>
+  Theme this week: <b>price to the payment, not the headline</b> · Rates 6.71% (one-year high) · Monroe balanced: 1,949 active · $375K median list · 51 DOM<br>
   Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net
-  <div class="note" id="cfgNote"><b>Supabase sync:</b> paste your publishable/anon key into <code>SUPABASE_KEY</code> at the top of the script to sync checks across devices (project <code>gzqgeehcvmgstzenkyfnw</code>, table <code>ops_checks</code>, week key <code>2026-08-30</code>). Until then it saves locally in this browser — fully functional, just not synced.</div>
+  <div class="note" id="cfgNote"><b>Supabase sync:</b> paste your publishable/anon key into <code>SUPABASE_KEY</code> at the top of the script to sync checks across devices (project <code>gzqgeehcvmgstzenkyfnw</code>, table <code>ops_checks</code>, week key <code>2026-09-06</code>). Until then it saves locally in this browser — fully functional, just not synced.</div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -88,333 +89,347 @@
 /* ---- CONFIG ---- */
 const SUPABASE_URL="https://gzqgeehcvmgstzenkyfnw.supabase.co";
 const SUPABASE_KEY=""; // <-- paste anon/publishable key to enable sync
-const WEEK_KEY="2026-08-30"; const TABLE="ops_checks";
+const WEEK_KEY="2026-09-06"; const TABLE="ops_checks";
 
 /* ---- WEEK DATA (b = content blocks: {k:type, l:label, body}) ---- */
 const DAYS=[
-{day:"Sunday",date:"Aug 30",sub:"Write the Ledger first — everything derives from it",tasks:[
+{day:"Sunday",date:"Sep 6",sub:"Write the Ledger first — everything derives from it",tasks:[
  {id:"led",t:"THE POCONO LEDGER — write & publish (parent, written-only)",tag:"re",time:"blog",b:[
-   {k:"meta2",l:"SEO / slug",body:`Title: Pocono Real Estate Update (Aug 30, 2026): More Inventory Isn't a Discount — Monroe County Turns Selective
-Meta: Monroe County has more listings than a year ago, but higher prices and faster sales. What rising inventory really means for Pocono buyers and sellers this week.
-Slug: /pocono-ledger/2026-08-30-more-inventory-not-a-discount
-Link up to the Pillar: "New to the area? Start with the Pillar → Living in the Pocono Mountains & Lehigh Valley: The Complete 2026 Guide."`},
-   {k:"script",l:"Full article",body:`MORE INVENTORY ISN'T A DISCOUNT: MONROE COUNTY TURNS SELECTIVE
-The Pocono Ledger · Weekly Market Check · Week of August 30, 2026
+   {k:"meta2",l:"SEO / slug",body:`SEO title: Pocono Mountains Real Estate: Rates at 6.71%, Monroe County Market Update (Sept 2026)
+Meta description: Monroe County real estate update, week of Sept 6, 2026 — 30-year rates hit a one-year high of 6.71%, 1,949 active listings, $375K median list. What buyers and sellers should do now.
+Slug: /pocono-ledger-2026-09-06-rates-one-year-high
+Link up to the Pillar: "New to the area? Start with the complete 2026 guide." [Internal link — pending Pillar build]`},
+   {k:"script",l:"Full article",body:`THE POCONO LEDGER — Week of September 6, 2026
+Rates Hit a One-Year High. Price to the Payment, Not the Headline.
 
 EXECUTIVE SUMMARY
-The "Poconos are still hot" headline is doing sellers a disservice. Monroe County buyers now have roughly 4% more homes to choose from than a year ago — but they're also paying higher prices and moving faster on the right homes. In June, the median list price hit $375,000 while the median sold price landed at $335,000. That ~$40,000 gap isn't a discount waiting to happen; it's a scoreboard showing which listings were priced for the market that exists and which were priced for 2022. Rates are essentially flat in the mid-6% range, so no rate-cut cavalry is coming to rescue an overpriced listing. The market didn't get cheaper. It got selective.
+This is not a demand story — it's a financing story. The 30-year fixed climbed to 6.71%, its highest in more than a year, while Monroe County's most recent complete data (June 2026) still describes a balanced market: 1,949 active listings, a $375,000 median list price, and 51 median days on market. The question that matters this fall isn't whether the Poconos are "hot" or "cold." It's that a payment-sensitive buyer pool now rewards correctly priced, well-presented homes and quietly punishes aspirational ones. Underwrite the monthly payment, not the sticker price.
 
-THE WEEK'S NUMBERS
-• 30-yr fixed (Freddie Mac wkly avg): 6.66% (+0.01 pt w/w; ~6.56% a year ago)
-• 30-yr VA (daily lender avg): ~6.18% rate / 6.34% APR — zero-down remains the qualified-veteran edge
-• Monroe median list (June): $375,000 (+5.69% YoY); median sold: $335,000 (+13.29% YoY)
-• Active listings: 1,949 (~+4% YoY); median days on market: 51 (12% faster); sale-to-list ~98%
-• Submarket spread: Tobyhanna ~$299K · East Stroudsburg $399,450 · Stroudsburg $488,250 · Pocono Pines $499,900. Stroudsburg 31 days vs Effort 44 days.
-(Payment math is P&I only; add taxes, insurance, HOA, fees.)
+THE WEEK'S NUMBERS — RATES
+• 30-year fixed (Freddie Mac PMMS): 6.71%, up 5 bps from 6.66% — a one-year high.
+• 30-year VA purchase (national daily reference): ~6.24%.
+• VA locked-rate index (Optimal Blue): 6.40% on Sept 3, up from 6.29% on Sept 1.
+• Rates sit roughly 21 bps above the 6.50% of a year ago.
+
+PAYMENT MATH (P&I only, 20% down, 6.71%)
+• $250,000 home / $200,000 loan → ~$1,291/mo
+• $375,000 home / $300,000 loan → ~$1,937/mo
+• $500,000 home / $400,000 loan → ~$2,582/mo
+• $600,000 home / $480,000 loan → ~$3,098/mo
+Taxes, insurance, HOA, mortgage insurance, and points are additional. A 5-bp move adds ~$7/mo per $100K borrowed — small; the cumulative gap versus a year ago is the real story. For eligible veterans, ~6.24% VA vs. 6.71% conventional is roughly $62/mo less P&I on a $300K loan — before VA's zero-down option.
+
+MONROE COUNTY (June 2026, latest complete)
+• 1,949 active listings (~+4% YoY) — more buyer choice, more seller competition.
+• Median list $375,000 (+5.69% YoY); median sold $335,000 (+13.29% YoY).
+• 51 median days on market (~12% faster YoY); ~98% sale-to-list on average.
+• Range: Tobyhanna median list ~$299,000 → Pocono Pines ~$499,900. Stroudsburg 31 DOM vs. Effort 44 DOM.
 
 WHAT CHANGED THIS WEEK
-• Rates ticked up, not down — Freddie Mac to 6.66% (wk ending Aug 27). Mid-6% keeps move-up buyers payment-sensitive.
-• National demand softened at the contract stage — July pending sales -2.3% MoM, -2.2% YoY (lowest since Jan 2026); existing sales -1.7% to 4.06M pace.
-• Price cuts are now normal — ~20% of US listings had a reduction in July; national median list -2.4% YoY, inventory ~11.6% below the 2017–19 norm.
-• Commission-settlement framework firmer — Aug 19 the Eighth Circuit upheld the NAR settlement. Buyer agreements before touring, buyer-broker comp off the MLS, everything negotiable.
+• The 30-year fixed rose 5 bps to 6.71% (week ending Sept 3) — a one-year high.
+• VA rate indicators also moved up (Optimal Blue 6.29% → 6.40%, Sept 1 → 3).
+• National policy: on Aug 19 the Eighth Circuit upheld the NAR Sitzer/Burnett settlement. Written buyer agreements before touring, compensation disclosure, and removal of MLS cooperative-compensation offers remain the operating framework.
+• Pennsylvania consumers: a separate homebuyer antitrust settlement lists PA among covered states; published deadlines include Sept 17 (exclusions/objections) and Oct 27 (claims). Consumer legal information, not legal advice — review the official materials or consult counsel.
 
-NEIGHBORHOOD / TOWNSHIP SPOTLIGHT — STROUDSBURG vs EFFORT
-Stroudsburg carried a June median list around $488,250 and still moved in 31 days. Effort, at a lower price point, sat at 44 days. Higher price did not mean slower — proximity to services, walkable borough life, and commuter access pulled correctly-priced Stroudsburg homes through faster. Your days-on-market is set by pricing against current competition and location utility, not by what a neighbor got two summers ago.
+NEIGHBORHOOD / TOWNSHIP SPOTLIGHT — TIER MATTERS MORE THAN TOWN
+The county has no single answer right now. The clearest split this week is by price tier: one 2026 county report put supply above $600K at roughly 7.1 months with ~85 median DOM, versus ~1.4 months below $250K. Translation — entry-level product is still tight and moving; high-end product carries a wide margin for error and needs sharper pricing and presentation. The micro-market spread confirms it: Stroudsburg's 31 DOM against Effort's 44, and a $200K gap between Tobyhanna and Pocono Pines median list. There is no "Pocono price." There's a parcel price.
 
-OPERATOR OBSERVATION
-What I'm telling sellers this week, and it's not always welcome: the quiet opportunity forming now is the mispriced-complexity home — the one anchored to a 2021–22 valuation but sitting on real, durable utility. Year-round livability, honest rental optionality, manageable HOA and insurance exposure, a location near Stroudsburg/East Stroudsburg services or a clean commuter route. That's the buy. What's getting punished is the seasonal, rule-dependent STR that only pencils on aggressive occupancy. "Cheap Poconos" isn't the play. Buying mispriced complexity — after you actually underwrite it — is.
+OPERATOR OBSERVATION (Alexa's read)
+I've said this all year: the buyers didn't leave, the cheap money did. When a $300K loan costs about $1,937 a month before taxes, buyers shop the payment — and a $25,000 price cut or a seller-paid rate buydown can move a deal that a pretty listing photo can't. Sellers still pricing to last summer's neighbor sale are competing against 1,949 other options and losing the first two weeks, which are the only weeks that convert. And stop assuming a Fed cut rains down on mortgage rates — 30-year pricing follows long bonds and inflation expectations, not the Fed's short lever. Decide on today's payment and today's inventory. That's the whole game.
 
 WHAT BUYERS SHOULD DO
-• Get fully underwritten, not just prequalified.
-• Use the extra inventory as leverage — target homes past the 51–54-day mark, price cuts, or a fixable condition/HOA/septic/STR objection.
-• Veterans: compare VA vs conventional on total cash-to-close, not the assumption VA always wins.
-• Underwrite any second home/STR on documented occupancy and real ADR minus costs — never a peak-weekend screenshot.
+• Underwrite the payment, not the headline. Compare full monthly cost — taxes, insurance, HOA, utility profile — not list price.
+• Get lock-ready before touring hard: updated preapproval, DTI verified at today's rate, and a lender conversation on lock timing and seller-paid buydowns.
+• Veterans: get a VA-specific preapproval, not a conventional quote. Compare rate, lender fees, funding-fee treatment, and whether the property meets VA appraisal / minimum-property requirements.
+• Negotiate selectively. More inventory supports inspection, appraisal, closing-cost, and buydown conversations — but a well-priced home in a strong micro-market may still sell near list.
 
 WHAT SELLERS SHOULD DO
-• Price for the buyer who exists now — the ~$40K list-to-sold spread is the whole argument.
-• Don't wait for a Fed cut to fix overpricing. The Fed's on hold and a cut wouldn't auto-drop mortgage rates.
-• Weigh a rate buydown / closing-cost credit / inspection-readiness package vs a visible price cut.
-• Market the use case, not a generic "Pocono vacation home."
-• Settle your buyer-agent-comp position with your listing agent before launch.
+• Price to the competing inventory in front of you — not a 2021 expectation or a neighbor's old sale.
+• Front-load presentation and repairs. Payment-sensitive buyers won't stretch for a house that also needs immediate work.
+• Read the first two weeks fast. If showings, saves, and second showings don't develop, reassess price, condition, photos, access, and concessions before the listing goes stale.
+• Consider payment solutions. A targeted closing-cost credit or rate buydown can beat a bigger list-price cut, depending on the buyer.
+• Use a hyperlocal CMA. Tobyhanna, East Stroudsburg, Stroudsburg, Pocono Pines, and STR communities behave differently on price, condition, and buyer pool.
+
+New to the area? Start here → "Living in the Pocono Mountains & Lehigh Valley: The Complete 2026 Guide" (the Pillar). [Internal link — pending Pillar build]
 
 SOURCES
-Monroe figures via ForeverHomesAndLand June report; rates via Freddie Mac (GlobeNewswire) & Mortgage News Daily; VA via VALoans; national demand via NAR; price-cut/inventory via Realtor.com; Zillow value via Zillow; settlement ruling via Reuters. Educational, not financial advice.`}]},
+Freddie Mac PMMS; Optimal Blue via CNBC; Yahoo Finance (VA reference); Forever Homes & Land / PMAR-derived June county data; HousingWire; Real Estate News; Inman (Eighth Circuit / NAR settlement); Top Class Actions (PA buyer settlement). Figures reflect differing methodologies and cutoffs; verify parcel- and loan-specific numbers before acting. Educational, not financial advice.`}]},
  {id:"hub",t:"Hub Video EN — record & upload (the spoken Ledger)",tag:"re",time:"YouTube",b:[
-   {k:"script",l:"Script",body:`[0:00–0:08 HOOK] More inventory in the Poconos does not mean cheaper Poconos. If you're waiting for a discount that isn't coming, this is the update you need.
+   {k:"script",l:"Full script",body:`[0:00–0:08 HOOK] Mortgage rates just hit a one-year high — and in the Poconos that changes who wins this fall. It's not the prettiest house. It's the one priced to the payment.
 
-[0:08–0:20 OPEN] I'm Alexa Sanchez, licensed Realtor with Smart Way America Realty. This is the Pocono Ledger for the week of August 30th. Monroe County has about 4% more listings than a year ago — and that's got people convinced prices are falling. They're not. Let me show you what the numbers actually say.
+[0:08–0:20 OPEN] I'm Alexa Sanchez, Realtor with Smart Way America Realty. This is your Pocono Ledger for the week of September 6th. Three things you need: the number, the market, the move.
 
-[0:20–0:55 THE NUMBERS] June median list: $375,000, up almost 6% YoY. Median sold: $335,000, up over 13%. Homes moving in 51 days — 12% faster — closing around 98% of asking. Rates basically flat at 6.66%. More homes, higher prices, faster sales, all at once. That's not a buyer's market. That's a selective market.
+[0:20–0:55 THE NUMBER] The 30-year fixed is 6.71% — highest in over a year. On a $300,000 loan that's about $1,937 a month, principal and interest only. A 5-basis-point move is about seven bucks per hundred grand — small. The real gap is against last year's 6.50%. Veterans, your VA reference is around 6.24% — roughly $62 a month less on that same loan, before zero-down even enters the chat.
 
-[0:55–1:30 THE $40K GAP] The number that matters most: the $40,000 spread between median list and median sold. That gap is a scoreboard — homes priced for today vs homes priced for 2022. Stroudsburg, higher priced, still sold in 31 days. Effort, cheaper, sat 44. Price isn't what sets your days on market. Correct pricing and location are.
+[0:55–1:35 THE MARKET] Monroe County is balanced, not broken. Latest complete data: 1,949 active listings, $375,000 median list, 51 days on market, selling around 98% of ask. But there's no "Pocono price." Tobyhanna's median list is near $299K; Pocono Pines near $499,900. Above $600K there's about seven months of supply. Under $250K, under two. Tier decides everything.
 
-[1:30–2:05 WHAT TO DO] Buyers — get fully underwritten, and use the extra inventory as leverage on stale or reduced listings. Sellers — price for the buyer who exists today. Don't wait for a Fed cut; the Fed's on hold and a cut wouldn't drop mortgage rates anyway. Market the use of the home, not just the house.
+[1:35–2:15 THE MOVE] Buyers: underwrite the payment, not the sticker. A $25K cut or a seller-paid buydown can matter more than the list price. Get lock-ready before you tour hard. Sellers: price to the 1,949 homes you're competing with, fix what's deferred, and read your first two weeks like a hawk — that's the only window that counts.
 
-[2:05–2:20 CTA] The full written Ledger is on my site with every number and source. New here? Start with my complete Pocono guide — link in the description. Alexa Sanchez, Smart Way America Realty. See you next week.`},
-   {k:"yt",l:"YouTube description",body:`Title: Pocono Real Estate Update Aug 30 2026: Why More Inventory Doesn't Mean Cheaper Homes | Monroe County Market
+[2:15–2:30 CTA] New to the area? My complete 2026 Pocono and Lehigh Valley guide is linked below — start there. Full written Ledger with every number is on the blog. Alexa Sanchez, Smart Way America Realty, 570-688-8147. See you next Sunday.`},
+   {k:"yt",l:"YouTube description",body:`Title: Pocono Mountains Real Estate Update — Rates Hit 6.71% | Monroe County Market, Sept 6 2026
 
-Monroe County, PA has roughly 4% more active listings than a year ago — but prices are higher and homes are selling faster. Licensed Realtor Alexa Sanchez breaks down what rising inventory actually means for Pocono Mountains buyers and sellers.
+What are mortgage rates right now? The 30-year fixed reached 6.71% for the week ending September 3, 2026 — its highest in more than a year.
+What does that mean for a Pocono buyer? On a $300,000 loan, principal and interest run about $1,937/month.
+How is the Monroe County market? Balanced: 1,949 active listings, a $375,000 median list price, and 51 median days on market, with homes selling near 98% of asking.
+Is there one "Pocono" price? No — median list runs from about $299,000 in Tobyhanna to about $499,900 in Pocono Pines, and price tiers behave very differently.
+What should buyers and sellers do? Buyers should qualify on the monthly payment and get lock-ready; sellers should price to current competing inventory and act on early feedback. Veterans: a VA-specific preapproval can beat a conventional quote.
 
-Is the Pocono housing market cooling in 2026? Not the way people think — inventory is up, but June's median sold price rose over 13% YoY and homes moved in about 51 days. The market is more selective, not cheaper.
-What is the $40,000 gap? June's median list ($375,000) sat ~$40,000 above the median sold ($335,000) — overpriced listings get left behind while correctly-priced homes command ~98% of asking.
-Are mortgage rates falling? No. The 30-year fixed is ~flat at 6.66%, and the Fed — which doesn't set mortgage rates directly — is on hold.
+New to the area? Start with the complete 2026 guide: [Pillar link]. Full written Ledger: [blog link].
 
-0:00 More inventory ≠ cheaper Poconos
-0:20 The week's numbers
-0:55 The $40,000 list-to-sold gap
-1:30 What buyers and sellers should do
-2:05 Where to get the full Ledger
+0:00 Hook · 0:08 This week · 0:20 The number (rates) · 0:55 The market (Monroe County) · 1:35 The move · 2:15 Start here
 
-Alexa Sanchez · Licensed PA Realtor · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net
+Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net
 
-Tags: Pocono real estate, Monroe County PA housing market, Pocono Mountains homes for sale, Stroudsburg real estate, East Stroudsburg homes, Pocono housing market 2026, is the Pocono market cooling, Pennsylvania real estate update, mortgage rates 2026, STR investing Poconos, Pocono Ledger, Alexa Sanchez Realtor`},
-   {k:"caption",l:"Caption",body:`More homes on the market doesn't mean cheaper homes. Monroe County has ~4% more inventory than last year — and higher prices AND faster sales. This week's Ledger breaks down the $40K gap separating priced-right from wishful. Full breakdown on YouTube + the blog.`},
+Tags: Pocono real estate, Monroe County real estate, Pocono Mountains homes, mortgage rates 2026, Pennsylvania real estate, STR investing Poconos, VA loan Pennsylvania, Stroudsburg homes, Tobyhanna real estate, Alexa Sanchez Realtor`},
+   {k:"caption",l:"Caption",body:`Rates hit a one-year high — 6.71%. In the Poconos this fall, the winner isn't the prettiest listing. It's the one priced to the payment. Full Ledger on the blog. 🎥⬆️`},
    {k:"tags",l:"Hashtags",body:`#PoconoRealEstate #PoconoMountains #MonroeCounty #STRInvesting #LifeByAlexa`},
-   {k:"photo",l:"Thumbnail",body:`Split frame. Left: stack of SOLD signs, neon-green overlay "$375K LIST." Right: same street, red overlay "$335K SOLD." Center chunky tilted text: "NOT CHEAPER." Alexa's face lower-right, confident.`}]}
+   {k:"photo",l:"Thumbnail",body:`Alexa in executive/car setting. Neon-green "6.71%" oversized. Red/white "PRICE TO THE PAYMENT". Chunky tilted font over face.`}]}
 ]},
-{day:"Monday",date:"Aug 31",sub:"Ledger derivatives go out",tasks:[
+{day:"Monday",date:"Sep 7",sub:"Ledger derivatives go out",tasks:[
  {id:"li-mkt",t:"LinkedIn Market Signal (from Ledger)",tag:"re",time:"8:00 AM",b:[
-   {k:"caption",l:"Post",body:`The Pocono headline this week is "inventory is up." The operator read is more useful: inventory is up ~4% YoY in Monroe County, and yet June's median sold price rose over 13% and homes still cleared in ~51 days near 98% of ask.
+   {k:"caption",l:"Post",body:`The buyers didn't leave the Poconos. The cheap money did.
 
-That's not a cooling market. It's a selective one. The $40,000 spread between median list ($375K) and median sold ($335K) is doing the sorting — separating homes priced for today from homes priced for 2022. Stroudsburg sold faster than a cheaper township because location and correct pricing, not sticker price, set days-on-market.
+The 30-year fixed just hit 6.71% — a one-year high. Monroe County is still balanced (1,949 active, $375K median list, 51 DOM, ~98% of ask), but the behavior underneath has changed: buyers now shop the monthly payment, not the sticker.
 
-The quiet opportunity: mispriced complexity — the four-season home with real utility whose seller is still anchored to a peak comp. The risk: the seasonal STR that only works on aggressive occupancy. Underwrite accordingly.
+That reframes both sides of the table. A $25K price cut or a seller-paid rate buydown can move a deal that staging never will. And a seller pricing to last summer's neighbor sale is competing against nineteen hundred other options — and losing the first two weeks, which are the only weeks that convert.
 
-Full Ledger on the blog.
-Alexa Sanchez · Licensed PA Realtor #RS326383 · Smart Way America Realty`},
-   {k:"tags",l:"Hashtags",body:`#PoconoRealEstate #MonroeCounty #RealEstateInvesting #LifeByAlexa`}]},
+One myth to bury: a Fed cut does not automatically drop mortgage rates. Thirty-year pricing follows long bonds and inflation expectations, not the Fed's short lever. Decide on today's payment and today's inventory.
+
+Full Ledger on the blog. Alexa Sanchez · PA License #RS326383 · Smart Way America Realty.`},
+   {k:"tags",l:"Hashtags",body:`#PoconoRealEstate #MonroeCounty #RealEstateMarket #LifeByAlexa`}]},
  {id:"gbp-mkt",t:"GBP Market Update (from Ledger) — no hashtags",tag:"re",time:"9:00 AM",b:[
-   {k:"caption",l:"GBP post",body:`Monroe County Market Update — Week of Aug 30, 2026. More choice is not the same as lower prices. Active listings are up ~4% YoY (roughly 1,949 homes), but June's median list price reached $375,000 and the median sold price $335,000 — up 13% from a year ago — with homes closing near 98% of asking in about 51 days. The ~$40,000 gap between list and sold prices is the real story: correctly-priced homes still move; aspirationally-priced ones sit. Mortgage rates are roughly flat in the mid-6% range. Sellers, price against today's competition. Buyers, target stale or reduced listings and get fully underwritten first.
+   {k:"caption",l:"GBP post",body:`Monroe County Market Update — Week of September 6, 2026. The 30-year fixed mortgage reached 6.71%, its highest in over a year. Monroe County remains balanced: 1,949 active listings, a $375,000 median list price, and 51 median days on market, with homes selling near 98% of asking. Price tiers differ sharply — supply above $600,000 is roughly 7 months, versus under 2 months below $250,000. Buyers: qualify on the full monthly payment, not the list price. Sellers: price to current competing inventory and act on your first two weeks of feedback. Questions on a specific town or property type? Call or email.
 
 Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net`}]},
  {id:"fb-en",t:"Personal FB English (Ledger takeaway, plain voice)",tag:"re",time:"10:00 AM",b:[
-   {k:"caption",l:"Post",body:`Quick real-talk on the Pocono market this week: there are more homes for sale than last year, so everybody assumes prices are dropping. They're not. Prices are actually up, and the good homes are selling in about seven weeks near full asking. What changed is that buyers finally have enough choices to walk away from a house that's priced like it's still 2022. If you're selling, price it for who's actually shopping today. If you're buying, you've got room to negotiate on the listings that have been sitting. Happy to talk through your specific situation anytime.`}]},
- {id:"gbp-ins",t:"GBP Local Insight — sheriff-sale calendar angle",tag:"re",time:"11:00 AM",b:[
-   {k:"caption",l:"GBP post",body:`Monroe County distress-channel note: The county Sheriff now conducts real-estate sales online through Bid4Assets, with sales scheduled for September 24 and October 29, 2026. For homeowners, the meaningful window is before a scheduled sale, when options are widest; for buyers, these sales require careful due diligence on title, access, septic, and condition. Understanding the local foreclosure calendar is part of navigating this market with clear eyes.
+   {k:"caption",l:"Post",body:`Quick real-talk for anyone buying or selling in the Poconos this fall: mortgage rates just hit a one-year high (6.71%). That doesn't mean the market crashed — Monroe County is actually balanced, with a $375K median list price and homes still selling around 98% of asking. What it does mean: buyers are shopping the monthly payment now, not the sticker price. If you're selling, price it right and fix the little stuff before you list — the first two weeks matter most. If you're buying, get your preapproval tight and ask your lender about a seller-paid rate buydown. I broke the whole thing down on the blog if you want the numbers. Always here if you have questions. — Alexa`}]},
+ {id:"gbp-ins",t:"GBP Local Insight — foreclosure pipeline (2nd angle · no hashtags)",tag:"re",time:"11:00 AM",b:[
+   {k:"caption",l:"GBP post",body:`Local Insight — Monroe County Foreclosure & Sheriff-Sale Process (September 2026). Monroe County sheriff sales are conducted online through Bid4Assets, and the county no longer posts its own current sale list — Bid4Assets is now the source. The next published sales are September 24 and October 29, 2026. Homeowners facing a scheduled sale who still have equity often have more options before the auction than after. If you have questions about the timeline or your options, reach out confidentially.
 
 Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net`}]},
  {id:"ig-caro",t:"IG Market Carousel — build 8 slides + caption",tag:"re",time:"—",b:[
-   {k:"photo",l:"Slide directions",body:`1 (cover): "MORE INVENTORY ≠ CHEAPER POCONOS." Small: Week of Aug 30, 2026.
-2: Big stat "+4% listings YoY" over a Monroe County map outline.
-3: Two numbers: "$375K median LIST" / "$335K median SOLD" — arrow labeled "$40K gap."
-4: "51 days on market — 12% FASTER. 98% of asking." Speed lines.
-5: Town duel: "Stroudsburg 31 days vs Effort 44 days." Price isn't what sets DOM.
-6: "Rates: 6.66%, basically flat. No rate-cut rescue coming."
-7: Split: BUYERS → get underwritten, target stale listings. SELLERS → price for today.
-8 (CTA): "Full Ledger + sources on the blog. New here? Start with the guide." + contact block.`},
-   {k:"caption",l:"Caption",body:`Swipe for the truth the "Poconos are still hot" crowd skips → more homes, higher prices, faster sales, all at once. That's a selective market, not a cheap one. The $40K gap between list and sold is doing the sorting. Full Ledger on the blog.`},
+   {k:"photo",l:"Slide directions (8)",body:`1 (cover): "RATES HIT A ONE-YEAR HIGH" + "6.71%" in neon green. Subtext: Pocono Ledger · Sept 6, 2026.
+2: "This isn't a demand story. It's a financing story." + "$300K loan ≈ $1,937/mo (P&I)."
+3: "Monroe County is balanced, not broken." 1,949 active · $375K median list · 51 DOM · ~98% of ask.
+4: "There's no 'Pocono price.'" Tobyhanna ~$299K → Pocono Pines ~$499,900. >$600K ≈ 7 mo supply; <$250K ≈ under 2 mo.
+5: "Veterans:" ~6.24% VA vs 6.71% conventional ≈ $62/mo less on a $300K loan — before zero-down.
+6 (Buyers): Underwrite the payment. Get lock-ready. Negotiate selectively.
+7 (Sellers): Price to competing inventory. Fix deferred work. Read your first 2 weeks.
+8 (CTA): "New here? Start with the complete 2026 guide. Full Ledger on the blog." + contact block.`},
+   {k:"caption",l:"Caption",body:`6.71%. Highest in over a year. Here's what actually changes for Pocono buyers and sellers this fall 👆 Save this. Full Ledger's on the blog.`},
    {k:"tags",l:"Hashtags",body:`#PoconoRealEstate #PoconoMountains #MonroeCounty #STRInvesting #PARealEstate #LifeByAlexa`}]}
 ]},
-{day:"Tuesday",date:"Sep 1",sub:"Confession day",tasks:[
+{day:"Tuesday",date:"Sep 8",sub:"Confession day + neighborly",tasks:[
  {id:"nd-neigh",t:"Nextdoor Neighborly post (no selling)",tag:"re",time:"9:00 AM",b:[
-   {k:"caption",l:"Post",body:`Little market myth I keep hearing around town: "there are more houses for sale, so prices must be dropping." Around Monroe County that's actually not what's happening — prices are up from last year and the well-kept, fairly-priced homes are still moving quickly. The homes that sit are the ones priced like it's a few years ago. Not selling anything here, just figured neighbors thinking about a move might like the honest read. Happy to answer questions.
-— Alexa Sanchez`}]},
+   {k:"caption",l:"Post",body:`Neighbors — a small heads-up for anyone looking up property records this fall: Monroe County's court e-filing moved from C-Track to a new CourtPro system at the end of August, so that's where county filings live now. Not selling anything — just useful to know. Enjoy the cooler weather! — Alexa`}]},
  {id:"carconf",t:"Car Confession EN (20s) — IG + YT Shorts",tag:"re",time:"3:00 PM",b:[
-   {k:"script",l:"Script (20s)",body:`Confession: I lose deals because I won't lie to sellers. Somebody's got a house priced forty grand over what it'll actually sell for, and they want me to say "the Poconos are hot, it'll fly." It won't. More homes on the market this year means buyers can finally say no. And they will — to your house. Price it for today or watch it sit. That's the whole game right now.`},
-   {k:"cover",l:"Cover text",body:`"I LOSE DEALS BECAUSE I WON'T LIE" (red/white, chunky tilted, over face)`},
-   {k:"caption",l:"IG caption",body:`The uncomfortable version of this week's market. More inventory = buyers can finally walk. Price for today. Full Ledger on the blog.`},
-   {k:"tags",l:"Hashtags",body:`#PoconoRealEstate #MonroeCounty #PoconoMountains #RealTalk #LifeByAlexa`},
-   {k:"yt",l:"YT Shorts description",body:`Title: Why I Lose Real Estate Deals in the Poconos (Honest Realtor Confession) #shorts
-Monroe County has more inventory in 2026, which means buyers can finally walk away from overpriced homes. Here's the honest reason I won't tell a seller their over-market listing will "fly." Price for the buyer who exists today.
+   {k:"script",l:"Script (20s)",body:`Confession: half the Pocono listings sitting right now aren't overpriced by a little. They're priced for 2021 in a 6.71% world. Buyers don't shop your price anymore — they shop the payment. Your house isn't "not selling." It's not competing. Drop the ego, price to the payment, take the first two weeks seriously. That's it. That's the video.`},
+   {k:"cover",l:"Cover text",body:`(red/white) "PRICED FOR 2021" / (neon green) "IT'S A 6.71% WORLD"`},
+   {k:"caption",l:"IG caption",body:`Said what I said. Price to the payment or price to sit. 🚗`},
+   {k:"tags",l:"Hashtags",body:`#PoconoRealEstate #MonroeCounty #PoconoMountains #LifeByAlexa`},
+   {k:"yt",l:"YT Shorts description",body:`Title: Why Aren't Pocono Homes Selling in 2026? (Honest Realtor Confession) #shorts
+Why aren't Pocono homes selling in 2026? Often it's not the price on paper — it's the monthly payment at 6.71% rates. Here's the blunt version. Price to the payment, take the first two weeks seriously.
 Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147.
-Tags: Pocono real estate, honest realtor, Monroe County market, home pricing, overpriced listings, Pocono Mountains, real estate confession, Pennsylvania realtor, seller advice, LifeByAlexa`}]}
+Tags: pocono real estate, monroe county, mortgage rates 2026, home selling tips, price reduction, pennsylvania real estate, stroudsburg, alexa sanchez`}]}
 ]},
-{day:"Wednesday",date:"Sep 2",sub:"Spanish market read + cigar voice",tasks:[
+{day:"Wednesday",date:"Sep 9",sub:"Spanish market read + cigar voice",tasks:[
  {id:"aldia",t:"Pocono al Día — record (Spanish, <3 min) — IG + YT",tag:"re",time:"—",b:[
-   {k:"script",l:"Guion (ES)",body:`[GANCHO 0:00–0:05] Óyeme bien: que haya más casas en venta en los Poconos no quiere decir que estén más baratas. Al contrario.
-
-[0:05–0:45] Mira, mi amor, todo el mundo anda diciendo que el mercado se enfrió porque hay más inventario. En el condado de Monroe hay como un 4% más de casas que el año pasado, eso es verdad. Pero agárrate: el precio de venta subió más del 13% y las casas se están vendiendo en unos 51 días, casi al 98% de lo que piden. Más casas, precios más altos, y ventas más rápidas — todo a la vez. Eso no es un mercado barato. Es un mercado que ahora escoge.
-
-[0:45–1:40] El número que tú tienes que entender son esos casi cuarenta mil dólares de diferencia entre lo que la gente pide — $375,000 — y lo que de verdad se vende — $335,000. Esa diferencia te dice quién puso precio para hoy y quién puso precio pensando que todavía estamos en el 2022. Y no cuentes con que la Reserva Federal te va a salvar bajando las tasas — están quietas en 6.66%, y aunque bajaran, eso no baja automáticamente la hipoteca.
-
-[1:40–2:20] Entonces, si vas a vender: pon el precio para el comprador que existe hoy, no para el sueño del vecino. Y si vas a comprar: tú tienes poder ahora. Busca las casas que llevan tiempo sentadas o que ya bajaron de precio, y llégate con tu preaprobación completa, no una cartica cualquiera.
-
-[2:20–2:35 CIERRE] El análisis completo con todos los números está en mi blog. Soy Alexa Sanchez, Smart Way America Realty. Nos vemos la próxima.`},
-   {k:"yt",l:"Descripción YouTube (ES)",body:`Título: Mercado de Bienes Raíces en los Poconos (30 de agosto 2026): Más Inventario NO Significa Casas Más Baratas | Condado de Monroe
-¿Está bajando el mercado en los Poconos? Hay más casas en venta en el condado de Monroe, pero los precios subieron y las casas se venden más rápido. Alexa Sanchez, agente con licencia, te explica en español qué significa el aumento de inventario para compradores y vendedores esta semana. Educativo; no es asesoría financiera. Alexa Sanchez · Licencia PA #RS326383 · Smart Way America Realty · (570) 688-8147.
-Tags: bienes raices Poconos, mercado inmobiliario Monroe County, casas en venta Poconos, bienes raices Pensilvania en espanol, inversiones en Poconos, Alexa Sanchez, mercado de vivienda 2026`},
-   {k:"caption",l:"IG caption",body:`Más casas en venta no es lo mismo que casas más baratas, mi amor. El mercado de Monroe no se enfrió — se puso selectivo. Te explico los números. Análisis completo en el blog.`},
-   {k:"cover",l:"Cover text",body:`"MÁS CASAS ≠ MÁS BARATO" (verde neón, letra inclinada)`},
+   {k:"script",l:"Guion (ES)",body:`Óyeme bien, mi amor, porque esto te toca el bolsillo. Las tasas hipotecarias subieron otra vez — 6.71%, lo más alto en más de un año. Pero no te asustes con los titulares. El mercado de Monroe County está balanceado: casi mil novecientas casas activas, precio mediano de trescientos setenta y cinco mil, y se venden en unos cincuenta y un días. ¿Qué cambió de verdad? Que el comprador de hoy no mira el precio en el papel — mira el pago mensual. Un préstamo de trescientos mil te sale como mil novecientos treinta y siete al mes, solo capital e interés. Entonces, si tú estás vendiendo: pon el precio según la competencia de HOY, no según lo que vendió tu vecino en 2021, y arregla los detalles antes de listar. Las primeras dos semanas lo son todo. Y si tú estás comprando: no te enamores del precio, enamórate del pago — y pregúntale a tu prestamista por un "buydown" pagado por el vendedor. Una cosa más: si la Reserva Federal baja las tasas, eso NO significa que la hipoteca baja automáticamente. Son cosas distintas. Decide con el pago de hoy y el inventario de hoy. Cualquier pregunta, tú me llamas. Soy Alexa Sanchez.`},
+   {k:"yt",l:"Descripción YouTube (ES)",body:`Título: Mercado de Bienes Raíces en los Poconos — Tasas a 6.71% | Condado de Monroe, 6 sep 2026
+¿Subieron las tasas hipotecarias en 2026? Sí — la tasa fija a 30 años llegó a 6.71%, la más alta en más de un año. ¿Cómo está el mercado en Monroe County, Poconos? Balanceado: unas 1,949 casas activas, precio mediano de lista de $375,000 y 51 días en el mercado. ¿Qué deben hacer compradores y vendedores? Calcular el pago mensual, no solo el precio; los vendedores deben fijar precio según la competencia actual. Información educativa.
+Tags: bienes raíces Poconos, Monroe County, tasas hipotecarias 2026, comprar casa Pensilvania, inversiones en Poconos, Alexa Sanchez, real estate en español
+Alexa Sanchez · Licencia PA #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net`},
+   {k:"caption",l:"IG caption",body:`Las tasas subieron a 6.71% — pero el mercado está balanceado. Lo que de verdad cambió: el comprador mira el PAGO, no el precio. Te lo explico 👇`},
+   {k:"cover",l:"Cover text",body:`(neon green) "6.71%" / (red/white) "EL PAGO, NO EL PRECIO"`},
    {k:"tags",l:"Hashtags",body:`#BienesRaices #InversionesEnPoconos #MonroeCounty #LifeByAlexa`}]},
- {id:"th-tt",t:"Talking Head — TikTok (lounge vs restaurants)",tag:"cig",time:"—",b:[
-   {k:"script",l:"Script",body:`The cigar lounge doesn't compete with other cigar lounges anymore. It competes with restaurants. Think about it — when somebody's got two hours and a little money to spend on a night out, your lounge is up against a good steakhouse and a cocktail bar, not the humidor down the street. So the ones winning right now aren't winning on the biggest humidor. They're winning on food credibility, an actual drink program, design you want to sit in, and events worth showing up for. A cigar's not the product anymore. The evening is the product. That's exactly how I'm building Nell's Social — you don't come for a stick, you come for the two hours.`},
-   {k:"caption",l:"TikTok caption",body:`Your lounge isn't competing with the humidor down the street. It's competing with the steakhouse. The evening is the product. (Building Nell's Social on exactly this.)`},
-   {k:"tags",l:"Hashtags",body:`#CigarLife #CigarAuthority #NellsSocial #OperatorLife #LifeByAlexa`}]},
+ {id:"th-tt",t:"Talking Head — TikTok (Dominican ≠ mild · origin = production advantage)",tag:"cig",time:"—",b:[
+   {k:"script",l:"Script",body:`Stop saying Dominican cigars are mild. That's not a flavor — that's a misunderstanding. The Dominican Republic is a production origin, not a strength category. Same island gives you a creamy Connecticut-wrapped morning smoke AND a full-bodied, complex after-dinner bomb. What decides strength isn't the country — it's the blend: the wrapper priming, the ligero-to-seco ratio, the fermentation, the aging. So next time somebody tells you "Dominican equals mild," ask them one question: what tobaccos are actually in it? That's the whole game. Origin is a résumé, not a flavor.`},
+   {k:"caption",l:"TikTok caption",body:`"Dominican cigars are mild" is the most confidently wrong thing in the humidor. Here's why 🇩🇴🚬`},
+   {k:"tags",l:"Hashtags",body:`#CigarLife #CigarAuthority #DominicanCigars #NellsSocial #LifeByAlexa`}]},
  {id:"th-ig",t:"@its.myash IG Talking Head (from TikTok)",tag:"cig",time:"—",b:[
-   {k:"caption",l:"Caption",body:`The cigar lounge doesn't compete with other lounges anymore — it competes with restaurants. Nobody's choosing your humidor over the humidor down the street; they're choosing you over a steakhouse and a cocktail bar. So win on the evening, not the inventory. Food, drink, design, events. That's the Nell's Social blueprint. (Full take on TikTok.)`},
-   {k:"tags",l:"Hashtags",body:`#CigarLife #CigarAuthority #NellsSocial #OperatorLife #LifeByAlexa`}]},
+   {k:"caption",l:"Caption",body:`Origin is a résumé, not a flavor. "Dominican = mild" is confidently wrong — here's the fix. 🇩🇴🚬`},
+   {k:"tags",l:"Hashtags",body:`#CigarLife #CigarAuthority #DominicanCigars #NellsSocial #LifeByAlexa`}]},
  {id:"myash-fb",t:"@its.myash FB Business (from cigar content)",tag:"cig",time:"—",b:[
-   {k:"caption",l:"Post",body:`Hot take from the lounge side of my world: cigar lounges don't compete with other lounges anymore — they compete with restaurants. When someone's got two hours and a night out to spend, you're up against a steakhouse, not the humidor down the road. The evening is the product now. It's exactly how we're building Nell's Social in Bartonsville — you come for the two hours, not just the stick.`}]}
+   {k:"caption",l:"Post",body:`New this week on @its.myash: why "Dominican cigars are mild" is the most confidently wrong take in the humidor — and how we build a "flight with a point of view" at Nell's Social in Bartonsville. Origin is a résumé, not a flavor. Full video on Instagram.`}]}
 ]},
-{day:"Thursday",date:"Sep 3",sub:"Veteran + operator + cigar + PIR",tasks:[
- {id:"vet-op",t:"LinkedIn Operator Post (operator voice)",tag:"op",time:"8:00 AM",b:[
-   {k:"caption",l:"Post",body:`People ask why a Realtor also runs a cigar lounge and produces a TV network. Same reason, every time: I don't sell products, I build rooms people want to be in — physical and otherwise.
+{day:"Thursday",date:"Sep 10",sub:"Veteran + operator + cigar + PIR + monthly DR lane",tasks:[
+ {id:"li-op",t:"LinkedIn Operator Post (operator voice)",tag:"op",time:"8:00 AM",b:[
+   {k:"caption",l:"Post",body:`Running a cigar lounge taught me something no real-estate deal ever did: people don't come back for the product. They come back for the feeling of being hosted well.
 
-The lounge taught me something that shows up everywhere else in my operating. Nell's Social doesn't win on the biggest humidor. It wins on the evening — the food, the pour, the design, the reason to show up. The cigar is the excuse; the two hours are the product.
+At Nell's Social we stopped selling "cigar nights" and started building flights with a point of view — three cigars around one idea, an arc the room can feel. Bookings changed. Not because the cigars got better, but because the experience got intentional.
 
-Real estate is the same. Nobody remembers the square footage. They remember whether you told them the truth about the $40,000 gap between what a house is listed for and what it'll actually sell for. The transaction is the excuse; trust is the product.
-
-Different rooms. Same job: be the reason someone comes back.`},
+It's the same lesson I'm carrying into KSM TV as we build toward launch: audiences don't return for content. They return for a world they want to belong to. Product is table stakes. The experience is the moat.`},
    {k:"tags",l:"Hashtags",body:`#OperatorLife #DominicanEntrepreneur #LifeByAlexa`}]},
  {id:"vet-ig",t:"Veteran PA — IG Reel (VA + PHFA K-FIT stacking)",tag:"vet",time:"—",b:[
-   {k:"script",l:"Script (30–60s)",body:`[HOOK 0:00–0:04] Pennsylvania veterans: your zero-down VA loan might stack with 5% in forgivable down-payment help. Most people don't know it's even allowed.
-
-[0:04–0:35] A VA purchase loan already needs no down payment. But closing costs and cash reserves are real. PHFA's K-FIT program can add assistance worth 5% of the lesser of purchase price or appraised value — and it's forgiven 10% a year over 10 years. On a $350,000 purchase with a $345,000 appraisal, that 5% is calculated on $345,000 — about $17,250 — subject to program and lender approval.
-
-[0:35–0:55] The catch: PHFA assistance is not automatically compatible with every VA lender or loan structure. You need written confirmation from a PHFA participating lender that your exact VA first mortgage and the K-FIT second can be paired. "Forgivable" also doesn't mean the lien vanishes — sell or refinance early and part of it may be repayable.
-
-[0:55–1:00 CTA] Educational only — confirm your file with a PHFA participating lender. Questions, I'm here.`},
-   {k:"cover",l:"Cover text",body:`"VA LOAN + 5% FORGIVABLE HELP" (neon green stat, chunky tilted)`},
-   {k:"caption",l:"Caption",body:`PA veteran buyers — a zero-down VA loan may stack with PHFA K-FIT (5%, forgiven over 10 years) to cover closing costs and reserves. It's product- and lender-specific, so get written confirmation your exact VA loan and the assistance second can be paired. Educational only, never a rate guarantee.`},
-   {k:"tags",l:"Hashtags",body:`#VeteranHomebuyer #VALoan #VeteranRealEstate #PARealEstate #LifeByAlexa`}]},
- {id:"vet-yt",t:"Veteran PA — YouTube upload (standing)",tag:"vet",time:"—",b:[
-   {k:"yt",l:"Title + script + description",body:`Title: Can PA Veterans Stack a VA Loan With PHFA K-FIT Down Payment Assistance? (2026 Explainer)
-
-Script (deeper): A VA-backed purchase loan requires no down payment, no monthly mortgage insurance, and a valid Certificate of Eligibility with owner-occupancy intent. But zero-down doesn't mean zero-cash: closing costs, the funding fee (waived for veterans receiving VA compensation for a service-connected disability), and reserves still matter. That's where Pennsylvania's PHFA programs can help. K-FIT offers 5% of the lesser of purchase price or appraised value, forgiven 10% per year over 10 years, with a 660 minimum credit score and a post-closing liquid-asset limit generally around $50,000. Keystone Advantage and ACCESS are alternatives with different terms. The non-negotiable step: PHFA assistance is not automatically compatible with every VA product, property type, or lender — so get written confirmation from a PHFA participating lender that your specific VA first mortgage and chosen assistance second lien may be stacked before you rely on it in a preapproval or Agreement of Sale.
-
-0:00 Zero-down isn't zero-cash · 0:40 What K-FIT actually is · 1:30 The 5% calculation example · 2:15 Why stacking needs written lender confirmation · 3:00 Disclaimer + next step
-
-Educational only; not lending, tax, or VA-benefits advice. Never a guarantee of rates or approval. No VA endorsement implied. Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net
-Tags: VA loan, PHFA K-FIT, veteran homebuyer Pennsylvania, down payment assistance PA, VA loan stacking, PHFA participating lender, veteran real estate, Pocono veteran buyer, zero down VA loan, Pennsylvania first time buyer`}]},
+   {k:"script",l:"Script (30–60s)",body:`Pennsylvania veterans — here's a stack most people miss. Your VA loan can pair with PHFA's K-FIT program. VA gives you no monthly PMI and potentially zero down. K-FIT adds 5% of the purchase price or appraised value — whichever is lower — toward your down payment or closing costs, with no maximum dollar cap. It's a second mortgage forgiven 10% a year over ten years. On a $350,000 home, that's up to $17,500. You need a 660 credit score and under $50,000 in liquid assets after closing. Separate from all of that: the Disabled Veterans' Real Estate Tax Exemption and the Property Tax/Rent Rebate are different tracks for property-tax relief — screen for both. This is education, not a rate quote. Call me to map your file.`},
+   {k:"cover",l:"Cover text",body:`(neon green) "VA + K-FIT" / (red/white) "PA VETERAN STACK"`},
+   {k:"caption",l:"Caption",body:`PA veterans: VA loan + PHFA K-FIT = potentially zero down AND help with closing costs. Here's how the stack works 👇 Educational only — call to map your file. Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147.`},
+   {k:"tags",l:"Hashtags",body:`#VeteranHomebuyer #VALoan #VeteranRealEstate #PARealEstate #LifeByAlexa`},
+   {k:"yt",l:"YouTube description",body:`Can a Pennsylvania veteran combine a VA loan with down-payment assistance? Yes — PHFA's K-FIT can pair with a VA first mortgage, providing 5% of the lesser of purchase price or appraised value toward down payment and/or closing costs, with no maximum dollar cap.
+How does K-FIT work? It's a second mortgage forgiven 10% per year over 10 years; minimum credit score 660; liquid assets after closing capped at $50,000.
+Is it the same as the veteran tax exemption? No — PA's Disabled Veterans' Real Estate Tax Exemption (DVRETX) and the Property Tax/Rent Rebate (PTRR) are separate property-tax programs. Educational information only; VA and PHFA underwriting apply; no rates guaranteed and no VA endorsement implied.
+Tags: VA loan Pennsylvania, PHFA K-FIT, veteran homebuyer PA, down payment assistance Pennsylvania, veteran real estate, DVRETX, Monroe County veteran, Pocono veteran homebuyer
+Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net`}]},
+ {id:"vet-yt",t:"Veteran PA — YouTube upload (standing, deeper cut)",tag:"vet",time:"—",b:[
+   {k:"yt",l:"Added detail vs. the IG cut",body:`IG script adapted longer, adding: the VA funding-fee waiver for veterans receiving compensation for a service-connected disability (at 2.15%, a $400K first-use zero-down loan would otherwise carry an $8,600 fee); the flat 1% lender origination cap; the 2026 conforming baseline of $832,750 in most PA counties (Pike County cited at $1,249,125); and the HOMEstead caution — K-FIT can't combine with another PHFA assistance program except the ACCESS Home Modification Loan. Full AEO/SEO description mirrors the IG cut with these additions.`}]},
  {id:"vet-gbp",t:"Veteran GBP posts — EN + ES (no hashtags)",tag:"vet",time:"—",b:[
-   {k:"caption",l:"GBP English",body:`Veteran homebuyer note: A zero-down VA purchase loan may be paired with Pennsylvania's PHFA K-FIT assistance — 5% of the lesser of purchase price or appraised value, forgiven 10% per year over 10 years — to help cover closing costs and reserves. Compatibility is product- and lender-specific; get written confirmation from a PHFA participating lender before relying on it. Educational only; no rate or approval guarantee, no VA endorsement.
+   {k:"caption",l:"GBP English",body:`Pennsylvania Veterans: You may be able to combine a VA loan with PHFA's K-FIT assistance — 5% of the lesser of purchase price or appraised value toward down payment or closing costs, no maximum dollar cap, forgiven over 10 years (660 minimum credit score; liquid assets after closing capped at $50,000). Pennsylvania's Disabled Veterans' Real Estate Tax Exemption and Property Tax/Rent Rebate are separate property-tax programs — screen for both. Educational information only; VA and PHFA underwriting apply; no rates guaranteed and no VA endorsement implied.
 
 Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net`},
-   {k:"caption",l:"GBP Español",body:`Para veteranos compradores: un préstamo VA de cero enganche puede combinarse con la asistencia K-FIT de PHFA en Pensilvania — 5% del menor entre el precio de compra o el valor de tasación, condonado 10% por año durante 10 años — para ayudar con costos de cierre y reservas. La compatibilidad depende del producto y del prestamista; obtenga confirmación por escrito de un prestamista participante de PHFA antes de contar con ella. Solo educativo; sin garantía de tasas ni aprobación, sin aval de VA.
+   {k:"caption",l:"GBP Español",body:`Veteranos de Pensilvania: es posible combinar un préstamo VA con la asistencia K-FIT de PHFA — 5% del menor entre el precio de compra o el valor de tasación para el enganche o los costos de cierre, sin límite máximo en dólares, condonado en 10 años (puntaje de crédito mínimo 660; activos líquidos después del cierre hasta $50,000). La Exención de Impuestos para Veteranos Discapacitados y el reembolso PTRR son programas separados de alivio de impuestos a la propiedad — revise ambos. Información educativa solamente; aplican los requisitos de VA y PHFA.
 
 Alexa Sanchez · Licencia PA #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net`}]},
- {id:"cig-vid",t:"Cigar/Lounge Video — IG + TikTok (Dominican ≠ mild)",tag:"cig",time:"—",b:[
-   {k:"script",l:"Script",body:`Everybody says "Dominican cigars are mild." That's lazy. Dominican isn't a flavor — it's an ecosystem. Cibao soil, Santiago factories, aging, blending. The country makes everything from a smooth Connecticut morning cigar to a broadleaf maduro that'll put you on the floor. So when we build a cigar night at Nell's, we don't sell "mild" or "strong." We sell the story: where the tobacco's from, whose hands rolled it, and what to pour next to it. Fifteen minutes, one guided ritual — welcome pour, origin, the light, one pairing, one thing you'll remember. That's the difference between a smoke and an experience.`},
-   {k:"caption",l:"Caption",body:`"Dominican cigars are all mild" is the most wrong thing people confidently say. The DR isn't a flavor profile — it's the most complete cigar ecosystem on earth. Come find out at Nell's. Thursday nights hit different.`},
-   {k:"tags",l:"Hashtags",body:`#DominicanCigars #CigarAuthority #NellsSocial #CigarLife #LifeByAlexa`}]},
- {id:"nd-land",t:"Nextdoor Landmark repost (Kettle Creek)",tag:"re",time:"—",b:[
-   {k:"caption",l:"Post (neighborly, no selling)",body:`If you haven't walked the trails at Kettle Creek yet, late August is the time. The observation deck over the pond is a quiet little reward, and the whole 166-acre sanctuary is open dawn to dusk year-round. One of those spots that reminds you why we live up here. What's your favorite trail this time of year?
-— Alexa Sanchez`}]},
+ {id:"cig-vid",t:"Cigar/Lounge Video — IG + TikTok (flight with a point of view)",tag:"cig",time:"—",b:[
+   {k:"script",l:"Script",body:`A great cigar night isn't three cigars on a table. It's a flight with a point of view. At Nell's Social we build the night around one idea — say, "what changes after dinner." Three cigars, one arc: a mellow opener while the conversation warms up, a medium in the middle when the room gets loud, and a full-bodied closer for the last pour. You're not selling seats and smoke. You're hosting an experience people document and come back for. That's the difference between a lounge and a living room with ashtrays.`},
+   {k:"caption",l:"Caption",body:`We don't sell cigar nights. We host them. The "flight with a point of view" at Nell's Social, Bartonsville. 🥃🚬 Which arc should we build next?`},
+   {k:"tags",l:"Hashtags",body:`#CigarLife #NellsSocial #PremiumCigars #CigarAuthority #LifeByAlexa`}]},
+ {id:"nd-land",t:"Nextdoor Landmark repost (Lehigh Gorge · neighborly)",tag:"re",time:"—",b:[
+   {k:"caption",l:"Post (no selling)",body:`One of my favorite early-fall spots close to home: the Lehigh Gorge Scenic Railway in Jim Thorpe. The rides out of the historic station on Susquehanna Street are beautiful right now — leaves just starting to turn, and it's not packed yet. Easy, gorgeous day trip if you've got weekend visitors. — Alexa`}]},
  {id:"ax-fb",t:"@alexa.realtor FB Business (from IG)",tag:"re",time:"—",b:[
-   {k:"caption",l:"Post",body:`This week's Pocono market truth: more homes for sale doesn't mean cheaper homes. Monroe County has ~4% more inventory than last year, but prices are up and the right homes still sell in about 51 days near full asking. The $40K gap between median list and median sold price is separating priced-right from wishful thinking. Full Ledger on the blog.`}]},
- {id:"pir",t:"PIR Ep. 03 — sheriff-sale / pre-foreclosure (conditional = YES)",tag:"pir",time:"playlist",b:[
-   {k:"cover",l:"Hook (statement of fear)",body:`"By the time your house hits the Monroe County sheriff's online auction, months of your best options are already gone."`},
-   {k:"script",l:"VO script (card-timed)",body:`[0:00–0:04] By the time your house shows up on the Monroe County sheriff's auction, months of your best options are already gone.
-[0:04–0:12] Here's the part people miss. The sheriff sale is the END of the process. Monroe County runs those sales online now, through Bid4Assets — the next ones are September 24th and October 29th. That date on the calendar started as a court filing months before.
-[0:12–0:22] The window that matters is BEFORE the auction. A foreclosure filing is a court case, not a locked door. Reinstatement, a program, a clean sale before the gavel drops — those live inside that window. After the auction, they mostly don't.
-[0:22–0:30] And the real danger isn't one problem. It's stacked ones. A filing, plus back taxes, plus a vacant house, plus a listing that already failed. Any one is fixable early. All four, late, move fast.
-[0:30–0:42] So — open the certified mail; your deadlines are in it. Call a HUD-approved counselor or a foreclosure attorney about your legal options — that's their lane, not mine. If selling is even a maybe, get a Realtor in early, because a controlled sale almost always beats an auction. And put those two dates on your calendar.
-[0:42–0:48] A foreclosure filing is a starting gun, not a verdict. The people who lose the most are the ones who wait for the auction to believe it's real.
-[0:48–0:55] If you own in Monroe County and you want a straight read on where you stand — start with the guide, then call.`},
-   {k:"photo",l:"Card contents (8)",body:`1 Title: PIR · Ep. 03 — "The Sheriff Sale Isn't the Start of Your Problem"
-2 The Fear: "By the time your house hits the auction, months of your best options are already gone."
-3 Timeline: Monroe sheriff sales run online via Bid4Assets. Next: Sept 24 & Oct 29, 2026. A sale date is the last step of a court process that began months earlier.
-4 The Window: Pre-sale = where reinstatement, loss-mitigation, and a controlled sale live. After the gavel, options narrow sharply.
-5 Overlap Signal: Danger = stacked distress — filing + delinquent taxes + vacancy/half-reno + a failed listing.
-6 What To Do: Open certified mail (deadlines) · call HUD counselor or PA foreclosure attorney · bring a Realtor in early · check calendar vs sale dates.
-7 The Truth: "A foreclosure filing is a starting gun, not a verdict."
-8 CTA: Smart Way America block → Pillar (guide).`},
-   {k:"yt",l:"YouTube description",body:`Title: Facing Foreclosure in Monroe County, PA? The Sheriff Sale Timeline Explained | Property Intelligence Report Ep. 03
-If you own a home in Monroe County or the Pocono Mountains and you're worried about foreclosure, understand the timeline. A sheriff sale is the final step of a court process that begins months earlier — and the window before the auction is where a homeowner's real options exist. Monroe County conducts real-estate sales online through Bid4Assets, with sales scheduled for September 24 and October 29, 2026. This episode covers what a foreclosure filing actually means, why the pre-sale window matters, the stacked-distress warning sign, and the protective steps to take in order. For legal options, contact a HUD-approved housing counselor or a Pennsylvania foreclosure attorney; if selling is on the table, a local Realtor can often net more through a controlled sale than an auction. Educational information, not legal, tax, or financial advice.
-0:00 The one thing people miss · 0:04 The sheriff-sale timeline · 0:12 The pre-sale window · 0:22 The stacked-distress warning · 0:30 What to do, in order · 0:42 The truth · 0:48 Where to start
-Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net
-Tags: Monroe County foreclosure, Pocono foreclosure help, sheriff sale Monroe County PA, Bid4Assets Monroe County, Pennsylvania foreclosure timeline, pre-foreclosure options PA, facing foreclosure Poconos, Stroudsburg real estate, East Stroudsburg foreclosure, Monroe County sheriff sale 2026, Pocono Mountains real estate, Property Intelligence Report`},
-   {k:"tags",l:"IG hashtags",body:`#PoconoRealEstate #STRInvesting #MonroeCounty #PropertyIntelligence #LifeByAlexa
-(flag: consider swapping #STRInvesting → #ForeclosureHelp on consumer-protection episodes)`}]}
-]},
-{day:"Friday",date:"Sep 4",sub:"Landmark, DR, weekend voice",tasks:[
- {id:"li-vet",t:"LinkedIn Veteran Post (question-framed)",tag:"vet",time:"8:00 AM",b:[
-   {k:"caption",l:"Post",body:`"Can I use my VA loan AND get down-payment help in Pennsylvania?" It's one of the most common questions I hear from veteran buyers — and the answer is often yes, with a critical condition.
-
-A VA purchase loan already requires no down payment. But zero-down isn't zero-cash: closing costs and reserves are real. Pennsylvania's PHFA K-FIT program can add 5% of the lesser of purchase price or appraised value, forgiven 10% per year over 10 years. On a $350,000 purchase with a $345,000 appraisal, that 5% is figured on $345,000 — roughly $17,250 — subject to program and lender approval.
-
-The condition that trips people up: PHFA assistance is NOT automatically compatible with every VA lender or loan structure. Before you write it into a preapproval or an Agreement of Sale, get written confirmation from a PHFA participating lender that your exact VA first mortgage and the assistance second lien can be paired.
-
-Educational only — not lending or VA-benefits advice, and never a rate guarantee. No VA endorsement implied.
-Alexa Sanchez · Licensed PA Realtor #RS326383 · Smart Way America Realty · (570) 688-8147`},
-   {k:"tags",l:"Hashtags",body:`#VeteranHomebuyer #VALoan #PARealEstate #LifeByAlexa`}]},
- {id:"land",t:"Landmark Spotlight — Kettle Creek — IG + YT",tag:"re",time:"—",b:[
-   {k:"photo",l:"Photo direction",body:`Frame: The observation deck looking out over one of the two ponds, last hour before dusk (late-August low golden light). Get the pond reflection with the mature canopy mirrored on still water; include a corner of the weathered deck rail as foreground for depth. Angle: Low, from deck level — water fills lower third, treeline + sky the top two-thirds. Time: Golden hour, no midday glare. No people in frame — conservation stillness is the mood.`},
-   {k:"caption",l:"IG caption",body:`Kettle Creek Environmental Education Center & Wildlife Sanctuary — 166 acres of mature forest, old field, and two ponds tucked between Bartonsville and Stroudsburg, with an observation deck that makes late August look like this. The trails are open year-round, dawn to dusk. This is the part of Pocono life people underestimate: not the marquee waterfalls, but the quiet, daily nature access three minutes from town. That's what makes living here feel different from vacationing here.
-#PoconoMountains #MonroeCounty #PoconoLiving #LifeByAlexa #KettleCreek`},
-   {k:"yt",l:"YouTube post",body:`Title: Kettle Creek Wildlife Sanctuary, Stroudsburg PA — 166 Acres of Quiet Pocono Nature
-A late-summer look at Kettle Creek Environmental Education Center & Wildlife Sanctuary near Bartonsville/Stroudsburg: 166 acres of mature deciduous forest, evergreen stands, an old field, and two ponds, with a public observation deck and trails open year-round dawn to dusk. The everyday outdoor access that defines living in the Pocono Mountains. Alexa Sanchez · Smart Way America Realty · PA License #RS326383.
-Tags: Kettle Creek, Stroudsburg PA, Pocono Mountains, Monroe County nature, wildlife sanctuary, Pocono living, things to do Poconos, Pennsylvania hiking`}]},
- {id:"dr-ig",t:"DR English — IG Reel (CONFOTUR: eligible ≠ definitive)",tag:"dr",time:"—",b:[
-   {k:"script",l:"Script (<60s)",body:`[HOOK 0:00–0:04] "CONFOTUR eligible" is not a tax benefit. It's a brochure word. Here's what actually protects you.
-
-[0:04–0:30] If you're an American buying in Punta Cana or Cap Cana, someone's going to tell you the project is "CONFOTUR" — meaning no 3% transfer tax, no annual property tax for years. Maybe. But "eligible," "in process," and "provisional" are not the same as definitive. Provisional can still fall through. You don't want to find out after you've wired a deposit.
-
-[0:30–0:52] So before any money moves, your Dominican attorney gets you the definitive CONFOTUR resolution — with the exact project, phase, and unit named — and confirms your specific purchase qualifies. Not the master development. Your unit.
-
-[0:52–0:58 CTA] Full breakdown — the seven documents — on my YouTube. Save this before your next DR call.`},
-   {k:"cover",l:"Cover text",body:`"'CONFOTUR ELIGIBLE' ISN'T A TAX BREAK" (neon green, chunky tilted)`},
-   {k:"caption",l:"Caption",body:`Understanding Dominican transactions as an American: the CONFOTUR trap. "Eligible" ≠ "definitive." Make your lawyer prove your exact unit qualifies before you wire anything. Deeper cut on YouTube.`},
-   {k:"tags",l:"Hashtags",body:`#DominicanRepublicRealEstate #PuntaCana #CapCana #DRInvestment #InternationalRealEstate #LifeByAlexa`}]},
- {id:"dr-yt",t:"DR English — YouTube longer cut (7 documents)",tag:"dr",time:"—",b:[
-   {k:"script",l:"Script (deeper)",body:`[0:00–0:10 HOOK] Every American buying in the Dominican Republic hears the word "CONFOTUR." Most treat a brochure logo like a guaranteed tax break. That mistake can cost you the 3% transfer tax you thought you'd never pay.
-
-[0:10–0:45 WHAT IT IS] CONFOTUR is a project-specific incentive under Dominican Law 158-01. When a tourism project qualifies, buyers can be exempt from the 3% property-transfer tax at registration and the annual 1% IPI wealth tax — commonly for up to 15 years. Key word: project-specific. It attaches to the approved development, not to every condo in the country.
-
-[0:45–1:30 PROVISIONAL VS DEFINITIVE] A project moves through stages: application, provisional classification, then definitive. Provisional is not definitive. A sales team can truthfully say "we're CONFOTUR" while the project is still provisional — and provisional is not the same guarantee. The Dominican tourism ministry runs an official portal that separates provisional from definitive and shows project status. That portal — not the brochure — is your source of truth.
-
-[1:30–2:30 THE SEVEN DOCUMENTS] Before you wire a reservation deposit, your independent Dominican attorney should have: one, the CONFOTUR resolution with the legal project name and resolution number; two, proof of definitive classification; three, the government portal search result confirming status; four, the exact unit schedule showing your unit is inside the classified development — a later tower or phase may not be; five, a developer letter that your purchase is the qualifying first transfer; six, construction-completion evidence, because the benefit clock may start there, not at your closing; and seven, an independent attorney's written opinion — not a broker brochure.
-
-[2:30–3:10 CONTRACT PROTECTION] Then it goes in the Contrato de Venta: full project name, resolution number and date, the specific unit, phase and building, whether you're buying directly from the approved developer, and — critically — who pays the 3% transfer tax if the exemption is denied, plus your remedy if the CONFOTUR claim turns out inaccurate.
-
-[3:10–3:25 CTA] A CONFOTUR promise belongs in your legal file, not just the sales deck. If you're evaluating a DR project and want to understand the transaction before you commit, that's exactly what I help American buyers do. Details below.`},
-   {k:"yt",l:"YouTube description",body:`Title: CONFOTUR in the Dominican Republic Explained: 7 Documents to Get Before You Wire a Deposit (American Buyer's Guide)
-Buying real estate in Punta Cana or Cap Cana as an American? "CONFOTUR eligible" is one of the most misunderstood phrases in Dominican real estate. This video explains what CONFOTUR actually is, the difference between provisional and definitive classification, and the exact documents your Dominican attorney should have before any money moves.
-What is CONFOTUR? A project-specific tax incentive under Dominican Law 158-01 that can exempt qualifying buyers from the 3% transfer tax and annual 1% IPI tax for up to 15 years.
-Does "CONFOTUR eligible" guarantee the tax break? No — "eligible," "in process," and "provisional" are not the same as definitive. Verify status on the official tourism-ministry portal, not the brochure.
-What should be in my purchase contract? The project name, resolution number, your specific unit and phase, whether you're buying from the approved developer, and who pays the 3% tax if the exemption is denied.
-0:00 The CONFOTUR mistake · 0:10 What CONFOTUR is · 0:45 Provisional vs definitive · 1:30 The 7 documents · 2:30 Contract protection · 3:10 How I help American buyers
-Educational only — not legal or tax advice. Use an independent Dominican attorney. Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net
-Tags: CONFOTUR, Dominican Republic real estate, Punta Cana real estate, Cap Cana investment, buying property Dominican Republic, DR real estate for Americans, Law 158-01, Dominican property tax, international real estate, transfer tax Dominican Republic, CONFOTUR explained`}]},
- {id:"smoke",t:"Weekend Smoke — @its.myash",tag:"cig",time:"6:00 PM",b:[
-   {k:"script",l:"Script",body:`Weekend smoke. It's Friday, the week's done, and here's my move: something with a little age on it, a cup of real Dominican coffee instead of the usual bourbon, and forty-five minutes where the phone stays face-down. That's it. That's the whole ritual. People overcomplicate this. A good cigar isn't a flex — it's a pause button. Whatever you light this weekend, actually sit with it.`},
-   {k:"caption",l:"Caption",body:`Weekend smoke → something aged, a Dominican coffee instead of the pour, phone face-down for 45. A cigar's a pause button, not a flex. What are you lighting this weekend?`},
-   {k:"tags",l:"Hashtags",body:`#WeekendSmoke #CigarLife #NellsSocial #DominicanCigars #LifeByAlexa`}]},
- {id:"fb-es",t:"Personal FB Spanish",tag:"re",time:"7:00 PM",b:[
-   {k:"caption",l:"Post",body:`Realísimo esta semana, mi gente: en los Poconos hay más casas en venta, y todo el mundo cree que eso significa que están más baratas. No. Los precios subieron y las buenas casas se venden rápido, casi a lo que piden. Las que se quedan sentadas son las que pusieron precio de hace tres años. Si vas a vender, pon precio para hoy. Si vas a comprar, tienes con qué negociar en las que llevan tiempo. Cualquier duda, aquí estoy.`}]}
-]},
-{day:"Saturday",date:"Sep 5",sub:"Spanish + community",tasks:[
- {id:"ig-es",t:"@alexa.realtor Spanish IG post (from Ledger/al Día)",tag:"re",time:"10:00 AM",b:[
-   {k:"caption",l:"Post",body:`Más inventario no es un descuento. El condado de Monroe tiene más casas que el año pasado, pero con precios más altos y ventas más rápidas. El mercado no se abarató — se puso selectivo. Pon precio para el comprador de hoy. Análisis completo en el blog.`},
-   {k:"tags",l:"Hashtags",body:`#BienesRaices #InversionesEnPoconos #MonroeCounty #LifeByAlexa`}]},
- {id:"gbp-comm",t:"GBP Community/Lifestyle (from Landmark) — no hashtags",tag:"re",time:"10:00 AM",b:[
-   {k:"caption",l:"GBP post",body:`Weekend in Monroe County: Kettle Creek Environmental Education Center & Wildlife Sanctuary near Bartonsville and Stroudsburg offers 166 acres of forest, ponds, and an observation deck, with trails open dawn to dusk year-round. The kind of everyday outdoor access that makes the Stroudsburg area a place to live, not just visit.
-
+   {k:"caption",l:"Post",body:`Rates hit a one-year high (6.71%) — but the Pocono market is balanced, not broken. What actually changed is buyer behavior: they shop the payment now, not the sticker price. Full breakdown — and what it means if you're buying or selling this fall — on the blog. — Alexa Sanchez, Smart Way America Realty`}]},
+ {id:"dr-es",t:"MONTHLY · DR Spanish Video (Latino-audience angle) — IG + YT",tag:"dr",time:"—",b:[
+   {k:"meta2",l:"Angle",body:`03M monthly cut: "¿Cuál mercado de RD sirve para TU estrategia — no para tu feed de Instagram?" Distinct from DR English's foreign-buyer/transaction angle. Under 3 min · one topic · fresh Spanish · Dominican cadence.`},
+   {k:"script",l:"Guion (ES)",body:`Óyeme bien, mi amor, que aquí mucha gente pierde su dinero. Tú ves un video bonito de Punta Cana y ya quieres comprar. Pero la pregunta no es dónde se ve lindo — es cuál mercado sirve para TU estrategia. Te lo divido rápido. ¿Quieres renta corta con volumen, vuelos y playa? Punta Cana y Bávaro — ahí llegan los aviones, ahí está la ocupación. ¿Quieres lujo, marina, golf, y guardar tu patrimonio? Cap Cana. ¿Quieres estilo de vida boutique, tranquilo, europeo? Las Terrenas. ¿Quieres entrar con menos dinero, con un nicho de deportes acuáticos y expatriados? Sosúa o Cabarete. ¿Y si lo tuyo es renta urbana, ejecutivos, preservar capital en la capital? Piantini. Ahora, la regla de oro, apúntala: no compres por el ROI del anuncio. Compra por demanda que puedas verificar, título limpio con su deslinde, y flujo NETO — después de HOA, administración y deuda — porque la hipoteca allá te sale de 11 a 13 por ciento. Y ojo: el CONFOTUR no es lo mismo que la residencia, y tiene fecha de vencimiento. Antes de firmar: abogado dominicano independiente, título, y el número de resolución del CONFOTUR en papel. Tú me llamas antes de mandar un depósito. Soy Alexa Sanchez.`},
+   {k:"yt",l:"Descripción YouTube (ES)",body:`¿Cuál mercado de República Dominicana debo comprar? Depende de tu estrategia: Punta Cana/Bávaro para renta corta con volumen y vuelos; Cap Cana para lujo y patrimonio; Las Terrenas para estilo de vida boutique; Sosúa/Cabarete para entrada más accesible; Piantini para renta urbana. Regla clave: compra por demanda verificable, título limpio (deslinde) y flujo neto — no por el ROI del anuncio. Las hipotecas locales rondan 11–13%. CONFOTUR no es residencia. Información educativa.
+Tags: republica dominicana bienes raices, comprar en punta cana, cap cana inversion, las terrenas, sosua cabarete, piantini santo domingo, CONFOTUR, invertir en republica dominicana
+Alexa Sanchez · Licencia PA #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net`},
+   {k:"caption",l:"IG caption",body:`¿Punta Cana o Cap Cana o Las Terrenas? La respuesta NO está en tu feed de Instagram — está en tu estrategia. Te lo explico 🇩🇴👇`},
+   {k:"cover",l:"Cover text",body:`(neon green) "5 MERCADOS" / (red/white) "¿CUÁL ES EL TUYO?"`},
+   {k:"tags",l:"Hashtags",body:`#BienesRaices #RepublicaDominicana #PuntaCana #InversionesRD #LifeByAlexa`}]},
+ {id:"dr-vet",t:"MONTHLY · DR Veteran (VA-in-the-DR truth) — IG Reel + YT",tag:"vet",time:"—",b:[
+   {k:"meta2",l:"Angle",body:`VA-loan-in-the-DR truth + Law 171-07 / CONFOTUR / FMP. Distinct from PA veteran and from DR English.`},
+   {k:"script",l:"Script",body:`Veterans thinking about the Dominican Republic — three things you need to get straight. One: a VA home loan cannot buy property in the DR. VA loans are for homes in the U.S. and its territories, period. You can still use your entitlement on a U.S. property while living abroad, but not on a Dominican condo. Two: your VA disability income may still help you qualify with a Dominican bank — but that's the bank's call, not a VA loan. Three: residency and taxes are separate systems. Law 171-07 is the pensioner/rentier/investor residency route — think $1,500 a month in pension or $2,000 a month in passive income. CONFOTUR is a project tax incentive, not residency, and it has an expiration date. And your VA Foreign Medical Program can cover care for service-connected conditions abroad — but as of 2026 you'll need a foreign tax ID and foreign banking info on file. Educational only. Talk to an immigration attorney and a VA-savvy lender before you commit.`},
+   {k:"cover",l:"Cover text",body:`(red/white) "VA LOAN IN THE DR?" / (neon green) "THE TRUTH"`},
+   {k:"caption",l:"Caption",body:`Veterans eyeing the DR: no, a VA loan can't buy there — but here's what CAN work (residency, taxes, and your VA health coverage abroad). Educational only. 🇩🇴🎖️ Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147.`},
+   {k:"tags",l:"Hashtags",body:`#VeteranHomebuyer #VALoan #DominicanRepublicRealEstate #VeteranRealEstate #LifeByAlexa`},
+   {k:"yt",l:"YouTube description",body:`Can a veteran use a VA loan to buy in the Dominican Republic? No — VA loans are limited to the U.S. and its territories. Can VA income help with a Dominican mortgage? Possibly, at the local bank's discretion. What's the difference between Law 171-07 and CONFOTUR? Law 171-07 is a residency route for pensioners, rentiers, and investors; CONFOTUR is a project-specific, time-limited tourism tax incentive — not residency. Does VA health care work abroad? The Foreign Medical Program covers service-connected care overseas; as of 2026 it requires a foreign tax ID and foreign banking details. Educational only; consult an immigration attorney and a VA-knowledgeable lender.
+Tags: veteran dominican republic, VA loan abroad, VA foreign medical program, Law 171-07 residency, CONFOTUR, veteran expat, VA benefits overseas, dominican republic real estate veteran
+Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net`}]},
+ {id:"pir",t:"PIR — DR cross-border episode (conditional = YES · CTA-free)",tag:"pir",time:"playlist",b:[
+   {k:"meta2",l:"Weekly check",body:`First week of month → the 03M cross-border cut is due → YES, produce one episode. Segment type: DR cross-border. CTA: CTA-free (Urban Group block gated until the brokerage switch closes). A discrete Pocono-data item also exists (STR-zoning fragmentation / FinCEN March 1) — logged as a Week-3 queue candidate; only one episode ships per the rule, and the 03M cut takes this week's slot. Sourced from the research layer, not the Ledger.`},
+   {k:"cover",l:"Hook (statement of the fear · no questions)",body:`"Most Americans who lose money in the Dominican Republic didn't get scammed. They trusted a brochure ROI and skipped the three numbers that actually decide the deal."`},
+   {k:"photo",l:"Card template (8)",body:`1 · Title: PIR · DR Cross-Border · "The 3 Numbers That Decide the Deal"
+2 · The Fear: "You wire the deposit. Then you learn the '8% yield' assumed peak occupancy, no HOA, no management — and cash, not an 11–13% local mortgage."
+3 · Number 1 — Airlift: Punta Cana handled 523,307 passengers in January — 63% of all DR air arrivals, +10% YoY. Demand follows runways.
+4 · Number 2 — Zone occupancy: Bávaro–Punta Cana hotel occupancy 88% in January vs. 82% national — but first-half national was 71%. Never annualize the peak.
+5 · Number 3 — Net yield: PC/Bávaro gross ~7.7–8.2%, net ~5.5–7.5%. Local mortgages ~11.9% (June 2026); foreigners put 30–40% down. Model a 35% occupancy downside.
+6 · The Paper: Independent DR attorney · registered title + deslinde · certificate of liens · HOA balances · CONFOTUR resolution number + remaining term (CONFOTUR ≠ residency; Law 30-26 restricts stacking).
+7 · Close: "Airlift. Zone occupancy. Net yield. Then the lawyer and the paper. In that order."
+8 · Identity: Alexa Sanchez · Smart Way America Realty (informational — no DR CTA this episode).`},
+   {k:"yt",l:"YouTube description",body:`Title: Buying in the Dominican Republic: The 3 Numbers That Decide the Deal | Property Intelligence Report
+What should an American check before buying real estate in the Dominican Republic? Three numbers decide most deals: airlift (airport passenger volume — Punta Cana handled 523,307 in January, 63% of national air arrivals), zone-specific hotel occupancy (88% in Bávaro–Punta Cana vs. 82% national at peak; 71% first-half national), and conservative net yield after HOA, management, and financing (local mortgages ~11–13%). Then verify the legal layer: an independent Dominican attorney, registered title and deslinde, a certificate of liens, HOA balances, and the project's CONFOTUR resolution number and remaining term. CONFOTUR is a project tax incentive, not a residency program. Educational information.
+Tags: dominican republic real estate, cross border real estate, punta cana investment, DR airbnb, CONFOTUR, buying property dominican republic, american buyer DR, property intelligence report, international real estate, net yield
+CTA: CTA-free this episode (DR Urban Group block gated). Points informationally toward the Pillar once live.
 Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net`}]}
 ]},
-{day:"Ongoing / Assets",date:"this week",sub:"Gallery cards & the Misconception reel",tasks:[
- {id:"gc-life",t:"Gallery: Lifestyle card — watercolor (deck/pond scene)",tag:"re",time:"—",b:[
-   {k:"prompt",l:"Watercolor prompt",body:`soft realistic Watercolor illustration of a Latina woman with medium skin tone, voluminous curly dark brown hair, gold watch, gold jewelry. Warm earthy tones — cream, tan, soft brown, muted greens. Soft natural lighting. Soft smooth watercolor washes, clean paper texture, fluid brushstrokes, delicate linework, luminous and airy. Editorial lifestyle illustration style. no text, no logos. — THIS WEEK'S SCENE: standing on a wooden observation deck at the edge of a still pond in a wooded sanctuary at golden hour, one hand resting on the deck rail, looking out over the water toward a mature treeline, relaxed and at home in the landscape.`},
-   {k:"caption",l:"Headline + body EN",body:`Headline: Living Here vs. Visiting Here
+{day:"Friday",date:"Sep 11",sub:"Landmark, DR English, weekend voice",tasks:[
+ {id:"li-vet",t:"LinkedIn Veteran Post (question-framed)",tag:"vet",time:"8:00 AM",b:[
+   {k:"caption",l:"Post",body:`"Can I use a VA loan and still get help with my down payment or closing costs in Pennsylvania?"
 
-Body EN: The thing nobody puts in a listing photo: the ordinary Tuesday walk. Places like Kettle Creek Sanctuary — 166 acres of forest and ponds, open dawn to dusk — are three minutes from town, not a two-hour vacation drive. That daily access is what separates living in the Pocono Mountains from vacationing here. It's also what holds value when the market gets selective: homes near real, everyday nature and services keep their pull. That's the Monroe County most buyers underestimate until they're standing in it.`},
-   {k:"caption",l:"Body ES + CTA",body:`Body ES: Vivir en los Poconos no es lo mismo que visitarlos: la naturaleza diaria, a minutos de casa, es lo que hace la diferencia. Eso es lo que mantiene el valor cuando el mercado se pone selectivo.
+It's the question I hear most from veteran buyers — and the answer is often yes.
 
-CTA: Full guide coming soon → (points at the Pillar; swap for live link once published)`},
-   {k:"meta2",l:"Alt-text + tracker log",body:`Alt-text: Watercolor illustration of a Latina woman with curly dark brown hair standing on a wooden deck overlooking a still pond and forest at golden hour.
-Tracker: 2026-08-30 | Lifestyle | "Living Here vs. Visiting Here" | watercolor (deck/pond) | CTA=placeholder(Pillar) | status: PENDING PILLAR`}]},
- {id:"gc-land",t:"Gallery: Landmark card — Kettle Creek real photo",tag:"re",time:"—",b:[
-   {k:"photo",l:"Photo direction + caption",body:`Photo: Real photo of Kettle Creek Sanctuary observation deck over the pond, golden hour (same shoot as Landmark Spotlight). No illustration.
-Caption: Kettle Creek Environmental Education Center & Wildlife Sanctuary — 166 acres, two ponds, trails open dawn to dusk. Bartonsville / Stroudsburg, Monroe County.`},
-   {k:"meta2",l:"Alt-text + tracker log",body:`Alt-text: Photograph of the observation deck and pond at Kettle Creek Wildlife Sanctuary near Stroudsburg, PA, at golden hour.
-Tracker: 2026-08-30 | Landmark | Kettle Creek Sanctuary | real photo (deck/pond) | no CTA | status: LIVE-READY`}]},
- {id:"misc",t:"Misconception Reel — 'Airbnb illegal before first guest'",tag:"re",time:"—",b:[
-   {k:"meta2",l:"Chosen / truth / format",body:`Chosen misconception: "A big Pocono house with amenities automatically makes a great STR." (Source: 02A.)
-The truth: Whether the STR model even exists is decided by township zoning, permits, inspections, occupancy limits, HOA rules, and septic capacity — not house size or a peak-weekend screenshot. A municipal green light alone isn't enough; HOA + township both must permit the use.
-Format: IG Reel (30–60s) — four concrete "check this" items need more room than a 20s confession. Platform: @alexa.realtor IG + YouTube. Kept distinct from Tuesday's Car Confession (market angle).`},
-   {k:"script",l:"Script",body:`[HOOK 0:00–0:04] Your Poconos Airbnb might be illegal before your first guest ever checks in. Here's how people find out too late.
+A VA loan already offers no monthly PMI and potentially zero down. In Pennsylvania, PHFA's K-FIT program can pair with it: 5% of the lesser of purchase price or appraised value toward down payment and/or closing costs, no maximum dollar cap, forgiven 10% per year over 10 years. On a $350,000 purchase that's up to $17,500. You'll need a 660 minimum credit score and no more than $50,000 in liquid assets after closing.
 
-[0:04–0:35] Big house, hot tub, sleeps twelve, gorgeous revenue screenshot from the seller. Looks like a slam-dunk STR. But the house doesn't decide whether you can rent it — four other things do. One: your township's zoning for that district. Two: whether a permit even exists, transfers, and survives inspection. Three: your HOA, which can ban rentals under 30 days no matter what the township says. Four: septic capacity, which caps real occupancy regardless of how many beds you cram in.
+Two things to keep straight: K-FIT can't be combined with another PHFA assistance program (except the ACCESS Home Modification Loan), and Pennsylvania's Disabled Veterans' Real Estate Tax Exemption and PTRR are separate property-tax tracks — screen for those on their own.
 
-[0:35–0:55] Monroe County has no countywide STR license. It's fragmented township by township. So a green light in one municipality means nothing in the next, and a municipal yes still doesn't beat an HOA no. The revenue screenshot is the LAST thing you should trust.
+Educational information only — no rates guaranteed, no VA endorsement implied. VA and PHFA underwriting apply.
+Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147`},
+   {k:"tags",l:"Hashtags",body:`#VeteranHomebuyer #VALoan #PARealEstate #LifeByAlexa`}]},
+ {id:"land",t:"Landmark Spotlight — Lehigh Gorge Scenic Railway, Jim Thorpe — IG + YT",tag:"re",time:"—",b:[
+   {k:"photo",l:"Photo direction",body:`Restored rail cars framed against the Lehigh Gorge. Shoot early morning (soft light, thinner crowds) from the historic downtown station platform at 1 Susquehanna Street, or from a slightly elevated angle in the Old Jail / Asa Packer Mansion district to layer Victorian rooftops + mountain slope + river corridor. Early September = first foliage hints, no peak crowds. Use the track as a leading line into the gorge. Real photo only — never illustrated (Landmark lane).`},
+   {k:"caption",l:"IG caption",body:`Jim Thorpe before the foliage crowds hit. 🍂🚂 The Lehigh Gorge Scenic Railway departs from the historic station at 1 Susquehanna Street — Victorian streets on one side, the Lehigh River gorge on the other. This is the Pocono-region pitch in one frame: walkable historic downtown, dramatic scenery, weekend recreation about 90 minutes from NY/NJ. If you're eyeing a move or a mountain weekend home, this is the lifestyle you're buying into.
+#PoconoMountains #MonroeCounty #PoconoLiving #LifeByAlexa #JimThorpePA`},
+   {k:"yt",l:"YouTube post",body:`Same photo; caption adapted from the IG copy. If posted as a Short, use a short AEO description: landmark name, the 1 Susquehanna Street citable fact, and the relocation/lifestyle tie-in + contact block.
+Alexa Sanchez · Smart Way America Realty · PA License #RS326383`}]},
+ {id:"dr-ig",t:"DR English — IG Reel (CONFOTUR vs. Law 171-07)",tag:"dr",time:"—",b:[
+   {k:"meta2",l:"Angle",body:`Franchise: "Understanding Dominican Transactions as an American." Angle (banked 03M #3): CONFOTUR vs. Law 171-07 — the two things Americans confuse. No written parent, no other derivatives.`},
+   {k:"script",l:"Script (<60s)",body:`[HOOK] If a seller uses "CONFOTUR" and "residency" in the same breath, slow down. Americans confuse two totally different things in the Dominican Republic — and it costs them. CONFOTUR is a PROJECT tax incentive. It can wipe the 3% transfer tax and the annual property tax for up to 15 years — but only on qualifying projects, and the clock starts at the government resolution date, not your closing. So "15 years CONFOTUR" might really be six years left. Law 171-07 is something else entirely — a RESIDENCY route for pensioners, rentiers, and investors, with income thresholds like $1,500 a month in pension. One is about the property's taxes. The other is about YOUR immigration status. They don't come as a bundle. Before you believe either: get the CONFOTUR resolution number, count the years actually left, and have an independent Dominican attorney confirm it. Save this.`},
+   {k:"cover",l:"Cover text",body:`(neon green) "CONFOTUR" / (red/white) "≠ RESIDENCY"`},
+   {k:"caption",l:"Caption",body:`Understanding Dominican transactions as an American 🇩🇴 CONFOTUR ≠ residency. Mixing them up is how buyers get burned. Full mechanics on YouTube.`},
+   {k:"tags",l:"Hashtags",body:`#DominicanRepublicRealEstate #PuntaCana #CapCana #DRInvestment #InternationalRealEstate #LifeByAlexa`}]},
+ {id:"dr-yt",t:"DR English — YouTube longer cut (mechanics)",tag:"dr",time:"—",b:[
+   {k:"script",l:"Script (deeper)",body:`Open on the confusion, then define each cleanly:
 
-[0:55–1:00 CTA] Underwrite the rules before the returns. That's the whole game up here.`},
-   {k:"cover",l:"Cover text",body:`"ILLEGAL BEFORE YOUR FIRST GUEST" (red/white, chunky tilted)`},
-   {k:"yt",l:"YouTube description",body:`Title: Is Your Pocono Airbnb Even Legal? 4 Things to Check Before You Buy an STR in Monroe County
-A big house with amenities doesn't automatically make a legal short-term rental in the Pocono Mountains. Before you trust a seller's revenue screenshot, check township zoning, permit status and transferability, HOA short-term-rental rules, and septic occupancy capacity. Monroe County has no countywide STR license — regulation is township-by-township, and a municipal approval doesn't override an HOA ban. Educational only. Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147.
-Tags: Pocono Airbnb, short term rental Monroe County, STR investing Poconos, Pocono STR rules, is my Airbnb legal, township zoning STR, HOA rental rules, Pocono Mountains investment property`},
-   {k:"caption",l:"Caption",body:`The house doesn't decide if you can Airbnb it — the township, the permit, the HOA, and the septic do. Monroe County has no countywide STR license, so "legal" is a township-by-township question. Underwrite the rules before the returns.`},
-   {k:"tags",l:"Hashtags",body:`#STRInvesting #PoconoRealEstate #MonroeCounty #ShortTermRental #LifeByAlexa`}]}
+CONFOTUR (Law 158-01, amended by Law 195-13): project-specific tourism incentive. Can exempt a qualifying project from the 3% transfer tax and the 1% annual IPI property tax for up to 15 years. The incentive clock runs from the government resolution date — not the buyer's closing — so a "15-year" benefit may have far fewer years left. Secondary transfers may not carry the same protection. In 2026, Law 30-26 did not repeal CONFOTUR but restricts stacking more than one special regime on the same investment and gives the Finance Ministry a formal oversight role.
+
+Law 171-07: a residency / personal-incentive route for foreign pensioners ($1,500/mo qualifying pension), rentiers ($2,000/mo stable foreign income, documented ~5 years), and investors ($200,000 threshold). It's about the buyer's immigration status, not the property's taxes.
+
+Why it matters: a buyer may encounter both in one relocation-plus-investment plan, but qualifying for one never proves qualification for the other. Diligence: get the resolution number, the definitive approval date, the exact unit coverage, the remaining term, and confirm you're buying from the approved promoter — all verified by an independent Dominican attorney, alongside title, deslinde, and a certificate of liens.`},
+   {k:"yt",l:"YouTube description",body:`Title: CONFOTUR vs. Law 171-07 Explained: What Americans Get Wrong Buying in the Dominican Republic (2026)
+What is CONFOTUR? A Dominican tourism tax incentive (Law 158-01) that can exempt qualifying projects from the 3% transfer tax and 1% annual property tax for up to 15 years.
+Does CONFOTUR give me residency? No — that's Law 171-07, a separate route for pensioners, rentiers, and investors.
+When does the CONFOTUR clock start? At the project's government resolution date, not your closing, so verify the remaining term.
+What changed in 2026? Law 30-26 restricts stacking multiple incentives and adds Finance Ministry oversight.
+Always confirm the resolution number and remaining years with an independent Dominican attorney. Educational information.
+Tags: CONFOTUR, Law 171-07, dominican republic real estate, dominican republic residency, buying property dominican republic, punta cana taxes, DR investment, american buyer dominican republic
+Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net`}]},
+ {id:"smoke",t:"Weekend Smoke — @its.myash",tag:"cig",time:"6:00 PM",b:[
+   {k:"script",l:"Script",body:`Friday. The lounge is lit, the pour is right, and the weekend officially starts when you light up. Weekend Smoke rule at Nell's Social: no phone-out stress talk for one cigar. Just the burn, the conversation, and the people who get it. What are you lighting tonight?`},
+   {k:"caption",l:"Caption",body:`Weekend Smoke. One cigar, zero stress talk, all the good conversation. Nell's Social, Bartonsville — pull up. 🚬🔥`},
+   {k:"tags",l:"Hashtags",body:`#CigarLife #NellsSocial #WeekendSmoke #CigarAuthority #LifeByAlexa`}]},
+ {id:"fb-es",t:"Personal FB Spanish",tag:"re",time:"7:00 PM",b:[
+   {k:"caption",l:"Post",body:`Mi gente 🇩🇴 Las tasas subieron a 6.71%, lo más alto en más de un año — pero tranquilos, el mercado de los Poconos está balanceado. Lo importante: hoy el comprador mira el PAGO mensual, no solo el precio. Si estás vendiendo, pon precio según la competencia de hoy. Si estás comprando, pregunta por un "buydown" pagado por el vendedor. Cualquier duda, aquí estoy. — Alexa`}]}
+]},
+{day:"Saturday",date:"Sep 12",sub:"Spanish + community + misconception",tasks:[
+ {id:"ig-es",t:"@alexa.realtor Spanish IG post (from Ledger/al Día)",tag:"re",time:"10:00 AM",b:[
+   {k:"caption",l:"Post",body:`6.71% — las tasas más altas en más de un año. Pero el mercado de Monroe County sigue balanceado: ~1,949 casas activas, precio mediano $375K, 51 días en el mercado. La clave este otoño: el PAGO mensual manda. 💵`},
+   {k:"tags",l:"Hashtags",body:`#BienesRaices #InversionesEnPoconos #MonroeCounty #LifeByAlexa`}]},
+ {id:"gbp-comm",t:"GBP Community/Lifestyle (from Landmark) — no hashtags",tag:"re",time:"10:00 AM",b:[
+   {k:"caption",l:"GBP post",body:`Community & Lifestyle — Lehigh Gorge Scenic Railway, Jim Thorpe. Early September is one of the best times to ride: fall color is beginning and summer crowds have thinned. The railway departs from the historic downtown station at 1 Susquehanna Street. Jim Thorpe's walkable Victorian streets and gorge scenery are a great snapshot of the Pocono-region lifestyle.
+
+Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net`}]},
+ {id:"misc",t:"Misconception Reel — 'Airbnb history ≠ STR-legal after sale'",tag:"re",time:"—",b:[
+   {k:"meta2",l:"Chosen / truth / format",body:`Chosen misconception: "A property with a successful Airbnb history is automatically STR-legal after you buy it."
+The truth: A permit can be personal to the prior operator, expire annually, be non-transferable, sit in a zoning district where new STRs aren't allowed, depend on grandfathered nonconforming status, or be barred by the HOA. Historical revenue is not proof of post-closing legality.
+Format: IG Reel (30–60s) — the nuance needs more than 20 seconds to land, and it's too costly a mistake to rush. Posted IG + YouTube (suggested slot: Saturday, since Tue–Fri IG slots are filled).`},
+   {k:"script",l:"Script",body:`Biggest, most expensive myth in Pocono investing: "It's already an Airbnb, so I can run it as an Airbnb too." No. That permit might be personal to the seller. It might expire every year. It might not transfer at all. The house might sit in a zoning district — like R-1 in Jackson or Pocono Township — where new short-term rentals aren't even allowed, and the old one only survives as a grandfathered use that dies at sale. And even if the township says yes, the HOA can still say no. A live Airbnb listing is not a legal green light. Before you value one dollar of STR income: get the parcel's zoning in writing, get the actual ordinance, confirm whether the permit transfers, and read the HOA docs. Underwrite the deal as if STR could be a no. If it still works, now you've got a real investment.`},
+   {k:"cover",l:"Cover text",body:`(red/white) "IT'S ALREADY AN AIRBNB" / (neon green) "≠ LEGAL FOR YOU"`},
+   {k:"caption",l:"Caption",body:`The most expensive assumption in Pocono investing: "it's already an Airbnb, so I can run it too." Not how it works. 👇 Save this before you make an offer.`},
+   {k:"tags",l:"Hashtags",body:`#STRInvesting #PoconoRealEstate #MonroeCounty #PoconoMountains #LifeByAlexa`},
+   {k:"yt",l:"YouTube description",body:`Title: Is Your Pocono Airbnb Even Legal? What Transfers When You Buy an STR in Monroe County
+Does an Airbnb permit transfer when you buy a short-term rental in the Poconos? Often no. STR permits can be personal to the operator, non-transferable, annual, limited by zoning district (for example, R-1 restrictions in Jackson and Pocono Township), dependent on grandfathered nonconforming status, or prohibited by an HOA. Before assigning value to STR income, verify parcel zoning in writing, obtain the current ordinance, confirm permit transferability, and review HOA governing documents. Educational information for Monroe County investors.
+Tags: pocono STR, short term rental poconos, monroe county airbnb rules, STR zoning pennsylvania, jackson township STR, airbnb investment poconos, STR permit transfer, pocono real estate investing
+Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147`}]}
+]},
+{day:"Ongoing / Assets",date:"this week",sub:"Gallery cards + monthly queue + status",tasks:[
+ {id:"gc-life",t:"Gallery: Lifestyle card — watercolor (café/autumn)",tag:"re",time:"—",b:[
+   {k:"prompt",l:"Watercolor prompt",body:`soft realistic Watercolor illustration of a Latina woman with medium skin tone, voluminous curly dark brown hair, gold watch, gold jewelry. Warm earthy tones — cream, tan, soft brown, muted greens. Soft natural lighting. Soft smooth watercolor washes, clean paper texture, fluid brushstrokes, delicate linework, luminous and airy. Editorial lifestyle illustration style. no text, no logos. — THIS WEEK'S SCENE: seated at a cozy mountain-town café table by a large window, autumn leaves visible outside, a warm mug and a small notebook on the table, relaxed and confident, early-fall Pocono atmosphere.`},
+   {k:"caption",l:"Headline + body EN",body:`Headline: Buy the Payment, Not the Panic.
+
+Body EN (~85 words): Mortgage rates just hit a one-year high, and the headlines want you scared. Here's the calmer truth: Monroe County is balanced, and the smartest buyers this fall are qualifying on the monthly payment, not the sticker price. A seller-paid rate buydown or a modest price adjustment can change your real cost more than any headline ever will. Whether you're relocating from New York or New Jersey or buying your first mountain home, the move is the same — know your payment, know your town, and make the market work for you.`},
+   {k:"caption",l:"Body ES + CTA",body:`Body ES: Las tasas subieron, pero el mercado de los Poconos está balanceado. Compra pensando en el pago mensual, no en el titular.
+
+CTA: "Full guide coming soon" → the Pillar (placeholder until the Pillar publishes).`},
+   {k:"meta2",l:"Alt-text + tracker log",body:`Alt-text: Watercolor illustration of a Latina woman with curly dark brown hair sitting at a Pocono café table in autumn, holding a warm mug.
+Tracker: 2026-09-06 · Lifestyle · "Buy the Payment, Not the Panic" · café/autumn scene · CTA placeholder → Pillar (pending) · EN+ES · posted alexa.realtor gallery.`}]},
+ {id:"gc-land",t:"Gallery: Landmark card — Lehigh Gorge real photo",tag:"re",time:"—",b:[
+   {k:"photo",l:"Photo direction + caption",body:`Photo: Lehigh Gorge Scenic Railway restored cars against the gorge, early morning, from the 1 Susquehanna Street station platform. Real photo only — never watercolor.
+Short caption: Lehigh Gorge Scenic Railway · Jim Thorpe, PA — early-fall rides from the historic downtown station.`},
+   {k:"meta2",l:"Alt-text + tracker log",body:`Alt-text: Restored Lehigh Gorge Scenic Railway train cars beside the Lehigh River gorge in Jim Thorpe, Pennsylvania.
+Tracker: 2026-09-06 · Landmark · Lehigh Gorge Scenic Railway, Jim Thorpe · real photo · no CTA · posted alexa.realtor gallery.`}]},
+ {id:"gc-list",t:"Gallery: Listing card (conditional)",tag:"re",time:"—",b:[
+   {k:"meta2",l:"Status",body:`SKIP — no new active inventory this week.`}]},
+ {id:"queue",t:"MONTHLY · Content Queue (Weeks 2–4 angles) — 01B / 02B / 03M / 06",tag:"op",time:"—",b:[
+   {k:"meta2",l:"01B — Market Pulse Monthly (policy / macro)",body:`Wk2 · LinkedIn + IG Reel — "PA might write one STR rulebook for the whole state." → H.B. 2303 statewide STR framework: county registries, 24/7 contact, operator categories; what it means for Pocono operators.
+Wk3 · GBP Local Insight + Personal FB EN — "Veterans: a bigger PA tax break passed the House." → H.B. 1257 constitutional-amendment path; what it would change; why it's not law yet.
+Wk4 · IG Carousel — "The SALT cap jumped to $40K — what it means for Pocono homeowners." → Itemization / mortgage-interest context; "confirm with your tax pro."`},
+   {k:"meta2",l:"02B — STR Monthly",body:`Wk2 · IG Reel — "Poconos STR: fewer listings, more money." → Revenue +8.5%, ADR +4.5%, occupancy +2.3%, supply −3% — a selection market; buy basis beats projection.
+Wk3 · IG Reel + YouTube — "Underwrite March, not July." → Seasonality score 72; July strongest / March weakest; model the low season, not the peak.
+Wk4 · GBP + LinkedIn — "The 40% yield trap." → Gross vs. net; the conservative max-purchase-price formula.`},
+   {k:"meta2",l:"03M — DR Deep-Dive (DR English lane)",body:`Wk2 · DR English IG Reel + YT — "New winter flights into Punta Cana — why it matters for your rental." → WestJet Winnipeg (Nov 28), Flair Montréal (Dec 17) feeder markets; airlift = demand, not a year-round guarantee.
+Wk3 · DR English IG Reel + YT — "The 3 numbers I check before any DR Airbnb." → Airlift by airport, zone occupancy, conservative net yield after HOA/management/debt.
+Wk4 · DR English IG Reel + YT — "The Amber Highway could reshape the North Coast." → Santiago–Puerto Plata drive 90→30 min; upside catalyst, not an underwriting assumption.`},
+   {k:"meta2",l:"06 — Monthly Legislation",body:`Wk2 · GBP Local Insight + Nextdoor (info) — "New federal cash-purchase reporting started March 1." → FinCEN residential reporting for entity/cash deals; coordinate with title early.
+Wk3 · LinkedIn + IG Reel — "Data centers are becoming a PA disclosure question." → Land-use adjacency; impact on residential value, noise, grid, traffic; add to diligence.
+Wk4 · LinkedIn Operator — "PA is modernizing its real-estate license law." → RELRA modernization: brokerage structure, advertising, supervision changes to watch.`}]},
+ {id:"status",t:"Packet status — Pillar / skips / no-duplication check",tag:"op",time:"—",b:[
+   {k:"meta2",l:"Pillar status (highest-leverage open item)",body:`NOT built this week. Remains outside the weekly cycle and is the pending resolution target for every "Full guide coming soon" gallery-card CTA and every PIR CTA. Until it publishes, this week's Lifestyle card CTA and the PIR episode both point at a placeholder. Recommend prioritizing the Pillar build so these CTAs resolve.`},
+   {k:"meta2",l:"PIR status",body:`YES this week — one DR cross-border episode ("The 3 Numbers That Decide the Deal"), CTA-free (Urban Group block gated until brokerage switch closes). Only one episode ships per the rule; the Pocono STR-zoning / FinCEN item is logged as a Week-3 queue candidate.`},
+   {k:"meta2",l:"Skips this week",body:`03W (DR Weekly) = skipped at source; DR English pulled from banked 03M angles. Listing gallery card = SKIP (no new active inventory).`},
+   {k:"meta2",l:"No-duplication check (four DR pieces, all distinct)",body:`DR English (Output 4): CONFOTUR vs. Law 171-07 — transaction mechanics.
+DR Spanish (Output 14): which DR market fits your strategy — Latino audience.
+DR Veteran (Output 14): VA-loan-in-the-DR truth + 171-07/CONFOTUR/FMP.
+PIR: the 3 numbers that decide the deal — narrated cross-border episode.
+Market story lives once in the Ledger; Hub Video, GBP Market Update, LinkedIn Market Signal, IG Carousel, Personal FB EN, and Pocono al Día are adaptations, not independent market pieces. PIR draws from research, never re-reports the Ledger.`}]}
 ]}
 ];
 
