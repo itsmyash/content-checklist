@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROAST v8 — Weekly Scroll · Sep 27–Oct 3, 2026</title>
+<title>ROAST v8 — Weekly Scroll · Oct 4–10, 2026</title>
 <style>
   :root{--bg:#0f1511;--panel:#161d18;--panel2:#1c2620;--ink:#eaf2ec;--mut:#8ba393;
     --grn:#22c55e;--grn2:#14532d;--line:#26332b;--dr:#38bdf8;--cig:#d9a441;--vet:#f97362;--cof:#c9a27a;}
@@ -68,10 +68,10 @@
   <div class="wrap" style="padding:0 4px;">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;">
       <div><h1>ROAST v8 — Weekly Scroll</h1>
-        <div class="wk">Sun Sep 27 → Sat Oct 3, 2026 · the approved slate · tap a task to open its script/caption</div></div>
+        <div class="wk">Sun Oct 4 → Sat Oct 10, 2026 · the approved slate · tap a task to open its script/caption</div></div>
       <span id="syncBadge" class="sync local">● local</span>
     </div>
-    <div class="thesis"><b>This week's thesis:</b> Cautious buyers aren't a buyer's market. Volume fell on both sides, but sellers still got 95.8% of original list — leverage lives in specific listings, not a countywide discount. Only the approved slate is here; skipped/monitoring items live in the packet.</div>
+    <div class="thesis"><b>This week's thesis:</b> Your comps were written at 6.5%. Your buyer is at 7.28%. Pocono prices didn't drop — buying power did (~$105/mo more on a $300K loan in three weeks). Only the approved slate is here; skipped/monitoring items live in the packet.</div>
     <div class="bar"><div id="fill" class="fill"></div></div>
     <div class="pct"><span id="pctText">0 / 0 done</span>
       <span><button class="btn" id="collapseAll">collapse days</button>
@@ -83,11 +83,11 @@
 </header>
 <div class="wrap" id="app"></div>
 <footer>
-  Ledger is the parent — every market piece derives from it · PIR: none this week (Smithfield Gateway banked) · #LifeByAlexa on every post<br>
-  Same story, different verbiage per outlet — no two market surfaces share sentences (Nextdoor = neighborly · GBP = search · LinkedIn = operator · Ledger = full reconciliation)<br>
-  Rates <b>7.03%</b> (Freddie Mac 30-yr avg, Sept 24 · 6.95% prior week · 6.30% a year ago) · Monroe Aug median sale <b>$347,450</b> (thin-month datapoint) · durable read = <b>YTD $337,500, +8.9%</b> · 95.8% of original list · 52 avg DOM · 4.6 months supply · pendings −9.2% · affordability 107<br>
+  Ledger is the parent — every market piece derives from it · PIR: none this week (sheriff-sale Ep. 03 banked for Oct 18) · #LifeByAlexa on every post<br>
+  Same story, different verbiage per outlet — no two market surfaces share sentences (Nextdoor = neighborly · GBP = search · Ledger = full reconciliation)<br>
+  Rates <b>7.28%</b> (Freddie Mac 30-yr avg, Oct 1 — ⚠ confirm at release · 7.03% Sept 24 · 6.76% Sept 10) · $300K loan P&amp;I: <b>$1,948 → $2,053</b> (+$105) · Monroe Aug median sale <b>$347,450</b> (thin-month datapoint) · durable read = <b>YTD $337,500, +8.9%</b> · 95.8% of original list · 52 avg DOM · 4.6 months supply · affordability 107<br>
   Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net
-  <div class="note" id="cfgNote"><b>Supabase sync:</b> paste your publishable/anon key into <code>SUPABASE_KEY</code> at the top of the script to sync checks across devices (project <code>gzqgeehcvmgstzenkyfnw</code>, table <code>ops_checks</code>, week key <code>2026-09-27</code>). Until then it saves locally in this browser — fully functional, just not synced.</div>
+  <div class="note" id="cfgNote"><b>Supabase sync:</b> paste your publishable/anon key into <code>SUPABASE_KEY</code> at the top of the script to sync checks across devices (project <code>gzqgeehcvmgstzenkyfnw</code>, table <code>ops_checks</code>, week key <code>2026-10-04</code>). Until then it saves locally in this browser — fully functional, just not synced.</div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -95,15 +95,34 @@
 /* ---- CONFIG ---- */
 const SUPABASE_URL="https://gzqgeehcvmgstzenkyfnw.supabase.co";
 const SUPABASE_KEY=""; // <-- paste anon/publishable key to enable sync
-const WEEK_KEY="2026-09-27"; const TABLE="ops_checks";
+const WEEK_KEY="2026-10-04"; const TABLE="ops_checks";
 
 /* ---- WEEK DATA (b = content blocks: {k:type, l:label, body}) ---- */
 const DAYS=[
 {
 "day": "Sunday",
-"date": "Sep 27",
-"sub": "Write the Ledger first — everything market derives from it",
+"date": "Oct 4",
+"sub": "Shoot Jim Thorpe early · write the Ledger first — everything market derives from it",
 "tasks": [
+{
+"id": "shoot",
+"t": "SHOOT — Jim Thorpe Fall Foliage Festival, before 9 AM (gates Fri Landmark + Sat card)",
+"tag": "re",
+"time": "shoot",
+"new": true,
+"b": [
+{
+"k": "meta2",
+"l": "⚠ Why today",
+"body": "⚠ Jim Thorpe is in Carbon County. Frame it as a Pocono Mountains day trip, and don't use #MonroeCounty on this post. This is a still-photo Landmark, not a Ride With Me episode (RWM returns in spring).\n\nToday is the first festival weekend. Arrive before 9 a.m. for parking and soft light. Shoot today so Friday's post lands ahead of the Oct 10–11 and 17–18 weekends."
+},
+{
+"k": "photo",
+"l": "Photo direction",
+"body": "PHOTO DIRECTION (shot Sun 10/4, before 9 a.m.):\n• HERO: Vertical 4:5. Historic Broadway facades with foliage on the hillside behind them, shot from the sidewalk at eye level. Morning side-light, no crowd. The bike can sit in the lower third if it's naturally there.\n• ALT 1: The Jim Thorpe train station architecture from across Josiah White Park, vertical, with railcars visible.\n• ALT 2: A detail shot: a hand-lettered vendor sign, coffee in hand, or leaves on old brick.\n• Avoid: dense vendor crowds, identifiable faces up close, and any parked-car license plates."
+}
+]
+},
 {
 "id": "led",
 "t": "[01] THE POCONO LEDGER — write & publish (parent, written-only)",
@@ -112,60 +131,401 @@ const DAYS=[
 "b": [
 {
 "k": "meta2",
+"l": "⚠ Before publish",
+"body": "⚠ If PMAR's September Monthly Indicators publishes before this goes live, rebuild THE WEEK'S NUMBERS from it and re-check every county figure in the article.\n⚠ Confirm Freddie Mac Oct 1 = 7.28% at release; if it differs, recompute every payment (see Payment reference in Before You Publish).\n⚠ Append the Pocono Township ordinance section to SOURCES."
+},
+{
+"k": "meta2",
 "l": "SEO / slug / internal links",
-"body": "SEO title: Is It a Buyer's Market in the Poconos? Monroe County Data, September 2026\nMeta description: Monroe County buyers pulled back in August, but sellers still got 95.8% of original list price. What caution means, and doesn't, for your next offer.\nSlug: /pocono-ledger-2026-09-27-cautious-buyers-not-buyers-market\nInternal links: Pillar → [PILLAR URL] (anchor: \"the full guide to living in the Poconos\") · Last week's Ledger → [LEDGER 9/20 URL] (anchor: \"what the price data leaves out\") — concessions point linked, never re-reported."
+"body": "SEO title: Are Pocono Home Prices Dropping? Monroe County Rates vs. Prices, October 2026\nMeta description: Monroe County prices held through August, but rising mortgage rates cut buyer budgets fast. What summer comps miss, and what buyers and sellers should do now.\nSlug: /pocono-ledger-2026-10-04-comps-written-at-6-5-percent\nInternal links: Pillar → [PILLAR URL] (anchor: \"the full guide to living in the Poconos\") · 9/27 Ledger → [LEDGER 9/27 URL] (anchor: \"why cautious buyers aren't a buyer's market\") · 9/20 Ledger → [LEDGER 9/20 URL] (anchor: \"what the price data leaves out\")"
 },
 {
 "k": "script",
 "l": "Full article",
-"body": "The Pocono Ledger — Week of September 27, 2026: Cautious Buyers Aren't a Buyer's Market\n\nEXECUTIVE SUMMARY\nBuyers in Monroe County are more careful than they were a year ago, and the August numbers show it. Pending sales fell 9.2% and closings fell 9.9%. A lot of people read that as a buyer's market. It isn't one. Sellers whose homes sold in August received 95.8% of their original list price on average, a touch better than last August. Supply sits at 4.6 months, essentially unchanged. What shrank is the number of people doing deals on both sides of the table, not the price sellers are getting. Buyers still have leverage, but it works house by house, not across the county.\n\nTHE WEEK'S NUMBERS\n• Median sales price: $347,450 (Aug 2025 $307,000) — +13.2%*\n• Median sales price, year to date: $337,500 — +8.9%\n• Pct. of original list price received: 95.8% (Aug 2025 95.3%) — +0.5%\n• Avg. days on market until sale: 52 (Aug 2025 44) — +18.2%\n• New listings: 324 (Aug 2025 348) — −6.9%\n• Pending sales: 218 (Aug 2025 240) — −9.2%\n• Closed sales: 200 (Aug 2025 222) — −9.9%\n• Inventory: 903 (Aug 2025 910) — −0.8%\n• Months supply: 4.6 (Aug 2025 4.5) — +2.2%\n• Housing affordability index: 107 (Aug 2025 122) — −12.3%\n*August's median moved on 200 closed sales, which is a thin enough sample that the mix of homes drives the number. The year-to-date +8.9% is the steadier read. Median and average prices do not account for seller concessions.\n\nRates: Freddie Mac's 30-year fixed average was 7.03% on September 24, up from 6.95% the prior week and 6.30% a year earlier.\n\nSeptember's Monthly Indicators report hasn't been published yet, so August is the most current county-level data available.\n\nWHAT CHANGED\nThe rate move that matters isn't last week's. It's the year. Freddie Mac's average went from 6.30% to 7.03% over twelve months. On a $320,000 loan, that's roughly $155 more a month in principal and interest. Stack that on a higher median price and you get the affordability index sliding from 122 to 107. At 107, the median-income household still earns more than it needs to qualify for the median-priced home, but the cushion is a lot thinner than it was.\n\nHere's the part that gets missed: buyers weren't the only ones who stepped back. New listings dropped 6.9% while pendings dropped 9.2%. Fewer sellers came to market at the same time fewer buyers signed contracts. That's why inventory barely moved. Nobody flooded the county with houses, and that's exactly why prices on well-priced homes held.\n\nTOWNSHIP SPOTLIGHT: SMITHFIELD\nSmithfield Township updated its conditional-use page on September 21 for Smithfield Gateway, a proposed two-story, 250,000-square-foot data center. It's a proposal. It isn't approved and it isn't built, and nobody can honestly tell you yet what it does to nearby homes. The lesson travels anywhere in Monroe County: before you make an offer, look at what's pending before the township near that parcel. What's proposed next door is part of what you're buying into.\n\nOPERATOR OBSERVATION\nHere's what I'm seeing. Rates went up again and buyers are rechecking every number, which is smart. But a lot of them carry one assumption into the offer: that caution on their side means desperation on the seller's side. August doesn't support that. Sellers who priced right got 95.8 cents on the original-list dollar.\n\nThe leverage lives in the gap between a listing's price and today's payment. If I were buying today, I'd target well-maintained homes whose asking price hasn't caught up with what financing costs now, the ones priced for last year's payment that sat through the late-summer slowdown. Then I'd verify that specific property's condition, taxes and permitted use before negotiating a dollar.\n\nThe countywide average doesn't negotiate for you. The house does.\n\nWHAT BUYERS SHOULD DO\n• Get a dated Loan Estimate before you shop, not after. Freddie Mac's 7.03% is a national average of applications. It isn't your rate.\n• Sort the listings. Check list date and price history. A home well past the county's 52-day average with no reduction is a different negotiation than one listed ten days ago.\n• Negotiate total monthly cost. On some homes, a seller-funded rate buydown or closing-cost credit moves your payment more than a price cut would. Run both before you write the offer.\n• Don't underwrite a Pocono purchase on assumed short-term-rental income. Rental rules are set municipality by municipality and can come down to the parcel's zoning. Get it confirmed in writing.\n• Use the property's actual current tax bill. The countywide reassessment is still in progress and new values haven't been set, so don't guess at future numbers in either direction.\n\nWHAT SELLERS SHOULD DO\n• Price to recent closed sales, not to active listings and not to the county median. $347,450 is the middle of 200 very different homes.\n• With fewer buyers, each showing counts more. Set a review date two to three weeks out and adjust on real feedback instead of waiting for the market to come to you.\n• If financing is the objection, compare a concession against a price cut on your net proceeds. They rarely cost you the same amount.\n• Watch your days on market. The county average was 52 in August, up from 44 a year ago, and every extra week tells the next buyer something.\n\nFor the bigger picture on living here, read the full guide to living in the Poconos [PILLAR URL].\n\nSOURCES\n• Pocono Mountains Association of REALTORS® Monthly Indicators, August 2026 — Pocono Mountains Association Multi List, current as of September 9, 2026. Median and average sales prices do not account for seller concessions.\n• Freddie Mac Primary Mortgage Market Survey, September 24, 2026.\n• Smithfield Township, Smithfield Gateway conditional-use page, updated September 21, 2026.\n• Monroe County reassessment update (county website).\n• Payment illustration: principal and interest only on a $320,000 loan at Freddie Mac weekly averages of 6.30% and 7.03%. Excludes taxes, insurance, HOA dues and mortgage insurance. Not a qualification estimate.\n\nAlexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net"
+"body": "THE POCONO LEDGER — WEEK OF OCTOBER 4, 2026\n\nYour Comps Were Written at 6.5%. Your Buyer Is at 7.28%.\n\nEXECUTIVE SUMMARY\n\nMost people watching the Pocono market this fall are watching the price. The price isn't what moved. Through August, the Monroe County median sale price was up 8.9% for the year. What moved was the mortgage rate. Freddie Mac's 30-year average climbed from 6.76% to 7.28% across three weekly surveys. On a $300,000 loan, that's about $105 more every month. Put the other way, the payment a buyer could afford three weeks ago now carries roughly $15,300 less loan. That's about the size of the price cut a lot of buyers have been waiting for, and it went the other direction. Sellers need to hear the second half of this. Most of the comps setting prices right now went under contract in June and July, when the same survey ran between 6.43% and 6.66%. Those comps are real. They just describe a buyer who had more room in the budget than today's buyer does.\n\nTHE WEEK'S NUMBERS\n\nRates (Freddie Mac Primary Mortgage Market Survey, 30-year fixed, national average):\n\n• October 1, 2026: 7.28%\n• September 24, 2026: 7.03%\n• September 10, 2026: 6.76%\n• June–July 2026 range: 6.43% to 6.66%\n\nMonroe County (Pocono Mountains Association of REALTORS®, August 2026, the latest MLS report):\n\n• Median sales price: $347,450 for the month; $337,500 year to date, up 8.9%\n• Percent of original list price received: 95.8%\n• Average days on market until sale: 52, up from 44 a year earlier\n• Months supply of inventory: 4.6\n• Housing affordability index: 107, down from 122 in August 2025\n\nA note on that monthly median: August's figure moved on 200 closed sales, which is a thin month, so the mix of what sold drives the number. The year-to-date figure is the one to lean on. Price figures in this report also don't account for seller concessions. If a seller paid for a buydown or covered closing costs, that money doesn't show up in the sale price.\n\nWHAT CHANGED\n\nThe rate, and quickly. A single week, from 7.03% to 7.28%, adds about $51 a month on a $300,000 loan. Three weeks adds $105. If you measure from midsummer, around 6.55%, the gap is about $147 a month, or roughly $21,400 of buying power.\n\nThe affordability index matters here too. At 107, it already showed the median household earning just 7% more than it needs to qualify for the median-priced home, and that was at August rates. Rates have risen since then. My read, and it's interpretation, not data yet, is that the September and October reports will show the squeeze more clearly than August did.\n\nIt's also not a Fed story, whatever the headlines say. Thirty-year mortgage rates follow longer-term bond yields and mortgage-bond demand much more closely than the Fed's short-term target. Waiting for a Fed announcement isn't a plan.\n\nNEIGHBORHOOD / TOWNSHIP SPOTLIGHT: POCONO TOWNSHIP\n\nFor investors, the rate is only half of the underwriting. In Pocono Township, transient rentals are permitted only in the Commercial and Recreational zoning districts, so a residentially zoned parcel can be ineligible for short-term rental use no matter how good the listing photos look. At 7.28%, an STR purchase has to clear two tests: the debt service has to work, and the parcel has to be legal for the use you're paying for. Plenty of properties pass the first test and fail the second. STR rules in the Poconos are set municipality by municipality and get amended, so every parcel needs its own check.\n\nOPERATOR OBSERVATION\n\nHere's what I'm seeing in the numbers. The pricing conversation hasn't caught up to the rate conversation. Comps tell you what a buyer paid. They don't tell you what that buyer's payment was, and right now that's the difference that matters. A home priced off a July comp is asking today's buyer to carry roughly $100 to $150 more a month for the same house. Some buyers will. Most will keep scrolling. That isn't the market collapsing. It's buyers doing arithmetic.\n\nWHAT BUYERS SHOULD DO\n\n• Re-run your preapproval at today's rate. A letter from August may overstate what you can carry now.\n• Get zero-point Loan Estimates from at least three lenders, and compare APR, lender fees and cash to close, not just the note rate.\n• Negotiate the payment, not just the price. A seller-paid rate buydown or a closing-cost credit can do more for your monthly number than a small price reduction, depending on your loan. Have your lender model both.\n• If you're a veteran, compare VA and conventional on actual Loan Estimates. VA quotes published this week ranged widely depending on the source, so a headline VA rate won't tell you much.\n• Don't time the market around a Fed meeting.\n\nWHAT SELLERS SHOULD DO\n\n• Ask which of your comps went under contract when. A comp written at 6.5% supported a bigger budget than today's buyer has.\n• Price against the homes you're competing with now, not only against what closed this summer.\n• Before you cut the price, model a concession against the same-size reduction. The difference in your net proceeds can be smaller than you'd expect, and for some buyers a concession does more work.\n• Treat the first two weeks seriously. Average market time was already 52 days in August, up from 44 a year earlier.\n\nSOURCES\n\n• Pocono Mountains Association of REALTORS® Monthly Indicators, August 2026 — Pocono Mountains Association Multi List, current as of September 9, 2026. Single-family, townhome and condominium combined.\n• Freddie Mac Primary Mortgage Market Survey®, weekly releases June 4 through October 1, 2026.\n• Pocono Township zoning (transient rentals limited to Commercial and Recreational districts): [ORDINANCE SECTION — append before publish].\n• Payment estimates are principal and interest on a 30-year fixed loan, calculated by Alexa.Realtor. They exclude taxes, insurance, HOA dues and mortgage insurance.\n\nFor everything about living here beyond this week's numbers, see the full guide to living in the Poconos → [PILLAR URL]\n\nAlexa Sanchez, Realtor® · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net"
+}
+]
 }
 ]
 },
 {
-"id": "nd-tax",
-"t": "Nextdoor — school-tax discount reminder (post Sun or by Mon AM)",
+"day": "Monday",
+"date": "Oct 5",
+"sub": "GBP market update",
+"tasks": [
+{
+"id": "gbp-mkt",
+"t": "[02] GBP Market Update (from Ledger) — no hashtags",
 "tag": "re",
-"time": "Nextdoor",
+"time": "GBP",
+"b": [
+{
+"k": "caption",
+"l": "GBP post",
+"body": "Are home prices dropping in Monroe County, PA? Not through August. The median sale price was $347,450, and the year-to-date median is up 8.9% (Pocono Mountains Association of REALTORS®, August 2026; sale prices exclude seller concessions). What fell is buying power. The 30-year fixed average reached 7.28% (Freddie Mac, Oct. 1, 2026). On a $300,000 loan, that's about $105 a month more than in early September.\n\nBuyers in Stroudsburg, East Stroudsburg, Tobyhanna and Pocono Township: update your preapproval at today's rate before writing an offer. Sellers: summer comps closed on loans priced near 6.5%, so price for the buyer shopping now.\n\nAlexa Sanchez, Realtor® · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net"
+},
+{
+"k": "meta2",
+"l": "Button + image",
+"body": "Learn more → [LEDGER 10/4 URL]\nImage: carousel slide 1 (no text-heavy graphics on GBP; use the clean version without numbers if available)."
+}
+]
+}
+]
+},
+{
+"day": "Tuesday",
+"date": "Oct 6",
+"sub": "IG market carousel + Filler & Roast Ep. 1",
+"tasks": [
+{
+"id": "carousel",
+"t": "[02] IG Market Carousel — 'Same house. Same price. $105 more a month.' (8 slides)",
+"tag": "re",
+"time": "IG",
 "new": true,
 "b": [
 {
+"k": "photo",
+"l": "Visual direction",
+"body": "Format: 4:5, 8 slides. Cream background, deep green numerals, one number per slide, generous white space. Slide 1 uses Alexa's own street-level Pocono B-roll still (no identifiable client property, no addresses). No stock photography."
+},
+{
+"k": "script",
+"l": "Slide copy",
+"body": "Slide 1: Same house. Same price. $105 more a month.  (small line: Three weeks apart. Poconos, fall 2026.)\n\nSlide 2: Sept 10 → 6.76%  ·  $1,948 a month on a $300K loan\n\nSlide 3: Oct 1 → 7.28%  ·  $2,053 a month. Same loan.\n\nSlide 4: At the old payment, today's buyer qualifies for about $284,700. That's ~$15,300 of buying power, gone in three weeks.\n\nSlide 5: Prices didn't drop. Monroe County median sale price: +8.9% year to date through August.\n\nSlide 6: Sellers: your comps went under contract at 6.4–6.7%. Your buyer is at 7.28%.\n\nSlide 7: Buyers: re-run the preapproval. Compare three zero-point Loan Estimates. Negotiate the payment, not just the price.\n\nSlide 8 (sources): Principal & interest only. Rates: Freddie Mac PMMS. Monroe County: Pocono Mountains Association of REALTORS®, Aug 2026; sale prices exclude seller concessions. Alexa Sanchez, Realtor® · PA License #RS326383 · Smart Way America Realty"
+},
+{
+"k": "cover",
+"l": "Cover text",
+"body": "THE PRICE DIDN'T MOVE. THE PAYMENT DID."
+},
+{
+"k": "caption",
+"l": "IG caption",
+"body": "The price didn't move. The payment did.\n\nGoing from 6.76% to 7.28% on a 30-year loan (Freddie Mac, Sept 10 → Oct 1) adds about $105 a month on $300,000. Swipe for what that does to a budget, and why summer comps are pricing for a buyer who isn't shopping anymore.\n\nFigures are principal and interest only. Monroe County data: Pocono Mountains Association of REALTORS®, August 2026. Sale prices don't reflect seller concessions.\n\nThe full breakdown is in this week's Pocono Ledger, link in bio.\n\nAlexa Sanchez, Realtor® · PA License #RS326383 · Smart Way America Realty · (570) 688-8147"
+},
+{
+"k": "tags",
+"l": "Hashtags",
+"body": "#PoconoRealEstate #PoconoMountains #MonroeCounty #PARealEstate #MortgageRates #LifeByAlexa\n\n⚠ #STRInvesting is dropped from the bank set this week because the hashtags have to match the post's intent. #MortgageRates replaces it."
+}
+]
+},
+{
+"id": "fr-tue",
+"t": "@fillerandroast Ep. \"650 Doors to Kochere\"",
+"tag": "cof",
+"time": "IG · AM",
+"b": [
+{
 "k": "meta2",
-"l": "⚠ Before posting",
-"body": "Discount, face and penalty dates are set per school district / tax collector. The post tells neighbors to check their own bill — keep that line. Purely neighborly: no pitch, identity via signature only."
+"l": "Concept + rules",
+"body": "Episode concept: A polished, impatient coffee-bean character goes looking for \"the one master farmer\" behind the perfect clean cup and finds 650 family farms delivering cherries to one mill in Kochere, Ethiopia. The sell lands at the end: the cup he wanted exists because hundreds of people did their part right.\n\nIG only, Tue + Fri. No YouTube, no cross-posting, no PA license. Facts flagged in Section 6. Written without naming a third-party roaster pending Alexa's decision.\nPost: Tuesday 10/6, morning."
+},
+{
+"k": "script",
+"l": "Story beats (for the animator)",
+"body": "1. Black screen. VO: \"Everybody wants the clean finish. Nobody wants to count the hands that got it there.\"\n2. Our bean, in a tiny trench coat, holds a cup and a magnifying glass: \"Who made this?\"\n3. A road winds into green Ethiopian hills. Door after door, each farmer with a basket of red cherries.\n4. A counter on screen spins: 1… 40… 300… 650.\n5. All the paths meet at one mill. Baskets pour into one sorting line.\n6. The bean, overwhelmed, drops the magnifying glass.\n7. Final cup, steam rising. VO: \"Not one farm. Six hundred and fifty doors. One clean cup.\"\n8. Card: \"Washed. Light roast. Kochere, Ethiopia.\""
+},
+{
+"k": "prompt",
+"l": "Animation direction",
+"body": "Animation direction: Pixar-style 3D, 9:16. Warm morning palette: deep greens, red cherries, golden haze. Doors are a visual rhythm, each a different color and texture. The counter is diegetic (painted on a mill sign), not overlaid. Keep it hopeful, not documentary-solemn. Farmers are stylized, respectful and specific in dress; never caricatured. No on-screen text in generation; add the title card in the edit."
+},
+{
+"k": "caption",
+"l": "IG caption",
+"body": "This coffee doesn't come from one farm. It comes from 650 family farmers delivering ripe cherries to a single mill in Kochere, in Ethiopia's Yirgacheffe region. \"Single origin\" can mean a whole community. Washed, light roast, lemon and black tea in the cup."
+},
+{
+"k": "tags",
+"l": "Hashtags",
+"body": "#FillerAndRoast #CoffeeLovers #CoffeeStory #SpecialtyCoffee #AnimatedShort #LifeByAlexa"
+}
+]
+}
+]
+},
+{
+"day": "Wednesday",
+"date": "Oct 7",
+"sub": "DR English — CONFOTUR (produced, publish HELD for counsel)",
+"tasks": [
+{
+"id": "dr-ig",
+"t": "[04] DR English — IG Reel ('A brochure is not a tax exemption') — CTA-FREE · HOLD",
+"tag": "dr",
+"time": "IG",
+"b": [
+{
+"k": "meta2",
+"l": "⚠ Publish hold + gating",
+"body": "⚠ PUBLISH HOLD: Nothing posts until licensed Dominican counsel signs off on the CONFOTUR claims, the 3% transfer tax, the first-acquirer IPI language, the exemption start date, and Law 30-26. CTA-free (Urban Group gate)."
+},
+{
+"k": "script",
+"l": "Script (<60s)",
+"body": "Before you wire a deposit on a \"tax-free\" condo in Punta Cana, ask for one thing.\n\nThe CONFOTUR resolution. For this exact project.\n\nNot the brochure. Not the sales deck. The resolution.\n\nHere's why. CONFOTUR is a tourism incentive. When it actually applies, it can cut the transfer tax and the yearly property tax for a set number of years. That's real money.\n\nBut it belongs to the approved project and the buyer who qualifies, usually the first one. Buying a resale? Don't assume the last owner's exemption came with the keys.\n\nAnd those fifteen years? That clock started when the project was finished. Not the day you sign.\n\nSo your attorney checks three things. The resolution number. Whether your unit and your purchase are covered. And how much time is left. Then it goes in the contract, in writing.\n\nIf nobody can show you that, run your numbers like you're paying full tax. Because you probably are."
+},
+{
+"k": "photo",
+"l": "Delivery + B-roll",
+"body": "Delivery: direct, a little dry, steady eye contact. About 50 seconds. Talking head; cut to B-roll of a contract page and a stamped document on \"the resolution.\"\nB-roll: a hand sliding a glossy brochure aside for a plain document; Punta Cana skyline (Alexa's own footage); a calendar page flipping on \"the clock started.\""
+},
+{
+"k": "cover",
+"l": "Cover text",
+"body": "A BROCHURE IS NOT A TAX EXEMPTION"
+},
+{
+"k": "caption",
+"l": "IG caption",
+"body": "\"15 years tax-free\" is a sales line until somebody shows you the paperwork.\n\nCONFOTUR benefits are tied to an approved tourism project and to a qualifying purchase, usually the first buyer's. They are not tied to a resort's name or its rental potential. Before any deposit leaves your account, have a Dominican real-estate attorney confirm the resolution number, whether your exact unit and purchase are covered, and how many years are actually left.\n\nEducational only. Not legal or tax advice.\n\nFollow for the series on buying in the DR as an American."
+},
+{
+"k": "tags",
+"l": "Hashtags",
+"body": "#DominicanRepublicRealEstate #PuntaCana #CapCana #DRInvestment #InternationalRealEstate #LifeByAlexa"
+}
+]
+},
+{
+"id": "dr-yt",
+"t": "[04] DR English — YouTube long cut (~7 min) — CTA-FREE · HOLD",
+"tag": "dr",
+"time": "YT",
+"b": [
+{
+"k": "meta2",
+"l": "⚠ Gate + on-screen",
+"body": "⚠ PUBLISH HOLD: Nothing posts until licensed Dominican counsel signs off on the CONFOTUR claims, the 3% transfer tax, the first-acquirer IPI language, the exemption start date, and Law 30-26. CTA-free (Urban Group gate).\nOn-screen: six-gate checklist card (Gate / Request / Pass / Red flag), shown during the six-gates segment.\n⚠ Timestamps are estimates. Re-cut them to the final edit. If counsel can't confirm Law 30-26, cut that segment and its timestamp."
+},
+{
+"k": "script",
+"l": "Script (clean copy/paste)",
+"body": "[HOOK] If you're an American looking at a condo in Punta Cana and someone tells you it's fifteen years tax-free, that's not a fact yet. It's a claim. Today I'm going to show you how to turn it into a fact, or find out it isn't one, before you send a dollar.\n\n[WHAT IT IS] CONFOTUR is the Dominican Republic's tourism-development incentive, under Law 158-01. For a qualifying tourism project, it can exempt the buyer from the one-time property transfer tax, which is generally 3%, and from the annual property tax, the IPI, for a set period. On a resort condo, that changes your carrying costs and your yield. So it's worth getting right.\n\n[THE MISTAKE] Here's where Americans get burned. They treat CONFOTUR like a feature of the building, like the pool or the ocean view. It isn't. It's a legal status tied to a specific approved project, and to the buyer who qualifies under it. That's usually the first buyer. If you're buying a resale, you can't assume the original owner's benefit transferred to you.\n\n[THE CLOCK] Then there's the fifteen years. The published tax guidance ties that period to when the approved project was completed and equipped, not to the day you buy. A unit in a project finished eight years ago doesn't hand you a fresh fifteen.\n\n[THE SIX GATES] So here's the system. Six gates, and you don't send a meaningful deposit until the first four pass.\n\nGate one, ownership: the current title, and proof the seller is the registered owner with authority to sell.\n\nGate two, legal status: a fresh legal-status certification from the title registry showing no undisclosed liens, mortgages or litigation.\n\nGate three, boundaries: a definitive survey that matches the unit you're actually buying.\n\nGate four, tax status: the CONFOTUR resolution, confirmation that your exact unit and purchase are covered, and the years remaining. If any of that's missing, you underwrite the deal as fully taxed.\n\nGate five, project legality: permits, approved plans, the condo regime, and the rental rules.\n\nGate six, closing protection: a contract naming the exact unit, the tax treatment in writing, deposit protections, and a plan to register the transfer in your name.\n\n[NEW WRINKLE — CONFIRM WITH COUNSEL; CUT IF UNCONFIRMED] There's also a 2026 law, Law 30-26, that reportedly limits stacking more than one incentive regime on the same investment. If your deal leans on more than one incentive, that's a question for your attorney before you sign.\n\n[WHO DOES WHAT] Your job is to request the documents. Your Dominican attorney's job is to verify them independently at the registry and with the tax authority. Don't try to run a registry search yourself from New Jersey.\n\n[CLOSE] A tax exemption you can't document is just marketing. In the Dominican Republic, you're not buying the view or the yield forecast. You're buying the legal file. Make sure it's real."
+},
+{
+"k": "yt",
+"l": "YouTube description",
+"body": "Title: Buying a CONFOTUR Property in the Dominican Republic: What Americans Must Verify Before Wiring Money (2026)\n\nIs a CONFOTUR property in the Dominican Republic really tax-free? Only if the paperwork says so. This video walks American buyers through what CONFOTUR (Law 158-01) is, why \"15 years tax-free\" isn't automatic, and the six documents to verify before wiring money for a Punta Cana or Cap Cana condo.\n\nWhat is CONFOTUR? It's a Dominican tourism incentive that can exempt qualifying buyers in approved tourism projects from the 3% property transfer tax and the annual IPI property tax for a set period.\n\nDoes CONFOTUR transfer to a resale buyer? Don't assume it does. The exemption is tied to the approved project and the qualifying purchaser, usually the first acquirer. Have a Dominican attorney confirm your specific purchase.\n\nWhen does the 15-year CONFOTUR period start? Published guidance ties it to completion of the approved project, not to your purchase date. Confirm the remaining term in writing.\n\nWhat should I verify before sending a deposit? Ownership, legal status, boundaries (deslinde), tax status, project legality and closing protections. Don't send a meaningful deposit until the first four are confirmed by your attorney.\n\n00:00 The \"15 years tax-free\" claim\n\n00:35 What CONFOTUR actually is\n\n01:30 The mistake Americans make\n\n02:20 When the 15-year clock really starts\n\n03:05 The six-gate checklist\n\n05:40 Law 30-26 and stacking incentives\n\n06:10 Who verifies what\n\n06:45 The bottom line\n\nEducational only. Not legal or tax advice. Consult a licensed Dominican real-estate attorney and a qualified tax professional before acting.\n\nSubscribe for more on buying property in the Dominican Republic as an American.\n\n#DominicanRepublicRealEstate #PuntaCana #CapCana #DRInvestment #InternationalRealEstate #LifeByAlexa\n\nTags: CONFOTUR, CONFOTUR Dominican Republic, Law 158-01, buying property in Dominican Republic, Punta Cana condo, Cap Cana real estate, Dominican Republic property tax, DR transfer tax, buying real estate in the DR as an American, Dominican Republic due diligence, Punta Cana real estate 2026\nGATING: No brokerage CTA anywhere in this piece."
+}
+]
+}
+]
+},
+{
+"day": "Thursday",
+"date": "Oct 8",
+"sub": "Landmark Nextdoor + cigar voice",
+"tasks": [
+{
+"id": "nd-land",
+"t": "[05] Landmark — Nextdoor heads-up (neighborly, no selling)",
+"tag": "re",
+"time": "Nextdoor",
+"b": [
+{
+"k": "meta2",
+"l": "⚠ Gate",
+"body": "⚠ Add \"I was there last Sunday\" only if Alexa actually went on Oct 4.\nConfirm festival dates, vendor hours and shuttle operators before posting."
 },
 {
 "k": "caption",
 "l": "Post",
-"body": "Quick heads-up for anyone with a school tax bill dated August 1: check the discount deadline printed on it. For a lot of Monroe County bills, the discount period ends this Wednesday, September 30.\n\nThe exact dates come from your own district's tax collector, so your bill is the final word. Worth a look tonight rather than Thursday.\n\nAlexa Sanchez, Realtor · Smart Way America Realty"
+"body": "Heads up if you're heading to the Jim Thorpe Fall Foliage Festival: the next two weekends are Oct. 10–11 and 17–18. Vendors run 10 to 5 downtown around Josiah White Park by the train station, and walking around is free. Train rides and food cost extra. Downtown parking fills early. Shuttles run from Pocono Whitewater, Whitewater Rafting Adventures and Mauch Chunk Lake Park, but call ahead to confirm they're running that day. Get there early and the streets are quieter, the light is better, and you'll be out before the afternoon traffic.\n\n— Alexa Sanchez, Realtor® · Smart Way America Realty"
+}
+]
+},
+{
+"id": "th-tt",
+"t": "@its.myash Talking Head — TikTok (Dominican-made ≠ Dominican puro)",
+"tag": "cig",
+"time": "TikTok",
+"b": [
+{
+"k": "meta2",
+"l": "⚠ Repeat check + delivery",
+"body": "⚠ Last week's packet had a cigar-origin fact gate. If last week's Talking Head already covered origin labeling, swap this for the Davidoff/Tabadom exit from PROCIGAR (verify that first).\n\nDelivery: at the lounge, cigar in hand, no intro. Hold up a band on \"where it was made.\""
+},
+{
+"k": "script",
+"l": "Script",
+"body": "A cigar rolled in the Dominican Republic and a Dominican puro are not the same thing.\n\n\"Dominican\" tells you where it was made. That's it.\n\nA puro means the wrapper, the binder and the filler are all Dominican leaf. Every layer.\n\nA lot of great cigars coming out of Santiago use an Ecuadorian wrapper or Nicaraguan filler, whatever the blend needs, rolled by Dominican hands. That's not a knock. That's craft.\n\nAnd while we're here: Dominican doesn't mean mild. The DR makes full-bodied cigars all day long.\n\nSo next time somebody tells you \"it's Dominican, it'll be smooth,\" read the leaf, not the country."
+},
+{
+"k": "caption",
+"l": "Caption",
+"body": "\"Dominican-made\" and \"Dominican puro\" aren't the same claim. One is where it was rolled. The other is what's inside every layer. Know the difference before you buy."
+},
+{
+"k": "tags",
+"l": "Hashtags",
+"body": "#CigarLife #CigarAuthority #PremiumCigars #DominicanCigars #NellsSocial #LifeByAlexa"
+}
+]
+}
+]
+},
+{
+"day": "Friday",
+"date": "Oct 9",
+"sub": "Landmark post + Weekend Smoke + Filler & Roast Ep. 2 · Sept MLS report may drop",
+"tasks": [
+{
+"id": "land",
+"t": "[05] Landmark Spotlight — Jim Thorpe Fall Foliage Festival (still photo) — IG + YT",
+"tag": "re",
+"time": "IG + YT",
+"b": [
+{
+"k": "meta2",
+"l": "⚠ Before posting",
+"body": "⚠ Jim Thorpe is in Carbon County. Frame it as a Pocono Mountains day trip, and don't use #MonroeCounty on this post. This is a still-photo Landmark, not a Ride With Me episode (RWM returns in spring).\n⚠ Verify the 1954 renaming fact and the \"about an hour\" drive claim before posting. Cut the drive line if it doesn't hold for East Stroudsburg."
+},
+{
+"k": "caption",
+"l": "IG caption — Friday",
+"body": "Fall in Jim Thorpe isn't a view. It's a whole weekend.\n\nThe Fall Foliage Festival runs three October weekends in the historic downtown, with free admission to walk the streets, vendors around Josiah White Park, and live music. The town itself was renamed Jim Thorpe in 1954; before that, it was Mauch Chunk.\n\nThis is one of the things people mean when they say they want to live in the Poconos: a real town about an hour's drive from most of Monroe County, with a calendar that gives you a reason to get in the car.\n\nLast two weekends: Oct. 10–11 and 17–18. Go early."
+},
+{
+"k": "tags",
+"l": "Hashtags",
+"body": "#PoconoMountains #PoconoLiving #JimThorpePA #FallInThePoconos #PoconoRealEstate #LifeByAlexa"
+},
+{
+"k": "yt",
+"l": "YouTube — Friday",
+"body": "YouTube (Short from the 3 stills, slow push-ins, ambient audio, no voiceover):\n\nTitle: Jim Thorpe Fall Foliage Festival 2026 | Historic Downtown Jim Thorpe, PA in October\n\nWhen is the Jim Thorpe Fall Foliage Festival? In 2026 it runs Saturdays and Sundays on October 3–4, 10–11 and 17–18 in historic downtown Jim Thorpe, PA, with vendors from 10 a.m. to 5 p.m.\n\nIs it free? Walking the festival is free. Scenic train rides, food and tours cost extra.\n\nWhere do you park? Downtown parking is limited. Arrive early or use a festival shuttle, and confirm shuttle service the day you go.\n\nJim Thorpe is part of the Pocono Mountains region, an easy day trip from Monroe County. More on living in the Poconos: [PILLAR URL]\n\nAlexa Sanchez, Realtor® · PA License #RS326383 · Smart Way America Realty · (570) 688-8147\n\n#PoconoMountains #JimThorpePA #LifeByAlexa\n\nTags: Jim Thorpe Fall Foliage Festival, Jim Thorpe PA, Pocono Mountains fall, fall foliage Pennsylvania, things to do in the Poconos, Josiah White Park, Lehigh Gorge Scenic Railway, Poconos October 2026"
+}
+]
+},
+{
+"id": "smoke",
+"t": "@its.myash Weekend Smoke — 'Lemon Peel & Cedar'",
+"tag": "cig",
+"time": "IG",
+"b": [
+{
+"k": "photo",
+"l": "Concept + shot list",
+"body": "Concept: a bright, washed Ethiopian coffee with a mild-to-medium Connecticut-wrapper robusto. It's an aromatic pairing, not a power pairing.\n\nShot list (9:16): pour-over blooming → black coffee in a clear cup → cut and light → first three draws without coffee → sip → slow ash at the window."
+},
+{
+"k": "script",
+"l": "On-camera lines",
+"body": "• \"This coffee's washed, so it comes in clean. Lemon, tea, lighter body.\"\n• \"The Connecticut wrapper is here for cream and cedar. It's a frame, not a competitor.\"\n• \"The coffee brings the lemon. The cigar brings the peel.\"\n• \"Sip every third or fourth draw. Chase every puff and both of them blur.\"\n• \"Skip the heavy maduro with this one. It'll erase the cup.\""
+},
+{
+"k": "caption",
+"l": "Caption",
+"body": "Weekend Smoke: Lemon Peel & Cedar. A light-roast washed Ethiopian with a creamy Connecticut robusto. Taste the coffee alone first, give the cigar a few draws, then bring them together. Black coffee only; milk wipes out everything this pairing is about."
+},
+{
+"k": "tags",
+"l": "Hashtags",
+"body": "#CigarLife #CigarAuthority #PremiumCigars #NellsSocial #DominicanCigars #LifeByAlexa\n\n⚠ If a specific cigar is named on camera (e.g., the New World Connecticut by A.J. Fernandez), verify its wrapper and profile first."
+}
+]
+},
+{
+"id": "fr-fri",
+"t": "@fillerandroast Ep. \"Forty-Eight Hours\"",
+"tag": "cof",
+"time": "IG · AM",
+"b": [
+{
+"k": "meta2",
+"l": "Concept + rules",
+"body": "Episode concept: The bean wants to rush. The mill makes him wait. Fermentation runs 36 to 48 hours before the wash, then the parchment dries for 12 to 15 days on raised beds, turned by hand, until it hits 11.5% moisture. The lesson: clean comes from timing, not speed. The sell is the payoff: the cup tastes clear because nobody cut corners.\n\nIG only, Tue + Fri. No YouTube, no cross-posting, no PA license. Facts flagged in Section 6. Written without naming a third-party roaster pending Alexa's decision.\nPost: Friday 10/9, morning."
+},
+{
+"k": "script",
+"l": "Story beats (for the animator)",
+"body": "1. Bean taps his foot at a fermentation tank. A clock on the wall reads hour 1.\n2. He tries to wash himself early. A mill worker gently blocks the hose.\n3. Clock montage: hour 12, hour 30, hour 48. The sticky fruit layer loosens and slides away.\n4. The wash: bright water, the bean comes out pale and clean.\n5. Raised drying beds in the sun, thin layers, a rake turning them in rhythm. Days tick by in shadows across the beds.\n6. A moisture gauge stops at 11.5%. A small \"ding.\"\n7. VO over the finished cup: \"The fruit left. The character stayed.\""
+},
+{
+"k": "prompt",
+"l": "Animation direction",
+"body": "Animation direction: same world and bean as Ep. 1, for continuity. Time passes through light and shadow, not clocks alone. The drying beds read like a calm, geometric city block from above. Sound: water, rake strokes, wind. Tone: patience is the hero. No text in generation."
+},
+{
+"k": "caption",
+"l": "IG caption",
+"body": "Washed coffee isn't just washed. The fruit ferments for 36 to 48 hours first, then the beans dry slowly on raised beds for almost two weeks, turned by hand, until the moisture is just right. That's where the clean, tea-like cup comes from. Patience, mostly."
+},
+{
+"k": "tags",
+"l": "Hashtags",
+"body": "#FillerAndRoast #CoffeeLovers #CoffeeStory #SpecialtyCoffee #AnimatedShort #LifeByAlexa"
+}
+]
+},
+{
+"id": "mls",
+"t": "Check: PMAR September Monthly Indicators published?",
+"tag": "op",
+"time": "check",
+"new": true,
+"b": [
+{
+"k": "meta2",
+"l": "If yes",
+"body": "Add September as a new row set in the Verified Market Data Baseline (keep August as history). If the Ledger hasn't posted, rebuild THE WEEK'S NUMBERS from it. Next week's Ledger is built on it either way."
+}
+]
+}
+]
+},
+{
+"day": "Saturday",
+"date": "Oct 10",
+"sub": "Gallery cards",
+"tasks": [
+{
+"id": "gc-land",
+"t": "[13] Gallery: Landmark card — Jim Thorpe (real photo)",
+"tag": "re",
+"time": "gallery",
+"b": [
+{
+"k": "photo",
+"l": "Photo + caption",
+"body": "Photo: HERO from Sunday's shoot (Broadway facades + foliage).\nCaption: Jim Thorpe, Carbon County — fall weekends in a historic Pocono town."
+},
+{
+"k": "meta2",
+"l": "Alt-text + tracker log",
+"body": "Alt-text: Historic brick storefronts on Broadway in Jim Thorpe, Pennsylvania, with orange and gold autumn foliage on the hillside behind them in morning light.\nTracker log line: 2026-10-10 | LANDMARK | Jim Thorpe Fall Foliage Festival | photo: Alexa, shot 2026-10-04 | caption logged | live"
 }
 ]
 },
 {
 "id": "gc-life",
-"t": "[13] Gallery: Lifestyle card — watercolor (early fall kitchen table)",
+"t": "[13] Gallery: Lifestyle card — watercolor (fall overlook, coffee)",
 "tag": "re",
 "time": "gallery",
 "b": [
 {
 "k": "prompt",
 "l": "Watercolor prompt (base + this week's scene)",
-"body": "soft realistic Watercolor illustration of a Latina woman with medium skin tone, voluminous curly dark brown hair, gold watch, gold jewelry. Warm earthy tones — cream, tan, soft brown, muted greens. Soft natural lighting. Soft smooth watercolor washes, clean paper texture, fluid brushstrokes, delicate linework, luminous and airy. Editorial lifestyle illustration style. no text, no logos. Seated at a wooden kitchen table beside a large window on an early fall morning, both hands around a ceramic coffee mug, a few printed pages on the table, trees outside the window mostly green with a few leaves turning amber, relaxed and focused expression."
+"body": "soft realistic Watercolor illustration of a Latina woman with medium skin tone, voluminous curly dark brown hair, gold watch, gold jewelry. Warm earthy tones — cream, tan, soft brown, muted greens. Soft natural lighting. Soft smooth watercolor washes, clean paper texture, fluid brushstrokes, delicate linework, luminous and airy. Editorial lifestyle illustration style. no text, no logos. Scene: seated on a low fieldstone wall in a cream knit sweater, holding a coffee cup in both hands, looking out over rolling hills in rust, amber and muted green, early morning mist in the valley."
 },
 {
 "k": "caption",
 "l": "Headline + body EN",
-"body": "Headline: Early Fall, Slow Mornings\n\nBody EN (72 words): Late September in the Poconos has its own rhythm. Mornings run cool enough for a second cup, the ridges are still mostly green, and the first maples start turning at the edges. This is the season when people who visited all summer start asking what living here year-round would actually be like: the drive, the winters, the towns, the taxes. That question deserves an honest answer, not a brochure."
+"body": "HEADLINE: October Is the Season People Move For\n\nBODY EN (74 words): Ask people why they bought in the Poconos and fall comes up a lot. Mornings turn crisp, the hills change color week by week, and the towns fill their weekends with festivals, farm stands and trail days. It's the season that sells the lifestyle, and it's also when you learn the practical side of living here: which roads get busy, which towns get crowded, and which quiet corners stay quiet."
 },
 {
 "k": "caption",
 "l": "Body ES + CTA",
-"body": "Body ES: Finales de septiembre en los Poconos: mañanas frescas, montañas todavía verdes y las primeras hojas cambiando. Es cuando muchos empiezan a preguntarse cómo sería vivir aquí todo el año.\n\nCTA: \"Full guide coming soon\" → [PILLAR URL] (placeholder until the Pillar publishes)."
+"body": "BODY ES: El otoño en los Poconos se vive de verdad: mañanas frescas, montañas de colores y pueblos llenos de vida cada fin de semana.\n\nCTA: Full guide coming soon → [PILLAR URL]"
 },
 {
 "k": "meta2",
 "l": "Alt-text + tracker log",
-"body": "Alt-text: Watercolor illustration of a Latina woman with curly dark hair at a kitchen table holding coffee, with early fall trees outside the window.\nTracker: 2026-09-27 | LIFESTYLE | Early Fall, Slow Mornings | watercolor | scene: kitchen table, coffee, fall window | CTA: placeholder → Pillar | EN+ES | posted: [ ]"
+"body": "Alt-text: Watercolor illustration of a Latina woman with curly dark hair in a cream sweater, holding coffee while sitting on a stone wall above misty autumn hills.\nTracker log line: 2026-10-10 | LIFESTYLE | \"October Is the Season People Move For\" | watercolor, fall overlook scene | EN/ES body logged | CTA → Pillar (coming soon) | live"
 }
 ]
 },
@@ -185,412 +545,6 @@ const DAYS=[
 ]
 },
 {
-"day": "Monday",
-"date": "Sep 28",
-"sub": "GBP market update + Car Confession",
-"tasks": [
-{
-"id": "gbp-mkt",
-"t": "[02] GBP Market Update (from Ledger) — no hashtags",
-"tag": "re",
-"time": "GBP",
-"b": [
-{
-"k": "caption",
-"l": "GBP post",
-"body": "Monroe County, PA is not a buyer's market right now. August MLS data shows fewer buyers, not stronger ones.\n\nHomes that sold in Monroe County in August 2026 closed at 95.8% of original list price on average, up slightly from 95.3% in August 2025. Months of supply held at 4.6. Pending sales fell 9.2% and new listings fell 6.9%, so buyers and sellers both pulled back.\n\nFor Pocono buyers: negotiating room depends on the property. Homes listed longer than the county's 52-day average are where closing-cost credits and rate buydowns come into play.\n\nFor sellers: a correctly priced home is still selling close to list. An overpriced one sits.\n\nMedian sales price: $347,450 in August 2026; $337,500 year to date, up 8.9%. Price figures do not reflect seller concessions.\n\nSource: Pocono Mountains Association of REALTORS® Monthly Indicators, August 2026 (Pocono Mountains Association Multi List, data as of Sept. 9, 2026).\n\nFull breakdown in this week's Pocono Ledger.\n\nAlexa Sanchez, Realtor · Smart Way America Realty · PA License #RS326383 · (570) 688-8147 · Alexa@alexasanchez.net"
-},
-{
-"k": "meta2",
-"l": "Button",
-"body": "Learn more → [LEDGER 9/27 URL]"
-}
-]
-},
-{
-"id": "carconf",
-"t": "[03] Car Confession EN (≤20s) — IG + YT Shorts",
-"tag": "re",
-"time": "IG + YT",
-"b": [
-{
-"k": "meta2",
-"l": "Argument + delivery",
-"body": "Argument: last week's rate jump cost most Pocono buyers ~$11–$26/mo. The year-over-year move (6.30% → 7.03%) is what changed the budget. Decide off a dated Loan Estimate, not the headline.\nDelivery: parked, engine off, direct to camera, dry and unbothered. Land \"decide off that\" and cut."
-},
-{
-"k": "script",
-"l": "Script (≤20s)",
-"body": "Rates jumped again, and my phone lit up.\n\nHere's the actual damage from last week: on most Pocono purchases, about eleven to twenty-six dollars a month.\n\nThe move that hurt was the last twelve months.\n\nSo stop deciding off a headline. Get a Loan Estimate with a date on it. Decide off that."
-},
-{
-"k": "cover",
-"l": "Cover text",
-"body": "Last week's rate jump cost you ~$20/mo"
-},
-{
-"k": "caption",
-"l": "IG caption",
-"body": "Freddie Mac's 30-year average went from 6.95% to 7.03% last week. On a Pocono purchase between $250K and $600K with 20% down, that works out to roughly $11–$26 more a month in principal and interest.\n\nThe bigger number is the year. Twelve months ago that same average was 6.30%. On a $320,000 loan, the gap is about $155 a month.\n\nBuyers keep reacting to the weekly headline and ignoring the number that actually moved their budget. A dated Loan Estimate is the only rate that's actually yours.\n\nThis week's Pocono Ledger has the rest, including why cautious buyers still aren't getting lowball deals in Monroe County. Link in bio.\n\nPayment figures are principal and interest only; they exclude taxes, insurance, HOA dues and mortgage insurance.\n\nAlexa Sanchez, Realtor · Smart Way America Realty · PA License #RS326383 · (570) 688-8147"
-},
-{
-"k": "tags",
-"l": "Hashtags",
-"body": "#PoconoRealEstate #PoconoMountains #MonroeCounty #PARealEstate #MortgageRates #LifeByAlexa"
-},
-{
-"k": "yt",
-"l": "YT Shorts description",
-"body": "Title: 7% Mortgage Rates: What Last Week's Jump Actually Costs a Pocono Buyer\n\nHow much did the September 2026 rate increase change a Pocono mortgage payment? Freddie Mac's 30-year fixed average rose from 6.95% to 7.03% on September 24, 2026. On a $250,000–$600,000 purchase with 20% down, that adds roughly $11–$26 a month in principal and interest.\n\nIs the weekly change the number that matters most? Not really. A year earlier the same average was 6.30%, and on a $320,000 loan that year-over-year gap is about $155 a month.\n\nWhat should buyers do? Get a dated Loan Estimate from a lender and make decisions off that number, not the headline average.\n\n0:00 The weekly jump\n0:07 What it costs\n0:12 What to do instead\n\nFull Monroe County market breakdown in The Pocono Ledger at alexa.realtor → [LEDGER 9/27 URL]\n\nAlexa Sanchez, Realtor · Smart Way America Realty · PA License #RS326383 · (570) 688-8147 · Alexa@alexasanchez.net\n\nTags: mortgage rates september 2026, pocono real estate, monroe county pa homes, 7% mortgage rate, freddie mac mortgage rates, pocono home buying, pennsylvania real estate, loan estimate, buying a home in the poconos, alexa sanchez realtor"
-}
-]
-}
-]
-},
-{
-"day": "Tuesday",
-"date": "Sep 29",
-"sub": "DR English (Reel + YouTube) + LinkedIn operator read",
-"tasks": [
-{
-"id": "dr-ig",
-"t": "[04] DR English — IG Reel ('Your VA loan stops at the border') — CTA-FREE",
-"tag": "dr",
-"time": "IG",
-"b": [
-{
-"k": "meta2",
-"l": "Argument + gating + delivery",
-"body": "Argument: VA eligibility doesn't finance a Punta Cana condo, and the Dominican loan that does may only cover 70% in dollars. Know who finances the balance at delivery before any reservation deposit.\nGATED: NO brokerage CTA anywhere — no Urban Group block, no Smart Way block, no phone. CTA-free until the Tu Casa RD → Urban Group switch closes.\nDelivery: Alexa on camera, trust tone, no music bed under the numbers. B-roll: generic resort-condo exterior (no identifiable project/signage); a hand on a paper contract with nothing legible."
-},
-{
-"k": "script",
-"l": "Script (<60s)",
-"body": "Veterans. That Punta Cana condo might be real. The VA loan for it isn't.\n\nVA home loans only work on property in the U.S. and its territories. The Dominican Republic isn't one of them. Doesn't matter how eligible you are.\n\nSo before you send a reservation deposit, you need one answer: who's financing the balance at delivery.\n\nIf it's a Dominican bank, read the terms. Scotiabank's vacation-home mortgage, on its own website, lends up to seventy percent of the sale price, in dollars. That's thirty percent cash from you, before closing costs.\n\nBanco Popular advertises up to eighty percent. But that one's a peso loan. You earn dollars. You'd owe pesos.\n\nGet a written prequalification before you reserve anything.\n\nBuy the property your financing can close. Not the payment plan the brochure sells."
-},
-{
-"k": "cover",
-"l": "Cover text",
-"body": "Your VA loan stops at the border"
-},
-{
-"k": "caption",
-"l": "IG caption",
-"body": "VA eligibility doesn't cross the border. VA home loans are limited to property in the United States and its territories, so a condo in Punta Cana or Cap Cana isn't eligible, no matter how strong your entitlement is.\n\nThat leaves the real question most buyers skip until it's late: who finances the balance when the unit delivers.\n\nTwo published examples, both from the banks' own sites:\nScotiabank República Dominicana: vacation-home mortgage, up to 30 years, up to 70% of the sale price, in U.S. dollars.\nBanco Popular Dominicano: up to 80% of appraised value, up to 30 years, but financed in pesos, and the borrower's age plus the loan term can't exceed 75.\n\nNeither is an approval or a quoted rate. Get a written prequalification before any reservation deposit.\n\nFull walkthrough on YouTube.\n\nEducational only. Not a loan offer, legal advice or a guarantee of any bank's terms."
-},
-{
-"k": "tags",
-"l": "Hashtags",
-"body": "#DominicanRepublicRealEstate #PuntaCana #CapCana #DRInvestment #InternationalRealEstate #VALoan #LifeByAlexa"
-}
-]
-},
-{
-"id": "dr-yt",
-"t": "[04] DR English — YouTube longer cut (~6 min)",
-"tag": "dr",
-"time": "YT",
-"b": [
-{
-"k": "meta2",
-"l": "Runtime + structure",
-"body": "Runtime: ~6 min. Teaching register, slower than the Reel. VA rule → how DR pre-construction payments usually work → Scotiabank (USD, up to 70%) → Banco Popular (pesos, up to 80%, age + term ≤ 75) → hypothetical $300K Cap Cana condo → what to do before a deposit → U.S. equity route → close. CTA-FREE (gated). Confirm timestamps against the final edit."
-},
-{
-"k": "script",
-"l": "Script (clean copy/paste)",
-"body": "[HOOK]\nA lot of veterans are looking at the Dominican Republic right now. And a lot of them are carrying one assumption I need to take away before it costs somebody a deposit: the VA loan does not go with you.\n\n[THE VA RULE]\nVA home loans are for property in the United States and its territories: Puerto Rico, Guam, the Virgin Islands, American Samoa, the Northern Mariana Islands. The Dominican Republic isn't on that list.\n\nThis isn't a Dominican law. It's a VA program rule. You can even be stationed overseas and use your VA benefit, but the house has to be here, not there.\n\nSo if you're a veteran looking at Punta Cana or Cap Cana, your zero-down benefit is off the table for that purchase. Full stop.\n\n[HOW THE PAYMENTS USUALLY WORK]\nHere's where people get caught. A lot of new construction in the DR sells on a payment schedule: a reservation, installments while it's being built, and a balance when the unit delivers. Your contract is what governs, so read yours. But that balance at delivery is usually the big number, and the brochure rarely tells you where it's supposed to come from.\n\nIf you're not paying cash, it's coming from a loan. And the loan has its own rules.\n\n[OPTION ONE: SCOTIABANK]\nScotiabank República Dominicana publishes a mortgage specifically for vacation homes. On its own site: up to thirty years, up to seventy percent of the sale price, and it's a U.S.-dollar loan.\n\nRead that seventy percent again. On that product, you're bringing at least thirty percent yourself, plus closing costs.\n\nOne more detail from their page: if you're self-employed, they only count income in U.S. dollars or income generated in the Dominican Republic.\n\n[OPTION TWO: BANCO POPULAR]\nBanco Popular Dominicano advertises up to eighty percent financing, up to thirty years. Two catches.\n\nFirst, that eighty percent is in pesos. If your income is in dollars, you're taking on currency risk every single month.\n\nSecond, the thirty years only applies if your age plus the loan term doesn't go past seventy-five. So a sixty-year-old buyer isn't getting thirty years.\n\nPopular also posts a separate document checklist for foreigners and Dominicans living abroad. It includes a signed sale or option contract and authorization for the bank to pull your credit references outside the country. If you can't be there to sign, you're looking at a legalized power of attorney.\n\n[WALK IT THROUGH]\nLet's run a hypothetical. Round numbers, not a real listing. A three-hundred-thousand-dollar condo in Cap Cana.\n\nOn a seventy-percent loan, the bank lends two hundred ten thousand. You bring ninety thousand, before closing costs and before any reserves the bank wants to see.\n\nAnd watch the appraisal. When a bank lends on appraised value, if the appraisal comes in below your contract price, the difference comes out of your pocket, not theirs.\n\n[WHAT TO DO]\nBefore you send a reservation deposit: get a written prequalification from a Dominican lender for that specific property. Ask the developer in writing what happens to your deposit if your financing falls through, and have Dominican counsel read that answer. And don't underwrite the purchase on projected rental income you haven't verified.\n\nSome buyers skip Dominican financing and pull equity from a home in the States. That's a U.S. lender conversation, and it puts your U.S. home behind the purchase. Go in with your eyes open.\n\n[CLOSE]\nThe DR can absolutely make sense. But buy the property your financing can close. Not the payment plan the brochure sells."
-},
-{
-"k": "yt",
-"l": "YouTube description",
-"body": "Title: Can You Use a VA Loan in the Dominican Republic? What Actually Finances a Punta Cana Condo (2026)\n\nCan a U.S. veteran use a VA loan to buy property in the Dominican Republic? No. VA home loans can only be used for property in the United States and its territories, so a condo in Punta Cana or Cap Cana does not qualify, even for a fully eligible veteran.\n\nSo how do Americans finance a Dominican vacation property? Some use Dominican bank mortgages. Scotiabank República Dominicana publishes a vacation-home mortgage of up to 30 years and up to 70% of the sale price in U.S. dollars. Banco Popular Dominicano advertises up to 80% of appraised value over up to 30 years, but in pesos, and the borrower's age plus the loan term cannot exceed 75.\n\nHow much cash does a buyer need? On a 70% loan, at least 30% of the price plus closing costs. In this video's hypothetical $300,000 Cap Cana condo, that's $90,000 before closing costs.\n\nWhat should you do before a reservation deposit? Get a written, property-specific prequalification, ask the developer in writing what happens to your deposit if financing fails, and have Dominican counsel review the contract.\n\nThis series is Understanding Dominican Transactions as an American. Educational only. Not a loan offer, legal advice, or a guarantee of any bank's published terms, which can change. Bank terms cited as published on each bank's website, September 2026.\n\n0:00 The VA assumption\n0:25 The VA rule: U.S. and territories only\n1:05 How DR pre-construction payments usually work\n1:45 Option 1: Scotiabank vacation-home mortgage (USD, up to 70%)\n2:35 Option 2: Banco Popular (pesos, up to 80%, age + term rule)\n3:40 Hypothetical: $300K Cap Cana condo\n4:35 What to do before a reservation deposit\n5:30 Using U.S. equity instead\n5:55 The rule to remember\n\nSubscribe for the next episode of Understanding Dominican Transactions as an American.\n\n#DominicanRepublicRealEstate #PuntaCana #CapCana #DRInvestment #InternationalRealEstate #VALoan #LifeByAlexa\n\nTags: va loan dominican republic, can you use a va loan overseas, punta cana condo financing, cap cana real estate, dominican republic mortgage for americans, scotiabank republica dominicana mortgage, banco popular dominicano hipoteca, buying property in the dominican republic, veterans buying abroad, dr pre-construction payment plan, dominican republic real estate 2026\nGATING: No brokerage CTA anywhere in this piece."
-}
-]
-},
-{
-"id": "li-signal",
-"t": "[02] LinkedIn Market Signal — operator read (from Ledger)",
-"tag": "re",
-"time": "LinkedIn",
-"b": [
-{
-"k": "meta2",
-"l": "Why it earned a job",
-"body": "Reaches the operator/lender/advisor audience GBP and the Ledger don't. Argument: this is a lower-volume market, not a buyer's market — the skill it rewards is selection. Text, not camera. Shares no sentences with the Ledger or GBP."
-},
-{
-"k": "script",
-"l": "Copy / paste",
-"body": "The Pocono market didn't tilt toward buyers in August. It got quieter.\n\nPending sales in Monroe County fell 9.2% year over year. New listings fell 6.9%. Inventory barely moved, and sellers who closed received 95.8% of original list on average, slightly better than last August.\n\nThat isn't a buyer's market. It's a lower-volume market where both sides are waiting each other out.\n\nFor anyone advising clients here, \"rates are over 7%, so offer low\" doesn't hold up against this data. Room to negotiate exists on specific listings, the ones priced for last year's payment and carrying long market time, and it tends to show up in terms rather than headline price. Our price data doesn't even capture concessions, which is exactly where much of that negotiation lands.\n\nFor sellers, lower volume raises the cost of a pricing mistake. Fewer buyers look at each listing, so a wrong number gets ignored longer.\n\nWhat this market rewards is selection: knowing which houses have room and which don't.\n\nSources: Pocono Mountains Association of REALTORS® Monthly Indicators, August 2026; Freddie Mac PMMS, Sept. 24, 2026.\n\nAlexa Sanchez · Realtor, Smart Way America Realty · PA License #RS326383\n\n#PoconoRealEstate #MonroeCounty #PARealEstate"
-}
-]
-},
-{
-"id": "fr-tue",
-"t": "@fillerandroast Tuesday slot — NO EPISODE (no research this cycle)",
-"tag": "cof",
-"time": "IG · 8:00 AM",
-"b": [
-{
-"k": "meta2",
-"l": "Status",
-"body": "No Filler & Roast research was run. Use a banked episode if one exists; otherwise the slot stays dark. No invented coffee facts."
-}
-]
-}
-]
-},
-{
-"day": "Wednesday",
-"date": "Sep 30",
-"sub": "Pocono al Día — Spanish YouTube",
-"tasks": [
-{
-"id": "aldia",
-"t": "[07] Pocono al Día — Spanish YouTube video (<3 min)",
-"tag": "re",
-"time": "YT",
-"b": [
-{
-"k": "meta2",
-"l": "El ángulo + duración + entrega",
-"body": "Ángulo: el argumento del Ledger contado fresco — tasas al 7% no bajaron los precios; menos compradores no es lo mismo que compradores con poder. La ventaja está en la casa específica. YouTube solamente esta semana (aprobado). Duración objetivo ~2:15. Cadencia dominicana, NO traducción."
-},
-{
-"k": "script",
-"l": "Guión (copia y pega)",
-"body": "Óyeme bien, porque esto lo estoy escuchando todos los días. \"Alexa, las tasas llegaron a siete por ciento. Ahora sí los vendedores tienen que bajar.\"\n\nMi amor, los números de agosto no dicen eso.\n\nEn Monroe County, las casas que se vendieron en agosto cerraron, en promedio, en el noventa y cinco punto ocho por ciento del precio original. Un poquito más que el año pasado. Y el inventario está casi igual: cuatro punto seis meses.\n\nLo que sí cambió es otra cosa. Hay menos contratos. Las ventas pendientes bajaron nueve por ciento. Hay menos compradores en la calle. Pero menos compradores no es lo mismo que compradores con poder.\n\nY ojo, que también hay menos vendedores. Las casas nuevas en el mercado bajaron casi siete por ciento. Los dos lados se echaron para atrás.\n\nEntonces, aquí está lo que yo veo. El comprador cauteloso está esperando que todo baje. Y mientras espera, la casa que está bien puesta de precio se vende igual.\n\nTu ventaja no está en todo el condado. Está en la casa específica. La que lleva todo el verano sin moverse. La que pusieron con el precio del año pasado, como si tú no fueras a pagar siete por ciento.\n\nAhí sí negocias. Y a veces no es bajando el precio. Es pidiendo que el vendedor te ayude con los gastos de cierre o con bajarte la tasa. Esos números ni siquiera salen en los precios que tú ves publicados.\n\nAntes de ofrecer, tres cosas. Saca un Loan Estimate con fecha, porque la tasa del titular no es la tuya. Revisa los impuestos reales de esa propiedad. Y si piensas alquilarla por noche, confirma que la zona lo permite, porque eso cambia de municipio a municipio.\n\nTú no estás comprando un titular. Tú estás comprando una casa. Negocia esa casa."
-},
-{
-"k": "cover",
-"l": "Texto de portada",
-"body": "Tasas al 7%. Los precios no bajaron."
-},
-{
-"k": "yt",
-"l": "Descripción YouTube (español)",
-"body": "Título: Tasas al 7% en los Poconos: por qué los precios no bajaron | Pocono al Día\n\n¿Es un mercado de compradores en los Poconos ahora mismo? No según los datos de agosto de 2026. En Monroe County, Pensilvania, las casas vendidas en agosto cerraron en promedio en el 95.8% del precio original de lista, un poco más que en agosto de 2025, y el inventario se mantuvo en 4.6 meses.\n\n¿Qué cambió entonces? Hay menos actividad: las ventas pendientes bajaron 9.2% y las casas nuevas en el mercado bajaron 6.9%. Compradores y vendedores se echaron para atrás al mismo tiempo.\n\n¿Dónde puede negociar un comprador? En propiedades específicas, sobre todo las que llevan mucho tiempo en el mercado con precios del año pasado. Muchas veces la negociación está en gastos de cierre o en bajar la tasa, no solo en el precio.\n\n¿Qué hacer antes de ofrecer? Pedir un Loan Estimate con fecha, revisar los impuestos reales de la propiedad y confirmar si el municipio permite alquiler a corto plazo.\n\nLa tasa promedio de Freddie Mac a 30 años fue 7.03% el 24 de septiembre de 2026.\n\nFuentes: Pocono Mountains Association of REALTORS® Monthly Indicators, agosto 2026 (datos al 9 de septiembre de 2026); Freddie Mac PMMS, 24 de septiembre de 2026. Los precios no reflejan concesiones del vendedor.\n\n0:00 \"Ahora sí tienen que bajar\"\n0:15 Lo que dicen los números de agosto\n0:40 Lo que sí cambió\n1:10 Dónde está tu ventaja\n1:45 Tres cosas antes de ofrecer\n2:05 Negocia la casa, no el titular\n\nAnálisis completo en The Pocono Ledger → [LEDGER 9/27 URL]\nGuía para vivir en los Poconos → [PILLAR URL]\n\nAlexa Sanchez, Realtor · Smart Way America Realty · PA License #RS326383 · (570) 688-8147 · Alexa@alexasanchez.net\n\n#BienesRaices #InversionesEnPoconos #MonroeCounty #LifeByAlexa\n\nTags: bienes raices poconos, comprar casa en los poconos, monroe county pennsylvania, tasas hipotecarias 2026, casas en pensilvania, mercado inmobiliario poconos, realtor que habla español poconos, comprar casa en pennsylvania, pocono al dia, alexa sanchez realtor"
-}
-]
-}
-]
-},
-{
-"day": "Thursday",
-"date": "Oct 1",
-"sub": "Landmark Nextdoor + cigar voice · monthly prompts run today",
-"tasks": [
-{
-"id": "nd-land",
-"t": "[05] Landmark — Nextdoor (neighborly, no selling)",
-"tag": "re",
-"time": "Nextdoor",
-"b": [
-{
-"k": "meta2",
-"l": "⚠ Gate",
-"body": "Post only after the Big Pocono photo shoot, so \"went up this week\" is literally true. Confirm summit road is open with PA DCNR."
-},
-{
-"k": "caption",
-"l": "Post",
-"body": "Went up to the Big Pocono State Park overlook this week. The color is just starting to show on the ridges. It's not peak yet, which makes it a nice time to go before it gets busy.\n\nThe park is open sunrise to sunset during the open season. Worth checking the DCNR page on the summit road before you head up.\n\nAlexa Sanchez, Realtor · Smart Way America Realty"
-}
-]
-},
-{
-"id": "th-tt",
-"t": "@its.myash Talking Head — TikTok (made in DR ≠ Dominican puro)",
-"tag": "cig",
-"time": "TikTok",
-"b": [
-{
-"k": "meta2",
-"l": "Point + delivery",
-"body": "The point: factory origin and leaf origin are two separate claims. ~40s. At Nell's Social, cigar in hand, no intro. Cut on the last line. The optional close is marked — use only if you're ready to say it publicly."
-},
-{
-"k": "script",
-"l": "Script",
-"body": "\"Dominican cigar\" and \"Dominican puro\" are not the same claim.\n\nMade in the DR tells you where it was rolled. It doesn't tell you where every leaf grew.\n\nPlenty of great cigars get built in Dominican factories with wrapper or filler from somewhere else. Casdagli's Brothers of the Sabre blends are made in the DR with leaf from other origins. Their Dominita goes the other way: pure corojo from Navarrete.\n\nBoth are honest. What isn't honest is a band that lets you assume.\n\nSo read it like this. Where was it made. Where did the tobacco grow. Two questions. If a brand can't answer both, that tells you something too.\n\n[OPTIONAL CLOSE — use only if you're ready to say it publicly:] When my name goes on a band, it'll answer both."
-},
-{
-"k": "caption",
-"l": "Caption",
-"body": "Made in the Dominican Republic and grown in the Dominican Republic are two different claims. A DR-made cigar can carry wrapper, binder or filler from other countries, and plenty of great ones do. A Dominican puro means every leaf is Dominican.\n\nTwo questions for every band: where was it rolled, and where did the tobacco grow."
-},
-{
-"k": "tags",
-"l": "Hashtags",
-"body": "#CigarLife #CigarAuthority #PremiumCigars #NellsSocial #DominicanCigars #LifeByAlexa"
-},
-{
-"k": "meta2",
-"l": "⚠ Verify before posting",
-"body": "Casdagli Dominita (pure corojo, Navarrete; reported Europe availability, not U.S. shelves) and Brothers of the Sabre (DR-made, other leaf origins) — confirm against Cigar Journal / maker."
-}
-]
-},
-{
-"id": "monthly",
-"t": "Monthly prompts run today (01B · 02B · 03M · 05B · 06)",
-"tag": "op",
-"time": "research",
-"new": true,
-"b": [
-{
-"k": "meta2",
-"l": "Heads-up",
-"body": "Oct 1 is the first Thursday of October. Run the monthly Perplexity prompts today. Next Sunday (Oct 4) is the first-week-of-month session — [15] Monthly Content Queue in play. Carry the Nov 2 appraisal-form angle into that queue."
-}
-]
-}
-]
-},
-{
-"day": "Friday",
-"date": "Oct 2",
-"sub": "Landmark post + landmark card + Weekend Smoke",
-"tasks": [
-{
-"id": "land",
-"t": "[05] Landmark Spotlight — Big Pocono State Park overlook (still photo) — IG + YT",
-"tag": "re",
-"time": "IG + YT",
-"b": [
-{
-"k": "photo",
-"l": "⚠ Before the shoot + photo direction",
-"body": "⚠ BEFORE THE SHOOT: confirm acreage (1,306), hours (sunrise–sunset, open season) and that the summit road is open with PA DCNR. Show foliage honestly — no percentage, no \"peak.\"\n\nSummit overlook, about an hour before sunset for warm side light. Wide horizontal landscape looking out over the valley, with a rock outcrop or overlook wall in the lower foreground for depth. Horizon in the upper third. Horizontal master for YouTube/GBP/gallery, plus a 4:5 vertical crop for IG. Mostly green with first changes — don't push saturation to fake peak. No identifiable people, no vehicles or plates. Shoot from the designated overlook area, not the road shoulder."
-},
-{
-"k": "caption",
-"l": "IG caption — Friday",
-"body": "Big Pocono State Park, Tannersville. 1,306 acres on top of Camelback Mountain, with views into three states.\n\nThe color is just starting, mostly green with the first edges turning. Not peak. That's the good part: the overlook is quieter before the foliage crowds show up.\n\nWhat people moving here underestimate is how normal this becomes. It stops being a vacation stop and becomes a place you go on an ordinary afternoon because it's right there.\n\nOpen sunrise to sunset during the open season. Check PA DCNR before you go."
-},
-{
-"k": "tags",
-"l": "Hashtags",
-"body": "#PoconoMountains #MonroeCounty #PoconoLiving #BigPoconoStatePark #PoconoFall #LifeByAlexa"
-},
-{
-"k": "yt",
-"l": "YouTube — Friday",
-"body": "Format: 15–20 sec vertical Short, slow push-in on the still or steady handheld pan, ambient audio only, no burned-in text.\n\nTitle: Big Pocono State Park Overlook | Early Fall Views in Tannersville, PA\n\nWhere can you see early fall color in Monroe County, PA? One of the best spots is the summit overlook at Big Pocono State Park in Tannersville, a 1,306-acre park on Camelback Mountain with views into three states.\n\nIs it peak foliage yet? Not in late September 2026. The ridges are mostly green with the first color starting, which makes this a quieter time to visit before peak crowds.\n\nWhen is Big Pocono State Park open? PA DCNR lists hours as sunrise to sunset during the open season. Check DCNR for summit road access before you go.\n\nWhat is it like to live near places like this? For Monroe County residents, spots like this are everyday stops, not just vacation trips. Full guide to living in the Poconos coming soon at alexa.realtor → [PILLAR URL]\n\n0:00 Summit overlook, early fall\n\nAlexa Sanchez, Realtor · Smart Way America Realty · PA License #RS326383 · (570) 688-8147 · Alexa@alexasanchez.net\n\nTags: big pocono state park, tannersville pa, camelback mountain, pocono fall foliage 2026, monroe county pa, poconos fall colors, pocono mountains overlook, living in the poconos, pocono landmarks"
-}
-]
-},
-{
-"id": "gc-land",
-"t": "[13] Gallery: Landmark card — Big Pocono overlook (real photo)",
-"tag": "re",
-"time": "gallery",
-"b": [
-{
-"k": "photo",
-"l": "Photo + caption",
-"body": "Photo: horizontal master from the Friday shoot. Real photo only — never watercolor.\nCaption: Big Pocono State Park summit overlook, Tannersville — early fall on Camelback Mountain."
-},
-{
-"k": "meta2",
-"l": "Alt-text + tracker log",
-"body": "Alt-text: View from the Big Pocono State Park summit overlook in Tannersville, PA, with mostly green ridges and early fall color.\nTracker: 2026-10-02 | LANDMARK | Big Pocono State Park summit overlook | real photo | Tannersville, Monroe County | early fall | posted: [ ]"
-}
-]
-},
-{
-"id": "smoke",
-"t": "@its.myash Weekend Smoke (caption-led, fill the brackets)",
-"tag": "cig",
-"time": "IG · 6:00 PM",
-"b": [
-{
-"k": "photo",
-"l": "Concept + photo direction",
-"body": "Apply the two-question test to whatever you're actually smoking this weekend, using the maker's own origin info — don't guess leaf origins. Cigar held with the band readable, box/label with origin text soft in the background, Nell's lounge light, 4:5 vertical."
-},
-{
-"k": "caption",
-"l": "Caption",
-"body": "Weekend smoke: [CIGAR NAME, VITOLA].\n\nRolled in: [country / town, per the maker]\nLeaf from: [wrapper / binder / filler origins, per the maker]\n\n[One line on how it's smoking, in your words.]\n\nTwo questions, every cigar: where it was made, where it grew."
-},
-{
-"k": "tags",
-"l": "Hashtags",
-"body": "#CigarLife #CigarAuthority #PremiumCigars #NellsSocial #DominicanCigars #LifeByAlexa"
-}
-]
-},
-{
-"id": "cig-vid",
-"t": "OPTIONAL — @its.myash Cigar/Lounge video 'One Cigar, Two Pours' (IG + TikTok)",
-"tag": "cig",
-"time": "IG + TikTok",
-"b": [
-{
-"k": "meta2",
-"l": "⚠ Gate + concept",
-"body": "Run only if you actually host it this week. Confirm what Nell's Social can serve or allow (licensing / BYOB rules) before filming or promoting the second pour. Get on-camera consent from every guest shown. No YouTube.\nConcept: same cigar, two pairings — coffee first, then the second pour. Ask guests what changed. Don't declare a winner."
-},
-{
-"k": "photo",
-"l": "Shot list + on-screen beats",
-"body": "Shots: (1) cigar cut and lit (2) coffee pairing + guest's first reaction (3) second pour, same guest (4) guest's one-line verdict (5) Alexa's closing line.\nOn-screen (added in edit): \"Same cigar.\" · \"Pour one: coffee.\" · \"Pour two.\" · \"Which one changed it?\""
-},
-{
-"k": "caption",
-"l": "Caption",
-"body": "Same cigar, two pours, and the cigar tasted different both times. That's the point of pairing. It isn't about a right answer; it's about noticing what changes.\n\nWhich pairing would you pick?"
-},
-{
-"k": "tags",
-"l": "Hashtags",
-"body": "#CigarLife #CigarAuthority #PremiumCigars #NellsSocial #DominicanCigars #LifeByAlexa"
-}
-]
-},
-{
-"id": "fr-fri",
-"t": "@fillerandroast Friday slot — NO EPISODE (no research this cycle)",
-"tag": "cof",
-"time": "IG · 8:00 AM",
-"b": [
-{
-"k": "meta2",
-"l": "Status",
-"body": "Same as Tuesday: banked episode or dark. Run Space 04 before next session to restart the 2x/week cadence."
-}
-]
-}
-]
-},
-{
-"day": "Saturday",
-"date": "Oct 3",
-"sub": "Landmark GBP",
-"tasks": [
-{
-"id": "gbp-land",
-"t": "[05] Landmark — GBP Saturday (same photo, no hashtags)",
-"tag": "re",
-"time": "GBP",
-"b": [
-{
-"k": "caption",
-"l": "GBP post",
-"body": "Big Pocono State Park in Tannersville, Monroe County, PA covers 1,306 acres atop Camelback Mountain, with summit views into three states.\n\nEarly fall color is beginning on the ridges in late September. Most trees are still green, so this is a quieter visit before peak foliage.\n\nOpen sunrise to sunset during the park's open season. Confirm summit road access with PA DCNR before driving up.\n\nFor people relocating to the Pocono Mountains, this is one of the outdoor spots Monroe County residents use as an everyday stop.\n\nAlexa Sanchez, Realtor · Smart Way America Realty · PA License #RS326383 · (570) 688-8147 · Alexa@alexasanchez.net"
-},
-{
-"k": "meta2",
-"l": "Photo",
-"body": "Horizontal master from the Friday shoot."
-}
-]
-}
-]
-},
-{
 "day": "Before You Publish",
 "date": "this week",
 "sub": "Verification · awaiting · skipped · status",
@@ -603,8 +557,13 @@ const DAYS=[
 "b": [
 {
 "k": "meta2",
-"l": "Status by claim",
-"body": "VERIFIED\n1. Freddie Mac 30-yr 7.03% (Sept 24) / 6.95% prior / 6.30% yr ago → VERIFIED, PMMS release. (Ledger, Car Confession, Pocono al Día, LinkedIn)\n2. Monroe Aug 2026 MLS: median $347,450; YTD $337,500 (+8.9%); 95.8% of original list; 52 avg DOM; pendings −9.2%; new listings −6.9%; inventory 903; 4.6 months; affordability 107 → VERIFIED baseline. Swap if the September report publishes first. (Ledger, GBP, LinkedIn, Pocono al Día)\n3. Payment illustrations ($11–$26/mo weekly; ~$155/mo YoY on $320K) → recomputed, P&I only. (Car Confession, Ledger)\n4. Scotiabank RD vacation mortgage: up to 30 yrs, up to 70% of sale price, USD; self-employed income rule → VERIFIED on bank site Sept 26. \"12 months stable USD income\" NOT confirmed — excluded. (DR video)\n5. Banco Popular: up to 80% of appraisal, pesos, 30 yrs, age + term ≤ 75, foreign-applicant checklist → VERIFIED on popularenlinea.com Sept 26. (DR video)\n6. VA loans limited to U.S. + territories → CONFIRMED via multiple lender sources; cite VA.gov directly at publish. (DR video)\n\nSTILL TO VERIFY\n7. Smithfield Gateway: proposed 250,000 sq ft data center, page updated 9/21 → confirm status, parcel location, hearing date. (Ledger spotlight)\n8. School-tax discount period ending Sept 30 → district-specific; keep \"check your bill.\" (Nextdoor)\n9. Big Pocono SP: 1,306 acres, three-state view, sunrise–sunset hours, summit road open, current foliage → PA DCNR. (Landmark set)\n10. Monroe County reassessment: in progress, no new values → re-confirm on county site. (Ledger buyer section)\n11. Casdagli Dominita / Brothers of the Sabre origin details → Cigar Journal / maker. (@its.myash Talking Head)\n\nNOT USED THIS WEEK (carried forward)\nFOMC Sept 16 decision · VA 30-yr 6.72% (single source) · HB 1257 status · NAR national figures."
+"l": "Claims to confirm",
+"body": "• Freddie Mac 30-year, Oct 1, 2026 = 7.28% (Ledger, GBP, carousel). Confirm at freddiemac.com and recompute all payments if it differs.\n• Freddie Mac Sept 10 survey = 6.76%, carried from the baseline. Confirm the release date label.\n• PMAR September Monthly Indicators: if published before the Ledger posts, rebuild the numbers.\n• Pocono Township STR zoning: append the ordinance section number and re-confirm it's current.\n• CONFOTUR (Law 158-01 Art. 4, first-acquirer IPI exemption, exemption-period start date, 3% transfer tax): licensed Dominican counsel.\n• Law 30-26 (June 18, 2026; anti-stacking; regulations status): licensed Dominican counsel. Cut the segment if unconfirmed.\n• Jim Thorpe: festival dates and vendor hours, shuttle operators and day-of service, the 1954 renaming, and the drive time from Monroe County.\n• Dominican puro / Dominican-made distinction (@its.myash): standard definition. If an example cigar is named, verify its blend.\n• Kochere process facts (650 farmers, 36–48 hr fermentation, 12–15 day drying, 11.5% moisture): single retailer source. Confirm with a second source (importer or mill).\n• Carried, still open: FOMC Sept 16 move (kept out of all pieces) · HB 1257 status conflict (March 30 Senate referral vs. July House vote) · PA veteran need threshold ($114,637, dated 2025) · PHFA Keystone Advantage terms · Tannersville Cranberry Bog access."
+},
+{
+"k": "meta2",
+"l": "Payment reference (recompute if the rate changes)",
+"body": "Principal and interest only, 30-year fixed, $300,000 loan. Excludes taxes, insurance, HOA and mortgage insurance.\n• 6.55% (midsummer, inside the June–July 6.43%–6.66% range): $1,906/mo\n• 6.76% (Freddie Mac, Sept 10 survey): $1,948/mo\n• 7.03% (Freddie Mac, Sept 24): $2,002/mo\n• 7.28% (Freddie Mac, Oct 1, VERIFY): $2,053/mo\n• 6.76% to 7.28%: +$105/mo. The $1,948 payment at 7.28% supports about $284,700, which is roughly $15,300 less.\n• 6.55% to 7.28%: +$147/mo. The $1,906 payment at 7.28% supports about $278,600, which is roughly $21,400 less.\n• One week, 7.03% to 7.28%: +$51/mo\n⚠ If the Freddie Mac Oct 1 figure confirms at anything other than 7.28%, recompute every number above before publishing. Do not round to fit."
 }
 ]
 },
@@ -616,8 +575,13 @@ const DAYS=[
 "b": [
 {
 "k": "meta2",
-"l": "Retired sources + framing + per-outlet rule",
-"body": "REJECTED THIS WEEK: 01A's ~$380K \"median asking,\" 57 \"median days,\" ~2,000 homes for sale and \"1.67% below asking\" (Realtor.com county pages — retired source/dataset). 02A's Zillow snapshot (1,410 listings, $353K list, \"54.2% sold below list\") is Tier 3–4. FRED's Realtor.com county series is not a local citation. None appear anywhere in this week's content.\nLEVERAGE FRAMING: do not say buyers \"have leverage\" or the county is \"more negotiable\" as a countywide claim — 95.8% of original list and flat 4.6 months supply don't support it. Leverage is listing-specific.\nPRICE FRAMING: never \"appreciated 13.2%.\" August's median is a thin-month datapoint (200 sales); YTD +8.9% is the durable figure. Attach the concessions caveat to price figures.\nPER-OUTLET VERBIAGE (standing): no two surfaces share sentences. Nextdoor = neighborly; GBP = search-first/clipped; LinkedIn = operator read; Ledger = full reconciliation."
+"l": "Research integrity this week",
+"body": "All Monroe County figures come from the Pocono Mountains Association of REALTORS® Monthly Indicators, August 2026. 01A's Realtor.com county figures and 02A's Redfin figures are rejected: the $380K median list, the 60-day median DOM, the 98% sale-to-list ratio, \"2.22% below ask,\" and $346,291 on 239 sales. 01A's payment math was computed at about 7.25%, so every payment in this packet was recalculated at the stated rate. The Freddie Mac 7.28% figure (Oct 1) still needs confirmation at release. VA rates appear only as a dated range, and the Fed's September move is kept out of every piece because it's still unconfirmed."
+},
+{
+"k": "meta2",
+"l": "Framing + per-outlet rule",
+"body": "PRICE FRAMING: never \"appreciated 13.2%.\" August's median is a thin-month datapoint (200 sales); YTD +8.9% is the durable figure. Attach the concessions caveat to price figures.\nRATES: Freddie Mac is a national average, never \"your rate.\" VA rates only as a dated range with sources named.\nFED: kept out of every piece until the Sept 16 move is confirmed.\nGEOGRAPHY: Jim Thorpe is Carbon County — no #MonroeCounty on the landmark.\nPER-OUTLET VERBIAGE (standing): no two surfaces share sentences. Nextdoor = neighborly; GBP = search-first/clipped; Ledger = full reconciliation."
 }
 ]
 },
@@ -630,25 +594,30 @@ const DAYS=[
 {
 "k": "meta2",
 "l": "Blocks + placeholders",
-"body": "• Big Pocono photo shoot — must happen before Thursday's Nextdoor post; gates the Friday/Saturday landmark set and the landmark gallery card.\n• September MLS Monthly Indicators — if published before a market piece posts, update figures.\n• Urban Group brokerage switch — all DR content CTA-free until it closes.\n• The Pillar — not built. Placeholders to fill before publishing: [PILLAR URL] · [LEDGER 9/27 URL] · [LEDGER 9/20 URL].\n• Smithfield Gateway hearing date + confirmed parcel → unlocks the banked PIR episode.\n• Oct 29 sheriff sale — possible PIR only if a distinct buyer angle emerges (sits close to Ep. 02).\n• @fillerandroast — needs Space 04 research or banked episodes."
+"body": "• Urban Group brokerage switch: all DR content stays CTA-free until it closes.\n• Dominican counsel sign-off: the CONFOTUR video is produced and held.\n• PMAR September report: expected around Oct 9.\n• Bid4Assets Oct 29 sheriff-sale listings + Legal Reporter ads: PIR Ep. 03.\n• Decision: does F&R name a third-party roaster's product? The episodes are written generically until Alexa decides.\n• Placeholders to fill before publishing: [PILLAR URL] · [LEDGER 10/4 URL] · [LEDGER 9/27 URL] · [LEDGER 9/20 URL] · [ORDINANCE SECTION]."
 }
 ]
 },
 {
 "id": "skipped",
-"t": "Skipped + monitoring (for reference — not tasks)",
+"t": "Optional · skipped · monitoring (for reference — not tasks)",
 "tag": "op",
 "time": "note",
 "b": [
 {
 "k": "meta2",
-"l": "Skipped with reason",
-"body": "• IG market carousel — declined at approval.\n• Hub Video EN — Car Confession + Pocono al Día carry the spoken versions.\n• Personal Facebook EN — no distinct purpose beyond GBP, LinkedIn, Ledger.\n• PA Veteran video [06] — no veteran-specific development; DR video covers the veteran audience.\n• DR Spanish — the Spanish slot went to Pocono al Día (business spine).\n• Mini Me — rates are trust-sensitive; no recognizable Realtor moment surfaced.\n• 02A seller-lead workflow — agent-facing ops, not consumer content.\n• East Stroudsburg wastewater funding — no consumer consequence.\n• @its.myash maker carousel (monitor) · Platinum Nova / InterTabac news (skip)."
+"l": "Optional (not produced, available on request)",
+"body": "Approved slate did not include these. Not produced, and available on request:\n• [07] Pocono al Día: the payment argument retold fresh in Dominican Spanish (\"el precio no bajó, tu presupuesto sí\").\n• [02] LinkedIn Market Signal: the operator read on comps underwritten under a different rate.\n• [04] DR Spanish CONFOTUR: would double the counsel review.\n• [05] Landmark GBP: a Carbon County event is a weak signal on a Monroe-anchored profile.\n• [02] Personal FB EN: a neighborly first-person PSA version of the rate story."
 },
 {
 "k": "meta2",
-"l": "Monitoring",
-"body": "• Smithfield Gateway data center (PIR candidate) · Oct 29 sheriff sale · PA Disabled Veterans' exemption explainer (evergreen) · HB 1257 · Monroe reassessment · Nov 2 appraisal form (mid-Oct angle) · Middle Smithfield 1008 Sand Hill Rd (pending)."
+"l": "Skipped with reason",
+"body": "• [03] Car Confession EN: [SKIP THIS WEEK — ran last week; this argument is numbers-first and works better as a graphic]\n• [02] Hub Video EN: [SKIP THIS WEEK — would duplicate the carousel with no distinct platform purpose]\n• DR Veteran (03M/05B): [SKIP THIS WEEK — last week's DR video covered the VA foreign-property rule and DR financing; banked for week 3]\n• Commission-litigation update: [SKIP THIS WEEK — no consumer-facing change]\n• Regional price-cut share (21.2%) and delinquency (1.5%): [SKIP — unidentified source, not publishable]\n• Realtor.com/Redfin county figures: [SKIP — Tier 2–4 for county data; MLS only]\n• VA \"$84/month advantage\": [SKIP — rests on the lowest of four conflicting quotes]\n• Mini Me: [SKIP THIS WEEK — no real Realtor moment surfaced; the rate story is too serious for Mini Me]\n• F&R cigar pairing: [MOVED — F&R never forces a cigar tie-in; the pairing runs as @its.myash Weekend Smoke]"
+},
+{
+"k": "meta2",
+"l": "Monitoring + monthly angle bank",
+"body": "Monitoring:\n• [06] Veteran PA: evergreen angle \"0% down doesn't mean zero cash,\" with PHFA Keystone Advantage (up to 4%, capped at $6,000, a 0% second mortgage, not a grant). Waiting for a real development and a resolved HB 1257 status.\n• 02A seller line: \"The next Pocono bargain comes from the owner who priced a second home for 2023.\" Banked; overlaps the 9/27 thesis if run now.\n• Nov 2, 2026 appraisal form change for new Fannie/Freddie appraisals: seller-prep piece for mid-to-late October. Confirm with PAR/GSE guidance.\n• Middle Smithfield, 1008 Sand Hill Road (68 units requested vs. 27 max in C-1): pending, watch the hearing calendar.\n• Monroe County reassessment: no new development.\n• @its.myash build-in-public brand series: Alexa decides what's public.\n[15] Monthly content queue (first week of October):\n• Week 2 (Oct 11): Ledger rebuilt on the September MLS report. Seller angle if the data supports it: \"Priced for 2023, carrying it through 2026.\" Format: Ledger + GBP; Car Confession eligible again. Hook direction: \"The listing didn't fail. It was priced for a buyer who left.\"\n• Week 3 (Oct 18): PIR Ep. 03, \"A sheriff-sale opening bid is not the price\" (Oct 29 Bid4Assets sale + the Commonwealth Court tax-sale notice ruling). Plus DR Veteran, \"Three separate decisions: VA benefits, residency, financing\" (03M/05B), as an IG Reel + YouTube, CTA-free.\n• Week 4 (Oct 25): Seller prep around the Nov 2 appraisal form, after GSE confirmation. Format: LinkedIn + GBP.\n• October calendar: Down Syndrome Awareness Month. Run something only if Alexa has something genuine to say. Never a prop."
 }
 ]
 },
@@ -661,7 +630,7 @@ const DAYS=[
 {
 "k": "meta2",
 "l": "Status read",
-"body": "PILLAR: not in cycle. CTAs point to [PILLAR URL] with \"Full guide coming soon.\"\nPIR: [PIR — NONE THIS WEEK]. Smithfield Gateway due-diligence episode banked pending hearing date + parcel location.\nNO-DUPLICATION CHECK: GBP, LinkedIn, Car Confession and Pocono al Día are adaptations of this week's Ledger — same argument, distinct wording per surface. Last week's concessions thesis is linked from the Ledger, not re-reported. DR video is its own franchise (no written parent). @its.myash pieces are independent — no RE positioning or CTA.\n80/20 READ: ~90% real estate on alexa.realtor. Landmark + lifestyle card carry the personal lane. Nothing forced.\nFull packet: Weekly-Production-Packet-Sep27-Oct3.pdf"
+"body": "• PILLAR: not in cycle. Every CTA points to [PILLAR URL] / \"Full guide coming soon.\"\n• PIR: [PIR — NONE THIS WEEK]. Ep. 03 (sheriff sale, Oct 29) is banked for the week of Oct 18, pending Bid4Assets listings. The 03M DR cross-border cut is banked with the week-3 DR Veteran piece.\n• NO-DUPLICATION CHECK: GBP and the carousel are adaptations of this week's Ledger, with the same argument and no shared sentences. The 9/20 and 9/27 Ledgers are linked, not re-reported. The CONFOTUR video is its own franchise with no written parent. @its.myash and @fillerandroast are independent; the coffee pairing lives only on @its.myash, and the coffee story lives only on F&R.\n• 80/20 READ: about 85% real estate on alexa.realtor this week. The Landmark and the lifestyle card carry the personal and community lane. Nothing forced.\n• FILE: Weekly-Production-Packet-Oct4-Oct10.pdf"
 }
 ]
 }
