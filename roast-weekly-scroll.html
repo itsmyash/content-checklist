@@ -1,727 +1,177 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROAST v8 — Weekly Scroll · Oct 4–10, 2026</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>ROAST v9 — Weekly Scroll · Oct 12–18, 2026</title>
 <style>
-  :root{--bg:#0f1511;--panel:#161d18;--panel2:#1c2620;--ink:#eaf2ec;--mut:#8ba393;
-    --grn:#22c55e;--grn2:#14532d;--line:#26332b;--dr:#38bdf8;--cig:#d9a441;--vet:#f97362;--cof:#c9a27a;}
-  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-  body{margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink);}
-  header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,#0f1511 72%,rgba(15,21,17,0));padding:14px 18px 20px;}
-  h1{margin:0;font-size:19px;letter-spacing:-.3px;}
-  .wk{color:var(--mut);font-size:12px;margin-top:2px;}
-  .thesis{margin-top:10px;font-size:12.5px;line-height:1.5;color:#cfe8d8;background:#12211a;border:1px solid #24402f;border-left:3px solid var(--grn);border-radius:8px;padding:9px 12px;}
-  .thesis b{color:#eaf2ec;}
-  .bar{height:10px;background:var(--panel2);border-radius:6px;overflow:hidden;margin-top:12px;border:1px solid var(--line);}
-  .fill{height:100%;width:0;background:linear-gradient(90deg,var(--grn2),var(--grn));transition:width .35s ease;}
-  .pct{font-size:12px;color:var(--mut);margin-top:6px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
-  .wrap{max-width:820px;margin:0 auto;padding:0 12px 60px;}
-  .day{margin:16px 0 0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel);}
-  .dhead{display:flex;justify-content:space-between;align-items:center;padding:12px 15px;cursor:pointer;background:var(--panel2);}
-  .dhead h2{margin:0;font-size:14px;} .dhead .dsub{color:var(--mut);font-size:11px;margin-top:2px;}
-  .dcount{font-size:11px;color:var(--mut);background:#0f1511;border:1px solid var(--line);padding:2px 9px;border-radius:20px;white-space:nowrap;}
-  .dbody.collapsed{display:none;}
-  .task{border-bottom:1px solid var(--line);}
-  .task:last-child{border-bottom:none;}
-  .trow{display:flex;gap:11px;align-items:flex-start;padding:11px 12px;}
-  .cb{flex:0 0 22px;height:22px;margin-top:1px;border:2px solid #3a4a40;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s;background:#0f1511;}
-  .cb.on{background:var(--grn);border-color:var(--grn);}
-  .cb.on::after{content:"✓";color:#06210f;font-weight:800;font-size:14px;}
-  .tt{flex:1;min-width:0;cursor:pointer;}
-  .ttitle{font-size:13.5px;line-height:1.35;}
-  .task.done .ttitle{text-decoration:line-through;color:var(--mut);}
-  .tmeta{margin-top:5px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
-  .pill{font-size:10px;padding:2px 8px;border-radius:20px;border:1px solid var(--line);color:var(--mut);white-space:nowrap;}
-  .pill.time{color:#cfe8d8;border-color:#2f4a3a;}
-  .pill.re{color:#bfe9c9;border-color:#2f6b45;}.pill.dr{color:var(--dr);border-color:#1e4a63;}
-  .pill.cig{color:var(--cig);border-color:#5c4718;}.pill.vet{color:var(--vet);border-color:#6b2f28;}
-  .pill.op{color:#e9d5ff;border-color:#4b2d63;}.pill.pir{color:#fda4af;border-color:#6b2f39;}
-  .pill.cof{color:var(--cof);border-color:#5c4a2f;}
-  .pill.new{color:#06210f;background:var(--grn);border-color:var(--grn);font-weight:700;}
-  .chev{flex:0 0 auto;color:var(--mut);font-size:12px;margin-top:2px;transition:transform .2s;}
-  .task.open .chev{transform:rotate(90deg);}
-  .content{padding:2px 12px 14px 45px;display:none;}
-  .task.open .content{display:block;}
-  .blk{background:var(--panel2);border:1px solid var(--line);border-radius:9px;margin:8px 0;overflow:hidden;}
-  .blk .bh{display:flex;justify-content:space-between;align-items:center;padding:7px 11px;border-bottom:1px solid var(--line);background:#0f1511;}
-  .blk .lbl{font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:var(--mut);font-weight:600;}
-  .blk.script .lbl{color:#bfe9c9;}.blk.caption .lbl{color:#cfe8d8;}.blk.tags .lbl{color:#7dd3fc;}
-  .blk.cover .lbl{color:#fca5a5;}.blk.yt .lbl{color:#fda4af;}.blk.photo .lbl{color:#d9a441;}
-  .blk.prompt .lbl{color:#c4b5fd;}.blk.meta2 .lbl{color:#8ba393;}
-  .cpy{font-size:10px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:3px 9px;cursor:pointer;font-family:inherit;}
-  .cpy:active{transform:scale(.95);} .cpy.done{color:var(--grn);border-color:#2f6b45;}
-  .body{padding:10px 12px;font-size:12.5px;line-height:1.55;white-space:pre-wrap;color:#dbe8de;}
-  footer{max-width:820px;margin:0 auto;padding:22px 16px;color:var(--mut);font-size:11px;text-align:center;}
-  .btn{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-family:inherit;}
-  .btn:active{transform:scale(.97);}
-  .sync{font-size:10px;padding:3px 9px;border-radius:20px;border:1px solid var(--line);}
-  .sync.ok{color:var(--grn);border-color:#2f6b45;}.sync.local{color:var(--cig);border-color:#5c4718;}
-  .note{background:#1a130f;border:1px solid #5c4718;color:#e8cfa0;font-size:11px;padding:9px 12px;border-radius:10px;margin-top:14px;text-align:left;}
-  .legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px;}
-  code{background:#0f1511;padding:1px 5px;border-radius:4px;border:1px solid var(--line);font-size:11px;}
+:root{--bg:#0f1511;--panel:#161d18;--panel2:#1c2620;--ink:#eaf2ec;--muted:#8ba393;--accent:#22c55e;--accent2:#14532d;--line:#26332b;
+--dr:#38bdf8;--cigar:#d9a441;--vet:#f97362;--coffee:#c9a27a;--thesis:#12211a;
+--l-script:#bfe9c9;--l-caption:#cfe8d8;--l-tags:#7dd3fc;--l-cover:#fca5a5;--l-youtube:#fda4af;--l-photo:#d9a441;--l-prompt:#c4b5fd;--l-meta:#8ba393}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:14px;line-height:1.5}
+header{position:sticky;top:0;z-index:20;background:var(--bg);padding:14px 16px 12px;border-bottom:1px solid var(--line);box-shadow:0 8px 16px -8px rgba(0,0,0,.6)}
+.hwrap,.wrap{max-width:820px;margin:0 auto}
+.wrap{padding:0 16px 40px}
+h1{font-size:19px;margin:0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.badge{font-size:11px;font-weight:500;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 8px}
+.sub{color:var(--muted);font-size:12.5px;margin:2px 0 10px}
+.thesis{background:var(--thesis);border-left:3px solid var(--accent);border-radius:8px;padding:9px 12px;font-size:12.5px;margin-bottom:10px}
+.thesis b{color:var(--accent)}
+.prog{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bar{flex:1;min-width:140px;height:8px;background:var(--panel2);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent2),var(--accent));transition:width .3s}
+.count{font-size:12px;color:var(--muted);min-width:76px}
+.btn{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:6px;font-size:12px;padding:4px 10px;cursor:pointer;font-family:inherit}
+.btn:hover{border-color:var(--accent)}
+.legend{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.pill{font-size:10.5px;border-radius:999px;padding:1px 8px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.pill.RE{color:var(--accent);border-color:#1f4d31}.pill.DR{color:var(--dr);border-color:#164e63}.pill.cigar{color:var(--cigar);border-color:#5c4613}
+.pill.coffee{color:var(--coffee);border-color:#4f3f2c}.pill.vet{color:var(--vet);border-color:#5b2a24}.pill.PIR{color:#c4b5fd;border-color:#3f3566}
+.pill.status{color:#eab308;border-color:#5a4708}.pill.new{color:var(--bg);background:var(--accent);border-color:var(--accent)}
+.day{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin:12px 0;overflow:hidden}
+.dh{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;user-select:none}
+.dh .dt{font-size:14px;font-weight:600}.dh .ds{color:var(--muted);font-size:12px;flex:1}
+.dh .dc{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 8px}
+.dh .dc.full{color:var(--accent);border-color:var(--accent)}
+.day.collapsed .db{display:none}
+.db{border-top:1px solid var(--line)}
+.task{border-bottom:1px solid var(--line)}.task:last-child{border-bottom:0}
+.tr{display:flex;align-items:flex-start;gap:10px;padding:10px 14px}
+.cb{flex:none;width:18px;height:18px;margin-top:2px;border:1.5px solid var(--muted);border-radius:4px;cursor:pointer;display:grid;place-items:center;background:transparent}
+.cb.on{background:var(--accent);border-color:var(--accent)}.cb.on::after{content:'✓';color:var(--bg);font-size:12px;font-weight:700}
+.tm{flex:1;min-width:0;cursor:pointer}
+.tt{font-size:13.5px}.task.done .tt{text-decoration:line-through;color:var(--muted)}
+.meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.chev{flex:none;color:var(--muted);transition:transform .2s;cursor:pointer;margin-top:1px}.task.open .chev{transform:rotate(90deg)}
+.tc{display:none;padding:0 14px 12px 42px}.task.open .tc{display:block}
+.blk{background:var(--panel2);border:1px solid var(--line);border-radius:8px;margin-top:8px}
+.bh{display:flex;align-items:center;justify-content:space-between;padding:6px 10px;border-bottom:1px solid var(--line)}
+.bl{font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.bl.script{color:var(--l-script)}.bl.caption{color:var(--l-caption)}.bl.tags{color:var(--l-tags)}.bl.cover{color:var(--l-cover)}
+.bl.youtube{color:var(--l-youtube)}.bl.photo{color:var(--l-photo)}.bl.prompt{color:var(--l-prompt)}.bl.meta{color:var(--l-meta)}
+.copy{font-size:11px;padding:2px 8px}
+.bt{padding:8px 10px;font-size:12.5px;white-space:pre-wrap;word-wrap:break-word}
+.bt.html{white-space:normal}
+.bt table{border-collapse:collapse;width:100%;font-size:11.5px;display:block;overflow-x:auto}
+.bt th,.bt td{border:1px solid var(--line);padding:4px 6px;text-align:left;vertical-align:top}
+.bt th{background:var(--panel);color:var(--accent)}
+.bt ul{margin:4px 0;padding-left:18px}.bt p{margin:6px 0}.bt h2,.bt h3{font-size:13px;color:var(--accent);margin:10px 0 4px}
+.bt blockquote{margin:6px 0;padding-left:10px;border-left:2px solid var(--line)}
+.bt hr{display:none}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin:12px 0;padding:12px 14px}
+.card h2{font-size:14px;margin:0 0 6px}
+.card details{border-top:1px solid var(--line);padding:6px 0}
+.card summary{cursor:pointer;font-size:13px;font-weight:600;padding:4px 0}
+footer{color:var(--muted);font-size:11.5px;text-align:center;padding:10px 16px 30px;max-width:820px;margin:0 auto}
+@media (max-width:560px){.tc{padding-left:14px}h1{font-size:17px}header{position:static}.thesis{font-size:12px}}
 </style>
 </head>
 <body>
-<header>
-  <div class="wrap" style="padding:0 4px;">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;">
-      <div><h1>ROAST v8 — Weekly Scroll</h1>
-        <div class="wk">Sun Oct 4 → Sat Oct 10, 2026 · the approved slate · tap a task to open its script/caption</div></div>
-      <span id="syncBadge" class="sync local">● local</span>
-    </div>
-    <div class="thesis"><b>This week's thesis:</b> Your comps were written at 6.5%. Your buyer is at 7.28%. Pocono prices didn't drop — buying power did (~$105/mo more on a $300K loan in three weeks). Only the approved slate is here; skipped/monitoring items live in the packet.</div>
-    <div class="bar"><div id="fill" class="fill"></div></div>
-    <div class="pct"><span id="pctText">0 / 0 done</span>
-      <span><button class="btn" id="collapseAll">collapse days</button>
-      <button class="btn" id="resetBtn">reset week</button></span></div>
-    <div class="legend">
-      <span class="pill re">RE</span><span class="pill dr">DR</span><span class="pill cig">cigar</span>
-      <span class="pill cof">coffee</span><span class="pill vet">veteran</span><span class="pill pir">PIR</span><span class="pill op">status</span></div>
+<header><div class="hwrap">
+  <h1>ROAST v9 — Weekly Scroll <span class="badge" id="sync">● local</span></h1>
+  <div class="sub">Mon Oct 12 → Sun Oct 18, 2026 · the approved slate · tap a task to open its script/caption</div>
+  <div class="thesis" id="thesis"></div>
+  <div class="prog">
+    <div class="bar"><i id="barfill"></i></div>
+    <span class="count" id="count">0 / 0 done</span>
+    <button class="btn" id="collapse">collapse days</button>
+    <button class="btn" id="reset">reset week</button>
   </div>
-</header>
-<div class="wrap" id="app"></div>
+  <div class="legend">
+    <span class="pill RE">RE</span><span class="pill DR">DR</span><span class="pill cigar">cigar</span><span class="pill coffee">coffee</span>
+    <span class="pill vet">veteran</span><span class="pill PIR">PIR</span><span class="pill status">status</span>
+  </div>
+</div></header>
+
+<div class="wrap">
+  <div id="days"></div>
+  <div class="card">
+    <h2>Before You Publish</h2>
+    <details open><summary>Verification table — highest risk first</summary><div class="bt html" id="b-verify"></div></details>
+    <details><summary>Internal prospecting queue — NEVER published</summary><div class="bt html" id="b-pipeline"></div></details>
+    <details><summary>Optional · Monitor · Skipped</summary><div class="bt html" id="b-monitor"></div></details>
+    <details><summary>Awaiting event / asset / decision</summary><div class="bt html" id="b-awaiting"></div></details>
+    <details><summary>Packet status</summary><div class="bt html" id="b-notes"></div></details>
+  </div>
+</div>
+
 <footer>
-  Ledger is the parent — every market piece derives from it · PIR: none this week (sheriff-sale Ep. 03 banked for Oct 18) · #LifeByAlexa on every post<br>
-  Same story, different verbiage per outlet — no two market surfaces share sentences (Nextdoor = neighborly · GBP = search · Ledger = full reconciliation)<br>
-  Rates <b>7.28%</b> (Freddie Mac 30-yr avg, Oct 1 — ⚠ confirm at release · 7.03% Sept 24 · 6.76% Sept 10) · $300K loan P&amp;I: <b>$1,948 → $2,053</b> (+$105) · Monroe Aug median sale <b>$347,450</b> (thin-month datapoint) · durable read = <b>YTD $337,500, +8.9%</b> · 95.8% of original list · 52 avg DOM · 4.6 months supply · affordability 107<br>
-  Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net
-  <div class="note" id="cfgNote"><b>Supabase sync:</b> paste your publishable/anon key into <code>SUPABASE_KEY</code> at the top of the script to sync checks across devices (project <code>gzqgeehcvmgstzenkyfnw</code>, table <code>ops_checks</code>, week key <code>2026-10-04</code>). Until then it saves locally in this browser — fully functional, just not synced.</div>
+  Every alexa.realtor IG piece carries one keyword (VALUE · NET · BRIDGE · PAYMENT) + the Smart Way block. Nextdoor: no pitch, no keyword, no hashtags. GBP: no hashtags. DR brokerage CTA gated until the Urban Group announcement. Distress data never publishes.<br>
+  Rates: Freddie Mac 30-yr 7.40% (Oct 8, 2026) · Monroe County MLS: August 2026 Monthly Indicators (Sept not yet published).<br>
+  Alexa Sanchez · PA License #RS326383 · Smart Way America Realty · 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 · (570) 688-8147
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
-/* ---- CONFIG ---- */
-const SUPABASE_URL="https://gzqgeehcvmgstzenkyfnw.supabase.co";
-const SUPABASE_KEY=""; // <-- paste anon/publishable key to enable sync
-const WEEK_KEY="2026-10-04"; const TABLE="ops_checks";
+const DATA = {"days": [{"id": "mon", "day": "Mon", "date": "Oct 12", "sub": "Setup before anything posts", "tasks": [{"t": "Scorecard — no posts last week (Oct 4–10): this is the baseline week", "tag": "status", "when": "read", "blocks": [{"label": "Scorecard", "kind": "meta", "text": "Nothing posted the week of Oct 4–10, so there is nothing to score. This is the first v9 week, and it becomes the baseline. Until there are results, the slate runs on the September pattern: choice, warning, and DR framing performed; labeled market updates did not.\n\nWhat to track this week, for next Sunday's scorecard: for each reel, views, shares, saves, keyword comments, and DMs started. Story poll and question-box responses. Nextdoor replies and private messages. Seller conversations started, appointments set, and which post or keyword produced each one. Paste them into the v9 Section A results block next Sunday."}]}, {"t": "Turn on comment-to-DM tool: VALUE · NET · BRIDGE · PAYMENT", "tag": "status", "when": "before Tue reel", "blocks": [{"label": "Keyword table — auto-replies + follow-ups", "kind": "meta", "html": "<h3>Keyword table<\/h3>\n<table>\n<thead>\n<tr>\n<th>Keyword<\/th>\n<th>Auto-reply text<\/th>\n<th>The offer<\/th>\n<th>Qualifying question<\/th>\n<th>Human follow-up script<\/th>\n<\/tr>\n<\/thead>\n<tbody>\n<tr>\n<td><strong>VALUE<\/strong><\/td>\n<td>\"Thanks for reaching out. I'll put together what your house would realistically sell for today, based on what's actually closing near you. What's the address or the township?\"<\/td>\n<td>A one-on-one value review within 24 hours. No number in public, ever.<\/td>\n<td>\"Are you thinking about selling in the next 12 months, or just want to know where you stand?\"<\/td>\n<td>\"Hi, it's Alexa Sanchez with Smart Way America. I've got your VALUE request. Best number to send your review to, or would email work better? If you rent it out short-term, tell me the township too, because that changes the conversation.\"<\/td>\n<\/tr>\n<tr>\n<td><strong>NET<\/strong><\/td>\n<td>\"Got it. I'll run your net both ways: a price cut versus a seller credit or buydown, so you can see which actually leaves more in your pocket. What's the address and your current list price, if it's listed?\"<\/td>\n<td>A side-by-side net sheet, with buydown pricing from a lender quote, within 24 hours.<\/td>\n<td>\"Is the house listed now, or are you getting ready to list?\"<\/td>\n<td>\"Hi, Alexa Sanchez here. I'm running your NET comparison. To price the buydown side, I'll get a real lender quote. What's the best phone or email to send it to?\"<\/td>\n<\/tr>\n<tr>\n<td><strong>BRIDGE<\/strong><\/td>\n<td>\"Love this. Selling in the Poconos to fund a place in the DR is exactly the move I work on from both ends. What town is your Pocono house in?\"<\/td>\n<td>A conversation on the Pocono sale side: value, timing, and net proceeds. DR brokerage referral language waits until the Urban Group switch is announced.<\/td>\n<td>\"Are you looking to buy in the DR, retire there, or both?\"<\/td>\n<td>\"Hi, it's Alexa. I'm Dominican, I sell in the Poconos, and I've been through the DR side. Let's start with what your Pocono house would net. What's the best number to reach you?\"<\/td>\n<\/tr>\n<tr>\n<td><strong>PAYMENT<\/strong><\/td>\n<td>\"I'll run your real monthly number: price, rate, taxes, insurance, HOA if there is one. What price range are you looking at, and roughly what are you putting down?\"<\/td>\n<td>A real monthly payment estimate, with a lender-quoted rate, within 24 hours.<\/td>\n<td>\"Are you pre-approved yet, or still early?\"<\/td>\n<td>\"Hi, Alexa Sanchez here with your PAYMENT request. I'll get a current lender quote so the number is real, not a calculator guess. Phone or email?\"<\/td>\n<\/tr>\n<tr>\n<td><strong>CASA<\/strong> (proposed, <strong>inactive<\/strong> until the Urban Group announcement)<\/td>\n<td>Draft after Urban Group approves its public-mention wording<\/td>\n<td>DR purchase cost walkthrough<\/td>\n<td>\"Buying to live, to rent, or both?\"<\/td>\n<td>Draft after approval<\/td>\n<\/tr>\n<\/tbody>\n<\/table>\n<p><strong>Rule (Section 15.2):<\/strong> a comment isn't a lead until there's a phone or email and a human follow-up. Log every keyword conversation in next Sunday's results block.<\/p>"}]}, {"t": "Fix the 03W DR Perplexity space date (it returned a 2016 edition)", "tag": "DR", "when": "admin", "blocks": [{"label": "Note", "kind": "meta", "text": "The DR research arrived labeled 'historical edition for October 12, 2016.' Reset the space to the current date before next Sunday."}]}, {"t": "Swap Project Instructions + Section A template to v9", "tag": "status", "when": "admin", "blocks": [{"label": "Note", "kind": "meta", "text": "Section A used this week was the v8 template (no results block, no pipeline block). Next Sunday, paste the v9 Section A with last week's results filled in."}]}]}, {"id": "tue", "day": "Tue", "date": "Oct 13", "sub": "Ledger + seller reel (moved from Monday) · F&R", "tasks": [{"t": "[16] Filler & Roast — “First Sip, Then the Showing”", "tag": "coffee", "when": "8:00 AM · IG", "new": true, "blocks": [{"label": "Rules", "kind": "meta", "text": "Posting: Tuesday, Oct 13, 8:00 AM ET · IG only\nRules applied: no product claims, no named coffee, general-origin facts only."}, {"label": "Concept", "kind": "meta", "text": "A tiny morning ritual before a big day. The coffee doesn't fix anything; it just gives you one quiet minute before everything starts. Animated, wordless or near-wordless, 30–45 sec."}, {"label": "Story beats", "kind": "prompt", "text": "1. Dark kitchen, 6:12 AM. A phone alarm buzzes once. A hand reaches for a mug before it reaches for the phone.\n2. The pour. Steam curls up in slow motion. The kitchen warms from blue to amber as the coffee fills the mug.\n3. The first sip. Everything pauses: the clock's second hand, a calendar notification frozen mid-slide on the phone screen.\n4. One quiet beat. The character looks out a frosted window at fall trees. Leaves drift down.\n5. The world resumes. The second hand ticks, notifications cascade, keys get grabbed. The mug is set down, half-full, a small heart of foam left behind.\n6. End card (text added in edit): \"Coffee first. Then everything else.\""}, {"label": "Animation direction", "kind": "prompt", "text": "- Style: warm, polished 3D, soft lighting, 9:16 vertical.\n- Palette: cool blue pre-dawn shifting to amber and copper after the pour.\n- Motion: slow and deliberate through beats 2–4, then a quick-cut energy shift at beat 5.\n- Sound: ambient kitchen hum, pour sound, a single clock tick that stops at the sip and restarts.\n- Clean video only: no captions, UI, logos, or watermarks in the generated video. Add the end-card text in edit."}, {"label": "Caption", "kind": "caption", "text": "The first sip comes before the first email. That's the rule.\n\nCoffee has been part of people's mornings for centuries, and most of what's in your mug started on a farm in the tropics, in the band of countries along the equator where coffee grows best. All that distance, for one quiet minute before your day starts.\n\nWhat's your first-sip ritual?"}, {"label": "Tags", "kind": "tags", "text": "#FillerAndRoast #CoffeeLovers #CoffeeStory #SpecialtyCoffee #AnimatedShort #LifeByAlexa"}]}, {"t": "[01] The Pocono Ledger — Jackson Township's STR permit doesn't come with the house", "tag": "RE", "when": "morning · blog", "new": true, "blocks": [{"label": "SEO · meta · slug", "kind": "meta", "text": "SEO title: Jackson Township STR Permits Don't Transfer at Sale | Pocono Ledger, Oct 12, 2026\nMeta description: Jackson Township's new STR ordinance (No. 2026-100) means a short-term rental permit ends when the house sells. Here's what Monroe County sellers and buyers should do, with rates at 7.40%.\nSlug: /pocono-ledger/2026-10-12-jackson-township-str-permit-sale\nPillar link: [PILLAR URL — still a placeholder; confirm publish status]"}, {"label": "Ledger — full post", "kind": "caption", "text": "The Pocono Ledger | October 12, 2026\nJackson Township's STR Permit Doesn't Come With the House\n\nExecutive summary\n\nTwo things moved this week, and they hit the same people. Mortgage rates climbed for a seventh straight week, to 7.40%. And Jackson Township adopted a rewritten short-term rental ordinance that, among other things, makes clear a rental permit ends when the property is sold. If you own a rental in Jackson and you're thinking about selling, the rental income you'd like to price in is now something your buyer has to re-earn from scratch. That changes how the house should be marketed and priced.\n\nThe week's numbers\n\nMeasure — Reading — Source\n30-year fixed, national average — 7.40% (prior week 7.28%; one year earlier 6.30%) — Freddie Mac PMMS, Oct 8, 2026\n15-year fixed, national average — 6.73% (prior week 6.60%) — Freddie Mac PMMS, Oct 8, 2026\nMonthly P&I on a $400,000 30-year loan — About $2,770 at 7.40%, versus about $2,669 at 7.03% two weeks ago — Calculation, principal and interest only\nMonroe County median sales price, August — $347,450 (YTD median $337,500, +8.9%) — Pocono Mountains Association of REALTORS® Monthly Indicators, August 2026\nPercent of original list price received, August — 95.8% — Same\nAverage days on market until sale, August — 52 — Same\nMonths supply of inventory, August — 4.6 — Same\nHousing affordability index, August — 107 (one year earlier: 122) — Same\n\nAugust is the latest MLS report available as of this edition. September figures replace these when published. The August median moved on 200 closed sales, so the year-to-date figure (+8.9%) is the durable read. Price figures are calculated without accounting for seller concessions.\n\nWhat changed\n\nRates. The 30-year average has now risen seven weeks in a row. On a $400,000 loan, the move from 7.03% to 7.40% adds roughly $100 a month in principal and interest, about $33 of it in the last week alone. For buyers who were already stretching, that's the difference between a house that works and a house that doesn't.\n\nJackson Township. On October 1, the Board of Supervisors adopted Ordinance No. 2026-100, which amends and restates the township's short-term rental code in full. The township's published guidance highlights three things owners most often get wrong: a permit does not transfer when a property is sold; a nonconforming rental that misses a renewal or is revoked cannot be reinstated; and whether a short-term rental is allowed at all is decided by the zoning ordinance, not the permit.\n\nTownship spotlight: Jackson Township\n\nShort-term rentals are prohibited in Jackson's R-1 Residential District and allowed only where the zoning ordinance expressly permits them. Rentals lawfully established on or before January 27, 2023 can continue as nonconforming uses, but they have to be registered, and a missed renewal can end the use permanently. The township doesn't send expiration notices and doesn't grant extensions. Permits last one year, and a complete renewal is due at least 30 days before expiration.\n\nThe township's own advice is the most useful line in the whole page: get a written zoning determination from the Zoning Officer before you buy a property, list it, or spend money on an application.\n\nJackson Township Municipal Building, 2162 Route 715, Stroudsburg, PA 18360 · (570) 629-0153.\n\nOperator observation\n\nHere's what I'm seeing. \"STR potential\" has been a marketing phrase in the Poconos for years, and in a lot of listings it's been doing work it can't back up. Jackson just made that harder to fake. A buyer's agent who reads the township page will ask three questions: what district is it in, is the use conforming, and has the permit ever lapsed. If the seller doesn't have the answers in writing, the buyer's offer will reflect the uncertainty. That's not a regulation problem. That's a pricing problem.\n\nSTR rules in the Poconos are parcel-level. Pocono Township, for example, allows transient rentals only in its Commercial and Recreational districts. Every township writes and amends its own rules. Don't assume what's true in Jackson is true next door.\n\nWhat buyers should do\n\n- If rental income is part of how you're justifying the payment, get the township's written zoning determination before you're under contract, not after.\n- Assume you'll be applying for a new permit as a new applicant. Budget the time and the cost of that application into your plan.\n- Run your numbers without the rental income first. At 7.40%, the house has to work as a house.\n\nWhat sellers should do\n\n- Request a written zoning determination now, before you list.\n- Pull your full permit and renewal history. If it's clean, that's a selling point. Put it in the listing packet.\n- Price the property on its value as a home, with documented rental history as support, not the headline.\n- If you're weighing a price cut against a credit toward the buyer's rate, run the net both ways with a real lender quote. At these rates, how you concede can matter as much as how much.\n\nOwn in Monroe County? DM or text me VALUE, and I'll tell you what your house would sell for today, one-on-one.\n\nSources\n- Jackson Township, Monroe County PA, Short-Term Rentals page (Ordinance No. 2026-100, adopted October 1, 2026): jacksontwp-pa.gov/shorttermrentals\n- Freddie Mac Primary Mortgage Market Survey, October 8, 2026 (as reported by Fox Business, October 8, 2026)\n- Pocono Mountains Association of REALTORS® Monthly Indicators, August 2026 — Pocono Mountains Association Multi List, current as of September 9, 2026\n- Pocono Township transient-rental zoning: confirmed by Alexa Sanchez, September 20, 2026\n\nAlexa Sanchez · PA License #RS326383 · Smart Way America Realty · 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 · (570) 688-8147 · Alexa@alexasanchez.net"}]}, {"t": "[S1] Seller reel — “Your STR permit doesn't come with the house” · VALUE", "tag": "RE", "when": "6–9 PM · IG + Shorts", "new": true, "blocks": [{"label": "Format", "kind": "meta", "text": "Format: Alexa on camera, in the car, 45–50 sec. One take, conversational.\nCover text: YOUR STR PERMIT DOESN'T COME WITH THE HOUSE\nLocation tag: Jackson Township, PA (fallback: Stroudsburg)"}, {"label": "Script", "kind": "script", "text": "If you're selling a house in Jackson Township and your listing says \"great Airbnb potential,\" you need to hear this.\n\nJackson just rewrote its short-term rental ordinance. And buried in there is the part nobody talks about.\n\nYour permit doesn't transfer when you sell. It ends at closing. Your buyer applies from scratch, as a brand-new applicant.\n\nAnd if your rental is grandfathered in a residential district and you ever missed a renewal? That use can be gone for good.\n\nSo here's what that means for your price. A buyer at seven-point-four percent is counting on that rental income to make the payment work. If you can't show them the zoning, the permit history, and a clean renewal record in writing, they're going to price in the risk. And that comes out of your pocket.\n\nBefore you list, get the written zoning determination from the township. Pull your permit history. Then we price the house as a house, and the rental history backs it up.\n\nComment VALUE and I'll tell you what your place would actually sell for."}, {"label": "On-screen text", "kind": "cover", "text": "1. \"PERMIT ENDS AT CLOSING\"\n2. \"Buyer applies as a NEW applicant\"\n3. \"Missed renewal = use can end permanently\"\n4. \"Get it in writing BEFORE you list\"\n5. \"Comment VALUE\""}, {"label": "Caption", "kind": "caption", "text": "Jackson Township adopted a rewritten short-term rental ordinance on October 1. The line most sellers are going to miss: your STR permit ends when the house sells. Your buyer starts over as a new applicant.\n\nIf your listing leans on rental income, the buyer will want proof: the zoning district, your permit and renewal history, and a written zoning determination from the township. Without it, they price in the risk.\n\nSelling a rental in the Poconos? Comment VALUE and I'll tell you what it would realistically sell for today, one-on-one.\n\nSTR rules are township-by-township and parcel-by-parcel. Confirm your property with the township before you list.\n\nAlexa Sanchez | PA License #RS326383 | Smart Way America Realty | 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 | (570) 688-8147"}, {"label": "Tags", "kind": "tags", "text": "#PoconoRealEstate #PoconoMountains #MonroeCounty #PARealEstate #STRInvesting #SellingAHome #LifeByAlexa"}, {"label": "YouTube Shorts", "kind": "youtube", "text": "Title: Selling a Jackson Township STR? Your Permit Doesn't Transfer\n\nDoes a short-term rental permit transfer when you sell a house in Jackson Township, PA? No. Under Ordinance No. 2026-100, adopted October 1, 2026, the permit ends at transfer and the buyer must apply as a new applicant.\nCan a grandfathered STR in Jackson Township lose its status? Per the township, a nonconforming rental's permit can't be renewed or reinstated after a revocation or missed renewal.\nWhat should sellers do before listing? Get a written zoning determination from the township and pull the permit and renewal history.\n\nTags: Jackson Township PA, Monroe County real estate, Pocono short term rental, STR permit, Airbnb Poconos, selling a rental property, Pocono Mountains real estate, Stroudsburg PA homes\n\nAlexa Sanchez, PA License #RS326383, Smart Way America Realty, East Stroudsburg, PA · (570) 688-8147"}]}, {"t": "[ST] Story poll — STR permit file · → DM responders (VALUE)", "tag": "RE", "when": "after S1 · Stories", "blocks": [{"label": "Sticker", "kind": "cover", "text": "Poll: “Own a short-term rental in Monroe County? Is your permit file in one place?” — Yes / Not yet"}, {"label": "DM to responders", "kind": "script", "text": "\"Hey, thanks for answering my story. Quick one: is that something you're actually thinking about this year, or more just curious? Either way is fine. If you want, I can run [your value / your net / your payment] for you. Just send me the best number or email.\""}]}, {"t": "Farm/sphere send — S1 reel to STR-owner contacts (Jackson first)", "tag": "status", "when": "after S1 posts", "blocks": [{"label": "Who + when", "kind": "meta", "text": "- Segment: Monroe County STR owners in your sphere, Jackson Township first. Then any sphere contact who has mentioned renting their place out.\n- Send: Tuesday's seller reel (S1), after it posts."}, {"label": "Text", "kind": "script", "text": "> \"Jackson Township rewrote its short-term rental rules this month. One piece most owners don't know: the permit doesn't transfer when you sell. If selling is anywhere on your radar this year, I'm happy to walk you through what that means for your price."}]}]}, {"id": "wed", "day": "Wed", "date": "Oct 14", "sub": "DR bridge reel — HOLD until counsel confirms", "tasks": [{"t": "[D1] DR reel — “Selling here to buy there? Budget the 3% first” · BRIDGE", "tag": "DR", "when": "6–9 PM · IG + Shorts", "new": true, "blocks": [{"label": "⚠ Verify first", "kind": "meta", "text": "⚠ HOLD FOR VERIFICATION BEFORE POSTING. The DR research arrived mis-dated as a \"2016 historical edition.\" Every legal and tax claim below must be confirmed by licensed Dominican counsel against current law, including Regulation 07-22 (in effect since May 1, 2025) and the higher-of DGII valuation basis. Fix the 03W Perplexity space's date setting before next week."}, {"label": "Format", "kind": "meta", "text": "Format: Alexa on camera, under 60 sec. Car or a clean home backdrop.\nCover text: SELLING HERE TO BUY THERE? BUDGET THE 3% FIRST\nLocation tag: East Stroudsburg, PA"}, {"label": "Script", "kind": "script", "text": "If you're planning to sell your house in the Poconos and use that money to buy in Punta Cana, don't spend the proceeds in your head yet.\n\nOn an ordinary purchase in the DR, there's a three percent transfer tax. And it's not always three percent of the price you negotiated. The tax authority, DGII, values the property for tax purposes. Your attorney needs to tell you which number they'll use.\n\nThen there's the part Americans miss. Getting the keys is not the finish line. That tax has to be paid before the transfer can be filed at the title registry. Until the transfer is registered, the paperwork isn't done.\n\nSo when we talk about your Pocono sale, we're not just talking about what you'll net here. We're talking about what that money has to cover there.\n\nI'm Dominican, I sell houses in the Poconos, and I've seen both ends. Comment BRIDGE and I'll show you how selling here funds buying there."}, {"label": "On-screen text", "kind": "cover", "text": "1. \"Sell in the Poconos → Buy in the DR\"\n2. \"3% transfer tax (ordinary purchase)\"\n3. \"DGII values the property\"\n4. \"Keys ≠ registered title\"\n5. \"Comment BRIDGE\""}, {"label": "Caption", "kind": "caption", "text": "Selling a Pocono house to buy in the Dominican Republic? Plan for the transfer tax before you plan the furniture.\n\nOn an ordinary, taxable purchase, the DR transfer tax is 3%, calculated on the value DGII uses, which may not be your contract price. It has to be paid before the transfer can be filed at the title registry. Keys in hand doesn't mean the title transfer is finished.\n\nAlways confirm the numbers and the timeline with a licensed Dominican attorney for your specific purchase.\n\nOwn in the Poconos and thinking about the DR? Comment BRIDGE and I'll show you how selling here funds buying there.\n\nAlexa Sanchez | PA License #RS326383 | Smart Way America Realty | 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 | (570) 688-8147"}, {"label": "Tags", "kind": "tags", "text": "#DominicanRepublicRealEstate #PuntaCana #CapCana #DRInvestment #PoconoRealEstate #LifeByAlexa"}, {"label": "YouTube Shorts", "kind": "youtube", "text": "Title: Selling in the Poconos to Buy in the Dominican Republic? Budget the 3% First\n\nWhat is the transfer tax on Dominican Republic real estate? On an ordinary taxable purchase, it's generally 3%, applied to the property value used by DGII, the Dominican tax authority. Confirm with licensed Dominican counsel.\nDoes getting the keys mean the DR title transfer is done? No. The tax must be paid before the transfer can be filed at the title registry.\n\nTags: Dominican Republic real estate, Punta Cana condo, DR transfer tax, buying property in the Dominican Republic, Pocono real estate, sell house buy abroad, Cap Cana, Dominican diaspora\n\nAlexa Sanchez, PA License #RS326383, Smart Way America Realty, East Stroudsburg, PA · (570) 688-8147"}, {"label": "CTA rule", "kind": "meta", "text": "No DR brokerage CTA, no Urban Group block until the switch is announced next week."}]}, {"t": "[ST] Story question box — selling here to buy in the DR · → DM (BRIDGE)", "tag": "DR", "when": "after D1 · Stories", "blocks": [{"label": "Sticker", "kind": "cover", "text": "Question box: “Ever thought about selling here to buy in the DR? Ask me anything.”"}, {"label": "DM to responders", "kind": "script", "text": "\"Hey, thanks for answering my story. Quick one: is that something you're actually thinking about this year, or more just curious? Either way is fine. If you want, I can run [your value / your net / your payment] for you. Just send me the best number or email.\""}]}]}, {"id": "thu", "day": "Thu", "date": "Oct 15", "sub": "Hub video · Nextdoor · GBP · LinkedIn · Facebook", "tasks": [{"t": "[02a] Hub video — “Price cut or rate credit? At 7.4%, it matters” · NET", "tag": "RE", "when": "6–9 PM · YouTube + IG", "new": true, "blocks": [{"label": "Format", "kind": "meta", "text": "Format: Alexa on camera, 75–90 sec. Sit-down or on-location.\nCover text: PRICE CUT OR RATE CREDIT? AT 7.4%, IT MATTERS\nLocation tag: East Stroudsburg, PA"}, {"label": "Script", "kind": "script", "text": "If your house has been sitting and someone tells you to drop the price ten grand, wait.\n\nMortgage rates just went up for the seventh week in a row. The national average is seven-point-four percent. On a four-hundred-thousand-dollar loan, that's about a hundred dollars more a month than it was two weeks ago.\n\nHere's why that matters to you as the seller. Your buyer isn't shopping for a price. They're shopping for a payment.\n\nTen thousand off the price, financed at seven-point-four, saves them about seventy dollars a month. That same money, put toward buying down their rate, might save them more. Or it might not. It depends on what the lender charges for that buydown that week.\n\nAnd one more thing. In the price data you see reported, seller concessions don't show up. So when you look at what homes \"sold for,\" you're not seeing what sellers actually gave up to get there.\n\nSo don't guess. Before you cut, run it both ways. Price cut on one side, credit on the other, with a real lender quote. Then pick the one that leaves more in your pocket and gets the buyer to yes.\n\nComment NET and I'll run yours both ways."}, {"label": "Caption", "kind": "caption", "text": "Rates rose for a seventh straight week, to a 7.40% national average (Freddie Mac, Oct 8). On a $400,000 loan, that's roughly $100 a month more in principal and interest than two weeks ago.\n\nFor sellers, that changes the math on concessions. $10,000 off the price saves a financed buyer about $69 a month at 7.40%. The same $10,000 toward a rate buydown may save more or less, depending on that week's lender pricing. The only way to know is to price both.\n\nSelling in Monroe County? Comment NET and I'll run your net both ways, with a real lender quote.\n\nAlexa Sanchez | PA License #RS326383 | Smart Way America Realty | 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 | (570) 688-8147"}, {"label": "Tags", "kind": "tags", "text": "#PoconoRealEstate #PoconoMountains #MonroeCounty #PARealEstate #SellingAHome #LifeByAlexa"}, {"label": "YouTube (full AEO)", "kind": "youtube", "text": "Title: Price Cut or Seller Credit? What Monroe County Sellers Should Know at 7.4% Rates (October 2026)\n\nMortgage rates rose for a seventh consecutive week in October 2026. Alexa Sanchez, a Realtor with Smart Way America Realty in East Stroudsburg, explains why sellers in Monroe County and the Pocono Mountains should compare a price reduction against a seller credit or rate buydown before cutting their price.\n\nWhat are mortgage rates in October 2026? Freddie Mac's Primary Mortgage Market Survey reported a 7.40% average 30-year fixed rate on October 8, 2026, up from 7.28% the week before and 6.30% a year earlier.\nHow much does a $10,000 price cut save a buyer per month? On a 30-year loan at 7.40%, about $69 a month in principal and interest, if the full amount was financed.\nIs a seller credit better than a price cut? Sometimes. A credit toward a rate buydown can lower the buyer's payment more than an equal price cut, but buydown pricing changes weekly. Compare both with a current lender quote.\nDo Monroe County sale prices include seller concessions? No. Pocono Mountains Association of REALTORS® price figures are calculated without accounting for seller concessions.\n\nChapters:\n0:00 Don't cut your price yet\n0:15 Rates up seven weeks straight\n0:30 Buyers shop for a payment\n0:45 Price cut vs. buydown\n1:05 What the sold data doesn't show\n1:15 Run it both ways\n\nSources: Freddie Mac PMMS, October 8, 2026. Pocono Mountains Association of REALTORS® Monthly Indicators, August 2026 — Pocono Mountains Association Multi List, current as of September 9, 2026.\n\nTags: Monroe County real estate, Pocono Mountains real estate, seller credit vs price reduction, mortgage buydown, mortgage rates October 2026, East Stroudsburg Realtor, selling a house in the Poconos, Stroudsburg PA homes, Pocono home sellers\n\nAlexa Sanchez · PA License #RS326383 · Smart Way America Realty · 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 · (570) 688-8147 · Alexa@alexasanchez.net\nEducational content, not lending advice. Rates and buydown costs vary by lender and borrower."}]}, {"t": "[ND] Nextdoor — Hawk Falls fall walk", "tag": "RE", "when": "Nextdoor", "blocks": [{"label": "Post", "kind": "caption", "text": "If you haven't been out to Hickory Run State Park yet this fall, this is a good week to go.\n\nI'm heading to Hawk Falls to take some photos. It's a natural waterfall, about 25 feet, an easy trip from the Stroudsburg side. Trailhead parking is off Route 534, just east of the Turnpike. If you put it in Google Maps, search \"Hawk Falls, Kidder Township, PA\" so you don't end up at the park office.\n\nThe state's foliage report has had Hickory Run on its list of good fall-color spots, though the broader peak in that area is expected a little later in the month. The park is open sunrise to sunset.\n\nWear real shoes. The rocks near the falls stay wet.\n\n— Alexa Sanchez, East Stroudsburg"}, {"label": "Verify before posting", "kind": "meta", "text": "Verify before posting: Hawk Falls height, park hours, parking location, and that week's DCNR foliage report (the Oct 8–14 report will be stale by Thursday)."}]}, {"t": "[02] GBP — Jackson Township STR permits", "tag": "RE", "when": "GBP · no hashtags", "blocks": [{"label": "Post", "kind": "caption", "text": "Jackson Township short-term rental permits: what changed for owners and sellers\n\nJackson Township, Monroe County, adopted Ordinance No. 2026-100 on October 1, 2026, restating its short-term rental rules. Key points from the township's published guidance:\n\nA short-term rental permit does not transfer when a property is sold. The buyer must apply as a new applicant.\nShort-term rentals are prohibited in the R-1 Residential District.\nA nonconforming rental's permit cannot be renewed or reinstated after a revocation or a missed renewal.\nPermits last one year. File a complete renewal at least 30 days before expiration.\n\nSelling or buying a short-term rental in Jackson Township? Request a written zoning determination from the township before listing or making an offer.\n\nQuestions about selling a Pocono rental property? Call (570) 688-8147 or email Alexa@alexasanchez.net.\n\nAlexa Sanchez, PA License #RS326383, Smart Way America Realty, 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301, (570) 688-8147.\n\nCTA button: Call now"}]}, {"t": "[02] LinkedIn — operator read on STR underwriting", "tag": "RE", "when": "LinkedIn", "blocks": [{"label": "Post", "kind": "caption", "text": "Seven straight weeks of rising mortgage rates, and a Pocono township just made STR income harder to sell.\n\nOn October 1, Jackson Township in Monroe County adopted a rewritten short-term rental ordinance. The provision that matters most for anyone underwriting a Pocono STR acquisition: the permit ends at transfer. The buyer applies as a new applicant. And if the property is a nonconforming use, a lapse or revocation can end that use permanently.\n\nPut that next to a 7.40% 30-year rate (Freddie Mac, Oct 8), and the underwriting changes. Rental income that can't be transferred isn't an asset on the seller's side of the table. It's a projection on the buyer's side, contingent on a fresh application and a zoning determination.\n\nWhat I'd expect over the next few months:\n\nSellers who arrive with a written zoning determination and a clean renewal history will hold price better than sellers who arrive with an occupancy spreadsheet.\n\nBuyers will start running the house as a house first, at today's rate, and treat rental income as upside.\n\nAnd because every Pocono municipality writes its own rules, \"STR potential\" is going to have to mean something specific, parcel by parcel.\n\nIf you're advising investors in Monroe County, the township's page is worth reading in full. The most useful line on it: get a written zoning determination before you buy, list, or apply.\n\nAlexa Sanchez · PA License #RS326383 · Smart Way America Realty, East Stroudsburg, PA"}]}, {"t": "[02] FB Business — 95.8% of ORIGINAL list price · VALUE", "tag": "RE", "when": "FB Business", "blocks": [{"label": "Why this angle", "kind": "meta", "text": "Angle swapped from the assessment: September MLS isn't published, so this uses the verified August \"percent of original list price\" figure instead of the \"taking longer, not losing value\" idea."}, {"label": "Post", "kind": "caption", "text": "The number Monroe County sellers should look at isn't the median price.\n\nIt's this one: in August, sellers in Monroe County received 95.8% of their original list price, on average.\n\nOriginal. Not the price after the cuts.\n\nThat metric tells you what the market actually did with the first number sellers put out there. And it means that on a $350,000 asking price, the typical result landed several thousand dollars below where the seller started.\n\nTwo things are worth knowing alongside it. Sale prices in this data don't account for seller concessions, so credits and buydowns sellers gave don't show up. And mortgage rates have risen for seven straight weeks, to a 7.40% national average as of October 8. Buyers are working with less room than they had in the summer.\n\nThe takeaway is simple. The first price is the one that matters most. Pricing it right from day one usually beats pricing it hopeful and chasing it down.\n\nOwn in Monroe County and thinking about selling? Message me VALUE and I'll tell you what your house would realistically sell for, one-on-one.\n\nSource: Pocono Mountains Association of REALTORS® Monthly Indicators, August 2026 — Pocono Mountains Association Multi List, current as of September 9, 2026. Freddie Mac PMMS, October 8, 2026.\n\nAlexa Sanchez | PA License #RS326383 | Smart Way America Realty | 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 | (570) 688-8147"}, {"label": "Check", "kind": "meta", "text": "Check: \"several thousand dollars below\" is illustrative (95.8% of $350,000 = $335,300, a $14,700 difference). Keep the phrasing general, or state the exact illustration."}]}, {"t": "[02] Personal FB — English · Jackson STR heads-up", "tag": "RE", "when": "Personal FB", "blocks": [{"label": "Post", "kind": "caption", "text": "Heads-up for anyone in Jackson Township who rents their place out short-term.\n\nThe township adopted a rewritten STR ordinance on October 1. I read through the township's page, and there's one part I don't think most owners know: the permit doesn't go with the house. If you sell, it ends at the sale, and the new owner has to apply from scratch.\n\nIf your rental is one of the grandfathered ones in a residential area, missing a renewal can end it for good. The township doesn't send reminders and doesn't give extensions. Put the renewal date on your calendar now.\n\nAnd if selling is somewhere in your plans, get the zoning determination in writing from the township before you list. It'll save you a fight with a buyer later.\n\nYou know where to find me if you want to talk it through."}]}, {"t": "[02] Personal FB — Español · bajar precio vs. bajar interés", "tag": "RE", "when": "Personal FB", "blocks": [{"label": "Post", "kind": "caption", "text": "Mira, si tienes tu casa a la venta o la vas a poner pronto, esto te interesa.\n\nLos intereses de las hipotecas llevan siete semanas subiendo. Ahora mismo el promedio está en 7.40%. Eso quiere decir que el comprador está pagando más cada mes, aunque el precio de la casa no haya cambiado.\n\nY aquí está el detalle. Cuando una casa no se vende, lo primero que te dicen es \"bájale el precio\". Pero a veces, en vez de bajarle diez mil, ese mismo dinero puesto para bajarle el interés al comprador le rinde más en el pago mensual. A veces sí, a veces no. Depende de lo que cobre el banco esa semana.\n\nPor eso yo no adivino. Pongo las dos opciones una al lado de la otra, con números de verdad de un prestamista, y escoges la que te deja más dinero en el bolsillo.\n\nSi quieres que te lo haga con tu casa, escríbeme. Aquí estoy."}]}, {"t": "[ST] Story slider — selling in next 12 months · → DM (VALUE / NET)", "tag": "RE", "when": "after Hub · Stories", "blocks": [{"label": "Sticker", "kind": "cover", "text": "Slider: “How likely are you to sell in the next 12 months?”"}, {"label": "DM to responders", "kind": "script", "text": "\"Hey, thanks for answering my story. Quick one: is that something you're actually thinking about this year, or more just curious? Either way is fine. If you want, I can run [your value / your net / your payment] for you. Just send me the best number or email.\""}]}]}, {"id": "fri", "day": "Fri", "date": "Oct 16", "sub": "Landmark spotlight · @its.myash", "tasks": [{"t": "[05] Landmark — Hawk Falls, Hickory Run State Park (IG + YouTube)", "tag": "RE", "when": "IG + YouTube", "blocks": [{"label": "Photo direction", "kind": "photo", "text": "- Subject: Hawk Falls framed through fall foliage. Waterfall in the lower-center third, colored canopy in the upper third.\n- Composition: vertical 4:5 for IG feed, plus a 9:16 for stories. Shoot from slightly downstream so the stream leads the eye to the falls.\n- Light: overcast or early morning. Avoid midday sun on wet rock.\n- Settings: a slower shutter if you have a tripod or a steady rock (soft water). Otherwise, standard phone photo mode.\n- People: optional. Alexa from behind, small in frame, facing the falls. No faces needed.\n- Text on image: none."}, {"label": "Caption", "kind": "caption", "text": "Hawk Falls, Hickory Run State Park.\n\nA 25-foot natural waterfall about a half hour from the Stroudsburg side, with trailhead parking off Route 534. The park is open sunrise to sunset, and this week the leaves were doing their job.\n\nThis is the part of Pocono living people don't put in the listing description. A waterfall walk isn't a vacation here. It's a Tuesday.\n\nThinking about what your Pocono house is worth, or moving up here? Comment VALUE and I'll walk you through it.\n\nAlexa Sanchez | PA License #RS326383 | Smart Way America Realty | 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 | (570) 688-8147"}, {"label": "Tags · location", "kind": "tags", "text": "#PoconoMountains #PoconoRealEstate #HickoryRunStatePark #MonroeCounty #LifeByAlexa\nLocation tag: Hickory Run State Park"}, {"label": "Check before posting", "kind": "meta", "text": "Verify the \"about a half hour\" drive estimate from East Stroudsburg before posting, or remove it."}, {"label": "YouTube (retitled)", "kind": "youtube", "text": "Title: Hawk Falls in Fall | Hickory Run State Park, Pocono Mountains\n\nWhere is Hawk Falls? Hawk Falls is a natural, 25-foot waterfall in Hickory Run State Park, in Kidder Township, Carbon County, in the Pocono Mountains of Pennsylvania. Trailhead parking is off PA Route 534, just east of the Pennsylvania Turnpike. In Google Maps, search \"Hawk Falls, Kidder Township, PA.\"\nWhen can you visit Hickory Run State Park? The park is open daily, sunrise to sunset. Day-use areas close at dusk.\nWhen is fall foliage at Hickory Run? DCNR's October 2026 foliage reports listed Hickory Run among good fall-color viewing spots, with the broader Carbon County peak projected for late October. Check the current DCNR report before you go.\n\nTags: Hawk Falls, Hickory Run State Park, Pocono Mountains waterfalls, Pocono fall foliage, Carbon County PA, things to do in the Poconos, Pocono hikes, living in the Poconos\n\nAlexa Sanchez · PA License #RS326383 · Smart Way America Realty · East Stroudsburg, PA · (570) 688-8147"}]}, {"t": "@its.myash — Nell's Social House Blend (Weekend Smoke)", "tag": "cigar", "when": "IG + TikTok", "new": true, "blocks": [{"label": "Format · fill brackets first", "kind": "meta", "text": "Format: Cigar/Lounge video, IG + TikTok, 30–45 sec, at Nell's. Friday, Weekend Smoke slot.\n\n⚠ Fill the brackets before shooting. Only what you confirm goes in: origin, wrapper, size, and maker. Nothing about the Betances line until next year."}, {"label": "Script", "kind": "script", "text": "Everybody who walks into Nell's asks me the same thing. \"What should I smoke?\"\n\nSo we made an answer.\n\nThis is the Nell's Social House Blend. [ONE CONFIRMED DETAIL: e.g., origin / wrapper / size].\n\nI wanted something you could hand to somebody on their first night here or their fiftieth. Something that doesn't need a lecture. You light it, you sit down, and the conversation does the rest.\n\nIt's only here. [CONFIRM: available only at Nell's?]\n\nCome by, grab a chair, and tell me what you think. Honestly. That's how a house blend earns its name."}, {"label": "Caption", "kind": "caption", "text": "The question I get most at Nell's is \"what should I smoke?\" Now there's a house answer.\n\nThe Nell's Social House Blend. [CONFIRMED DETAIL.] Made for the chair, the drink you already like, and whoever ends up next to you.\n\nCome try it at Nell's Social, 25 Route 611, Suite 1, Bartonsville. Then tell me what you think.\n\n— @its.myash"}, {"label": "Tags", "kind": "tags", "text": "#CigarLife #CigarAuthority #PremiumCigars #NellsSocial #DominicanCigars #LifeByAlexa"}, {"label": "Tag note", "kind": "meta", "text": "Use #DominicanCigars only if the blend is confirmed Dominican."}, {"label": "Need from Alexa", "kind": "meta", "text": "Need from Alexa: origin, wrapper, size or vitola, who made it, whether it's Nell's-only, and whether to mention price."}]}]}, {"id": "sat", "day": "Sat", "date": "Oct 17", "sub": "Landmark GBP · Urban Group switch closes", "tasks": [{"t": "[05] Landmark GBP — Hawk Falls", "tag": "RE", "when": "GBP · no hashtags", "blocks": [{"label": "Post", "kind": "caption", "text": "Hawk Falls at Hickory Run State Park this fall\n\nHawk Falls is a natural, 25-foot waterfall in Hickory Run State Park, in Kidder Township in the Pocono Mountains. Trailhead parking is off PA Route 534, just east of the Pennsylvania Turnpike. The park is open daily from sunrise to sunset.\n\nFall color in the area typically builds through late October. Check the DCNR foliage report before your visit.\n\nThinking about living in the Pocono Mountains? Call (570) 688-8147 or email Alexa@alexasanchez.net.\n\nAlexa Sanchez, PA License #RS326383, Smart Way America Realty, 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301, (570) 688-8147.\n\nCTA button: Learn more → alexa.realtor"}]}, {"t": "Urban Group switch closes — collect CTA sign-off details", "tag": "DR", "when": "decision", "blocks": [{"label": "Draft CTA block (do not publish)", "kind": "meta", "text": "DRAFT — Urban Group CTA block (for sign-off; do not publish)\n\nIG (DR pieces, after announcement):\nBuying in the Dominican Republic? Comment CASA and I'll walk you through what a purchase actually costs, start to finish.\nAlexa Sanchez | [ROLE / TITLE] with [URBAN GROUP — EXACT ENTITY NAME] | [DR REGISTRATION OR LICENSE LINE, IF REQUIRED] | [DR CONTACT: PHONE / EMAIL]\nIn Pennsylvania: PA License #RS326383 | Smart Way America Realty | (570) 688-8147\n\nOpen questions for Urban Group: the exact entity name; your title; any registration line they require; which contact goes on DR inquiries; whether they require a disclaimer separating PA and DR services.\nOpen question for the Smart Way broker: can both brokerages appear in one post, or must DR-brokerage CTAs run on DR pieces only, with BRIDGE pieces keeping the Smart Way block alone?"}]}]}, {"id": "sun", "day": "Sun", "date": "Oct 18", "sub": "Payment reel · next week's Section A", "tasks": [{"t": "[ST] Story question box — what's your rate? · → DM (PAYMENT)", "tag": "RE", "when": "before R1 · Stories", "blocks": [{"label": "Sticker", "kind": "cover", "text": "Question box: “What's your rate today, or what are you being quoted?”"}, {"label": "DM to responders", "kind": "script", "text": "\"Hey, thanks for answering my story. Quick one: is that something you're actually thinking about this year, or more just curious? Either way is fine. If you want, I can run [your value / your net / your payment] for you. Just send me the best number or email.\""}]}, {"t": "[R1] Rotating reel — “Your house didn't get more expensive. Your payment did.” · PAYMENT", "tag": "RE", "when": "6–9 PM · IG + Shorts", "new": true, "blocks": [{"label": "Format", "kind": "meta", "text": "Format: Alexa on camera, 35–45 sec. Car.\nCover text: YOUR HOUSE DIDN'T GET MORE EXPENSIVE. YOUR PAYMENT DID.\nLocation tag: East Stroudsburg, PA"}, {"label": "Script", "kind": "script", "text": "If you found a house two weeks ago and you're still thinking about it, the price didn't change. Your payment did.\n\nOn a four-hundred-thousand-dollar loan, rates going from seven-oh-three to seven-forty adds about a hundred dollars a month. Principal and interest alone. You didn't do anything. The market just moved.\n\nNow, I'm not telling you to panic and buy. I'm telling you to stop shopping by price. Shop by payment.\n\nTaxes in the Poconos vary a lot by township. HOA fees can be zero or a few hundred a month. That stuff swings your real number more than people think.\n\nSo before you fall in love with another listing, get your real monthly number. Not a calculator. A real lender quote with the actual taxes on that house.\n\nComment PAYMENT and I'll run yours."}, {"label": "On-screen text", "kind": "cover", "text": "1. \"Same house. Different payment.\"\n2. \"7.03% → 7.40% = +$100/mo on $400K\"\n3. \"Shop by payment, not price\"\n4. \"Comment PAYMENT\""}, {"label": "Caption", "kind": "caption", "text": "Mortgage rates rose for the seventh straight week. Freddie Mac's 30-year average hit 7.40% on October 8, up from 7.03% two weeks earlier.\n\nOn a $400,000 loan, that's about $100 more a month in principal and interest. Add Pocono property taxes, which vary a lot by township, plus insurance and any HOA, and the real number can look very different from the listing price.\n\nBuying in the Poconos? Comment PAYMENT and I'll run your real monthly number with a current lender quote.\n\nAlexa Sanchez | PA License #RS326383 | Smart Way America Realty | 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 | (570) 688-8147"}, {"label": "Tags", "kind": "tags", "text": "#PoconoRealEstate #PoconoMountains #MonroeCounty #PARealEstate #LifeByAlexa"}, {"label": "YouTube Shorts", "kind": "youtube", "text": "Title: Same House, Higher Payment: What 7.4% Rates Mean for Pocono Buyers\n\nHow much did mortgage rates rise in October 2026? Freddie Mac's 30-year average rose to 7.40% on October 8, 2026, from 7.03% two weeks earlier.\nHow much more is the payment on a $400,000 loan? About $100 a month in principal and interest, from roughly $2,669 to $2,770.\nWhat should Pocono buyers do? Compare homes by full monthly payment, including taxes, insurance, and HOA, using a current lender quote.\n\nTags: Pocono homes for sale, mortgage rates October 2026, Monroe County real estate, first time home buyer PA, mortgage payment calculator, East Stroudsburg homes, Pocono Mountains real estate\n\nAlexa Sanchez, PA License #RS326383, Smart Way America Realty, East Stroudsburg, PA · (570) 688-8147"}]}, {"t": "Paste next week's Section A — WITH last week's results block", "tag": "status", "when": "Sunday session", "blocks": [{"label": "Log", "kind": "meta", "text": "Per reel: views · shares · saves · keyword comments · DMs. Nextdoor replies + private messages. Seller conversations started, appointments set, and which keyword produced each."}]}]}], "before": {"verify": "<h2>8. VERIFICATION TABLE (highest risk first)<\/h2>\n<table>\n<thead>\n<tr>\n<th>#<\/th>\n<th>Claim<\/th>\n<th>Status<\/th>\n<th>Where it appears<\/th>\n<th>Action before publish<\/th>\n<\/tr>\n<\/thead>\n<tbody>\n<tr>\n<td>1<\/td>\n<td>DR transfer tax: 3% on ordinary purchases, DGII valuation basis, payment required before title-registry filing, six-month payment window<\/td>\n<td><strong>UNVERIFIED for 2026.<\/strong> Research was dated 2016<\/td>\n<td>D1 script, caption, Shorts<\/td>\n<td>Licensed Dominican counsel confirms current law, incl. Reg 07-22 and Law 18-88 basis. Fix the 03W space date.<\/td>\n<\/tr>\n<tr>\n<td>2<\/td>\n<td>Jackson Twp: permit does not transfer at sale; R-1 prohibition; nonconforming cutoff Jan 27, 2023; no reinstatement after lapse; 1-year term; 30-day renewal<\/td>\n<td><strong>VERIFIED<\/strong> on the official township page (jacksontwp-pa.gov/shorttermrentals), Oct 12<\/td>\n<td>Ledger, S1, GBP, LinkedIn, Personal FB EN<\/td>\n<td>Read Ordinance No. 2026-100 text to confirm the page matches. Ask the Zoning Officer whether a buyer of a nonconforming STR can obtain a new permit.<\/td>\n<\/tr>\n<tr>\n<td>3<\/td>\n<td>Jackson Twp: effective date Oct 6, $500K liability coverage, septic records, occupancy caps<\/td>\n<td><strong>UNVERIFIED<\/strong> (research only; not on the township page)<\/td>\n<td>Not used in any piece<\/td>\n<td>Confirm in the ordinance text before using next week.<\/td>\n<\/tr>\n<tr>\n<td>4<\/td>\n<td>Freddie Mac 30-yr 7.40% (Oct 8), 7.28% prior, 6.30% year ago, seventh straight increase; 15-yr 6.73%<\/td>\n<td><strong>Confirmed<\/strong> via Fox Business citing Freddie Mac; Oct 1 (7.28%) and Sept 24 (7.03%) confirmed via Trading Economics<\/td>\n<td>Ledger, Hub, R1, LinkedIn, FB Business, Personal FB ES<\/td>\n<td>Confirm on freddiemac.com/pmms. If Oct 15 PMMS posts before Thursday, update the Hub and R1 numbers.<\/td>\n<\/tr>\n<tr>\n<td>5<\/td>\n<td>Payment math: $400K 30-yr P&amp;I $2,669 (7.03%) → $2,770 (7.40%); +$33 latest week; $10K at 7.40% = $69/mo<\/td>\n<td><strong>Calculated<\/strong> (Python, standard amortization)<\/td>\n<td>Ledger, Hub, R1<\/td>\n<td>None, if rates hold.<\/td>\n<\/tr>\n<tr>\n<td>6<\/td>\n<td>August MLS: median $347,450; YTD $337,500 (+8.9%); 95.8% of original list; 52 avg DOM; 4.6 months supply; affordability 107<\/td>\n<td><strong>VERIFIED<\/strong> (Baseline, Tier 1)<\/td>\n<td>Ledger, FB Business, Hub (concessions caveat)<\/td>\n<td>Swap in September figures when published. Never say \"13.2% appreciation.\"<\/td>\n<\/tr>\n<tr>\n<td>7<\/td>\n<td>Pocono Township: transient rentals only in Commercial and Recreational districts<\/td>\n<td>Verified by Alexa, Sept 20 (section number pending)<\/td>\n<td>Ledger<\/td>\n<td>Re-confirm. These are being amended.<\/td>\n<\/tr>\n<tr>\n<td>8<\/td>\n<td>Hawk Falls: 25 ft, sunrise-to-sunset hours, Route 534 parking, foliage timing<\/td>\n<td>Research-cited (DCNR / PA), not independently checked<\/td>\n<td>ND, Landmark IG/YT/GBP<\/td>\n<td>Check the DCNR park page and the current foliage report. Verify the drive-time estimate.<\/td>\n<\/tr>\n<tr>\n<td>9<\/td>\n<td>Realtor.com Sept county figures ($380K median listing, $349,950 median sold, 60 DOM, 2.22% discount, 98% sale-to-list)<\/td>\n<td><strong>NOT USED.<\/strong> Tier 2/4 for county data<\/td>\n<td>None<\/td>\n<td>Do not derive a list-to-sold gap (retired error).<\/td>\n<\/tr>\n<tr>\n<td>10<\/td>\n<td>HB 1257 status<\/td>\n<td><strong>CONFLICTING:<\/strong> research says House passage March 24, 2026; Baseline says House 202–1, July 2026<\/td>\n<td>Not used<\/td>\n<td>Reconcile with palegis.us. Never call it law.<\/td>\n<\/tr>\n<\/tbody>\n<\/table>", "pipeline": "<h3>Internal prospecting queue (NEVER published)<\/h3>\n<ul>\n<li><strong>FSBO, residential:<\/strong> Sterner Run Rd, Kunkletown (93 days displayed on the portal). Verify availability and parcel before outreach. Lead with a net sheet and a marketing comparison.<\/li>\n<li><strong>Price-adjustment watch:<\/strong> Adie Dr, Effort ($21,000 reduction displayed Aug 20). No reliable days-on-market figure; verify first.<\/li>\n<li><strong>Land FSBOs (3):<\/strong> separate valuation queue. Don't compare to home-sale metrics.<\/li>\n<li><strong>Expireds:<\/strong> pull the Aug 13–Sept 12 expiration cohort from MLS. Exclude anything sold, pending, or relisted.<\/li>\n<li><strong>Sheriff sale Oct 29, 10:00 AM:<\/strong> reconcile Sept 24 results first, then confirm each Bid4Assets entry as live, postponed, or withdrawn before assigning any status.<\/li>\n<li><strong>Gate for all of it:<\/strong> keep observed signal, verified current status, and seller-stated motivation in separate fields.<\/li>\n<\/ul>", "monitor": "<h2>5. OPTIONAL<\/h2>\n<ul>\n<li><strong>D1 Spanish version:<\/strong> fresh Dominican Spanish, under 3 minutes, on the same bridge argument. Produce only after counsel confirms the DR facts.<\/li>\n<\/ul>\n<h2>6. MONITOR / ANGLE BANK<\/h2>\n<ul>\n<li><strong>Mothball story (personal / Realtor life, Mini Me hybrid).<\/strong> HOLD. This is a live post-closing matter, and the seller-client would be recognizable to the buyer. It can run once three things are true: the matter is resolved, the seller gives permission, and identifying detail is stripped. The payoff is a seller warning: \"Tell your agent everything you did to the house, including the crawlspace.\" Keyword: VALUE. Before any public statement about using mothballs as a pest repellent, check the product's label-use rules. Do not post it on Nextdoor in any form.<\/li>\n<li><strong>\"Your home can retain value while taking longer to sell.\"<\/strong> Waits for the September MLS Monthly Indicators. Realtor.com county figures are not publication-grade.<\/li>\n<li><strong>Urban Group announcement + CASA keyword.<\/strong> Next week (switch closes Saturday, Oct 17).<\/li>\n<li><strong>Veteran: K-FIT stacking misconception.<\/strong> Banked for a week with a real 05A development.<\/li>\n<li><strong>School-tax dates<\/strong> (Oct 30 base end / Dec 1 penalty). Confirm with the tax collector, then use as next week's Nextdoor heads-up.<\/li>\n<li><strong>HB 1257.<\/strong> Reconcile conflicting status records.<\/li>\n<\/ul>\n<h2>7. SKIPPED + REASON<\/h2>\n<ul>\n<li><strong>Veteran content: NONE THIS WEEK.<\/strong> The VA rate move was one national series. PHFA's $478M bond announcement is lender capacity, not a new buyer benefit. Nothing in 05A changes a veteran buyer's decision.<\/li>\n<li><strong>PIR: NONE THIS WEEK.<\/strong> Jackson Township already carries six surfaces, and nothing else in the research layer earns an episode.<\/li>\n<li><strong>DR long cut:<\/strong> no 03M this week.<\/li>\n<li><strong>Market-update reel / IG carousel:<\/strong> retired / paused under v9.<\/li>\n<li><strong>Distress data<\/strong> (sheriff sale, FSBO, tax claim, probate, divorce): internal prospecting only, never published.<\/li>\n<\/ul>", "awaiting": "<h2>9. AWAITING EVENT / ASSET / DECISION<\/h2>\n<ul>\n<li><strong>Urban Group switch:<\/strong> closes Saturday, Oct 17. Announcement next week. DR brokerage CTA stays gated until then.<\/li>\n<li><strong>Urban Group CTA block:<\/strong> draft below. Needs Urban Group's required disclosures, and sign-off from Urban Group and the Smart Way America broker.<\/li>\n<li><strong>Comment-to-DM tool:<\/strong> confirm it's live with all four keywords before Tuesday.<\/li>\n<li><strong>September MLS Monthly Indicators:<\/strong> not yet available.<\/li>\n<li><strong>Pillar:<\/strong> still a placeholder link.<\/li>\n<li><strong>Mothball matter:<\/strong> resolution and seller permission.<\/li>\n<li><strong>@its.myash:<\/strong> House Blend details to confirm (see below).<\/li>\n<\/ul>", "notes": "<h2>NOTES<\/h2>\n<ul>\n<li><strong>Pillar status:<\/strong> placeholder link; confirm publish.<\/li>\n<li><strong>PIR status:<\/strong> none this week.<\/li>\n<li><strong>Veteran status:<\/strong> none this week.<\/li>\n<li><strong>Piece count:<\/strong> 15 alexa.realtor pieces + 2 independent.<\/li>\n<li>Ledger, S1, D1, Hub, R1, 4 stories (counted as 1), GBP ×2, LinkedIn, FB Business, Personal FB EN, Personal FB ES, Nextdoor, Landmark IG/YT<\/li>\n<li><strong>80/20 read:<\/strong> heavily real estate this week. The personal quota is carried next week by the Urban Group announcement, and later by the mothball story once cleared.<\/li>\n<li><strong>Section A fix:<\/strong> switch to the v9 template next Sunday (results + pipeline blocks). Also update the Project Instructions field from the v8 text to the v9 paste block.<\/li>\n<\/ul>"}, "thesis": "This week's seller story: “Your STR permit doesn't come with the house.” Jackson Township adopted Ordinance No. 2026-100 on Oct 1 — the permit ends at sale and the buyer applies as a new applicant; a grandfathered STR that lapses can lose the use. With the 30-yr at 7.40% (7th straight weekly rise, Freddie Mac Oct 8), buyers lean on rental income they can't inherit. That's a pricing problem for sellers."};
+const KEY = 'roast:2026-10-12';
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { state = {}; }
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+const esc = s => s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 
-/* ---- WEEK DATA (b = content blocks: {k:type, l:label, body}) ---- */
-const DAYS=[
-{
-"day": "Sunday",
-"date": "Oct 4",
-"sub": "Shoot Jim Thorpe early · write the Ledger first — everything market derives from it",
-"tasks": [
-{
-"id": "shoot",
-"t": "SHOOT — Jim Thorpe Fall Foliage Festival, before 9 AM (gates Fri Landmark + Sat card)",
-"tag": "re",
-"time": "shoot",
-"new": true,
-"b": [
-{
-"k": "meta2",
-"l": "⚠ Why today",
-"body": "⚠ Jim Thorpe is in Carbon County. Frame it as a Pocono Mountains day trip, and don't use #MonroeCounty on this post. This is a still-photo Landmark, not a Ride With Me episode (RWM returns in spring).\n\nToday is the first festival weekend. Arrive before 9 a.m. for parking and soft light. Shoot today so Friday's post lands ahead of the Oct 10–11 and 17–18 weekends."
-},
-{
-"k": "photo",
-"l": "Photo direction",
-"body": "PHOTO DIRECTION (shot Sun 10/4, before 9 a.m.):\n• HERO: Vertical 4:5. Historic Broadway facades with foliage on the hillside behind them, shot from the sidewalk at eye level. Morning side-light, no crowd. The bike can sit in the lower third if it's naturally there.\n• ALT 1: The Jim Thorpe train station architecture from across Josiah White Park, vertical, with railcars visible.\n• ALT 2: A detail shot: a hand-lettered vendor sign, coffee in hand, or leaves on old brick.\n• Avoid: dense vendor crowds, identifiable faces up close, and any parked-car license plates."
-}
-]
-},
-{
-"id": "led",
-"t": "[01] THE POCONO LEDGER — write & publish (parent, written-only)",
-"tag": "re",
-"time": "blog",
-"b": [
-{
-"k": "meta2",
-"l": "⚠ Before publish",
-"body": "⚠ If PMAR's September Monthly Indicators publishes before this goes live, rebuild THE WEEK'S NUMBERS from it and re-check every county figure in the article.\n⚠ Confirm Freddie Mac Oct 1 = 7.28% at release; if it differs, recompute every payment (see Payment reference in Before You Publish).\n⚠ Append the Pocono Township ordinance section to SOURCES."
-},
-{
-"k": "meta2",
-"l": "SEO / slug / internal links",
-"body": "SEO title: Are Pocono Home Prices Dropping? Monroe County Rates vs. Prices, October 2026\nMeta description: Monroe County prices held through August, but rising mortgage rates cut buyer budgets fast. What summer comps miss, and what buyers and sellers should do now.\nSlug: /pocono-ledger-2026-10-04-comps-written-at-6-5-percent\nInternal links: Pillar → [PILLAR URL] (anchor: \"the full guide to living in the Poconos\") · 9/27 Ledger → [LEDGER 9/27 URL] (anchor: \"why cautious buyers aren't a buyer's market\") · 9/20 Ledger → [LEDGER 9/20 URL] (anchor: \"what the price data leaves out\")"
-},
-{
-"k": "script",
-"l": "Full article",
-"body": "THE POCONO LEDGER — WEEK OF OCTOBER 4, 2026\n\nYour Comps Were Written at 6.5%. Your Buyer Is at 7.28%.\n\nEXECUTIVE SUMMARY\n\nMost people watching the Pocono market this fall are watching the price. The price isn't what moved. Through August, the Monroe County median sale price was up 8.9% for the year. What moved was the mortgage rate. Freddie Mac's 30-year average climbed from 6.76% to 7.28% across three weekly surveys. On a $300,000 loan, that's about $105 more every month. Put the other way, the payment a buyer could afford three weeks ago now carries roughly $15,300 less loan. That's about the size of the price cut a lot of buyers have been waiting for, and it went the other direction. Sellers need to hear the second half of this. Most of the comps setting prices right now went under contract in June and July, when the same survey ran between 6.43% and 6.66%. Those comps are real. They just describe a buyer who had more room in the budget than today's buyer does.\n\nTHE WEEK'S NUMBERS\n\nRates (Freddie Mac Primary Mortgage Market Survey, 30-year fixed, national average):\n\n• October 1, 2026: 7.28%\n• September 24, 2026: 7.03%\n• September 10, 2026: 6.76%\n• June–July 2026 range: 6.43% to 6.66%\n\nMonroe County (Pocono Mountains Association of REALTORS®, August 2026, the latest MLS report):\n\n• Median sales price: $347,450 for the month; $337,500 year to date, up 8.9%\n• Percent of original list price received: 95.8%\n• Average days on market until sale: 52, up from 44 a year earlier\n• Months supply of inventory: 4.6\n• Housing affordability index: 107, down from 122 in August 2025\n\nA note on that monthly median: August's figure moved on 200 closed sales, which is a thin month, so the mix of what sold drives the number. The year-to-date figure is the one to lean on. Price figures in this report also don't account for seller concessions. If a seller paid for a buydown or covered closing costs, that money doesn't show up in the sale price.\n\nWHAT CHANGED\n\nThe rate, and quickly. A single week, from 7.03% to 7.28%, adds about $51 a month on a $300,000 loan. Three weeks adds $105. If you measure from midsummer, around 6.55%, the gap is about $147 a month, or roughly $21,400 of buying power.\n\nThe affordability index matters here too. At 107, it already showed the median household earning just 7% more than it needs to qualify for the median-priced home, and that was at August rates. Rates have risen since then. My read, and it's interpretation, not data yet, is that the September and October reports will show the squeeze more clearly than August did.\n\nIt's also not a Fed story, whatever the headlines say. Thirty-year mortgage rates follow longer-term bond yields and mortgage-bond demand much more closely than the Fed's short-term target. Waiting for a Fed announcement isn't a plan.\n\nNEIGHBORHOOD / TOWNSHIP SPOTLIGHT: POCONO TOWNSHIP\n\nFor investors, the rate is only half of the underwriting. In Pocono Township, transient rentals are permitted only in the Commercial and Recreational zoning districts, so a residentially zoned parcel can be ineligible for short-term rental use no matter how good the listing photos look. At 7.28%, an STR purchase has to clear two tests: the debt service has to work, and the parcel has to be legal for the use you're paying for. Plenty of properties pass the first test and fail the second. STR rules in the Poconos are set municipality by municipality and get amended, so every parcel needs its own check.\n\nOPERATOR OBSERVATION\n\nHere's what I'm seeing in the numbers. The pricing conversation hasn't caught up to the rate conversation. Comps tell you what a buyer paid. They don't tell you what that buyer's payment was, and right now that's the difference that matters. A home priced off a July comp is asking today's buyer to carry roughly $100 to $150 more a month for the same house. Some buyers will. Most will keep scrolling. That isn't the market collapsing. It's buyers doing arithmetic.\n\nWHAT BUYERS SHOULD DO\n\n• Re-run your preapproval at today's rate. A letter from August may overstate what you can carry now.\n• Get zero-point Loan Estimates from at least three lenders, and compare APR, lender fees and cash to close, not just the note rate.\n• Negotiate the payment, not just the price. A seller-paid rate buydown or a closing-cost credit can do more for your monthly number than a small price reduction, depending on your loan. Have your lender model both.\n• If you're a veteran, compare VA and conventional on actual Loan Estimates. VA quotes published this week ranged widely depending on the source, so a headline VA rate won't tell you much.\n• Don't time the market around a Fed meeting.\n\nWHAT SELLERS SHOULD DO\n\n• Ask which of your comps went under contract when. A comp written at 6.5% supported a bigger budget than today's buyer has.\n• Price against the homes you're competing with now, not only against what closed this summer.\n• Before you cut the price, model a concession against the same-size reduction. The difference in your net proceeds can be smaller than you'd expect, and for some buyers a concession does more work.\n• Treat the first two weeks seriously. Average market time was already 52 days in August, up from 44 a year earlier.\n\nSOURCES\n\n• Pocono Mountains Association of REALTORS® Monthly Indicators, August 2026 — Pocono Mountains Association Multi List, current as of September 9, 2026. Single-family, townhome and condominium combined.\n• Freddie Mac Primary Mortgage Market Survey®, weekly releases June 4 through October 1, 2026.\n• Pocono Township zoning (transient rentals limited to Commercial and Recreational districts): [ORDINANCE SECTION — append before publish].\n• Payment estimates are principal and interest on a 30-year fixed loan, calculated by Alexa.Realtor. They exclude taxes, insurance, HOA dues and mortgage insurance.\n\nFor everything about living here beyond this week's numbers, see the full guide to living in the Poconos → [PILLAR URL]\n\nAlexa Sanchez, Realtor® · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net"
-}
-]
-}
-]
-},
-{
-"day": "Monday",
-"date": "Oct 5",
-"sub": "GBP market update",
-"tasks": [
-{
-"id": "gbp-mkt",
-"t": "[02] GBP Market Update (from Ledger) — no hashtags",
-"tag": "re",
-"time": "GBP",
-"b": [
-{
-"k": "caption",
-"l": "GBP post",
-"body": "Are home prices dropping in Monroe County, PA? Not through August. The median sale price was $347,450, and the year-to-date median is up 8.9% (Pocono Mountains Association of REALTORS®, August 2026; sale prices exclude seller concessions). What fell is buying power. The 30-year fixed average reached 7.28% (Freddie Mac, Oct. 1, 2026). On a $300,000 loan, that's about $105 a month more than in early September.\n\nBuyers in Stroudsburg, East Stroudsburg, Tobyhanna and Pocono Township: update your preapproval at today's rate before writing an offer. Sellers: summer comps closed on loans priced near 6.5%, so price for the buyer shopping now.\n\nAlexa Sanchez, Realtor® · PA License #RS326383 · Smart Way America Realty · (570) 688-8147 · Alexa@alexasanchez.net"
-},
-{
-"k": "meta2",
-"l": "Button + image",
-"body": "Learn more → [LEDGER 10/4 URL]\nImage: carousel slide 1 (no text-heavy graphics on GBP; use the clean version without numbers if available)."
-}
-]
-}
-]
-},
-{
-"day": "Tuesday",
-"date": "Oct 6",
-"sub": "IG market carousel + Filler & Roast Ep. 1",
-"tasks": [
-{
-"id": "carousel",
-"t": "[02] IG Market Carousel — 'Same house. Same price. $105 more a month.' (8 slides)",
-"tag": "re",
-"time": "IG",
-"new": true,
-"b": [
-{
-"k": "photo",
-"l": "Visual direction",
-"body": "Format: 4:5, 8 slides. Cream background, deep green numerals, one number per slide, generous white space. Slide 1 uses Alexa's own street-level Pocono B-roll still (no identifiable client property, no addresses). No stock photography."
-},
-{
-"k": "script",
-"l": "Slide copy",
-"body": "Slide 1: Same house. Same price. $105 more a month.  (small line: Three weeks apart. Poconos, fall 2026.)\n\nSlide 2: Sept 10 → 6.76%  ·  $1,948 a month on a $300K loan\n\nSlide 3: Oct 1 → 7.28%  ·  $2,053 a month. Same loan.\n\nSlide 4: At the old payment, today's buyer qualifies for about $284,700. That's ~$15,300 of buying power, gone in three weeks.\n\nSlide 5: Prices didn't drop. Monroe County median sale price: +8.9% year to date through August.\n\nSlide 6: Sellers: your comps went under contract at 6.4–6.7%. Your buyer is at 7.28%.\n\nSlide 7: Buyers: re-run the preapproval. Compare three zero-point Loan Estimates. Negotiate the payment, not just the price.\n\nSlide 8 (sources): Principal & interest only. Rates: Freddie Mac PMMS. Monroe County: Pocono Mountains Association of REALTORS®, Aug 2026; sale prices exclude seller concessions. Alexa Sanchez, Realtor® · PA License #RS326383 · Smart Way America Realty"
-},
-{
-"k": "cover",
-"l": "Cover text",
-"body": "THE PRICE DIDN'T MOVE. THE PAYMENT DID."
-},
-{
-"k": "caption",
-"l": "IG caption",
-"body": "The price didn't move. The payment did.\n\nGoing from 6.76% to 7.28% on a 30-year loan (Freddie Mac, Sept 10 → Oct 1) adds about $105 a month on $300,000. Swipe for what that does to a budget, and why summer comps are pricing for a buyer who isn't shopping anymore.\n\nFigures are principal and interest only. Monroe County data: Pocono Mountains Association of REALTORS®, August 2026. Sale prices don't reflect seller concessions.\n\nThe full breakdown is in this week's Pocono Ledger, link in bio.\n\nAlexa Sanchez, Realtor® · PA License #RS326383 · Smart Way America Realty · (570) 688-8147"
-},
-{
-"k": "tags",
-"l": "Hashtags",
-"body": "#PoconoRealEstate #PoconoMountains #MonroeCounty #PARealEstate #MortgageRates #LifeByAlexa\n\n⚠ #STRInvesting is dropped from the bank set this week because the hashtags have to match the post's intent. #MortgageRates replaces it."
-}
-]
-},
-{
-"id": "fr-tue",
-"t": "@fillerandroast Ep. \"650 Doors to Kochere\"",
-"tag": "cof",
-"time": "IG · AM",
-"b": [
-{
-"k": "meta2",
-"l": "Concept + rules",
-"body": "Episode concept: A polished, impatient coffee-bean character goes looking for \"the one master farmer\" behind the perfect clean cup and finds 650 family farms delivering cherries to one mill in Kochere, Ethiopia. The sell lands at the end: the cup he wanted exists because hundreds of people did their part right.\n\nIG only, Tue + Fri. No YouTube, no cross-posting, no PA license. Facts flagged in Section 6. Written without naming a third-party roaster pending Alexa's decision.\nPost: Tuesday 10/6, morning."
-},
-{
-"k": "script",
-"l": "Story beats (for the animator)",
-"body": "1. Black screen. VO: \"Everybody wants the clean finish. Nobody wants to count the hands that got it there.\"\n2. Our bean, in a tiny trench coat, holds a cup and a magnifying glass: \"Who made this?\"\n3. A road winds into green Ethiopian hills. Door after door, each farmer with a basket of red cherries.\n4. A counter on screen spins: 1… 40… 300… 650.\n5. All the paths meet at one mill. Baskets pour into one sorting line.\n6. The bean, overwhelmed, drops the magnifying glass.\n7. Final cup, steam rising. VO: \"Not one farm. Six hundred and fifty doors. One clean cup.\"\n8. Card: \"Washed. Light roast. Kochere, Ethiopia.\""
-},
-{
-"k": "prompt",
-"l": "Animation direction",
-"body": "Animation direction: Pixar-style 3D, 9:16. Warm morning palette: deep greens, red cherries, golden haze. Doors are a visual rhythm, each a different color and texture. The counter is diegetic (painted on a mill sign), not overlaid. Keep it hopeful, not documentary-solemn. Farmers are stylized, respectful and specific in dress; never caricatured. No on-screen text in generation; add the title card in the edit."
-},
-{
-"k": "caption",
-"l": "IG caption",
-"body": "This coffee doesn't come from one farm. It comes from 650 family farmers delivering ripe cherries to a single mill in Kochere, in Ethiopia's Yirgacheffe region. \"Single origin\" can mean a whole community. Washed, light roast, lemon and black tea in the cup."
-},
-{
-"k": "tags",
-"l": "Hashtags",
-"body": "#FillerAndRoast #CoffeeLovers #CoffeeStory #SpecialtyCoffee #AnimatedShort #LifeByAlexa"
-}
-]
-}
-]
-},
-{
-"day": "Wednesday",
-"date": "Oct 7",
-"sub": "DR English — CONFOTUR (produced, publish HELD for counsel)",
-"tasks": [
-{
-"id": "dr-ig",
-"t": "[04] DR English — IG Reel ('A brochure is not a tax exemption') — CTA-FREE · HOLD",
-"tag": "dr",
-"time": "IG",
-"b": [
-{
-"k": "meta2",
-"l": "⚠ Publish hold + gating",
-"body": "⚠ PUBLISH HOLD: Nothing posts until licensed Dominican counsel signs off on the CONFOTUR claims, the 3% transfer tax, the first-acquirer IPI language, the exemption start date, and Law 30-26. CTA-free (Urban Group gate)."
-},
-{
-"k": "script",
-"l": "Script (<60s)",
-"body": "Before you wire a deposit on a \"tax-free\" condo in Punta Cana, ask for one thing.\n\nThe CONFOTUR resolution. For this exact project.\n\nNot the brochure. Not the sales deck. The resolution.\n\nHere's why. CONFOTUR is a tourism incentive. When it actually applies, it can cut the transfer tax and the yearly property tax for a set number of years. That's real money.\n\nBut it belongs to the approved project and the buyer who qualifies, usually the first one. Buying a resale? Don't assume the last owner's exemption came with the keys.\n\nAnd those fifteen years? That clock started when the project was finished. Not the day you sign.\n\nSo your attorney checks three things. The resolution number. Whether your unit and your purchase are covered. And how much time is left. Then it goes in the contract, in writing.\n\nIf nobody can show you that, run your numbers like you're paying full tax. Because you probably are."
-},
-{
-"k": "photo",
-"l": "Delivery + B-roll",
-"body": "Delivery: direct, a little dry, steady eye contact. About 50 seconds. Talking head; cut to B-roll of a contract page and a stamped document on \"the resolution.\"\nB-roll: a hand sliding a glossy brochure aside for a plain document; Punta Cana skyline (Alexa's own footage); a calendar page flipping on \"the clock started.\""
-},
-{
-"k": "cover",
-"l": "Cover text",
-"body": "A BROCHURE IS NOT A TAX EXEMPTION"
-},
-{
-"k": "caption",
-"l": "IG caption",
-"body": "\"15 years tax-free\" is a sales line until somebody shows you the paperwork.\n\nCONFOTUR benefits are tied to an approved tourism project and to a qualifying purchase, usually the first buyer's. They are not tied to a resort's name or its rental potential. Before any deposit leaves your account, have a Dominican real-estate attorney confirm the resolution number, whether your exact unit and purchase are covered, and how many years are actually left.\n\nEducational only. Not legal or tax advice.\n\nFollow for the series on buying in the DR as an American."
-},
-{
-"k": "tags",
-"l": "Hashtags",
-"body": "#DominicanRepublicRealEstate #PuntaCana #CapCana #DRInvestment #InternationalRealEstate #LifeByAlexa"
-}
-]
-},
-{
-"id": "dr-yt",
-"t": "[04] DR English — YouTube long cut (~7 min) — CTA-FREE · HOLD",
-"tag": "dr",
-"time": "YT",
-"b": [
-{
-"k": "meta2",
-"l": "⚠ Gate + on-screen",
-"body": "⚠ PUBLISH HOLD: Nothing posts until licensed Dominican counsel signs off on the CONFOTUR claims, the 3% transfer tax, the first-acquirer IPI language, the exemption start date, and Law 30-26. CTA-free (Urban Group gate).\nOn-screen: six-gate checklist card (Gate / Request / Pass / Red flag), shown during the six-gates segment.\n⚠ Timestamps are estimates. Re-cut them to the final edit. If counsel can't confirm Law 30-26, cut that segment and its timestamp."
-},
-{
-"k": "script",
-"l": "Script (clean copy/paste)",
-"body": "[HOOK] If you're an American looking at a condo in Punta Cana and someone tells you it's fifteen years tax-free, that's not a fact yet. It's a claim. Today I'm going to show you how to turn it into a fact, or find out it isn't one, before you send a dollar.\n\n[WHAT IT IS] CONFOTUR is the Dominican Republic's tourism-development incentive, under Law 158-01. For a qualifying tourism project, it can exempt the buyer from the one-time property transfer tax, which is generally 3%, and from the annual property tax, the IPI, for a set period. On a resort condo, that changes your carrying costs and your yield. So it's worth getting right.\n\n[THE MISTAKE] Here's where Americans get burned. They treat CONFOTUR like a feature of the building, like the pool or the ocean view. It isn't. It's a legal status tied to a specific approved project, and to the buyer who qualifies under it. That's usually the first buyer. If you're buying a resale, you can't assume the original owner's benefit transferred to you.\n\n[THE CLOCK] Then there's the fifteen years. The published tax guidance ties that period to when the approved project was completed and equipped, not to the day you buy. A unit in a project finished eight years ago doesn't hand you a fresh fifteen.\n\n[THE SIX GATES] So here's the system. Six gates, and you don't send a meaningful deposit until the first four pass.\n\nGate one, ownership: the current title, and proof the seller is the registered owner with authority to sell.\n\nGate two, legal status: a fresh legal-status certification from the title registry showing no undisclosed liens, mortgages or litigation.\n\nGate three, boundaries: a definitive survey that matches the unit you're actually buying.\n\nGate four, tax status: the CONFOTUR resolution, confirmation that your exact unit and purchase are covered, and the years remaining. If any of that's missing, you underwrite the deal as fully taxed.\n\nGate five, project legality: permits, approved plans, the condo regime, and the rental rules.\n\nGate six, closing protection: a contract naming the exact unit, the tax treatment in writing, deposit protections, and a plan to register the transfer in your name.\n\n[NEW WRINKLE — CONFIRM WITH COUNSEL; CUT IF UNCONFIRMED] There's also a 2026 law, Law 30-26, that reportedly limits stacking more than one incentive regime on the same investment. If your deal leans on more than one incentive, that's a question for your attorney before you sign.\n\n[WHO DOES WHAT] Your job is to request the documents. Your Dominican attorney's job is to verify them independently at the registry and with the tax authority. Don't try to run a registry search yourself from New Jersey.\n\n[CLOSE] A tax exemption you can't document is just marketing. In the Dominican Republic, you're not buying the view or the yield forecast. You're buying the legal file. Make sure it's real."
-},
-{
-"k": "yt",
-"l": "YouTube description",
-"body": "Title: Buying a CONFOTUR Property in the Dominican Republic: What Americans Must Verify Before Wiring Money (2026)\n\nIs a CONFOTUR property in the Dominican Republic really tax-free? Only if the paperwork says so. This video walks American buyers through what CONFOTUR (Law 158-01) is, why \"15 years tax-free\" isn't automatic, and the six documents to verify before wiring money for a Punta Cana or Cap Cana condo.\n\nWhat is CONFOTUR? It's a Dominican tourism incentive that can exempt qualifying buyers in approved tourism projects from the 3% property transfer tax and the annual IPI property tax for a set period.\n\nDoes CONFOTUR transfer to a resale buyer? Don't assume it does. The exemption is tied to the approved project and the qualifying purchaser, usually the first acquirer. Have a Dominican attorney confirm your specific purchase.\n\nWhen does the 15-year CONFOTUR period start? Published guidance ties it to completion of the approved project, not to your purchase date. Confirm the remaining term in writing.\n\nWhat should I verify before sending a deposit? Ownership, legal status, boundaries (deslinde), tax status, project legality and closing protections. Don't send a meaningful deposit until the first four are confirmed by your attorney.\n\n00:00 The \"15 years tax-free\" claim\n\n00:35 What CONFOTUR actually is\n\n01:30 The mistake Americans make\n\n02:20 When the 15-year clock really starts\n\n03:05 The six-gate checklist\n\n05:40 Law 30-26 and stacking incentives\n\n06:10 Who verifies what\n\n06:45 The bottom line\n\nEducational only. Not legal or tax advice. Consult a licensed Dominican real-estate attorney and a qualified tax professional before acting.\n\nSubscribe for more on buying property in the Dominican Republic as an American.\n\n#DominicanRepublicRealEstate #PuntaCana #CapCana #DRInvestment #InternationalRealEstate #LifeByAlexa\n\nTags: CONFOTUR, CONFOTUR Dominican Republic, Law 158-01, buying property in Dominican Republic, Punta Cana condo, Cap Cana real estate, Dominican Republic property tax, DR transfer tax, buying real estate in the DR as an American, Dominican Republic due diligence, Punta Cana real estate 2026\nGATING: No brokerage CTA anywhere in this piece."
-}
-]
-}
-]
-},
-{
-"day": "Thursday",
-"date": "Oct 8",
-"sub": "Landmark Nextdoor + cigar voice",
-"tasks": [
-{
-"id": "nd-land",
-"t": "[05] Landmark — Nextdoor heads-up (neighborly, no selling)",
-"tag": "re",
-"time": "Nextdoor",
-"b": [
-{
-"k": "meta2",
-"l": "⚠ Gate",
-"body": "⚠ Add \"I was there last Sunday\" only if Alexa actually went on Oct 4.\nConfirm festival dates, vendor hours and shuttle operators before posting."
-},
-{
-"k": "caption",
-"l": "Post",
-"body": "Heads up if you're heading to the Jim Thorpe Fall Foliage Festival: the next two weekends are Oct. 10–11 and 17–18. Vendors run 10 to 5 downtown around Josiah White Park by the train station, and walking around is free. Train rides and food cost extra. Downtown parking fills early. Shuttles run from Pocono Whitewater, Whitewater Rafting Adventures and Mauch Chunk Lake Park, but call ahead to confirm they're running that day. Get there early and the streets are quieter, the light is better, and you'll be out before the afternoon traffic.\n\n— Alexa Sanchez, Realtor® · Smart Way America Realty"
-}
-]
-},
-{
-"id": "th-tt",
-"t": "@its.myash Talking Head — TikTok (Dominican-made ≠ Dominican puro)",
-"tag": "cig",
-"time": "TikTok",
-"b": [
-{
-"k": "meta2",
-"l": "⚠ Repeat check + delivery",
-"body": "⚠ Last week's packet had a cigar-origin fact gate. If last week's Talking Head already covered origin labeling, swap this for the Davidoff/Tabadom exit from PROCIGAR (verify that first).\n\nDelivery: at the lounge, cigar in hand, no intro. Hold up a band on \"where it was made.\""
-},
-{
-"k": "script",
-"l": "Script",
-"body": "A cigar rolled in the Dominican Republic and a Dominican puro are not the same thing.\n\n\"Dominican\" tells you where it was made. That's it.\n\nA puro means the wrapper, the binder and the filler are all Dominican leaf. Every layer.\n\nA lot of great cigars coming out of Santiago use an Ecuadorian wrapper or Nicaraguan filler, whatever the blend needs, rolled by Dominican hands. That's not a knock. That's craft.\n\nAnd while we're here: Dominican doesn't mean mild. The DR makes full-bodied cigars all day long.\n\nSo next time somebody tells you \"it's Dominican, it'll be smooth,\" read the leaf, not the country."
-},
-{
-"k": "caption",
-"l": "Caption",
-"body": "\"Dominican-made\" and \"Dominican puro\" aren't the same claim. One is where it was rolled. The other is what's inside every layer. Know the difference before you buy."
-},
-{
-"k": "tags",
-"l": "Hashtags",
-"body": "#CigarLife #CigarAuthority #PremiumCigars #DominicanCigars #NellsSocial #LifeByAlexa"
-}
-]
-}
-]
-},
-{
-"day": "Friday",
-"date": "Oct 9",
-"sub": "Landmark post + Weekend Smoke + Filler & Roast Ep. 2 · Sept MLS report may drop",
-"tasks": [
-{
-"id": "land",
-"t": "[05] Landmark Spotlight — Jim Thorpe Fall Foliage Festival (still photo) — IG + YT",
-"tag": "re",
-"time": "IG + YT",
-"b": [
-{
-"k": "meta2",
-"l": "⚠ Before posting",
-"body": "⚠ Jim Thorpe is in Carbon County. Frame it as a Pocono Mountains day trip, and don't use #MonroeCounty on this post. This is a still-photo Landmark, not a Ride With Me episode (RWM returns in spring).\n⚠ Verify the 1954 renaming fact and the \"about an hour\" drive claim before posting. Cut the drive line if it doesn't hold for East Stroudsburg."
-},
-{
-"k": "caption",
-"l": "IG caption — Friday",
-"body": "Fall in Jim Thorpe isn't a view. It's a whole weekend.\n\nThe Fall Foliage Festival runs three October weekends in the historic downtown, with free admission to walk the streets, vendors around Josiah White Park, and live music. The town itself was renamed Jim Thorpe in 1954; before that, it was Mauch Chunk.\n\nThis is one of the things people mean when they say they want to live in the Poconos: a real town about an hour's drive from most of Monroe County, with a calendar that gives you a reason to get in the car.\n\nLast two weekends: Oct. 10–11 and 17–18. Go early."
-},
-{
-"k": "tags",
-"l": "Hashtags",
-"body": "#PoconoMountains #PoconoLiving #JimThorpePA #FallInThePoconos #PoconoRealEstate #LifeByAlexa"
-},
-{
-"k": "yt",
-"l": "YouTube — Friday",
-"body": "YouTube (Short from the 3 stills, slow push-ins, ambient audio, no voiceover):\n\nTitle: Jim Thorpe Fall Foliage Festival 2026 | Historic Downtown Jim Thorpe, PA in October\n\nWhen is the Jim Thorpe Fall Foliage Festival? In 2026 it runs Saturdays and Sundays on October 3–4, 10–11 and 17–18 in historic downtown Jim Thorpe, PA, with vendors from 10 a.m. to 5 p.m.\n\nIs it free? Walking the festival is free. Scenic train rides, food and tours cost extra.\n\nWhere do you park? Downtown parking is limited. Arrive early or use a festival shuttle, and confirm shuttle service the day you go.\n\nJim Thorpe is part of the Pocono Mountains region, an easy day trip from Monroe County. More on living in the Poconos: [PILLAR URL]\n\nAlexa Sanchez, Realtor® · PA License #RS326383 · Smart Way America Realty · (570) 688-8147\n\n#PoconoMountains #JimThorpePA #LifeByAlexa\n\nTags: Jim Thorpe Fall Foliage Festival, Jim Thorpe PA, Pocono Mountains fall, fall foliage Pennsylvania, things to do in the Poconos, Josiah White Park, Lehigh Gorge Scenic Railway, Poconos October 2026"
-}
-]
-},
-{
-"id": "smoke",
-"t": "@its.myash Weekend Smoke — 'Lemon Peel & Cedar'",
-"tag": "cig",
-"time": "IG",
-"b": [
-{
-"k": "photo",
-"l": "Concept + shot list",
-"body": "Concept: a bright, washed Ethiopian coffee with a mild-to-medium Connecticut-wrapper robusto. It's an aromatic pairing, not a power pairing.\n\nShot list (9:16): pour-over blooming → black coffee in a clear cup → cut and light → first three draws without coffee → sip → slow ash at the window."
-},
-{
-"k": "script",
-"l": "On-camera lines",
-"body": "• \"This coffee's washed, so it comes in clean. Lemon, tea, lighter body.\"\n• \"The Connecticut wrapper is here for cream and cedar. It's a frame, not a competitor.\"\n• \"The coffee brings the lemon. The cigar brings the peel.\"\n• \"Sip every third or fourth draw. Chase every puff and both of them blur.\"\n• \"Skip the heavy maduro with this one. It'll erase the cup.\""
-},
-{
-"k": "caption",
-"l": "Caption",
-"body": "Weekend Smoke: Lemon Peel & Cedar. A light-roast washed Ethiopian with a creamy Connecticut robusto. Taste the coffee alone first, give the cigar a few draws, then bring them together. Black coffee only; milk wipes out everything this pairing is about."
-},
-{
-"k": "tags",
-"l": "Hashtags",
-"body": "#CigarLife #CigarAuthority #PremiumCigars #NellsSocial #DominicanCigars #LifeByAlexa\n\n⚠ If a specific cigar is named on camera (e.g., the New World Connecticut by A.J. Fernandez), verify its wrapper and profile first."
-}
-]
-},
-{
-"id": "fr-fri",
-"t": "@fillerandroast Ep. \"Forty-Eight Hours\"",
-"tag": "cof",
-"time": "IG · AM",
-"b": [
-{
-"k": "meta2",
-"l": "Concept + rules",
-"body": "Episode concept: The bean wants to rush. The mill makes him wait. Fermentation runs 36 to 48 hours before the wash, then the parchment dries for 12 to 15 days on raised beds, turned by hand, until it hits 11.5% moisture. The lesson: clean comes from timing, not speed. The sell is the payoff: the cup tastes clear because nobody cut corners.\n\nIG only, Tue + Fri. No YouTube, no cross-posting, no PA license. Facts flagged in Section 6. Written without naming a third-party roaster pending Alexa's decision.\nPost: Friday 10/9, morning."
-},
-{
-"k": "script",
-"l": "Story beats (for the animator)",
-"body": "1. Bean taps his foot at a fermentation tank. A clock on the wall reads hour 1.\n2. He tries to wash himself early. A mill worker gently blocks the hose.\n3. Clock montage: hour 12, hour 30, hour 48. The sticky fruit layer loosens and slides away.\n4. The wash: bright water, the bean comes out pale and clean.\n5. Raised drying beds in the sun, thin layers, a rake turning them in rhythm. Days tick by in shadows across the beds.\n6. A moisture gauge stops at 11.5%. A small \"ding.\"\n7. VO over the finished cup: \"The fruit left. The character stayed.\""
-},
-{
-"k": "prompt",
-"l": "Animation direction",
-"body": "Animation direction: same world and bean as Ep. 1, for continuity. Time passes through light and shadow, not clocks alone. The drying beds read like a calm, geometric city block from above. Sound: water, rake strokes, wind. Tone: patience is the hero. No text in generation."
-},
-{
-"k": "caption",
-"l": "IG caption",
-"body": "Washed coffee isn't just washed. The fruit ferments for 36 to 48 hours first, then the beans dry slowly on raised beds for almost two weeks, turned by hand, until the moisture is just right. That's where the clean, tea-like cup comes from. Patience, mostly."
-},
-{
-"k": "tags",
-"l": "Hashtags",
-"body": "#FillerAndRoast #CoffeeLovers #CoffeeStory #SpecialtyCoffee #AnimatedShort #LifeByAlexa"
-}
-]
-},
-{
-"id": "mls",
-"t": "Check: PMAR September Monthly Indicators published?",
-"tag": "op",
-"time": "check",
-"new": true,
-"b": [
-{
-"k": "meta2",
-"l": "If yes",
-"body": "Add September as a new row set in the Verified Market Data Baseline (keep August as history). If the Ledger hasn't posted, rebuild THE WEEK'S NUMBERS from it. Next week's Ledger is built on it either way."
-}
-]
-}
-]
-},
-{
-"day": "Saturday",
-"date": "Oct 10",
-"sub": "Gallery cards",
-"tasks": [
-{
-"id": "gc-land",
-"t": "[13] Gallery: Landmark card — Jim Thorpe (real photo)",
-"tag": "re",
-"time": "gallery",
-"b": [
-{
-"k": "photo",
-"l": "Photo + caption",
-"body": "Photo: HERO from Sunday's shoot (Broadway facades + foliage).\nCaption: Jim Thorpe, Carbon County — fall weekends in a historic Pocono town."
-},
-{
-"k": "meta2",
-"l": "Alt-text + tracker log",
-"body": "Alt-text: Historic brick storefronts on Broadway in Jim Thorpe, Pennsylvania, with orange and gold autumn foliage on the hillside behind them in morning light.\nTracker log line: 2026-10-10 | LANDMARK | Jim Thorpe Fall Foliage Festival | photo: Alexa, shot 2026-10-04 | caption logged | live"
-}
-]
-},
-{
-"id": "gc-life",
-"t": "[13] Gallery: Lifestyle card — watercolor (fall overlook, coffee)",
-"tag": "re",
-"time": "gallery",
-"b": [
-{
-"k": "prompt",
-"l": "Watercolor prompt (base + this week's scene)",
-"body": "soft realistic Watercolor illustration of a Latina woman with medium skin tone, voluminous curly dark brown hair, gold watch, gold jewelry. Warm earthy tones — cream, tan, soft brown, muted greens. Soft natural lighting. Soft smooth watercolor washes, clean paper texture, fluid brushstrokes, delicate linework, luminous and airy. Editorial lifestyle illustration style. no text, no logos. Scene: seated on a low fieldstone wall in a cream knit sweater, holding a coffee cup in both hands, looking out over rolling hills in rust, amber and muted green, early morning mist in the valley."
-},
-{
-"k": "caption",
-"l": "Headline + body EN",
-"body": "HEADLINE: October Is the Season People Move For\n\nBODY EN (74 words): Ask people why they bought in the Poconos and fall comes up a lot. Mornings turn crisp, the hills change color week by week, and the towns fill their weekends with festivals, farm stands and trail days. It's the season that sells the lifestyle, and it's also when you learn the practical side of living here: which roads get busy, which towns get crowded, and which quiet corners stay quiet."
-},
-{
-"k": "caption",
-"l": "Body ES + CTA",
-"body": "BODY ES: El otoño en los Poconos se vive de verdad: mañanas frescas, montañas de colores y pueblos llenos de vida cada fin de semana.\n\nCTA: Full guide coming soon → [PILLAR URL]"
-},
-{
-"k": "meta2",
-"l": "Alt-text + tracker log",
-"body": "Alt-text: Watercolor illustration of a Latina woman with curly dark hair in a cream sweater, holding coffee while sitting on a stone wall above misty autumn hills.\nTracker log line: 2026-10-10 | LIFESTYLE | \"October Is the Season People Move For\" | watercolor, fall overlook scene | EN/ES body logged | CTA → Pillar (coming soon) | live"
-}
-]
-},
-{
-"id": "gc-list",
-"t": "[13] Gallery: Listing card (conditional)",
-"tag": "re",
-"time": "gallery",
-"b": [
-{
-"k": "meta2",
-"l": "Status",
-"body": "SKIP — no new active inventory declared in Section A. No listing content manufactured."
-}
-]
-}
-]
-},
-{
-"day": "Before You Publish",
-"date": "this week",
-"sub": "Verification · awaiting · skipped · status",
-"tasks": [
-{
-"id": "verify",
-"t": "⚠ Verify these claims BEFORE the associated piece publishes",
-"tag": "op",
-"time": "gate",
-"b": [
-{
-"k": "meta2",
-"l": "Claims to confirm",
-"body": "• Freddie Mac 30-year, Oct 1, 2026 = 7.28% (Ledger, GBP, carousel). Confirm at freddiemac.com and recompute all payments if it differs.\n• Freddie Mac Sept 10 survey = 6.76%, carried from the baseline. Confirm the release date label.\n• PMAR September Monthly Indicators: if published before the Ledger posts, rebuild the numbers.\n• Pocono Township STR zoning: append the ordinance section number and re-confirm it's current.\n• CONFOTUR (Law 158-01 Art. 4, first-acquirer IPI exemption, exemption-period start date, 3% transfer tax): licensed Dominican counsel.\n• Law 30-26 (June 18, 2026; anti-stacking; regulations status): licensed Dominican counsel. Cut the segment if unconfirmed.\n• Jim Thorpe: festival dates and vendor hours, shuttle operators and day-of service, the 1954 renaming, and the drive time from Monroe County.\n• Dominican puro / Dominican-made distinction (@its.myash): standard definition. If an example cigar is named, verify its blend.\n• Kochere process facts (650 farmers, 36–48 hr fermentation, 12–15 day drying, 11.5% moisture): single retailer source. Confirm with a second source (importer or mill).\n• Carried, still open: FOMC Sept 16 move (kept out of all pieces) · HB 1257 status conflict (March 30 Senate referral vs. July House vote) · PA veteran need threshold ($114,637, dated 2025) · PHFA Keystone Advantage terms · Tannersville Cranberry Bog access."
-},
-{
-"k": "meta2",
-"l": "Payment reference (recompute if the rate changes)",
-"body": "Principal and interest only, 30-year fixed, $300,000 loan. Excludes taxes, insurance, HOA and mortgage insurance.\n• 6.55% (midsummer, inside the June–July 6.43%–6.66% range): $1,906/mo\n• 6.76% (Freddie Mac, Sept 10 survey): $1,948/mo\n• 7.03% (Freddie Mac, Sept 24): $2,002/mo\n• 7.28% (Freddie Mac, Oct 1, VERIFY): $2,053/mo\n• 6.76% to 7.28%: +$105/mo. The $1,948 payment at 7.28% supports about $284,700, which is roughly $15,300 less.\n• 6.55% to 7.28%: +$147/mo. The $1,906 payment at 7.28% supports about $278,600, which is roughly $21,400 less.\n• One week, 7.03% to 7.28%: +$51/mo\n⚠ If the Freddie Mac Oct 1 figure confirms at anything other than 7.28%, recompute every number above before publishing. Do not round to fit."
-}
-]
-},
-{
-"id": "guardrails",
-"t": "Standing data guardrails (do not violate)",
-"tag": "op",
-"time": "rule",
-"b": [
-{
-"k": "meta2",
-"l": "Research integrity this week",
-"body": "All Monroe County figures come from the Pocono Mountains Association of REALTORS® Monthly Indicators, August 2026. 01A's Realtor.com county figures and 02A's Redfin figures are rejected: the $380K median list, the 60-day median DOM, the 98% sale-to-list ratio, \"2.22% below ask,\" and $346,291 on 239 sales. 01A's payment math was computed at about 7.25%, so every payment in this packet was recalculated at the stated rate. The Freddie Mac 7.28% figure (Oct 1) still needs confirmation at release. VA rates appear only as a dated range, and the Fed's September move is kept out of every piece because it's still unconfirmed."
-},
-{
-"k": "meta2",
-"l": "Framing + per-outlet rule",
-"body": "PRICE FRAMING: never \"appreciated 13.2%.\" August's median is a thin-month datapoint (200 sales); YTD +8.9% is the durable figure. Attach the concessions caveat to price figures.\nRATES: Freddie Mac is a national average, never \"your rate.\" VA rates only as a dated range with sources named.\nFED: kept out of every piece until the Sept 16 move is confirmed.\nGEOGRAPHY: Jim Thorpe is Carbon County — no #MonroeCounty on the landmark.\nPER-OUTLET VERBIAGE (standing): no two surfaces share sentences. Nextdoor = neighborly; GBP = search-first/clipped; Ledger = full reconciliation."
-}
-]
-},
-{
-"id": "awaiting",
-"t": "Awaiting event / asset / decision",
-"tag": "op",
-"time": "open",
-"b": [
-{
-"k": "meta2",
-"l": "Blocks + placeholders",
-"body": "• Urban Group brokerage switch: all DR content stays CTA-free until it closes.\n• Dominican counsel sign-off: the CONFOTUR video is produced and held.\n• PMAR September report: expected around Oct 9.\n• Bid4Assets Oct 29 sheriff-sale listings + Legal Reporter ads: PIR Ep. 03.\n• Decision: does F&R name a third-party roaster's product? The episodes are written generically until Alexa decides.\n• Placeholders to fill before publishing: [PILLAR URL] · [LEDGER 10/4 URL] · [LEDGER 9/27 URL] · [LEDGER 9/20 URL] · [ORDINANCE SECTION]."
-}
-]
-},
-{
-"id": "skipped",
-"t": "Optional · skipped · monitoring (for reference — not tasks)",
-"tag": "op",
-"time": "note",
-"b": [
-{
-"k": "meta2",
-"l": "Optional (not produced, available on request)",
-"body": "Approved slate did not include these. Not produced, and available on request:\n• [07] Pocono al Día: the payment argument retold fresh in Dominican Spanish (\"el precio no bajó, tu presupuesto sí\").\n• [02] LinkedIn Market Signal: the operator read on comps underwritten under a different rate.\n• [04] DR Spanish CONFOTUR: would double the counsel review.\n• [05] Landmark GBP: a Carbon County event is a weak signal on a Monroe-anchored profile.\n• [02] Personal FB EN: a neighborly first-person PSA version of the rate story."
-},
-{
-"k": "meta2",
-"l": "Skipped with reason",
-"body": "• [03] Car Confession EN: [SKIP THIS WEEK — ran last week; this argument is numbers-first and works better as a graphic]\n• [02] Hub Video EN: [SKIP THIS WEEK — would duplicate the carousel with no distinct platform purpose]\n• DR Veteran (03M/05B): [SKIP THIS WEEK — last week's DR video covered the VA foreign-property rule and DR financing; banked for week 3]\n• Commission-litigation update: [SKIP THIS WEEK — no consumer-facing change]\n• Regional price-cut share (21.2%) and delinquency (1.5%): [SKIP — unidentified source, not publishable]\n• Realtor.com/Redfin county figures: [SKIP — Tier 2–4 for county data; MLS only]\n• VA \"$84/month advantage\": [SKIP — rests on the lowest of four conflicting quotes]\n• Mini Me: [SKIP THIS WEEK — no real Realtor moment surfaced; the rate story is too serious for Mini Me]\n• F&R cigar pairing: [MOVED — F&R never forces a cigar tie-in; the pairing runs as @its.myash Weekend Smoke]"
-},
-{
-"k": "meta2",
-"l": "Monitoring + monthly angle bank",
-"body": "Monitoring:\n• [06] Veteran PA: evergreen angle \"0% down doesn't mean zero cash,\" with PHFA Keystone Advantage (up to 4%, capped at $6,000, a 0% second mortgage, not a grant). Waiting for a real development and a resolved HB 1257 status.\n• 02A seller line: \"The next Pocono bargain comes from the owner who priced a second home for 2023.\" Banked; overlaps the 9/27 thesis if run now.\n• Nov 2, 2026 appraisal form change for new Fannie/Freddie appraisals: seller-prep piece for mid-to-late October. Confirm with PAR/GSE guidance.\n• Middle Smithfield, 1008 Sand Hill Road (68 units requested vs. 27 max in C-1): pending, watch the hearing calendar.\n• Monroe County reassessment: no new development.\n• @its.myash build-in-public brand series: Alexa decides what's public.\n[15] Monthly content queue (first week of October):\n• Week 2 (Oct 11): Ledger rebuilt on the September MLS report. Seller angle if the data supports it: \"Priced for 2023, carrying it through 2026.\" Format: Ledger + GBP; Car Confession eligible again. Hook direction: \"The listing didn't fail. It was priced for a buyer who left.\"\n• Week 3 (Oct 18): PIR Ep. 03, \"A sheriff-sale opening bid is not the price\" (Oct 29 Bid4Assets sale + the Commonwealth Court tax-sale notice ruling). Plus DR Veteran, \"Three separate decisions: VA benefits, residency, financing\" (03M/05B), as an IG Reel + YouTube, CTA-free.\n• Week 4 (Oct 25): Seller prep around the Nov 2 appraisal form, after GSE confirmation. Format: LinkedIn + GBP.\n• October calendar: Down Syndrome Awareness Month. Run something only if Alexa has something genuine to say. Never a prop."
-}
-]
-},
-{
-"id": "status",
-"t": "Packet status — Pillar / PIR / no-dup / 80-20",
-"tag": "op",
-"time": "note",
-"b": [
-{
-"k": "meta2",
-"l": "Status read",
-"body": "• PILLAR: not in cycle. Every CTA points to [PILLAR URL] / \"Full guide coming soon.\"\n• PIR: [PIR — NONE THIS WEEK]. Ep. 03 (sheriff sale, Oct 29) is banked for the week of Oct 18, pending Bid4Assets listings. The 03M DR cross-border cut is banked with the week-3 DR Veteran piece.\n• NO-DUPLICATION CHECK: GBP and the carousel are adaptations of this week's Ledger, with the same argument and no shared sentences. The 9/20 and 9/27 Ledgers are linked, not re-reported. The CONFOTUR video is its own franchise with no written parent. @its.myash and @fillerandroast are independent; the coffee pairing lives only on @its.myash, and the coffee story lives only on F&R.\n• 80/20 READ: about 85% real estate on alexa.realtor this week. The Landmark and the lifestyle card carry the personal and community lane. Nothing forced.\n• FILE: Weekly-Production-Packet-Oct4-Oct10.pdf"
-}
-]
-}
-]
-}
-];
+document.getElementById('thesis').innerHTML = '<b>This week\'s thesis</b> · ' + esc(DATA.thesis.replace(/^This week's seller story: /,''));
+for (const k of Object.keys(DATA.before)) document.getElementById('b-' + k).innerHTML = DATA.before[k];
 
-/* ---- STATE / SYNC ---- */
-let state={}; let sb=null; let synced=false;
-const K=id=>WEEK_KEY+":"+id;
-const allIds=DAYS.flatMap(d=>d.tasks.map(t=>K(t.id)));
-function loadLocal(){try{return JSON.parse(localStorage.getItem("roast:"+WEEK_KEY)||"{}");}catch(e){return{};}}
-function saveLocal(){try{localStorage.setItem("roast:"+WEEK_KEY,JSON.stringify(state));}catch(e){}}
-async function initSync(){
-  if(!SUPABASE_KEY||!window.supabase){badge(false);state=loadLocal();render();return;}
-  try{
-    sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-    const{data,error}=await sb.from(TABLE).select("key,done").in("key",allIds);
-    if(error)throw error;
-    const remote={};(data||[]).forEach(r=>{remote[r.key.split(":").slice(1).join(":")]=r.done;});
-    state=Object.assign(loadLocal(),remote);synced=true;badge(true);
-  }catch(e){synced=false;badge(false);state=loadLocal();}
-  render();
-}
-async function pushOne(id,val){saveLocal();
-  if(sb&&synced){try{await sb.from(TABLE).upsert({key:K(id),done:val,week:WEEK_KEY},{onConflict:"key"});}catch(e){badge(false);synced=false;}}}
-function badge(ok){const b=document.getElementById("syncBadge");b.className="sync "+(ok?"ok":"local");b.textContent=ok?"● synced":"● local";}
-
-/* ---- RENDER ---- */
-const openTasks=new Set();
 function render(){
-  const app=document.getElementById("app");app.innerHTML="";
-  DAYS.forEach((d,di)=>{
-    const done=d.tasks.filter(t=>state[t.id]).length;
-    const day=document.createElement("div");day.className="day";
-    day.innerHTML=`<div class="dhead" data-di="${di}">
-      <div><h2>${d.day} <span style="color:var(--mut);font-weight:400;">· ${d.date}</span></h2>
-      <div class="dsub">${d.sub}</div></div>
-      <span class="dcount">${done}/${d.tasks.length}</span></div>
-      <div class="dbody" id="body-${di}"></div>`;
-    const body=day.querySelector(".dbody");
-    d.tasks.forEach(t=>{
-      const on=!!state[t.id],op=openTasks.has(t.id);
-      const task=document.createElement("div");
-      task.className="task"+(on?" done":"")+(op?" open":"");
-      let blocks="";
-      (t.b||[]).forEach((bl,bi)=>{
-        blocks+=`<div class="blk ${bl.k}"><div class="bh"><span class="lbl">${bl.l}</span>
-          <button class="cpy" data-t="${t.id}" data-b="${bi}">copy</button></div>
-          <div class="body" id="bd-${t.id}-${bi}"></div></div>`;
+  const root = document.getElementById('days'); root.innerHTML = '';
+  let total = 0, done = 0;
+  DATA.days.forEach(d => {
+    const day = document.createElement('div'); day.className = 'day';
+    const dDone = d.tasks.filter((t,i) => state[d.id + ':' + i]).length;
+    total += d.tasks.length; done += dDone;
+    day.innerHTML = `<div class="dh"><span class="dt">${d.day} · ${d.date}</span><span class="ds">${esc(d.sub)}</span><span class="dc ${dDone===d.tasks.length?'full':''}">${dDone}/${d.tasks.length}</span></div><div class="db"></div>`;
+    day.querySelector('.dh').onclick = () => day.classList.toggle('collapsed');
+    const db = day.querySelector('.db');
+    d.tasks.forEach((t,i) => {
+      const id = d.id + ':' + i, on = !!state[id];
+      const task = document.createElement('div'); task.className = 'task' + (on ? ' done' : '');
+      const pills = (t.new ? '<span class="pill new">new</span>' : '') + `<span class="pill ${t.tag}">${t.tag}</span><span class="pill">${esc(t.when)}</span><span class="pill">${t.blocks.length} block${t.blocks.length>1?'s':''}</span>`;
+      task.innerHTML = `<div class="tr"><div class="cb ${on?'on':''}" role="checkbox" aria-checked="${on}" tabindex="0"></div><div class="tm"><div class="tt">${esc(t.t)}</div><div class="meta">${pills}</div></div><span class="chev">▸</span></div><div class="tc"></div>`;
+      const tc = task.querySelector('.tc');
+      t.blocks.forEach(b => {
+        const blk = document.createElement('div'); blk.className = 'blk';
+        blk.innerHTML = `<div class="bh"><span class="bl ${b.kind}">${esc(b.label)}</span><button class="btn copy">copy</button></div><div class="bt ${b.html?'html':''}"></div>`;
+        const bt = blk.querySelector('.bt');
+        if (b.html) bt.innerHTML = b.html; else bt.textContent = b.text;
+        const btn = blk.querySelector('.copy');
+        btn.onclick = e => {
+          e.stopPropagation();
+          const txt = b.text || bt.innerText;
+          const ok = () => { btn.textContent = 'copied ✓'; setTimeout(() => btn.textContent = 'copy', 1200); };
+          if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok).catch(() => fallback(txt, ok)); else fallback(txt, ok);
+        };
+        tc.appendChild(blk);
       });
-      const newPill=t.new?`<span class="pill new">new</span>`:"";
-      task.innerHTML=`<div class="trow">
-        <div class="cb ${on?'on':''}" data-id="${t.id}"></div>
-        <div class="tt" data-open="${t.id}"><div class="ttitle">${t.t}</div>
-        <div class="tmeta">${newPill}<span class="pill ${t.tag}">${t.tag}</span>
-        <span class="pill time">${t.time}</span>
-        <span class="pill">${(t.b||[]).length} block${(t.b||[]).length===1?'':'s'}</span></div></div>
-        <div class="chev" data-open="${t.id}">▸</div></div>
-        <div class="content">${blocks}</div>`;
-      body.appendChild(task);
-      (t.b||[]).forEach((bl,bi)=>{const el=task.querySelector("#bd-"+t.id+"-"+bi);if(el)el.textContent=bl.body;});
+      const toggleOpen = () => task.classList.toggle('open');
+      task.querySelector('.tm').onclick = toggleOpen;
+      task.querySelector('.chev').onclick = toggleOpen;
+      const cb = task.querySelector('.cb');
+      const flip = () => { state[id] = !state[id]; if (!state[id]) delete state[id]; save(); const open = [...document.querySelectorAll('.task.open .tt')].map(x=>x.textContent); const col=[...document.querySelectorAll('.day.collapsed .dt')].map(x=>x.textContent); render(); restore(open,col); };
+      cb.onclick = flip; cb.onkeydown = e => { if (e.key===' '||e.key==='Enter'){ e.preventDefault(); flip(); } };
+      db.appendChild(task);
     });
-    app.appendChild(day);
+    root.appendChild(day);
   });
-  bind();progress();
+  document.getElementById('count').textContent = `${done} / ${total} done`;
+  document.getElementById('barfill').style.width = total ? (100*done/total) + '%' : '0';
 }
-function bind(){
-  document.querySelectorAll(".cb").forEach(cb=>cb.onclick=e=>{e.stopPropagation();const id=cb.dataset.id;state[id]=!state[id];pushOne(id,state[id]);render();});
-  document.querySelectorAll("[data-open]").forEach(el=>el.onclick=e=>{e.stopPropagation();const id=el.dataset.open;openTasks.has(id)?openTasks.delete(id):openTasks.add(id);render();});
-  document.querySelectorAll(".dhead").forEach(h=>h.onclick=e=>{if(e.target.closest(".cb")||e.target.closest("[data-open]"))return;document.getElementById("body-"+h.dataset.di).classList.toggle("collapsed");});
-  document.querySelectorAll(".cpy").forEach(btn=>btn.onclick=e=>{e.stopPropagation();
-    const t=btn.dataset.t,bi=+btn.dataset.b;const task=DAYS.flatMap(d=>d.tasks).find(x=>x.id===t);
-    const text=task.b[bi].body;
-    navigator.clipboard.writeText(text).then(()=>{btn.textContent="copied ✓";btn.classList.add("done");setTimeout(()=>{btn.textContent="copy";btn.classList.remove("done");},1200);}).catch(()=>{btn.textContent="⌘C";});
-  });
+function restore(open, col){
+  document.querySelectorAll('.task').forEach(t => { if (open.includes(t.querySelector('.tt').textContent)) t.classList.add('open'); });
+  document.querySelectorAll('.day').forEach(d => { if (col.includes(d.querySelector('.dt').textContent)) d.classList.add('collapsed'); });
 }
-function progress(){
-  const total=DAYS.flatMap(d=>d.tasks).length;
-  const done=DAYS.flatMap(d=>d.tasks).filter(t=>state[t.id]).length;
-  document.getElementById("fill").style.width=(total?done/total*100:0)+"%";
-  document.getElementById("pctText").textContent=`${done} / ${total} done`;
+function fallback(txt, ok){
+  const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); ok(); } catch (e) {} ta.remove();
 }
-document.getElementById("resetBtn").onclick=async()=>{
-  if(!confirm("Reset all checks for this week?"))return;
-  state={};saveLocal();
-  if(sb&&synced){try{await sb.from(TABLE).delete().in("key",allIds);}catch(e){}}
-  render();
+document.getElementById('collapse').onclick = () => {
+  const days = [...document.querySelectorAll('.day')]; const allC = days.every(d => d.classList.contains('collapsed'));
+  days.forEach(d => d.classList.toggle('collapsed', !allC));
+  document.getElementById('collapse').textContent = allC ? 'collapse days' : 'expand days';
 };
-document.getElementById("collapseAll").onclick=()=>document.querySelectorAll(".dbody").forEach(b=>b.classList.add("collapsed"));
-initSync();
+document.getElementById('reset').onclick = () => { if (confirm('Clear all checks for this week?')) { state = {}; save(); render(); } };
+render();
 </script>
 </body>
 </html>
