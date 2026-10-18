@@ -31,4 +31,4 @@ var R = (function(){
   }
   return { get:get, set:set, toast:toast, copy:copy, weekStart:weekStart, addDays:addDays, fmt:fmt, iso:iso, esc:esc, exportAll:exportAll, importAll:importAll };
 })();
-(function(){ try { var a = document.querySelector('.nav a[aria-current="page"]'); if (a && a.scrollIntoView) a.parentElement.scrollLeft = a.offsetLeft - 80; } catch(e){} })();
+(function(){ try { var a = document.querySelector('.nav a[aria-current="page"]'); if (a){ var p = a.parentElement; if (a.offsetLeft + a.offsetWidth > p.clientWidth) p.scrollLeft = a.offsetLeft - 80; } } catch(e){} })();

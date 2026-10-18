@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ROAST Socials</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>
+.acctabs{display:flex;gap:0;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.acctabs::-webkit-scrollbar{display:none}
+.acctabs button{background:none;color:var(--muted);border:0;border-bottom:3px solid transparent;border-radius:0;padding:12px 16px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:none;display:grid;gap:2px;text-align:left}
+.acctabs button b{font-family:var(--display);font-size:20px;font-weight:700;letter-spacing:0;color:inherit}
+.acctabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--red)}
+.acctabs .cnt{font-size:11px;color:var(--muted)}
+.job{font-family:var(--display);font-style:italic;font-size:19px;color:var(--red)}
+.platnav{display:flex;flex-wrap:wrap;gap:6px}
+.platnav a{font-family:var(--mono);font-size:11px;text-decoration:none;border:1px solid var(--line);background:var(--surface);padding:5px 9px;border-radius:3px}
+.platnav a b{color:var(--red);font-weight:500}
+.plat{display:grid;gap:12px;scroll-margin-top:70px}
+.plathead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--green);padding-bottom:6px}
+.plathead h2{font-size:22px}
+.plathead .rule{font-size:13px;color:var(--muted);flex:1;min-width:200px}
+.post{background:var(--surface);border:1px solid var(--line);border-radius:4px;display:grid;min-width:0}
+.post.done{opacity:.6}
+.ph{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:12px;align-items:start;padding:12px 14px;cursor:pointer}
+.cb{width:20px;height:20px;border:1.5px solid var(--ink);border-radius:3px;background:var(--surface);margin-top:2px;cursor:pointer}
+.cb.on{background:var(--green);border-color:var(--green)}
+.cb.on::after{content:"✓";display:block;text-align:center;line-height:17px;font-size:13px;color:var(--ink);font-weight:700}
+.when{font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:.06em;text-transform:uppercase}
+.pt{font-weight:600;margin-top:2px}
+.post.done .pt{text-decoration:line-through}
+.chev{color:var(--muted);transition:transform .15s;font-size:14px;padding-top:2px}
+.post.open .chev{transform:rotate(90deg)}
+.pb{display:none;padding:0 14px 14px 48px;gap:12px}
+.post.open .pb{display:grid}
+@media (max-width:520px){.pb{padding-left:14px}}
+.blk{display:grid;gap:6px;min-width:0}
+.bh{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.bl{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.bt{font-size:14px;white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:12px;overflow-wrap:anywhere;min-width:0}
+.bt.html{white-space:normal;overflow-x:auto}
+.copybtn{padding:4px 8px;font-size:10px}
+.also{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.kw{font-family:var(--mono);font-size:11px;background:var(--green);color:var(--ink);padding:1px 6px;border-radius:3px}
+.weekpick{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="logo" href="index.html">ROAST //</a>
+  <a class="l" href="index.html">Home</a>
+  <a class="l" href="system.html">System</a>
+  <a class="l" href="socials.html" aria-current="page">Socials</a>
+  <a class="l" href="scroll.html">Weekly Scroll</a>
+  <a class="l" href="research.html">Research</a>
+  <a class="l" href="pipeline.html">Seller Pipeline</a>
+</div></nav>
+
+<main class="wrap">
+<header style="display:grid;gap:12px">
+  <span class="eyebrow" id="label">This week, by account</span>
+  <h1>What goes out, <span class="tilt">where.</span></h1>
+  <p class="lede">Every post for the week, sorted by account and platform. Tap a post to open its script and caption. Check it off when it's live. Checkmarks stay in sync with the Weekly Scroll.</p>
+</header>
+
+<section>
+  <div class="acctabs" role="tablist" id="tabs"></div>
+  <div class="weekpick"><p class="job" id="job"></p><span class="mono muted" id="progress"></span></div>
+  <div class="platnav" id="platnav" aria-label="Jump to platform"></div>
+  <div id="panel" style="display:grid;gap:32px"></div>
+</section>
+
+<footer><span>Alexa Sanchez · Smart Way America Realty · PA License #RS326383</span><span>(570) 688-8147 · Alexa@alexasanchez.net</span></footer>
+</main>
+
+<script src="common.js"></script>
+<script src="week.js"></script>
+<script>
+var ACCTS = [
+  { id:'realtor', name:'@alexa.realtor', job:'Seller leads in Monroe County. Every post points to one door.' },
+  { id:'myash', name:'@its.myash', job:'Followers, the cigar brand and Nell\'s Social. No real estate CTA.' },
+  { id:'fnr', name:'@fillerandroast', job:'Coffee sales at Nell\'s. Instagram only.' }
+];
+/* Platform order + the one rule to remember on each */
+var PLATS = {
+  realtor: [
+    ['ig','Instagram Reels & Posts','One keyword per piece (VALUE · NET · BRIDGE · PAYMENT) + license block.'],
+    ['stories','Instagram Stories','Sticker first, then DM everyone who responds.'],
+    ['youtube','YouTube','Full AEO description on every upload.'],
+    ['tiktok','TikTok','Native caption. Never paste the IG one.'],
+    ['blog','Blog · The Pocono Ledger','Written first. Everything market adapts it.'],
+    ['gbp','Google Business','No hashtags, real photo, license block.'],
+    ['nextdoor','Nextdoor','Neighborly. No pitch, no keyword, no hashtags.'],
+    ['linkedin','LinkedIn','Operator read, not a repost.'],
+    ['fbbiz','Facebook Business',''],
+    ['fbpersonal','Personal Facebook','EN + ES, written fresh.'],
+    ['web','Website gallery cards','Three lanes, never mixed.'],
+    ['outreach','Farm / sphere sends','Direct texts and emails. Not public.']
+  ],
+  myash: [['ig','Instagram',''],['tiktok','TikTok','One point, no intro.'],['youtube','YouTube','']],
+  fnr: [['ig','Instagram','Tue + Fri. No faces, no license block.']]
+};
+
+/* Use explicit fields from week.js when present; otherwise infer from the task. */
+function acctOf(t){
+  if (t.acct) return t.acct;
+  if (t.tag === 'coffee') return 'fnr';
+  if (t.tag === 'cigar') return 'myash';
+  if (t.tag === 'status' && !/farm|sphere/i.test(t.t)) return null;
+  if (/decision|admin|read/i.test(t.when)) return null;
+  return 'realtor';
+}
+function platsOf(t){
+  if (t.platforms) return t.platforms;
+  var w = (t.when + ' ' + t.t), p = [];
+  if (/farm|sphere/i.test(t.t)) return ['outreach'];
+  if (/Stories/i.test(t.when) || /^\[ST\]/.test(t.t)) return ['stories'];
+  if (/blog|Ledger/i.test(t.when) || /^\[01\]/.test(t.t)) p.push('blog');
+  if (/Nextdoor/i.test(t.when)) p.push('nextdoor');
+  if (/GBP/i.test(t.when)) p.push('gbp');
+  if (/LinkedIn/i.test(t.when)) p.push('linkedin');
+  if (/FB Business/i.test(t.when)) p.push('fbbiz');
+  if (/Personal FB/i.test(t.when)) p.push('fbpersonal');
+  if (/\bIG\b|Instagram/i.test(t.when)) p.push('ig');
+  if (/Shorts|YouTube|\bYT\b/i.test(t.when)) p.push('youtube');
+  if (/TikTok/i.test(t.when)) p.push('tiktok');
+  if (/gallery/i.test(w)) p.push('web');
+  return p.length ? p : ['ig'];
+}
+/* A block labeled for one platform only shows under that platform. */
+var BLOCK_PLAT = [[/YouTube/i,'youtube'],[/TikTok/i,'tiktok'],[/Instagram|IG caption/i,'ig']];
+function blocksFor(t, plat){
+  return t.blocks.filter(function(b){
+    for (var i = 0; i < BLOCK_PLAT.length; i++){ if (BLOCK_PLAT[i][0].test(b.label)) return BLOCK_PLAT[i][1] === plat; }
+    return true;
+  });
+}
+function timeOf(t){ var m = t.when.split('·')[0].trim(); return /\d|AM|PM|morning|after|before/i.test(m) ? m : ''; }
+function kwOf(t){ var m = t.t.match(/\b(VALUE|NET|BRIDGE|PAYMENT|CASA)\b/g); return m ? m.filter(function(v,i,a){ return a.indexOf(v) === i; }) : []; }
+var PNAME = {}; Object.keys(PLATS).forEach(function(a){ PLATS[a].forEach(function(p){ PNAME[a + ':' + p[0]] = p[1]; }); });
+
+if (typeof WEEK === 'undefined'){
+  document.getElementById('panel').innerHTML = '<div class="empty">No week.js yet. Sunday\'s Stage 2 produces it.</div>';
+} else {
+  var KEY = 'roast:' + WEEK.weekOf;
+  var state = R.get(KEY, {});
+  document.getElementById('label').textContent = 'This week, by account · ' + WEEK.label;
+
+  /* Flatten: every (task × platform) for each account */
+  var items = { realtor: [], myash: [], fnr: [] };
+  WEEK.days.forEach(function(d){
+    d.tasks.forEach(function(t, i){
+      var a = acctOf(t); if (!a) return;
+      var ps = platsOf(t);
+      ps.forEach(function(p){ items[a].push({ d:d, t:t, id:d.id + ':' + i, plat:p, others: ps.filter(function(x){ return x !== p; }) }); });
+    });
+  });
+
+  var current = 'realtor', openSet = {};
+  try { var saved = localStorage.getItem('roast_socials_tab'); if (saved && items[saved]) current = saved; } catch(e){}
+  if (location.hash && items[location.hash.slice(1)]) current = location.hash.slice(1);
+
+  function uniqueCount(a){ var s = {}; items[a].forEach(function(x){ s[x.id] = 1; }); return Object.keys(s).length; }
+  function renderTabs(){
+    document.getElementById('tabs').innerHTML = ACCTS.map(function(a){
+      return '<button type="button" role="tab" aria-selected="' + (a.id === current) + '" data-a="' + a.id + '"><b>' + a.name + '</b><span class="cnt">' + uniqueCount(a.id) + (uniqueCount(a.id) === 1 ? ' piece' : ' pieces') + ' this week</span></button>';
+    }).join('');
+  }
+  document.getElementById('tabs').addEventListener('click', function(e){
+    var b = e.target.closest('[data-a]'); if (!b) return; current = b.getAttribute('data-a');
+    try { localStorage.setItem('roast_socials_tab', current); } catch(err){}
+    renderTabs(); render();
+  });
+
+  function render(){
+    var acct = ACCTS.filter(function(a){ return a.id === current; })[0];
+    document.getElementById('job').textContent = acct.job;
+    var list = items[current];
+    var ids = {}; list.forEach(function(x){ ids[x.id] = 1; }); var all = Object.keys(ids);
+    var done = all.filter(function(id){ return state[id]; }).length;
+    document.getElementById('progress').textContent = done + ' of ' + all.length + ' live';
+
+    var plats = PLATS[current].filter(function(p){ return list.some(function(x){ return x.plat === p[0]; }); });
+    var nav = document.getElementById('platnav');
+    nav.innerHTML = plats.map(function(p){ return '<a href="#pl-' + current + '-' + p[0] + '">' + p[1] + ' <b>' + list.filter(function(x){ return x.plat === p[0]; }).length + '</b></a>'; }).join('');
+
+    var panel = document.getElementById('panel'); panel.innerHTML = '';
+    if (!plats.length){ panel.innerHTML = '<div class="empty">Nothing approved for this account this week.</div>'; return; }
+    plats.forEach(function(p){
+      var sec = document.createElement('div'); sec.className = 'plat'; sec.id = 'pl-' + current + '-' + p[0];
+      sec.innerHTML = '<div class="plathead"><h2>' + p[1] + '</h2><span class="rule">' + R.esc(p[2]) + '</span></div>';
+      list.filter(function(x){ return x.plat === p[0]; }).forEach(function(x){
+        var on = !!state[x.id], t = x.t;
+        var okey = x.id + '|' + p[0]; var post = document.createElement('div'); post.className = 'post' + (on ? ' done' : '') + (openSet[okey] ? ' open' : '');
+        var time = timeOf(t), kws = kwOf(t);
+        var also = x.others.length ? '<span class="also">Also on: ' + x.others.map(function(o){ return PNAME[current + ':' + o] || o; }).join(', ') + '</span>' : '';
+        post.innerHTML = '<div class="ph"><div class="cb' + (on ? ' on' : '') + '" role="checkbox" tabindex="0" aria-checked="' + on + '" aria-label="Mark live"></div>' +
+          '<div><span class="when">' + R.esc(x.d.day + ' ' + x.d.date) + (time ? ' · ' + R.esc(time) : '') + '</span><div class="pt">' + R.esc(t.t) + '</div><div class="meta" style="margin-top:6px">' + kws.map(function(k){ return '<span class="kw">' + k + '</span>'; }).join('') + also + '</div></div>' +
+          '<span class="chev" aria-hidden="true">▸</span></div><div class="pb"></div>';
+        var pb = post.querySelector('.pb');
+        blocksFor(t, p[0]).forEach(function(b){
+          var blk = document.createElement('div'); blk.className = 'blk';
+          blk.innerHTML = '<div class="bh"><span class="bl">' + R.esc(b.label) + '</span><button type="button" class="ghost copybtn">Copy</button></div><div class="bt' + (b.html ? ' html' : '') + '"></div>';
+          var bt = blk.querySelector('.bt'); if (b.html) bt.innerHTML = b.html; else bt.textContent = b.text;
+          blk.querySelector('.copybtn').onclick = function(e){ e.stopPropagation(); R.copy(b.text || bt.innerText, this); };
+          pb.appendChild(blk);
+        });
+        var cb = post.querySelector('.cb');
+        var flip = function(e){ e.stopPropagation(); if (state[x.id]) delete state[x.id]; else state[x.id] = true; R.set(KEY, state); render(); };
+        cb.onclick = flip; cb.onkeydown = function(e){ if (e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); flip(e); } };
+        post.querySelector('.ph').onclick = function(){ post.classList.toggle('open'); openSet[okey] = post.classList.contains('open'); };
+        sec.appendChild(post);
+      });
+      panel.appendChild(sec);
+    });
+  }
+  renderTabs(); render();
+}
+</script>
+</body>
+</html>
