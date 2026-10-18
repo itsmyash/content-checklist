@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ROAST System v9</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>
+.doors{display:flex;flex-wrap:wrap;gap:8px}
+.door{display:flex;align-items:center;gap:8px;background:var(--surface);border:1.5px solid var(--ink);padding:8px 12px;font-weight:600}
+.door b{font-family:var(--mono);font-size:11px;color:var(--red)}
+.loop{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1.5px solid var(--ink);background:var(--surface)}
+.step{padding:16px;display:grid;gap:8px;align-content:start;border-right:1px solid var(--line);min-width:0}
+.step:last-child{border-right:0}
+.step .n{font-family:var(--display);font-size:34px;line-height:1;color:var(--red)}
+.step.gate{background:var(--ink);color:var(--bg)}
+.step.gate .muted{color:inherit;opacity:.75}
+.step.gate .n{color:var(--green)}
+@media (max-width:760px){.loop{grid-template-columns:1fr 1fr}.step:nth-child(2){border-right:0}.step:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+@media (max-width:440px){.loop{grid-template-columns:1fr}.step{border-right:0;border-bottom:1px solid var(--line)}}
+.fmt{display:grid;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.row .id{font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:2px}
+.row .meta{margin-top:6px}
+.shelf{display:flex;flex-wrap:wrap;gap:8px}
+.shelf span{border:1px dashed var(--muted);padding:6px 10px;font-size:13px}
+.rule{display:grid;gap:4px;padding:10px 0;border-bottom:1px solid var(--line)}
+.kw{font-family:var(--display);font-size:22px;letter-spacing:.02em}
+.d{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;background:var(--surface);border:1px solid var(--line);padding:12px 14px}
+.flag{font-family:var(--mono);font-size:11px;background:var(--red);color:#fff;padding:2px 7px}
+.flag.done{background:var(--green);color:var(--green-ink)}
+.weekscroll table{min-width:640px}
+.weekscroll td .c{color:var(--muted)}
+.weekscroll td span{display:block;margin-bottom:4px}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="logo" href="index.html">ROAST <span>//</span></a>
+  <a class="l" href="index.html">Home</a>
+  <a class="l" href="system.html" aria-current="page">System</a>
+  <a class="l" href="scroll.html">Weekly Scroll</a>
+  <a class="l" href="research.html">Research</a>
+  <a class="l" href="pipeline.html">Seller Pipeline</a>
+</div></nav>
+
+<main class="wrap">
+
+<header style="display:grid;gap:18px">
+  <span class="eyebrow">ROAST // Weekly Operating System // v9 · Oct 2026</span>
+  <h1>Every piece earns a <span class="tilt">seller lead</span> or it doesn't ship.</h1>
+  <p class="lede">The #1 goal is Pocono seller listings. Thursday gathers the research. Sunday counts what worked, picks the week's one argument, and produces the smallest set that sends a Monroe County homeowner to one of four doors.</p>
+  <div class="doors" aria-label="What counts as a lead">
+    <div class="door"><b>01</b> DM</div>
+    <div class="door"><b>02</b> Home value request</div>
+    <div class="door"><b>03</b> Pocono Insider signup</div>
+    <div class="door"><b>04</b> Call (570) 688-8147</div>
+  </div>
+  <p class="note">A comment isn't a lead until there's a phone number or email and a human follow-up.</p>
+</header>
+
+<section>
+  <div class="sechead"><h2>The Sunday loop</h2><span class="eyebrow">In order, every week</span></div>
+  <div class="loop">
+    <div class="step"><span class="n">1</span><h3>Count last week</h3><p class="muted">Copy the results block from Home. Every lead comes with its piece and door. If a format brings no leads in 4 weeks, it goes on the shelf.</p></div>
+    <div class="step"><span class="n">2</span><h3>Assess</h3><p class="muted">Name the central story and rank 3–5 angles by argument. Mark each one produce, optional, or skip, with a reason. Every "produce" names its door and keyword. Then stop.</p></div>
+    <div class="step gate"><span class="n">3</span><h3>Alexa approves</h3><p class="muted">Nothing gets written before this. Approve by name and skip everything else.</p></div>
+    <div class="step"><span class="n">4</span><h3>Produce</h3><p class="muted">Write the Ledger first. The output is the packet plus one new <span class="mono">week.js</span>, which powers the scroll.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="sechead"><h2>DM keywords</h2><span class="eyebrow">Comment-to-DM · one per IG piece</span></div>
+  <div class="grid2">
+    <div class="panel"><span class="kw">VALUE</span><p>A one-on-one value review within 24 hours. Never post a number in public.</p><p class="muted" style="font-size:13px">Ask: "Thinking about selling in the next 12 months, or just want to know where you stand?"</p></div>
+    <div class="panel"><span class="kw">NET</span><p>A side-by-side net sheet: price cut vs. seller credit or buydown, using a lender quote, within 24 hours.</p><p class="muted" style="font-size:13px">Ask: "Is the house listed now, or are you getting ready to list?"</p></div>
+    <div class="panel"><span class="kw">PAYMENT</span><p>A real monthly payment estimate with a lender-quoted rate, within 24 hours.</p><p class="muted" style="font-size:13px">Ask: "Are you pre-approved yet, or still early?"</p></div>
+    <div class="panel"><span class="kw">BRIDGE</span><p>Sell here, buy in the DR. The conversation covers the Pocono sale side: value, timing, net proceeds.</p><p class="muted" style="font-size:13px">DR referral language stays off until Urban Group disclosures are signed off. CASA is next, once that happens.</p></div>
+  </div>
+</section>
+
+<div class="two">
+  <section>
+    <div class="sechead"><h2>@alexa.realtor formats</h2><span class="eyebrow">6 core · pick, don't fill</span></div>
+    <div class="fmt">
+      <div class="row"><span class="id">01</span><div><h3>The Pocono Ledger</h3><p class="muted">The flagship and the market source of truth. Written only, on the blog. The structure is locked: numbers, what changed, township spotlight, what sellers should do, what buyers should do, sources.</p><div class="meta"><span class="tag">Blog</span><span class="tag">Every week</span><span class="tag lead">VALUE</span></div></div></div>
+      <div class="row"><span class="id">02</span><div><h3>Ledger cut</h3><p class="muted">Pick at most 2: GBP market update, seller reel, hub video, LinkedIn, or FB. An adaptation of the Ledger that never re-reports it.</p><div class="meta"><span class="tag">GBP Mon</span><span class="tag">IG / YT / LI</span><span class="tag lead">VALUE · NET · PAYMENT</span></div></div></div>
+      <div class="row"><span class="id">03</span><div><h3>Car Confession</h3><p class="muted">20 seconds or less, one seller misconception, from the car. Pair it with a Story sticker so responders get a DM.</p><div class="meta"><span class="tag">IG + YT Shorts</span><span class="tag cond">When the argument is sharp</span><span class="tag lead">DM</span></div></div></div>
+      <div class="row"><span class="id">05</span><div><h3>Landmark Spotlight</h3><p class="muted">Standing winter output. One real photo, one citable fact, a lifestyle tie-in. It doubles as Insider content.</p><div class="meta"><span class="tag">Nextdoor Thu</span><span class="tag">IG + YT Fri</span><span class="tag">GBP Sat</span><span class="tag lead">Insider</span></div></div></div>
+      <div class="row"><span class="id">13</span><div><h3>Gallery cards</h3><p class="muted">Three lanes that never mix. Lifestyle is watercolor, Landmark is a real photo, and Listing is a real photo and only when there's new inventory.</p><div class="meta"><span class="tag">Website</span><span class="tag">Weekly</span><span class="tag lead">VALUE</span></div></div></div>
+      <div class="row"><span class="id">PIR</span><div><h3>Property Intelligence Report</h3><p class="muted">A weekly yes/no check: did the research turn up a seller-pain topic (tax sale, pre-foreclosure, probate, permit changes)? Yes means one episode. No means log "none." The episode is about the topic. Never name a property or owner.</p><div class="meta"><span class="tag">YT playlist + IG</span><span class="tag cond">Conditional</span><span class="tag lead">Call</span></div></div></div>
+    </div>
+    <div style="display:grid;gap:8px">
+      <span class="eyebrow">On the shelf: only when the week truly earns it</span>
+      <div class="shelf"><span>04 DR Video (BRIDGE, CTA gated)</span><span>06 Veteran (real development only)</span><span>07 Pocono al Día (Spanish, Wed)</span><span>Mini Me (sparing)</span><span>15 Monthly queue (1st week)</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sechead"><h2>Three accounts</h2><span class="eyebrow">No crossover CTAs</span></div>
+    <div class="panel strong"><span class="eyebrow">@alexa.realtor</span><h3>Seller leads in Monroe County.</h3><p class="muted">Real estate only. Every piece points to one door. Seller-first, plus the Ledger's buyer section.</p></div>
+    <div class="panel"><span class="eyebrow">@its.myash</span><h3>Followers + cigar brand + Nell's Social.</h3><p class="muted">Talking Head, Cigar/Lounge, Weekend Smoke (Fri). No real estate CTA. Operator essays live on alexasanchez.com.</p></div>
+    <div class="panel"><span class="eyebrow">@fillerandroast</span><h3>Coffee sales at Nell's.</h3><p class="muted">Animated story clips, IG only, Tue + Fri. Assessed on its own. No license block.</p></div>
+    <p class="note">Distress and prospecting data never gets published. It lives on the Seller Pipeline page, in your browser only, and never goes in week.js.</p>
+  </section>
+</div>
+
+<section>
+  <div class="sechead"><h2>Fixed slots</h2><span class="eyebrow">Everything else is assessed weekly</span></div>
+  <div class="tscroll weekscroll">
+    <table>
+      <thead><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead>
+      <tbody><tr>
+        <td><span>Count leads</span><span>Assess → approve → produce</span></td>
+        <td><span>Pipeline pull</span><span>Ledger publishes</span><span>GBP market update</span></td>
+        <td><span class="c">Filler &amp; Roast</span></td>
+        <td><span>Recording session</span><span class="c">GBP listing (if inventory)</span><span class="c">Pocono al Día (if earned)</span></td>
+        <td><span>Research run</span><span>Nextdoor Landmark</span><span><b>Pocono Insider sends</b></span></td>
+        <td><span>Landmark IG + YT</span><span class="c">Weekend Smoke · @its.myash</span><span class="c">Filler &amp; Roast</span></td>
+        <td><span>GBP Landmark</span><span>Gallery cards</span></td>
+      </tr></tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="sechead"><h2>Non-negotiables</h2><span class="eyebrow">The short list</span></div>
+  <div class="grid2" style="gap:0 32px">
+    <div class="rule"><h3>Voice</h3><p class="muted">Bronx cadence, direct, one take. Hook in the first 2 seconds, stated as a statement. Banned: "game changer," "dream home," "navigate the market," "in today's ever-changing market," rhetorical questions, generic CTAs.</p></div>
+    <div class="rule"><h3>Accuracy</h3><p class="muted">Never invent stats, rates, law status, or program rules. Every time-sensitive claim goes in the packet's verify table.</p></div>
+    <div class="rule"><h3>One topic, one home</h3><p class="muted">Market goes in the Ledger and everything else adapts it. PIR pulls from research. DR has no written home.</p></div>
+    <div class="rule"><h3>Platform-native</h3><p class="muted">No shared captions. Every video goes to YouTube with a full AEO description. Nextdoor is neighborly: no pitch, no keyword, no hashtags.</p></div>
+    <div class="rule"><h3>GBP</h3><p class="muted">No hashtags, no client names or addresses. Real photos only. License block on every post.</p></div>
+    <div class="rule"><h3>Spanish + privacy</h3><p class="muted">Spanish is written fresh in Dominican cadence, never translated. Clients are buyer/seller + town only.</p></div>
+  </div>
+  <div style="display:grid;gap:8px">
+    <span class="eyebrow">PA license / CTA block: GBP and every PA real estate piece</span>
+    <pre class="block">Alexa Sanchez, REALTOR® · Smart Way America Realty
+PA License #RS326383
+528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301
+(570) 688-8147 · Alexa@alexasanchez.net</pre>
+    <span class="eyebrow">DR block: none yet. The Urban Group switch closed Oct 17. The CTA waits for their disclosures and broker sign-off.</span>
+  </div>
+</section>
+
+<section id="paste">
+  <div class="sechead"><h2>Paste lines</h2><span class="eyebrow">For the Claude Project</span></div>
+  <div class="grid2">
+    <div style="display:grid;gap:8px;min-width:0">
+      <div class="copyhead"><span class="eyebrow">Kickoff · above the research</span><button type="button" data-copy="k1">Copy</button></div>
+      <pre class="block" id="k1">New ROAST week — [WEEK OF]. First week of month? [Y/N].
+[Paste last week's results block from Home]
+New active inventory? [list / SKIP].
+Alexa's read: [one or two lines from the ground, optional].
+Run STAGE 1 ONLY: assess the research below, rank angles by argument, name the door + keyword for each "produce." Do NOT write content. Stop at the approval gate.</pre>
+    </div>
+    <div style="display:grid;gap:8px;min-width:0">
+      <div class="copyhead"><span class="eyebrow">Approval · triggers Stage 2</span><button type="button" data-copy="k2">Copy</button></div>
+      <pre class="block" id="k2">Approved. Produce: [named pieces]. Skip the rest. Ledger first. Then give me the packet AND a new week.js for the scroll (same schema as last week, weekOf = this Sunday's date, no prospecting data).</pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sechead"><h2>Still open</h2><span class="eyebrow">Your call</span></div>
+  <div style="display:grid;gap:10px">
+    <div class="d"><span class="flag done">SET</span><p><b>Home value door.</b> The VALUE keyword sends a DM that leads to a value review within 24 hours.</p></div>
+    <div class="d"><span class="flag">CONFIRM</span><p><b>Comment-to-DM tool.</b> Check that it's live with all four keywords.</p></div>
+    <div class="d"><span class="flag">DECIDE</span><p><b>The Pillar.</b> It's still a placeholder link. Either build it or point those CTAs to VALUE.</p></div>
+    <div class="d"><span class="flag">DECIDE</span><p><b>Filler &amp; Roast.</b> Active 2x/week, or one post a month? This page assumes 2x/week.</p></div>
+    <div class="d"><span class="flag">ADD</span><p><b>Brokerage office phone.</b> 49 Pa. Code §35.305 requires the broker's name and phone. Confirm whether Smart Way's office line belongs in the block.</p></div>
+  </div>
+</section>
+
+<details>
+  <summary>Reference: what changed from v8</summary>
+  <div class="in tscroll">
+    <table style="min-width:520px">
+      <thead><tr><th>Item</th><th>v8</th><th>v9</th></tr></thead>
+      <tbody>
+        <tr><td>System goal</td><td>AEO/SEO discipline</td><td>Seller leads. AEO is still a standard on every piece.</td></tr>
+        <tr><td>Lead tracking</td><td>None</td><td>Home scoreboard + Sunday step 1 + DM keywords</td></tr>
+        <tr><td>Thursday prompts</td><td>6 weekly + 5 monthly</td><td>4 weekly + 1 merged monthly + on-demand seller tools</td></tr>
+        <tr><td>Outputs 04, 06, 07, 15, Mini Me</td><td>Format library</td><td>Shelf</td></tr>
+        <tr><td>Outputs 10, 12</td><td>Retired, cards still shown</td><td>Gone</td></tr>
+        <tr><td>Ride With Me</td><td>Paired with PIR, paused</td><td>Back in spring. PIR runs alone until then.</td></tr>
+        <tr><td>Weekly scroll</td><td>Rebuilt HTML file each week</td><td>Only week.js changes</td></tr>
+        <tr><td>Prospecting</td><td>Inside the content dashboard and scroll</td><td>Seller Pipeline page, private to your browser</td></tr>
+        <tr><td>Airtable · Substack · Ashes &amp; Escrows · Cannonball</td><td>Deprecated or lingering</td><td>Removed</td></tr>
+      </tbody>
+    </table>
+  </div>
+</details>
+
+<footer><span>Alexa Sanchez · Smart Way America Realty · PA License #RS326383</span><span>(570) 688-8147 · Alexa@alexasanchez.net</span></footer>
+</main>
+<script src="common.js"></script>
+<script>
+document.querySelectorAll('button[data-copy]').forEach(function(b){ b.addEventListener('click', function(){ R.copy(document.getElementById(b.getAttribute('data-copy')).textContent, b); }); });
+</script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>ROAST Seller Pipeline</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>
+.score{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1.5px solid var(--ink);background:var(--surface)}
+.score div{padding:14px 16px;border-right:1px solid var(--line);display:grid;gap:2px}
+.score div:last-child{border-right:0}
+.score b{font-family:var(--display);font-weight:400;font-size:40px;line-height:1;font-variant-numeric:tabular-nums}
+.score .hot b{color:var(--hot)}
+@media (max-width:600px){.score{grid-template-columns:1fr 1fr}.score div{border-bottom:1px solid var(--line)}}
+.pull{display:grid;border-top:1px solid var(--line)}
+.pull label{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-weight:500;font-size:14px;cursor:pointer}
+.pull input{width:18px;height:18px;margin:0;accent-color:var(--ink)}
+.pull label.done span:nth-child(2){text-decoration:line-through;color:var(--muted)}
+.sigs{display:flex;flex-wrap:wrap;gap:6px}
+.sig{font-family:var(--mono);font-size:11px;letter-spacing:0;text-transform:none;background:transparent;color:var(--ink);border:1px solid var(--line);padding:5px 8px}
+.sig[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.pri{font-family:var(--mono);font-size:11px;padding:2px 7px;white-space:nowrap;color:#fff}
+.pri.hot{background:var(--hot)}.pri.warm{background:var(--warm)}.pri.cold{background:var(--cold)}
+.scorepill{font-family:var(--display);font-size:20px;line-height:1}
+.leads table{min-width:760px}
+.rowbtn{padding:3px 7px;font-size:10px}
+.log{display:grid;gap:8px}
+.le{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--cold);padding:10px 12px;display:grid;gap:2px}
+.le.hot{border-left-color:var(--green)}.le.warm{border-left-color:var(--warm)}
+.private{display:flex;gap:12px;align-items:start;background:var(--ink);color:var(--bg);padding:14px 16px}
+.private b{font-family:var(--mono);font-size:11px;background:var(--red);color:#fff;padding:2px 7px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="logo" href="index.html">ROAST <span>//</span></a>
+  <a class="l" href="index.html">Home</a>
+  <a class="l" href="system.html">System</a>
+  <a class="l" href="scroll.html">Weekly Scroll</a>
+  <a class="l" href="research.html">Research</a>
+  <a class="l" href="pipeline.html" aria-current="page">Seller Pipeline</a>
+</div></nav>
+
+<main class="wrap">
+<header style="display:grid;gap:14px">
+  <span class="eyebrow">Monroe County · stack signals · work the list</span>
+  <h1>Seller pipeline.</h1>
+  <p class="lede">Content brings sellers to you. This page is how you go get them: pull the lists Monday, score every property, and make 20–30 touches a week.</p>
+  <div class="private"><b>PRIVATE</b><p style="font-size:14px">Everything you enter here stays in this browser. None of it is in the public site files, and none of it ever gets published. Back up from Home.</p></div>
+</header>
+
+<section>
+  <div class="score" id="score"></div>
+</section>
+
+<div class="two">
+  <section>
+    <div class="sechead"><h2>Monday pull</h2><span class="eyebrow" id="pullwk"></span></div>
+    <div class="pull" id="pull"></div>
+    <p class="note">For every lead, keep three things separate: the observed signal, the verified current status, and what the seller actually said. Confirm sheriff and tax sale entries are live before reaching out.</p>
+  </section>
+  <section>
+    <div class="sechead"><h2>Signal points</h2><span class="eyebrow">10+ hot · 5–9 warm</span></div>
+    <div class="tscroll"><table>
+      <thead><tr><th>Signal</th><th class="num">Pts</th></tr></thead>
+      <tbody id="ptsbody"></tbody>
+    </table></div>
+  </section>
+</div>
+
+<section>
+  <div class="sechead"><h2>Add a property</h2><button type="button" class="ghost" id="toggleadd">Show form</button></div>
+  <form id="leadform" class="panel" autocomplete="off" hidden>
+    <div class="form">
+      <label for="l-fname">First name<input id="l-fname"></label>
+      <label for="l-lname">Last name<input id="l-lname"></label>
+      <label for="l-phone">Phone<input id="l-phone" inputmode="tel"></label>
+      <label for="l-email">Email<input id="l-email" type="email"></label>
+      <label for="l-addr" class="full">Property address<input id="l-addr"></label>
+      <label for="l-value">Est. value ($)<input id="l-value" inputmode="numeric"></label>
+      <label for="l-equity">Equity (%)<input id="l-equity" inputmode="numeric"></label>
+      <label for="l-years">Years owned<input id="l-years" inputmode="numeric"></label>
+      <label for="l-status">Status<select id="l-status"><option>New</option><option>Contacted</option><option>Warm Lead</option><option>Hot Lead</option><option>Appt Set</option><option>Listed</option><option>Not Interested</option></select></label>
+      <div class="full" style="display:grid;gap:6px"><span style="font-size:12px;font-weight:600">Found on</span><div class="sigs" id="srcs"></div></div>
+      <div class="full" style="display:grid;gap:6px"><span style="font-size:12px;font-weight:600">Signals · score <span id="preview" class="mono">0</span></span><div class="sigs" id="sigpick"></div></div>
+      <label for="l-notes" class="full">Notes (signal · verified status · what they said)<textarea id="l-notes"></textarea></label>
+    </div>
+    <div class="actions"><button type="submit" class="go">Add to pipeline</button></div>
+  </form>
+</section>
+
+<section class="leads">
+  <div class="sechead"><h2>Pipeline</h2>
+    <div class="actions"><label for="filter" style="display:flex;align-items:center;gap:6px"><span class="eyebrow">Show</span><select id="filter" style="width:auto"><option value="">All</option><option value="hot">Hot</option><option value="warm">Warm</option><option value="cold">Cold</option></select></label></div>
+  </div>
+  <div id="examplenote"></div>
+  <div id="leads"></div>
+</section>
+
+<section>
+  <div class="sechead"><h2>Log a touch</h2><span class="eyebrow" id="touchwk"></span></div>
+  <form id="outform" class="panel" autocomplete="off">
+    <div class="form">
+      <label for="o-name">Who<input id="o-name" list="leadnames" required></label>
+      <datalist id="leadnames"></datalist>
+      <label for="o-method">Method<select id="o-method"><option>Call</option><option>Text</option><option>Mailer</option><option>Door Knock</option><option>Email</option><option>Handwritten Note</option></select></label>
+      <label for="o-response">Response<select id="o-response"><option>No Answer</option><option>Not Interested</option><option>Maybe Later</option><option>Positive — Follow Up</option><option>Appointment Set</option><option>Listed</option></select></label>
+      <label for="o-followup">Follow up on<input id="o-followup" type="date"></label>
+      <label for="o-notes" class="full">Notes<input id="o-notes"></label>
+    </div>
+    <div class="actions"><button type="submit" class="go">Log touch</button></div>
+  </form>
+  <div class="log" id="outlog"></div>
+</section>
+
+<footer><span>Internal tool · not published · Alexa Sanchez · PA License #RS326383</span></footer>
+</main>
+
+<script src="common.js"></script>
+<script>
+/* Same storage key as the old dashboard, so existing leads and outreach carry over. */
+var KEY = 'myash_ops_v6';
+var st = R.get(KEY, {}) || {};
+st.leads = st.leads || []; st.outreach = st.outreach || []; st.checks = st.checks || {};
+function save(){ R.set(KEY, st); }
+
+var SIGNALS = [['probate','Probate / estate',5],['prefc','Pre-foreclosure / sheriff',4],['divorce','Divorce',4],['permit','Big permit pull',4],['taxdel','Tax delinquent',3],['expired','Expired listing',3],['vacant','Vacant / absentee',3],['equity','High equity',2],['tenure','Long tenure (10+ yrs)',2],['pricedrop','Price drop',2],['lien','Lien',2]];
+var SOURCES = [['lf','LeadFlow'],['tax','Tax Claim'],['mls','MLS'],['pub','Public record']];
+var PULL = [['mm1','LeadFlow · vacant + absentee export','LEADFLOW'],['mm2','Tax Claim Bureau · delinquent list','TAX'],['mm3','Register of Wills · new probate','PUBLIC'],['mm4','Sheriff sales · new filings + postponements','PUBLIC'],['mm5','UJS Portal · divorce + foreclosure','PUBLIC'],['mm6','Flex MLS · expired listings','MLS'],['mm7','Stroud + Pocono + Hamilton permits','PERMITS']];
+var wk = R.weekStart();
+var cur = {}, src = {};
+
+function scoreOf(l){ var s = 0; var sg = typeof l.signals === 'string' ? safeParse(l.signals) : (l.signals || {}); Object.keys(sg).forEach(function(k){ s += Number(sg[k]) || 0; }); return s; }
+function sigsOf(l){ return typeof l.signals === 'string' ? safeParse(l.signals) : (l.signals || {}); }
+function safeParse(s){ try { return JSON.parse(s) || {}; } catch(e){ return {}; } }
+function pri(s){ return s >= 10 ? 'hot' : s >= 5 ? 'warm' : 'cold'; }
+function isExample(l){ return /555-0\d0\d/.test(l.phone || ''); }
+
+document.getElementById('ptsbody').innerHTML = SIGNALS.map(function(s){ return '<tr><td>' + s[1] + '</td><td class="num mono">+' + s[2] + '</td></tr>'; }).join('');
+document.getElementById('pullwk').textContent = 'Week of ' + R.fmt(wk);
+document.getElementById('touchwk').textContent = 'Goal: 25 this week';
+
+function renderPull(){
+  document.getElementById('pull').innerHTML = PULL.map(function(p){
+    var id = 'pull:' + wk + ':' + p[0], on = !!st.checks[id];
+    return '<label class="' + (on ? 'done' : '') + '" for="' + id + '"><input type="checkbox" id="' + id + '"' + (on ? ' checked' : '') + '><span>' + p[1] + '</span><span class="tag">' + p[2] + '</span></label>';
+  }).join('');
+}
+document.getElementById('pull').addEventListener('change', function(e){ st.checks[e.target.id] = e.target.checked; save(); renderPull(); renderScore(); });
+
+function touchesThisWeek(){
+  return st.outreach.filter(function(o){ var d = o.iso || ''; if (!d && o.date){ var p = new Date(o.date); if (!isNaN(p)) d = R.iso(p); } return d >= wk; }).length;
+}
+function renderScore(){
+  var real = st.leads.filter(function(l){ return !isExample(l); });
+  var hot = real.filter(function(l){ return scoreOf(l) >= 10; }).length;
+  var warm = real.filter(function(l){ var s = scoreOf(l); return s >= 5 && s < 10; }).length;
+  var pulled = PULL.filter(function(p){ return st.checks['pull:' + wk + ':' + p[0]]; }).length;
+  document.getElementById('score').innerHTML =
+    '<div class="hot"><span class="eyebrow">Hot · contact this week</span><b>' + hot + '</b></div>' +
+    '<div><span class="eyebrow">Warm</span><b>' + warm + '</b></div>' +
+    '<div><span class="eyebrow">Touches · goal 25</span><b>' + touchesThisWeek() + '</b></div>' +
+    '<div><span class="eyebrow">Lists pulled</span><b>' + pulled + '/7</b></div>';
+}
+
+function chips(el, list, store, withPts){
+  el.innerHTML = list.map(function(s){ return '<button type="button" class="sig" data-k="' + s[0] + '" aria-pressed="' + (!!store[s[0]]) + '">' + s[1] + (withPts ? ' +' + s[2] : '') + '</button>'; }).join('');
+}
+chips(document.getElementById('sigpick'), SIGNALS, cur, true);
+chips(document.getElementById('srcs'), SOURCES, src, false);
+document.getElementById('sigpick').addEventListener('click', function(e){
+  var b = e.target.closest('[data-k]'); if (!b) return; var k = b.getAttribute('data-k');
+  var s = SIGNALS.filter(function(x){ return x[0] === k; })[0];
+  if (cur[k]) delete cur[k]; else cur[k] = s[2];
+  b.setAttribute('aria-pressed', !!cur[k]);
+  document.getElementById('preview').textContent = Object.keys(cur).reduce(function(a, k){ return a + cur[k]; }, 0);
+});
+document.getElementById('srcs').addEventListener('click', function(e){
+  var b = e.target.closest('[data-k]'); if (!b) return; var k = b.getAttribute('data-k'); src[k] = !src[k]; b.setAttribute('aria-pressed', src[k]);
+});
+document.getElementById('toggleadd').addEventListener('click', function(){ var f = document.getElementById('leadform'); f.hidden = !f.hidden; this.textContent = f.hidden ? 'Show form' : 'Hide form'; });
+
+document.getElementById('leadform').addEventListener('submit', function(e){
+  e.preventDefault();
+  var v = function(id){ return document.getElementById(id).value.trim(); };
+  if (!v('l-fname') && !v('l-addr')){ R.toast('Add at least a name or an address'); return; }
+  st.leads.push({ id: Date.now(), fname: v('l-fname'), lname: v('l-lname'), phone: v('l-phone'), email: v('l-email'), addr: v('l-addr'),
+    value: parseInt(v('l-value').replace(/\D/g,'')) || 0, equity: parseInt(v('l-equity')) || 0, years: parseInt(v('l-years')) || 0,
+    status: v('l-status'), sources: Object.assign({}, src), signals: Object.assign({}, cur), notes: v('l-notes'), date: new Date().toISOString() });
+  save();
+  ['l-fname','l-lname','l-phone','l-email','l-addr','l-value','l-equity','l-years','l-notes'].forEach(function(id){ document.getElementById(id).value = ''; });
+  cur = {}; src = {}; chips(document.getElementById('sigpick'), SIGNALS, cur, true); chips(document.getElementById('srcs'), SOURCES, src, false);
+  document.getElementById('preview').textContent = '0';
+  renderAll(); R.toast('Added to pipeline');
+});
+
+var pendingDel = null;
+function renderLeads(){
+  var f = document.getElementById('filter').value;
+  var leads = st.leads.slice().sort(function(a, b){ return scoreOf(b) - scoreOf(a); });
+  if (f) leads = leads.filter(function(l){ return pri(scoreOf(l)) === f; });
+  var ex = st.leads.filter(isExample).length;
+  document.getElementById('examplenote').innerHTML = ex ? '<div class="panel" style="flex-direction:row"><div class="actions" style="justify-content:space-between;width:100%"><span style="font-size:14px">' + ex + ' sample leads from the old dashboard (555 numbers) are still here.</span><button type="button" class="ghost" id="clearex">Remove samples</button></div></div>' : '';
+  var el = document.getElementById('leads');
+  document.getElementById('leadnames').innerHTML = st.leads.map(function(l){ return '<option value="' + R.esc((l.fname + ' ' + (l.lname || '')).trim()) + '">'; }).join('');
+  if (!leads.length){ el.innerHTML = '<div class="empty">No properties yet. Monday\'s pull fills this. Add each one with its signals and it gets scored automatically.</div>'; return; }
+  el.innerHTML = '<div class="tscroll"><table><thead><tr><th>Score</th><th>Owner</th><th>Property</th><th>Signals</th><th>Status</th><th></th></tr></thead><tbody>' + leads.map(function(l){
+    var s = scoreOf(l), p = pri(s), sg = Object.keys(sigsOf(l)).map(function(k){ var m = SIGNALS.filter(function(x){ return x[0] === k; })[0]; return '<span class="tag">' + R.esc(m ? m[1] : k) + '</span>'; }).join(' ');
+    return '<tr><td><span class="scorepill">' + s + '</span> <span class="pri ' + p + '">' + p.toUpperCase() + '</span></td>' +
+      '<td><b>' + R.esc((l.fname + ' ' + (l.lname || '')).trim() || '–') + '</b>' + (isExample(l) ? ' <span class="tag cond">sample</span>' : '') + '<div class="mono muted">' + R.esc(l.phone || '') + (l.email ? ' · ' + R.esc(l.email) : '') + '</div></td>' +
+      '<td>' + R.esc(l.addr || '–') + (l.notes ? '<div class="muted" style="font-size:12px">' + R.esc(l.notes) + '</div>' : '') + '</td>' +
+      '<td><div class="meta">' + (sg || '–') + '</div></td>' +
+      '<td><select class="statsel" data-id="' + l.id + '" aria-label="Status">' + ['New','Contacted','Warm Lead','Hot Lead','Appt Set','Listed','Not Interested'].map(function(x){ return '<option' + (l.status === x ? ' selected' : '') + '>' + x + '</option>'; }).join('') + '</select></td>' +
+      '<td><div class="actions" style="flex-wrap:nowrap"><button type="button" class="rowbtn" data-log="' + R.esc((l.fname + ' ' + (l.lname || '')).trim()) + '">Log</button><button type="button" class="ghost rowbtn" data-del="' + l.id + '" aria-label="Remove">✕</button></div></td></tr>';
+  }).join('') + '</tbody></table></div>';
+}
+document.getElementById('filter').addEventListener('change', renderLeads);
+document.querySelector('.leads').addEventListener('change', function(e){
+  if (!e.target.classList.contains('statsel')) return; var id = String(e.target.getAttribute('data-id'));
+  st.leads.forEach(function(l){ if (String(l.id) === id) l.status = e.target.value; }); save();
+});
+document.querySelector('.leads').addEventListener('click', function(e){
+  if (e.target.id === 'clearex'){ st.leads = st.leads.filter(function(l){ return !isExample(l); }); save(); renderAll(); return; }
+  var lg = e.target.closest('[data-log]');
+  if (lg){ document.getElementById('o-name').value = lg.getAttribute('data-log'); document.getElementById('outform').scrollIntoView({behavior:'smooth', block:'start'}); document.getElementById('o-method').focus({preventScroll:true}); return; }
+  var d = e.target.closest('[data-del]'); if (!d) return; var id = String(d.getAttribute('data-del'));
+  if (pendingDel !== id){ pendingDel = id; d.textContent = 'Remove?'; return; }
+  st.leads = st.leads.filter(function(l){ return String(l.id) !== id; }); pendingDel = null; save(); renderAll();
+});
+
+document.getElementById('outform').addEventListener('submit', function(e){
+  e.preventDefault();
+  var now = new Date();
+  st.outreach.push({ id: Date.now(), name: document.getElementById('o-name').value.trim(), method: document.getElementById('o-method').value, response: document.getElementById('o-response').value,
+    followup: document.getElementById('o-followup').value, notes: document.getElementById('o-notes').value.trim(), date: now.toLocaleDateString(), iso: R.iso(now) });
+  save(); ['o-name','o-followup','o-notes'].forEach(function(id){ document.getElementById(id).value = ''; });
+  renderAll(); R.toast('Touch logged');
+});
+function renderLog(){
+  var el = document.getElementById('outlog');
+  var items = st.outreach.slice().reverse().slice(0, 30);
+  if (!items.length){ el.innerHTML = '<div class="empty">No touches logged yet.</div>'; return; }
+  el.innerHTML = items.map(function(o){
+    var c = ['Appointment Set','Positive — Follow Up','Listed'].indexOf(o.response) > -1 ? 'hot' : o.response === 'Maybe Later' ? 'warm' : '';
+    return '<div class="le ' + c + '"><span class="mono muted">' + R.esc(o.date) + ' · ' + R.esc(o.method) + '</span><b>' + R.esc(o.name) + '</b><span style="font-size:13px">' + R.esc(o.response) + (o.notes ? ' · ' + R.esc(o.notes) : '') + '</span>' + (o.followup ? '<span class="mono" style="color:var(--red)">Follow up ' + R.esc(o.followup) + '</span>' : '') + '</div>';
+  }).join('');
+}
+function renderAll(){ renderPull(); renderScore(); renderLeads(); renderLog(); }
+renderAll();
+</script>
+</body>
+</html>

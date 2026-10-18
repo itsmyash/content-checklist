@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ROAST Weekly Scroll</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>
+.bar{height:8px;background:var(--chip);position:relative}
+.bar i{position:absolute;inset:0 auto 0 0;background:var(--red)}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.filters{display:flex;flex-wrap:wrap;gap:6px}
+.filters button{background:transparent;color:var(--ink);border:1px solid var(--line);text-transform:none;letter-spacing:0}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.day{border:1.5px solid var(--ink);background:var(--surface)}
+.dh{display:flex;align-items:baseline;gap:12px;padding:12px 14px;cursor:pointer;flex-wrap:wrap;border-bottom:1px solid var(--line);background:none;border-width:0 0 1px;color:inherit;width:100%;text-align:left;font:inherit;letter-spacing:0;text-transform:none;white-space:normal}
+.dh .dt{font-family:var(--display);font-size:22px;text-transform:uppercase}
+.dh .ds{color:var(--muted);font-size:13px;flex:1;min-width:160px}
+.dh .dc{font-family:var(--mono);font-size:12px}
+.dh .dc.full{background:var(--green);color:var(--green-ink);padding:1px 6px}
+.day.collapsed .db{display:none}
+.day.collapsed .dh{border-bottom:0}
+.task{border-bottom:1px solid var(--line)}
+.task:last-child{border-bottom:0}
+.tr{display:grid;grid-template-columns:28px minmax(0,1fr) 24px;gap:10px;padding:12px 14px;align-items:start}
+.cb{width:20px;height:20px;border:1.5px solid var(--ink);cursor:pointer;margin-top:1px;background:var(--surface)}
+.cb.on{background:var(--green);border-color:var(--green)}
+.cb.on::after{content:"✓";display:block;text-align:center;line-height:17px;font-size:13px;color:var(--green-ink);font-weight:700}
+.tt{font-weight:600;cursor:pointer}
+.task.done .tt{text-decoration:line-through;color:var(--muted)}
+.chev{cursor:pointer;color:var(--muted);transition:transform .15s;text-align:center;background:none;border:0;padding:0;font-size:14px}
+.task.open .chev{transform:rotate(90deg)}
+.tc{display:none;padding:0 14px 14px 52px;gap:12px}
+.task.open .tc{display:grid}
+@media (max-width:500px){.tc{padding-left:14px}}
+.blk{display:grid;gap:6px;min-width:0}
+.bh{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.bl{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.bl.meta{color:var(--red)}
+.bt{font-size:14px;white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);padding:12px;overflow-wrap:anywhere;min-width:0}
+.bt.html{white-space:normal;overflow-x:auto}
+.bt.html table{min-width:560px}
+.bt.html h3{margin:0 0 8px}
+.copybtn{padding:4px 8px;font-size:10px}
+.pill{font-family:var(--mono);font-size:11px;padding:2px 7px;background:var(--chip);white-space:nowrap}
+.pill.RE{background:var(--ink);color:var(--bg)}
+.pill.DR{background:#0B6E4F;color:#fff}
+.pill.cigar{background:#6B3E1F;color:#fff}
+.pill.coffee{background:#8A5A2B;color:#fff}
+.pill.veteran{background:#2D4B73;color:#fff}
+.pill.PIR{background:var(--red);color:#fff}
+.pill.new{background:var(--green);color:var(--green-ink)}
+.before{display:grid;gap:12px}
+.before .in{font-size:14px}
+.before .in table{min-width:620px}
+.before .in h3{font-size:14px}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="logo" href="index.html">ROAST <span>//</span></a>
+  <a class="l" href="index.html">Home</a>
+  <a class="l" href="system.html">System</a>
+  <a class="l" href="scroll.html" aria-current="page">Weekly Scroll</a>
+  <a class="l" href="research.html">Research</a>
+  <a class="l" href="pipeline.html">Seller Pipeline</a>
+</div></nav>
+
+<main class="wrap">
+<header style="display:grid;gap:12px">
+  <span class="eyebrow" id="label">Weekly scroll</span>
+  <h1>The approved slate.</h1>
+  <p class="lede" id="thesis"></p>
+  <div style="display:grid;gap:6px"><div class="bar" aria-hidden="true"><i id="barfill" style="width:0"></i></div><span class="mono muted" id="count"></span></div>
+</header>
+
+<section>
+  <div class="toolbar">
+    <div class="filters" id="filters" aria-label="Filter by lane"></div>
+    <div class="actions"><button type="button" class="ghost" id="collapse">Collapse days</button><button type="button" class="ghost" id="reset">Reset week</button></div>
+  </div>
+  <div id="days" style="display:grid;gap:16px"></div>
+</section>
+
+<section>
+  <div class="sechead"><h2>Before you publish</h2><span class="eyebrow">From the packet</span></div>
+  <div class="before" id="before"></div>
+</section>
+
+<footer><span>Alexa Sanchez · Smart Way America Realty · PA License #RS326383 · 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301</span><span>(570) 688-8147</span></footer>
+</main>
+
+<script src="common.js"></script>
+<script src="week.js"></script>
+<script>
+(function(){
+  if (typeof WEEK === 'undefined'){ document.getElementById('days').innerHTML = '<div class="empty">No week.js yet. Sunday\'s Stage 2 produces it.</div>'; return; }
+  var KEY = 'roast:' + WEEK.weekOf;
+  var state = R.get(KEY, {});
+  var filter = 'all';
+  document.getElementById('label').textContent = 'Weekly scroll · ' + WEEK.label;
+  document.getElementById('thesis').textContent = WEEK.thesis;
+  document.title = 'ROAST Weekly Scroll';
+
+  var tags = ['all']; WEEK.days.forEach(function(d){ d.tasks.forEach(function(t){ if (tags.indexOf(t.tag) < 0) tags.push(t.tag); }); });
+  var fEl = document.getElementById('filters');
+  fEl.innerHTML = tags.map(function(t){ return '<button type="button" data-f="' + R.esc(t) + '" aria-pressed="' + (t==='all') + '">' + (t==='all'?'All lanes':R.esc(t)) + '</button>'; }).join('');
+  fEl.addEventListener('click', function(e){ var b = e.target.closest('[data-f]'); if (!b) return; filter = b.getAttribute('data-f'); fEl.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed', x === b); }); render(); });
+
+  function save(){ R.set(KEY, state); }
+  function render(){
+    var open = [].map.call(document.querySelectorAll('.task.open'), function(x){ return x.getAttribute('data-id'); });
+    var col = [].map.call(document.querySelectorAll('.day.collapsed'), function(x){ return x.getAttribute('data-id'); });
+    var root = document.getElementById('days'); root.innerHTML = '';
+    var total = 0, done = 0;
+    WEEK.days.forEach(function(d){
+      var tasks = d.tasks.map(function(t, i){ return {t:t, i:i}; });
+      tasks.forEach(function(x){ total++; if (state[d.id + ':' + x.i]) done++; });
+      var shown = tasks.filter(function(x){ return filter === 'all' || x.t.tag === filter; });
+      if (!shown.length) return;
+      var dDone = tasks.filter(function(x){ return state[d.id + ':' + x.i]; }).length;
+      var day = document.createElement('div'); day.className = 'day' + (col.indexOf(d.id) > -1 ? ' collapsed' : ''); day.setAttribute('data-id', d.id);
+      day.innerHTML = '<button type="button" class="dh"><span class="dt">' + R.esc(d.day) + ' · ' + R.esc(d.date) + '</span><span class="ds">' + R.esc(d.sub) + '</span><span class="dc' + (dDone === tasks.length ? ' full' : '') + '">' + dDone + '/' + tasks.length + '</span></button><div class="db"></div>';
+      day.querySelector('.dh').onclick = function(){ day.classList.toggle('collapsed'); };
+      var db = day.querySelector('.db');
+      shown.forEach(function(x){
+        var t = x.t, id = d.id + ':' + x.i, on = !!state[id];
+        var task = document.createElement('div'); task.className = 'task' + (on ? ' done' : '') + (open.indexOf(id) > -1 ? ' open' : ''); task.setAttribute('data-id', id);
+        var pills = (t['new'] ? '<span class="pill new">new</span>' : '') + '<span class="pill ' + R.esc(t.tag) + '">' + R.esc(t.tag) + '</span><span class="pill">' + R.esc(t.when) + '</span>';
+        task.innerHTML = '<div class="tr"><div class="cb' + (on ? ' on' : '') + '" role="checkbox" aria-checked="' + on + '" aria-label="Mark done" tabindex="0"></div><div><div class="tt">' + R.esc(t.t) + '</div><div class="meta" style="margin-top:6px">' + pills + '</div></div><button type="button" class="chev" aria-label="Open">▸</button></div><div class="tc"></div>';
+        var tc = task.querySelector('.tc');
+        t.blocks.forEach(function(b){
+          var blk = document.createElement('div'); blk.className = 'blk';
+          blk.innerHTML = '<div class="bh"><span class="bl ' + R.esc(b.kind || '') + '">' + R.esc(b.label) + '</span><button type="button" class="ghost copybtn">Copy</button></div><div class="bt' + (b.html ? ' html' : '') + '"></div>';
+          var bt = blk.querySelector('.bt');
+          if (b.html) bt.innerHTML = b.html; else bt.textContent = b.text;
+          blk.querySelector('.copybtn').onclick = function(e){ e.stopPropagation(); R.copy(b.text || bt.innerText, this); };
+          tc.appendChild(blk);
+        });
+        var tog = function(){ task.classList.toggle('open'); };
+        task.querySelector('.tt').onclick = tog; task.querySelector('.chev').onclick = tog;
+        var cb = task.querySelector('.cb');
+        var flip = function(){ if (state[id]) delete state[id]; else state[id] = true; save(); render(); };
+        cb.onclick = flip; cb.onkeydown = function(e){ if (e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); flip(); } };
+        db.appendChild(task);
+      });
+      root.appendChild(day);
+    });
+    document.getElementById('count').textContent = done + ' of ' + total + ' done';
+    document.getElementById('barfill').style.width = total ? (100*done/total) + '%' : '0';
+  }
+  document.getElementById('collapse').onclick = function(){
+    var days = [].slice.call(document.querySelectorAll('.day')); var allC = days.every(function(d){ return d.classList.contains('collapsed'); });
+    days.forEach(function(d){ d.classList.toggle('collapsed', !allC); }); this.textContent = allC ? 'Collapse days' : 'Expand days';
+  };
+  var armed = false;
+  document.getElementById('reset').onclick = function(){
+    if (!armed){ armed = true; this.textContent = 'Tap again to clear'; var b = this; setTimeout(function(){ armed = false; b.textContent = 'Reset week'; }, 3000); return; }
+    state = {}; save(); armed = false; this.textContent = 'Reset week'; render();
+  };
+
+  var names = { verify:'Verification table · highest risk first', monitor:'Optional · monitor · skipped', awaiting:'Awaiting event, asset or decision', notes:'Packet notes' };
+  var bEl = document.getElementById('before');
+  Object.keys(WEEK.before || {}).forEach(function(k, idx){
+    var d = document.createElement('details'); if (idx === 0) d.open = true;
+    d.innerHTML = '<summary>' + R.esc(names[k] || k) + '</summary><div class="in tscroll"></div>';
+    d.querySelector('.in').innerHTML = WEEK.before[k];
+    bEl.appendChild(d);
+  });
+  render();
+})();
+</script>
+</body>
+</html>

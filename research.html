@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ROAST Research</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>
+.pr{background:var(--surface);border:1px solid var(--line);display:grid;min-width:0}
+.pr .ph{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line)}
+.pr .code{font-family:var(--display);font-size:24px;color:var(--red);line-height:1}
+.pr pre{margin:0;border:0;max-height:220px;overflow:auto;background:var(--bg)}
+.pr.open pre{max-height:none}
+.more{font-family:var(--mono);font-size:11px;background:none;border:0;color:var(--muted);padding:8px 14px;text-align:left;text-transform:uppercase;letter-spacing:.08em}
+.list{display:grid;gap:14px}
+.paused{display:flex;flex-wrap:wrap;gap:8px}
+.paused span{font-family:var(--mono);font-size:12px;text-decoration:line-through;color:var(--muted);border:1px dashed var(--line);padding:4px 8px}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="logo" href="index.html">ROAST <span>//</span></a>
+  <a class="l" href="index.html">Home</a>
+  <a class="l" href="system.html">System</a>
+  <a class="l" href="scroll.html">Weekly Scroll</a>
+  <a class="l" href="research.html" aria-current="page">Research</a>
+  <a class="l" href="pipeline.html">Seller Pipeline</a>
+</div></nav>
+<main class="wrap">
+<header style="display:grid;gap:12px">
+  <span class="eyebrow">Thursday research run · Perplexity, Deep Research mode</span>
+  <h1>Five prompts. <span class="tilt">Not eleven.</span></h1>
+  <p class="lede">Run the four weekly prompts every Thursday, plus the deep-dive on the first Thursday of the month. Paste all of it under Sunday's kickoff line. Dates are filled in for you.</p>
+  <div class="actions"><label for="wk" style="display:flex;align-items:center;gap:8px;font-weight:600">Week of<input type="date" id="wk" style="width:auto"></label></div>
+</header>
+<section><div class="sechead"><h2>Every Thursday</h2><span class="eyebrow">4 prompts</span></div><div class="list" data-group="weekly"></div></section>
+<section><div class="sechead"><h2>First Thursday</h2><span class="eyebrow">1 merged prompt</span></div><div class="list" data-group="monthly"></div></section>
+<section><div class="sechead"><h2>On demand</h2><span class="eyebrow">Seller tools + coffee</span></div><div class="list" data-group="ondemand"></div></section>
+<section><div class="sechead"><h2>Paused</h2><span class="eyebrow">Monthly deep-dive covers these</span></div>
+<div class="paused"><span>03W DR weekly</span><span>03M DR monthly</span><span>05A PA veteran weekly</span><span>05B DR veteran</span><span>01B · 02B · 06</span></div>
+<p class="note">Bring DR back once the Urban Group CTA is cleared and BRIDGE or CASA shows real leads on the Home scoreboard.</p></section>
+<footer><span>Alexa Sanchez · Smart Way America Realty · PA License #RS326383</span><span>(570) 688-8147 · Alexa@alexasanchez.net</span></footer>
+</main>
+<script src="common.js"></script>
+<script>
+var PROMPTS = {"weekly": [{"code": "01A", "name": "Market Pulse", "feeds": "The Ledger + Ledger cuts", "text": "You are a real estate market analyst. I am a licensed PA realtor (PA License #RS326383) at Smart Way America Realty serving Monroe County / Pocono Mountains sellers and buyers, including veteran homebuyers. Run this weekly check for the week of [INSERT CURRENT DATE]. Output feeds a weekly market publication (The Pocono Ledger).\n\nMORTGAGE RATES — THIS WEEK: Current 30-year fixed · VA loan rate · week-over-week movement · Fed commentary · impact on Monroe County buyer purchasing power ($250K–$600K)\nMONROE COUNTY SELLER MARKET: Notable shifts · days-on-market trend · price reduction activity · inventory levels · local news affecting seller timing\nNATIONAL REAL ESTATE NEWS: Top 1-2 headlines relevant to PA sellers/buyers · NAR/policy/court updates\n\nFORMAT: 1. TOP SIGNAL 2. RATE SNAPSHOT 3. MONROE COUNTY PULSE 4. WHAT CHANGED 5. WHAT BUYERS SHOULD DO 6. WHAT SELLERS SHOULD DO 7. MISCONCEPTION TO CORRECT\n\nBe concise. Cite sources with exact figures."}, {"code": "02A", "name": "Seller Intelligence", "feeds": "Seller Pipeline + PIR check (internal)", "text": "You are a seller-intelligence researcher for Alexa Sanchez, licensed PA Realtor (PA License #RS326383), Smart Way America Realty, Monroe County / Pocono Mountains. Run for the week of [INSERT CURRENT DATE].\n\nExpired listings (30–60 days, flag repeat expirations) · FSBO activity (flag 30+ days) · probate/estate filings · divorce filings · pre-foreclosure and sheriff sales (next sale date, postponements) · tax delinquent (Tax Claim Bureau, upset/judicial sale dates) · large renovation permit pulls · township STR ordinance or permit changes that hit sellers.\n\nINTERNAL ONLY: this feeds the private prospecting pipeline and the topic of a possible PIR episode. Never suggest publishing a property, address or owner. For every item keep three things separate: observed signal, verified current status, and seller-stated motivation (usually unknown).\n\nFORMAT: Top signal · Expired · FSBO · Probate · Divorce/distress · Sheriff/tax sale calendar · Permits · STR rule changes · PIR-worthy topic (yes/no + why) · Misconception sellers have this week. Cite sources with dates."}, {"code": "07", "name": "Landmark", "feeds": "Landmark Spotlight + Insider", "text": "You are a Pocono Mountains local discovery researcher. I need ONE specific landmark, destination, or hidden gem in the Pocono Mountains / Monroe County, PA worth a still-photo spotlight this week. Run for the week of [INSERT CURRENT DATE].\nGIVE ME: Exact name + town/area · what it is + why worth spotlighting now · one citable fact (founded year, elevation, acreage, hours, address) · Google Maps / IG presence · one line tying it to Pocono lifestyle/relocation.\nFORMAT: Landmark · Location · Why now · Citable fact · Lifestyle tie-in. Cite sources."}, {"code": "04B", "name": "Cigars", "feeds": "@its.myash only", "text": "You are a premium cigar industry analyst. I am building a personal brand as a cigar authority (@its.myash) and developing a boutique DR cigar brand, hosting content at Nell's Social. Research for the week of [INSERT CURRENT DATE].\nDR cigar industry (new releases, Procigar, DR origin) · boutique brand landscape · lounge culture & experiential trends · cigar/lifestyle crossovers.\nFORMAT: Top cigar signal · DR industry · Boutique brand watch · Lounge culture · 3 content angles for @its.myash · Positioning insight · Top 2 news · Misconception."}], "monthly": [{"code": "M", "name": "Monthly deep-dive", "feeds": "Replaces 01B · 02B · 03M · 05B · 06", "text": "You are a Monroe County / Pocono Mountains real estate policy analyst for Alexa Sanchez, licensed PA Realtor (PA License #RS326383), Smart Way America Realty. This is the FIRST-THURSDAY monthly deep-dive for [INSERT MONTH YEAR]. Flag only what is new or moving since last month.\n\n1. POLICY + LEGISLATION: federal (NAR/settlement rules, FHFA, CFPB), Pennsylvania (transfer tax, property tax, seller disclosure, landlord/STR bills), Monroe County and township ordinances.\n2. STR: township-by-township STR zoning and permit status (Barrett, Jackson, Paradise, Hamilton, Middle Smithfield, Pocono, Smithfield, Stroud), any changes this month, and what each change means for someone SELLING an STR.\n3. MARKET MONTHLY: Monroe County MLS Monthly Indicators if published (median price, DOM, months of supply, sale-to-original-list ratio). Say clearly if the latest month isn't out yet.\n4. VETERAN + DR CHECK: anything that actually changes a veteran buyer's decision in PA (VA loan rules, PA veteran tax relief, PHFA programs), and any DR foreign-buyer law change. If nothing changed, say \"no change.\"\n\nDELIVER: the month's top seller story · 3–4 banked seller angles for weeks 2–4 (each with a hook and a likely DM keyword: VALUE / NET / PAYMENT / BRIDGE) · verification list with official sources. Cite everything with exact figures and dates."}], "ondemand": [{"code": "T1", "name": "Prelisting research", "feeds": "Before a listing appointment", "text": "Build prelisting research for: [location/town, property type, beds/baths, features, HOA, current use, seller motivation, target price, timeline].\n\nDeliver: market snapshot · submarket analysis · comparable sales · STR potential (current township zoning + AirDNA) · pricing intelligence · seller positioning · estimated net sheet using the current combined PA state + local transfer tax rate for that specific municipality.\n\nCite all sources. Flag anything requiring MLS verification."}, {"code": "T2", "name": "Quick comp pull", "feeds": "Answering a VALUE DM", "text": "Quick comp pull for: [general area, beds/baths, features, seller's target price].\n\nActive comps, sold comps (last 90 days), pending. Pricing reality check: aligned / over / under, realistic range, and the DOM consequence if overpriced.\n\nFlag all data requiring MLS verification before presenting."}, {"code": "T3", "name": "STR seller exit strategy", "feeds": "STR owner conversations", "text": "Build an exit strategy for an STR seller: [location/township, property type/size, current performance, platform, years operating, reason for selling, target price].\n\nDeliver: submarket STR performance · current township compliance and permitting status · investor buyer pool · STR-positioned comps · exit recommendation · risk flags.\n\nCite all sources. Flag anything requiring MLS verification or attorney review."}, {"code": "T4", "name": "Filler & Roast episode", "feeds": "@fillerandroast", "text": "Research a coffee for a Filler & Roast episode or batch: [origin/region, roast level, varietal or blend, product name, price point, story direction if you have one].\n\nGIVE ME:\n- Real hooks — the true origin/sourcing/growing/processing details behind this coffee that a story could be built around\n- One or two \"true underneath\" beats — a specific fact worth turning into a character moment or plot point\n- Product truth — what genuinely differentiates this coffee for a buyer\n- AEO angle — the natural-language questions people actually ask about this coffee or origin, so captions and descriptions get cited\n\nCite everything. Real facts only — the animation carries the whimsy."}]};
+var wk = document.getElementById('wk');
+wk.value = R.iso(new Date());
+function fill(t){
+  var d = new Date(wk.value + 'T00:00:00');
+  var long = d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  var my = d.toLocaleDateString('en-US',{month:'long',year:'numeric'});
+  return t.replace(/\[INSERT CURRENT DATE\]|\[INSERT DATE\]/g, long).replace(/\[INSERT MONTH YEAR\]|\[INSERT MONTH AND YEAR\]|\[MONTH\/YEAR\]/g, my);
+}
+function render(){
+  Object.keys(PROMPTS).forEach(function(g){
+    var el = document.querySelector('[data-group="'+g+'"]');
+    el.innerHTML = PROMPTS[g].map(function(p, i){
+      return '<div class="pr" id="p-'+g+i+'"><div class="ph"><span class="code">'+R.esc(p.code)+'</span><div><h3>'+R.esc(p.name)+'</h3><span class="muted" style="font-size:13px">'+R.esc(p.feeds)+'</span></div><button type="button" data-c="'+g+':'+i+'">Copy</button></div><pre class="block">'+R.esc(fill(p.text))+'</pre><button type="button" class="more" data-m="p-'+g+i+'">Show all</button></div>';
+    }).join('');
+  });
+}
+document.addEventListener('click', function(e){
+  var c = e.target.closest('[data-c]');
+  if (c){ var k = c.getAttribute('data-c').split(':'); R.copy(fill(PROMPTS[k[0]][+k[1]].text), c); return; }
+  var m = e.target.closest('[data-m]');
+  if (m){ var p = document.getElementById(m.getAttribute('data-m')); p.classList.toggle('open'); m.textContent = p.classList.contains('open') ? 'Show less' : 'Show all'; }
+});
+
+wk.addEventListener('change', render);
+render();
+</script>
+</body>
+</html>
