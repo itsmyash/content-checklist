@@ -1,613 +1,422 @@
-/* ROAST // week.js — the ONLY file replaced each Sunday after Stage 2.
-   Schema: weekOf (YYYY-MM-DD, used as the checkbox storage key), label, thesis,
-   days[{id,day,date,sub,tasks[{t,tag,when,new?,blocks[{label,kind,text|html}]}]}],
-   before{verify,monitor,awaiting,notes} (HTML).
-   Prospecting / distress data NEVER goes in this file: the site is public. */
 var WEEK = {
-"weekOf": "2026-10-12",
-"label": "Oct 12–18, 2026",
-"thesis": "This week's seller story: “Your STR permit doesn't come with the house.” Jackson Township adopted Ordinance No. 2026-100 on Oct 1 — the permit ends at sale and the buyer applies as a new applicant; a grandfathered STR that lapses can lose the use. With the 30-yr at 7.40% (7th straight weekly rise, Freddie Mac Oct 8), buyers lean on rental income they can't inherit. That's a pricing problem for sellers.",
-"days": [
-{
-"id": "mon",
-"day": "Mon",
-"date": "Oct 12",
-"sub": "Setup before anything posts",
-"tasks": [
-{
-"t": "Scorecard — no posts last week (Oct 4–10): this is the baseline week",
-"tag": "status",
-"when": "read",
-"blocks": [
-{
-"label": "Scorecard",
-"kind": "meta",
-"text": "Nothing posted the week of Oct 4–10, so there is nothing to score. This is the first v9 week, and it becomes the baseline. Until there are results, the slate runs on the September pattern: choice, warning, and DR framing performed; labeled market updates did not.\n\nWhat to track this week, for next Sunday's scorecard: for each reel, views, shares, saves, keyword comments, and DMs started. Story poll and question-box responses. Nextdoor replies and private messages. Seller conversations started, appointments set, and which post or keyword produced each one. Paste them into the v9 Section A results block next Sunday."
-}
-]
-},
-{
-"t": "Turn on comment-to-DM tool: VALUE · NET · BRIDGE · PAYMENT",
-"tag": "status",
-"when": "before Tue reel",
-"blocks": [
-{
-"label": "Keyword table — auto-replies + follow-ups",
-"kind": "meta",
-"html": "<h3>Keyword table</h3>\n<table>\n<thead>\n<tr>\n<th>Keyword</th>\n<th>Auto-reply text</th>\n<th>The offer</th>\n<th>Qualifying question</th>\n<th>Human follow-up script</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><strong>VALUE</strong></td>\n<td>\"Thanks for reaching out. I'll put together what your house would realistically sell for today, based on what's actually closing near you. What's the address or the township?\"</td>\n<td>A one-on-one value review within 24 hours. No number in public, ever.</td>\n<td>\"Are you thinking about selling in the next 12 months, or just want to know where you stand?\"</td>\n<td>\"Hi, it's Alexa Sanchez with Smart Way America. I've got your VALUE request. Best number to send your review to, or would email work better? If you rent it out short-term, tell me the township too, because that changes the conversation.\"</td>\n</tr>\n<tr>\n<td><strong>NET</strong></td>\n<td>\"Got it. I'll run your net both ways: a price cut versus a seller credit or buydown, so you can see which actually leaves more in your pocket. What's the address and your current list price, if it's listed?\"</td>\n<td>A side-by-side net sheet, with buydown pricing from a lender quote, within 24 hours.</td>\n<td>\"Is the house listed now, or are you getting ready to list?\"</td>\n<td>\"Hi, Alexa Sanchez here. I'm running your NET comparison. To price the buydown side, I'll get a real lender quote. What's the best phone or email to send it to?\"</td>\n</tr>\n<tr>\n<td><strong>BRIDGE</strong></td>\n<td>\"Love this. Selling in the Poconos to fund a place in the DR is exactly the move I work on from both ends. What town is your Pocono house in?\"</td>\n<td>A conversation on the Pocono sale side: value, timing, and net proceeds. DR brokerage referral language waits until the Urban Group switch is announced.</td>\n<td>\"Are you looking to buy in the DR, retire there, or both?\"</td>\n<td>\"Hi, it's Alexa. I'm Dominican, I sell in the Poconos, and I've been through the DR side. Let's start with what your Pocono house would net. What's the best number to reach you?\"</td>\n</tr>\n<tr>\n<td><strong>PAYMENT</strong></td>\n<td>\"I'll run your real monthly number: price, rate, taxes, insurance, HOA if there is one. What price range are you looking at, and roughly what are you putting down?\"</td>\n<td>A real monthly payment estimate, with a lender-quoted rate, within 24 hours.</td>\n<td>\"Are you pre-approved yet, or still early?\"</td>\n<td>\"Hi, Alexa Sanchez here with your PAYMENT request. I'll get a current lender quote so the number is real, not a calculator guess. Phone or email?\"</td>\n</tr>\n<tr>\n<td><strong>CASA</strong> (proposed, <strong>inactive</strong> until the Urban Group announcement)</td>\n<td>Draft after Urban Group approves its public-mention wording</td>\n<td>DR purchase cost walkthrough</td>\n<td>\"Buying to live, to rent, or both?\"</td>\n<td>Draft after approval</td>\n</tr>\n</tbody>\n</table>\n<p><strong>Rule (Section 15.2):</strong> a comment isn't a lead until there's a phone or email and a human follow-up. Log every keyword conversation in next Sunday's results block.</p>"
-}
-]
-},
-{
-"t": "Fix the 03W DR Perplexity space date (it returned a 2016 edition)",
-"tag": "DR",
-"when": "admin",
-"blocks": [
-{
-"label": "Note",
-"kind": "meta",
-"text": "The DR research arrived labeled 'historical edition for October 12, 2016.' Reset the space to the current date before next Sunday."
-}
-]
-},
-{
-"t": "Swap Project Instructions + Section A template to v9",
-"tag": "status",
-"when": "admin",
-"blocks": [
-{
-"label": "Note",
-"kind": "meta",
-"text": "Section A used this week was the v8 template (no results block, no pipeline block). Next Sunday, paste the v9 Section A with last week's results filled in."
-}
-]
-}
-]
-},
-{
-"id": "tue",
-"day": "Tue",
-"date": "Oct 13",
-"sub": "Ledger + seller reel (moved from Monday) · F&R",
-"tasks": [
-{
-"t": "[16] Filler & Roast — “First Sip, Then the Showing”",
-"tag": "coffee",
-"when": "8:00 AM · IG",
-"new": true,
-"blocks": [
-{
-"label": "Rules",
-"kind": "meta",
-"text": "Posting: Tuesday, Oct 13, 8:00 AM ET · IG only\nRules applied: no product claims, no named coffee, general-origin facts only."
-},
-{
-"label": "Concept",
-"kind": "meta",
-"text": "A tiny morning ritual before a big day. The coffee doesn't fix anything; it just gives you one quiet minute before everything starts. Animated, wordless or near-wordless, 30–45 sec."
-},
-{
-"label": "Story beats",
-"kind": "prompt",
-"text": "1. Dark kitchen, 6:12 AM. A phone alarm buzzes once. A hand reaches for a mug before it reaches for the phone.\n2. The pour. Steam curls up in slow motion. The kitchen warms from blue to amber as the coffee fills the mug.\n3. The first sip. Everything pauses: the clock's second hand, a calendar notification frozen mid-slide on the phone screen.\n4. One quiet beat. The character looks out a frosted window at fall trees. Leaves drift down.\n5. The world resumes. The second hand ticks, notifications cascade, keys get grabbed. The mug is set down, half-full, a small heart of foam left behind.\n6. End card (text added in edit): \"Coffee first. Then everything else.\""
-},
-{
-"label": "Animation direction",
-"kind": "prompt",
-"text": "- Style: warm, polished 3D, soft lighting, 9:16 vertical.\n- Palette: cool blue pre-dawn shifting to amber and copper after the pour.\n- Motion: slow and deliberate through beats 2–4, then a quick-cut energy shift at beat 5.\n- Sound: ambient kitchen hum, pour sound, a single clock tick that stops at the sip and restarts.\n- Clean video only: no captions, UI, logos, or watermarks in the generated video. Add the end-card text in edit."
-},
-{
-"label": "Caption",
-"kind": "caption",
-"text": "The first sip comes before the first email. That's the rule.\n\nCoffee has been part of people's mornings for centuries, and most of what's in your mug started on a farm in the tropics, in the band of countries along the equator where coffee grows best. All that distance, for one quiet minute before your day starts.\n\nWhat's your first-sip ritual?"
-},
-{
-"label": "Tags",
-"kind": "tags",
-"text": "#FillerAndRoast #CoffeeLovers #CoffeeStory #SpecialtyCoffee #AnimatedShort #LifeByAlexa"
-}
-]
-},
-{
-"t": "[01] The Pocono Ledger — Jackson Township's STR permit doesn't come with the house",
-"tag": "RE",
-"when": "morning · blog",
-"new": true,
-"blocks": [
-{
-"label": "SEO · meta · slug",
-"kind": "meta",
-"text": "SEO title: Jackson Township STR Permits Don't Transfer at Sale | Pocono Ledger, Oct 12, 2026\nMeta description: Jackson Township's new STR ordinance (No. 2026-100) means a short-term rental permit ends when the house sells. Here's what Monroe County sellers and buyers should do, with rates at 7.40%.\nSlug: /pocono-ledger/2026-10-12-jackson-township-str-permit-sale\nPillar link: [PILLAR URL — still a placeholder; confirm publish status]"
-},
-{
-"label": "Ledger — full post",
-"kind": "caption",
-"text": "The Pocono Ledger | October 12, 2026\nJackson Township's STR Permit Doesn't Come With the House\n\nExecutive summary\n\nTwo things moved this week, and they hit the same people. Mortgage rates climbed for a seventh straight week, to 7.40%. And Jackson Township adopted a rewritten short-term rental ordinance that, among other things, makes clear a rental permit ends when the property is sold. If you own a rental in Jackson and you're thinking about selling, the rental income you'd like to price in is now something your buyer has to re-earn from scratch. That changes how the house should be marketed and priced.\n\nThe week's numbers\n\nMeasure — Reading — Source\n30-year fixed, national average — 7.40% (prior week 7.28%; one year earlier 6.30%) — Freddie Mac PMMS, Oct 8, 2026\n15-year fixed, national average — 6.73% (prior week 6.60%) — Freddie Mac PMMS, Oct 8, 2026\nMonthly P&I on a $400,000 30-year loan — About $2,770 at 7.40%, versus about $2,669 at 7.03% two weeks ago — Calculation, principal and interest only\nMonroe County median sales price, August — $347,450 (YTD median $337,500, +8.9%) — Pocono Mountains Association of REALTORS® Monthly Indicators, August 2026\nPercent of original list price received, August — 95.8% — Same\nAverage days on market until sale, August — 52 — Same\nMonths supply of inventory, August — 4.6 — Same\nHousing affordability index, August — 107 (one year earlier: 122) — Same\n\nAugust is the latest MLS report available as of this edition. September figures replace these when published. The August median moved on 200 closed sales, so the year-to-date figure (+8.9%) is the durable read. Price figures are calculated without accounting for seller concessions.\n\nWhat changed\n\nRates. The 30-year average has now risen seven weeks in a row. On a $400,000 loan, the move from 7.03% to 7.40% adds roughly $100 a month in principal and interest, about $33 of it in the last week alone. For buyers who were already stretching, that's the difference between a house that works and a house that doesn't.\n\nJackson Township. On October 1, the Board of Supervisors adopted Ordinance No. 2026-100, which amends and restates the township's short-term rental code in full. The township's published guidance highlights three things owners most often get wrong: a permit does not transfer when a property is sold; a nonconforming rental that misses a renewal or is revoked cannot be reinstated; and whether a short-term rental is allowed at all is decided by the zoning ordinance, not the permit.\n\nTownship spotlight: Jackson Township\n\nShort-term rentals are prohibited in Jackson's R-1 Residential District and allowed only where the zoning ordinance expressly permits them. Rentals lawfully established on or before January 27, 2023 can continue as nonconforming uses, but they have to be registered, and a missed renewal can end the use permanently. The township doesn't send expiration notices and doesn't grant extensions. Permits last one year, and a complete renewal is due at least 30 days before expiration.\n\nThe township's own advice is the most useful line in the whole page: get a written zoning determination from the Zoning Officer before you buy a property, list it, or spend money on an application.\n\nJackson Township Municipal Building, 2162 Route 715, Stroudsburg, PA 18360 · (570) 629-0153.\n\nOperator observation\n\nHere's what I'm seeing. \"STR potential\" has been a marketing phrase in the Poconos for years, and in a lot of listings it's been doing work it can't back up. Jackson just made that harder to fake. A buyer's agent who reads the township page will ask three questions: what district is it in, is the use conforming, and has the permit ever lapsed. If the seller doesn't have the answers in writing, the buyer's offer will reflect the uncertainty. That's not a regulation problem. That's a pricing problem.\n\nSTR rules in the Poconos are parcel-level. Pocono Township, for example, allows transient rentals only in its Commercial and Recreational districts. Every township writes and amends its own rules. Don't assume what's true in Jackson is true next door.\n\nWhat buyers should do\n\n- If rental income is part of how you're justifying the payment, get the township's written zoning determination before you're under contract, not after.\n- Assume you'll be applying for a new permit as a new applicant. Budget the time and the cost of that application into your plan.\n- Run your numbers without the rental income first. At 7.40%, the house has to work as a house.\n\nWhat sellers should do\n\n- Request a written zoning determination now, before you list.\n- Pull your full permit and renewal history. If it's clean, that's a selling point. Put it in the listing packet.\n- Price the property on its value as a home, with documented rental history as support, not the headline.\n- If you're weighing a price cut against a credit toward the buyer's rate, run the net both ways with a real lender quote. At these rates, how you concede can matter as much as how much.\n\nOwn in Monroe County? DM or text me VALUE, and I'll tell you what your house would sell for today, one-on-one.\n\nSources\n- Jackson Township, Monroe County PA, Short-Term Rentals page (Ordinance No. 2026-100, adopted October 1, 2026): jacksontwp-pa.gov/shorttermrentals\n- Freddie Mac Primary Mortgage Market Survey, October 8, 2026 (as reported by Fox Business, October 8, 2026)\n- Pocono Mountains Association of REALTORS® Monthly Indicators, August 2026 — Pocono Mountains Association Multi List, current as of September 9, 2026\n- Pocono Township transient-rental zoning: confirmed by Alexa Sanchez, September 20, 2026\n\nAlexa Sanchez · PA License #RS326383 · Smart Way America Realty · 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 · (570) 688-8147 · Alexa@alexasanchez.net"
-}
-]
-},
-{
-"t": "[S1] Seller reel — “Your STR permit doesn't come with the house” · VALUE",
-"tag": "RE",
-"when": "6–9 PM · IG + Shorts",
-"new": true,
-"blocks": [
-{
-"label": "Format",
-"kind": "meta",
-"text": "Format: Alexa on camera, in the car, 45–50 sec. One take, conversational.\nCover text: YOUR STR PERMIT DOESN'T COME WITH THE HOUSE\nLocation tag: Jackson Township, PA (fallback: Stroudsburg)"
-},
-{
-"label": "Script",
-"kind": "script",
-"text": "If you're selling a house in Jackson Township and your listing says \"great Airbnb potential,\" you need to hear this.\n\nJackson just rewrote its short-term rental ordinance. And buried in there is the part nobody talks about.\n\nYour permit doesn't transfer when you sell. It ends at closing. Your buyer applies from scratch, as a brand-new applicant.\n\nAnd if your rental is grandfathered in a residential district and you ever missed a renewal? That use can be gone for good.\n\nSo here's what that means for your price. A buyer at seven-point-four percent is counting on that rental income to make the payment work. If you can't show them the zoning, the permit history, and a clean renewal record in writing, they're going to price in the risk. And that comes out of your pocket.\n\nBefore you list, get the written zoning determination from the township. Pull your permit history. Then we price the house as a house, and the rental history backs it up.\n\nComment VALUE and I'll tell you what your place would actually sell for."
-},
-{
-"label": "On-screen text",
-"kind": "cover",
-"text": "1. \"PERMIT ENDS AT CLOSING\"\n2. \"Buyer applies as a NEW applicant\"\n3. \"Missed renewal = use can end permanently\"\n4. \"Get it in writing BEFORE you list\"\n5. \"Comment VALUE\""
-},
-{
-"label": "Caption",
-"kind": "caption",
-"text": "Jackson Township adopted a rewritten short-term rental ordinance on October 1. The line most sellers are going to miss: your STR permit ends when the house sells. Your buyer starts over as a new applicant.\n\nIf your listing leans on rental income, the buyer will want proof: the zoning district, your permit and renewal history, and a written zoning determination from the township. Without it, they price in the risk.\n\nSelling a rental in the Poconos? Comment VALUE and I'll tell you what it would realistically sell for today, one-on-one.\n\nSTR rules are township-by-township and parcel-by-parcel. Confirm your property with the township before you list.\n\nAlexa Sanchez | PA License #RS326383 | Smart Way America Realty | 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 | (570) 688-8147"
-},
-{
-"label": "Tags",
-"kind": "tags",
-"text": "#PoconoRealEstate #PoconoMountains #MonroeCounty #PARealEstate #STRInvesting #SellingAHome #LifeByAlexa"
-},
-{
-"label": "YouTube Shorts",
-"kind": "youtube",
-"text": "Title: Selling a Jackson Township STR? Your Permit Doesn't Transfer\n\nDoes a short-term rental permit transfer when you sell a house in Jackson Township, PA? No. Under Ordinance No. 2026-100, adopted October 1, 2026, the permit ends at transfer and the buyer must apply as a new applicant.\nCan a grandfathered STR in Jackson Township lose its status? Per the township, a nonconforming rental's permit can't be renewed or reinstated after a revocation or missed renewal.\nWhat should sellers do before listing? Get a written zoning determination from the township and pull the permit and renewal history.\n\nTags: Jackson Township PA, Monroe County real estate, Pocono short term rental, STR permit, Airbnb Poconos, selling a rental property, Pocono Mountains real estate, Stroudsburg PA homes\n\nAlexa Sanchez, PA License #RS326383, Smart Way America Realty, East Stroudsburg, PA · (570) 688-8147"
-}
-]
-},
-{
-"t": "[ST] Story poll — STR permit file · → DM responders (VALUE)",
-"tag": "RE",
-"when": "after S1 · Stories",
-"blocks": [
-{
-"label": "Sticker",
-"kind": "cover",
-"text": "Poll: “Own a short-term rental in Monroe County? Is your permit file in one place?” — Yes / Not yet"
-},
-{
-"label": "DM to responders",
-"kind": "script",
-"text": "\"Hey, thanks for answering my story. Quick one: is that something you're actually thinking about this year, or more just curious? Either way is fine. If you want, I can run [your value / your net / your payment] for you. Just send me the best number or email.\""
-}
-]
-},
-{
-"t": "Farm/sphere send — S1 reel to STR-owner contacts (Jackson first)",
-"tag": "status",
-"when": "after S1 posts",
-"blocks": [
-{
-"label": "Who + when",
-"kind": "meta",
-"text": "- Segment: Monroe County STR owners in your sphere, Jackson Township first. Then any sphere contact who has mentioned renting their place out.\n- Send: Tuesday's seller reel (S1), after it posts."
-},
-{
-"label": "Text",
-"kind": "script",
-"text": "> \"Jackson Township rewrote its short-term rental rules this month. One piece most owners don't know: the permit doesn't transfer when you sell. If selling is anywhere on your radar this year, I'm happy to walk you through what that means for your price."
-}
-]
-}
-]
-},
-{
-"id": "wed",
-"day": "Wed",
-"date": "Oct 14",
-"sub": "DR bridge reel — HOLD until counsel confirms",
-"tasks": [
-{
-"t": "[D1] DR reel — “Selling here to buy there? Budget the 3% first” · BRIDGE",
-"tag": "DR",
-"when": "6–9 PM · IG + Shorts",
-"new": true,
-"blocks": [
-{
-"label": "⚠ Verify first",
-"kind": "meta",
-"text": "⚠ HOLD FOR VERIFICATION BEFORE POSTING. The DR research arrived mis-dated as a \"2016 historical edition.\" Every legal and tax claim below must be confirmed by licensed Dominican counsel against current law, including Regulation 07-22 (in effect since May 1, 2025) and the higher-of DGII valuation basis. Fix the 03W Perplexity space's date setting before next week."
-},
-{
-"label": "Format",
-"kind": "meta",
-"text": "Format: Alexa on camera, under 60 sec. Car or a clean home backdrop.\nCover text: SELLING HERE TO BUY THERE? BUDGET THE 3% FIRST\nLocation tag: East Stroudsburg, PA"
-},
-{
-"label": "Script",
-"kind": "script",
-"text": "If you're planning to sell your house in the Poconos and use that money to buy in Punta Cana, don't spend the proceeds in your head yet.\n\nOn an ordinary purchase in the DR, there's a three percent transfer tax. And it's not always three percent of the price you negotiated. The tax authority, DGII, values the property for tax purposes. Your attorney needs to tell you which number they'll use.\n\nThen there's the part Americans miss. Getting the keys is not the finish line. That tax has to be paid before the transfer can be filed at the title registry. Until the transfer is registered, the paperwork isn't done.\n\nSo when we talk about your Pocono sale, we're not just talking about what you'll net here. We're talking about what that money has to cover there.\n\nI'm Dominican, I sell houses in the Poconos, and I've seen both ends. Comment BRIDGE and I'll show you how selling here funds buying there."
-},
-{
-"label": "On-screen text",
-"kind": "cover",
-"text": "1. \"Sell in the Poconos → Buy in the DR\"\n2. \"3% transfer tax (ordinary purchase)\"\n3. \"DGII values the property\"\n4. \"Keys ≠ registered title\"\n5. \"Comment BRIDGE\""
-},
-{
-"label": "Caption",
-"kind": "caption",
-"text": "Selling a Pocono house to buy in the Dominican Republic? Plan for the transfer tax before you plan the furniture.\n\nOn an ordinary, taxable purchase, the DR transfer tax is 3%, calculated on the value DGII uses, which may not be your contract price. It has to be paid before the transfer can be filed at the title registry. Keys in hand doesn't mean the title transfer is finished.\n\nAlways confirm the numbers and the timeline with a licensed Dominican attorney for your specific purchase.\n\nOwn in the Poconos and thinking about the DR? Comment BRIDGE and I'll show you how selling here funds buying there.\n\nAlexa Sanchez | PA License #RS326383 | Smart Way America Realty | 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 | (570) 688-8147"
-},
-{
-"label": "Tags",
-"kind": "tags",
-"text": "#DominicanRepublicRealEstate #PuntaCana #CapCana #DRInvestment #PoconoRealEstate #LifeByAlexa"
-},
-{
-"label": "YouTube Shorts",
-"kind": "youtube",
-"text": "Title: Selling in the Poconos to Buy in the Dominican Republic? Budget the 3% First\n\nWhat is the transfer tax on Dominican Republic real estate? On an ordinary taxable purchase, it's generally 3%, applied to the property value used by DGII, the Dominican tax authority. Confirm with licensed Dominican counsel.\nDoes getting the keys mean the DR title transfer is done? No. The tax must be paid before the transfer can be filed at the title registry.\n\nTags: Dominican Republic real estate, Punta Cana condo, DR transfer tax, buying property in the Dominican Republic, Pocono real estate, sell house buy abroad, Cap Cana, Dominican diaspora\n\nAlexa Sanchez, PA License #RS326383, Smart Way America Realty, East Stroudsburg, PA · (570) 688-8147"
-},
-{
-"label": "CTA rule",
-"kind": "meta",
-"text": "No DR brokerage CTA, no Urban Group block until the switch is announced next week."
-}
-]
-},
-{
-"t": "[ST] Story question box — selling here to buy in the DR · → DM (BRIDGE)",
-"tag": "DR",
-"when": "after D1 · Stories",
-"blocks": [
-{
-"label": "Sticker",
-"kind": "cover",
-"text": "Question box: “Ever thought about selling here to buy in the DR? Ask me anything.”"
-},
-{
-"label": "DM to responders",
-"kind": "script",
-"text": "\"Hey, thanks for answering my story. Quick one: is that something you're actually thinking about this year, or more just curious? Either way is fine. If you want, I can run [your value / your net / your payment] for you. Just send me the best number or email.\""
-}
-]
-}
-]
-},
-{
-"id": "thu",
-"day": "Thu",
-"date": "Oct 15",
-"sub": "Hub video · Nextdoor · GBP · LinkedIn · Facebook",
-"tasks": [
-{
-"t": "[02a] Hub video — “Price cut or rate credit? At 7.4%, it matters” · NET",
-"tag": "RE",
-"when": "6–9 PM · YouTube + IG",
-"new": true,
-"blocks": [
-{
-"label": "Format",
-"kind": "meta",
-"text": "Format: Alexa on camera, 75–90 sec. Sit-down or on-location.\nCover text: PRICE CUT OR RATE CREDIT? AT 7.4%, IT MATTERS\nLocation tag: East Stroudsburg, PA"
-},
-{
-"label": "Script",
-"kind": "script",
-"text": "If your house has been sitting and someone tells you to drop the price ten grand, wait.\n\nMortgage rates just went up for the seventh week in a row. The national average is seven-point-four percent. On a four-hundred-thousand-dollar loan, that's about a hundred dollars more a month than it was two weeks ago.\n\nHere's why that matters to you as the seller. Your buyer isn't shopping for a price. They're shopping for a payment.\n\nTen thousand off the price, financed at seven-point-four, saves them about seventy dollars a month. That same money, put toward buying down their rate, might save them more. Or it might not. It depends on what the lender charges for that buydown that week.\n\nAnd one more thing. In the price data you see reported, seller concessions don't show up. So when you look at what homes \"sold for,\" you're not seeing what sellers actually gave up to get there.\n\nSo don't guess. Before you cut, run it both ways. Price cut on one side, credit on the other, with a real lender quote. Then pick the one that leaves more in your pocket and gets the buyer to yes.\n\nComment NET and I'll run yours both ways."
-},
-{
-"label": "Caption",
-"kind": "caption",
-"text": "Rates rose for a seventh straight week, to a 7.40% national average (Freddie Mac, Oct 8). On a $400,000 loan, that's roughly $100 a month more in principal and interest than two weeks ago.\n\nFor sellers, that changes the math on concessions. $10,000 off the price saves a financed buyer about $69 a month at 7.40%. The same $10,000 toward a rate buydown may save more or less, depending on that week's lender pricing. The only way to know is to price both.\n\nSelling in Monroe County? Comment NET and I'll run your net both ways, with a real lender quote.\n\nAlexa Sanchez | PA License #RS326383 | Smart Way America Realty | 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 | (570) 688-8147"
-},
-{
-"label": "Tags",
-"kind": "tags",
-"text": "#PoconoRealEstate #PoconoMountains #MonroeCounty #PARealEstate #SellingAHome #LifeByAlexa"
-},
-{
-"label": "YouTube (full AEO)",
-"kind": "youtube",
-"text": "Title: Price Cut or Seller Credit? What Monroe County Sellers Should Know at 7.4% Rates (October 2026)\n\nMortgage rates rose for a seventh consecutive week in October 2026. Alexa Sanchez, a Realtor with Smart Way America Realty in East Stroudsburg, explains why sellers in Monroe County and the Pocono Mountains should compare a price reduction against a seller credit or rate buydown before cutting their price.\n\nWhat are mortgage rates in October 2026? Freddie Mac's Primary Mortgage Market Survey reported a 7.40% average 30-year fixed rate on October 8, 2026, up from 7.28% the week before and 6.30% a year earlier.\nHow much does a $10,000 price cut save a buyer per month? On a 30-year loan at 7.40%, about $69 a month in principal and interest, if the full amount was financed.\nIs a seller credit better than a price cut? Sometimes. A credit toward a rate buydown can lower the buyer's payment more than an equal price cut, but buydown pricing changes weekly. Compare both with a current lender quote.\nDo Monroe County sale prices include seller concessions? No. Pocono Mountains Association of REALTORS® price figures are calculated without accounting for seller concessions.\n\nChapters:\n0:00 Don't cut your price yet\n0:15 Rates up seven weeks straight\n0:30 Buyers shop for a payment\n0:45 Price cut vs. buydown\n1:05 What the sold data doesn't show\n1:15 Run it both ways\n\nSources: Freddie Mac PMMS, October 8, 2026. Pocono Mountains Association of REALTORS® Monthly Indicators, August 2026 — Pocono Mountains Association Multi List, current as of September 9, 2026.\n\nTags: Monroe County real estate, Pocono Mountains real estate, seller credit vs price reduction, mortgage buydown, mortgage rates October 2026, East Stroudsburg Realtor, selling a house in the Poconos, Stroudsburg PA homes, Pocono home sellers\n\nAlexa Sanchez · PA License #RS326383 · Smart Way America Realty · 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 · (570) 688-8147 · Alexa@alexasanchez.net\nEducational content, not lending advice. Rates and buydown costs vary by lender and borrower."
-}
-]
-},
-{
-"t": "[ND] Nextdoor — Hawk Falls fall walk",
-"tag": "RE",
-"when": "Nextdoor",
-"blocks": [
-{
-"label": "Post",
-"kind": "caption",
-"text": "If you haven't been out to Hickory Run State Park yet this fall, this is a good week to go.\n\nI'm heading to Hawk Falls to take some photos. It's a natural waterfall, about 25 feet, an easy trip from the Stroudsburg side. Trailhead parking is off Route 534, just east of the Turnpike. If you put it in Google Maps, search \"Hawk Falls, Kidder Township, PA\" so you don't end up at the park office.\n\nThe state's foliage report has had Hickory Run on its list of good fall-color spots, though the broader peak in that area is expected a little later in the month. The park is open sunrise to sunset.\n\nWear real shoes. The rocks near the falls stay wet.\n\n— Alexa Sanchez, East Stroudsburg"
-},
-{
-"label": "Verify before posting",
-"kind": "meta",
-"text": "Verify before posting: Hawk Falls height, park hours, parking location, and that week's DCNR foliage report (the Oct 8–14 report will be stale by Thursday)."
-}
-]
-},
-{
-"t": "[02] GBP — Jackson Township STR permits",
-"tag": "RE",
-"when": "GBP · no hashtags",
-"blocks": [
-{
-"label": "Post",
-"kind": "caption",
-"text": "Jackson Township short-term rental permits: what changed for owners and sellers\n\nJackson Township, Monroe County, adopted Ordinance No. 2026-100 on October 1, 2026, restating its short-term rental rules. Key points from the township's published guidance:\n\nA short-term rental permit does not transfer when a property is sold. The buyer must apply as a new applicant.\nShort-term rentals are prohibited in the R-1 Residential District.\nA nonconforming rental's permit cannot be renewed or reinstated after a revocation or a missed renewal.\nPermits last one year. File a complete renewal at least 30 days before expiration.\n\nSelling or buying a short-term rental in Jackson Township? Request a written zoning determination from the township before listing or making an offer.\n\nQuestions about selling a Pocono rental property? Call (570) 688-8147 or email Alexa@alexasanchez.net.\n\nAlexa Sanchez, PA License #RS326383, Smart Way America Realty, 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301, (570) 688-8147.\n\nCTA button: Call now"
-}
-]
-},
-{
-"t": "[02] LinkedIn — operator read on STR underwriting",
-"tag": "RE",
-"when": "LinkedIn",
-"blocks": [
-{
-"label": "Post",
-"kind": "caption",
-"text": "Seven straight weeks of rising mortgage rates, and a Pocono township just made STR income harder to sell.\n\nOn October 1, Jackson Township in Monroe County adopted a rewritten short-term rental ordinance. The provision that matters most for anyone underwriting a Pocono STR acquisition: the permit ends at transfer. The buyer applies as a new applicant. And if the property is a nonconforming use, a lapse or revocation can end that use permanently.\n\nPut that next to a 7.40% 30-year rate (Freddie Mac, Oct 8), and the underwriting changes. Rental income that can't be transferred isn't an asset on the seller's side of the table. It's a projection on the buyer's side, contingent on a fresh application and a zoning determination.\n\nWhat I'd expect over the next few months:\n\nSellers who arrive with a written zoning determination and a clean renewal history will hold price better than sellers who arrive with an occupancy spreadsheet.\n\nBuyers will start running the house as a house first, at today's rate, and treat rental income as upside.\n\nAnd because every Pocono municipality writes its own rules, \"STR potential\" is going to have to mean something specific, parcel by parcel.\n\nIf you're advising investors in Monroe County, the township's page is worth reading in full. The most useful line on it: get a written zoning determination before you buy, list, or apply.\n\nAlexa Sanchez · PA License #RS326383 · Smart Way America Realty, East Stroudsburg, PA"
-}
-]
-},
-{
-"t": "[02] FB Business — 95.8% of ORIGINAL list price · VALUE",
-"tag": "RE",
-"when": "FB Business",
-"blocks": [
-{
-"label": "Why this angle",
-"kind": "meta",
-"text": "Angle swapped from the assessment: September MLS isn't published, so this uses the verified August \"percent of original list price\" figure instead of the \"taking longer, not losing value\" idea."
-},
-{
-"label": "Post",
-"kind": "caption",
-"text": "The number Monroe County sellers should look at isn't the median price.\n\nIt's this one: in August, sellers in Monroe County received 95.8% of their original list price, on average.\n\nOriginal. Not the price after the cuts.\n\nThat metric tells you what the market actually did with the first number sellers put out there. And it means that on a $350,000 asking price, the typical result landed several thousand dollars below where the seller started.\n\nTwo things are worth knowing alongside it. Sale prices in this data don't account for seller concessions, so credits and buydowns sellers gave don't show up. And mortgage rates have risen for seven straight weeks, to a 7.40% national average as of October 8. Buyers are working with less room than they had in the summer.\n\nThe takeaway is simple. The first price is the one that matters most. Pricing it right from day one usually beats pricing it hopeful and chasing it down.\n\nOwn in Monroe County and thinking about selling? Message me VALUE and I'll tell you what your house would realistically sell for, one-on-one.\n\nSource: Pocono Mountains Association of REALTORS® Monthly Indicators, August 2026 — Pocono Mountains Association Multi List, current as of September 9, 2026. Freddie Mac PMMS, October 8, 2026.\n\nAlexa Sanchez | PA License #RS326383 | Smart Way America Realty | 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 | (570) 688-8147"
-},
-{
-"label": "Check",
-"kind": "meta",
-"text": "Check: \"several thousand dollars below\" is illustrative (95.8% of $350,000 = $335,300, a $14,700 difference). Keep the phrasing general, or state the exact illustration."
-}
-]
-},
-{
-"t": "[02] Personal FB — English · Jackson STR heads-up",
-"tag": "RE",
-"when": "Personal FB",
-"blocks": [
-{
-"label": "Post",
-"kind": "caption",
-"text": "Heads-up for anyone in Jackson Township who rents their place out short-term.\n\nThe township adopted a rewritten STR ordinance on October 1. I read through the township's page, and there's one part I don't think most owners know: the permit doesn't go with the house. If you sell, it ends at the sale, and the new owner has to apply from scratch.\n\nIf your rental is one of the grandfathered ones in a residential area, missing a renewal can end it for good. The township doesn't send reminders and doesn't give extensions. Put the renewal date on your calendar now.\n\nAnd if selling is somewhere in your plans, get the zoning determination in writing from the township before you list. It'll save you a fight with a buyer later.\n\nYou know where to find me if you want to talk it through."
-}
-]
-},
-{
-"t": "[02] Personal FB — Español · bajar precio vs. bajar interés",
-"tag": "RE",
-"when": "Personal FB",
-"blocks": [
-{
-"label": "Post",
-"kind": "caption",
-"text": "Mira, si tienes tu casa a la venta o la vas a poner pronto, esto te interesa.\n\nLos intereses de las hipotecas llevan siete semanas subiendo. Ahora mismo el promedio está en 7.40%. Eso quiere decir que el comprador está pagando más cada mes, aunque el precio de la casa no haya cambiado.\n\nY aquí está el detalle. Cuando una casa no se vende, lo primero que te dicen es \"bájale el precio\". Pero a veces, en vez de bajarle diez mil, ese mismo dinero puesto para bajarle el interés al comprador le rinde más en el pago mensual. A veces sí, a veces no. Depende de lo que cobre el banco esa semana.\n\nPor eso yo no adivino. Pongo las dos opciones una al lado de la otra, con números de verdad de un prestamista, y escoges la que te deja más dinero en el bolsillo.\n\nSi quieres que te lo haga con tu casa, escríbeme. Aquí estoy."
-}
-]
-},
-{
-"t": "[ST] Story slider — selling in next 12 months · → DM (VALUE / NET)",
-"tag": "RE",
-"when": "after Hub · Stories",
-"blocks": [
-{
-"label": "Sticker",
-"kind": "cover",
-"text": "Slider: “How likely are you to sell in the next 12 months?”"
-},
-{
-"label": "DM to responders",
-"kind": "script",
-"text": "\"Hey, thanks for answering my story. Quick one: is that something you're actually thinking about this year, or more just curious? Either way is fine. If you want, I can run [your value / your net / your payment] for you. Just send me the best number or email.\""
-}
-]
-}
-]
-},
-{
-"id": "fri",
-"day": "Fri",
-"date": "Oct 16",
-"sub": "Landmark spotlight · @its.myash",
-"tasks": [
-{
-"t": "[05] Landmark — Hawk Falls, Hickory Run State Park (IG + YouTube)",
-"tag": "RE",
-"when": "IG + YouTube",
-"blocks": [
-{
-"label": "Photo direction",
-"kind": "photo",
-"text": "- Subject: Hawk Falls framed through fall foliage. Waterfall in the lower-center third, colored canopy in the upper third.\n- Composition: vertical 4:5 for IG feed, plus a 9:16 for stories. Shoot from slightly downstream so the stream leads the eye to the falls.\n- Light: overcast or early morning. Avoid midday sun on wet rock.\n- Settings: a slower shutter if you have a tripod or a steady rock (soft water). Otherwise, standard phone photo mode.\n- People: optional. Alexa from behind, small in frame, facing the falls. No faces needed.\n- Text on image: none."
-},
-{
-"label": "Caption",
-"kind": "caption",
-"text": "Hawk Falls, Hickory Run State Park.\n\nA 25-foot natural waterfall about a half hour from the Stroudsburg side, with trailhead parking off Route 534. The park is open sunrise to sunset, and this week the leaves were doing their job.\n\nThis is the part of Pocono living people don't put in the listing description. A waterfall walk isn't a vacation here. It's a Tuesday.\n\nThinking about what your Pocono house is worth, or moving up here? Comment VALUE and I'll walk you through it.\n\nAlexa Sanchez | PA License #RS326383 | Smart Way America Realty | 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 | (570) 688-8147"
-},
-{
-"label": "Tags · location",
-"kind": "tags",
-"text": "#PoconoMountains #PoconoRealEstate #HickoryRunStatePark #MonroeCounty #LifeByAlexa\nLocation tag: Hickory Run State Park"
-},
-{
-"label": "Check before posting",
-"kind": "meta",
-"text": "Verify the \"about a half hour\" drive estimate from East Stroudsburg before posting, or remove it."
-},
-{
-"label": "YouTube (retitled)",
-"kind": "youtube",
-"text": "Title: Hawk Falls in Fall | Hickory Run State Park, Pocono Mountains\n\nWhere is Hawk Falls? Hawk Falls is a natural, 25-foot waterfall in Hickory Run State Park, in Kidder Township, Carbon County, in the Pocono Mountains of Pennsylvania. Trailhead parking is off PA Route 534, just east of the Pennsylvania Turnpike. In Google Maps, search \"Hawk Falls, Kidder Township, PA.\"\nWhen can you visit Hickory Run State Park? The park is open daily, sunrise to sunset. Day-use areas close at dusk.\nWhen is fall foliage at Hickory Run? DCNR's October 2026 foliage reports listed Hickory Run among good fall-color viewing spots, with the broader Carbon County peak projected for late October. Check the current DCNR report before you go.\n\nTags: Hawk Falls, Hickory Run State Park, Pocono Mountains waterfalls, Pocono fall foliage, Carbon County PA, things to do in the Poconos, Pocono hikes, living in the Poconos\n\nAlexa Sanchez · PA License #RS326383 · Smart Way America Realty · East Stroudsburg, PA · (570) 688-8147"
-}
-]
-},
-{
-"t": "@its.myash — Nell's Social House Blend (Weekend Smoke)",
-"tag": "cigar",
-"when": "IG + TikTok",
-"new": true,
-"blocks": [
-{
-"label": "Format · fill brackets first",
-"kind": "meta",
-"text": "Format: Cigar/Lounge video, IG + TikTok, 30–45 sec, at Nell's. Friday, Weekend Smoke slot.\n\n⚠ Fill the brackets before shooting. Only what you confirm goes in: origin, wrapper, size, and maker. Nothing about the Betances line until next year."
-},
-{
-"label": "Script",
-"kind": "script",
-"text": "Everybody who walks into Nell's asks me the same thing. \"What should I smoke?\"\n\nSo we made an answer.\n\nThis is the Nell's Social House Blend. [ONE CONFIRMED DETAIL: e.g., origin / wrapper / size].\n\nI wanted something you could hand to somebody on their first night here or their fiftieth. Something that doesn't need a lecture. You light it, you sit down, and the conversation does the rest.\n\nIt's only here. [CONFIRM: available only at Nell's?]\n\nCome by, grab a chair, and tell me what you think. Honestly. That's how a house blend earns its name."
-},
-{
-"label": "Caption",
-"kind": "caption",
-"text": "The question I get most at Nell's is \"what should I smoke?\" Now there's a house answer.\n\nThe Nell's Social House Blend. [CONFIRMED DETAIL.] Made for the chair, the drink you already like, and whoever ends up next to you.\n\nCome try it at Nell's Social, 25 Route 611, Suite 1, Bartonsville. Then tell me what you think.\n\n— @its.myash"
-},
-{
-"label": "Tags",
-"kind": "tags",
-"text": "#CigarLife #CigarAuthority #PremiumCigars #NellsSocial #DominicanCigars #LifeByAlexa"
-},
-{
-"label": "Tag note",
-"kind": "meta",
-"text": "Use #DominicanCigars only if the blend is confirmed Dominican."
-},
-{
-"label": "Need from Alexa",
-"kind": "meta",
-"text": "Need from Alexa: origin, wrapper, size or vitola, who made it, whether it's Nell's-only, and whether to mention price."
-}
-]
-}
-]
-},
-{
-"id": "sat",
-"day": "Sat",
-"date": "Oct 17",
-"sub": "Landmark GBP · Urban Group switch closes",
-"tasks": [
-{
-"t": "[05] Landmark GBP — Hawk Falls",
-"tag": "RE",
-"when": "GBP · no hashtags",
-"blocks": [
-{
-"label": "Post",
-"kind": "caption",
-"text": "Hawk Falls at Hickory Run State Park this fall\n\nHawk Falls is a natural, 25-foot waterfall in Hickory Run State Park, in Kidder Township in the Pocono Mountains. Trailhead parking is off PA Route 534, just east of the Pennsylvania Turnpike. The park is open daily from sunrise to sunset.\n\nFall color in the area typically builds through late October. Check the DCNR foliage report before your visit.\n\nThinking about living in the Pocono Mountains? Call (570) 688-8147 or email Alexa@alexasanchez.net.\n\nAlexa Sanchez, PA License #RS326383, Smart Way America Realty, 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301, (570) 688-8147.\n\nCTA button: Learn more → alexa.realtor"
-}
-]
-},
-{
-"t": "Urban Group switch closes — collect CTA sign-off details",
-"tag": "DR",
-"when": "decision",
-"blocks": [
-{
-"label": "Draft CTA block (do not publish)",
-"kind": "meta",
-"text": "DRAFT — Urban Group CTA block (for sign-off; do not publish)\n\nIG (DR pieces, after announcement):\nBuying in the Dominican Republic? Comment CASA and I'll walk you through what a purchase actually costs, start to finish.\nAlexa Sanchez | [ROLE / TITLE] with [URBAN GROUP — EXACT ENTITY NAME] | [DR REGISTRATION OR LICENSE LINE, IF REQUIRED] | [DR CONTACT: PHONE / EMAIL]\nIn Pennsylvania: PA License #RS326383 | Smart Way America Realty | (570) 688-8147\n\nOpen questions for Urban Group: the exact entity name; your title; any registration line they require; which contact goes on DR inquiries; whether they require a disclaimer separating PA and DR services.\nOpen question for the Smart Way broker: can both brokerages appear in one post, or must DR-brokerage CTAs run on DR pieces only, with BRIDGE pieces keeping the Smart Way block alone?"
-}
-]
-}
-]
-},
-{
-"id": "sun",
-"day": "Sun",
-"date": "Oct 18",
-"sub": "Payment reel · next week's Section A",
-"tasks": [
-{
-"t": "[ST] Story question box — what's your rate? · → DM (PAYMENT)",
-"tag": "RE",
-"when": "before R1 · Stories",
-"blocks": [
-{
-"label": "Sticker",
-"kind": "cover",
-"text": "Question box: “What's your rate today, or what are you being quoted?”"
-},
-{
-"label": "DM to responders",
-"kind": "script",
-"text": "\"Hey, thanks for answering my story. Quick one: is that something you're actually thinking about this year, or more just curious? Either way is fine. If you want, I can run [your value / your net / your payment] for you. Just send me the best number or email.\""
-}
-]
-},
-{
-"t": "[R1] Rotating reel — “Your house didn't get more expensive. Your payment did.” · PAYMENT",
-"tag": "RE",
-"when": "6–9 PM · IG + Shorts",
-"new": true,
-"blocks": [
-{
-"label": "Format",
-"kind": "meta",
-"text": "Format: Alexa on camera, 35–45 sec. Car.\nCover text: YOUR HOUSE DIDN'T GET MORE EXPENSIVE. YOUR PAYMENT DID.\nLocation tag: East Stroudsburg, PA"
-},
-{
-"label": "Script",
-"kind": "script",
-"text": "If you found a house two weeks ago and you're still thinking about it, the price didn't change. Your payment did.\n\nOn a four-hundred-thousand-dollar loan, rates going from seven-oh-three to seven-forty adds about a hundred dollars a month. Principal and interest alone. You didn't do anything. The market just moved.\n\nNow, I'm not telling you to panic and buy. I'm telling you to stop shopping by price. Shop by payment.\n\nTaxes in the Poconos vary a lot by township. HOA fees can be zero or a few hundred a month. That stuff swings your real number more than people think.\n\nSo before you fall in love with another listing, get your real monthly number. Not a calculator. A real lender quote with the actual taxes on that house.\n\nComment PAYMENT and I'll run yours."
-},
-{
-"label": "On-screen text",
-"kind": "cover",
-"text": "1. \"Same house. Different payment.\"\n2. \"7.03% → 7.40% = +$100/mo on $400K\"\n3. \"Shop by payment, not price\"\n4. \"Comment PAYMENT\""
-},
-{
-"label": "Caption",
-"kind": "caption",
-"text": "Mortgage rates rose for the seventh straight week. Freddie Mac's 30-year average hit 7.40% on October 8, up from 7.03% two weeks earlier.\n\nOn a $400,000 loan, that's about $100 more a month in principal and interest. Add Pocono property taxes, which vary a lot by township, plus insurance and any HOA, and the real number can look very different from the listing price.\n\nBuying in the Poconos? Comment PAYMENT and I'll run your real monthly number with a current lender quote.\n\nAlexa Sanchez | PA License #RS326383 | Smart Way America Realty | 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 | (570) 688-8147"
-},
-{
-"label": "Tags",
-"kind": "tags",
-"text": "#PoconoRealEstate #PoconoMountains #MonroeCounty #PARealEstate #LifeByAlexa"
-},
-{
-"label": "YouTube Shorts",
-"kind": "youtube",
-"text": "Title: Same House, Higher Payment: What 7.4% Rates Mean for Pocono Buyers\n\nHow much did mortgage rates rise in October 2026? Freddie Mac's 30-year average rose to 7.40% on October 8, 2026, from 7.03% two weeks earlier.\nHow much more is the payment on a $400,000 loan? About $100 a month in principal and interest, from roughly $2,669 to $2,770.\nWhat should Pocono buyers do? Compare homes by full monthly payment, including taxes, insurance, and HOA, using a current lender quote.\n\nTags: Pocono homes for sale, mortgage rates October 2026, Monroe County real estate, first time home buyer PA, mortgage payment calculator, East Stroudsburg homes, Pocono Mountains real estate\n\nAlexa Sanchez, PA License #RS326383, Smart Way America Realty, East Stroudsburg, PA · (570) 688-8147"
-}
-]
-},
-{
-"t": "Paste next week's Section A — WITH last week's results block",
-"tag": "status",
-"when": "Sunday session",
-"blocks": [
-{
-"label": "Log",
-"kind": "meta",
-"text": "Per reel: views · shares · saves · keyword comments · DMs. Nextdoor replies + private messages. Seller conversations started, appointments set, and which keyword produced each."
-}
-]
-}
-]
-}
-],
-"before": {
-"verify": "<h2>8. VERIFICATION TABLE (highest risk first)</h2>\n<table>\n<thead>\n<tr>\n<th>#</th>\n<th>Claim</th>\n<th>Status</th>\n<th>Where it appears</th>\n<th>Action before publish</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>1</td>\n<td>DR transfer tax: 3% on ordinary purchases, DGII valuation basis, payment required before title-registry filing, six-month payment window</td>\n<td><strong>UNVERIFIED for 2026.</strong> Research was dated 2016</td>\n<td>D1 script, caption, Shorts</td>\n<td>Licensed Dominican counsel confirms current law, incl. Reg 07-22 and Law 18-88 basis. Fix the 03W space date.</td>\n</tr>\n<tr>\n<td>2</td>\n<td>Jackson Twp: permit does not transfer at sale; R-1 prohibition; nonconforming cutoff Jan 27, 2023; no reinstatement after lapse; 1-year term; 30-day renewal</td>\n<td><strong>VERIFIED</strong> on the official township page (jacksontwp-pa.gov/shorttermrentals), Oct 12</td>\n<td>Ledger, S1, GBP, LinkedIn, Personal FB EN</td>\n<td>Read Ordinance No. 2026-100 text to confirm the page matches. Ask the Zoning Officer whether a buyer of a nonconforming STR can obtain a new permit.</td>\n</tr>\n<tr>\n<td>3</td>\n<td>Jackson Twp: effective date Oct 6, $500K liability coverage, septic records, occupancy caps</td>\n<td><strong>UNVERIFIED</strong> (research only; not on the township page)</td>\n<td>Not used in any piece</td>\n<td>Confirm in the ordinance text before using next week.</td>\n</tr>\n<tr>\n<td>4</td>\n<td>Freddie Mac 30-yr 7.40% (Oct 8), 7.28% prior, 6.30% year ago, seventh straight increase; 15-yr 6.73%</td>\n<td><strong>Confirmed</strong> via Fox Business citing Freddie Mac; Oct 1 (7.28%) and Sept 24 (7.03%) confirmed via Trading Economics</td>\n<td>Ledger, Hub, R1, LinkedIn, FB Business, Personal FB ES</td>\n<td>Confirm on freddiemac.com/pmms. If Oct 15 PMMS posts before Thursday, update the Hub and R1 numbers.</td>\n</tr>\n<tr>\n<td>5</td>\n<td>Payment math: $400K 30-yr P&amp;I $2,669 (7.03%) → $2,770 (7.40%); +$33 latest week; $10K at 7.40% = $69/mo</td>\n<td><strong>Calculated</strong> (Python, standard amortization)</td>\n<td>Ledger, Hub, R1</td>\n<td>None, if rates hold.</td>\n</tr>\n<tr>\n<td>6</td>\n<td>August MLS: median $347,450; YTD $337,500 (+8.9%); 95.8% of original list; 52 avg DOM; 4.6 months supply; affordability 107</td>\n<td><strong>VERIFIED</strong> (Baseline, Tier 1)</td>\n<td>Ledger, FB Business, Hub (concessions caveat)</td>\n<td>Swap in September figures when published. Never say \"13.2% appreciation.\"</td>\n</tr>\n<tr>\n<td>7</td>\n<td>Pocono Township: transient rentals only in Commercial and Recreational districts</td>\n<td>Verified by Alexa, Sept 20 (section number pending)</td>\n<td>Ledger</td>\n<td>Re-confirm. These are being amended.</td>\n</tr>\n<tr>\n<td>8</td>\n<td>Hawk Falls: 25 ft, sunrise-to-sunset hours, Route 534 parking, foliage timing</td>\n<td>Research-cited (DCNR / PA), not independently checked</td>\n<td>ND, Landmark IG/YT/GBP</td>\n<td>Check the DCNR park page and the current foliage report. Verify the drive-time estimate.</td>\n</tr>\n<tr>\n<td>9</td>\n<td>Realtor.com Sept county figures ($380K median listing, $349,950 median sold, 60 DOM, 2.22% discount, 98% sale-to-list)</td>\n<td><strong>NOT USED.</strong> Tier 2/4 for county data</td>\n<td>None</td>\n<td>Do not derive a list-to-sold gap (retired error).</td>\n</tr>\n<tr>\n<td>10</td>\n<td>HB 1257 status</td>\n<td><strong>CONFLICTING:</strong> research says House passage March 24, 2026; Baseline says House 202–1, July 2026</td>\n<td>Not used</td>\n<td>Reconcile with palegis.us. Never call it law.</td>\n</tr>\n</tbody>\n</table>",
-"monitor": "<h2>5. OPTIONAL</h2>\n<ul>\n<li><strong>D1 Spanish version:</strong> fresh Dominican Spanish, under 3 minutes, on the same bridge argument. Produce only after counsel confirms the DR facts.</li>\n</ul>\n<h2>6. MONITOR / ANGLE BANK</h2>\n<ul>\n<li><strong>Mothball story (personal / Realtor life, Mini Me hybrid).</strong> HOLD. This is a live post-closing matter, and the seller-client would be recognizable to the buyer. It can run once three things are true: the matter is resolved, the seller gives permission, and identifying detail is stripped. The payoff is a seller warning: \"Tell your agent everything you did to the house, including the crawlspace.\" Keyword: VALUE. Before any public statement about using mothballs as a pest repellent, check the product's label-use rules. Do not post it on Nextdoor in any form.</li>\n<li><strong>\"Your home can retain value while taking longer to sell.\"</strong> Waits for the September MLS Monthly Indicators. Realtor.com county figures are not publication-grade.</li>\n<li><strong>Urban Group announcement + CASA keyword.</strong> Next week (switch closes Saturday, Oct 17).</li>\n<li><strong>Veteran: K-FIT stacking misconception.</strong> Banked for a week with a real 05A development.</li>\n<li><strong>School-tax dates</strong> (Oct 30 base end / Dec 1 penalty). Confirm with the tax collector, then use as next week's Nextdoor heads-up.</li>\n<li><strong>HB 1257.</strong> Reconcile conflicting status records.</li>\n</ul>\n<h2>7. SKIPPED + REASON</h2>\n<ul>\n<li><strong>Veteran content: NONE THIS WEEK.</strong> The VA rate move was one national series. PHFA's $478M bond announcement is lender capacity, not a new buyer benefit. Nothing in 05A changes a veteran buyer's decision.</li>\n<li><strong>PIR: NONE THIS WEEK.</strong> Jackson Township already carries six surfaces, and nothing else in the research layer earns an episode.</li>\n<li><strong>DR long cut:</strong> no 03M this week.</li>\n<li><strong>Market-update reel / IG carousel:</strong> retired / paused under v9.</li>\n<li><strong>Distress data</strong> (sheriff sale, FSBO, tax claim, probate, divorce): internal prospecting only, never published.</li>\n</ul>",
-"awaiting": "<h2>9. AWAITING EVENT / ASSET / DECISION</h2>\n<ul>\n<li><strong>Urban Group switch:</strong> closes Saturday, Oct 17. Announcement next week. DR brokerage CTA stays gated until then.</li>\n<li><strong>Urban Group CTA block:</strong> draft below. Needs Urban Group's required disclosures, and sign-off from Urban Group and the Smart Way America broker.</li>\n<li><strong>Comment-to-DM tool:</strong> confirm it's live with all four keywords before Tuesday.</li>\n<li><strong>September MLS Monthly Indicators:</strong> not yet available.</li>\n<li><strong>Pillar:</strong> still a placeholder link.</li>\n<li><strong>Mothball matter:</strong> resolution and seller permission.</li>\n<li><strong>@its.myash:</strong> House Blend details to confirm (see below).</li>\n</ul>",
-"notes": "<h2>NOTES</h2>\n<ul>\n<li><strong>Pillar status:</strong> placeholder link; confirm publish.</li>\n<li><strong>PIR status:</strong> none this week.</li>\n<li><strong>Veteran status:</strong> none this week.</li>\n<li><strong>Piece count:</strong> 15 alexa.realtor pieces + 2 independent.</li>\n<li>Ledger, S1, D1, Hub, R1, 4 stories (counted as 1), GBP ×2, LinkedIn, FB Business, Personal FB EN, Personal FB ES, Nextdoor, Landmark IG/YT</li>\n<li><strong>80/20 read:</strong> heavily real estate this week. The personal quota is carried next week by the Urban Group announcement, and later by the mothball story once cleared.</li>\n<li><strong>Section A fix:</strong> switch to the v9 template next Sunday (results + pipeline blocks). Also update the Project Instructions field from the v8 text to the v9 paste block.</li>\n</ul>"
-}
+ "weekOf": "2026-10-18",
+ "label": "Oct 18–24, 2026",
+ "thesis": "One rate moved. The one most of your buyers use didn't. And the national inventory headline doesn't describe Monroe County, so don't reprice off it.",
+ "days": [
+  {
+   "id": "sun",
+   "day": "Sun",
+   "date": "Oct 18",
+   "sub": "Loop + Ledger prep",
+   "tasks": [
+    {
+     "t": "Pull Sept PMAR Monthly Indicators (if out) · status",
+     "tag": "status",
+     "when": "Sun night · MLS member portal",
+     "platforms": [],
+     "blocks": [
+      {
+       "label": "Do this",
+       "kind": "text",
+       "text": "Log into the PMAR member portal (Statistics and Reports) and check for the September 2026 Monthly Indicators. If it's out, send me the Monroe County page and I'll update the Ledger's county numbers before Monday. If it isn't, the Ledger runs on August, already labeled as the latest."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mon",
+   "day": "Mon",
+   "date": "Oct 19",
+   "sub": "The rate didn't move. Don't reprice off a headline.",
+   "tasks": [
+    {
+     "t": "[01] Pocono Ledger · VALUE",
+     "tag": "RE",
+     "when": "Mon AM · blog",
+     "acct": "realtor",
+     "platforms": [
+      "blog"
+     ],
+     "blocks": [
+      {
+       "label": "Ledger",
+       "kind": "text",
+       "text": "TITLE: The Pocono Ledger, October 18, 2026: The Rate That Didn't Move, and the Headline That Doesn't Live Here\n\nSEO TITLE: Pocono Real Estate Market Update, Oct 18, 2026 | Monroe County Rates & Inventory\nMETA: Mortgage rates held at 7.40% while national inventory rose. What that does and doesn't mean for Monroe County sellers and buyers this week.\nSLUG: pocono-ledger-2026-10-18\nPILLAR LINK: [placeholder until the Pillar publishes]\n\nEXECUTIVE SUMMARY\nTwo headlines landed this week, and both can push Pocono homeowners the wrong way.\n\nThe first is \"rates eased.\" The benchmark most buyers use didn't. Freddie Mac's 30-year average sat at 7.40% for the second straight week. The rate that fell was the national VA marketplace average, which matters for veteran buyers and almost nobody else.\n\nThe second is \"inventory is rising.\" It is, nationally. NAR's September report counts 1.60 million homes for sale, up 4.6% from a year ago. But Monroe County's latest MLS report, August, showed inventory slightly down from last year at 903 homes. If you're selling here, the national number is weather somewhere else.\n\nTHE WEEK'S NUMBERS\nFreddie Mac 30-year fixed (PMMS): 7.40% on Oct 15 · 7.40% on Oct 8 · no change · 6.27% a year earlier\nFreddie Mac 15-year fixed (PMMS): 6.71% on Oct 15 · 6.73% on Oct 8 · down 0.02 point\nNational VA 30-year purchase average (Zillow marketplace): 6.77% on Oct 18 · 6.90% on Oct 11 · down 0.13 point. An average, not a quote.\nU.S. existing-home sales, September (NAR): 3.99 million annual pace · up 1.5% from August · down 2.2% from September 2025\nU.S. inventory, September: 1.60 million homes · up 1.9% from August · up 4.6% from a year ago\nU.S. median existing-home price, September: $417,500 · up 1.3% from a year ago\nNortheast sales, September: 470,000 annual pace · down 2.1% from August · down 4.1% from a year ago\nNortheast median price, September: $523,600 · up 4.7% from a year ago\n\nMonroe County, latest MLS report (August 2026):\nMedian sale price $347,450 (one month on 200 closings; the year-to-date median is $337,500, up 8.9%)\nInventory 903 homes, down 0.8% from August 2025\n4.6 months of supply\n52 days on average from listing to accepted offer\n95.8% of original list price received\nHousing affordability index 107, down from 122 a year earlier\nMonroe price figures don't account for seller concessions. September's county report wasn't public at publication.\n\nWHAT CHANGED\nNothing, on the rate most buyers use. On a $350,000 home with 20% down, principal and interest at 7.40% is about $1,939 a month, the same as last Thursday.\n\nVeteran buyers got a little room. At the national VA average, a $350,000 purchase with zero down went from about $2,305 to about $2,275 a month in principal and interest. About $30. Real, but small, and only if your lender's quote moved too.\n\nNational sales ticked up from August, but they're still behind last year in every region. The Northeast went the other way, down from August. Northeast prices were still up 4.7% from a year ago. Fewer sales isn't the same thing as falling prices.\n\nThe next Fed meeting is Oct 27–28. A meeting is not a promise of lower mortgage rates.\n\nTOWNSHIP SPOTLIGHT: HAMILTON, POCONO AND STROUD\nPennDOT is holding a public plans display on Tuesday, Oct 20, at Northampton Community College's Pocono Campus, 2411 Route 715 in Tannersville. It covers the proposed reconstruction and widening of about five miles of I-80 in Hamilton, Pocono and Stroud townships, including Interchange 302 at Bartonsville with Route 33.\n\nThis is a planning milestone. Nothing about it changes what a house is worth this week, and I'd be skeptical of anyone who tells you otherwise. What it does change is the questions buyers will ask. If you own near the corridor and might list in the next year or two, expect questions about construction timing, noise and access. Go to the display or review the plans online, so you have answers instead of guesses. Written comments are open into November; check the deadline on PennDOT's \"80 Bartonsville\" project page.\n\nWHAT SELLERS SHOULD DO\n1. Don't reprice off a national headline. Your competition is the active listings in your township and price band. Pull those, plus what went under contract in the last 30 days, before you touch the price.\n2. Read your showings. Showings with no offers usually points to price or condition. No showings usually points to price or marketing. They need different fixes.\n3. If you do need to move, compare a price cut against a credit before you pick one. At 7.40%, a $10,000 cut saves a buyer putting 20% down roughly $55 a month in principal and interest. Depending on the buyer's loan and the lender's pricing, a credit toward closing costs or a rate buydown can do more, or less. Have the buyer's lender confirm how a credit is classified, especially on VA loans, which treat closing costs and concessions differently.\n4. Reconcile your property tax bills before you look at a net sheet. Ask your tax collector what's paid and what's due. Proration at closing runs off real bills, not estimates.\n\nOwn in Monroe County? Text or DM me VALUE and I'll tell you what your house would sell for today. Privately, one on one, within 24 hours.\n\nWHAT BUYERS SHOULD DO\n1. Don't raise your budget because you read that rates fell. The 30-year benchmark didn't move.\n2. Veterans: if last week's payment was close to your limit, ask your lender for a fresh same-day quote with the same points and lock period. Confirm whether you're exempt from the VA funding fee before you compare cash to close.\n3. Shopping short-term rental property: underwrite from the property's own operating statements and booking history, not a vendor dashboard that was refreshed with old data.\n4. Use the national inventory story the right way: as a reason to ask for concessions on a listing that's been sitting, after you check what's actually competing in that township.\n\nSOURCES\nFreddie Mac Primary Mortgage Market Survey, Oct 15 and Oct 8, 2026 (FRED series MORTGAGE30US); Freddie Mac PMMS release of Oct 16, 2025 for the year-ago figure.\nZillow 30-year VA purchase averages, Oct 18 and Oct 11, 2026, via Yahoo Finance.\nNational Association of REALTORS®, Existing-Home Sales, September 2026, released Oct 13, 2026.\nPocono Mountains Association of REALTORS® Monthly Indicators, August 2026. Pocono Mountains Association Multi List, current as of September 9, 2026.\nPennDOT District 5, \"Interstate 80 Bartonsville Project\" page and Oct 16, 2026 announcement.\nFederal Reserve, FOMC meeting calendar.\nU.S. Department of Veterans Affairs, VA funding fee and closing costs.\nPayment figures are principal and interest only, my own calculations, and exclude taxes, insurance and HOA dues.\n\nAlexa Sanchez, REALTOR® · Smart Way America Realty · PA License #RS326383 · 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 · (570) 688-8147 · Alexa@alexasanchez.net"
+      }
+     ]
+    },
+    {
+     "t": "[01] Ledger IG Story · VALUE",
+     "tag": "RE",
+     "when": "Mon AM · IG Stories",
+     "acct": "realtor",
+     "platforms": [
+      "stories"
+     ],
+     "blocks": [
+      {
+       "label": "Story",
+       "kind": "text",
+       "text": "FRAME 1 (text over a real photo of your desk or car dash):\nThe rate didn't move this week.\nThe headline did.\n\nFRAME 2:\nThis week's Pocono Ledger: what rising national inventory does (and doesn't) mean for Monroe County.\n[LINK STICKER → Ledger URL]  Sticker label: \"Read the Ledger\"\n"
+      }
+     ]
+    },
+    {
+     "t": "[02] GBP Monday market update",
+     "tag": "RE",
+     "when": "Mon AM · GBP",
+     "acct": "realtor",
+     "platforms": [
+      "gbp"
+     ],
+     "blocks": [
+      {
+       "label": "Post",
+       "kind": "text",
+       "text": "Monroe County, PA home prices aren't dropping in the latest county data.\n\nNational inventory rose in September (NAR). Monroe County's August MLS report showed 903 homes for sale, down 0.8% from a year earlier, and a year-to-date median sale price of $337,500, up 8.9%. The 30-year mortgage average held at 7.40% (Freddie Mac, Oct 15).\n\nIf you're selling, price against the active and pending listings in your township, not national headlines. The full breakdown is in this week's Pocono Ledger.\n\nAlexa Sanchez, REALTOR® · Smart Way America Realty · PA License #RS326383 · 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 · (570) 688-8147 · Alexa@alexasanchez.net\n\nBUTTON: Learn more → Ledger URL\nPHOTO: your own photo of a Monroe County street or a past listing exterior you have rights to (no client address visible). No hashtags."
+      }
+     ]
+    },
+    {
+     "t": "[ND] Nextdoor: I-80 Bartonsville plans heads-up",
+     "tag": "RE",
+     "when": "Mon midday · Nextdoor",
+     "acct": "realtor",
+     "platforms": [
+      "nextdoor"
+     ],
+     "blocks": [
+      {
+       "label": "Post",
+       "kind": "text",
+       "text": "Heads up for anyone who drives I-80 through Bartonsville.\n\nPennDOT is holding a public plans display tomorrow, Tuesday, Oct. 20, at Northampton Community College's Pocono Campus on Route 715 in Tannersville. It's about the proposed reconstruction and widening of roughly five miles of I-80 in Hamilton, Pocono and Stroud townships, including the Route 33 interchange at Exit 302.\n\nIf you can't make it in person, the plans are online and PennDOT is taking written comments into November. The exact deadline is on PennDOT's \"80 Bartonsville\" project page, so check it there before you count on it.\n\nThis is still the planning stage, not construction, which makes now the time to ask questions about access, noise and timing.\n\n— Alexa Sanchez, East Stroudsburg"
+      }
+     ]
+    },
+    {
+     "t": "[03] Car Confession: Don't cut your price because of a headline · NET",
+     "tag": "RE",
+     "when": "Record Mon · post 6–9 PM ET · IG + YT Shorts",
+     "acct": "realtor",
+     "platforms": [
+      "ig",
+      "youtube"
+     ],
+     "blocks": [
+      {
+       "label": "Script",
+       "kind": "text",
+       "text": "National inventory went up. That is not a reason to cut your price in the Poconos.\n\nHere's what I'm seeing. The national report came out last week. More homes for sale across the country, and sales still behind last year. Sellers read that and think, I better drop my price before everybody else does.\n\nBut you're not competing with one point six million homes. You're competing with the houses in your township, in your price range, that a buyer is looking at this weekend.\n\nAnd the last county numbers I have, from August, had Monroe County inventory a little lower than a year ago. Not higher.\n\nSo before you cut, look at three things. What's active near you. What just went under contract. And how many of your showings turned into offers.\n\nIf you do need to move, here's the part people miss. At seven-forty, a ten thousand dollar price cut saves a buyer with twenty percent down about fifty-five dollars a month. Sometimes that same money works harder as a credit. Sometimes it doesn't. It depends on the buyer and the lender.\n\nI'll run your net both ways. Comment NET."
+      },
+      {
+       "label": "Production",
+       "kind": "text",
+       "text": "FORMAT: Car Confession, Alexa on camera, 9:16, one take, about 45 seconds.\nCOVER TEXT: DON'T CUT YOUR PRICE BECAUSE OF A HEADLINE\nON-SCREEN TEXT (add in edit, keep it short):\n 0:05  \"National inventory ≠ your township\"\n 0:20  \"Monroe County inventory, Aug: 903 (−0.8% y/y)\"\n 0:35  \"$10K cut ≈ $55/mo at 7.40% (20% down, P&I)\"\n 0:42  \"Comment NET\"\nB-ROLL (optional): a drive past a few Monroe County for-sale signs, no addresses readable.\nLOCATION TAG: East Stroudsburg, Pennsylvania"
+      },
+      {
+       "label": "Caption",
+       "kind": "text",
+       "text": "National inventory went up in September. Monroe County's last report, August, went the other way: 903 homes for sale, a few fewer than a year before.\n\nBefore you cut your price, look at what's active near you, what just went under contract, and how your showings are turning into offers. If you still need to move, compare a cut against a credit. At 7.40%, $10K off the price saves a buyer with 20% down about $55 a month in principal and interest.\n\nComment NET and I'll run your net both ways.\n\nSources: NAR Existing-Home Sales, Sept 2026 · PMAR Monthly Indicators, Aug 2026 · Freddie Mac PMMS, Oct 15, 2026. Payment math is principal and interest only.\n\nAlexa Sanchez, REALTOR® · Smart Way America Realty · PA License #RS326383 · 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 · (570) 688-8147 · Alexa@alexasanchez.net\n\n#PoconoRealEstate #PoconoMountains #MonroeCounty #PARealEstate #SellingAHome #LifeByAlexa"
+      },
+      {
+       "label": "YouTube description",
+       "kind": "text",
+       "text": "TITLE: Should You Cut Your Price Because Inventory Is Rising? Pocono Seller Advice (Oct 2026)\n\nDESCRIPTION:\nNational housing inventory rose in September 2026, but that doesn't mean Monroe County, PA sellers should cut their price. Alexa Sanchez, a REALTOR® with Smart Way America Realty in East Stroudsburg, explains what to check before a price reduction and how a price cut compares with a seller credit at a 7.40% mortgage rate.\n\nIs housing inventory rising in Monroe County, PA? Not in the latest county report. The Pocono Mountains Association of REALTORS® August 2026 report showed 903 homes for sale, down 0.8% from a year earlier, while national inventory rose 4.6% (NAR, September 2026).\n\nShould I cut my price because national inventory went up? Not on that basis alone. Compare your home to active and recently pending listings in your own township and price range, and look at how showings are turning into offers.\n\nHow much does a $10,000 price cut save a buyer? At 7.40% with 20% down, about $55 a month in principal and interest. A seller credit toward closing costs or a rate buydown can be worth more or less, depending on the buyer's loan and lender pricing.\n\nComment NET on Instagram @alexa.realtor, or call (570) 688-8147, and Alexa will run your net both ways.\n\nSources: NAR Existing-Home Sales, September 2026; Pocono Mountains Association of REALTORS® Monthly Indicators, August 2026; Freddie Mac PMMS, Oct 15, 2026. Payment math is principal and interest only.\n\nAlexa Sanchez, REALTOR® · Smart Way America Realty · PA License #RS326383 · 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 · (570) 688-8147 · Alexa@alexasanchez.net\n\nTAGS: Pocono real estate, Monroe County PA real estate, selling a house in the Poconos, should I lower my asking price, price reduction vs seller credit, housing inventory 2026, East Stroudsburg realtor, Stroudsburg real estate, Pocono home prices, seller concessions, mortgage rates October 2026, Alexa Sanchez realtor"
+      }
+     ]
+    },
+    {
+     "t": "[ST] Story poll after Car Confession · NET",
+     "tag": "RE",
+     "when": "Mon right after reel · IG Stories",
+     "acct": "realtor",
+     "platforms": [
+      "stories"
+     ],
+     "blocks": [
+      {
+       "label": "Sticker + DMs",
+       "kind": "text",
+       "text": "STICKER (poll), post right after the Car Confession:\n\"Has a price cut crossed your mind this fall?\"  Yes / Not yet\n\nDM TO EVERYONE WHO VOTES:\nYes → \"Saw your vote. Before you cut anything, let me run your net both ways, price cut vs. a credit, so you can see which one actually leaves more in your pocket. What town is the house in?\"\nNot yet → \"Good. Don't let a national headline make that decision for you. If you ever want to know where your house actually stands against what's for sale near you, I'll pull it. What town are you in?\"\n\nLog every reply as door 1 (DM). It becomes a lead when you have a phone or email."
+      }
+     ]
+    },
+    {
+     "t": "[02] Personal FB (EN)",
+     "tag": "RE",
+     "when": "Mon evening · Personal FB",
+     "acct": "realtor",
+     "platforms": [
+      "fbpersonal"
+     ],
+     "blocks": [
+      {
+       "label": "Post",
+       "kind": "text",
+       "text": "Quick one for my neighbors who own here.\n\nYou're going to see \"housing inventory is rising\" a lot this week. That's a national number. The last Monroe County report I have, from August, actually had a few fewer homes for sale than a year before.\n\nSo if you're thinking about selling in the spring, please don't knock money off your price in your head because of a headline about the whole country. What matters is what's for sale on your road and in your price range, and how fast those are going under contract.\n\nIf anyone wants to know what their place would actually sell for, I'm happy to look. No pressure. You know where to find me.\n\n— Alexa"
+      }
+     ]
+    },
+    {
+     "t": "Keyword auto-replies live: NET · BRIDGE · VALUE · status",
+     "tag": "status",
+     "when": "Mon before 6 PM · comment-to-DM tool",
+     "platforms": [],
+     "blocks": [
+      {
+       "label": "Keyword scripts",
+       "kind": "text",
+       "text": "NET\nAuto-reply: Got you. I'll run your net two ways, with a price cut and with a seller credit, so you can see what each one actually puts in your pocket. What town is the house in, and are you thinking this year or next? Send your best number or email and I'll get it to you within 24 hours. — Alexa, Smart Way America Realty\nOffer: Side-by-side net sheet: price cut vs. credit/buydown\nQualifying question: What town, and listing this year or next?\nHuman follow-up: Call or text within 24 hours: \"Hi, it's Alexa. I have your net sheet started. Two quick questions so it's real: roughly what's owed on the house, and any work done in the last few years?\"\n\nBRIDGE\nAuto-reply: Thanks for reaching out. I handle the Pocono side: what your house would sell for and what you'd walk away with after costs. What town is your Pocono home in, and when are you thinking of making the move? Send your best number or email and I'll get you real numbers within 24 hours.\nOffer: Pocono sale net estimate + timing options (sell first vs. buy first)\nQualifying question: Which town, and what's your timeline for the move?\nHuman follow-up: Call or text: \"Hi, it's Alexa. I pulled what's selling near you. When's a good 10 minutes to walk through your number and the timing?\"\n\nVALUE\nAuto-reply: I'll tell you what your house would sell for today. Privately, not a public number. What town and street is it on, and is it your primary home, a second home or a rental? Send your best number or email and I'll get back to you within 24 hours.\nOffer: Private value review within 24 hours\nQualifying question: Primary, second home or rental?\nHuman follow-up: Call or text: \"Hi, it's Alexa with your value review. Can I see the inside, or send me a few photos, so the number is real?\""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tue",
+   "day": "Tue",
+   "date": "Oct 20",
+   "sub": "Coffee + farm send",
+   "tasks": [
+    {
+     "t": "[F&R] The Bean Was a Seed All Along",
+     "tag": "coffee",
+     "when": "8:00 AM ET · IG",
+     "acct": "fnr",
+     "platforms": [
+      "ig"
+     ],
+     "blocks": [
+      {
+       "label": "Episode",
+       "kind": "text",
+       "text": "EPISODE CONCEPT: \"The Bean Was a Seed All Along\"\nA coffee bean wakes up in a roaster bag with an identity crisis, then remembers it started life inside a red fruit.\n\nSTORY BEATS\n1. A sleepy coffee bean pops up out of a bag of roasted beans, stretches, and looks at its own brown reflection, confused.\n2. Flashback: the bean is tucked inside a bright red coffee cherry hanging on a branch, in sunshine.\n3. Hands pick the cherry; the fruit comes away and the pale seed inside is set out to dry.\n4. Roasting: the pale seed turns golden, then brown, and little aroma swirls rise off it.\n5. Back to the present: the bean lands in a grinder, then a mug, and gives a satisfied little nod.\n\nANIMATION DIRECTION\n9:16 vertical, 15–20 seconds, match the established Filler & Roast character style and proportions. Warm palette; red cherry is the only saturated color in the flashback. Clean video only: no text, captions, logos, UI or watermarks in the generated clip. Add the end card in edit.\nEND CARD (add in edit): \"Shop our beans — link in bio\"\n\nFACT CHECK: coffee beans are the seeds of the coffee plant's fruit, commonly called coffee cherries. General, origin-level fact only. No claims about specific farms or products.\n\nIG CAPTION\nPlot twist: your coffee bean is a seed. It grows inside a red fruit called a coffee cherry, gets picked, dried and roasted into the thing in your mug.\nShop our beans. Link in bio.\n#FillerAndRoast #CoffeeLovers #CoffeeStory #SpecialtyCoffee #AnimatedShort #LifeByAlexa"
+      }
+     ]
+    },
+    {
+     "t": "[FS] Farm/sphere send: Car Confession",
+     "tag": "RE",
+     "when": "Tue · text + email",
+     "acct": "realtor",
+     "platforms": [
+      "outreach"
+     ],
+     "blocks": [
+      {
+       "label": "Messages",
+       "kind": "text",
+       "text": "TEXT (past clients, sphere, STR owners in Monroe County; send Tuesday):\nHi [first name], it's Alexa. Made a quick video about the \"inventory is rising\" headlines and why they don't mean what people think here in Monroe County: [reel link]. If you ever want to know what your place would sell for, I'm a text away.\n\nEMAIL VERSION\nSubject: That \"inventory is rising\" headline\nHi [first name],\nYou're going to see a lot about national housing inventory going up. Monroe County's last report showed the opposite, slightly fewer homes for sale than a year ago. I made a 45-second video on what to check before anyone talks you into a price cut: [reel link].\nIf you're curious what your house would sell for right now, reply here and I'll look. Privately, no pressure.\nAlexa\nAlexa Sanchez, REALTOR® · Smart Way America Realty · PA License #RS326383 · 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 · (570) 688-8147 · Alexa@alexasanchez.net"
+      }
+     ]
+    },
+    {
+     "t": "Childs Park photo + B-roll · status",
+     "tag": "status",
+     "when": "Tue or Wed AM · Dingmans Ferry",
+     "platforms": [],
+     "blocks": [
+      {
+       "label": "Shot list",
+       "kind": "text",
+       "text": "SUBJECT: one waterfall at George W. Childs Park, shot from a designated platform or bridge. If it's Fulmer Falls, say so in the caption; if you're not sure which falls you photographed, caption it as \"one of the three falls.\"\nFRAMING: vertical 4:5 for IG. Cascade and layered rock as the anchor; any leaf color as a frame, not the subject.\nLIGHT: early morning or overcast for even water texture. Tripod + slow shutter if you have it.\nRULES: stay on the boardwalk and platforms (required). No identifiable people. No peak-foliage claim.\nB-ROLL FOR YOUTUBE: 20–30 seconds, 9:16, slow push toward the falls plus the sound of the creek. No text burned in."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "wed",
+   "day": "Wed",
+   "date": "Oct 21",
+   "sub": "Recording session + the bridge",
+   "tasks": [
+    {
+     "t": "[04] Sell here first or buy there first · BRIDGE",
+     "tag": "DR",
+     "when": "Record Wed · post 6–9 PM ET · IG + YT",
+     "acct": "realtor",
+     "platforms": [
+      "ig",
+      "youtube"
+     ],
+     "blocks": [
+      {
+       "label": "Script",
+       "kind": "text",
+       "text": "If you own in the Poconos and you're planning a move to the Dominican Republic, the first decision isn't the condo. It's the order.\n\nSell here first, and you know exactly what you have to spend. Your net is real money, not an estimate. The trade-off is you might need somewhere to stay in between.\n\nBuy there first, and you're carrying two homes. Mortgage, taxes, insurance and utilities here, plus whatever you just signed up for over there. And if your Pocono house takes longer to sell than you planned, that clock gets expensive.\n\nMost people pick the order based on the place they fell in love with. Pick it based on your net, and how many months you can carry both.\n\nThe Pocono side is my side. I'll show you what selling here actually puts in your pocket. Comment BRIDGE."
+      },
+      {
+       "label": "Production",
+       "kind": "text",
+       "text": "FORMAT: Recorded at Wednesday's session, Alexa on camera, 9:16, about 40 seconds. English. No DR legal, tax or title claims in this piece by design.\nCOVER TEXT: SELL HERE FIRST, OR BUY THERE FIRST\nON-SCREEN TEXT (add in edit):\n 0:08  \"Sell first = a real number\"\n 0:16  \"Buy first = carrying two homes\"\n 0:30  \"Decide by your net + months you can carry both\"\n 0:38  \"Comment BRIDGE\"\nB-ROLL (optional): your own DR footage for the opening two seconds, then Pocono footage.\nLOCATION TAG: East Stroudsburg, Pennsylvania\nNO DR brokerage CTA, no referral language, no Urban Group block."
+      },
+      {
+       "label": "Caption",
+       "kind": "text",
+       "text": "Selling in the Poconos to move to the Dominican Republic: the first decision is the order, not the condo.\n\nSell first and you know your real number. Buy first and you carry two homes until this one sells.\n\nPick the order by your net and how many months you can carry both.\n\nComment BRIDGE and I'll show you what selling here actually puts in your pocket.\n\nAlexa Sanchez, REALTOR® · Smart Way America Realty · PA License #RS326383 · 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 · (570) 688-8147 · Alexa@alexasanchez.net\n\n#DominicanRepublicRealEstate #PuntaCana #PoconoRealEstate #MonroeCounty #LifeByAlexa"
+      },
+      {
+       "label": "YouTube description",
+       "kind": "text",
+       "text": "TITLE: Moving From the Poconos to the Dominican Republic: Sell First or Buy First?\n\nDESCRIPTION:\nPlanning to sell a Pocono Mountains home and move to the Dominican Republic? Alexa Sanchez, a Dominican-American REALTOR® with Smart Way America Realty in East Stroudsburg, PA, explains why the order you sell and buy in matters more than which condo you pick, and how to decide using your net proceeds and carrying costs.\n\nShould I sell my Pocono house before buying in the Dominican Republic? Selling first gives you a real number to spend instead of an estimate. The trade-off is you may need temporary housing in between.\n\nWhat happens if I buy in the DR before my Pocono home sells? You carry two homes: the mortgage, taxes, insurance and utilities here, plus your new costs there, until the Pocono sale closes.\n\nHow do I decide? Start from your net proceeds on the Pocono home and how many months you can afford to carry both properties.\n\nAlexa handles the Pocono side. Comment BRIDGE on Instagram @alexa.realtor or call (570) 688-8147 to see what selling your Monroe County home would net.\n\nEducational only. Not legal or tax advice. Talk to a licensed Dominican attorney about any DR purchase.\n\nAlexa Sanchez, REALTOR® · Smart Way America Realty · PA License #RS326383 · 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 · (570) 688-8147 · Alexa@alexasanchez.net\n\nTAGS: moving to the Dominican Republic from Pennsylvania, sell house before buying abroad, Pocono real estate, Monroe County PA, retire to the Dominican Republic, Punta Cana move, Dominican American realtor, East Stroudsburg realtor, selling a home in the Poconos, net proceeds, Alexa Sanchez realtor"
+      }
+     ]
+    },
+    {
+     "t": "[ST] Story poll after bridge reel · BRIDGE",
+     "tag": "DR",
+     "when": "Wed right after reel · IG Stories",
+     "acct": "realtor",
+     "platforms": [
+      "stories"
+     ],
+     "blocks": [
+      {
+       "label": "Sticker + DMs",
+       "kind": "text",
+       "text": "STICKER (poll), post right after the bridge reel:\n\"The DR someday?\"  It's the plan / Just dreaming\n\nDM TO EVERYONE WHO VOTES:\nIt's the plan → \"Love that. Do you own a home in the Poconos right now? If you do, I can show you what selling it would actually put in your pocket, which makes the DR math a lot easier.\"\nJust dreaming → \"Same, most days. If the dream ever turns into a plan and there's a Pocono house involved, I'm your person for that side. Where are you based now?\"\n"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "thu",
+   "day": "Thu",
+   "date": "Oct 22",
+   "sub": "Research + the Insider",
+   "tasks": [
+    {
+     "t": "Thursday research run (01A · 02A · 07 · 03W · 04B) · status",
+     "tag": "status",
+     "when": "Thu AM",
+     "platforms": [],
+     "blocks": [
+      {
+       "label": "Note",
+       "kind": "text",
+       "text": "Run 03W with CONFOTUR excluded; that angle aired Oct 7. Make sure 02A actually runs this week."
+      }
+     ]
+    },
+    {
+     "t": "[INS] The Pocono Insider",
+     "tag": "RE",
+     "when": "Thu afternoon · Flodesk",
+     "acct": "realtor",
+     "platforms": [
+      "insider"
+     ],
+     "blocks": [
+      {
+       "label": "Issue",
+       "kind": "text",
+       "text": "SUBJECT: Waterfalls, an I-80 heads-up, and a quick poll\nPREVIEW TEXT: Plus this week's Pocono Ledger in two minutes.\n\nAROUND TOWN\nIf you drive I-80 through Bartonsville, PennDOT's plans for widening about five miles of the interstate in Hamilton, Pocono and Stroud townships, including the Route 33 interchange, are online now. The in-person display was this past Tuesday at NCC's Pocono Campus; written comments stay open into November. Deadline's on PennDOT's \"80 Bartonsville\" page.\n\nTHIS WEEKEND\n[ADD 2–3 verified events for Oct 24–25, with date, time, place and cost. Don't list anything you haven't confirmed on the organizer's own page.]\n\nLOCAL BUSINESS / BEST OF\n[ADD one local business you actually use, two or three sentences on why, in your own words.]\n\nTHE LANDMARK: GEORGE W. CHILDS PARK\nThree waterfalls on a 1.4-mile loop in Dingmans Ferry. Lots of stairs, no dogs, and the lot fills early on weekends. [Your photo here.]\n\nTHIS WEEK'S POCONO LEDGER\nMortgage rates didn't move this week, and the \"inventory is rising\" headline is a national story. What it means here: [Ledger link]\n\nPOLL\nHow long have you lived in the Poconos?  Under 2 years · 2–10 years · 10+ years · I'm visiting\n\nFROM INSTAGRAM\n1. Don't cut your price because of a headline [link]\n2. Sell here first or buy in the DR first [link]\n3. [third most recent @alexa.realtor post] [link]\n\nFOR VETERANS\n[ADD one verified local veteran discount. Veterans Day offers usually post in early November; confirm with the business before listing.]\n\nONE FROM THE DR\nIf the Dominican Republic is in your someday plans, this week I covered the first decision if you own here: sell first or buy first. [link]\n\n— Alexa\nAlexa Sanchez, REALTOR® · Smart Way America Realty · PA License #RS326383 · (570) 688-8147"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fri",
+   "day": "Fri",
+   "date": "Oct 23",
+   "sub": "Landmark + @its.myash",
+   "tasks": [
+    {
+     "t": "[05] Landmark: George W. Childs Park · VALUE",
+     "tag": "RE",
+     "when": "Fri 6–9 PM ET · IG + YT",
+     "acct": "realtor",
+     "platforms": [
+      "ig",
+      "youtube"
+     ],
+     "blocks": [
+      {
+       "label": "Photo direction",
+       "kind": "text",
+       "text": "SUBJECT: one waterfall at George W. Childs Park, shot from a designated platform or bridge. If it's Fulmer Falls, say so in the caption; if you're not sure which falls you photographed, caption it as \"one of the three falls.\"\nFRAMING: vertical 4:5 for IG. Cascade and layered rock as the anchor; any leaf color as a frame, not the subject.\nLIGHT: early morning or overcast for even water texture. Tripod + slow shutter if you have it.\nRULES: stay on the boardwalk and platforms (required). No identifiable people. No peak-foliage claim.\nB-ROLL FOR YOUTUBE: 20–30 seconds, 9:16, slow push toward the falls plus the sound of the creek. No text burned in."
+      },
+      {
+       "label": "IG caption",
+       "kind": "text",
+       "text": "George W. Childs Park, Dingmans Ferry.\n\nThree waterfalls along Dingmans Creek on a 1.4-mile loop, with plenty of stairs in between, so wear real shoes. It's been a public park since 1892, and it reopened in October 2024 after storms closed it in 2018.\n\nA few things to know: no pets on the trail, stay on the boardwalk, and get there early on weekends because parking is limited.\n\nThis is the part of Pocono living people underestimate. A waterfall walk on a regular Tuesday.\n\nIf you're thinking about a move here, or you already own and want to know what your place is worth, DM me VALUE.\n\nAlexa Sanchez, REALTOR® · Smart Way America Realty · PA License #RS326383 · (570) 688-8147\n\n#PoconoMountains #PoconoRealEstate #PARealEstate #DelawareWaterGap #LifeByAlexa\nLOCATION TAG: George W. Childs Park"
+      },
+      {
+       "label": "YouTube description",
+       "kind": "text",
+       "text": "TITLE: George W. Childs Park in the Fall | Three Waterfalls in the Pocono Mountains\n\nDESCRIPTION:\nGeorge W. Childs Park in Dingmans Ferry, Pennsylvania, is a 1.4-mile loop trail past three waterfalls on Dingmans Creek, inside Delaware Water Gap National Recreation Area in the Pocono Mountains.\n\nWhat can you see at George W. Childs Park? Three waterfalls, a wooded ravine along Dingmans Creek, and mill ruins near the falls. The National Park Service rates the loop easy to moderate, with about 144 feet of elevation change and many stairs.\n\nCan you bring a dog to George W. Childs Park? No. Pets are prohibited on the trail, and visitors must stay on the boardwalk and trail.\n\nWhen did George W. Childs Park reopen? October 2024, after storms closed it in 2018.\n\nFilmed by Alexa Sanchez, a REALTOR® with Smart Way America Realty in East Stroudsburg, PA, who covers Pocono life alongside Monroe County real estate. Instagram @alexa.realtor.\n\nAlexa Sanchez, REALTOR® · Smart Way America Realty · PA License #RS326383 · 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 · (570) 688-8147 · Alexa@alexasanchez.net\n\nTAGS: George W. Childs Park, Childs Park waterfalls, Dingmans Ferry PA, Delaware Water Gap National Recreation Area, Pocono waterfalls, Pocono Mountains hikes, fall in the Poconos, Pike County PA, things to do in the Poconos, Pocono Mountains living, Alexa Sanchez realtor"
+      }
+     ]
+    },
+    {
+     "t": "[myash] Talking Head: the story behind the band",
+     "tag": "cigar",
+     "when": "Fri · TikTok",
+     "acct": "myash",
+     "platforms": [
+      "tiktok"
+     ],
+     "blocks": [
+      {
+       "label": "Script",
+       "kind": "text",
+       "text": "There's a Dominican documentary about cigars opening in theaters back home on October twenty-ninth. It's called Más allá del humo. Beyond the smoke.\n\nWhat caught my attention is it's not really about the cigar. It's about the families. The people who learn this work from their parents and then decide what to do with it.\n\nThat's the part of Dominican cigars most people never see. You see a band, a price, maybe a rating.\n\nI'm building my own line right now, and that's the story I want to tell. Who made it. What they decided. Why it tastes the way it does.\n\nIf it makes it to a screen here in the States, I'm going. If you've seen it in DR, tell me what you thought."
+      },
+      {
+       "label": "Production + caption",
+       "kind": "text",
+       "text": "FORMAT: Talking Head, TikTok (cross-post to IG Reels optional), 9:16, about 40 seconds, at home or in the car. Not at the lounge.\nCOVER: \"The story behind the band\"\nCAPTION: The band gets your attention. The people behind it deserve the story. Más allá del humo opens in Dominican cinemas Oct 29. — @its.myash\n#CigarLife #DominicanCigars #PremiumCigars #CigarAuthority #LifeByAlexa\nNOTES: Don't say you've seen the film. #NellsSocial is left off while the lounge is closed to the public. No lounge invitation."
+      }
+     ]
+    },
+    {
+     "t": "[myash] IG Stories: cigar + lifestyle",
+     "tag": "cigar",
+     "when": "Fri evening · IG Stories",
+     "acct": "myash",
+     "platforms": [
+      "stories"
+     ],
+     "blocks": [
+      {
+       "label": "Frames",
+       "kind": "text",
+       "text": "FRAME 1 (cigar): photo of a House Blend band close-up at home. Text: \"Every band has a family behind it.\"\nFRAME 2 (cigar): poll — \"Would you watch a cigar documentary?\"  Yes / Only with a cigar in hand\nFRAME 3 (lifestyle): your Friday-evening setup at home, coffee or a drink, no location tag. Text: \"Friday.\"\nNo lounge content, no \"come by,\" no event invites until Nell's Social reopens to the public in February."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sat",
+   "day": "Sat",
+   "date": "Oct 24",
+   "sub": "Log the week",
+   "tasks": [
+    {
+     "t": "Fill the results block for next Sunday · status",
+     "tag": "status",
+     "when": "Sat · site Home page",
+     "platforms": [],
+     "blocks": [
+      {
+       "label": "Log",
+       "kind": "text",
+       "text": "Per reel: views, shares, saves, keyword comments, DMs started.\nStories: poll votes and replies.\nNextdoor: replies, private messages.\nInsider: opens, clicks, poll results.\nLeads by door: DM · value request · Insider signup · call. Stage for each."
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "before": {
+  "verify": "<table><tr><th>Risk</th><th>Claim</th><th>Where</th><th>Check with</th></tr><tr><td>HIGH</td><td>I-80 comment deadline. PennDOT&#x27;s project page lists Oct 1–Nov 1; the research cites Nov 13 from the Oct 16 announcement. Copy says &quot;into November&quot; and points to the project page until resolved.</td><td>Nextdoor, Ledger, Insider</td><td>PennDOT &quot;80 Bartonsville&quot; page; call District 5 if still unclear</td></tr><tr><td>HIGH</td><td>I-80 meeting time (5 p.m. per research). Copy leaves the time out; add it only if confirmed.</td><td>Nextdoor</td><td>PennDOT announcement</td></tr><tr><td>HIGH</td><td>Sept 2026 PMAR Monthly Indicators. Not public; the Ledger runs on August and says so.</td><td>Ledger, GBP, Car Confession, FB</td><td>PMAR member portal</td></tr><tr><td>MED</td><td>Freddie Mac 15-year: 6.71% (Oct 15) vs 6.73% (Oct 8). 30-year 7.40% both weeks is confirmed (FRED).</td><td>Ledger</td><td>freddiemac.com/pmms</td></tr><tr><td>MED</td><td>Zillow VA 30-year averages 6.77% (Oct 18) / 6.90% (Oct 11). Marketplace average, labeled as such.</td><td>Ledger</td><td>Yahoo Finance / Zillow, Oct 18</td></tr><tr><td>MED</td><td>FOMC Oct 27–28 meeting dates.</td><td>Ledger</td><td>federalreserve.gov FOMC calendar</td></tr><tr><td>MED</td><td>Which Childs Park falls Alexa photographs. Caption names Fulmer Falls only if confirmed; NPS hours were not confirmed and are left out.</td><td>Landmark</td><td>NPS trail map on site</td></tr><tr><td>LOW</td><td>NAR September figures (3.99M, +1.5% m/m, −2.2% y/y; inventory 1.60M, +1.9% m/m, +4.6% y/y; median $417,500; Northeast 470k, −2.1% m/m, −4.1% y/y, $523,600). Confirmed against NAR&#x27;s Oct 13 release and coverage.</td><td>Ledger, Car Confession</td><td>nar.realtor</td></tr><tr><td>LOW</td><td>Payment math: $1,939 (7.40%, $280K loan), $2,275 vs $2,305 (VA, $350K), ~$55/mo per $10K cut at 20% down. Recalculated.</td><td>Ledger, Car Confession</td><td>Amortization check</td></tr><tr><td>LOW</td><td>Más allá del humo opens Oct 29, 2026 in Dominican cinemas. Confirmed (Acento).</td><td>@its.myash</td><td>acento.com.do</td></tr><tr><td>HOLD</td><td>CONFOTUR resale claims from the Oct 7 DR video, plus this week&#x27;s DGII reply and $9,000 illustration. Send to Dominican counsel; nothing new airs.</td><td>Oct 7 DR video</td><td>Licensed Dominican attorney</td></tr></table>",
+  "monitor": "<ul><li>Sept PMAR Monthly Indicators (update the Ledger the week it&#x27;s public)</li><li>FOMC Oct 27–28 decision (next week&#x27;s Ledger)</li><li>NAR October existing-home sales, Nov 12</li><li>I-80 Bartonsville comment window</li><li>Veterans Day discounts for the Nov 5 Insider veteran line</li><li>Counsel sign-off on the CONFOTUR claims</li></ul>",
+  "awaiting": "<ul><li>Urban Group: did the switch close Oct 17? BRIDGE stays Pocono-side until Urban Group disclosures + Smart Way broker sign-off are in.</li><li>Last week&#x27;s results block (Oct 12–17) for the scorecard</li><li>Is the Pocono Insider live on Flodesk? If not, hold Thursday&#x27;s issue.</li><li>Is the Filler &amp; Roast online shop live? The episode ends on it.</li><li>Comment-to-DM tool configured with NET, BRIDGE, VALUE</li><li>Childs Park photo (Tue/Wed)</li><li>New inventory (none reported, so no GBP listing)</li></ul>",
+  "notes": "<p>Pillar: still a placeholder link. PIR: none this week. Veteran: none this week. Piece count: 13 @alexa.realtor + 2 @its.myash + 1 @fillerandroast. 80/20: 12 real estate, 1 personal/Pocono life (Landmark). Ledger cuts used: 2 of 2 (GBP Monday, Personal FB). Nextdoor this week is the I-80 heads-up on Monday instead of the Thursday Landmark post. The ROAST-v9-Weekly-Instructions.md project file is older than the current instructions and should be updated or removed.</p>"
+ }
 };
