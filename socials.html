@@ -81,7 +81,7 @@
 <script>
 var ACCTS = [
   { id:'realtor', name:'@alexa.realtor', job:'Seller leads in Monroe County. Every post points to one door.' },
-  { id:'myash', name:'@its.myash', job:'Followers, the cigar brand and Nell\'s Social. No real estate CTA.' },
+  { id:'myash', name:'@its.myash', job:'Followers and the cigar brand. Stories carry cigar + lifestyle while Nell\'s is closed. No real estate CTA.' },
   { id:'fnr', name:'@fillerandroast', job:'Online coffee sales. Every post sends people to the shop.' }
 ];
 /* Platform order + the one rule to remember on each */
@@ -97,10 +97,10 @@ var PLATS = {
     ['linkedin','LinkedIn','Operator read, not a repost.'],
     ['fbbiz','Facebook Business',''],
     ['fbpersonal','Personal Facebook','EN + ES, written fresh.'],
-    ['web','Website gallery cards','Three lanes, never mixed.'],
+    ['insider','The Pocono Insider (email)','Thursday afternoon. Community first, real estate light.'],
     ['outreach','Farm / sphere sends','Direct texts and emails. Not public.']
   ],
-  myash: [['ig','Instagram',''],['tiktok','TikTok','One point, no intro.'],['youtube','YouTube','']],
+  myash: [['stories','Instagram Stories','Cigar and lifestyle. No lounge invites until February.'],['ig','Instagram',''],['tiktok','TikTok','One point, no intro.'],['youtube','YouTube','']],
   fnr: [['ig','Instagram','Once a week. No faces, no license block.']]
 };
 
@@ -127,7 +127,7 @@ function platsOf(t){
   if (/\bIG\b|Instagram/i.test(t.when)) p.push('ig');
   if (/Shorts|YouTube|\bYT\b/i.test(t.when)) p.push('youtube');
   if (/TikTok/i.test(t.when)) p.push('tiktok');
-  if (/gallery/i.test(w)) p.push('web');
+  if (/Insider|Flodesk|newsletter/i.test(w)) p.push('insider');
   return p.length ? p : ['ig'];
 }
 /* A block labeled for one platform only shows under that platform. */
