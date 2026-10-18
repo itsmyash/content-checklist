@@ -18,7 +18,7 @@ var R = (function(){
   function fmt(isoStr){ var d = new Date(isoStr + 'T00:00:00'); return d.toLocaleDateString('en-US', {month:'short', day:'numeric'}); }
   function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
   /* Backup: every ROAST key in this browser → one JSON. */
-  var KEYS = ['roast_leadlog_v9','myash_ops_v6'];
+  var KEYS = ['roast_leadlog_v9','myash_ops_v6','roast_scorecard_v9'];
   function exportAll(){
     var out = { exported: new Date().toISOString(), data: {} };
     try { for (var i = 0; i < localStorage.length; i++){ var k = localStorage.key(i); if (KEYS.indexOf(k) > -1 || k.indexOf('roast:') === 0) out.data[k] = localStorage.getItem(k); } } catch(e){}
