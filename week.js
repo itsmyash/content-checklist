@@ -33,10 +33,11 @@ var WEEK = {
     {
      "t": "[IG1] Educational video: Don't quote a buyer last year's property taxes · VALUE",
      "tag": "RE",
-     "when": "6–9 PM · IG Reel",
+     "when": "6–9 PM · IG Reel + YT Shorts",
      "acct": "realtor",
      "platforms": [
-      "ig"
+      "ig",
+      "youtube"
      ],
      "blocks": [
       {
@@ -93,6 +94,11 @@ var WEEK = {
        "label": "CTA",
        "kind": "text",
        "text": "VALUE (IG comment-to-DM). Auto-reply and follow-up in Section 19."
+      },
+      {
+       "label": "YouTube Shorts description",
+       "kind": "text",
+       "text": "TITLE: East Stroudsburg 2027 Property Taxes: What Sellers Should Tell Buyers\n\nWhat did East Stroudsburg propose for 2027? A borough tax rate of 10.2655 mills, up from 8.9654 in 2026. The hearing and final vote are Dec 1, 2026, at 7 PM.\n\nHow much is it? About $130 a year per $100,000 of assessed value, for the borough's share only. Assessed value is on your tax bill; it isn't your home's market value.\n\nDoes it change what my house is worth? Not on its own. It matters because buyers budget for next year's costs, so give them current numbers and say what's proposed.\n\nTags: East Stroudsburg property tax, East Stroudsburg 2027 budget, Monroe County PA real estate, selling a house Poconos, Pocono Mountains real estate, property taxes Pennsylvania, Pocono home value, Alexa Sanchez Realtor\n\nAlexa Sanchez, REALTOR® · PA License No. RS326383 · Smart Way America Realty · Monroe County / Pocono Mountains · (570) 688-8147"
       }
      ]
     },
@@ -418,10 +424,11 @@ var WEEK = {
     {
      "t": "[IG2] Local/lifestyle B-roll: Bare trees, honest houses",
      "tag": "RE",
-     "when": "6–9 PM · IG Reel",
+     "when": "6–9 PM · IG Reel + YT Shorts",
      "acct": "realtor",
      "platforms": [
-      "ig"
+      "ig",
+      "youtube"
      ],
      "blocks": [
       {
@@ -468,6 +475,11 @@ var WEEK = {
        "label": "CTA",
        "kind": "text",
        "text": "None."
+      },
+      {
+       "label": "YouTube Shorts description",
+       "kind": "text",
+       "text": "TITLE: Selling a Pocono Home This Winter? November Shows Buyers Everything\n\nWhy walk your property in November? Once the leaves drop, buyers can see rooflines, gutters, drainage and views that summer hides.\n\nWhat should a seller check? Gutters, the roof, where water collects, and anything newly visible from the street. Fix what November shows you; photograph the views it reveals.\n\nTags: selling a house in winter, Pocono Mountains real estate, Stroudsburg PA, East Stroudsburg PA, home selling tips, Monroe County PA, curb appeal, Alexa Sanchez Realtor\n\nAlexa Sanchez, REALTOR® · PA License No. RS326383 · Smart Way America Realty · Monroe County / Pocono Mountains · (570) 688-8147"
       }
      ]
     },
@@ -640,10 +652,11 @@ var WEEK = {
     {
      "t": "[IG3] Humorous skit: The Website Said So · VALUE",
      "tag": "RE",
-     "when": "6–9 PM · IG Reel",
+     "when": "6–9 PM · IG Reel + YT Shorts",
      "acct": "realtor",
      "platforms": [
-      "ig"
+      "ig",
+      "youtube"
      ],
      "blocks": [
       {
@@ -695,6 +708,11 @@ var WEEK = {
        "label": "CTA",
        "kind": "text",
        "text": "VALUE (IG)."
+      },
+      {
+       "label": "YouTube Shorts description",
+       "kind": "text",
+       "text": "TITLE: The Website Said So: Why Online Home Values Miss\n\nAre online home-value estimates accurate? They're a starting point, built by computer from public records and sales data. They've never been inside your house.\n\nWhat do they miss? Condition, updates, the age of the roof, a finished basement, and what the house next door just did to its kitchen.\n\nWhat should a seller do? Get a pricing opinion from someone who walks through the house and shows you the comparable sales. A Realtor's pricing opinion isn't an appraisal.\n\nTags: home value estimate, what is my house worth, Pocono real estate, Monroe County PA, selling a house, real estate comedy, Realtor skit, Alexa Sanchez Realtor\n\nAlexa Sanchez, REALTOR® · PA License No. RS326383 · Smart Way America Realty · Monroe County / Pocono Mountains · (570) 688-8147"
       }
      ]
     },
@@ -1184,6 +1202,108 @@ var WEEK = {
        "text": "Pennsylvania property tax elimination · SB 929 · school property tax"
       }
      ]
+    },
+    {
+     "t": "[ND] Optional extra (outside the 30): Heads-up: East Stroudsburg's 2027 tax rate hearing is Dec 1",
+     "tag": "RE",
+     "when": "Morning · Nextdoor",
+     "acct": "realtor",
+     "platforms": [
+      "nextdoor"
+     ],
+     "blocks": [
+      {
+       "label": "Brief",
+       "kind": "text",
+       "text": "ANGLE ID: ND-N04x\nSTATUS: Copy complete\nCORE ARGUMENT: Neighborly heads-up with a do-it-yourself estimate: assessed value × 0.0013 = the borough's proposed increase.\nAUDIENCE: East Stroudsburg neighbors\nTAKEAWAY: Know your own number and the date; attend if you want to comment.\nFORMAT: Text post · Effort: Low\nSOURCES:\n• East Stroudsburg public hearings / Ord. 1427 notice — https://eaststroudsburgboro.org/public-hearings/\nBEFORE POSTING:\n• Shares FB5's subject (optional channel, not counted as original). No shared sentences. Confirm the hearing location in the borough notice before posting.\n• No pitch, keyword or hashtags; signature only. Track replies and private messages for next Sunday's scorecard."
+      },
+      {
+       "label": "Post",
+       "kind": "text",
+       "text": "Heads-up for East Stroudsburg neighbors: Borough Council's public hearing on the proposed 2027 real estate tax rate is Tuesday, December 1, at 7 p.m.\n\nThe proposal takes the borough's rate from 8.9654 to 10.2655 mills. Want your own number? Find the assessed value on your tax bill and multiply it by 0.0013. On a $100,000 assessment, that's about $130 more a year. That's the borough's portion only; the school district and county set their own rates.\n\nThe same proposed budget also includes changes to water, sewer and trash rates.\n\nThe hearing notice and proposal are on the borough's website under Public Hearings. Anyone who wants to comment can attend.\n\n— Alexa Sanchez, East Stroudsburg"
+      },
+      {
+       "label": "Image direction",
+       "kind": "text",
+       "text": "Text only. Optional: your own photo of the borough building exterior from the sidewalk."
+      },
+      {
+       "label": "Keywords",
+       "kind": "text",
+       "text": "East Stroudsburg taxes · borough council hearing · 2027 budget"
+      }
+     ]
+    },
+    {
+     "t": "[YT1] Long-form explainer: Monroe County Housing Numbers, Explained: Which Ones a Seller Should Actually Watch",
+     "tag": "RE",
+     "when": "Evening · YouTube long-form",
+     "acct": "realtor",
+     "platforms": [
+      "youtube"
+     ],
+     "blocks": [
+      {
+       "label": "Brief",
+       "kind": "text",
+       "text": "ANGLE ID: YT1-N43\nSTATUS: Copy complete · needs footage\nCORE ARGUMENT: Five market numbers get quoted about Monroe County. Each measures something different, and only a couple belong in a seller's decision.\nAUDIENCE: Monroe County homeowners thinking about selling in the next 6–24 months\nTAKEAWAY: Use closed MLS sales, year-to-date, and your own competition; never subtract numbers from different datasets.\nFORMAT: Talking head + graphics, 16:9, ~6 min · Effort: Moderate\nSOURCES:\n• PMAR Monthly Indicators, Sept 2026 (verified ledger; member portal)\n• Ledger §3: retired list-vs-sold gap\nBEFORE POSTING:\n• All figures are September 2026 PMAR. If PMAR October posts before filming, update the numbers and the 'as of' line.\n• Overlap check: LI1 (sources disagree), GBP2 (days on market) and TH2 (concessions) each touch one number. This video's argument is the whole toolkit plus months of supply and affordability; don't film it the same week if you'd rather avoid repetition."
+      },
+      {
+       "label": "YouTube title (≤70 chars)",
+       "kind": "text",
+       "text": "Monroe County Housing Market Numbers, Explained (For Sellers)"
+      },
+      {
+       "label": "Thumbnail text",
+       "kind": "text",
+       "text": "5 NUMBERS · WHICH ONES MATTER"
+      },
+      {
+       "label": "Hook (first 15 seconds)",
+       "kind": "text",
+       "text": "There are five numbers people quote about the Monroe County housing market. Some of them get misused all the time. If you're thinking about selling, here's what each one actually measures, and the two I'd actually use."
+      },
+      {
+       "label": "Full script (clean copy, ~6 min)",
+       "kind": "text",
+       "text": "[0:00 HOOK]\nThere are five numbers people quote about the Monroe County housing market. Some of them get misused all the time. If you're thinking about selling, here's what each one actually measures, and the two I'd actually use.\n\nEverything I'm citing is from the Pocono Mountains Association of REALTORS® monthly report for September 2026. That's MLS data, actual closed sales.\n\n[0:30 NUMBER ONE: MEDIAN VS. AVERAGE PRICE]\nNumber one. The median sale price in September was $339,500. The average was $372,028.\n\nWhy are they thirty thousand dollars apart? The median is the house in the middle. Half sold for more, half for less. The average adds everything up and divides, so a handful of expensive homes pull it up.\n\nIf somebody says \"homes are selling for $372,000,\" they're probably quoting the average. Most houses didn't.\n\nAnd here's the catch on both. These prices don't account for seller concessions. If a seller paid twenty thousand toward the buyer's closing costs, the sale price doesn't show it. So a price that looks strong can hide a softer deal.\n\n[1:30 NUMBER TWO: ONE MONTH VS. THE YEAR]\nNumber two. The September median was up 1.3% from last September. One month earlier, August was up about 14%.\n\nDid the market crash between August and September? No. September's median came from 186 closed sales. That's a small sample, and a few sales can swing it.\n\nThe number I trust more is year-to-date. Through September, the median was $338,700, up 7.5% from the same stretch last year. When you see one month jump or drop, look at the year before you react.\n\n[2:20 NUMBER THREE: DAYS ON MARKET]\nNumber three. Days on market. In September, homes that sold averaged 58 days from listing to an accepted offer.\n\nTwo things people miss. That count stops at the accepted offer, not at closing. Add several weeks for inspections, appraisal and the loan. And other websites show different numbers for days on market because they start and stop the clock differently, or count listings that never sold.\n\nSo when you plan a move, plan for both clocks.\n\n[3:05 NUMBER FOUR: INVENTORY AND MONTHS OF SUPPLY]\nNumber four. There were 905 homes for sale at the end of September, and 4.6 months of supply.\n\nMonths of supply means if nothing new came on the market, how long it would take to sell what's out there at the recent pace. It was 4.3 a year earlier, so a little more choice for buyers.\n\nInventory was also up year over year in September for the first time in the twelve months that report shows. That's worth watching. It doesn't automatically mean prices drop. It means buyers have more to compare you to.\n\n[3:50 NUMBER FIVE: AFFORDABILITY]\nNumber five, and the one almost nobody talks about. The housing affordability index. In September it was 106.\n\nThat means the median household income was 106% of what it takes to qualify for the median-priced home at current rates. Higher is more affordable. Two years ago it was 126. Last year, 114. Now 106.\n\nThat's the squeeze. Buyers are still buying, but each one is stretching further. That's why price and monthly cost matter so much right now.\n\n[4:35 THE MISTAKE: MIXING DATASETS]\nHere's a common mistake. Someone takes a median asking price from a listing website and subtracts the median sale price from the MLS, and announces a \"gap.\" Those numbers come from different data, measuring different things. That gap doesn't exist. If you want to know whether sellers are getting their price, use a measure built for that, from one source.\n\n[5:05 WHAT I'D ACTUALLY USE]\nSo which numbers would I use if I were selling?\n\nFirst, year-to-date closed-sale trends, not one month.\n\nSecond, and this is the big one, your own competition. The ten or fifteen homes a buyer will compare to yours. What they listed at, what they cut to, what actually closed. Your house isn't the county median. It's competing with a very specific group of houses.\n\n[5:35 CLOSE]\nThe county numbers tell you the weather. Your competition tells you what to wear.\n\nIf you're thinking about selling in Monroe County and want a preliminary pricing opinion built from your actual competition and recent closed sales, my contact info is in the description. It's not an appraisal. It's a straight answer."
+      },
+      {
+       "label": "On-screen text / graphics (in order)",
+       "kind": "text",
+       "text": "Source: PMAR Monthly Indicators · Sept 2026 · MLS closed sales\nMedian $339,500 · Average $372,028\nPrices don't include seller concessions\nSept median +1.3% (186 sales) · YTD median $338,700, +7.5%\nAvg days to accepted offer: 58 · + closing time\n905 homes for sale · 4.6 months of supply (4.3 a year ago)\nAffordability index (Sept): 2024: 126 · 2025: 114 · 2026: 106\nAsking price (listing site) − sale price (MLS) = NOT a real gap\nUse: YTD trends + YOUR competition"
+      },
+      {
+       "label": "Shot list · visual direction",
+       "kind": "text",
+       "text": "1. A-roll: Alexa seated at the office desk, 16:9, eye level, warm key light; second angle for cuts\n2. Full-screen number cards for each section (green brand palette, big numerals, source line bottom left)\n3. B-roll: Stroudsburg Main Street, a residential street, a 'For Sale' sign (your own), hands with printed reports (no client data)\n4. Simple bar chart for affordability 126 → 114 → 106\n5. Closing: Alexa to camera, then end screen"
+      },
+      {
+       "label": "YouTube description (AEO)",
+       "kind": "text",
+       "text": "Five numbers get quoted about the Monroe County, PA housing market. Here's what each measures and which ones a seller should actually use. All figures: Pocono Mountains Association of REALTORS® Monthly Indicators, September 2026 (MLS closed sales).\n\nCHAPTERS\n0:00 Five numbers\n0:30 Median vs. average sale price\n1:30 One month vs. year-to-date\n2:20 Days on market\n3:05 Inventory and months of supply\n3:50 Housing affordability index\n4:35 The mixed-dataset mistake\n5:05 What a seller should actually use\n\nWhat is the median home price in Monroe County, PA? $339,500 in September 2026, up 1.3% year over year. The year-to-date median through September was $338,700, up 7.5%.\n\nHow long does it take to sell a house in Monroe County? Homes that sold in September 2026 averaged 58 days from listing to an accepted offer, before closing.\n\nDo median sale prices include seller concessions? No. PMAR's median and average sales prices don't account for concessions.\n\nWhat is Monroe County's housing affordability index? 106 in September 2026, down from 114 in 2025 and 126 in 2024.\n\nThinking about selling? Contact me for a preliminary pricing opinion based on recent sales. Not an appraisal.\n\nAlexa Sanchez, REALTOR® · PA License No. RS326383 · Smart Way America Realty · 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 · (570) 688-8147 · Alexa@alexasanchez.net"
+      },
+      {
+       "label": "Tags",
+       "kind": "text",
+       "text": "Monroe County PA housing market, Pocono real estate market 2026, Poconos home prices, median home price Monroe County, selling a house in the Poconos, East Stroudsburg real estate, Stroudsburg real estate, days on market, months of supply, housing affordability, Pocono Mountains REALTOR, Alexa Sanchez Realtor"
+      },
+      {
+       "label": "Pinned comment",
+       "kind": "text",
+       "text": "If you're selling, the two numbers I'd watch are year-to-date closed sales and your own competition. What number have you heard quoted about the Poconos that you'd like me to break down next?"
+      },
+      {
+       "label": "Thumbnail direction",
+       "kind": "text",
+       "text": "Alexa on the right, looking at camera, neutral expression. Left: '5 NUMBERS' large, 'WHICH ONES MATTER' beneath, white on dark green. No house photos with addresses."
+      },
+      {
+       "label": "Schedule · CTA",
+       "kind": "text",
+       "text": "Thu Nov 12, evening. CTA: contact info in description (no keyword automation on YouTube)."
+      }
+     ]
     }
    ]
   },
@@ -1524,6 +1644,77 @@ var WEEK = {
      ]
     },
     {
+     "t": "[YT2] Long-form explainer: What It Actually Costs to Sell a House in Monroe County, PA",
+     "tag": "RE",
+     "when": "Evening · YouTube long-form",
+     "acct": "realtor",
+     "platforms": [
+      "youtube"
+     ],
+     "blocks": [
+      {
+       "label": "Brief",
+       "kind": "text",
+       "text": "ANGLE ID: YT2-N44\nSTATUS: Copy complete · needs footage\nCORE ARGUMENT: Sellers fixate on the sale price; what they keep depends on a stack of costs. Know each line before you pick a price.\nAUDIENCE: Monroe County homeowners planning a sale\nTAKEAWAY: Build your net sheet before you list: transfer tax, payoff, prorations, commission, concessions, repairs, and municipal or HOA items.\nFORMAT: Talking head + whiteboard/graphics, 16:9, ~6 min · Effort: Moderate\nSOURCES:\n• Monroe County Recorder of Deeds FAQ (1% state + 1% local) — https://www.monroecountypa.gov/Departments/Recorder-of-Deeds/Resources/FAQS\n• PA Department of Revenue: realty transfer tax, joint liability — https://www.pa.gov/agencies/revenue/resources/tax-types-and-information/realty-transfer-tax.html\nBEFORE POSTING:\n• Local transfer tax is 1% across the Monroe municipalities checked (county recorder fee bill); confirm the property's municipality on any real net sheet.\n• The $340,000 example is hypothetical and labeled as such. No commission rate is stated; it's negotiable.\n• Capital gains: federal exclusion mentioned only in general terms; viewers are told to see a tax professional."
+      },
+      {
+       "label": "YouTube title (≤70 chars)",
+       "kind": "text",
+       "text": "What It Really Costs to Sell a House in Monroe County, PA"
+      },
+      {
+       "label": "Thumbnail text",
+       "kind": "text",
+       "text": "THE PRICE ISN'T WHAT YOU KEEP"
+      },
+      {
+       "label": "Hook (first 15 seconds)",
+       "kind": "text",
+       "text": "Most sellers know the number they want for their house. Far fewer know what they'll actually walk away with. Here's every line between those two numbers when you sell in Monroe County."
+      },
+      {
+       "label": "Full script (clean copy, ~6 min)",
+       "kind": "text",
+       "text": "[0:00 HOOK]\nMost sellers know the number they want for their house. Far fewer know what they'll actually walk away with. Here's every line between those two numbers when you sell in Monroe County.\n\nI'll use a made-up example to keep it concrete: a house that sells for $340,000. Every house is different, so treat this as a map, not a quote.\n\n[0:30 LINE ONE: TRANSFER TAX]\nLine one. Realty transfer tax. In Monroe County it's 2% of the value: 1% to the state, 1% local. That's per the county Recorder of Deeds.\n\nWho pays? Both buyer and seller are legally on the hook, and the custom in Pennsylvania is to split it. So on $340,000, the seller's half is usually about $3,400. It's negotiable, and it's in your contract, so read that line.\n\n[1:15 LINE TWO: YOUR MORTGAGE PAYOFF]\nLine two. Your mortgage payoff. Not the balance on your statement. The payoff includes interest up to the day it's paid, and sometimes fees. Order an actual payoff figure from your servicer.\n\nIf you have a second mortgage, a home equity line, or a VA partial claim, those get paid off at closing too. Put them on the sheet now, not at the table.\n\n[1:55 LINE THREE: PROPERTY TAX PRORATIONS]\nLine three. Property taxes get prorated at closing. Depending on what you've already paid this year, that can be a charge or a credit back to you. It's not a surprise if you expect it. It's a surprise if you don't.\n\n[2:20 LINE FOUR: REAL ESTATE COMMISSION]\nLine four. Real estate commission. There's no set rate. It's negotiated and written into your listing agreement. And how the buyer's agent gets paid is its own negotiation now. Ask exactly what you're agreeing to and how it shows up on your net sheet.\n\n[2:50 LINE FIVE: CONCESSIONS]\nLine five. Concessions. Money you agree to give the buyer, often toward their closing costs or a rate buydown. It doesn't show up in the sale price you'll brag about, but it comes straight out of what you keep. A $340,000 sale with a $10,000 credit nets like a $330,000 sale, before everything else.\n\n[3:25 LINE SIX: REPAIRS AFTER INSPECTION]\nLine six. Repairs or credits after the home inspection. You don't control what the inspector finds. You do control how prepared you are. A pre-listing walk-through, or fixing the obvious things first, can shrink this line.\n\n[3:55 LINE SEVEN: MUNICIPAL AND HOA ITEMS]\nLine seven. Local items. Some municipalities require a resale or occupancy inspection before closing. If you're in a community association, there's usually a resale certificate and its fee. Final water and sewer readings, too. Every township is different, so find out early.\n\n[4:25 LINE EIGHT: SETTLEMENT AND SMALL STUFF]\nLine eight. Settlement-related fees. Things like deed preparation and notary fees. Individually small, but they add up. Your settlement company can tell you what's typical for the seller side.\n\n[4:45 LINE NINE: TAXES ON THE GAIN]\nLine nine, and this is a talk-to-your-tax-professional line. If it was your main home, federal law lets many sellers exclude a large part of the gain. If it was a second home or a rental, the rules are different. I'm not your tax advisor. Ask one before you list, not after.\n\n[5:10 PUT IT TOGETHER]\nSo the order is: sale price, minus transfer tax, minus payoff, plus or minus prorations, minus commission, minus concessions, minus repairs, minus local and settlement items. What's left is your number.\n\nDo that before you choose a list price. Because the price you need to hit depends on what you need to keep, not the other way around.\n\n[5:35 CLOSE]\nIf you're thinking about selling in Monroe County, I'll build you an estimated net sheet line by line using your actual mortgage, your township, and recent sales near you. It's an estimate, not a guarantee, and not an appraisal. My contact info is in the description."
+      },
+      {
+       "label": "On-screen text / graphics (in order)",
+       "kind": "text",
+       "text": "MADE-UP EXAMPLE: $340,000 sale\n1. Transfer tax: 2% total (1% state + 1% local) · seller's customary half ≈ $3,400\n2. Mortgage payoff (not your statement balance)\n3. Property tax proration (charge or credit)\n4. Commission: negotiated, in your listing agreement\n5. Concessions: $340K − $10K credit ≈ nets like $330K\n6. Inspection repairs or credits\n7. Municipal resale inspection · HOA resale certificate · final water/sewer\n8. Settlement fees (deed prep, notary)\n9. Taxes on the gain → ask a tax professional\n= YOUR NET"
+      },
+      {
+       "label": "Shot list · visual direction",
+       "kind": "text",
+       "text": "1. A-roll: Alexa at the office desk, 16:9, two angles\n2. Whiteboard or clean graphic that builds the net sheet line by line (one line per chapter)\n3. B-roll: keys on a table, a settlement-style folder with no names, a township building exterior from a public road, a water meter (your own)\n4. Closing: finished net-sheet graphic, then Alexa to camera"
+      },
+      {
+       "label": "YouTube description (AEO)",
+       "kind": "text",
+       "text": "What do you actually keep when you sell a house in Monroe County, PA? Every line between the sale price and your net, using a made-up $340,000 example.\n\nCHAPTERS\n0:00 Sale price vs. what you keep\n0:30 Realty transfer tax\n1:15 Mortgage payoff\n1:55 Property tax prorations\n2:20 Real estate commission\n2:50 Concessions\n3:25 Inspection repairs\n3:55 Municipal and HOA items\n4:25 Settlement fees\n4:45 Taxes on the gain\n5:10 Building your net sheet\n\nWhat is the transfer tax in Monroe County, PA? 2% of the value: 1% state and 1% local, per the Monroe County Recorder of Deeds. Buyer and seller are jointly liable; by custom they usually split it.\n\nWho pays closing costs when selling a house in Pennsylvania? Sellers typically pay their share of transfer tax, their mortgage payoff, agreed commission, any concessions, and seller-side settlement fees. Exact items depend on your contract.\n\nDo seller concessions reduce what I keep? Yes. A credit to the buyer comes out of your proceeds even though it doesn't change the recorded sale price.\n\nThis video is educational, not legal or tax advice. Want an estimated net sheet for your home? Contact me.\n\nSources: Monroe County Recorder of Deeds FAQ: https://www.monroecountypa.gov/Departments/Recorder-of-Deeds/Resources/FAQS · PA Department of Revenue, Realty Transfer Tax: https://www.pa.gov/agencies/revenue/resources/tax-types-and-information/realty-transfer-tax.html\n\nAlexa Sanchez, REALTOR® · PA License No. RS326383 · Smart Way America Realty · 528 Seven Bridges Rd, Suite 108, East Stroudsburg, PA 18301 · (570) 688-8147 · Alexa@alexasanchez.net"
+      },
+      {
+       "label": "Tags",
+       "kind": "text",
+       "text": "cost to sell a house in Pennsylvania, Monroe County PA transfer tax, seller closing costs PA, Pennsylvania realty transfer tax, selling a house in the Poconos, net sheet, how much will I make selling my house, East Stroudsburg real estate, Stroudsburg real estate, Pocono Mountains REALTOR, Alexa Sanchez Realtor"
+      },
+      {
+       "label": "Pinned comment",
+       "kind": "text",
+       "text": "Which line surprised you most? For most sellers it's concessions or the payoff. If you want a line-by-line estimate for your house, contact info is in the description."
+      },
+      {
+       "label": "Thumbnail direction",
+       "kind": "text",
+       "text": "Alexa on the left, pointing at text. Right: '$340,000' crossed through, an arrow down to 'YOUR NUMBER?'. Top: 'THE PRICE ISN'T WHAT YOU KEEP.' White on dark green."
+      },
+      {
+       "label": "Schedule · CTA",
+       "kind": "text",
+       "text": "Sat Nov 14, morning. CTA: estimated net sheet; contact info in description."
+      }
+     ]
+    },
+    {
      "t": "[BL1] Blog: East Stroudsburg 2027 Property Tax Proposal, Explained",
      "tag": "RE",
      "when": "AM · blog",
@@ -1592,6 +1783,6 @@ var WEEK = {
   "verify": "<table class=\"vt\"><tr><th>Risk</th><th>Claim</th><th>Used in</th><th>Check against</th></tr>\n<tr><td>HIGH</td><td>HB 1257 status and Nov 30 framing</td><td>X2, BL2</td><td>CONFIRMED: passed House Mar 24, 2026; Senate State Government since Mar 30 (palegis, PA House release). Ledger&#x27;s &#x27;202–1 in July&#x27; is WRONG → superseded. Before posting: Recheck palegis morning of 11/11</td></tr>\n<tr><td>HIGH</td><td>ES water/sewer/trash percentages</td><td>FB5, BL1</td><td>UNVERIFIED (+15.75% / +6% / +9.5% per research). Kept out of all copy. Before posting: Add only after checking packet</td></tr>\n<tr><td>HIGH</td><td>Meta RD 2036 pilot</td><td>TH1</td><td>Announced (trade press); launch UNVERIFIED. Stated in post. Before posting: None</td></tr>\n<tr><td>MED</td><td>ES 2027 rate 10.2655 vs 10.2654</td><td>IG1, TT1, LI2, FB5, BL1</td><td>Fund rates sum to 10.2655 (Nov 8 session); summaries say 10.2654. 2026 = 8.9654 (ordinance, county table). Before posting: Read draft Ord. 1427 once before Monday post</td></tr>\n<tr><td>MED</td><td>Borough budget &#x27;assessed values drop ~3%&#x27; and appeals attribution</td><td>IG1, LI2, BL1</td><td>From the borough&#x27;s proposed budget per Nov 8 session and ROAST 01; budget packet not re-opened this session. Before posting: Reconfirm in budget document</td></tr>\n<tr><td>MED</td><td>SB 929 status</td><td>TH3</td><td>Referred to Senate State Government Jul 14, 2025; no action since (trackers). Before posting: Recheck palegis before Thu post</td></tr>\n<tr><td>MED</td><td>HB 1256 / HB 2303 status</td><td>X3</td><td>HB 1256 referred Apr 17, 2025, no votes; HB 2303 introduced Mar 19, 2026, in committee. Before posting: Recheck palegis Fri morning</td></tr>\n<tr><td>MED</td><td>PTRR deadline, income limit</td><td>FB3</td><td>CONFIRMED: Dec 31, 2026; $48,110 (PA Revenue). Eligibility groups and Social Security exclusion from Treasury 2025 notice. Before posting: Confirm groups on pa.gov/ptrr</td></tr>\n<tr><td>MED</td><td>Jackson Twp Ord. 2026-100, R-1 prohibition</td><td>X3, GBP3</td><td>CONFIRMED on township page (Nov 8). Before posting: Recheck Fri</td></tr>\n<tr><td>MED</td><td>PMMS 7.18% (Nov 5), year-ago 6.22%</td><td>X1</td><td>CONFIRMED (Freddie Mac). Next release Thu Nov 12. Before posting: Post Monday only</td></tr>\n<tr><td>MED</td><td>PMAR Sept figures (median, DOM, affordability, concessions definition)</td><td>LI1, GBP2, TH2, X1</td><td>CONFIRMED in verified ledger (PMAR Sept report). Before posting: Swap in October when PMAR releases</td></tr>\n<tr><td>OK</td><td>I-80 26M comment deadline</td><td>FB1</td><td>PennDOT release: through Nov 13; project page: Nov 1. Both cited. Moved to Monday. Before posting: None</td></tr>\n<tr><td>OK</td><td>§8823 revenue neutrality + 10%</td><td>TT5, BL1</td><td>CONFIRMED: Act 156 of 2016 summary; statute. Before posting: None</td></tr>\n<tr><td>OK</td><td>Reassessment Jan 2028; reviews Jan–May 2027</td><td>GBP1, TT5, BL1</td><td>CONFIRMED: county news page; Tyler FAQ. Before posting: None</td></tr>\n<tr><td>OK</td><td>UAD 3.6 mandatory Nov 2, 2026</td><td>LI3</td><td>CONFIRMED: Freddie Mac FAQ; Fannie/Freddie timeline. FHA move per MPA (secondary). Before posting: None</td></tr>\n<tr><td>OK</td><td>Redfin −1.9% / Realtor.com double-digit (Sept)</td><td>LI1</td><td>PARTIAL, as captured in ROAST 01. Labeled. Before posting: None</td></tr>\n<tr><td>OK</td><td>DR visitors 9,241,246 Jan–Sep (+7.5%)</td><td>TT2</td><td>Government source per ROAST 02. Before posting: None</td></tr>\n<tr><td>OK</td><td>VA loan basics (no down payment, no PMI, funding fee)</td><td>TT3</td><td>VA home loan program pages; NAR toolkit article. Before posting: None</td></tr>\n<tr><td>OK</td><td>VA partial claim repaid at sale</td><td>TH4</td><td>CONFIRMED per ROAST 01 (VA). Before posting: None</td></tr>\n<tr><td>OK</td><td>VA–NAR &#x27;Are you a Veteran?&#x27; campaign (Nov 7)</td><td>—</td><td>Not used in copy; toolkit (2025) cited instead. Before posting: —</td></tr>\n</table>",
   "monitor": "<ul><li>PMAR October Monthly Indicators: swap October figures into GBP2/LI1 and consider the supply-vs-contracts story (N19) next week.</li><li>East Stroudsburg Ordinance 1427 vote, Dec 1: follow-up the week of Dec 6.</li><li>HB 1257 Senate action Nov 17–30.</li><li>Stroud Area Regional Police cost-sharing; Stroudsburg and Stroud Twp 2027 budgets.</li><li>East Stroudsburg Ordinance 1426 (floodplain) adoption.</li><li>Acts 64/67/74 (effective Dec 21) and the Insurance Department flood notice.</li><li>DR Law 30-26 final regulations; diaspora remote-purchase pilot launch date.</li><li>VA buyer-broker fee rule (RIN 2900-AS83).</li></ul>",
   "awaiting": "<ul><li>IG5 property tour: address, MLS #, verified facts, written seller (and listing broker) permission, by Thu 6 PM, or carry over.</li><li>IG4 day in the life: real Thursday footage + clip notes by Thu 3 PM; use the conditional draft only if it matches the day.</li><li>Comment-to-DM tool: confirm VALUE is configured before Monday's reel.</li><li>get.realtor: confirm slug, SEO fields and custom-code support before Saturday.</li><li>Last week's results and ROAST 03–05: paste next Sunday.</li></ul>",
-  "notes": "<ul><li>Keyword bank: VALUE active (IG1, IG3, IG4). BRIDGE not used. No DR brokerage CTA.</li><li>Captions use \"PA License No. RS326383\" (not #) so it doesn't become a hashtag; IG max 5 hashtags.</li><li>New platform keys this week: tiktok, fbbiz, linkedin, x, threads. If the site doesn't have icons/filters for them yet, add them.</li><li>Ledger fix: HB 1257 passed the House Mar 24, 2026 (not July); mark the old entry superseded.</li><li>Veterans Day: TT3 (VA loan story) and X2 (HB 1257); IG3 skit has no military references.</li><li>Full packet: Weekly-Production-Packet-Nov9-Nov15.html</li></ul>"
+  "notes": "<ul><li>YouTube long-form: YT1 Thu (market numbers explained), YT2 Sat (what it costs to sell).</li><li>YouTube Shorts: IG1–IG3 cross-post (description in each task). Nextdoor: one optional post Thu (outside the 30).</li><li>Keyword bank: VALUE active (IG1, IG3, IG4). BRIDGE not used. No DR brokerage CTA.</li><li>Captions use \"PA License No. RS326383\" (not #) so it doesn't become a hashtag; IG max 5 hashtags.</li><li>Ledger fix: HB 1257 passed the House Mar 24, 2026 (not July); mark the old entry superseded.</li><li>Veterans Day: TT3 (VA loan story) and X2 (HB 1257); IG3 skit has no military references.</li><li>Full packet: Weekly-Production-Packet-Nov9-Nov15.html</li></ul>"
  }
 };
