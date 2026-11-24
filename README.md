@@ -23,5 +23,9 @@ Each post task should carry `acct` (`realtor` / `myash` / `fnr`) and `platforms`
 
 ## Data
 
-Leads, pipeline and checkboxes are saved in the browser's localStorage, which is per device. Use **Home → Backup** to export or import.
+**Checkboxes (`roast:<week>`) and the monthly scorecard sync across devices** through Supabase (project "Content Tracker", table `checklist_state`). A badge in the bottom-right corner shows "Synced" or "Offline". The database only accepts those keys.
+
+**The lead log and Seller Pipeline stay on each device only** (localStorage), because this repo and its key are public. Use **Home → Backup** to export or import them.
+
+Free Supabase projects pause after about a week without use. If the badge says "Offline" for a while, restore the project in the Supabase dashboard.
 The pipeline reads the same storage key as the old dashboard (`myash_ops_v6`), so existing entries carry over in the same browser.

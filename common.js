@@ -1,7 +1,41 @@
 /* ROAST // shared helpers: safe storage, copy, toast, week math, backups */
 var R = (function(){
   function get(k, fallback){ try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : fallback; } catch(e){ return fallback; } }
-  function set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch(e){ return false; } }
+  function set(k, v){ try { var s = JSON.stringify(v); localStorage.setItem(k, s); cloudPush(k, s); return true; } catch(e){ return false; } }
+  /* Cloud sync (Supabase): checkboxes (roast:<week>) and the monthly scorecard sync across devices.
+     Lead log and Seller Pipeline stay on this device only. This repo is public, so private data never syncs. */
+  var SB_URL = 'https://gzqgeehcvmgstznkyfnw.supabase.co/rest/v1/checklist_state';
+  var SB_KEY = 'sb_publishable_LU8vcdqazISUz4ntCs2-9A_BOY7oAsb';
+  function syncs(k){ return k.indexOf('roast:') === 0 || k === 'roast_scorecard_v9'; }
+  function hdrs(extra){ var h = { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Content-Type': 'application/json' }; for (var x in extra) h[x] = extra[x]; return h; }
+  function cloudPush(k, s){
+    if (!syncs(k) || typeof fetch === 'undefined') return;
+    fetch(SB_URL + '?on_conflict=key', { method: 'POST', headers: hdrs({ 'Prefer': 'resolution=merge-duplicates,return=minimal' }), body: JSON.stringify({ key: k, value: s }) })
+      .then(function(r){ if (!r.ok) syncBadge('off'); else syncBadge('on'); }, function(){ syncBadge('off'); });
+  }
+  function syncBadge(state){
+    try {
+      var b = document.getElementById('syncbadge');
+      if (!b){ b = document.createElement('div'); b.id = 'syncbadge'; b.style.cssText = 'position:fixed;bottom:10px;right:10px;font:500 11px DM Sans,sans-serif;padding:4px 9px;border-radius:12px;z-index:999;opacity:.85'; document.body.appendChild(b); }
+      if (state === 'on'){ b.textContent = '● Synced'; b.style.background = '#1f7a3a'; b.style.color = '#fff'; }
+      else { b.textContent = '● Offline (saved on this device)'; b.style.background = '#a33'; b.style.color = '#fff'; }
+    } catch(e){}
+  }
+  /* On load: pull cloud values. If another device changed something, update here and refresh once. */
+  function cloudPull(){
+    if (typeof fetch === 'undefined') return;
+    fetch(SB_URL + '?select=key,value', { headers: hdrs({}) }).then(function(r){ if (!r.ok) throw 0; return r.json(); }).then(function(rows){
+      var changed = false;
+      rows.forEach(function(row){ if (syncs(row.key) && localStorage.getItem(row.key) !== row.value){ localStorage.setItem(row.key, row.value); changed = true; } });
+      /* Push anything that exists only on this device (first sync). */
+      var remote = {}; rows.forEach(function(row){ remote[row.key] = 1; });
+      for (var i = 0; i < localStorage.length; i++){ var k = localStorage.key(i); if (syncs(k) && !remote[k]) cloudPush(k, localStorage.getItem(k)); }
+      syncBadge('on');
+      if (changed && !sessionStorage.getItem('roast_synced')){ sessionStorage.setItem('roast_synced', '1'); location.reload(); }
+      else sessionStorage.removeItem('roast_synced');
+    }).catch(function(){ syncBadge('off'); });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', cloudPull); else cloudPull();
   function toast(msg){
     var t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t);
     setTimeout(function(){ t.remove(); }, 1800);
