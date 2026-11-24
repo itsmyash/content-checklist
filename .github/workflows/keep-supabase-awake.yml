@@ -1,5 +1,6 @@
-# Pings the Content Tracker database every 3 days so Supabase's free plan
-# never pauses it for inactivity (it pauses after ~7 days without use).
+# Pings Alexa's Supabase databases every 3 days so the free plan
+# never pauses them for inactivity (it pauses after ~7 days without use).
+# Covers: Content Tracker (this checklist site) and Ash Society (ashsociety.app).
 name: Keep Supabase awake
 
 on:
@@ -10,15 +11,27 @@ on:
 jobs:
   ping:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Content Tracker
+            url: "https://gzqgeehcvmgstznkyfnw.supabase.co/rest/v1/checklist_state?select=key&limit=1"
+            key: "sb_publishable_LU8vcdqazISUz4ntCs2-9A_BOY7oAsb"
+            dash: "https://supabase.com/dashboard/project/gzqgeehcvmgstznkyfnw"
+          - name: Ash Society
+            url: "https://rxslfnbrncddddqhfuiu.supabase.co/rest/v1/profiles?select=*&limit=1"
+            key: "sb_publishable_xIjl6gkm_f8FBrEiCdyvww_q7HFcqWH"
+            dash: "https://supabase.com/dashboard/project/rxslfnbrncddddqhfuiu"
+    name: Ping ${{ matrix.name }}
     steps:
-      - name: Read the checklist table
+      - name: Read one row
         run: |
-          code=$(curl -s -o /dev/null -w "%{http_code}" \
-            "https://gzqgeehcvmgstznkyfnw.supabase.co/rest/v1/checklist_state?select=key&limit=1" \
-            -H "apikey: sb_publishable_LU8vcdqazISUz4ntCs2-9A_BOY7oAsb" \
-            -H "Authorization: Bearer sb_publishable_LU8vcdqazISUz4ntCs2-9A_BOY7oAsb")
-          echo "Supabase responded with HTTP $code"
+          code=$(curl -s -o /dev/null -w "%{http_code}" "${{ matrix.url }}" \
+            -H "apikey: ${{ matrix.key }}" \
+            -H "Authorization: Bearer ${{ matrix.key }}")
+          echo "${{ matrix.name }} responded with HTTP $code"
           if [ "$code" != "200" ]; then
-            echo "::error::Database did not respond. It may be paused. Restore it at https://supabase.com/dashboard/project/gzqgeehcvmgstznkyfnw"
+            echo "::error::${{ matrix.name }} did not respond. It may be paused. Restore it at ${{ matrix.dash }}"
             exit 1
           fi
